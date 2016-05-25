@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        Saila:
+            class: Zerbikat\BackendBundle\Entity\Saila
+            label: 'Sail zerrenda'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'Kodea'
+                    - { property: 'sailaeu', label: 'Saila' }
+                    - { property: 'arduraduna', label: 'Arduraduna' }
+#                    - 'Araumota'
+#                    - { property: 'parent', label: 'Parent category' }
+#                    - 'products'

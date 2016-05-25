@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Azpiatala:
+            class: Zerbikat\BackendBundle\Entity\Azpiatala
+            label: 'Taulen zerrenda'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'kodea', label: 'Taula Kodea' }
+                    - { property: 'izenburuaeu', label: 'Izenburua' }
+#                   - { property: 'azpisaila', label: 'Azpisaila' }

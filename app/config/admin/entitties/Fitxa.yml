@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Fitxa:
+            class: Zerbikat\BackendBundle\Entity\Fitxa
+            label: 'Fitxen zerrenda'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'espedientekodea', label: 'Espediente Kodea' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena' }
+                    - { property: 'azpisaila', label: 'Azpisaila' }

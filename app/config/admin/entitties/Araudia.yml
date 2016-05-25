@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        Araudia:
+            class: Zerbikat\BackendBundle\Entity\Araudia
+            label: 'Araudi zerrenda'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'Kodea'
+#                    - { property: 'araumota', label: 'Arau-mota' }
+                    - { property: 'arauaeu', label: 'Araua' }
+#                    - 'Araumota'
+#                    - { property: 'parent', label: 'Parent category' }
+#                    - 'products'

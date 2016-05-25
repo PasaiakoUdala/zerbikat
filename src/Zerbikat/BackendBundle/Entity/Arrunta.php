@@ -1,0 +1,126 @@
+<?php
+
+namespace Zerbikat\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Arrunta
+ *
+ * @ORM\Table(name="arrunta")
+ * @ORM\Entity
+ */
+class Arrunta
+{
+    /** @ORM\ManyToOne(targetEntity="Udala") */
+    private $udala;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="epeaeu", type="string", length=255, nullable=true)
+     */
+    private $epeaeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="epeaes", type="string", length=255, nullable=true)
+     */
+    private $epeaes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+
+    /**
+     * Set epeaeu
+     *
+     * @param string $epeaeu
+     * @return Arrunta
+     */
+    public function setEpeaeu($epeaeu)
+    {
+        $this->epeaeu = $epeaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get epeaeu
+     *
+     * @return string 
+     */
+    public function getEpeaeu()
+    {
+        return $this->epeaeu;
+    }
+
+    /**
+     * Set epeaes
+     *
+     * @param string $epeaes
+     * @return Arrunta
+     */
+    public function setEpeaes($epeaes)
+    {
+        $this->epeaes = $epeaes;
+
+        return $this;
+    }
+
+    /**
+     * Get epeaes
+     *
+     * @return string 
+     */
+    public function getEpeaes()
+    {
+        return $this->epeaes;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function __toString()
+    {
+        return $this->getEpeaeu();
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     * @return Arrunta
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     */
+    public function getUdala()
+    {
+        return $this->udala;
+    }
+}
