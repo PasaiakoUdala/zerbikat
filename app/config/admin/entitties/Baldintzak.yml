@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Baldintza:
+            class: Zerbikat\BackendBundle\Entity\Baldintza
+            label: 'Baldintzak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+#                    - { property: 'kodea', label: 'Atal Kodea' }
+                    - { property: 'baldintzaeu', label: 'Baldintza' }
+#                   - { property: 'azpisaila', label: 'Azpisaila' }

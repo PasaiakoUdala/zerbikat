@@ -2,7 +2,7 @@ easy_admin:
     design:
       menu:
         - { label: 'Taula Nagusiak' }
-        - Fitxa
+        - { label: 'Fitxak', entity: 'Fitxa', default: true }
         - Araudia
         - { label: 'Agiriak', entity: 'Dokumentazioa' }
         - { label: 'Sailak', entity: 'Saila' }

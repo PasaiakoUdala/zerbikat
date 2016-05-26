@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Udala
  *
- * @ORM\Table()
+ * @ORM\Table(name="udala")
  * @ORM\Entity
  */
 class Udala
@@ -19,6 +19,7 @@ class Udala
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
+
     private $id;
 
     /**

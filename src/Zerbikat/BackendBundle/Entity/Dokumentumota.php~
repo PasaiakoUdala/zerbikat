@@ -45,6 +45,10 @@ class Dokumentumota
      */
     private $id;
 
+    public function __toString()
+    {
+        return $this->getMotaeu();
+    }
 
 
     /**

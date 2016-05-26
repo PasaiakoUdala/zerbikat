@@ -232,19 +232,6 @@ class Fitxa
      */
     private $oharrakes;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="besteakeu", type="text", length=65535, nullable=true)
-     */
-    private $besteakeu;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="besteakes", type="text", length=65535, nullable=true)
-     */
-    private $besteakes;
 
     /**
      * @var boolean
@@ -350,6 +337,45 @@ class Fitxa
      */
     private $arrunta;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak1eu", type="text", length=65535, nullable=true)
+     */
+    private $besteak1eu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak1es", type="text", length=65535, nullable=true)
+     */
+    private $besteak1es;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak2eu", type="text", length=65535, nullable=true)
+     */
+    private $bestea2keu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak2es", type="text", length=65535, nullable=true)
+     */
+    private $besteak2es;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak3eu", type="text", length=65535, nullable=true)
+     */
+    private $besteak3eu;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak3es", type="text", length=65535, nullable=true)
+     */
+    private $besteak3es;
+      
 
 
     /**

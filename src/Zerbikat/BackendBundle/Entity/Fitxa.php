@@ -232,19 +232,6 @@ class Fitxa
      */
     private $oharrakes;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="besteakeu", type="text", length=65535, nullable=true)
-     */
-    private $besteakeu;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="besteakes", type="text", length=65535, nullable=true)
-     */
-    private $besteakes;
 
     /**
      * @var boolean
@@ -350,6 +337,45 @@ class Fitxa
      */
     private $arrunta;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak1eu", type="text", length=65535, nullable=true)
+     */
+    private $besteak1eu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak1es", type="text", length=65535, nullable=true)
+     */
+    private $besteak1es;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak2eu", type="text", length=65535, nullable=true)
+     */
+    private $bestea2keu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak2es", type="text", length=65535, nullable=true)
+     */
+    private $besteak2es;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak3eu", type="text", length=65535, nullable=true)
+     */
+    private $besteak3eu;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="besteak3es", type="text", length=65535, nullable=true)
+     */
+    private $besteak3es;
+      
 
 
     /**
@@ -1395,5 +1421,149 @@ class Fitxa
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set besteak1eu
+     *
+     * @param string $besteak1eu
+     *
+     * @return Fitxa
+     */
+    public function setBesteak1eu($besteak1eu)
+    {
+        $this->besteak1eu = $besteak1eu;
+
+        return $this;
+    }
+
+    /**
+     * Get besteak1eu
+     *
+     * @return string
+     */
+    public function getBesteak1eu()
+    {
+        return $this->besteak1eu;
+    }
+
+    /**
+     * Set besteak1es
+     *
+     * @param string $besteak1es
+     *
+     * @return Fitxa
+     */
+    public function setBesteak1es($besteak1es)
+    {
+        $this->besteak1es = $besteak1es;
+
+        return $this;
+    }
+
+    /**
+     * Get besteak1es
+     *
+     * @return string
+     */
+    public function getBesteak1es()
+    {
+        return $this->besteak1es;
+    }
+
+    /**
+     * Set bestea2keu
+     *
+     * @param string $bestea2keu
+     *
+     * @return Fitxa
+     */
+    public function setBestea2keu($bestea2keu)
+    {
+        $this->bestea2keu = $bestea2keu;
+
+        return $this;
+    }
+
+    /**
+     * Get bestea2keu
+     *
+     * @return string
+     */
+    public function getBestea2keu()
+    {
+        return $this->bestea2keu;
+    }
+
+    /**
+     * Set besteak2es
+     *
+     * @param string $besteak2es
+     *
+     * @return Fitxa
+     */
+    public function setBesteak2es($besteak2es)
+    {
+        $this->besteak2es = $besteak2es;
+
+        return $this;
+    }
+
+    /**
+     * Get besteak2es
+     *
+     * @return string
+     */
+    public function getBesteak2es()
+    {
+        return $this->besteak2es;
+    }
+
+    /**
+     * Set besteak3eu
+     *
+     * @param string $besteak3eu
+     *
+     * @return Fitxa
+     */
+    public function setBesteak3eu($besteak3eu)
+    {
+        $this->besteak3eu = $besteak3eu;
+
+        return $this;
+    }
+
+    /**
+     * Get besteak3eu
+     *
+     * @return string
+     */
+    public function getBesteak3eu()
+    {
+        return $this->besteak3eu;
+    }
+
+    /**
+     * Set besteak3es
+     *
+     * @param string $besteak3es
+     *
+     * @return Fitxa
+     */
+    public function setBesteak3es($besteak3es)
+    {
+        $this->besteak3es = $besteak3es;
+
+        return $this;
+    }
+
+    /**
+     * Get besteak3es
+     *
+     * @return string
+     */
+    public function getBesteak3es()
+    {
+        return $this->besteak3es;
     }
 }

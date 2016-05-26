@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Kontzeptumota:
+            class: Zerbikat\BackendBundle\Entity\Kontzeptumota
+            label: 'Kontzeptu motak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+#                    - { property: 'kodea', label: 'Atal Kodea' }
+                    - { property: 'motaeu', label: 'Mota' }
+#                   - { property: 'azpisaila', label: 'Azpisaila' }

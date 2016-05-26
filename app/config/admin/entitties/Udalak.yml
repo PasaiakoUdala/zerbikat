@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Udala:
+            class: Zerbikat\BackendBundle\Entity\Udala
+            label: 'Udalak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'kodea', label: 'Udalaren Kodea' }
+                    - { property: 'izenaeu', label: 'Udala' }
+#                   - { property: 'azpisaila', label: 'Azpisaila' }

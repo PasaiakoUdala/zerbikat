@@ -76,8 +76,6 @@ easy_admin:
       datetime: 'Y/m/d H:i:s'
 #    design:
 #      brand_color: 'Red'
-
-
     entities:
       - Zerbikat\BackendBundle\Entity\Araudia
       - Zerbikat\BackendBundle\Entity\Araumota

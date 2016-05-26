@@ -1,0 +1,16 @@
+easy_admin:
+    entities:
+        Zerbitzua:
+            class: Zerbikat\BackendBundle\Entity\Zerbitzua
+            label: 'Zerbitzuak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'kodea', label: 'Zerbitzu Kodea' }
+                    - { property: 'zerbitzuaeu', label: 'Zerbitzua' }
+#                   - { property: 'azpisaila', label: 'Azpisaila' }
