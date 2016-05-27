@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fitxa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Espedientekodea</th>
+                <td>{{ fitxa.espedientekodea }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaeu</th>
+                <td>{{ fitxa.deskribapenaeu }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaes</th>
+                <td>{{ fitxa.deskribapenaes }}</td>
+            </tr>
+            <tr>
+                <th>Helburuaeu</th>
+                <td>{{ fitxa.helburuaeu }}</td>
+            </tr>
+            <tr>
+                <th>Helburuaes</th>
+                <td>{{ fitxa.helburuaes }}</td>
+            </tr>
+            <tr>
+                <th>Norkeu</th>
+                <td>{{ fitxa.norkeu }}</td>
+            </tr>
+            <tr>
+                <th>Norkes</th>
+                <td>{{ fitxa.norkes }}</td>
+            </tr>
+            <tr>
+                <th>Dokumentazioaeu</th>
+                <td>{{ fitxa.dokumentazioaeu }}</td>
+            </tr>
+            <tr>
+                <th>Dokumentazioaes</th>
+                <td>{{ fitxa.dokumentazioaes }}</td>
+            </tr>
+            <tr>
+                <th>Nolabertan</th>
+                <td>{% if fitxa.nolabertan %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nolainternet</th>
+                <td>{% if fitxa.nolainternet %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nolatelefono</th>
+                <td>{% if fitxa.nolatelefono %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nolapostela</th>
+                <td>{% if fitxa.nolapostela %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nolaposta</th>
+                <td>{% if fitxa.nolaposta %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Nolabesteakeu</th>
+                <td>{{ fitxa.nolabesteakeu }}</td>
+            </tr>
+            <tr>
+                <th>Nolabesteakes</th>
+                <td>{{ fitxa.nolabesteakes }}</td>
+            </tr>
+            <tr>
+                <th>Kostuaeu</th>
+                <td>{{ fitxa.kostuaeu }}</td>
+            </tr>
+            <tr>
+                <th>Kostuaes</th>
+                <td>{{ fitxa.kostuaes }}</td>
+            </tr>
+            <tr>
+                <th>Ebazpensinpli</th>
+                <td>{% if fitxa.ebazpensinpli %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Arduraaitorpena</th>
+                <td>{% if fitxa.arduraaitorpena %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Isiltasunadmin</th>
+                <td>{% if fitxa.isiltasunadmin %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Araudiaeu</th>
+                <td>{{ fitxa.araudiaeu }}</td>
+            </tr>
+            <tr>
+                <th>Araudiaes</th>
+                <td>{{ fitxa.araudiaes }}</td>
+            </tr>
+            <tr>
+                <th>Prozeduraeu</th>
+                <td>{{ fitxa.prozeduraeu }}</td>
+            </tr>
+            <tr>
+                <th>Prozeduraes</th>
+                <td>{{ fitxa.prozeduraes }}</td>
+            </tr>
+            <tr>
+                <th>Tramiteakeu</th>
+                <td>{{ fitxa.tramiteakeu }}</td>
+            </tr>
+            <tr>
+                <th>Tramiteakes</th>
+                <td>{{ fitxa.tramiteakes }}</td>
+            </tr>
+            <tr>
+                <th>Doklaguneu</th>
+                <td>{{ fitxa.doklaguneu }}</td>
+            </tr>
+            <tr>
+                <th>Doklagunes</th>
+                <td>{{ fitxa.doklagunes }}</td>
+            </tr>
+            <tr>
+                <th>Oharrakeu</th>
+                <td>{{ fitxa.oharrakeu }}</td>
+            </tr>
+            <tr>
+                <th>Oharrakes</th>
+                <td>{{ fitxa.oharrakes }}</td>
+            </tr>
+            <tr>
+                <th>Publikoa</th>
+                <td>{% if fitxa.publikoa %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Kontsultak</th>
+                <td>{{ fitxa.kontsultak }}</td>
+            </tr>
+            <tr>
+                <th>Parametroa</th>
+                <td>{{ fitxa.parametroa }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if fitxa.createdAt %}{{ fitxa.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if fitxa.updatedAt %}{{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ fitxa.id }}</td>
+            </tr>
+            <tr>
+                <th>Besteak1eu</th>
+                <td>{{ fitxa.besteak1eu }}</td>
+            </tr>
+            <tr>
+                <th>Besteak1es</th>
+                <td>{{ fitxa.besteak1es }}</td>
+            </tr>
+            <tr>
+                <th>Bestea2keu</th>
+                <td>{{ fitxa.bestea2keu }}</td>
+            </tr>
+            <tr>
+                <th>Besteak2es</th>
+                <td>{{ fitxa.besteak2es }}</td>
+            </tr>
+            <tr>
+                <th>Besteak3eu</th>
+                <td>{{ fitxa.besteak3eu }}</td>
+            </tr>
+            <tr>
+                <th>Besteak3es</th>
+                <td>{{ fitxa.besteak3es }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fitxa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

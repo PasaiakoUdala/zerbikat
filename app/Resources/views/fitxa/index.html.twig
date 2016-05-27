@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Deskribapena</th>
+                <th>Saila</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fitxa in fitxas %}
+            <tr>
+<!--                <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.espedientekodea }}</a></td> -->
+                <td>{{ fitxa.espedientekodea }}</td>
+                <td>{{ fitxa.deskribapenaeu }}<br>
+                {{ fitxa.deskribapenaes }}</td>
+                <td>{{ dump(fitxa.azpisaila) }}
+                    <br>
+
+
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fitxa_new') }}">Fitxa berria</a>
+        </li>
+    </ul>
+{% endblock %}
