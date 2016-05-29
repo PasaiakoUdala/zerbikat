@@ -52,12 +52,39 @@ class Saila
      */
     private $id;
 
+    /*
+     * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila", mappedBy="saila")
+     */
+    //private $azpisailak;
 
+    /**
+     * @var azpisailak[]
+     *
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila", cascade={"remove"})
+     */
+    private $azpisailak;
+
+
+    public function __toString()
+    {
+        return $this->getSailaeu();
+    }
+
+
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->azpisailak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set kodea
      *
      * @param string $kodea
+     *
      * @return Saila
      */
     public function setKodea($kodea)
@@ -70,7 +97,7 @@ class Saila
     /**
      * Get kodea
      *
-     * @return string 
+     * @return string
      */
     public function getKodea()
     {
@@ -81,6 +108,7 @@ class Saila
      * Set sailaeu
      *
      * @param string $sailaeu
+     *
      * @return Saila
      */
     public function setSailaeu($sailaeu)
@@ -93,7 +121,7 @@ class Saila
     /**
      * Get sailaeu
      *
-     * @return string 
+     * @return string
      */
     public function getSailaeu()
     {
@@ -104,6 +132,7 @@ class Saila
      * Set sailaes
      *
      * @param string $sailaes
+     *
      * @return Saila
      */
     public function setSailaes($sailaes)
@@ -116,7 +145,7 @@ class Saila
     /**
      * Get sailaes
      *
-     * @return string 
+     * @return string
      */
     public function getSailaes()
     {
@@ -127,6 +156,7 @@ class Saila
      * Set arduraduna
      *
      * @param string $arduraduna
+     *
      * @return Saila
      */
     public function setArduraduna($arduraduna)
@@ -139,7 +169,7 @@ class Saila
     /**
      * Get arduraduna
      *
-     * @return string 
+     * @return string
      */
     public function getArduraduna()
     {
@@ -149,7 +179,7 @@ class Saila
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -160,6 +190,7 @@ class Saila
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Saila
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -172,10 +203,44 @@ class Saila
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Add azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     *
+     * @return Saila
+     */
+    public function addAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak[] = $azpisailak;
+
+        return $this;
+    }
+
+    /**
+     * Remove azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     */
+    public function removeAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak->removeElement($azpisailak);
+    }
+
+    /**
+     * Get azpisailak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAzpisailak()
+    {
+        return $this->azpisailak;
     }
 }

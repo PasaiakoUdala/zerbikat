@@ -60,6 +60,10 @@ class Azpiatala
     private $id;
 
     /**
+     *          ERLAZIOAK
+     */
+
+    /**
      * @var \Zerbikat\BackendBundle\Entity\Atala
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Atala")
@@ -69,176 +73,19 @@ class Azpiatala
      */
     private $atala;
 
-
+    /**
+     * @var kontzeptuak[]
+     *
+     * @ORM\OneToMany(targetEntity="Kontzeptua", mappedBy="azpiatala", cascade={"remove"})
+     */
+    private $kontzeptuak;
 
     /**
-     * Set kodea
+     * @var parrafoak[]
      *
-     * @param string $kodea
-     * @return Azpiatala
+     * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala", cascade={"remove"})
      */
-    public function setKodea($kodea)
-    {
-        $this->kodea = $kodea;
-
-        return $this;
-    }
-
-    /**
-     * Get kodea
-     *
-     * @return string 
-     */
-    public function getKodea()
-    {
-        return $this->kodea;
-    }
-
-    /**
-     * Set izenburuaeu
-     *
-     * @param string $izenburuaeu
-     * @return Azpiatala
-     */
-    public function setIzenburuaeu($izenburuaeu)
-    {
-        $this->izenburuaeu = $izenburuaeu;
-
-        return $this;
-    }
-
-    /**
-     * Get izenburuaeu
-     *
-     * @return string 
-     */
-    public function getIzenburuaeu()
-    {
-        return $this->izenburuaeu;
-    }
-
-    /**
-     * Set izenburuaes
-     *
-     * @param string $izenburuaes
-     * @return Azpiatala
-     */
-    public function setIzenburuaes($izenburuaes)
-    {
-        $this->izenburuaes = $izenburuaes;
-
-        return $this;
-    }
-
-    /**
-     * Get izenburuaes
-     *
-     * @return string 
-     */
-    public function getIzenburuaes()
-    {
-        return $this->izenburuaes;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     * @return Azpiatala
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     * @return Azpiatala
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime 
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set atala
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Atala $atala
-     * @return Azpiatala
-     */
-    public function setAtala(\Zerbikat\BackendBundle\Entity\Atala $atala = null)
-    {
-        $this->atala = $atala;
-
-        return $this;
-    }
-
-    /**
-     * Get atala
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Atala 
-     */
-    public function getAtala()
-    {
-        return $this->atala;
-    }
-
-    /**
-     * Set udala
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
-     * @return Azpiatala
-     */
-    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
-    {
-        $this->udala = $udala;
-
-        return $this;
-    }
-
-    /**
-     * Get udala
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
-     */
-    public function getUdala()
-    {
-        return $this->udala;
-    }
+    private $parrafoak;
+    
+    
 }

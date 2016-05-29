@@ -375,13 +375,51 @@ class Fitxa
      * @ORM\Column(name="besteak3es", type="text", length=65535, nullable=true)
      */
     private $besteak3es;
-      
 
+
+    /**
+     *      ERLAZIOAK
+     */
+
+
+    /**
+     * @var araudiak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
+     */
+    private $araudiak;
+
+    /**
+     * @var dokumentazioak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaDokumentazioa", mappedBy="fitxa", cascade={"remove"})
+     */
+    private $dokumentazioak;
+
+    /**
+     * @var azpiatalak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaAzpiatala", mappedBy="fitxa", cascade={"remove"})
+     */
+    private $azpiatalak;
+
+
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->araudiak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dokumentazioak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set espedientekodea
      *
      * @param string $espedientekodea
+     *
      * @return Fitxa
      */
     public function setEspedientekodea($espedientekodea)
@@ -394,7 +432,7 @@ class Fitxa
     /**
      * Get espedientekodea
      *
-     * @return string 
+     * @return string
      */
     public function getEspedientekodea()
     {
@@ -405,6 +443,7 @@ class Fitxa
      * Set deskribapenaeu
      *
      * @param string $deskribapenaeu
+     *
      * @return Fitxa
      */
     public function setDeskribapenaeu($deskribapenaeu)
@@ -417,7 +456,7 @@ class Fitxa
     /**
      * Get deskribapenaeu
      *
-     * @return string 
+     * @return string
      */
     public function getDeskribapenaeu()
     {
@@ -428,6 +467,7 @@ class Fitxa
      * Set deskribapenaes
      *
      * @param string $deskribapenaes
+     *
      * @return Fitxa
      */
     public function setDeskribapenaes($deskribapenaes)
@@ -440,7 +480,7 @@ class Fitxa
     /**
      * Get deskribapenaes
      *
-     * @return string 
+     * @return string
      */
     public function getDeskribapenaes()
     {
@@ -451,6 +491,7 @@ class Fitxa
      * Set helburuaeu
      *
      * @param string $helburuaeu
+     *
      * @return Fitxa
      */
     public function setHelburuaeu($helburuaeu)
@@ -463,7 +504,7 @@ class Fitxa
     /**
      * Get helburuaeu
      *
-     * @return string 
+     * @return string
      */
     public function getHelburuaeu()
     {
@@ -474,6 +515,7 @@ class Fitxa
      * Set helburuaes
      *
      * @param string $helburuaes
+     *
      * @return Fitxa
      */
     public function setHelburuaes($helburuaes)
@@ -486,7 +528,7 @@ class Fitxa
     /**
      * Get helburuaes
      *
-     * @return string 
+     * @return string
      */
     public function getHelburuaes()
     {
@@ -497,6 +539,7 @@ class Fitxa
      * Set norkeu
      *
      * @param string $norkeu
+     *
      * @return Fitxa
      */
     public function setNorkeu($norkeu)
@@ -509,7 +552,7 @@ class Fitxa
     /**
      * Get norkeu
      *
-     * @return string 
+     * @return string
      */
     public function getNorkeu()
     {
@@ -520,6 +563,7 @@ class Fitxa
      * Set norkes
      *
      * @param string $norkes
+     *
      * @return Fitxa
      */
     public function setNorkes($norkes)
@@ -532,7 +576,7 @@ class Fitxa
     /**
      * Get norkes
      *
-     * @return string 
+     * @return string
      */
     public function getNorkes()
     {
@@ -543,6 +587,7 @@ class Fitxa
      * Set dokumentazioaeu
      *
      * @param string $dokumentazioaeu
+     *
      * @return Fitxa
      */
     public function setDokumentazioaeu($dokumentazioaeu)
@@ -555,7 +600,7 @@ class Fitxa
     /**
      * Get dokumentazioaeu
      *
-     * @return string 
+     * @return string
      */
     public function getDokumentazioaeu()
     {
@@ -566,6 +611,7 @@ class Fitxa
      * Set dokumentazioaes
      *
      * @param string $dokumentazioaes
+     *
      * @return Fitxa
      */
     public function setDokumentazioaes($dokumentazioaes)
@@ -578,7 +624,7 @@ class Fitxa
     /**
      * Get dokumentazioaes
      *
-     * @return string 
+     * @return string
      */
     public function getDokumentazioaes()
     {
@@ -589,6 +635,7 @@ class Fitxa
      * Set nolabertan
      *
      * @param boolean $nolabertan
+     *
      * @return Fitxa
      */
     public function setNolabertan($nolabertan)
@@ -601,7 +648,7 @@ class Fitxa
     /**
      * Get nolabertan
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNolabertan()
     {
@@ -612,6 +659,7 @@ class Fitxa
      * Set nolainternet
      *
      * @param boolean $nolainternet
+     *
      * @return Fitxa
      */
     public function setNolainternet($nolainternet)
@@ -624,7 +672,7 @@ class Fitxa
     /**
      * Get nolainternet
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNolainternet()
     {
@@ -635,6 +683,7 @@ class Fitxa
      * Set nolatelefono
      *
      * @param boolean $nolatelefono
+     *
      * @return Fitxa
      */
     public function setNolatelefono($nolatelefono)
@@ -647,7 +696,7 @@ class Fitxa
     /**
      * Get nolatelefono
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNolatelefono()
     {
@@ -658,6 +707,7 @@ class Fitxa
      * Set nolapostela
      *
      * @param boolean $nolapostela
+     *
      * @return Fitxa
      */
     public function setNolapostela($nolapostela)
@@ -670,7 +720,7 @@ class Fitxa
     /**
      * Get nolapostela
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNolapostela()
     {
@@ -681,6 +731,7 @@ class Fitxa
      * Set nolaposta
      *
      * @param boolean $nolaposta
+     *
      * @return Fitxa
      */
     public function setNolaposta($nolaposta)
@@ -693,7 +744,7 @@ class Fitxa
     /**
      * Get nolaposta
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getNolaposta()
     {
@@ -704,6 +755,7 @@ class Fitxa
      * Set nolabesteakeu
      *
      * @param string $nolabesteakeu
+     *
      * @return Fitxa
      */
     public function setNolabesteakeu($nolabesteakeu)
@@ -716,7 +768,7 @@ class Fitxa
     /**
      * Get nolabesteakeu
      *
-     * @return string 
+     * @return string
      */
     public function getNolabesteakeu()
     {
@@ -727,6 +779,7 @@ class Fitxa
      * Set nolabesteakes
      *
      * @param string $nolabesteakes
+     *
      * @return Fitxa
      */
     public function setNolabesteakes($nolabesteakes)
@@ -739,7 +792,7 @@ class Fitxa
     /**
      * Get nolabesteakes
      *
-     * @return string 
+     * @return string
      */
     public function getNolabesteakes()
     {
@@ -750,6 +803,7 @@ class Fitxa
      * Set kostuaeu
      *
      * @param string $kostuaeu
+     *
      * @return Fitxa
      */
     public function setKostuaeu($kostuaeu)
@@ -762,7 +816,7 @@ class Fitxa
     /**
      * Get kostuaeu
      *
-     * @return string 
+     * @return string
      */
     public function getKostuaeu()
     {
@@ -773,6 +827,7 @@ class Fitxa
      * Set kostuaes
      *
      * @param string $kostuaes
+     *
      * @return Fitxa
      */
     public function setKostuaes($kostuaes)
@@ -785,7 +840,7 @@ class Fitxa
     /**
      * Get kostuaes
      *
-     * @return string 
+     * @return string
      */
     public function getKostuaes()
     {
@@ -796,6 +851,7 @@ class Fitxa
      * Set ebazpensinpli
      *
      * @param boolean $ebazpensinpli
+     *
      * @return Fitxa
      */
     public function setEbazpensinpli($ebazpensinpli)
@@ -808,7 +864,7 @@ class Fitxa
     /**
      * Get ebazpensinpli
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEbazpensinpli()
     {
@@ -819,6 +875,7 @@ class Fitxa
      * Set arduraaitorpena
      *
      * @param boolean $arduraaitorpena
+     *
      * @return Fitxa
      */
     public function setArduraaitorpena($arduraaitorpena)
@@ -831,7 +888,7 @@ class Fitxa
     /**
      * Get arduraaitorpena
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getArduraaitorpena()
     {
@@ -842,6 +899,7 @@ class Fitxa
      * Set isiltasunadmin
      *
      * @param boolean $isiltasunadmin
+     *
      * @return Fitxa
      */
     public function setIsiltasunadmin($isiltasunadmin)
@@ -854,7 +912,7 @@ class Fitxa
     /**
      * Get isiltasunadmin
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsiltasunadmin()
     {
@@ -865,6 +923,7 @@ class Fitxa
      * Set araudiaeu
      *
      * @param string $araudiaeu
+     *
      * @return Fitxa
      */
     public function setAraudiaeu($araudiaeu)
@@ -877,7 +936,7 @@ class Fitxa
     /**
      * Get araudiaeu
      *
-     * @return string 
+     * @return string
      */
     public function getAraudiaeu()
     {
@@ -888,6 +947,7 @@ class Fitxa
      * Set araudiaes
      *
      * @param string $araudiaes
+     *
      * @return Fitxa
      */
     public function setAraudiaes($araudiaes)
@@ -900,7 +960,7 @@ class Fitxa
     /**
      * Get araudiaes
      *
-     * @return string 
+     * @return string
      */
     public function getAraudiaes()
     {
@@ -911,6 +971,7 @@ class Fitxa
      * Set prozeduraeu
      *
      * @param string $prozeduraeu
+     *
      * @return Fitxa
      */
     public function setProzeduraeu($prozeduraeu)
@@ -923,7 +984,7 @@ class Fitxa
     /**
      * Get prozeduraeu
      *
-     * @return string 
+     * @return string
      */
     public function getProzeduraeu()
     {
@@ -934,6 +995,7 @@ class Fitxa
      * Set prozeduraes
      *
      * @param string $prozeduraes
+     *
      * @return Fitxa
      */
     public function setProzeduraes($prozeduraes)
@@ -946,7 +1008,7 @@ class Fitxa
     /**
      * Get prozeduraes
      *
-     * @return string 
+     * @return string
      */
     public function getProzeduraes()
     {
@@ -957,6 +1019,7 @@ class Fitxa
      * Set tramiteakeu
      *
      * @param string $tramiteakeu
+     *
      * @return Fitxa
      */
     public function setTramiteakeu($tramiteakeu)
@@ -969,7 +1032,7 @@ class Fitxa
     /**
      * Get tramiteakeu
      *
-     * @return string 
+     * @return string
      */
     public function getTramiteakeu()
     {
@@ -980,6 +1043,7 @@ class Fitxa
      * Set tramiteakes
      *
      * @param string $tramiteakes
+     *
      * @return Fitxa
      */
     public function setTramiteakes($tramiteakes)
@@ -992,7 +1056,7 @@ class Fitxa
     /**
      * Get tramiteakes
      *
-     * @return string 
+     * @return string
      */
     public function getTramiteakes()
     {
@@ -1003,6 +1067,7 @@ class Fitxa
      * Set doklaguneu
      *
      * @param string $doklaguneu
+     *
      * @return Fitxa
      */
     public function setDoklaguneu($doklaguneu)
@@ -1015,7 +1080,7 @@ class Fitxa
     /**
      * Get doklaguneu
      *
-     * @return string 
+     * @return string
      */
     public function getDoklaguneu()
     {
@@ -1026,6 +1091,7 @@ class Fitxa
      * Set doklagunes
      *
      * @param string $doklagunes
+     *
      * @return Fitxa
      */
     public function setDoklagunes($doklagunes)
@@ -1038,7 +1104,7 @@ class Fitxa
     /**
      * Get doklagunes
      *
-     * @return string 
+     * @return string
      */
     public function getDoklagunes()
     {
@@ -1049,6 +1115,7 @@ class Fitxa
      * Set oharrakeu
      *
      * @param string $oharrakeu
+     *
      * @return Fitxa
      */
     public function setOharrakeu($oharrakeu)
@@ -1061,7 +1128,7 @@ class Fitxa
     /**
      * Get oharrakeu
      *
-     * @return string 
+     * @return string
      */
     public function getOharrakeu()
     {
@@ -1072,6 +1139,7 @@ class Fitxa
      * Set oharrakes
      *
      * @param string $oharrakes
+     *
      * @return Fitxa
      */
     public function setOharrakes($oharrakes)
@@ -1084,7 +1152,7 @@ class Fitxa
     /**
      * Get oharrakes
      *
-     * @return string 
+     * @return string
      */
     public function getOharrakes()
     {
@@ -1092,55 +1160,10 @@ class Fitxa
     }
 
     /**
-     * Set besteakeu
-     *
-     * @param string $besteakeu
-     * @return Fitxa
-     */
-    public function setBesteakeu($besteakeu)
-    {
-        $this->besteakeu = $besteakeu;
-
-        return $this;
-    }
-
-    /**
-     * Get besteakeu
-     *
-     * @return string 
-     */
-    public function getBesteakeu()
-    {
-        return $this->besteakeu;
-    }
-
-    /**
-     * Set besteakes
-     *
-     * @param string $besteakes
-     * @return Fitxa
-     */
-    public function setBesteakes($besteakes)
-    {
-        $this->besteakes = $besteakes;
-
-        return $this;
-    }
-
-    /**
-     * Get besteakes
-     *
-     * @return string 
-     */
-    public function getBesteakes()
-    {
-        return $this->besteakes;
-    }
-
-    /**
      * Set publikoa
      *
      * @param boolean $publikoa
+     *
      * @return Fitxa
      */
     public function setPublikoa($publikoa)
@@ -1153,7 +1176,7 @@ class Fitxa
     /**
      * Get publikoa
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getPublikoa()
     {
@@ -1164,6 +1187,7 @@ class Fitxa
      * Set kontsultak
      *
      * @param integer $kontsultak
+     *
      * @return Fitxa
      */
     public function setKontsultak($kontsultak)
@@ -1176,7 +1200,7 @@ class Fitxa
     /**
      * Get kontsultak
      *
-     * @return integer 
+     * @return integer
      */
     public function getKontsultak()
     {
@@ -1187,6 +1211,7 @@ class Fitxa
      * Set parametroa
      *
      * @param string $parametroa
+     *
      * @return Fitxa
      */
     public function setParametroa($parametroa)
@@ -1199,7 +1224,7 @@ class Fitxa
     /**
      * Get parametroa
      *
-     * @return string 
+     * @return string
      */
     public function getParametroa()
     {
@@ -1210,6 +1235,7 @@ class Fitxa
      * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Fitxa
      */
     public function setCreatedAt($createdAt)
@@ -1222,7 +1248,7 @@ class Fitxa
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -1233,6 +1259,7 @@ class Fitxa
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Fitxa
      */
     public function setUpdatedAt($updatedAt)
@@ -1245,7 +1272,7 @@ class Fitxa
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -1255,172 +1282,11 @@ class Fitxa
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set norkebatzi
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Norkebatzi $norkebatzi
-     * @return Fitxa
-     */
-    public function setNorkebatzi(\Zerbikat\BackendBundle\Entity\Norkebatzi $norkebatzi = null)
-    {
-        $this->norkebatzi = $norkebatzi;
-
-        return $this;
-    }
-
-    /**
-     * Get norkebatzi
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Norkebatzi 
-     */
-    public function getNorkebatzi()
-    {
-        return $this->norkebatzi;
-    }
-
-    /**
-     * Set zerbitzua
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzua
-     * @return Fitxa
-     */
-    public function setZerbitzua(\Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzua = null)
-    {
-        $this->zerbitzua = $zerbitzua;
-
-        return $this;
-    }
-
-    /**
-     * Get zerbitzua
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Zerbitzua 
-     */
-    public function getZerbitzua()
-    {
-        return $this->zerbitzua;
-    }
-
-    /**
-     * Set datuenbabesa
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Datuenbabesa $datuenbabesa
-     * @return Fitxa
-     */
-    public function setDatuenbabesa(\Zerbikat\BackendBundle\Entity\Datuenbabesa $datuenbabesa = null)
-    {
-        $this->datuenbabesa = $datuenbabesa;
-
-        return $this;
-    }
-
-    /**
-     * Get datuenbabesa
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Datuenbabesa 
-     */
-    public function getDatuenbabesa()
-    {
-        return $this->datuenbabesa;
-    }
-
-    /**
-     * Set azpisaila
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila
-     * @return Fitxa
-     */
-    public function setAzpisaila(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila = null)
-    {
-        $this->azpisaila = $azpisaila;
-
-        return $this;
-    }
-
-    /**
-     * Get azpisaila
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Azpisaila 
-     */
-    public function getAzpisaila()
-    {
-        return $this->azpisaila;
-    }
-
-    /**
-     * Set aurreikusi
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Aurreikusi $aurreikusi
-     * @return Fitxa
-     */
-    public function setAurreikusi(\Zerbikat\BackendBundle\Entity\Aurreikusi $aurreikusi = null)
-    {
-        $this->aurreikusi = $aurreikusi;
-
-        return $this;
-    }
-
-    /**
-     * Get aurreikusi
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Aurreikusi 
-     */
-    public function getAurreikusi()
-    {
-        return $this->aurreikusi;
-    }
-
-    /**
-     * Set arrunta
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Arrunta $arrunta
-     * @return Fitxa
-     */
-    public function setArrunta(\Zerbikat\BackendBundle\Entity\Arrunta $arrunta = null)
-    {
-        $this->arrunta = $arrunta;
-
-        return $this;
-    }
-
-    /**
-     * Get arrunta
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Arrunta 
-     */
-    public function getArrunta()
-    {
-        return $this->arrunta;
-    }
-
-    /**
-     * Set udala
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
-     * @return Fitxa
-     */
-    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
-    {
-        $this->udala = $udala;
-
-        return $this;
-    }
-
-    /**
-     * Get udala
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
-     */
-    public function getUdala()
-    {
-        return $this->udala;
     }
 
     /**
@@ -1565,5 +1431,275 @@ class Fitxa
     public function getBesteak3es()
     {
         return $this->besteak3es;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return Fitxa
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
+    }
+
+    /**
+     * Set norkebatzi
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Norkebatzi $norkebatzi
+     *
+     * @return Fitxa
+     */
+    public function setNorkebatzi(\Zerbikat\BackendBundle\Entity\Norkebatzi $norkebatzi = null)
+    {
+        $this->norkebatzi = $norkebatzi;
+
+        return $this;
+    }
+
+    /**
+     * Get norkebatzi
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Norkebatzi
+     */
+    public function getNorkebatzi()
+    {
+        return $this->norkebatzi;
+    }
+
+    /**
+     * Set zerbitzua
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzua
+     *
+     * @return Fitxa
+     */
+    public function setZerbitzua(\Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzua = null)
+    {
+        $this->zerbitzua = $zerbitzua;
+
+        return $this;
+    }
+
+    /**
+     * Get zerbitzua
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Zerbitzua
+     */
+    public function getZerbitzua()
+    {
+        return $this->zerbitzua;
+    }
+
+    /**
+     * Set datuenbabesa
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Datuenbabesa $datuenbabesa
+     *
+     * @return Fitxa
+     */
+    public function setDatuenbabesa(\Zerbikat\BackendBundle\Entity\Datuenbabesa $datuenbabesa = null)
+    {
+        $this->datuenbabesa = $datuenbabesa;
+
+        return $this;
+    }
+
+    /**
+     * Get datuenbabesa
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Datuenbabesa
+     */
+    public function getDatuenbabesa()
+    {
+        return $this->datuenbabesa;
+    }
+
+    /**
+     * Set azpisaila
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila
+     *
+     * @return Fitxa
+     */
+    public function setAzpisaila(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila = null)
+    {
+        $this->azpisaila = $azpisaila;
+
+        return $this;
+    }
+
+    /**
+     * Get azpisaila
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Azpisaila
+     */
+    public function getAzpisaila()
+    {
+        return $this->azpisaila;
+    }
+
+    /**
+     * Set aurreikusi
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Aurreikusi $aurreikusi
+     *
+     * @return Fitxa
+     */
+    public function setAurreikusi(\Zerbikat\BackendBundle\Entity\Aurreikusi $aurreikusi = null)
+    {
+        $this->aurreikusi = $aurreikusi;
+
+        return $this;
+    }
+
+    /**
+     * Get aurreikusi
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Aurreikusi
+     */
+    public function getAurreikusi()
+    {
+        return $this->aurreikusi;
+    }
+
+    /**
+     * Set arrunta
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Arrunta $arrunta
+     *
+     * @return Fitxa
+     */
+    public function setArrunta(\Zerbikat\BackendBundle\Entity\Arrunta $arrunta = null)
+    {
+        $this->arrunta = $arrunta;
+
+        return $this;
+    }
+
+    /**
+     * Get arrunta
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Arrunta
+     */
+    public function getArrunta()
+    {
+        return $this->arrunta;
+    }
+
+    /**
+     * Add araudiak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     *
+     * @return Fitxa
+     */
+    public function addAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    {
+        $this->araudiak[] = $araudiak;
+
+        return $this;
+    }
+
+    /**
+     * Remove araudiak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     */
+    public function removeAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    {
+        $this->araudiak->removeElement($araudiak);
+    }
+
+    /**
+     * Get araudiak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAraudiak()
+    {
+        return $this->araudiak;
+    }
+
+    /**
+     * Add dokumentazioak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak
+     *
+     * @return Fitxa
+     */
+    public function addDokumentazioak(\Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak)
+    {
+        $this->dokumentazioak[] = $dokumentazioak;
+
+        return $this;
+    }
+
+    /**
+     * Remove dokumentazioak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak
+     */
+    public function removeDokumentazioak(\Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak)
+    {
+        $this->dokumentazioak->removeElement($dokumentazioak);
+    }
+
+    /**
+     * Get dokumentazioak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDokumentazioak()
+    {
+        return $this->dokumentazioak;
+    }
+
+    /**
+     * Add azpiatalak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak
+     *
+     * @return Fitxa
+     */
+    public function addAzpiatalak(\Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak)
+    {
+        $this->azpiatalak[] = $azpiatalak;
+
+        return $this;
+    }
+
+    /**
+     * Remove azpiatalak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak
+     */
+    public function removeAzpiatalak(\Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak)
+    {
+        $this->azpiatalak->removeElement($azpiatalak);
+    }
+
+    /**
+     * Get azpiatalak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAzpiatalak()
+    {
+        return $this->azpiatalak;
     }
 }

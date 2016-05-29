@@ -9,7 +9,7 @@
                 <th>Kodea</th>
                 <th>Deskribapena</th>
                 <th>Saila</th>
-                <th>Actions</th>
+<!--                <th>Actions</th> -->
             </tr>
         </thead>
         <tbody>
@@ -17,13 +17,13 @@
             <tr>
 <!--                <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.espedientekodea }}</a></td> -->
                 <td>{{ fitxa.espedientekodea }}</td>
-                <td>{{ fitxa.deskribapenaeu }}<br>
-                {{ fitxa.deskribapenaes }}</td>
-                <td>{{ dump(fitxa.azpisaila) }}
-                    <br>
-
-
+                <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.deskribapenaeu }}<br>
+                {{ fitxa.deskribapenaes }}</a></td>
+                <td>
+                    {% if fitxa.azpisaila %} {{ fitxa.azpisaila.saila }}<br>{{ fitxa.azpisaila }}
+                    {% endif %}
                 </td>
+<!--
                 <td>
                     <ul>
                         <li>
@@ -34,6 +34,7 @@
                         </li>
                     </ul>
                 </td>
+-->
             </tr>
         {% endfor %}
         </tbody>

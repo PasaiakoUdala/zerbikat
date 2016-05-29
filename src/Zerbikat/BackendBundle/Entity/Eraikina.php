@@ -45,6 +45,12 @@ class Eraikina
      */
     private $id;
 
+
+
+    /**
+     *          ERLAZIOAK
+     */
+
     /**
      * @var \Zerbikat\BackendBundle\Entity\Barrutia
      *
@@ -54,13 +60,33 @@ class Eraikina
      * })
      */
     private $barrutia;
+        
+    /**
+     * @var azpisailak[]
+     *
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila", cascade={"remove"})
+     */
+    private $azpisailak;
+
+    public function __toString()
+    {
+        return $this->getIzena();
+    }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->azpisailak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set izena
      *
      * @param string $izena
+     *
      * @return Eraikina
      */
     public function setIzena($izena)
@@ -73,7 +99,7 @@ class Eraikina
     /**
      * Get izena
      *
-     * @return string 
+     * @return string
      */
     public function getIzena()
     {
@@ -84,6 +110,7 @@ class Eraikina
      * Set longitudea
      *
      * @param float $longitudea
+     *
      * @return Eraikina
      */
     public function setLongitudea($longitudea)
@@ -96,7 +123,7 @@ class Eraikina
     /**
      * Get longitudea
      *
-     * @return float 
+     * @return float
      */
     public function getLongitudea()
     {
@@ -107,6 +134,7 @@ class Eraikina
      * Set latitudea
      *
      * @param float $latitudea
+     *
      * @return Eraikina
      */
     public function setLatitudea($latitudea)
@@ -119,7 +147,7 @@ class Eraikina
     /**
      * Get latitudea
      *
-     * @return float 
+     * @return float
      */
     public function getLatitudea()
     {
@@ -129,7 +157,7 @@ class Eraikina
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -137,32 +165,10 @@ class Eraikina
     }
 
     /**
-     * Set barrutia
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Barrutia $barrutia
-     * @return Eraikina
-     */
-    public function setBarrutia(\Zerbikat\BackendBundle\Entity\Barrutia $barrutia = null)
-    {
-        $this->barrutia = $barrutia;
-
-        return $this;
-    }
-
-    /**
-     * Get barrutia
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Barrutia 
-     */
-    public function getBarrutia()
-    {
-        return $this->barrutia;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Eraikina
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -175,10 +181,68 @@ class Eraikina
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set barrutia
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Barrutia $barrutia
+     *
+     * @return Eraikina
+     */
+    public function setBarrutia(\Zerbikat\BackendBundle\Entity\Barrutia $barrutia = null)
+    {
+        $this->barrutia = $barrutia;
+
+        return $this;
+    }
+
+    /**
+     * Get barrutia
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Barrutia
+     */
+    public function getBarrutia()
+    {
+        return $this->barrutia;
+    }
+
+    /**
+     * Add azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     *
+     * @return Eraikina
+     */
+    public function addAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak[] = $azpisailak;
+
+        return $this;
+    }
+
+    /**
+     * Remove azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     */
+    public function removeAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak->removeElement($azpisailak);
+    }
+
+    /**
+     * Get azpisailak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAzpisailak()
+    {
+        return $this->azpisailak;
     }
 }

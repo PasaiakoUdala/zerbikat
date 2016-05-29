@@ -49,11 +49,37 @@ class Kalea
     private $barrutia;
 
 
+    /**
+     *          ERLAZIOAK
+     */
+    
+    /**
+     * @var azpisailak[]
+     *
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila", cascade={"remove"})
+     */
+    private $azpisailak;
+
+    public function __toString()
+    {
+        return $this->getIzena();
+    }
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->azpisailak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set izena
      *
      * @param string $izena
+     *
      * @return Kalea
      */
     public function setIzena($izena)
@@ -66,7 +92,7 @@ class Kalea
     /**
      * Get izena
      *
-     * @return string 
+     * @return string
      */
     public function getIzena()
     {
@@ -77,6 +103,7 @@ class Kalea
      * Set google
      *
      * @param string $google
+     *
      * @return Kalea
      */
     public function setGoogle($google)
@@ -89,7 +116,7 @@ class Kalea
     /**
      * Get google
      *
-     * @return string 
+     * @return string
      */
     public function getGoogle()
     {
@@ -99,7 +126,7 @@ class Kalea
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -107,32 +134,10 @@ class Kalea
     }
 
     /**
-     * Set barrutia
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Barrutia $barrutia
-     * @return Kalea
-     */
-    public function setBarrutia(\Zerbikat\BackendBundle\Entity\Barrutia $barrutia = null)
-    {
-        $this->barrutia = $barrutia;
-
-        return $this;
-    }
-
-    /**
-     * Get barrutia
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Barrutia 
-     */
-    public function getBarrutia()
-    {
-        return $this->barrutia;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Kalea
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -145,10 +150,68 @@ class Kalea
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set barrutia
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Barrutia $barrutia
+     *
+     * @return Kalea
+     */
+    public function setBarrutia(\Zerbikat\BackendBundle\Entity\Barrutia $barrutia = null)
+    {
+        $this->barrutia = $barrutia;
+
+        return $this;
+    }
+
+    /**
+     * Get barrutia
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Barrutia
+     */
+    public function getBarrutia()
+    {
+        return $this->barrutia;
+    }
+
+    /**
+     * Add azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     *
+     * @return Kalea
+     */
+    public function addAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak[] = $azpisailak;
+
+        return $this;
+    }
+
+    /**
+     * Remove azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     */
+    public function removeAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak->removeElement($azpisailak);
+    }
+
+    /**
+     * Get azpisailak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAzpisailak()
+    {
+        return $this->azpisailak;
     }
 }

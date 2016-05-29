@@ -95,19 +95,21 @@ class Azpisaila
     private $id;
 
     /**
-     * @var \Zerbikat\BackendBundle\Entity\Saila
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Saila")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="saila_id", referencedColumnName="id")
-     * })
+     *  ERLAZIOAK 
      */
-    private $saila;
+    //private $saila;
+
+    /**
+     * @var Saila
+     * @ORM\ManyToOne(targetEntity="Saila", inversedBy="azpisailak")
+     */
+    protected $saila;
+
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\Kalea
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Kalea")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Kalea", inversedBy="azpisailak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="kalea_id", referencedColumnName="id")
      * })
@@ -134,12 +136,19 @@ class Azpisaila
      */
     private $barrutia;
 
+    public function __toString()
+    {
+        return $this->getAzpisailaeu();
+    }
+
+
 
 
     /**
      * Set kodea
      *
      * @param string $kodea
+     *
      * @return Azpisaila
      */
     public function setKodea($kodea)
@@ -152,7 +161,7 @@ class Azpisaila
     /**
      * Get kodea
      *
-     * @return string 
+     * @return string
      */
     public function getKodea()
     {
@@ -163,6 +172,7 @@ class Azpisaila
      * Set azpisailaeu
      *
      * @param string $azpisailaeu
+     *
      * @return Azpisaila
      */
     public function setAzpisailaeu($azpisailaeu)
@@ -175,7 +185,7 @@ class Azpisaila
     /**
      * Get azpisailaeu
      *
-     * @return string 
+     * @return string
      */
     public function getAzpisailaeu()
     {
@@ -186,6 +196,7 @@ class Azpisaila
      * Set azpisailaes
      *
      * @param string $azpisailaes
+     *
      * @return Azpisaila
      */
     public function setAzpisailaes($azpisailaes)
@@ -198,7 +209,7 @@ class Azpisaila
     /**
      * Get azpisailaes
      *
-     * @return string 
+     * @return string
      */
     public function getAzpisailaes()
     {
@@ -209,6 +220,7 @@ class Azpisaila
      * Set arduraduna
      *
      * @param string $arduraduna
+     *
      * @return Azpisaila
      */
     public function setArduraduna($arduraduna)
@@ -221,7 +233,7 @@ class Azpisaila
     /**
      * Get arduraduna
      *
-     * @return string 
+     * @return string
      */
     public function getArduraduna()
     {
@@ -232,6 +244,7 @@ class Azpisaila
      * Set email
      *
      * @param string $email
+     *
      * @return Azpisaila
      */
     public function setEmail($email)
@@ -244,7 +257,7 @@ class Azpisaila
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -255,6 +268,7 @@ class Azpisaila
      * Set telefonoa
      *
      * @param string $telefonoa
+     *
      * @return Azpisaila
      */
     public function setTelefonoa($telefonoa)
@@ -267,7 +281,7 @@ class Azpisaila
     /**
      * Get telefonoa
      *
-     * @return string 
+     * @return string
      */
     public function getTelefonoa()
     {
@@ -278,6 +292,7 @@ class Azpisaila
      * Set fax
      *
      * @param string $fax
+     *
      * @return Azpisaila
      */
     public function setFax($fax)
@@ -290,7 +305,7 @@ class Azpisaila
     /**
      * Get fax
      *
-     * @return string 
+     * @return string
      */
     public function getFax()
     {
@@ -301,6 +316,7 @@ class Azpisaila
      * Set kaleZbkia
      *
      * @param string $kaleZbkia
+     *
      * @return Azpisaila
      */
     public function setKaleZbkia($kaleZbkia)
@@ -313,7 +329,7 @@ class Azpisaila
     /**
      * Get kaleZbkia
      *
-     * @return string 
+     * @return string
      */
     public function getKaleZbkia()
     {
@@ -324,6 +340,7 @@ class Azpisaila
      * Set hizkia
      *
      * @param string $hizkia
+     *
      * @return Azpisaila
      */
     public function setHizkia($hizkia)
@@ -336,7 +353,7 @@ class Azpisaila
     /**
      * Get hizkia
      *
-     * @return string 
+     * @return string
      */
     public function getHizkia()
     {
@@ -347,6 +364,7 @@ class Azpisaila
      * Set ordutegia
      *
      * @param string $ordutegia
+     *
      * @return Azpisaila
      */
     public function setOrdutegia($ordutegia)
@@ -359,7 +377,7 @@ class Azpisaila
     /**
      * Get ordutegia
      *
-     * @return string 
+     * @return string
      */
     public function getOrdutegia()
     {
@@ -369,7 +387,7 @@ class Azpisaila
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -377,106 +395,10 @@ class Azpisaila
     }
 
     /**
-     * Set saila
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Saila $saila
-     * @return Azpisaila
-     */
-    public function setSaila(\Zerbikat\BackendBundle\Entity\Saila $saila = null)
-    {
-        $this->saila = $saila;
-
-        return $this;
-    }
-
-    /**
-     * Get saila
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Saila 
-     */
-    public function getSaila()
-    {
-        return $this->saila;
-    }
-
-    /**
-     * Set kalea
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Kalea $kalea
-     * @return Azpisaila
-     */
-    public function setKalea(\Zerbikat\BackendBundle\Entity\Kalea $kalea = null)
-    {
-        $this->kalea = $kalea;
-
-        return $this;
-    }
-
-    /**
-     * Get kalea
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Kalea 
-     */
-    public function getKalea()
-    {
-        return $this->kalea;
-    }
-
-    /**
-     * Set eraikina
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Eraikina $eraikina
-     * @return Azpisaila
-     */
-    public function setEraikina(\Zerbikat\BackendBundle\Entity\Eraikina $eraikina = null)
-    {
-        $this->eraikina = $eraikina;
-
-        return $this;
-    }
-
-    /**
-     * Get eraikina
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Eraikina 
-     */
-    public function getEraikina()
-    {
-        return $this->eraikina;
-    }
-
-    /**
-     * Set barrutia
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Barrutia $barrutia
-     * @return Azpisaila
-     */
-    public function setBarrutia(\Zerbikat\BackendBundle\Entity\Barrutia $barrutia = null)
-    {
-        $this->barrutia = $barrutia;
-
-        return $this;
-    }
-
-    /**
-     * Get barrutia
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Barrutia 
-     */
-    public function getBarrutia()
-    {
-        return $this->barrutia;
-    }
-
-    public function __toString()
-    {
-        return $this->getAzpisailaeu();
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Azpisaila
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -489,10 +411,106 @@ class Azpisaila
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set saila
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Saila $saila
+     *
+     * @return Azpisaila
+     */
+    public function setSaila(\Zerbikat\BackendBundle\Entity\Saila $saila = null)
+    {
+        $this->saila = $saila;
+
+        return $this;
+    }
+
+    /**
+     * Get saila
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Saila
+     */
+    public function getSaila()
+    {
+        return $this->saila;
+    }
+
+    /**
+     * Set kalea
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kalea $kalea
+     *
+     * @return Azpisaila
+     */
+    public function setKalea(\Zerbikat\BackendBundle\Entity\Kalea $kalea = null)
+    {
+        $this->kalea = $kalea;
+
+        return $this;
+    }
+
+    /**
+     * Get kalea
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Kalea
+     */
+    public function getKalea()
+    {
+        return $this->kalea;
+    }
+
+    /**
+     * Set eraikina
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Eraikina $eraikina
+     *
+     * @return Azpisaila
+     */
+    public function setEraikina(\Zerbikat\BackendBundle\Entity\Eraikina $eraikina = null)
+    {
+        $this->eraikina = $eraikina;
+
+        return $this;
+    }
+
+    /**
+     * Get eraikina
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Eraikina
+     */
+    public function getEraikina()
+    {
+        return $this->eraikina;
+    }
+
+    /**
+     * Set barrutia
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Barrutia $barrutia
+     *
+     * @return Azpisaila
+     */
+    public function setBarrutia(\Zerbikat\BackendBundle\Entity\Barrutia $barrutia = null)
+    {
+        $this->barrutia = $barrutia;
+
+        return $this;
+    }
+
+    /**
+     * Get barrutia
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Barrutia
+     */
+    public function getBarrutia()
+    {
+        return $this->barrutia;
     }
 }

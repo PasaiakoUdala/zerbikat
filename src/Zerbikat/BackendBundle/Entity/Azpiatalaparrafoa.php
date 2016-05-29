@@ -69,6 +69,7 @@ class Azpiatalaparrafoa
      */
     private $azpiatala;
 
+       
 
 
     /**

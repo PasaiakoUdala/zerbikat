@@ -45,15 +45,35 @@ class Araumota
      */
     private $id;
 
+    /**
+     *          ERLAZIOAK
+     */
+    /**
+     * @var araudiak[]
+     *
+     * @ORM\OneToMany(targetEntity="Araudia", mappedBy="araumota", cascade={"remove"})
+     */
+    private $araudiak;
+
     public function __toString()
     {
         return $this->getMotaeu();
+    }
+
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->araudiak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Set kodea
      *
      * @param string $kodea
+     *
      * @return Araumota
      */
     public function setKodea($kodea)
@@ -66,7 +86,7 @@ class Araumota
     /**
      * Get kodea
      *
-     * @return string 
+     * @return string
      */
     public function getKodea()
     {
@@ -77,6 +97,7 @@ class Araumota
      * Set motaeu
      *
      * @param string $motaeu
+     *
      * @return Araumota
      */
     public function setMotaeu($motaeu)
@@ -89,7 +110,7 @@ class Araumota
     /**
      * Get motaeu
      *
-     * @return string 
+     * @return string
      */
     public function getMotaeu()
     {
@@ -100,6 +121,7 @@ class Araumota
      * Set motaes
      *
      * @param string $motaes
+     *
      * @return Araumota
      */
     public function setMotaes($motaes)
@@ -112,7 +134,7 @@ class Araumota
     /**
      * Get motaes
      *
-     * @return string 
+     * @return string
      */
     public function getMotaes()
     {
@@ -122,7 +144,7 @@ class Araumota
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -133,6 +155,7 @@ class Araumota
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Araumota
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -145,10 +168,44 @@ class Araumota
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Add araudiak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Araudia $araudiak
+     *
+     * @return Araumota
+     */
+    public function addAraudiak(\Zerbikat\BackendBundle\Entity\Araudia $araudiak)
+    {
+        $this->araudiak[] = $araudiak;
+
+        return $this;
+    }
+
+    /**
+     * Remove araudiak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Araudia $araudiak
+     */
+    public function removeAraudiak(\Zerbikat\BackendBundle\Entity\Araudia $araudiak)
+    {
+        $this->araudiak->removeElement($araudiak);
+    }
+
+    /**
+     * Get araudiak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAraudiak()
+    {
+        return $this->araudiak;
     }
 }

@@ -1,182 +1,306 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Fitxa</h1>
-
-    <table>
+    <table class="table table-bordered">
+    <tr><th class="col-md-2 text-center">
+            <img src='http://www.pasaia.eus/ficherosFTP/Neutroak/Irudiak/LogoBerria.png' />
+            <h4>PASAIAKO UDALA</h4>
+            <h5>P2006900-A</h5>
+        </th>
+        <th class="col-md-1"><h1>{{ fitxa.espedientekodea }}</h1></th>
+        <th class="col-md-9">
+            <h2>{{ fitxa.deskribapenaeu }}</h2>
+            <h3>{{ fitxa.deskribapenaes }}</h3>
+        </th>
+    </tr>
+        <tr><td colspan="3" class="text-right">
+                {% if fitxa.updatedAt %}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
         <tbody>
             <tr>
-                <th>Espedientekodea</th>
-                <td>{{ fitxa.espedientekodea }}</td>
+                <th class="col-md-6"><h3>ZER DA? ZERTARAKO DA?</h3></th>
+                <th class="col-md-6"><h3>¿QUÉ ES? ¿PARA QUÉ?</h3></th>
             </tr>
             <tr>
-                <th>Deskribapenaeu</th>
-                <td>{{ fitxa.deskribapenaeu }}</td>
+                <td>{{fitxa.helburuaeu|raw }}</td>
+                <td>{{ fitxa.helburuaes|raw }}</td>
             </tr>
             <tr>
-                <th>Deskribapenaes</th>
-                <td>{{ fitxa.deskribapenaes }}</td>
+                <th><h3>NORK ESKA DEZAKE?</h3></th>
+                <th><h3>¿QUIÉN LO PUEDE SOLICITAR?</h3></th>
             </tr>
             <tr>
-                <th>Helburuaeu</th>
-                <td>{{ fitxa.helburuaeu }}</td>
+                <td>{{ fitxa.norkeu |raw }}</td>
+                <td>{{ fitxa.norkes |raw}}</td>
             </tr>
             <tr>
-                <th>Helburuaes</th>
-                <td>{{ fitxa.helburuaes }}</td>
+                <th><h3>AURKEZTU BEHARREKO AGIRIAK</h3></th>
+                <th><h3>DOCUMENTACIÓN A APORTAR</h3></th>
             </tr>
             <tr>
-                <th>Norkeu</th>
-                <td>{{ fitxa.norkeu }}</td>
+
+                <td>
+                    {% for dokumentua in fitxa.dokumentazioak %}
+                        <li>
+                            {% if dokumentua.dokumentazioa.estekaeu %}
+                                <a href="{{ dokumentua.dokumentazioa.estekaeu }}">{{ dokumentua.dokumentazioa.deskribapenaeu }}</a>
+                            {% else %}
+                                {{ dokumentua.dokumentazioa.deskribapenaeu }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    <br><br>
+                    {{ fitxa.dokumentazioaeu|raw }}
+                </td>
+                <td>
+                    {% for dokumentua in fitxa.dokumentazioak %}
+                        <li>
+                            {% if dokumentua.dokumentazioa.estekaes %}
+                                <a href="{{ dokumentua.dokumentazioa.estekaes }}">{{ dokumentua.dokumentazioa.deskribapenaes }}</a>
+                            {% else %}
+                                {{ dokumentua.dokumentazioa.deskribapenaes }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                    <br><br>
+                    {{ fitxa.dokumentazioaes|raw }}
+                </td>
             </tr>
             <tr>
-                <th>Norkes</th>
-                <td>{{ fitxa.norkes }}</td>
+                <th><h3>NON ESKATZEN DA?</h3></th>
+                <th><h3>¿DÓNDE SE SOLICITA?</h3></th>
             </tr>
             <tr>
-                <th>Dokumentazioaeu</th>
-                <td>{{ fitxa.dokumentazioaeu }}</td>
+                <td>
+                    {% if fitxa.nolabertan %}HAZ-eko bulegoetan<br/>{% endif %}
+                    {% if fitxa.nolainternet %}www.pasaia.net<br/>{% endif %}
+                    {% if fitxa.nolatelefono %}943 ......<br/>{% endif %}
+                    {% if fitxa.nolapostela %}pasaia@pasaia.net<br/>{% endif %}
+                    {% if fitxa.nolaposta %}Donibane kalea 19, 20110 PASAIA<br/>{% endif %}
+                    {{ fitxa.nolabesteakeu }}
+                </td>
+                <td>
+                    {% if fitxa.nolabertan %}HAZ-eko bulegoetan<br/>{% endif %}
+                    {% if fitxa.nolainternet %}www.pasaia.net<br/>{% endif %}
+                    {% if fitxa.nolatelefono %}943 ......<br/>{% endif %}
+                    {% if fitxa.nolapostela %}pasaia@pasaia.net<br/>{% endif %}
+                    {% if fitxa.nolaposta %}Donibane kalea 19, 20110 PASAIA<br/>{% endif %}
+                    {{ fitxa.nolabesteakes }}
+                </td>
+            </tr>
+
+            <tr>
+                <th><h3>ZENBAT KOSTATZEN DA?</h3></th>
+                <th><h3>¿CUÁNTO CUESTA?</h3></th>
             </tr>
             <tr>
-                <th>Dokumentazioaes</th>
-                <td>{{ fitxa.dokumentazioaes }}</td>
+                <td>
+                {% for azpiatal in fitxa.azpiatalak %}
+                    <table  class="table table-bordered">
+                        <tr>
+                            <th colspan=2>
+
+                                <a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.azpiatala.id }}' target="_blank">
+                                    {{ azpiatal.azpiatala.atala.ordenantza.kodea }}.{{ azpiatal.azpiatala.atala.kodea }}.{{ azpiatal.azpiatala.kodea }}-
+                                    {{  azpiatal.azpiatala.izenburuaeu }}
+                                </a>
+                            </th>
+                        </tr>
+                        {% for parrafo in azpiatal.azpiatala.parrafoak %}
+                            <tr>
+                                <td colspan="2">{{ parrafo.testua }} </td>
+                            </tr>
+                        {% endfor %}
+
+                        {% for kontzeptu in azpiatal.azpiatala.kontzeptuak %}
+                        <tr>
+                            <td>{{ kontzeptu.kontzeptuaeu }} ({{ kontzeptu.baldintza }})</td>
+                            <td>{{ kontzeptu.kopurua }}{{ kontzeptu.unitatea }}</td>
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% endfor %}
+                </td>
+                <td>
+                    {% for azpiatal in fitxa.azpiatalak %}
+                        <table  class="table table-bordered">
+                            <tr>
+                                <th colspan=2>
+                                    <a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.azpiatala.id }}' target="_blank">
+                                        {{ azpiatal.azpiatala.atala.ordenantza.kodea }}.{{ azpiatal.azpiatala.atala.kodea }}.{{ azpiatal.azpiatala.kodea }}-
+                                        {{  azpiatal.azpiatala.izenburuaes }}
+                                    </a>
+                                </th>
+                            </tr>
+                            {% for parrafo in azpiatal.azpiatala.parrafoak %}
+                                <tr>
+                                    <td colspan="2">{{ parrafo.testuaes }} </td>
+                                </tr>
+                            {% endfor %}
+
+                            {% for kontzeptu in azpiatal.azpiatala.kontzeptuak %}
+                                <tr>
+                                    <td>{{ kontzeptu.kontzeptuaes }} ({{ kontzeptu.baldintza }})</td>
+                                    <td>{{ kontzeptu.kopurua }}{{ kontzeptu.unitatea }}</td>
+
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
-                <th>Nolabertan</th>
-                <td>{% if fitxa.nolabertan %}Yes{% else %}No{% endif %}</td>
+                <td>{{ fitxa.kostuaeu |raw}}</td>
+                <td>{{ fitxa.kostuaes |raw}}</td>
             </tr>
             <tr>
-                <th>Nolainternet</th>
-                <td>{% if fitxa.nolainternet %}Yes{% else %}No{% endif %}</td>
+                <th><h3>PROZEDURAREN EPEA</h3></th>
+                <th><h3>PLAZO DEL PROCEDIMIENTO</h3></th>
             </tr>
             <tr>
-                <th>Nolatelefono</th>
-                <td>{% if fitxa.nolatelefono %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    {% if fitxa.aurreikusi %}Aurreikusitako epea: {{ fitxa.aurreikusi }}{% endif %}<br>
+                    {% if fitxa.arrunta %}Prozedura arrunta. Legezko gehienezko epea: {{ fitxa.arrunta }}{% endif %}<br>
+                    {% if fitxa.ebazpensinpli %}Prozedura sinplifikatua: 30 egun<br>{% endif %}
+                    {% if fitxa.arduraaitorpena %}Erantzunkizun-aitorpena onartzen da<br>{% endif %}
+                    {% if fitxa.isiltasunadmin is not null %}
+                        {% if fitxa.isiltasunadmin %}Administrazio-isiltasunaren izaera: Aldekoa{% else %}Administrazio-isiltasunaren izaera: Aurkakoa{% endif %}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if fitxa.aurreikusi %}Plazo estimado: {{ fitxa.aurreikusi }}<br>{% endif %}
+                    {% if fitxa.arrunta %}Procedimiento habitual. Plazo límite legal: {{ fitxa.arrunta }}<br>{% endif %}
+                    {% if fitxa.ebazpensinpli %}Procedimiento simplificado: 30 dias<br>{% endif %}
+                    {% if fitxa.arduraaitorpena %}Se admite declaración de responsabilidad <br>{% endif %}
+                    {% if fitxa.isiltasunadmin is not null %}
+                        {% if fitxa.isiltasunadmin %}Silencio administrativo: Favorable{% else %}Silencio administrativo: Contrario{% endif %}
+                    {% endif %}
+                </td>
             </tr>
             <tr>
-                <th>Nolapostela</th>
-                <td>{% if fitxa.nolapostela %}Yes{% else %}No{% endif %}</td>
+                <th><h3>ARAUDI APLIKAGARRIA</h3></th>
+                <th><h3>NORMATIVA APLICABLE</h3></th>
+
             </tr>
             <tr>
-                <th>Nolaposta</th>
-                <td>{% if fitxa.nolaposta %}Yes{% else %}No{% endif %}</td>
+                <td>{{ fitxa.araudiaeu |raw}}
+                    <br>
+                    {% for araua in fitxa.araudiak %}
+                        <li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>
+                    {% endfor %}
+                </td>
+                <td>{{ fitxa.araudiaes |raw}}
+                    <br>
+                    {% for araua in fitxa.araudiak %}
+                        <li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>
+                    {% endfor %}
+                </td>
             </tr>
             <tr>
-                <th>Nolabesteakeu</th>
-                <td>{{ fitxa.nolabesteakeu }}</td>
+                <th><h3>ESKAERA JASO ONDOREN JARRAITU BEHARREKO PROZEDURA</h3></th>
+                <th><h3>PROCEDIMIENTO A SEGUIR DESPUÉS DE LA SOLICITUD</h3></th>
             </tr>
             <tr>
-                <th>Nolabesteakes</th>
-                <td>{{ fitxa.nolabesteakes }}</td>
+                <td>{{ fitxa.prozeduraeu |raw}}</td>
+                <td>{{ fitxa.prozeduraes |raw}}</td>
             </tr>
             <tr>
-                <th>Kostuaeu</th>
-                <td>{{ fitxa.kostuaeu }}</td>
+                <th><h3>GEROAGOKO IZAPIDEEN LABURPENA</h3></th>
+                <th><h3>RESUMEN DE TRÁMITES POSTERIORES</h3></th>
             </tr>
             <tr>
-                <th>Kostuaes</th>
-                <td>{{ fitxa.kostuaes }}</td>
-            </tr>
-            <tr>
-                <th>Ebazpensinpli</th>
-                <td>{% if fitxa.ebazpensinpli %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Arduraaitorpena</th>
-                <td>{% if fitxa.arduraaitorpena %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Isiltasunadmin</th>
-                <td>{% if fitxa.isiltasunadmin %}Yes{% else %}No{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Araudiaeu</th>
-                <td>{{ fitxa.araudiaeu }}</td>
-            </tr>
-            <tr>
-                <th>Araudiaes</th>
-                <td>{{ fitxa.araudiaes }}</td>
-            </tr>
-            <tr>
-                <th>Prozeduraeu</th>
-                <td>{{ fitxa.prozeduraeu }}</td>
-            </tr>
-            <tr>
-                <th>Prozeduraes</th>
-                <td>{{ fitxa.prozeduraes }}</td>
-            </tr>
-            <tr>
-                <th>Tramiteakeu</th>
-                <td>{{ fitxa.tramiteakeu }}</td>
-            </tr>
-            <tr>
-                <th>Tramiteakes</th>
-                <td>{{ fitxa.tramiteakes }}</td>
+                <td>{{ fitxa.tramiteakeu |raw}}</td>
+                <td>{{ fitxa.tramiteakes |raw}}</td>
             </tr>
             <tr>
                 <th>Doklaguneu</th>
-                <td>{{ fitxa.doklaguneu }}</td>
-            </tr>
-            <tr>
                 <th>Doklagunes</th>
-                <td>{{ fitxa.doklagunes }}</td>
+
             </tr>
             <tr>
-                <th>Oharrakeu</th>
-                <td>{{ fitxa.oharrakeu }}</td>
+                <td>{{ fitxa.doklaguneu |raw}}</td>
+                <td>{{ fitxa.doklagunes |raw}}</td>
             </tr>
             <tr>
-                <th>Oharrakes</th>
-                <td>{{ fitxa.oharrakes }}</td>
+                <th><h3>NORK ONARTU BEHAR DU?</h3></th>
+                <th><h3>¿QUIÉN LO APRUEBA?</h3></th>
             </tr>
             <tr>
-                <th>Publikoa</th>
-                <td>{% if fitxa.publikoa %}Yes{% else %}No{% endif %}</td>
+                <td>{{ fitxa.norkebatzi }}</td>
+                <td>{{ fitxa.norkebatzi.norkes }}</td>
             </tr>
             <tr>
-                <th>Kontsultak</th>
-                <td>{{ fitxa.kontsultak }}</td>
+                <th><h3>IZAPIDETZEKO ARDURA DUEN UDAL SAILA</h3></th>
+                <th><h3>DEPARTAMENTO MUNICIPAL RESPONSABLE DE LA TRAMITACIÓN</h3></th>
             </tr>
             <tr>
-                <th>Parametroa</th>
-                <td>{{ fitxa.parametroa }}</td>
+                <td>{{ fitxa.azpisaila.saila }} - {{ fitxa.azpisaila }}</td>
+                <td>{{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}</td>
             </tr>
             <tr>
-                <th>Createdat</th>
-                <td>{% if fitxa.createdAt %}{{ fitxa.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th><h3>OHARRAK</h3></th>
+                <th><h3>OBSERVACIONES</h3></th>
             </tr>
             <tr>
-                <th>Updatedat</th>
-                <td>{% if fitxa.updatedAt %}{{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ fitxa.id }}</td>
+                <td>{{ fitxa.oharrakeu |raw}}</td>
+                <td>{{ fitxa.oharrakes |raw}}</td>
             </tr>
             <tr>
                 <th>Besteak1eu</th>
-                <td>{{ fitxa.besteak1eu }}</td>
+                <th>Besteak1es</th>
             </tr>
             <tr>
-                <th>Besteak1es</th>
-                <td>{{ fitxa.besteak1es }}</td>
+                <td>{{ fitxa.besteak1eu |raw}}</td>
+                <td>{{ fitxa.besteak1es |raw}}</td>
             </tr>
             <tr>
                 <th>Bestea2keu</th>
-                <td>{{ fitxa.bestea2keu }}</td>
+                <th>Besteak2es</th>
             </tr>
             <tr>
-                <th>Besteak2es</th>
-                <td>{{ fitxa.besteak2es }}</td>
+                <td>{{ fitxa.bestea2keu |raw}}</td>
+                <td>{{ fitxa.besteak2es |raw}}</td>
             </tr>
             <tr>
                 <th>Besteak3eu</th>
-                <td>{{ fitxa.besteak3eu }}</td>
+                <th>Besteak3es</th>
             </tr>
             <tr>
-                <th>Besteak3es</th>
-                <td>{{ fitxa.besteak3es }}</td>
+                <td>{{ fitxa.besteak3eu |raw}}</td>
+                <td>{{ fitxa.besteak3es |raw}}</td>
             </tr>
+
+            <tr>
+                <th><h3>DATU PERTSONALEN BABESA</h3></th>
+                <th><h3>PROTECCIÓN DE DATOS DE CARÁCTER PERSONAL</h3></th>
+            </tr>
+            <tr>
+                <td>{{ fitxa.datuenbabesa}}
+                    <b>Fitxategiaren izena:</b>{{ fitxa.datuenbabesa.izenaeu}}<br><br>
+                    <b>DBEB kodea:</b> {{ fitxa.datuenbabesa.kodea}}<br><br>
+                    <b>Fitxategiaren xedea:</b>{{ fitxa.datuenbabesa.xedeaes }}<br><br>
+                    <b>Aurreikusitako lagapenak:</b>{{ fitxa.datuenbabesa.lagapenakes }}<br><br>
+                    <b>Oharra</b>: Zure eskaeraren xedea kudeatzean, litekeena da eskaera beste fitxategi batean sartzea.<br><br>
+                    Sinatzaileak bere datu pertsonalak tratatzeko baimena ematen du eta, eta aurreikusita egonez gero, baita lagatzeko ere.<br><br>
+                    Interesdunak datuetara sartzeko, horiek zuzentzeko eta deuseztatzeko eta horien aurka egiteko eskubidea baliatu dezake Udalaren aurrean.<br><br>
+                    Informazio gehiago: <a href="http://www.pasaia.eus/LOPD.">www.pasaia.eus/LOPD.</a>
+                </td>
+                <td>
+                    <b>Nombre del Fichero:</b>{{ fitxa.datuenbabesa.izenaes}}<br><br>
+                    <b>Código AVPD:</b> {{ fitxa.datuenbabesa.kodea}}<br><br>
+                    <b>Finalidad del fichero:</b>{{ fitxa.datuenbabesa.xedeaes }}<br><br>
+                    <b>Cesiones previstas:</b>{{ fitxa.datuenbabesa.lagapenakes }}<br><br>
+                    <b>Nota:</b> Con el fin de gestionar el objeto de la solicitud, puede que la solicitud sea incorporada a otro fichero.<br><br>
+                    El/la firmante consiente que sus datos personales sean objeto de tratamiento, así­ como su cesión, si está previsto.<br><br>
+                    Se pueden ejercitar los derechos de Acceso, Rectificación, Cancelación y Oposición ante el Ayuntamiento.<br><br>
+                    Más información: <a href="http://www.pasaia.eus/LOPD.">www.pasaia.eus/LOPD.</a>
+                </td>
+            </tr>
+
         </tbody>
     </table>
 

@@ -31,12 +31,37 @@ class Barrutia
      */
     private $id;
 
+    /**
+     *          ERLAZIOAK
+     */
 
+    /**
+     * @var azpisailak[]
+     *
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila", cascade={"remove"})
+     */
+    private $azpisailak;
+
+    public function __toString()
+    {
+        return $this->getIzena();
+    }
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->azpisailak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set izena
      *
      * @param string $izena
+     *
      * @return Barrutia
      */
     public function setIzena($izena)
@@ -49,7 +74,7 @@ class Barrutia
     /**
      * Get izena
      *
-     * @return string 
+     * @return string
      */
     public function getIzena()
     {
@@ -59,7 +84,7 @@ class Barrutia
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,6 +95,7 @@ class Barrutia
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Barrutia
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -82,10 +108,44 @@ class Barrutia
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Add azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     *
+     * @return Barrutia
+     */
+    public function addAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak[] = $azpisailak;
+
+        return $this;
+    }
+
+    /**
+     * Remove azpisailak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     */
+    public function removeAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    {
+        $this->azpisailak->removeElement($azpisailak);
+    }
+
+    /**
+     * Get azpisailak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAzpisailak()
+    {
+        return $this->azpisailak;
     }
 }

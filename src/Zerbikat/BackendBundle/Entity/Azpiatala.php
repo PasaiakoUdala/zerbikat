@@ -60,6 +60,10 @@ class Azpiatala
     private $id;
 
     /**
+     *          ERLAZIOAK
+     */
+
+    /**
      * @var \Zerbikat\BackendBundle\Entity\Atala
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Atala")
@@ -69,12 +73,35 @@ class Azpiatala
      */
     private $atala;
 
+    /**
+     * @var kontzeptuak[]
+     *
+     * @ORM\OneToMany(targetEntity="Kontzeptua", mappedBy="azpiatala", cascade={"remove"})
+     */
+    private $kontzeptuak;
 
+    /**
+     * @var parrafoak[]
+     *
+     * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala", cascade={"remove"})
+     */
+    private $parrafoak;
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->kontzeptuak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->parrafoak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set kodea
      *
      * @param string $kodea
+     *
      * @return Azpiatala
      */
     public function setKodea($kodea)
@@ -87,7 +114,7 @@ class Azpiatala
     /**
      * Get kodea
      *
-     * @return string 
+     * @return string
      */
     public function getKodea()
     {
@@ -98,6 +125,7 @@ class Azpiatala
      * Set izenburuaeu
      *
      * @param string $izenburuaeu
+     *
      * @return Azpiatala
      */
     public function setIzenburuaeu($izenburuaeu)
@@ -110,7 +138,7 @@ class Azpiatala
     /**
      * Get izenburuaeu
      *
-     * @return string 
+     * @return string
      */
     public function getIzenburuaeu()
     {
@@ -121,6 +149,7 @@ class Azpiatala
      * Set izenburuaes
      *
      * @param string $izenburuaes
+     *
      * @return Azpiatala
      */
     public function setIzenburuaes($izenburuaes)
@@ -133,7 +162,7 @@ class Azpiatala
     /**
      * Get izenburuaes
      *
-     * @return string 
+     * @return string
      */
     public function getIzenburuaes()
     {
@@ -144,6 +173,7 @@ class Azpiatala
      * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return Azpiatala
      */
     public function setCreatedAt($createdAt)
@@ -156,7 +186,7 @@ class Azpiatala
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -167,6 +197,7 @@ class Azpiatala
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return Azpiatala
      */
     public function setUpdatedAt($updatedAt)
@@ -179,7 +210,7 @@ class Azpiatala
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -189,7 +220,7 @@ class Azpiatala
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -197,32 +228,10 @@ class Azpiatala
     }
 
     /**
-     * Set atala
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Atala $atala
-     * @return Azpiatala
-     */
-    public function setAtala(\Zerbikat\BackendBundle\Entity\Atala $atala = null)
-    {
-        $this->atala = $atala;
-
-        return $this;
-    }
-
-    /**
-     * Get atala
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Atala 
-     */
-    public function getAtala()
-    {
-        return $this->atala;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Azpiatala
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -235,10 +244,102 @@ class Azpiatala
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set atala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Atala $atala
+     *
+     * @return Azpiatala
+     */
+    public function setAtala(\Zerbikat\BackendBundle\Entity\Atala $atala = null)
+    {
+        $this->atala = $atala;
+
+        return $this;
+    }
+
+    /**
+     * Get atala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Atala
+     */
+    public function getAtala()
+    {
+        return $this->atala;
+    }
+
+    /**
+     * Add kontzeptuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak
+     *
+     * @return Azpiatala
+     */
+    public function addKontzeptuak(\Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak)
+    {
+        $this->kontzeptuak[] = $kontzeptuak;
+
+        return $this;
+    }
+
+    /**
+     * Remove kontzeptuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak
+     */
+    public function removeKontzeptuak(\Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak)
+    {
+        $this->kontzeptuak->removeElement($kontzeptuak);
+    }
+
+    /**
+     * Get kontzeptuak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKontzeptuak()
+    {
+        return $this->kontzeptuak;
+    }
+
+    /**
+     * Add parrafoak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak
+     *
+     * @return Azpiatala
+     */
+    public function addParrafoak(\Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak)
+    {
+        $this->parrafoak[] = $parrafoak;
+
+        return $this;
+    }
+
+    /**
+     * Remove parrafoak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak
+     */
+    public function removeParrafoak(\Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak)
+    {
+        $this->parrafoak->removeElement($parrafoak);
+    }
+
+    /**
+     * Get parrafoak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParrafoak()
+    {
+        return $this->parrafoak;
     }
 }

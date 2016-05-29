@@ -60,6 +60,11 @@ class Araudia
     private $id;
 
     /**
+     *          ERLAZIOAK
+     */
+
+
+    /**
      * @var \Zerbikat\BackendBundle\Entity\Araumota
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araumota")
@@ -69,12 +74,16 @@ class Araudia
      */
     private $araumota;
 
-
+    public function __toString()
+    {
+        return $this->getKodea();
+    }
 
     /**
      * Set kodea
      *
      * @param string $kodea
+     *
      * @return Araudia
      */
     public function setKodea($kodea)
@@ -87,7 +96,7 @@ class Araudia
     /**
      * Get kodea
      *
-     * @return string 
+     * @return string
      */
     public function getKodea()
     {
@@ -98,6 +107,7 @@ class Araudia
      * Set arauaeu
      *
      * @param string $arauaeu
+     *
      * @return Araudia
      */
     public function setArauaeu($arauaeu)
@@ -110,7 +120,7 @@ class Araudia
     /**
      * Get arauaeu
      *
-     * @return string 
+     * @return string
      */
     public function getArauaeu()
     {
@@ -121,6 +131,7 @@ class Araudia
      * Set arauaes
      *
      * @param string $arauaes
+     *
      * @return Araudia
      */
     public function setArauaes($arauaes)
@@ -133,7 +144,7 @@ class Araudia
     /**
      * Get arauaes
      *
-     * @return string 
+     * @return string
      */
     public function getArauaes()
     {
@@ -144,6 +155,7 @@ class Araudia
      * Set estekaeu
      *
      * @param string $estekaeu
+     *
      * @return Araudia
      */
     public function setEstekaeu($estekaeu)
@@ -156,7 +168,7 @@ class Araudia
     /**
      * Get estekaeu
      *
-     * @return string 
+     * @return string
      */
     public function getEstekaeu()
     {
@@ -167,6 +179,7 @@ class Araudia
      * Set estekaes
      *
      * @param string $estekaes
+     *
      * @return Araudia
      */
     public function setEstekaes($estekaes)
@@ -179,7 +192,7 @@ class Araudia
     /**
      * Get estekaes
      *
-     * @return string 
+     * @return string
      */
     public function getEstekaes()
     {
@@ -189,7 +202,7 @@ class Araudia
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -197,32 +210,10 @@ class Araudia
     }
 
     /**
-     * Set araumota
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Araumota $araumota
-     * @return Araudia
-     */
-    public function setAraumota(\Zerbikat\BackendBundle\Entity\Araumota $araumota = null)
-    {
-        $this->araumota = $araumota;
-
-        return $this;
-    }
-
-    /**
-     * Get araumota
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Araumota 
-     */
-    public function getAraumota()
-    {
-        return $this->araumota;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Araudia
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -235,10 +226,34 @@ class Araudia
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set araumota
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Araumota $araumota
+     *
+     * @return Araudia
+     */
+    public function setAraumota(\Zerbikat\BackendBundle\Entity\Araumota $araumota = null)
+    {
+        $this->araumota = $araumota;
+
+        return $this;
+    }
+
+    /**
+     * Get araumota
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Araumota
+     */
+    public function getAraumota()
+    {
+        return $this->araumota;
     }
 }
