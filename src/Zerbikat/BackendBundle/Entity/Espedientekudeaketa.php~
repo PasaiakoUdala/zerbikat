@@ -1,0 +1,46 @@
+<?php
+
+namespace Zerbikat\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Espedientekudeaketa
+ *
+ * @ORM\Table(name="espedientekudeaketa")
+ * @ORM\Entity
+ */
+class Espedientekudeaketa
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="izenaeu", type="string", length=255)
+     */
+    private $izenaeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="izenaes", type="string", length=255)
+     */
+    private $izenaes;
+
+    
+
+    public function __toString()
+    {
+        return $this->getIzenaeu();
+    }
+
+}

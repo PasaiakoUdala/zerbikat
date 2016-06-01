@@ -115,6 +115,7 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Tramitea
       - Zerbikat\BackendBundle\Entity\Zerbitzua
       - Zerbikat\BackendBundle\Entity\Udala
+      - Zerbikat\BackendBundle\Entity\Espedientekudeaketa
 
 ivory_ck_editor:
     input_sync: true

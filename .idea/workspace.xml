@@ -1,86 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d4a22c4-791e-4d5c-be9d-3c17a2eae1d9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Besteak1.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Besteak2.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Besteak3.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Doklagun.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaProzedura.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/IsiltasunAdministratiboa.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Norkeskatu.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Prozedura.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAzpiatala.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/var/logs/.gitkeep" afterPath="$PROJECT_DIR$/var/logs/.gitkeep" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Zerbikat.iml" afterPath="$PROJECT_DIR$/.idea/Zerbikat.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/symfony2.xml" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/fitxa/edit.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/fitxa/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/fitxa/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/fitxa/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/fitxa/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/fitxa/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/design.yml" afterPath="$PROJECT_DIR$/app/config/admin/design.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Araudia.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Araudia.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Atala.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Atala.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Azpiatala.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Azpiatala.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Azpisaila.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Azpisaila.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Baldintzak.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Baldintzak.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Datuenbabesa.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Datuenbabesa.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Fitxa.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Fitxa.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Kontzeptumota.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Kontzeptumota.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Ordenantza.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Ordenantza.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Saila.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Saila.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Udalak.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Udalak.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/Zerbitzua.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/Zerbitzua.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/entitties/dokumentazioa.yml" afterPath="$PROJECT_DIR$/app/config/admin/entitties/dokumentazioa.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin/menu.yml" afterPath="$PROJECT_DIR$/app/config/admin/menu.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/config.yml" afterPath="$PROJECT_DIR$/app/config/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/routing.yml" afterPath="$PROJECT_DIR$/app/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/symfony_requirements" afterPath="$PROJECT_DIR$/bin/symfony_requirements" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Controller/FitxaController.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Controller/FitxaController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Araudia.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Araudia.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Atala.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Atala.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpiatala.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpiatala.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpiatalaparrafoa.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpiatalaparrafoa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpisaila.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpisaila.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Dokumentazioa.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Dokumentazioa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Etiketa.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Etiketa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Familia.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Familia.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Fitxa.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Fitxa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAraudia.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAraudia.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaDokumentazioa.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaDokumentazioa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaEtiketa.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaEtiketa.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaFamilia.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaFamilia.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaTramitea.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaTramitea.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Kalea.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Kalea.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Kontzeptua.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Kontzeptua.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Tramitea.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Tramitea.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Udala.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Udala.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Zerbitzua.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Zerbitzua.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Form/FitxaType.php" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Form/FitxaType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.css" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.css.map" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.min.css" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.min.css.map" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap-theme.min.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.css" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.css.map" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.min.css.map" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/css/bootstrap.min.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/fonts/glyphicons-halflings-regular.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/js/bootstrap.js" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/js/npm.js" afterPath="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Resources/public/js/npm.js" />
-    </list>
+    <list default="true" id="8d4a22c4-791e-4d5c-be9d-3c17a2eae1d9" name="Default" comment="" />
     <ignored path="Zerbikat.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -104,28 +25,40 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/fitxa/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+            <state relative-caret-position="68">
+              <caret line="4" column="39" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FitxaType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Form/FitxaType.php">
+      <file leaf-file-name="Udala.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Udala.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="96" column="27" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
+            <state relative-caret-position="-412">
+              <caret line="98" column="20" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Araudia.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Araudia.php">
+      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="58" column="7" selection-start-line="58" selection-start-column="7" selection-end-line="58" selection-end-column="7" />
+            <state relative-caret-position="419">
+              <caret line="117" column="57" selection-start-line="117" selection-start-column="57" selection-end-line="117" selection-end-column="57" />
+              <folding>
+                <marker date="1464815142069" expanded="true" signature="4308:4357" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Espedientekudeaketa.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Espedientekudeaketa.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1700">
+              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,8 +67,8 @@
       <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/fitxa/edit.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5336">
-              <caret line="318" column="51" selection-start-line="318" selection-start-column="51" selection-end-line="318" selection-end-column="51" />
+            <state relative-caret-position="289">
+              <caret line="110" column="55" selection-start-line="110" selection-start-column="55" selection-end-line="110" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -144,11 +77,9 @@
       <file leaf-file-name="Fitxa.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Fitxa.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="382" column="7" selection-start-line="382" selection-start-column="7" selection-end-line="382" selection-end-column="7" />
-              <folding>
-                <element signature="e#49#81#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="16" column="19" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -156,8 +87,8 @@
       <file leaf-file-name="FitxaAraudia.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAraudia.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+            <state relative-caret-position="629">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -172,11 +103,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/config/admin/entitties/Baldintzak.yml" />
-        <option value="$PROJECT_DIR$/app/config/admin/entitties/Kontzeptumota.yml" />
         <option value="$PROJECT_DIR$/app/config/admin/entitties/Udalak.yml" />
         <option value="$PROJECT_DIR$/app/config/admin/entitties/Zerbitzua.yml" />
-        <option value="$PROJECT_DIR$/app/config/admin/menu.yml" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Controller/FitxaController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
@@ -190,7 +118,6 @@
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpiatalaparrafoa.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpisaila.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Kalea.php" />
-        <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAraudia.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaDokumentazioa.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Dokumentazioa.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Araudia.php" />
@@ -202,27 +129,31 @@
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Etiketa.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaTramitea.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Tramitea.php" />
-        <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Udala.php" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/app/config/admin/entitties/Atala.yml" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak2.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak3.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak1.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaNorkeskatu.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/fitxa/show.html.twig" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Besteak3.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Besteak1.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Besteak2.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Norkeskatu.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Doklagun.php" />
-        <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Atala.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpiatala.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Prozedura.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Fitxa.php" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaProzedura.php" />
+        <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAraudia.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/fitxa/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/fitxa/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Form/FitxaType.php" />
+        <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Espedientekudeaketa.php" />
+        <option value="$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Udala.php" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/app/config/admin/entitties/Espedientekudeaketa.yml" />
+        <option value="$PROJECT_DIR$/app/config/admin/menu.yml" />
       </list>
     </option>
   </component>
@@ -237,10 +168,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1287" />
-    <option name="height" value="938" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -267,31 +198,33 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -301,11 +234,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -323,11 +256,37 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Zerbikat" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Form" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -349,11 +308,47 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FrontendBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -363,59 +358,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fitxa" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -429,11 +376,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Zerbikat" />
+              <option name="myItemId" value="zerbikat" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -449,10 +396,34 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zerbikat" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entitties" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -463,6 +434,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="Z:\zerbikat\app\config\admin\entitties" />
+      <recent name="Z:\zerbikat\src\Zerbikat\BackendBundle\Entity" />
       <recent name="Z:\Zerbikat\src\Zerbikat\BackendBundle\Entity" />
     </key>
   </component>
@@ -527,17 +500,18 @@
       <workItem from="1464538754621" duration="11984000" />
       <workItem from="1464601881308" duration="19820000" />
       <workItem from="1464683992566" duration="28781000" />
+      <workItem from="1464806679254" duration="5260000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107645000" />
+    <option name="totallyTimeSpent" value="112905000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1287" height="938" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20452708" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20424597" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33333334" sideWeight="0.5121188" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -591,62 +565,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Eraikina.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding>
-            <marker date="1464773774456" expanded="true" signature="237:4576" placeholder="{...}" />
-            <marker date="1464773774456" expanded="true" signature="316:424" placeholder=" @var string ..." />
-            <marker date="1464773774456" expanded="true" signature="613:734" placeholder=" @var float ..." />
-            <marker date="1464773774456" expanded="true" signature="769:910" placeholder=" @var integer ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Saila.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
-          <folding>
-            <marker date="1464773774432" expanded="true" signature="157:4268" placeholder="{...}" />
-            <marker date="1464773774432" expanded="true" signature="236:342" placeholder=" @var string ..." />
-            <marker date="1464773774432" expanded="true" signature="373:482" placeholder=" @var string ..." />
-            <marker date="1464773774432" expanded="true" signature="657:769" placeholder=" @var string ..." />
-            <marker date="1464773774432" expanded="true" signature="805:946" placeholder=" @var integer ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpiatalaparrafoa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="64" column="99" selection-start-line="64" selection-start-column="99" selection-end-line="64" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Azpisaila.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="111" column="73" selection-start-line="111" selection-start-column="73" selection-end-line="111" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Kalea.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Kontzeptua.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="98" column="78" selection-start-line="98" selection-start-column="78" selection-end-line="98" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -668,7 +590,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="60" column="5" selection-start-line="57" selection-start-column="0" selection-end-line="60" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -676,7 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1938">
           <caret line="114" column="22" selection-start-line="114" selection-start-column="22" selection-end-line="114" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,7 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
           <caret line="51" column="5" selection-start-line="48" selection-start-column="0" selection-end-line="51" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -692,7 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="26" column="94" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -700,7 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="94" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,7 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="60" column="5" selection-start-line="57" selection-start-column="0" selection-end-line="60" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -716,7 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
           <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,7 +639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -732,7 +646,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="41" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -748,7 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -764,15 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="95" selection-start-line="43" selection-start-column="95" selection-end-line="43" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Udala.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,49 +681,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="110" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="110" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak3.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-165">
-          <caret line="36" column="95" selection-start-line="36" selection-start-column="95" selection-end-line="36" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak2.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="36" column="95" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="36" column="95" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaNorkeskatu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="36" column="78" selection-start-line="36" selection-start-column="78" selection-end-line="36" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak3.php" />
+    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak2.php" />
+    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaBesteak1.php" />
+    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaNorkeskatu.php" />
     <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAzpiatala.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-476">
           <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -830,7 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-204">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -838,7 +706,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
           <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -846,7 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
           <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -854,23 +720,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="852">
           <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Dokulagun.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Dokulagun.php" />
     <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Dokumentazioa.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
           <caret line="74" column="64" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -878,7 +735,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
           <caret line="73" column="20" selection-start-line="68" selection-start-column="0" selection-end-line="73" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -886,15 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -902,7 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,7 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="76" column="71" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -918,7 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2142">
           <caret line="126" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="126" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -926,7 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
           <caret line="51" column="20" selection-start-line="42" selection-start-column="0" selection-end-line="51" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -934,7 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2569">
           <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -942,7 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2011">
           <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -950,7 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -958,56 +798,111 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
           <caret line="103" column="117" selection-start-line="103" selection-start-column="117" selection-end-line="103" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/fitxa/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5336">
-          <caret line="318" column="51" selection-start-line="318" selection-start-column="51" selection-end-line="318" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/fitxa/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+        <state relative-caret-position="68">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Form/FitxaType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="96" column="27" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
+        <state relative-caret-position="251">
+          <caret line="100" column="2" selection-start-line="100" selection-start-column="2" selection-end-line="100" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Araudia.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="58" column="7" selection-start-line="58" selection-start-column="7" selection-end-line="58" selection-end-column="7" />
+        <state relative-caret-position="197">
+          <caret line="85" column="5" selection-start-line="82" selection-start-column="0" selection-end-line="85" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="117" column="57" selection-start-line="117" selection-start-column="57" selection-end-line="117" selection-end-column="57" />
+          <folding>
+            <marker date="1464815142069" expanded="true" signature="4308:4357" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/admin/entitties/Udalak.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/admin/entitties/Fitxa.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/admin/menu.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Udala.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-412">
+          <caret line="98" column="20" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/admin/entitties/Espedientekudeaketa.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="73" selection-start-line="13" selection-start-column="73" selection-end-line="13" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Espedientekudeaketa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/fitxa/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="110" column="55" selection-start-line="110" selection-start-column="55" selection-end-line="110" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/Fitxa.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="382" column="7" selection-start-line="382" selection-start-column="7" selection-end-line="382" selection-end-column="7" />
-          <folding>
-            <element signature="e#49#81#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="16" column="19" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Zerbikat/BackendBundle/Entity/FitxaAraudia.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+        <state relative-caret-position="629">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>

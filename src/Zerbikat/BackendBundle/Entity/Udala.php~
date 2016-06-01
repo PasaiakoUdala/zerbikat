@@ -50,12 +50,41 @@ class Udala
      */
     private $logoa;
 
-    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ifk", type="string", length=255)
+     */
+    private $ifk;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="izendapenaeu", type="string", length=255)
+     */
+    private $izendapenaeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="izendapenaes", type="string", length=255)
+     */
+    private $izendapenaes;
+
+    /** @ORM\ManyToOne(targetEntity="Espedientekudeaketa") */
+    private $espedientekudeaketa;
+
+
+    public function __toString()
+    {
+        return $this->getIzenaeu();
+    }
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,6 +95,7 @@ class Udala
      * Set izenaeu
      *
      * @param string $izenaeu
+     *
      * @return Udala
      */
     public function setIzenaeu($izenaeu)
@@ -78,7 +108,7 @@ class Udala
     /**
      * Get izenaeu
      *
-     * @return string 
+     * @return string
      */
     public function getIzenaeu()
     {
@@ -89,6 +119,7 @@ class Udala
      * Set izenaes
      *
      * @param string $izenaes
+     *
      * @return Udala
      */
     public function setIzenaes($izenaes)
@@ -101,7 +132,7 @@ class Udala
     /**
      * Get izenaes
      *
-     * @return string 
+     * @return string
      */
     public function getIzenaes()
     {
@@ -112,6 +143,7 @@ class Udala
      * Set kodea
      *
      * @param string $kodea
+     *
      * @return Udala
      */
     public function setKodea($kodea)
@@ -124,19 +156,12 @@ class Udala
     /**
      * Get kodea
      *
-     * @return string 
+     * @return string
      */
     public function getKodea()
     {
         return $this->kodea;
     }
-    
-    public function __toString()
-    {
-        return $this->getKodea();
-    }
-    
-    
 
     /**
      * Set logoa
@@ -160,5 +185,77 @@ class Udala
     public function getLogoa()
     {
         return $this->logoa;
+    }
+
+    /**
+     * Set ifk
+     *
+     * @param string $ifk
+     *
+     * @return Udala
+     */
+    public function setIfk($ifk)
+    {
+        $this->ifk = $ifk;
+
+        return $this;
+    }
+
+    /**
+     * Get ifk
+     *
+     * @return string
+     */
+    public function getIfk()
+    {
+        return $this->ifk;
+    }
+
+    /**
+     * Set izendapenaeu
+     *
+     * @param string $izendapenaeu
+     *
+     * @return Udala
+     */
+    public function setIzendapenaeu($izendapenaeu)
+    {
+        $this->izendapenaeu = $izendapenaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get izendapenaeu
+     *
+     * @return string
+     */
+    public function getIzendapenaeu()
+    {
+        return $this->izendapenaeu;
+    }
+
+    /**
+     * Set izendapenaes
+     *
+     * @param string $izendapenaes
+     *
+     * @return Udala
+     */
+    public function setIzendapenaes($izendapenaes)
+    {
+        $this->izendapenaes = $izendapenaes;
+
+        return $this;
+    }
+
+    /**
+     * Get izendapenaes
+     *
+     * @return string
+     */
+    public function getIzendapenaes()
+    {
+        return $this->izendapenaes;
     }
 }

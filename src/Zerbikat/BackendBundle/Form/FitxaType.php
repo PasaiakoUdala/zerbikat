@@ -98,6 +98,7 @@ class FitxaType extends AbstractType
                 'class' => 'BackendBundle:Araudia',
                 'required' => false,
                 'multiple'=>'multiple',
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu arauak',
                 'group_by' => 'araumota',
             ))
@@ -110,7 +111,7 @@ class FitxaType extends AbstractType
             ))
 
             ->add('familiak', EntityType::class, array(
-                'class' => 'BackendBundle:FAmilia',
+                'class' => 'BackendBundle:Familia',
                 'required' => false,
                 'multiple'=>'multiple',
                 'placeholder' => 'Aukeratu familiak'
@@ -180,6 +181,13 @@ class FitxaType extends AbstractType
 //                'expanded' => true ,
                 'multiple' => true , ))
 
+/*
+            ->add('fitxaaraudia' , EntityType::class, array(
+                'class'    => 'BackendBundle:FitxaAraudia' ,
+                'property' => 'name' ,
+                'expanded' => true ,
+                'multiple' => true , ))
+*/
         ;
     }
     

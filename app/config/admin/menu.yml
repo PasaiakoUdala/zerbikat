@@ -24,10 +24,11 @@ easy_admin:
             - { label: 'Dokumentu-mota', icon: 'file-new', entity: 'Dokumentumota' }
             - { label: 'Ebazleak', icon: 'file-new', entity: 'Norkebatzi' }
             - { label: 'Tramiteak', icon: 'file-new', entity: 'Tramitea' }
-        - label: 'IZFE'
+        - label: 'KUDEAKETA'
           children:
             - { label: 'Zerbitzuak', icon: 'file-new', entity: 'Zerbitzua' }
             - { label: 'Udalak', icon: 'file-new', entity: 'Udala' }
+            - { label: 'Espediente-kudeaketa', icon: 'file-new', entity: 'Espedientekudeaketa' }
         - label: 'Zerga Ordenantzak'
           children:
             - { label: 'Ordenantzak', icon: 'file-new', entity: 'Ordenantza' }

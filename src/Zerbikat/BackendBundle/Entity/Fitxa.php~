@@ -2062,4 +2062,38 @@ class Fitxa
     {
         return $this->isiltasunadmin;
     }
+
+    /**
+     * Add prozedurak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     *
+     * @return Fitxa
+     */
+    public function addProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    {
+        $this->prozedurak[] = $prozedurak;
+
+        return $this;
+    }
+
+    /**
+     * Remove prozedurak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     */
+    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    {
+        $this->prozedurak->removeElement($prozedurak);
+    }
+
+    /**
+     * Get prozedurak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProzedurak()
+    {
+        return $this->prozedurak;
+    }
 }
