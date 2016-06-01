@@ -56,7 +56,7 @@ class Kalea
     /**
      * @var azpisailak[]
      *
-     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="kalea", cascade={"remove"})
      */
     private $azpisailak;
 

@@ -99,7 +99,6 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Fitxa
       - Zerbikat\BackendBundle\Entity\FitxaAraudia
       - Zerbikat\BackendBundle\Entity\FitxaAtala
-      - Zerbikat\BackendBundle\Entity\FitxaAzpiatala
       - Zerbikat\BackendBundle\Entity\FitxaBertan
       - Zerbikat\BackendBundle\Entity\FitxaDokumentazioa
       - Zerbikat\BackendBundle\Entity\FitxaEtiketa
@@ -116,3 +115,11 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Tramitea
       - Zerbikat\BackendBundle\Entity\Zerbitzua
       - Zerbikat\BackendBundle\Entity\Udala
+
+ivory_ck_editor:
+    input_sync: true
+    default_config: simple_config
+    configs:
+        simple_config:
+            toolbar:
+                - { name: "styles", items: ['Source','Bold', 'Italic','Underline', 'BulletedList','NumberedList','Outdent','Indent', 'Link', 'PasteText'] }

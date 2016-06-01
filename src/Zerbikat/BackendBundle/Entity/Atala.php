@@ -69,6 +69,13 @@ class Atala
      */
     private $ordenantza;
 
+    /**
+     *          TOSTRING
+     */
+    public function __toString()
+    {
+        return $this->getOrdenantza()->getKodea().".".$this->getKodea().".".$this->getIzenburuaeu();
+    }
 
 
     /**

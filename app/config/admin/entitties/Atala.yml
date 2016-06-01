@@ -14,3 +14,8 @@ easy_admin:
                     - { property: 'kodea', label: 'Atal Kodea' }
                     - { property: 'izenburuaeu', label: 'Izenburua' }
 #                   - { property: 'azpisaila', label: 'Azpisaila' }
+
+#            form:
+#                fields:
+                    # ...
+#                    - { property: 'izenburuaeu', type: 'ckeditor' }

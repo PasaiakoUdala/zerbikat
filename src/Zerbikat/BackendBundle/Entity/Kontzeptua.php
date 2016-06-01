@@ -96,7 +96,7 @@ class Kontzeptua
     /**
      * @var \Zerbikat\BackendBundle\Entity\Azpiatala
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala", inversedBy="kontzeptuak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="azpiatala_id", referencedColumnName="id")
      * })

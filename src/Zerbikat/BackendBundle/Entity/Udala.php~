@@ -43,6 +43,14 @@ class Udala
      */
     private $kodea;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="logoa", type="string", length=255)
+     */
+    private $logoa;
+
+    
 
     /**
      * Get id
@@ -129,4 +137,28 @@ class Udala
     }
     
     
+
+    /**
+     * Set logoa
+     *
+     * @param string $logoa
+     *
+     * @return Udala
+     */
+    public function setLogoa($logoa)
+    {
+        $this->logoa = $logoa;
+
+        return $this;
+    }
+
+    /**
+     * Get logoa
+     *
+     * @return string
+     */
+    public function getLogoa()
+    {
+        return $this->logoa;
+    }
 }

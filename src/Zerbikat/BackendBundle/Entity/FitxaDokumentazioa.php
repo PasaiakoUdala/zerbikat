@@ -24,7 +24,7 @@ class FitxaDokumentazioa
     /**
      * @var \Zerbikat\BackendBundle\Entity\Fitxa
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa",inversedBy="dokumentazioak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
      * })
@@ -40,6 +40,12 @@ class FitxaDokumentazioa
      * })
      */
     private $dokumentazioa;
+
+
+    public function __toString()
+    {
+        return $this->dokumentazioa->getKodea()."-".$this->dokumentazioa->getDeskribapenaeu();
+    }
 
 
 

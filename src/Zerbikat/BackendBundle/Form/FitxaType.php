@@ -5,6 +5,9 @@ namespace Zerbikat\BackendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class FitxaType extends AbstractType
 {
@@ -18,12 +21,18 @@ class FitxaType extends AbstractType
             ->add('espedientekodea')
             ->add('deskribapenaeu')
             ->add('deskribapenaes')
-            ->add('helburuaeu')
-            ->add('helburuaes')
-            ->add('norkeu')
-            ->add('norkes')
-            ->add('dokumentazioaeu')
-            ->add('dokumentazioaes')
+            ->add('helburuaeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('helburuaes',CKEditorType::class, array(
+                'config' => array()))
+            ->add('norkeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('norkes',CKEditorType::class, array(
+                'config' => array()))
+            ->add('dokumentazioaeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('dokumentazioaes',CKEditorType::class, array(
+                'config' => array()))
             ->add('nolabertan')
             ->add('nolainternet')
             ->add('nolatelefono')
@@ -31,32 +40,52 @@ class FitxaType extends AbstractType
             ->add('nolaposta')
             ->add('nolabesteakeu')
             ->add('nolabesteakes')
-            ->add('kostuaeu')
-            ->add('kostuaes')
+            ->add('kostuaeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('kostuaes',CKEditorType::class, array(
+                'config' => array()))
             ->add('ebazpensinpli')
             ->add('arduraaitorpena')
             ->add('isiltasunadmin')
-            ->add('araudiaeu')
-            ->add('araudiaes')
-            ->add('prozeduraeu')
-            ->add('prozeduraes')
-            ->add('tramiteakeu')
-            ->add('tramiteakes')
-            ->add('doklaguneu')
-            ->add('doklagunes')
-            ->add('oharrakeu')
-            ->add('oharrakes')
+            ->add('araudiaeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('araudiaes',CKEditorType::class, array(
+                'config' => array()))
+            ->add('prozeduraeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('prozeduraes',CKEditorType::class, array(
+                'config' => array()))
+            ->add('tramiteakeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('tramiteakes',CKEditorType::class, array(
+                'config' => array()))
+            ->add('doklaguneu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('doklagunes',CKEditorType::class, array(
+                'config' => array()))
+            ->add('oharrakeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('oharrakes',CKEditorType::class, array(
+                'config' => array()))
             ->add('publikoa')
             ->add('kontsultak')
             ->add('parametroa')
-            ->add('createdAt')
-            ->add('updatedAt')
-            ->add('besteak1eu')
-            ->add('besteak1es')
-            ->add('bestea2keu')
-            ->add('besteak2es')
-            ->add('besteak3eu')
-            ->add('besteak3es')
+//            ->add('createdAt')
+            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
+//            ->add('updatedAt')
+            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
+            ->add('besteak1eu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('besteak1es',CKEditorType::class, array(
+                'config' => array()))
+            ->add('besteak2eu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('besteak2es',CKEditorType::class, array(
+                'config' => array()))
+            ->add('besteak3eu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('besteak3es',CKEditorType::class, array(
+                'config' => array()))
             ->add('udala')
             ->add('norkebatzi')
             ->add('zerbitzua')
@@ -64,6 +93,93 @@ class FitxaType extends AbstractType
             ->add('azpisaila')
             ->add('aurreikusi')
             ->add('arrunta')
+//            ->add('fitxaaraudiak')
+            ->add('araudiak', EntityType::class, array(
+                'class' => 'BackendBundle:Araudia',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu arauak',
+                'group_by' => 'araumota',
+            ))
+            ->add('dokumentazioak', EntityType::class, array(
+                'class' => 'BackendBundle:Dokumentazioa',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu dokumentuak',
+                'group_by' => 'dokumentumota',
+            ))
+
+            ->add('familiak', EntityType::class, array(
+                'class' => 'BackendBundle:FAmilia',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu familiak'
+            ))
+            ->add('etiketak', EntityType::class, array(
+                'class' => 'BackendBundle:Etiketa',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu etiketak',
+                'empty_data'  => null,
+
+//                'add_empty' => '---',
+            ))
+            ->add('tramiteak', EntityType::class, array(
+                'class' => 'BackendBundle:Tramitea',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu tramiteak'
+            ))
+            ->add('besteak1ak', EntityType::class, array(
+                'class' => 'BackendBundle:Besteak1',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu besteak1'
+            ))
+            ->add('besteak2ak', EntityType::class, array(
+                'class' => 'BackendBundle:Besteak2',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu besteak2'
+            ))
+            ->add('besteak3ak', EntityType::class, array(
+                'class' => 'BackendBundle:Besteak3',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu besteak3'
+            ))
+            ->add('norkeskatuak', EntityType::class, array(
+                'class' => 'BackendBundle:Norkeskatu',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu nork eska dezakeen'
+            ))
+            ->add('doklagunak', EntityType::class, array(
+                'class' => 'BackendBundle:Doklagun',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu dokumentazio lagungarria'
+            ))
+            ->add('azpiatalak', EntityType::class, array(
+                'class' => 'BackendBundle:Azpiatala',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu kostu taulak'
+            ))
+/*
+            ->add('prozedurak', EntityType::class, array(
+                'class' => 'BackendBundle:Prozedura',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu prozedurak'
+            ))
+*/
+            ->add('prozedurak' , EntityType::class, array(
+                'class'    => 'BackendBundle:Prozedura' ,
+//                'property' => 'name' ,
+//                'expanded' => true ,
+                'multiple' => true , ))
+
         ;
     }
     

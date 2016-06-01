@@ -41,13 +41,18 @@ class FitxaTramitea
     /**
      * @var \Zerbikat\BackendBundle\Entity\Fitxa
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa",inversedBy="tramiteak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
      * })
      */
     private $fitxa;
 
+
+    public function __toString()
+    {
+        return $this->getTramitea();
+    }
 
 
     /**

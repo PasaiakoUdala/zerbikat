@@ -38,7 +38,13 @@ class Etiketa
      */
     private $id;
 
-
+    public function __toString()
+    {
+        return $this->getEtiketaeu();
+    }
+    
+    
+    
 
     /**
      * Set etiketaeu

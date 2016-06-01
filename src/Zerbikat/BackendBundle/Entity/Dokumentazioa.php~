@@ -70,6 +70,12 @@ class Dokumentazioa
     private $dokumentumota;
 
 
+    public function __toString()
+    {
+        return $this->getKodea()."-".$this->getDeskribapenaeu();
+    }
+
+
 
     /**
      * Set kodea

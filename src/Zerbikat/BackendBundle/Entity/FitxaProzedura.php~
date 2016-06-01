@@ -1,0 +1,48 @@
+<?php
+
+namespace Zerbikat\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * FitxaProzedura
+ *
+ * @ORM\Table(name="fitxa_prozedura", indexes={@ORM\Index(name="fitxa_id_idx", columns={"fitxa_id"}), @ORM\Index(name="prozedura_id_idx", columns={"prozedura_id"})})
+ * @ORM\Entity
+ */
+class FitxaProzedura
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ordena", type="bigint", nullable=true)
+     */
+    private $ordena;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Prozedura", inversedBy="fitxak")
+     * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id")
+     * */
+    protected $prozedura;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Fitxa", inversedBy="prozedurak")
+     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
+     * */
+    protected $fitxa;
+
+    public function __toString()
+    {
+        return $this->getTramitea();
+    }
+
+}

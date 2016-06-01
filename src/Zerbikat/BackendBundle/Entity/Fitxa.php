@@ -3,6 +3,7 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Fitxa
@@ -154,13 +155,6 @@ class Fitxa
      * @ORM\Column(name="arduraaitorpena", type="boolean", nullable=true)
      */
     private $arduraaitorpena;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="isiltasunadmin", type="boolean", nullable=true)
-     */
-    private $isiltasunadmin;
 
     /**
      * @var string
@@ -355,7 +349,7 @@ class Fitxa
      *
      * @ORM\Column(name="besteak2eu", type="text", length=65535, nullable=true)
      */
-    private $bestea2keu;
+    private $besteak2eu;
 
     /**
      * @var string
@@ -397,14 +391,100 @@ class Fitxa
     private $dokumentazioak;
 
     /**
+     * @var familiak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaFamilia", mappedBy="fitxa", cascade={"remove"})
+     */
+    private $familiak;
+
+    /**
+     * @var besteak1ak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Besteak1",cascade={"remove"},inversedBy="fitxak")
+     */
+    private $besteak1ak;
+
+    /**
+     * @var besteak2ak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Besteak2",cascade={"remove"},inversedBy="fitxak")
+     */
+    private $besteak2ak;
+
+    /**
+     * @var besteak3ak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Besteak3",cascade={"remove"},inversedBy="fitxak")
+     */
+    private $besteak3ak;
+    
+    /**
+     * @var etiketak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaEtiketa", mappedBy="fitxa", cascade={"remove"})
+     */
+    private $etiketak;
+
+    /**
+     * @var tramiteak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaTramitea", mappedBy="fitxa", cascade={"remove"})
+     */
+    private $tramiteak;
+
+    /**
+     * @var norkeskatuak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Norkeskatu",inversedBy="fitxak",cascade={"remove"})
+     */
+    private $norkeskatuak;
+
+    /**
+     * @var doklagunak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Doklagun",inversedBy="fitxak",cascade={"remove"})
+     */
+    private $doklagunak;
+
+    /**
+     * @var prozedurak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" , cascade={"remove"})
+     */
+    private $prozedurak;
+    
+    /**
      * @var azpiatalak[]
      *
-     * @ORM\OneToMany(targetEntity="FitxaAzpiatala", mappedBy="fitxa", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Azpiatala",inversedBy="fitxak",cascade={"remove"})
+     * @ORM\JoinTable(name="fitxa_azpiatala")
      */
     private $azpiatalak;
-
-
     
+        
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa",inversedBy="fitxak")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id")
+     * })
+     */
+    private $isiltasunadmin;
+
+
+
+    /**
+     *
+     *
+     *      FUNTZIOAK
+     *
+     *
+     *
+     */
+        
+
+
     /**
      * Constructor
      */
@@ -412,6 +492,14 @@ class Fitxa
     {
         $this->araudiak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dokumentazioak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->familiak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->besteak1ak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->besteak2ak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->besteak3ak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->etiketak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tramiteak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->norkeskatuak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->doklagunak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -896,30 +984,6 @@ class Fitxa
     }
 
     /**
-     * Set isiltasunadmin
-     *
-     * @param boolean $isiltasunadmin
-     *
-     * @return Fitxa
-     */
-    public function setIsiltasunadmin($isiltasunadmin)
-    {
-        $this->isiltasunadmin = $isiltasunadmin;
-
-        return $this;
-    }
-
-    /**
-     * Get isiltasunadmin
-     *
-     * @return boolean
-     */
-    public function getIsiltasunadmin()
-    {
-        return $this->isiltasunadmin;
-    }
-
-    /**
      * Set araudiaeu
      *
      * @param string $araudiaeu
@@ -1338,27 +1402,27 @@ class Fitxa
     }
 
     /**
-     * Set bestea2keu
+     * Set besteak2eu
      *
-     * @param string $bestea2keu
+     * @param string $besteak2eu
      *
      * @return Fitxa
      */
-    public function setBestea2keu($bestea2keu)
+    public function setBesteak2eu($besteak2eu)
     {
-        $this->bestea2keu = $bestea2keu;
+        $this->besteak2eu = $besteak2eu;
 
         return $this;
     }
 
     /**
-     * Get bestea2keu
+     * Get besteak2eu
      *
      * @return string
      */
-    public function getBestea2keu()
+    public function getBesteak2eu()
     {
-        return $this->bestea2keu;
+        return $this->besteak2eu;
     }
 
     /**
@@ -1670,13 +1734,285 @@ class Fitxa
     }
 
     /**
-     * Add azpiatalak
+     * Add familiak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak
+     * @param \Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak
      *
      * @return Fitxa
      */
-    public function addAzpiatalak(\Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak)
+    public function addFamiliak(\Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak)
+    {
+        $this->familiak[] = $familiak;
+
+        return $this;
+    }
+
+    /**
+     * Remove familiak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak
+     */
+    public function removeFamiliak(\Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak)
+    {
+        $this->familiak->removeElement($familiak);
+    }
+
+    /**
+     * Get familiak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFamiliak()
+    {
+        return $this->familiak;
+    }
+
+    /**
+     * Add besteak1ak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak
+     *
+     * @return Fitxa
+     */
+    public function addBesteak1ak(\Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak)
+    {
+        $this->besteak1ak[] = $besteak1ak;
+
+        return $this;
+    }
+
+    /**
+     * Remove besteak1ak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak
+     */
+    public function removeBesteak1ak(\Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak)
+    {
+        $this->besteak1ak->removeElement($besteak1ak);
+    }
+
+    /**
+     * Get besteak1ak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBesteak1ak()
+    {
+        return $this->besteak1ak;
+    }
+
+    /**
+     * Add besteak2ak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak
+     *
+     * @return Fitxa
+     */
+    public function addBesteak2ak(\Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak)
+    {
+        $this->besteak2ak[] = $besteak2ak;
+
+        return $this;
+    }
+
+    /**
+     * Remove besteak2ak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak
+     */
+    public function removeBesteak2ak(\Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak)
+    {
+        $this->besteak2ak->removeElement($besteak2ak);
+    }
+
+    /**
+     * Get besteak2ak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBesteak2ak()
+    {
+        return $this->besteak2ak;
+    }
+
+    /**
+     * Add besteak3ak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak
+     *
+     * @return Fitxa
+     */
+    public function addBesteak3ak(\Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak)
+    {
+        $this->besteak3ak[] = $besteak3ak;
+
+        return $this;
+    }
+
+    /**
+     * Remove besteak3ak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak
+     */
+    public function removeBesteak3ak(\Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak)
+    {
+        $this->besteak3ak->removeElement($besteak3ak);
+    }
+
+    /**
+     * Get besteak3ak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBesteak3ak()
+    {
+        return $this->besteak3ak;
+    }
+
+    /**
+     * Add etiketak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak
+     *
+     * @return Fitxa
+     */
+    public function addEtiketak(\Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak)
+    {
+        $this->etiketak[] = $etiketak;
+
+        return $this;
+    }
+
+    /**
+     * Remove etiketak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak
+     */
+    public function removeEtiketak(\Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak)
+    {
+        $this->etiketak->removeElement($etiketak);
+    }
+
+    /**
+     * Get etiketak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtiketak()
+    {
+        return $this->etiketak;
+    }
+
+    /**
+     * Add tramiteak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak
+     *
+     * @return Fitxa
+     */
+    public function addTramiteak(\Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak)
+    {
+        $this->tramiteak[] = $tramiteak;
+
+        return $this;
+    }
+
+    /**
+     * Remove tramiteak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak
+     */
+    public function removeTramiteak(\Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak)
+    {
+        $this->tramiteak->removeElement($tramiteak);
+    }
+
+    /**
+     * Get tramiteak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTramiteak()
+    {
+        return $this->tramiteak;
+    }
+
+    /**
+     * Add norkeskatuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak
+     *
+     * @return Fitxa
+     */
+    public function addNorkeskatuak(\Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak)
+    {
+        $this->norkeskatuak[] = $norkeskatuak;
+
+        return $this;
+    }
+
+    /**
+     * Remove norkeskatuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak
+     */
+    public function removeNorkeskatuak(\Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak)
+    {
+        $this->norkeskatuak->removeElement($norkeskatuak);
+    }
+
+    /**
+     * Get norkeskatuak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNorkeskatuak()
+    {
+        return $this->norkeskatuak;
+    }
+
+    /**
+     * Add doklagunak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Doklagun $doklagunak
+     *
+     * @return Fitxa
+     */
+    public function addDoklagunak(\Zerbikat\BackendBundle\Entity\Doklagun $doklagunak)
+    {
+        $this->doklagunak[] = $doklagunak;
+
+        return $this;
+    }
+
+    /**
+     * Remove doklagunak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Doklagun $doklagunak
+     */
+    public function removeDoklagunak(\Zerbikat\BackendBundle\Entity\Doklagun $doklagunak)
+    {
+        $this->doklagunak->removeElement($doklagunak);
+    }
+
+    /**
+     * Get doklagunak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDoklagunak()
+    {
+        return $this->doklagunak;
+    }
+
+    /**
+     * Add azpiatalak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak
+     *
+     * @return Fitxa
+     */
+    public function addAzpiatalak(\Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak)
     {
         $this->azpiatalak[] = $azpiatalak;
 
@@ -1686,9 +2022,9 @@ class Fitxa
     /**
      * Remove azpiatalak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak
+     * @param \Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak
      */
-    public function removeAzpiatalak(\Zerbikat\BackendBundle\Entity\FitxaAzpiatala $azpiatalak)
+    public function removeAzpiatalak(\Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak)
     {
         $this->azpiatalak->removeElement($azpiatalak);
     }
@@ -1701,5 +2037,63 @@ class Fitxa
     public function getAzpiatalak()
     {
         return $this->azpiatalak;
+    }
+
+    /**
+     * Set isiltasunadmin
+     *
+     * @param \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin
+     *
+     * @return Fitxa
+     */
+    public function setIsiltasunadmin(\Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin = null)
+    {
+        $this->isiltasunadmin = $isiltasunadmin;
+
+        return $this;
+    }
+
+    /**
+     * Get isiltasunadmin
+     *
+     * @return \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+     */
+    public function getIsiltasunadmin()
+    {
+        return $this->isiltasunadmin;
+    }
+
+    /**
+     * Add prozedurak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     *
+     * @return Fitxa
+     */
+    public function addProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    {
+        $this->prozedurak[] = $prozedurak;
+
+        return $this;
+    }
+
+    /**
+     * Remove prozedurak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     */
+    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    {
+        $this->prozedurak->removeElement($prozedurak);
+    }
+
+    /**
+     * Get prozedurak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProzedurak()
+    {
+        return $this->prozedurak;
     }
 }

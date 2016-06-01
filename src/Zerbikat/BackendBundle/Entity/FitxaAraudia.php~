@@ -38,7 +38,7 @@ class FitxaAraudia
     /**
      * @var \Zerbikat\BackendBundle\Entity\Fitxa
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa",inversedBy="araudiak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
      * })
@@ -48,19 +48,24 @@ class FitxaAraudia
     /**
      * @var \Zerbikat\BackendBundle\Entity\Araudia
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araudia")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araudia",inversedBy="fitxak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="araudia_id", referencedColumnName="id")
      * })
      */
     private $araudia;
 
+    public function __toString()
+    {
+        return $this->araudia->getKodea()."-".$this->araudia->getArauaeu();
+    }
 
 
     /**
      * Set atalaeu
      *
      * @param string $atalaeu
+     *
      * @return FitxaAraudia
      */
     public function setAtalaeu($atalaeu)
@@ -73,7 +78,7 @@ class FitxaAraudia
     /**
      * Get atalaeu
      *
-     * @return string 
+     * @return string
      */
     public function getAtalaeu()
     {
@@ -84,6 +89,7 @@ class FitxaAraudia
      * Set atalaes
      *
      * @param string $atalaes
+     *
      * @return FitxaAraudia
      */
     public function setAtalaes($atalaes)
@@ -96,7 +102,7 @@ class FitxaAraudia
     /**
      * Get atalaes
      *
-     * @return string 
+     * @return string
      */
     public function getAtalaes()
     {
@@ -106,7 +112,7 @@ class FitxaAraudia
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -117,6 +123,7 @@ class FitxaAraudia
      * Set fitxa
      *
      * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxa
+     *
      * @return FitxaAraudia
      */
     public function setFitxa(\Zerbikat\BackendBundle\Entity\Fitxa $fitxa = null)
@@ -129,7 +136,7 @@ class FitxaAraudia
     /**
      * Get fitxa
      *
-     * @return \Zerbikat\BackendBundle\Entity\Fitxa 
+     * @return \Zerbikat\BackendBundle\Entity\Fitxa
      */
     public function getFitxa()
     {
@@ -140,6 +147,7 @@ class FitxaAraudia
      * Set araudia
      *
      * @param \Zerbikat\BackendBundle\Entity\Araudia $araudia
+     *
      * @return FitxaAraudia
      */
     public function setAraudia(\Zerbikat\BackendBundle\Entity\Araudia $araudia = null)
@@ -152,7 +160,7 @@ class FitxaAraudia
     /**
      * Get araudia
      *
-     * @return \Zerbikat\BackendBundle\Entity\Araudia 
+     * @return \Zerbikat\BackendBundle\Entity\Araudia
      */
     public function getAraudia()
     {

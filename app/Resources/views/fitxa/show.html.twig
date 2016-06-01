@@ -3,7 +3,7 @@
 {% block body %}
     <table class="table table-bordered">
     <tr><th class="col-md-2 text-center">
-            <img src='http://www.pasaia.eus/ficherosFTP/Neutroak/Irudiak/LogoBerria.png' />
+            <img src='{{ fitxa.udala.logoa }}' />
             <h4>PASAIAKO UDALA</h4>
             <h5>P2006900-A</h5>
         </th>
@@ -33,41 +33,69 @@
                 <th><h3>¿QUIÉN LO PUEDE SOLICITAR?</h3></th>
             </tr>
             <tr>
-                <td>{{ fitxa.norkeu |raw }}</td>
-                <td>{{ fitxa.norkes |raw}}</td>
+                <td>
+                    {{ fitxa.norkeu |raw }}
+                    <ul>
+                        {% for nork in fitxa.norkeskatuak %}
+                            <li>{{ nork.norkeu }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    {{ fitxa.norkes |raw}}
+                    <ul>
+                        {% for nork in fitxa.norkeskatuak %}
+                            <li>{{ nork.norkes }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
             </tr>
             <tr>
                 <th><h3>AURKEZTU BEHARREKO AGIRIAK</h3></th>
                 <th><h3>DOCUMENTACIÓN A APORTAR</h3></th>
             </tr>
             <tr>
-
-                <td>
+                <td><ul>
                     {% for dokumentua in fitxa.dokumentazioak %}
                         <li>
                             {% if dokumentua.dokumentazioa.estekaeu %}
-                                <a href="{{ dokumentua.dokumentazioa.estekaeu }}">{{ dokumentua.dokumentazioa.deskribapenaeu }}</a>
+                                <a href="{{ dokumentua.dokumentazioa.estekaeu }}">
+                                    {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaeu }}
+                                </a>
                             {% else %}
-                                {{ dokumentua.dokumentazioa.deskribapenaeu }}
+                                {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaeu }}
                             {% endif %}
                         </li>
                     {% endfor %}
+                    </ul>
                     <br><br>
                     {{ fitxa.dokumentazioaeu|raw }}
                 </td>
                 <td>
+                    <ul>
                     {% for dokumentua in fitxa.dokumentazioak %}
                         <li>
                             {% if dokumentua.dokumentazioa.estekaes %}
-                                <a href="{{ dokumentua.dokumentazioa.estekaes }}">{{ dokumentua.dokumentazioa.deskribapenaes }}</a>
+                                <a href="{{ dokumentua.dokumentazioa.estekaes }}">
+                                    {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaes }}
+                                </a>
                             {% else %}
-                                {{ dokumentua.dokumentazioa.deskribapenaes }}
+                                {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaes }}
                             {% endif %}
                         </li>
                     {% endfor %}
+                    </ul>
                     <br><br>
                     {{ fitxa.dokumentazioaes|raw }}
                 </td>
+            </tr>
+            <tr>
+                <th><h3>DOKUMENTAZIO LAGUNGARRIA</h3></th>
+                <th><h3>DOCUMENTACIÓN AUXILIAR</h3></th>
+            </tr>
+            <tr>
+                <td>{{ fitxa.doklaguneu |raw}}</td>
+                <td>{{ fitxa.doklagunes |raw}}</td>
             </tr>
             <tr>
                 <th><h3>NON ESKATZEN DA?</h3></th>
@@ -189,15 +217,19 @@
             <tr>
                 <td>{{ fitxa.araudiaeu |raw}}
                     <br>
+                    <ul>
                     {% for araua in fitxa.araudiak %}
                         <li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>
                     {% endfor %}
+                    </ul>
                 </td>
                 <td>{{ fitxa.araudiaes |raw}}
                     <br>
+                    <ul>
                     {% for araua in fitxa.araudiak %}
                         <li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>
                     {% endfor %}
+                    </ul>
                 </td>
             </tr>
             <tr>
@@ -215,15 +247,6 @@
             <tr>
                 <td>{{ fitxa.tramiteakeu |raw}}</td>
                 <td>{{ fitxa.tramiteakes |raw}}</td>
-            </tr>
-            <tr>
-                <th>Doklaguneu</th>
-                <th>Doklagunes</th>
-
-            </tr>
-            <tr>
-                <td>{{ fitxa.doklaguneu |raw}}</td>
-                <td>{{ fitxa.doklagunes |raw}}</td>
             </tr>
             <tr>
                 <th><h3>NORK ONARTU BEHAR DU?</h3></th>
@@ -258,11 +281,11 @@
                 <td>{{ fitxa.besteak1es |raw}}</td>
             </tr>
             <tr>
-                <th>Bestea2keu</th>
+                <th>Besteak2eu</th>
                 <th>Besteak2es</th>
             </tr>
             <tr>
-                <td>{{ fitxa.bestea2keu |raw}}</td>
+                <td>{{ fitxa.besteak2eu |raw}}</td>
                 <td>{{ fitxa.besteak2es |raw}}</td>
             </tr>
             <tr>

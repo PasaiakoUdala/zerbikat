@@ -86,8 +86,24 @@ class Azpiatala
      * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala", cascade={"remove"})
      */
     private $parrafoak;
-    
-    
+
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="azpiatalak", cascade={"remove"})
+     */
+    private $fitxak;
+
+
+    /**
+     *          TOSTRING
+     */
+    public function __toString()
+    {
+        return
+            $this->getAtala()->getOrdenantza()->getKodea().".".$this->getAtala()->getKodea().".".$this->getKodea()."-".$this->getIzenburuaeu();
+    }
+
     /**
      * Constructor
      */
@@ -95,6 +111,7 @@ class Azpiatala
     {
         $this->kontzeptuak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->parrafoak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -341,5 +358,39 @@ class Azpiatala
     public function getParrafoak()
     {
         return $this->parrafoak;
+    }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     *
+     * @return Azpiatala
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
     }
 }

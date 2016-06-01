@@ -22,12 +22,28 @@ class Familia
      */
     private $familiaeu;
 
+
     /**
      * @var string
      *
      * @ORM\Column(name="familiaes", type="string", length=255, nullable=true)
      */
     private $familiaes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="deskribapenaeu", type="string", length=255, nullable=true)
+     */
+    private $deskribapenaeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="deskribapenaes", type="string", length=255, nullable=true)
+     */
+    private $deskribapenaes;
+
 
     /**
      * @var integer
@@ -37,6 +53,12 @@ class Familia
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+
+    public function __toString()
+    {
+        return $this->getFamiliaeu();
+    }
 
 
 
@@ -117,5 +139,53 @@ class Familia
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set deskribapenaeu
+     *
+     * @param string $deskribapenaeu
+     *
+     * @return Familia
+     */
+    public function setDeskribapenaeu($deskribapenaeu)
+    {
+        $this->deskribapenaeu = $deskribapenaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get deskribapenaeu
+     *
+     * @return string
+     */
+    public function getDeskribapenaeu()
+    {
+        return $this->deskribapenaeu;
+    }
+
+    /**
+     * Set deskribapenaes
+     *
+     * @param string $deskribapenaes
+     *
+     * @return Familia
+     */
+    public function setDeskribapenaes($deskribapenaes)
+    {
+        $this->deskribapenaes = $deskribapenaes;
+
+        return $this;
+    }
+
+    /**
+     * Get deskribapenaes
+     *
+     * @return string
+     */
+    public function getDeskribapenaes()
+    {
+        return $this->deskribapenaes;
     }
 }

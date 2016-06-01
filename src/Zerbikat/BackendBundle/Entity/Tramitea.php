@@ -39,6 +39,12 @@ class Tramitea
     private $id;
 
 
+    public function __toString()
+    {
+        return $this->getTramiteaeu();
+    }
+    
+
 
     /**
      * Set tramiteaeu

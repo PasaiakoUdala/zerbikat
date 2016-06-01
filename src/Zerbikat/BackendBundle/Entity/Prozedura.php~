@@ -1,0 +1,62 @@
+<?php
+
+namespace Zerbikat\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Prozedura
+ *
+ * @ORM\Table(name="prozedura")
+ * @ORM\Entity
+ */
+class Prozedura
+{
+    /** @ORM\ManyToOne(targetEntity="Udala") */
+    private $udala;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prozeduraeu", type="string", length=255, nullable=true)
+     */
+    private $prozeduraeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prozeduraes", type="string", length=255, nullable=true)
+     */
+    private $prozeduraes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     *          ERLAZIOAK
+     */
+
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="prozedura" , cascade={"remove"})
+     */
+    private $fitxak;
+
+
+    /**
+     *          TOSTRING
+     */
+    
+    public function __toString()
+    {
+        return $this->getProzeduraeu();
+    }
+
+}

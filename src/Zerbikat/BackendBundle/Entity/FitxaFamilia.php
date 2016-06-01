@@ -24,7 +24,7 @@ class FitxaFamilia
     /**
      * @var \Zerbikat\BackendBundle\Entity\Fitxa
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa",inversedBy="familiak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
      * })

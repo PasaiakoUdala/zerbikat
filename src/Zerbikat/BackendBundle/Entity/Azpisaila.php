@@ -109,7 +109,7 @@ class Azpisaila
     /**
      * @var \Zerbikat\BackendBundle\Entity\Kalea
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Kalea", inversedBy="azpisailak")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Kalea",inversedBy="azpisailak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="kalea_id", referencedColumnName="id")
      * })

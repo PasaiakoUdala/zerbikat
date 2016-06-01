@@ -46,6 +46,12 @@ class Zerbitzua
     private $id;
 
 
+    public function __toString()
+    {
+        return $this->getKodea()."-".$this->getZerbitzuaeu();
+    }
+    
+
 
     /**
      * Set kodea
@@ -124,10 +130,6 @@ class Zerbitzua
     public function getId()
     {
         return $this->id;
-    }
-    public function __toString()
-    {
-        return $this->getZerbitzuaeu();
     }
 
     /**

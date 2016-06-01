@@ -63,11 +63,17 @@ class Araudia
      *          ERLAZIOAK
      */
 
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="araudia", cascade={"remove"})
+     */
+    private $fitxak;
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\Araumota
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araumota")
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araumota",inversedBy="araudiak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="araumota_id", referencedColumnName="id")
      * })
@@ -76,8 +82,10 @@ class Araudia
 
     public function __toString()
     {
-        return $this->getKodea();
+        return $this->getKodea()."-".$this->getArauaeu();
     }
+
+
 
     /**
      * Set kodea
@@ -255,5 +263,46 @@ class Araudia
     public function getAraumota()
     {
         return $this->araumota;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $fitxak
+     *
+     * @return Araudia
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
     }
 }
