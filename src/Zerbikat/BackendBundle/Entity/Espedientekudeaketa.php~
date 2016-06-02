@@ -43,4 +43,62 @@ class Espedientekudeaketa
         return $this->getIzenaeu();
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set izenaeu
+     *
+     * @param string $izenaeu
+     *
+     * @return Espedientekudeaketa
+     */
+    public function setIzenaeu($izenaeu)
+    {
+        $this->izenaeu = $izenaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get izenaeu
+     *
+     * @return string
+     */
+    public function getIzenaeu()
+    {
+        return $this->izenaeu;
+    }
+
+    /**
+     * Set izenaes
+     *
+     * @param string $izenaes
+     *
+     * @return Espedientekudeaketa
+     */
+    public function setIzenaes($izenaes)
+    {
+        $this->izenaes = $izenaes;
+
+        return $this;
+    }
+
+    /**
+     * Get izenaes
+     *
+     * @return string
+     */
+    public function getIzenaes()
+    {
+        return $this->izenaes;
+    }
 }

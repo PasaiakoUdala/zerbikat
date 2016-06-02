@@ -71,6 +71,29 @@ class Udala
      */
     private $izendapenaes;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lopdeu", type="text", length=65535, nullable=true)
+     */
+    private $lopdeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lopdes", type="text", length=65535, nullable=true)
+     */
+    private $lopdes;
+
+
+
+
+    /**
+     *      ERLAZIOAK
+     */
+
+
     /** @ORM\ManyToOne(targetEntity="Espedientekudeaketa") */
     private $espedientekudeaketa;
 
@@ -79,6 +102,8 @@ class Udala
     {
         return $this->getIzenaeu();
     }
+
+
 
 
     /**
@@ -257,6 +282,54 @@ class Udala
     public function getIzendapenaes()
     {
         return $this->izendapenaes;
+    }
+
+    /**
+     * Set lopdeu
+     *
+     * @param string $lopdeu
+     *
+     * @return Udala
+     */
+    public function setLopdeu($lopdeu)
+    {
+        $this->lopdeu = $lopdeu;
+
+        return $this;
+    }
+
+    /**
+     * Get lopdeu
+     *
+     * @return string
+     */
+    public function getLopdeu()
+    {
+        return $this->lopdeu;
+    }
+
+    /**
+     * Set lopdes
+     *
+     * @param string $lopdes
+     *
+     * @return Udala
+     */
+    public function setLopdes($lopdes)
+    {
+        $this->lopdes = $lopdes;
+
+        return $this;
+    }
+
+    /**
+     * Get lopdes
+     *
+     * @return string
+     */
+    public function getLopdes()
+    {
+        return $this->lopdes;
     }
 
     /**

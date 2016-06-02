@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{% block title %}ZERBItzuen KATalogoa{% endblock %}</title>
         {% block stylesheets %}
-            <link href="{{ asset('bundles/backend/css/bootstrap.min.css') }}" rel="stylesheet">
+                <link href="{{ asset('bundles/backend/css/bootstrap.min.css') }}" rel="stylesheet">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body role="document">
-        <div class="container theme-showcase" role="main">
+</head>
+<body role="document">
+<div class="container theme-showcase" role="main">
         {% block body %}
 
         {% endblock %}
-        </div>
+</div>
 
 
-        {% block javascripts %}
+{% block javascripts %}
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script src="{{ asset('bundles/backend/js/bootstrap.min.js') }}"></script>
-        {% endblock %}
-    </body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="{{ asset('bundles/backend/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+</body>
 </html>

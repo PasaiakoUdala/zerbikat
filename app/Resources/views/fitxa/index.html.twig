@@ -9,13 +9,11 @@
                 <th>Kodea</th>
                 <th>Deskribapena</th>
                 <th>Saila</th>
-<!--                <th>Actions</th> -->
             </tr>
         </thead>
         <tbody>
         {% for fitxa in fitxas %}
             <tr>
-<!--                <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.espedientekodea }}</a></td> -->
                 <td>{{ fitxa.espedientekodea }}</td>
                 <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.deskribapenaeu }}<br>
                 {{ fitxa.deskribapenaes }}</a></td>
@@ -23,18 +21,6 @@
                     {% if fitxa.azpisaila %} {{ fitxa.azpisaila.saila }}<br>{{ fitxa.azpisaila }}
                     {% endif %}
                 </td>
-<!--
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
--->
             </tr>
         {% endfor %}
         </tbody>

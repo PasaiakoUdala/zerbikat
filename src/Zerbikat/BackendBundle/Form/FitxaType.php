@@ -177,6 +177,7 @@ class FitxaType extends AbstractType
 */
             ->add('prozedurak' , EntityType::class, array(
                 'class'    => 'BackendBundle:Prozedura' ,
+                'required' => false,
 //                'property' => 'name' ,
 //                'expanded' => true ,
                 'multiple' => true , ))
