@@ -20,7 +20,6 @@ easy_admin:
             - { label: 'Epe arruntak', icon: 'file-new', entity: 'Arrunta' }
             - { label: 'Aurreikusitako epeak', icon: 'file-new', entity: 'Aurreikusi' }
             - { label: 'Arau-motak', icon: 'file-new', entity: 'Araumota' }
-            - { label: 'Aurrez-aurreko guneak', icon: 'file-new', entity: 'Bertan' }
             - { label: 'Dokumentu-mota', icon: 'file-new', entity: 'Dokumentumota' }
             - { label: 'Ebazleak', icon: 'file-new', entity: 'Norkebatzi' }
             - { label: 'Tramiteak', icon: 'file-new', entity: 'Tramitea' }

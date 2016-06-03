@@ -38,6 +38,25 @@ class Etiketa
      */
     private $id;
 
+
+    /**
+     *
+     *      ERLAZIOAK
+     *
+     */
+
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="etiketak", cascade={"remove"})
+     */
+    private $fitxak;
+    
+    
+     
+    
+    
+    
     public function __toString()
     {
         return $this->getEtiketaeu();
@@ -47,9 +66,18 @@ class Etiketa
     
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Set etiketaeu
      *
      * @param string $etiketaeu
+     *
      * @return Etiketa
      */
     public function setEtiketaeu($etiketaeu)
@@ -62,7 +90,7 @@ class Etiketa
     /**
      * Get etiketaeu
      *
-     * @return string 
+     * @return string
      */
     public function getEtiketaeu()
     {
@@ -73,6 +101,7 @@ class Etiketa
      * Set etiketaes
      *
      * @param string $etiketaes
+     *
      * @return Etiketa
      */
     public function setEtiketaes($etiketaes)
@@ -85,7 +114,7 @@ class Etiketa
     /**
      * Get etiketaes
      *
-     * @return string 
+     * @return string
      */
     public function getEtiketaes()
     {
@@ -95,7 +124,7 @@ class Etiketa
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -106,6 +135,7 @@ class Etiketa
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Etiketa
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -118,10 +148,44 @@ class Etiketa
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     *
+     * @return Etiketa
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
     }
 }

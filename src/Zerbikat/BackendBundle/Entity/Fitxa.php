@@ -361,7 +361,7 @@ class Fitxa
     /**
      * @var familiak[]
      *
-     * @ORM\OneToMany(targetEntity="FitxaFamilia", mappedBy="fitxa", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Familia",cascade={"remove"},inversedBy="fitxak")
      */
     private $familiak;
 
@@ -389,7 +389,7 @@ class Fitxa
     /**
      * @var etiketak[]
      *
-     * @ORM\OneToMany(targetEntity="FitxaEtiketa", mappedBy="fitxa", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Etiketa",cascade={"remove"},inversedBy="fitxak")
      */
     private $etiketak;
 
@@ -450,6 +450,8 @@ class Fitxa
      *
      *
      */
+
+
 
     /**
      * Constructor
@@ -1594,11 +1596,11 @@ class Fitxa
     /**
      * Add familiak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak
+     * @param \Zerbikat\BackendBundle\Entity\Familia $familiak
      *
      * @return Fitxa
      */
-    public function addFamiliak(\Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak)
+    public function addFamiliak(\Zerbikat\BackendBundle\Entity\Familia $familiak)
     {
         $this->familiak[] = $familiak;
 
@@ -1608,9 +1610,9 @@ class Fitxa
     /**
      * Remove familiak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak
+     * @param \Zerbikat\BackendBundle\Entity\Familia $familiak
      */
-    public function removeFamiliak(\Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak)
+    public function removeFamiliak(\Zerbikat\BackendBundle\Entity\Familia $familiak)
     {
         $this->familiak->removeElement($familiak);
     }
@@ -1730,11 +1732,11 @@ class Fitxa
     /**
      * Add etiketak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak
+     * @param \Zerbikat\BackendBundle\Entity\Etiketa $etiketak
      *
      * @return Fitxa
      */
-    public function addEtiketak(\Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak)
+    public function addEtiketak(\Zerbikat\BackendBundle\Entity\Etiketa $etiketak)
     {
         $this->etiketak[] = $etiketak;
 
@@ -1744,9 +1746,9 @@ class Fitxa
     /**
      * Remove etiketak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak
+     * @param \Zerbikat\BackendBundle\Entity\Etiketa $etiketak
      */
-    public function removeEtiketak(\Zerbikat\BackendBundle\Entity\FitxaEtiketa $etiketak)
+    public function removeEtiketak(\Zerbikat\BackendBundle\Entity\Etiketa $etiketak)
     {
         $this->etiketak->removeElement($etiketak);
     }

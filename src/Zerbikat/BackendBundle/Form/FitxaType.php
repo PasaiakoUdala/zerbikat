@@ -116,8 +116,6 @@ class FitxaType extends AbstractType
                 'multiple'=>'multiple',
                 'placeholder' => 'Aukeratu etiketak',
                 'empty_data'  => null,
-
-//                'add_empty' => '---',
             ))
             ->add('tramiteak', EntityType::class, array(
                 'class' => 'BackendBundle:Tramitea',

@@ -61,11 +61,34 @@ class Familia
     }
 
 
+    /**
+     * 
+     *      ERLAZIOAK
+     * 
+     */
+
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="familiak", cascade={"remove"})
+     */
+    private $fitxak;
+    
+    
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set familiaeu
      *
      * @param string $familiaeu
+     *
      * @return Familia
      */
     public function setFamiliaeu($familiaeu)
@@ -78,7 +101,7 @@ class Familia
     /**
      * Get familiaeu
      *
-     * @return string 
+     * @return string
      */
     public function getFamiliaeu()
     {
@@ -89,6 +112,7 @@ class Familia
      * Set familiaes
      *
      * @param string $familiaes
+     *
      * @return Familia
      */
     public function setFamiliaes($familiaes)
@@ -101,44 +125,11 @@ class Familia
     /**
      * Get familiaes
      *
-     * @return string 
+     * @return string
      */
     public function getFamiliaes()
     {
         return $this->familiaes;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set udala
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
-     * @return Familia
-     */
-    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
-    {
-        $this->udala = $udala;
-
-        return $this;
-    }
-
-    /**
-     * Get udala
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
-     */
-    public function getUdala()
-    {
-        return $this->udala;
     }
 
     /**
@@ -187,5 +178,73 @@ class Familia
     public function getDeskribapenaes()
     {
         return $this->deskribapenaes;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return Familia
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
+    }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     *
+     * @return Familia
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
     }
 }
