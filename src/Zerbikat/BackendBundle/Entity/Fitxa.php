@@ -80,55 +80,6 @@ class Fitxa
     private $dokumentazioaes;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="nolabertan", type="boolean", nullable=true)
-     */
-    private $nolabertan;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="nolainternet", type="boolean", nullable=true)
-     */
-    private $nolainternet;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="nolatelefono", type="boolean", nullable=true)
-     */
-    private $nolatelefono;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="nolapostela", type="boolean", nullable=true)
-     */
-    private $nolapostela;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="nolaposta", type="boolean", nullable=true)
-     */
-    private $nolaposta;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nolabesteakeu", type="string", length=255, nullable=true)
-     */
-    private $nolabesteakeu;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nolabesteakes", type="string", length=255, nullable=true)
-     */
-    private $nolabesteakes;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="kostuaeu", type="text", length=65535, nullable=true)
@@ -233,6 +184,14 @@ class Fitxa
      * @ORM\Column(name="publikoa", type="boolean", nullable=true)
      */
     private $publikoa;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="hitzarmena", type="boolean", nullable=true)
+     */
+    private $hitzarmena;
+
 
     /**
      * @var integer
@@ -391,6 +350,15 @@ class Fitxa
     private $dokumentazioak;
 
     /**
+     * @var kanalak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Kanala",cascade={"remove"},inversedBy="fitxak")
+     */
+    private $kanalak;
+
+
+
+    /**
      * @var familiak[]
      *
      * @ORM\OneToMany(targetEntity="FitxaFamilia", mappedBy="fitxa", cascade={"remove"})
@@ -460,8 +428,8 @@ class Fitxa
      * @ORM\JoinTable(name="fitxa_azpiatala")
      */
     private $azpiatalak;
-    
-        
+
+
     /**
      * @var \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
      *
@@ -482,8 +450,6 @@ class Fitxa
      *
      *
      */
-        
-
 
     /**
      * Constructor
@@ -492,6 +458,7 @@ class Fitxa
     {
         $this->araudiak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->dokumentazioak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kanalak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->familiak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->besteak1ak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->besteak2ak = new \Doctrine\Common\Collections\ArrayCollection();
@@ -500,6 +467,7 @@ class Fitxa
         $this->tramiteak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->norkeskatuak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->doklagunak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -717,174 +685,6 @@ class Fitxa
     public function getDokumentazioaes()
     {
         return $this->dokumentazioaes;
-    }
-
-    /**
-     * Set nolabertan
-     *
-     * @param boolean $nolabertan
-     *
-     * @return Fitxa
-     */
-    public function setNolabertan($nolabertan)
-    {
-        $this->nolabertan = $nolabertan;
-
-        return $this;
-    }
-
-    /**
-     * Get nolabertan
-     *
-     * @return boolean
-     */
-    public function getNolabertan()
-    {
-        return $this->nolabertan;
-    }
-
-    /**
-     * Set nolainternet
-     *
-     * @param boolean $nolainternet
-     *
-     * @return Fitxa
-     */
-    public function setNolainternet($nolainternet)
-    {
-        $this->nolainternet = $nolainternet;
-
-        return $this;
-    }
-
-    /**
-     * Get nolainternet
-     *
-     * @return boolean
-     */
-    public function getNolainternet()
-    {
-        return $this->nolainternet;
-    }
-
-    /**
-     * Set nolatelefono
-     *
-     * @param boolean $nolatelefono
-     *
-     * @return Fitxa
-     */
-    public function setNolatelefono($nolatelefono)
-    {
-        $this->nolatelefono = $nolatelefono;
-
-        return $this;
-    }
-
-    /**
-     * Get nolatelefono
-     *
-     * @return boolean
-     */
-    public function getNolatelefono()
-    {
-        return $this->nolatelefono;
-    }
-
-    /**
-     * Set nolapostela
-     *
-     * @param boolean $nolapostela
-     *
-     * @return Fitxa
-     */
-    public function setNolapostela($nolapostela)
-    {
-        $this->nolapostela = $nolapostela;
-
-        return $this;
-    }
-
-    /**
-     * Get nolapostela
-     *
-     * @return boolean
-     */
-    public function getNolapostela()
-    {
-        return $this->nolapostela;
-    }
-
-    /**
-     * Set nolaposta
-     *
-     * @param boolean $nolaposta
-     *
-     * @return Fitxa
-     */
-    public function setNolaposta($nolaposta)
-    {
-        $this->nolaposta = $nolaposta;
-
-        return $this;
-    }
-
-    /**
-     * Get nolaposta
-     *
-     * @return boolean
-     */
-    public function getNolaposta()
-    {
-        return $this->nolaposta;
-    }
-
-    /**
-     * Set nolabesteakeu
-     *
-     * @param string $nolabesteakeu
-     *
-     * @return Fitxa
-     */
-    public function setNolabesteakeu($nolabesteakeu)
-    {
-        $this->nolabesteakeu = $nolabesteakeu;
-
-        return $this;
-    }
-
-    /**
-     * Get nolabesteakeu
-     *
-     * @return string
-     */
-    public function getNolabesteakeu()
-    {
-        return $this->nolabesteakeu;
-    }
-
-    /**
-     * Set nolabesteakes
-     *
-     * @param string $nolabesteakes
-     *
-     * @return Fitxa
-     */
-    public function setNolabesteakes($nolabesteakes)
-    {
-        $this->nolabesteakes = $nolabesteakes;
-
-        return $this;
-    }
-
-    /**
-     * Get nolabesteakes
-     *
-     * @return string
-     */
-    public function getNolabesteakes()
-    {
-        return $this->nolabesteakes;
     }
 
     /**
@@ -1245,6 +1045,30 @@ class Fitxa
     public function getPublikoa()
     {
         return $this->publikoa;
+    }
+
+    /**
+     * Set hitzarmena
+     *
+     * @param boolean $hitzarmena
+     *
+     * @return Fitxa
+     */
+    public function setHitzarmena($hitzarmena)
+    {
+        $this->hitzarmena = $hitzarmena;
+
+        return $this;
+    }
+
+    /**
+     * Get hitzarmena
+     *
+     * @return boolean
+     */
+    public function getHitzarmena()
+    {
+        return $this->hitzarmena;
     }
 
     /**
@@ -1734,6 +1558,40 @@ class Fitxa
     }
 
     /**
+     * Add kanalak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kanala $kanalak
+     *
+     * @return Fitxa
+     */
+    public function addKanalak(\Zerbikat\BackendBundle\Entity\Kanala $kanalak)
+    {
+        $this->kanalak[] = $kanalak;
+
+        return $this;
+    }
+
+    /**
+     * Remove kanalak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kanala $kanalak
+     */
+    public function removeKanalak(\Zerbikat\BackendBundle\Entity\Kanala $kanalak)
+    {
+        $this->kanalak->removeElement($kanalak);
+    }
+
+    /**
+     * Get kanalak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKanalak()
+    {
+        return $this->kanalak;
+    }
+
+    /**
      * Add familiak
      *
      * @param \Zerbikat\BackendBundle\Entity\FitxaFamilia $familiak
@@ -2006,6 +1864,40 @@ class Fitxa
     }
 
     /**
+     * Add prozedurak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     *
+     * @return Fitxa
+     */
+    public function addProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    {
+        $this->prozedurak[] = $prozedurak;
+
+        return $this;
+    }
+
+    /**
+     * Remove prozedurak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     */
+    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    {
+        $this->prozedurak->removeElement($prozedurak);
+    }
+
+    /**
+     * Get prozedurak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProzedurak()
+    {
+        return $this->prozedurak;
+    }
+
+    /**
      * Add azpiatalak
      *
      * @param \Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak
@@ -2061,39 +1953,5 @@ class Fitxa
     public function getIsiltasunadmin()
     {
         return $this->isiltasunadmin;
-    }
-
-    /**
-     * Add prozedurak
-     *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
-     *
-     * @return Fitxa
-     */
-    public function addProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
-    {
-        $this->prozedurak[] = $prozedurak;
-
-        return $this;
-    }
-
-    /**
-     * Remove prozedurak
-     *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
-     */
-    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
-    {
-        $this->prozedurak->removeElement($prozedurak);
-    }
-
-    /**
-     * Get prozedurak
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProzedurak()
-    {
-        return $this->prozedurak;
     }
 }

@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    {{ dump(kanalmotak) }}
     <table class="table table-bordered">
     <tr><th class="col-md-2 text-center">
             <img src='{{ fitxa.udala.logoa }}' />
@@ -164,25 +166,46 @@
                 <h3>NON ESKATZEN DA?</h3>
             </div>
             <div>
-                {% if fitxa.nolabertan %}HAZ-eko bulegoetan<br/>{% endif %}
-                {% if fitxa.nolainternet %}www.pasaia.net<br/>{% endif %}
-                {% if fitxa.nolatelefono %}943 ......<br/>{% endif %}
-                {% if fitxa.nolapostela %}pasaia@pasaia.net<br/>{% endif %}
-                {% if fitxa.nolaposta %}Donibane kalea 19, 20110 PASAIA<br/>{% endif %}
-                {{ fitxa.nolabesteakeu }}
+            {% for k in kanalmotak %}
+                {% set aurkitua=0 %}
+                <ul>
+                {% for kanal in fitxa.kanalak if kanal.kanalmota == k %}
+                    {% if aurkitua==0%}
+                        <b>{{ k.motaeu }}:</b>
+                        {% set aurkitua=1 %}
+                    {% endif %}
+                    {% if k.esteka %}
+                        <li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>
+                    {% else %}
+                        <li>{{ kanal.izenaeu }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endfor %}
             </div>
+
         </div>
         <div class="col-sm-6">
             <div class="page-header">
                 <h3>¿DÓNDE SE SOLICITA?</h3>
             </div>
             <div>
-                {% if fitxa.nolabertan %}HAZ-eko bulegoetan<br/>{% endif %}
-                {% if fitxa.nolainternet %}www.pasaia.net<br/>{% endif %}
-                {% if fitxa.nolatelefono %}943 ......<br/>{% endif %}
-                {% if fitxa.nolapostela %}pasaia@pasaia.net<br/>{% endif %}
-                {% if fitxa.nolaposta %}Donibane kalea 19, 20110 PASAIA<br/>{% endif %}
-                {{ fitxa.nolabesteakes }}
+                {% for k in kanalmotak %}
+                    {% set aurkitua=0 %}
+                    <ul>
+                        {% for kanal in fitxa.kanalak if kanal.kanalmota == k %}
+                            {% if aurkitua==0%}
+                                <b>{{ k.motaes }}:</b>
+                                {% set aurkitua=1 %}
+                            {% endif %}
+                            {% if k.esteka %}
+                                <li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>
+                            {% else %}
+                                <li>{{ kanal.izenaes }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
             </div>
         </div>
     </div>

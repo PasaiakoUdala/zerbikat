@@ -60,6 +60,15 @@ class Kalea
      */
     private $azpisailak;
 
+    /**
+     * @var kanalak[]
+     *
+     * @ORM\OneToMany(targetEntity="Kanala", mappedBy="kalea", cascade={"remove"})
+     */
+    private $kanalak;
+
+
+
     public function __toString()
     {
         return $this->getIzena();
@@ -73,6 +82,7 @@ class Kalea
     public function __construct()
     {
         $this->azpisailak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kanalak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -213,5 +223,39 @@ class Kalea
     public function getAzpisailak()
     {
         return $this->azpisailak;
+    }
+
+    /**
+     * Add kanalak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kanala $kanalak
+     *
+     * @return Kalea
+     */
+    public function addKanalak(\Zerbikat\BackendBundle\Entity\Kanala $kanalak)
+    {
+        $this->kanalak[] = $kanalak;
+
+        return $this;
+    }
+
+    /**
+     * Remove kanalak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kanala $kanalak
+     */
+    public function removeKanalak(\Zerbikat\BackendBundle\Entity\Kanala $kanalak)
+    {
+        $this->kanalak->removeElement($kanalak);
+    }
+
+    /**
+     * Get kanalak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKanalak()
+    {
+        return $this->kanalak;
     }
 }

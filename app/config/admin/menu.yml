@@ -24,6 +24,8 @@ easy_admin:
             - { label: 'Dokumentu-mota', icon: 'file-new', entity: 'Dokumentumota' }
             - { label: 'Ebazleak', icon: 'file-new', entity: 'Norkebatzi' }
             - { label: 'Tramiteak', icon: 'file-new', entity: 'Tramitea' }
+            - { label: 'Kanal-motak', icon: 'file-new', entity: 'Kanalmota' }
+            - { label: 'Kanalak', icon: 'file-new', entity: 'Kanala' }
         - label: 'KUDEAKETA'
           children:
             - { label: 'Zerbitzuak', icon: 'file-new', entity: 'Zerbitzua' }

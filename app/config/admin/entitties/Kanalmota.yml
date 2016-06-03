@@ -1,0 +1,22 @@
+easy_admin:
+    entities:
+        Kanalmota:
+            class: Zerbikat\BackendBundle\Entity\Kanalmota
+            label: 'Kanal-motak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'motaeu', label: 'Mota' }
+                    - { property: 'esteka', label: 'Esteka?' }
+            form:
+                fields:
+                    - { property: 'motaeu', label: 'Mota (eu)', css_class: 'col-sm-12 large' }
+                    - { property: 'motaes', label: 'Mota (es)', css_class: 'col-sm-12 large' }
+                    - { property: 'esteka', label: 'Esteka behar du?', css_class: 'col-sm-8 large' }
+                    - { property: 'ikonoa', label: 'Ikonoa', css_class: 'col-sm-12 large' }
+                    - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }

@@ -33,13 +33,6 @@ class FitxaType extends AbstractType
                 'config' => array()))
             ->add('dokumentazioaes',CKEditorType::class, array(
                 'config' => array()))
-            ->add('nolabertan')
-            ->add('nolainternet')
-            ->add('nolatelefono')
-            ->add('nolapostela')
-            ->add('nolaposta')
-            ->add('nolabesteakeu')
-            ->add('nolabesteakes')
             ->add('kostuaeu',CKEditorType::class, array(
                 'config' => array()))
             ->add('kostuaes',CKEditorType::class, array(
@@ -68,6 +61,7 @@ class FitxaType extends AbstractType
             ->add('oharrakes',CKEditorType::class, array(
                 'config' => array()))
             ->add('publikoa')
+            ->add('hitzarmena')
             ->add('kontsultak')
             ->add('parametroa')
 //            ->add('createdAt')
@@ -131,6 +125,14 @@ class FitxaType extends AbstractType
                 'multiple'=>'multiple',
                 'placeholder' => 'Aukeratu tramiteak'
             ))
+            ->add('kanalak', EntityType::class, array(
+                'class' => 'BackendBundle:Kanala',
+                'required' => false,
+                'multiple'=>'multiple',
+                'placeholder' => 'Aukeratu kanalak',
+                'group_by' => 'kanalmota'
+            ))
+
             ->add('besteak1ak', EntityType::class, array(
                 'class' => 'BackendBundle:Besteak1',
                 'required' => false,

@@ -155,39 +155,8 @@
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <div>
-                {{ form_label(edit_form.nolabertan, 'Bertan: HAZ-ko bulegoetan / Presencial: En las oficinas del SAC', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.nolabertan) }}
-                {{ form_widget(edit_form.nolabertan, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-            <div>
-                {{ form_label(edit_form.nolatelefono, 'Telefono bidez / Por telefono', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.nolatelefono) }}
-                {{ form_widget(edit_form.nolatelefono, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-            <div>
-                {{ form_label(edit_form.nolainternet, 'Telematikoki / Telemáticamente', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.nolainternet) }}
-                {{ form_widget(edit_form.nolainternet, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-            <div>
-                {{ form_label(edit_form.nolapostela, 'Email bidez / Por email', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.nolapostela) }}
-                {{ form_widget(edit_form.nolapostela, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-            <div>
-                {{ form_label(edit_form.nolaposta, 'Posta bidez / Por correo postal', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.nolaposta) }}
-                {{ form_widget(edit_form.nolaposta, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-6">
-            {{ form_errors(edit_form.nolabesteakeu) }}
-            {{ form_widget(edit_form.nolabesteakeu, {'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="col-sm-6">
-            {{ form_errors(edit_form.nolabesteakes) }}
-            {{ form_widget(edit_form.nolabesteakes, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(edit_form.kanalak) }}
+            {{ form_widget(edit_form.kanalak, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 
@@ -613,12 +582,12 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>IZKUTUAK</h2>
+                <h2>ADMIN</h2>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>OCULTOS</h2>
+                <h2>ADMIN</h2>
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -636,6 +605,10 @@
                 {{ form_errors(edit_form.publikoa) }}
                 {{ form_widget(edit_form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}
                 {{ form_label(edit_form.publikoa, 'Publikoa', { 'label_attr': {'class': 'control-label'} }) }}
+
+                {{ form_errors(edit_form.hitzarmena) }}
+                {{ form_widget(edit_form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}
+                {{ form_label(edit_form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}
 
                 <br>
                 {{ form_label(edit_form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}

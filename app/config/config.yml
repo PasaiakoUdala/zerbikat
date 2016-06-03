@@ -113,6 +113,8 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Ordenantzaparrafoa
       - Zerbikat\BackendBundle\Entity\Saila
       - Zerbikat\BackendBundle\Entity\Tramitea
+      - Zerbikat\BackendBundle\Entity\Kanalmota
+      - Zerbikat\BackendBundle\Entity\Kanala
       - Zerbikat\BackendBundle\Entity\Zerbitzua
       - Zerbikat\BackendBundle\Entity\Udala
       - Zerbikat\BackendBundle\Entity\Espedientekudeaketa

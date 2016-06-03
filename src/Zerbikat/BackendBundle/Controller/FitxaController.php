@@ -70,8 +70,12 @@ class FitxaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($fitxa);
 
+        $em = $this->getDoctrine()->getManager();
+        $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();
+
         return $this->render('fitxa/show.html.twig', array(
             'fitxa' => $fitxa,
+            'kanalmotak'=>$kanalmotak,
             'delete_form' => $deleteForm->createView(),
         ));
     }
