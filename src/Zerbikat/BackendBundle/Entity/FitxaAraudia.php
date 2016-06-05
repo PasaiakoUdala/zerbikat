@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class FitxaAraudia
 {
+    /** @ORM\ManyToOne(targetEntity="Udala") */
+    private $udala;
+
     /**
      * @var string
      *
@@ -59,6 +62,8 @@ class FitxaAraudia
     {
         return $this->araudia->getKodea()."-".$this->araudia->getArauaeu();
     }
+
+
 
 
     /**
@@ -117,6 +122,30 @@ class FitxaAraudia
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return FitxaAraudia
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
     }
 
     /**

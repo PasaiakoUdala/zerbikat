@@ -29,6 +29,7 @@ easy_admin:
           children:
             - { label: 'Zerbitzuak', icon: 'file-new', entity: 'Zerbitzua' }
             - { label: 'Udalak', icon: 'file-new', entity: 'Udala' }
+            - { label: 'Eremuen konfigurazioa', icon: 'file-new', entity: 'Eremuak' }
             - { label: 'Espediente-kudeaketa', icon: 'file-new', entity: 'Espedientekudeaketa' }
         - label: 'Zerga Ordenantzak'
           children:

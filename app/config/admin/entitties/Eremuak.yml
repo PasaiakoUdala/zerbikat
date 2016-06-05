@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+        Eremuak:
+            class: Zerbikat\BackendBundle\Entity\Eremuak
+            label: 'Eremuak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+#                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+#                    - { property: 'izenaeu', label: 'Kanala' }
+#                    - { property: 'deskribapenaeu', label: 'Deskribapena' }
+#                    - { property: 'kanalmota', label: 'Mota' }
+
+            form:
+                fields:
+                    - { property: 'oharraktext', label: 'Oharrak', css_class: 'col-sm-2 large' }
+                    - { property: 'oharraklabeleu', label: 'Oharrak etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'oharraklabeles', label: 'Oharrak etiketa (es)', css_class: 'col-sm-4 large' }
+                    - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }

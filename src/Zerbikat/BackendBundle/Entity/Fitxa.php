@@ -177,6 +177,34 @@ class Fitxa
      */
     private $oharrakes;
 
+    /**
+     * @var datuenbabesaeu
+     *
+     * @ORM\Column(name="datuenbabesaeu", type="text", length=65535, nullable=true)
+     */
+    private $datuenbabesaeu;
+
+    /**
+     * @var datuenbabesaes
+     *
+     * @ORM\Column(name="datuenbabesaes", type="text", length=65535, nullable=true)
+     */
+    private $datuenbabesaes;
+
+    /**
+     * @var norkonartueu
+     *
+     * @ORM\Column(name="norkonartueu", type="text", length=65535, nullable=true)
+     */
+    private $norkonartueu;
+
+    /**
+     * @var norkonartues
+     *
+     * @ORM\Column(name="norkonartues", type="text", length=65535, nullable=true)
+     */
+    private $norkonartues;
+
 
     /**
      * @var boolean
@@ -322,12 +350,28 @@ class Fitxa
      * @ORM\Column(name="besteak3eu", type="text", length=65535, nullable=true)
      */
     private $besteak3eu;
+
     /**
      * @var string
      *
      * @ORM\Column(name="besteak3es", type="text", length=65535, nullable=true)
      */
     private $besteak3es;
+
+    /**
+     * @var kanalaeu
+     *
+     * @ORM\Column(name="kanalaeu", type="text", length=65535, nullable=true)
+     */
+    private $kanalaeu;
+
+    /**
+     * @var kanalaes
+     *
+     * @ORM\Column(name="kanalaes", type="text", length=65535, nullable=true)
+     */
+    private $kanalaes;
+
 
 
     /**
@@ -1026,6 +1070,102 @@ class Fitxa
     }
 
     /**
+     * Set datuenbabesaeu
+     *
+     * @param string $datuenbabesaeu
+     *
+     * @return Fitxa
+     */
+    public function setDatuenbabesaeu($datuenbabesaeu)
+    {
+        $this->datuenbabesaeu = $datuenbabesaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get datuenbabesaeu
+     *
+     * @return string
+     */
+    public function getDatuenbabesaeu()
+    {
+        return $this->datuenbabesaeu;
+    }
+
+    /**
+     * Set datuenbabesaes
+     *
+     * @param string $datuenbabesaes
+     *
+     * @return Fitxa
+     */
+    public function setDatuenbabesaes($datuenbabesaes)
+    {
+        $this->datuenbabesaes = $datuenbabesaes;
+
+        return $this;
+    }
+
+    /**
+     * Get datuenbabesaes
+     *
+     * @return string
+     */
+    public function getDatuenbabesaes()
+    {
+        return $this->datuenbabesaes;
+    }
+
+    /**
+     * Set norkonartueu
+     *
+     * @param string $norkonartueu
+     *
+     * @return Fitxa
+     */
+    public function setNorkonartueu($norkonartueu)
+    {
+        $this->norkonartueu = $norkonartueu;
+
+        return $this;
+    }
+
+    /**
+     * Get norkonartueu
+     *
+     * @return string
+     */
+    public function getNorkonartueu()
+    {
+        return $this->norkonartueu;
+    }
+
+    /**
+     * Set norkonartues
+     *
+     * @param string $norkonartues
+     *
+     * @return Fitxa
+     */
+    public function setNorkonartues($norkonartues)
+    {
+        $this->norkonartues = $norkonartues;
+
+        return $this;
+    }
+
+    /**
+     * Get norkonartues
+     *
+     * @return string
+     */
+    public function getNorkonartues()
+    {
+        return $this->norkonartues;
+    }
+
+    /**
      * Set publikoa
      *
      * @param boolean $publikoa
@@ -1321,6 +1461,54 @@ class Fitxa
     public function getBesteak3es()
     {
         return $this->besteak3es;
+    }
+
+    /**
+     * Set kanalaeu
+     *
+     * @param string $kanalaeu
+     *
+     * @return Fitxa
+     */
+    public function setKanalaeu($kanalaeu)
+    {
+        $this->kanalaeu = $kanalaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get kanalaeu
+     *
+     * @return string
+     */
+    public function getKanalaeu()
+    {
+        return $this->kanalaeu;
+    }
+
+    /**
+     * Set kanalaes
+     *
+     * @param string $kanalaes
+     *
+     * @return Fitxa
+     */
+    public function setKanalaes($kanalaes)
+    {
+        $this->kanalaes = $kanalaes;
+
+        return $this;
+    }
+
+    /**
+     * Get kanalaes
+     *
+     * @return string
+     */
+    public function getKanalaes()
+    {
+        return $this->kanalaes;
     }
 
     /**

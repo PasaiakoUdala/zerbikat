@@ -80,7 +80,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.norkeskatuak) }}
-                {{ form_widget(edit_form.norkeskatuak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.norkeskatuak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.dokumentazioak) }}
-                {{ form_widget(edit_form.dokumentazioak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.dokumentazioak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.doklagunak) }}
-                {{ form_widget(edit_form.doklagunak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.doklagunak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -147,10 +147,18 @@
             <div class="page-header">
                 <h2>NON ESKATZEN DA?</h2>
             </div>
+            <div>
+                {{ form_errors(edit_form.kanalaeu) }}
+                {{ form_widget(edit_form.kanalaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>¿DÓNDE SE SOLICITA?</h2>
+            </div>
+            <div>
+                {{ form_errors(edit_form.kanalaes) }}
+                {{ form_widget(edit_form.kanalaes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -185,7 +193,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.azpiatalak) }}
-                {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -257,7 +265,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.araudiak) }}
-                {{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -286,7 +294,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.prozedurak) }}
-                {{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -315,7 +323,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.tramiteak) }}
-                {{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -327,12 +335,20 @@
                     {{ form_label(edit_form.norkebatzi, 'NORK ONARTU BEHAR DU', { 'label_attr': {'class': 'control-label'} }) }}
                 </h2>
             </div>
+            <div>
+                {{ form_errors(edit_form.norkonartueu) }}
+                {{ form_widget(edit_form.norkonartueu, {'attr': {'class': 'form-control'}}) }}
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>
                     {{ form_label(edit_form.norkebatzi, 'QUIÉN LO APRUEBA', { 'label_attr': {'class': 'control-label'} }) }}
                 </h2>
+            </div>
+            <div>
+                {{ form_errors(edit_form.norkonartues) }}
+                {{ form_widget(edit_form.norkonartues, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -412,7 +428,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.besteak1ak) }}
-                {{ form_widget(edit_form.besteak1ak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak1ak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -440,7 +456,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.besteak2ak) }}
-                {{ form_widget(edit_form.besteak2ak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak2ak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -469,7 +485,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.besteak3ak) }}
-                {{ form_widget(edit_form.besteak3ak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak3ak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
@@ -482,12 +498,20 @@
                     {{ form_label(edit_form.datuenbabesa, 'DATU PERTSONALEN BABESA', { 'label_attr': {'class': 'control-label'} }) }}
                 </h2>
             </div>
+            <div>
+                {{ form_errors(edit_form.datuenbabesaeu) }}
+                {{ form_widget(edit_form.datuenbabesaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>
                     {{ form_label(edit_form.datuenbabesa, 'PROTECCIÓN DE DATOS DE CARÁCTER PERSONAL', { 'label_attr': {'class': 'control-label'} }) }}
                 </h2>
+            </div>
+            <div>
+                {{ form_errors(edit_form.datuenbabesaes) }}
+                {{ form_widget(edit_form.datuenbabesaes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>

@@ -122,12 +122,12 @@
                 <ul>
                     {% for doklagun in fitxa.doklagunak %}
                         <li>
-                            {% if doklagun.doklagun.estekaeu %}
-                                <a href="{{ doklagun.doklagun.estekaeu }}">
-                                    {{ doklagun.doklagun.kodea }}-{{ doklagun.doklagun.deskribapenaeu }}
+                            {% if doklagun.estekaeu %}
+                                <a href="{{ doklagun.estekaeu }}">
+                                    {{ doklagun.kodea }}-{{ doklagun.deskribapenaeu }}
                                 </a>
                             {% else %}
-                                {{ doklagun.doklagun.kodea }}-{{ doklagun.doklagun.deskribapenaeu }}
+                                {{ doklagun.kodea }}-{{ doklagun.deskribapenaeu }}
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -143,12 +143,12 @@
                 <ul>
                     {% for doklagun in fitxa.doklagunak %}
                         <li>
-                            {% if doklagun.doklagun.estekaes %}
-                                <a href="{{ doklagun.doklagun.estekaes }}">
-                                    {{ doklagun.doklagun.kodea }}-{{ doklagun.doklagun.deskribapenaes }}
+                            {% if doklagun.estekaes %}
+                                <a href="{{ doklagun.estekaes }}">
+                                    {{ doklagun.kodea }}-{{ doklagun.deskribapenaes }}
                                 </a>
                             {% else %}
-                                {{ doklagun.doklagun.kodea }}-{{ doklagun.doklagun.deskribapenaes }}
+                                {{ doklagun.kodea }}-{{ doklagun.deskribapenaes }}
                             {% endif %}
                         </li>
                     {% endfor %}
