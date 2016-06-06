@@ -277,14 +277,14 @@ class Eremuak
     /**
      * @var araudiatext
      *
-     * @ORM\Column(name="araudiatext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="araudiatext", type="boolean", nullable=false,options={"default" = true})
      */
     private $araudiatext;
 
     /**
      * @var araudiatable
      *
-     * @ORM\Column(name="araudiatable", type="boolean", nullable=false)
+     * @ORM\Column(name="araudiatable", type="boolean", nullable=false,options={"default" = true})
      */
     private $araudiatable;
 
@@ -583,7 +583,102 @@ class Eremuak
      */
     public function __construct()
     {
-        $this->kanalalabeles = "proba";
+        $this->helburualabeles = "¿QUÉ ES? ¿PARA QUÉ?";
+        $this->helburualabeleu = "ZER DA? ZERTARAKO DA?";
+        $this->helburuatext = true;
+
+        $this->norkeskatulabeles = "QUIÉN PUEDE SOLICITARLO";
+        $this->norkeskatulabeleu = "NORK ESKA DEZAKE";
+        $this->norkeskatutable = false;
+        $this->norkeskatutext = true;
+
+
+        $this->araudialabeles = "NORMATIVA APLICABLE";
+        $this->araudialabeleu = "ARAUDI APLIKAGARRIA";
+        $this->araudiatable = true;
+        $this->araudiatext = false;
+
+        $this->arduraaitorpena = true;
+        $this->arduraaitorpenalabeles = "Admite declaración de responsabilidad?";
+        $this->arduraaitorpenalabeleu = "Erantzunkizun-aitorpena onartzen da? ";
+        $this->arrunta = true;
+        $this->arruntalabeles = "Procedimiento habitual. Plazo limite legal";
+        $this->arruntalabeleu = "Prozedura arrunta. Legezko gehienezko epea";
+        $this->aurreikusi = true;
+        $this->aurreikusilabeles = "Plazo estimado";
+        $this->aurreikusilabeleu = "Aurreikusitako epea";
+        $this->isiltasunadmin = true;
+        $this->isiltasunadminlabeles = "Carácter del silencio administrativo";
+        $this->isiltasunadminlabeleu = "Isiltasun-administratiboaren izaera";
+        $this->ebazpensinpli = true;
+        $this->ebazpensinplilabeles = "Admite procedimiento simplificado? ";
+        $this->ebazpensinplilabeleu = "Prozedura sinplifikatua onartzen da? (30 egun)";
+
+        $this->dokumentazioalabeles = "DOCUMENTACIÓN A APORTAR";
+        $this->dokumentazioalabeleu = "AURKEZTU BEHARREKO AGIRIAK";
+        $this->dokumentazioatable = true;
+        $this->dokumentazioatext = true;
+
+        $this->doklagunlabeles = "Documentación auxiliar";
+        $this->doklagunlabeleu = "Dokumentazio lagungarria";
+        $this->doklaguntable = false;
+        $this->doklaguntext = false;
+
+        $this->oharraklabeles = "OBSERVACIONES";
+        $this->oharraklabeleu = "OHARRAK";
+        $this->oharraktext = true;
+
+        $this->kostualabeles = "CUÁNTO CUESTA";
+        $this->kostualabeleu = "ZENBAT KOSTATZEN DA";
+        $this->kostuatable = true;
+        $this->kostuatext = true;
+
+        $this->kanalalabeles = "DÓNDE SE SOLICITA";
+        $this->kanalalabeleu = "NON ESKATZEN DA";
+        $this->kanalatable = true;
+        $this->kanalatext = false;
+
+        $this->norkebatzilabeles = "QUIÉN LO APRUEBA";
+        $this->norkebatzilabeleu = "NORK ONARTU BEHAR DU";
+        $this->norkebatzitable = true;
+        $this->norkebatzitext = false;
+
+        $this->datuenbabesalabeles = "PROTECCIÓN DE DATOS DE CARÁCTER PERSONAL";
+        $this->datuenbabesalabeleu = "DATU PERTSONALEN BABESA";
+        $this->datuenbabesatable = true;
+        $this->datuenbabesatext = false;
+
+
+
+
+
+        $this->prozeduralabeles = "PROCEDIMIENTO A SEGUIR DESPUÉS DE LA SOLICITUD";
+        $this->prozeduralabeleu = "ESKAERA JASO ONDOREN JARRAITU BEHARREKO PROZEDURA";
+        $this->prozeduratable = false;
+        $this->prozeduratext = true;
+
+        $this->tramitealabeles = "RESUMEN DE TRÁMITES POSTERIORES";
+        $this->tramitealabeleu = "GEROAGOKO IZAPIDEEN LABURPENA";
+        $this->tramiteatable = false;
+        $this->tramiteatext = true;
+
+
+        $this->besteak1labeles = "INSTRUCCIONES";
+        $this->besteak1labeleu = "ARGIBIDEAK";
+        $this->besteak1table = false;
+        $this->besteak1text = true;
+
+
+
+        $this->besteak2labeles = "";
+        $this->besteak2labeleu = "";
+        $this->besteak2table = false;
+        $this->besteak2text = false;
+        $this->besteak3labeles = "";
+        $this->besteak3labeleu = "";
+        $this->besteak3table = false;
+        $this->besteak3text = false;
+
     }
 
 

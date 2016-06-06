@@ -23,7 +23,7 @@ easy_admin:
 
             form:
                 fields:
-                    - { property: 'oharraktext', label: 'Oharrak', css_class: 'col-sm-4 large' }
+                    - { property: 'oharraktext', label: 'Oharrak', css_class: 'col-sm-4 large toggle' }
                     - { property: 'oharraklabeleu', label: 'Oharrak etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'oharraklabeles', label: 'Oharrak etiketa (es)', css_class: 'col-sm-4 large' }
 
