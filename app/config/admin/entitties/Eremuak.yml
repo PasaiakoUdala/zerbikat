@@ -11,13 +11,79 @@ easy_admin:
                     - { name: 'edit', label: '', icon: 'edit' }
 #                    - { name: 'delete', label: '', icon: 'trash' }
                 fields:
-#                    - { property: 'izenaeu', label: 'Kanala' }
-#                    - { property: 'deskribapenaeu', label: 'Deskribapena' }
-#                    - { property: 'kanalmota', label: 'Mota' }
+                    - { property: 'oharraktext', label: 'Oharrak (Txt)' }
+                    - { property: 'helburuatext', label: 'Helburua (Txt)' }
+                    - { property: 'ebazpensinpli', label: 'Ebazpen-Sinplifikatua' }
+                    - { property: 'arduraaitorpena', label: 'Ardura aitorpena' }
+                    - { property: 'aurreikusi', label: 'Aurreikusitako epea' }
+                    - { property: 'arrunta', label: 'Epe Arrunta' }
+                    - { property: 'isiltasunadmin', label: 'Administrazio Isiltasuna' }
 
             form:
                 fields:
-                    - { property: 'oharraktext', label: 'Oharrak', css_class: 'col-sm-2 large' }
+                    - { property: 'oharraktext', label: 'Oharrak', css_class: 'col-sm-4 large' }
                     - { property: 'oharraklabeleu', label: 'Oharrak etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'oharraklabeles', label: 'Oharrak etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'helburuatext', label: 'Helburua', css_class: 'col-sm-4 large' }
+                    - { property: 'helburualabeleu', label: 'Helburua etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'helburualabeles', label: 'Helburua etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'ebazpensinpli', label: 'Ebazpen sinplifikatua', css_class: 'col-sm-4 large' }
+                    - { property: 'ebazpensinplilabeleu', label: 'Ebazpen sinplifikatua etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'ebazpensinplilabeles', label: 'Ebazpen sinplifikatua etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'arduraaitorpena', label: 'Ardura aitorpena', css_class: 'col-sm-4 large' }
+                    - { property: 'arduraaitorpenalabeleu', label: 'Ardura Aitorpena etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'arduraaitorpenalabeles', label: 'Ardura Aitorpena etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'aurreikusi', label: 'Aurreikusitako epea', css_class: 'col-sm-4 large' }
+                    - { property: 'aurreikusilabeleu', label: 'Aurreikusitako epea etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'aurreikusilabeles', label: 'Aurreikusitako epea etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'arrunta', label: 'Epe Arrunta', css_class: 'col-sm-4 large' }
+                    - { property: 'arruntalabeleu', label: 'Epe Arrunta etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'arruntalabeles', label: 'Epe Arrunta etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'isiltasunadmin', label: 'Administrazio isiltasunaren izaera', css_class: 'col-sm-4 large' }
+                    - { property: 'isiltasunadminlabeleu', label: 'Administrazio isiltasuna etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'isiltasunadminlabeles', label: 'Administrazio isiltasuna etiketa (es)', css_class: 'col-sm-4 large' }
+
+
+
+                    - { property: 'dokumentazioatext', label: 'Agiriak (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'dokumentazioatable', label: 'Agiriak (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'dokumentazioalabeleu', label: 'Agiriak etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'dokumentazioalabeles', label: 'Agiriak etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'kostuatext', label: 'Kostua (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'kostuatable', label: 'Kostua (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'kostualabeleu', label: 'Kostua etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'kostualabeles', label: 'Kostua etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'araudiatext', label: 'Araudia (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'araudiatable', label: 'Araudia (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'araudialabeleu', label: 'Araudia etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'araudialabeles', label: 'Araudia etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'prozeduratext', label: 'Prozedurak (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'prozeduratable', label: 'Prozedurak (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'prozeduralabeleu', label: 'Prozedurak etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'prozeduralabeles', label: 'Prozedurak etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'tramiteatext', label: 'Tramiteak (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'tramiteatable', label: 'Tramiteak (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'tramitealabeleu', label: 'Tramiteak etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'tramitealabeles', label: 'Tramiteak etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'doklaguntext', label: 'Dok. lagun. (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'doklaguntable', label: 'Dok. lagung. (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'doklagunlabeleu', label: 'Dok. lagun. etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'doklagunlabeles', label: 'Dok. lagun. etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'norkeskatutext', label: 'Nork eska dezake (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'norkeskatutable', label: 'Nork eska dezake (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'norkeskatulabeleu', label: 'Nork eska dezake etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'norkeskatulabeles', label: 'Nork eska dezake etiketa (es)', css_class: 'col-sm-4 large' }
+
                     - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }
