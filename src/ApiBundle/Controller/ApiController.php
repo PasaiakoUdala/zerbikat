@@ -40,15 +40,24 @@ class ApiController extends FOSRestController
      *
      * @Annotations\View()
      */
-    public function getFamiliakAction()
+    public function getFamiliakAction($udala)
     {
-        $em         = $this->getDoctrine()->getManager();
-        $familiak = $em->getRepository('BackendBundle:Familia')->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('
+          SELECT f
+            FROM BackendBundle:Familia f
+              INNER JOIN f.udala u
+            WHERE u.kodea = :udala
+        ');
+        $query->setParameter('udala', $udala);
+        $familiak = $query->getResult();
+
+
         $view = View::create();
         $view->setData($familiak);
         return $view;
 
-    }// "get_familiak"            [GET] /familiak
+    }// "get_familiak"            [GET] /familiak/{udala}
 
     /**
      * Familia baten fitxa guztien zerrenda.
@@ -68,22 +77,25 @@ class ApiController extends FOSRestController
      */
     public function getFitxakAction($id)
     {
-        $em         = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery('
           SELECT f
             FROM BackendBundle:Fitxa f
-            ');
+              INNER JOIN f.familiak ff
+            WHERE ff.id = :id
+        ');
 
-//        $query->setParameter('id', $id);
+        $query->setParameter('id', $id);
+
 
         $fitxak = $query->getResult();
-//        dump($fitxak);
+
         $view = View::create();
         $view->setData($fitxak);
         return $view;
 
-    }// "get_fitxak"            [GET] /fitxak/{id]}
+    }// "get_fitxak"            [GET] /fitxak/{id}
 
 
 
