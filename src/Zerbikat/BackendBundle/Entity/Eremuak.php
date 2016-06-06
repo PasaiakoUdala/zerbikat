@@ -25,6 +25,15 @@ class Eremuak
     /** @ORM\OneToOne(targetEntity="Udala") */
     private $udala;
 
+//    /**
+//     * @ORM\OneToOne(targetEntity="Udala", inversedBy="eremuak")
+//     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id")
+//     */
+//    protected $udala;
+    
+    
+    
+
     /**
      * @var oharraktext
      *

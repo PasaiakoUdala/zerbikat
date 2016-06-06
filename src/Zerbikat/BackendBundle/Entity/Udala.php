@@ -87,6 +87,10 @@ class Udala
     private $lopdes;
 
 
+//    /**
+//     * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala")
+//     */
+//    protected $eremuak;
 
 
     /**
@@ -354,5 +358,29 @@ class Udala
     public function getEspedientekudeaketa()
     {
         return $this->espedientekudeaketa;
+    }
+
+    /**
+     * Set eremuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Eremuak $eremuak
+     *
+     * @return Udala
+     */
+    public function setEremuak(\Zerbikat\BackendBundle\Entity\Eremuak $eremuak = null)
+    {
+        $this->eremuak = $eremuak;
+
+        return $this;
+    }
+
+    /**
+     * Get eremuak
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Eremuak
+     */
+    public function getEremuak()
+    {
+        return $this->eremuak;
     }
 }
