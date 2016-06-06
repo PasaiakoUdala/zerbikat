@@ -3,20 +3,37 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+
 
 /**
  * Familia
  *
  * @ORM\Table(name="familia")
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class Familia
 {
+
+    /**
+     * @var integer
+     * @Expose
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /** @ORM\ManyToOne(targetEntity="Udala") */
     private $udala;
 
     /**
+     *
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="familiaeu", type="string", length=255, nullable=true)
      */
@@ -25,6 +42,7 @@ class Familia
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="familiaes", type="string", length=255, nullable=true)
      */
@@ -32,6 +50,7 @@ class Familia
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="deskribapenaeu", type="string", length=255, nullable=true)
      */
@@ -39,20 +58,14 @@ class Familia
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="deskribapenaes", type="string", length=255, nullable=true)
      */
     private $deskribapenaes;
 
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+
 
 
     public function __toString()

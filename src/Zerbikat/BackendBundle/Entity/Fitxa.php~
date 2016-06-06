@@ -4,35 +4,49 @@ namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+
 
 /**
  * Fitxa
  *
  * @ORM\Table(name="fitxa", indexes={@ORM\Index(name="aurreikusi_id_idx", columns={"aurreikusi_id"}), @ORM\Index(name="arrunta_id_idx", columns={"arrunta_id"}), @ORM\Index(name="norkebatzi_id_idx", columns={"norkebatzi_id"}), @ORM\Index(name="azpisaila_id_idx", columns={"azpisaila_id"}), @ORM\Index(name="datuenbabesa_id_idx", columns={"datuenbabesa_id"}), @ORM\Index(name="zerbitzua_id_idx", columns={"zerbitzua_id"})})
  * @ORM\Entity
+ * @ExclusionPolicy("all") 
  */
 class Fitxa
 {
+    /**
+     * @var integer
+     *
+     * @Expose
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /** @ORM\ManyToOne(targetEntity="Udala") */
     private $udala;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="espedientekodea", type="string", length=9, nullable=true)
      */
     private $espedientekodea;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="deskribapenaeu", type="string", length=255, nullable=true)
      */
     private $deskribapenaeu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="deskribapenaes", type="string", length=255, nullable=true)
      */
     private $deskribapenaes;
@@ -249,14 +263,7 @@ class Fitxa
      */
     private $updatedAt;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\Norkebatzi

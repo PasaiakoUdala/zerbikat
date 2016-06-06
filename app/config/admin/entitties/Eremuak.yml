@@ -9,7 +9,7 @@ easy_admin:
                 actions:
 #                   - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
-#                    - { name: 'delete', label: '', icon: 'trash' }
+                    - { name: '-delete', label: '', icon: 'trash' }
                 fields:
                     - { property: 'oharraktext', label: 'Oharrak (Txt)' }
                     - { property: 'helburuatext', label: 'Helburua (Txt)' }
@@ -18,6 +18,8 @@ easy_admin:
                     - { property: 'aurreikusi', label: 'Aurreikusitako epea' }
                     - { property: 'arrunta', label: 'Epe Arrunta' }
                     - { property: 'isiltasunadmin', label: 'Administrazio Isiltasuna' }
+                    - { property: 'kanalatext', label: 'Kanala txt' }
+                    - { property: 'kanalatable', label: 'Kanala table' }
 
             form:
                 fields:
@@ -49,8 +51,6 @@ easy_admin:
                     - { property: 'isiltasunadminlabeleu', label: 'Administrazio isiltasuna etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'isiltasunadminlabeles', label: 'Administrazio isiltasuna etiketa (es)', css_class: 'col-sm-4 large' }
 
-
-
                     - { property: 'dokumentazioatext', label: 'Agiriak (txt)', css_class: 'col-sm-2 large' }
                     - { property: 'dokumentazioatable', label: 'Agiriak (taula)', css_class: 'col-sm-2 large' }
                     - { property: 'dokumentazioalabeleu', label: 'Agiriak etiketa (eu)', css_class: 'col-sm-4 large' }
@@ -76,14 +76,45 @@ easy_admin:
                     - { property: 'tramitealabeleu', label: 'Tramiteak etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'tramitealabeles', label: 'Tramiteak etiketa (es)', css_class: 'col-sm-4 large' }
 
-                    - { property: 'doklaguntext', label: 'Dok. lagun. (txt)', css_class: 'col-sm-2 large' }
-                    - { property: 'doklaguntable', label: 'Dok. lagung. (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'norkebatzitext', label: 'Nork ebatzi (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'norkebatzitable', label: 'Nork ebatzi (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'norkebatzilabeleu', label: 'Nork ebatzi etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'norkebatzilabeles', label: 'Nork ebatzi etiketa (es)', css_class: 'col-sm-4 large' }
+
+
+                    - { property: 'doklaguntext', label: 'Dok. lag. (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'doklaguntable', label: 'Dok. lag. (taula)', css_class: 'col-sm-2 large' }
                     - { property: 'doklagunlabeleu', label: 'Dok. lagun. etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'doklagunlabeles', label: 'Dok. lagun. etiketa (es)', css_class: 'col-sm-4 large' }
 
-                    - { property: 'norkeskatutext', label: 'Nork eska dezake (txt)', css_class: 'col-sm-2 large' }
-                    - { property: 'norkeskatutable', label: 'Nork eska dezake (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'datuenbabesatext', label: 'D. Babesa (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'datuenbabesatable', label: 'D. Babesa (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'datuenbabesalabeleu', label: 'Datuen-babesa etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'datuenbabesalabeles', label: 'Datuen-babesa etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'norkeskatutext', label: 'Nork eskatu(txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'norkeskatutable', label: 'Nork eskatu(taula)', css_class: 'col-sm-2 large' }
                     - { property: 'norkeskatulabeleu', label: 'Nork eska dezake etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'norkeskatulabeles', label: 'Nork eska dezake etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'besteak1text', label: 'Besteak1 (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'besteak1table', label: 'Besteak1 (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'besteak1labeleu', label: 'Besteak1 etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'besteak1labeles', label: 'Besteak1 etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'besteak2text', label: 'Besteak2 (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'besteak2table', label: 'Besteak2 (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'besteak2labeleu', label: 'Besteak2 etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'besteak2labeles', label: 'Besteak2 etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'besteak3text', label: 'Besteak3 (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'besteak3table', label: 'Besteak3 (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'besteak3labeleu', label: 'Besteak3 etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'besteak3labeles', label: 'Besteak3 etiketa (es)', css_class: 'col-sm-4 large' }
+
+                    - { property: 'kanalatext', label: 'Kanala (txt)', css_class: 'col-sm-2 large' }
+                    - { property: 'kanalatable', label: 'Kanala (taula)', css_class: 'col-sm-2 large' }
+                    - { property: 'kanalalabeleu', label: 'Kanala etiketa (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'kanalalabeles', label: 'Kanala etiketa (es)', css_class: 'col-sm-4 large' }
 
                     - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }
