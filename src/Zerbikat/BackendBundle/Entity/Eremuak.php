@@ -583,8 +583,34 @@ class Eremuak
     private $kanalalabeles;
 
 
+    /**
+     * @var udalsailalabeleu
+     *
+     * @ORM\Column(name="udalsailalabeleu", type="string", length=255, nullable=true)
+     */
+    private $udalsailalabeleu;
+
+    /**
+     * @var udalsailalabeles
+     *
+     * @ORM\Column(name="udalsailalabeles", type="string", length=255, nullable=true)
+     */
+    private $udalsailalabeles;
 
 
+    /**
+     * @var epealabeleu
+     *
+     * @ORM\Column(name="epealabeleu", type="string", length=255, nullable=true)
+     */
+    private $epealabeleu;
+
+    /**
+     * @var epealabeles
+     *
+     * @ORM\Column(name="epealabeles", type="string", length=255, nullable=true)
+     */
+    private $epealabeles;
 
 
     /**
@@ -596,8 +622,8 @@ class Eremuak
         $this->helburualabeleu = "ZER DA? ZERTARAKO DA?";
         $this->helburuatext = true;
 
-        $this->norkeskatulabeles = "QUIÉN PUEDE SOLICITARLO";
-        $this->norkeskatulabeleu = "NORK ESKA DEZAKE";
+        $this->norkeskatulabeles = "¿QUIÉN LO PUEDE SOLICITAR?";
+        $this->norkeskatulabeleu = "NORK ESKA DEZAKE?";
         $this->norkeskatutable = false;
         $this->norkeskatutext = true;
 
@@ -628,8 +654,8 @@ class Eremuak
         $this->dokumentazioatable = true;
         $this->dokumentazioatext = true;
 
-        $this->doklagunlabeles = "Documentación auxiliar";
-        $this->doklagunlabeleu = "Dokumentazio lagungarria";
+        $this->doklagunlabeles = "DOCUMENTACIÓN AUXILIAR";
+        $this->doklagunlabeleu = "DOKUMENTAZIO LAGUNGARRIA";
         $this->doklaguntable = false;
         $this->doklaguntext = false;
 
@@ -637,18 +663,18 @@ class Eremuak
         $this->oharraklabeleu = "OHARRAK";
         $this->oharraktext = true;
 
-        $this->kostualabeles = "CUÁNTO CUESTA";
-        $this->kostualabeleu = "ZENBAT KOSTATZEN DA";
+        $this->kostualabeles = "¿CUÁNTO CUESTA?";
+        $this->kostualabeleu = "ZENBAT KOSTATZEN DA?";
         $this->kostuatable = true;
         $this->kostuatext = true;
 
-        $this->kanalalabeles = "DÓNDE SE SOLICITA";
-        $this->kanalalabeleu = "NON ESKATZEN DA";
+        $this->kanalalabeles = "¿DÓNDE SE SOLICITA?";
+        $this->kanalalabeleu = "NON ESKATZEN DA?";
         $this->kanalatable = true;
         $this->kanalatext = false;
 
-        $this->norkebatzilabeles = "QUIÉN LO APRUEBA";
-        $this->norkebatzilabeleu = "NORK ONARTU BEHAR DU";
+        $this->norkebatzilabeles = "¿QUIÉN LO APRUEBA?";
+        $this->norkebatzilabeleu = "NORK ONARTU BEHAR DU?";
         $this->norkebatzitable = true;
         $this->norkebatzitext = false;
 
@@ -656,10 +682,6 @@ class Eremuak
         $this->datuenbabesalabeleu = "DATU PERTSONALEN BABESA";
         $this->datuenbabesatable = true;
         $this->datuenbabesatext = false;
-
-
-
-
 
         $this->prozeduralabeles = "PROCEDIMIENTO A SEGUIR DESPUÉS DE LA SOLICITUD";
         $this->prozeduralabeleu = "ESKAERA JASO ONDOREN JARRAITU BEHARREKO PROZEDURA";
@@ -688,6 +710,11 @@ class Eremuak
         $this->besteak3table = false;
         $this->besteak3text = false;
 
+        $this->udalsailalabeles = "DEPARTAMENTO MUNICIPAL RESPONSABLE DE LA TRAMITACIÓN";
+        $this->udalsailalabeleu = "IZAPIDETZEKO ARDURA DUEN UDAL SAILA";
+
+        $this->epealabeles = "PLAZO DEL PROCEDIMIENTO";
+        $this->epealabeleu = "PROZEDURAREN EPEA";
     }
 
 
@@ -2484,5 +2511,101 @@ class Eremuak
     public function getKanalalabeles()
     {
         return $this->kanalalabeles;
+    }
+
+    /**
+     * Set udalsailalabeleu
+     *
+     * @param string $udalsailalabeleu
+     *
+     * @return Eremuak
+     */
+    public function setUdalsailalabeleu($udalsailalabeleu)
+    {
+        $this->udalsailalabeleu = $udalsailalabeleu;
+
+        return $this;
+    }
+
+    /**
+     * Get udalsailalabeleu
+     *
+     * @return string
+     */
+    public function getUdalsailalabeleu()
+    {
+        return $this->udalsailalabeleu;
+    }
+
+    /**
+     * Set udalsailalabeles
+     *
+     * @param string $udalsailalabeles
+     *
+     * @return Eremuak
+     */
+    public function setUdalsailalabeles($udalsailalabeles)
+    {
+        $this->udalsailalabeles = $udalsailalabeles;
+
+        return $this;
+    }
+
+    /**
+     * Get udalsailalabeles
+     *
+     * @return string
+     */
+    public function getUdalsailalabeles()
+    {
+        return $this->udalsailalabeles;
+    }
+
+    /**
+     * Set epealabeleu
+     *
+     * @param string $epealabeleu
+     *
+     * @return Eremuak
+     */
+    public function setEpealabeleu($epealabeleu)
+    {
+        $this->epealabeleu = $epealabeleu;
+
+        return $this;
+    }
+
+    /**
+     * Get epealabeleu
+     *
+     * @return string
+     */
+    public function getEpealabeleu()
+    {
+        return $this->epealabeleu;
+    }
+
+    /**
+     * Set epealabeles
+     *
+     * @param string $epealabeles
+     *
+     * @return Eremuak
+     */
+    public function setEpealabeles($epealabeles)
+    {
+        $this->epealabeles = $epealabeles;
+
+        return $this;
+    }
+
+    /**
+     * Get epealabeles
+     *
+     * @return string
+     */
+    public function getEpealabeles()
+    {
+        return $this->epealabeles;
     }
 }

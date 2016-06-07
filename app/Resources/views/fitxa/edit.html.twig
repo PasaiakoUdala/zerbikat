@@ -35,10 +35,14 @@
         </div>
     </div>
 
+    {% if eremuak.helburuatext %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.helburuaeu, 'ZER DA? ZERTARAKO DA? ', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.helburualabeleu }}</h2>
             </div>
             <div>
                 {{ form_errors(edit_form.helburuaeu) }}
@@ -47,7 +51,7 @@
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.helburuaes, '¿QUÉ ES? ¿PARA QUÉ? ', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.helburualabeles }}</h2>
             </div>
             <div>
                 {{ form_errors(edit_form.helburuaes) }}
@@ -56,55 +60,89 @@
         </div>
     </div>
 
+
+    {% if (eremuak.norkeskatutext or eremuak.norkeskatutable) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.norkeu, 'NORK ESKA DEZAKE? ', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.norkeskatulabeleu }}</h2>
             </div>
+            {% if eremuak.norkeskatutext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.norkeu) }}
                 {{ form_widget(edit_form.norkeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.norkes, '¿QUIÉN LO PUEDE SOLICITAR? ', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.norkeskatulabeleu }}</h2>
             </div>
+            {% if eremuak.norkeskatutext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.norkes) }}
                 {{ form_widget(edit_form.norkes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        {% if eremuak.norkeskatutable %}
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <div>
+        {% else %}
+        <div class="hidden col-sm-12">
+        {% endif %}
+                <div>
                 <br/>
                 {{ form_errors(edit_form.norkeskatuak) }}
                 {{ form_widget(edit_form.norkeskatuak, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
+
+    {% if (eremuak.dokumentazioatext or eremuak.dokumentazioatable) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.dokumentazioaeu, 'AURKEZTU BEHARREKO AGIRIAK ', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.dokumentazioalabeleu }}</h2>
             </div>
+            {% if eremuak.dokumentazioatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.dokumentazioaeu) }}
                 {{ form_widget(edit_form.dokumentazioaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.dokumentazioaes, 'DOCUMENTACIÓN A APORTAR ', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.dokumentazioalabeles }}</h2>
             </div>
+            {% if eremuak.dokumentazioatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.dokumentazioaes) }}
                 {{ form_widget(edit_form.dokumentazioaes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        {% if eremuak.dokumentazioatable %}
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+        {% else %}
+        <div class="col-sm-12 hidden">
+        {% endif %}
             <div>
                 <br/>
                 {{ form_errors(edit_form.dokumentazioak) }}
@@ -113,27 +151,43 @@
         </div>
     </div>
 
+    {% if (eremuak.doklaguntext or eremuak.doklaguntable) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.doklaguneu, 'DOKUMENTAZIO LAGUNGARRIA', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.doklagunlabeleu }}</h2>
             </div>
+            {% if eremuak.doklaguntext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.doklaguneu) }}
                 {{ form_widget(edit_form.doklaguneu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.doklagunes, 'DOCUMENTACIÓN AUXILIAR', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.doklagunlabeles }}</h2>
             </div>
+            {% if eremuak.doklaguntext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.doklagunes) }}
                 {{ form_widget(edit_form.doklagunes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        {% if eremuak.doklaguntable %}
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+        {% else %}
+        <div class="col-sm-12 hidden">
+        {% endif %}
             <div>
                 <br/>
                 {{ form_errors(edit_form.doklagunak) }}
@@ -142,54 +196,87 @@
         </div>
     </div>
 
+
+    {% if (eremuak.kanalatext or eremuak.kanalatable) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>NON ESKATZEN DA?</h2>
+                <h2>{{ labelak.kanalalabeleu }}</h2>
             </div>
+            {% if eremuak.kanalatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.kanalaeu) }}
                 {{ form_widget(edit_form.kanalaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>¿DÓNDE SE SOLICITA?</h2>
+                <h2>{{ labelak.kanalalabeles }}</h2>
             </div>
+            {% if eremuak.kanalatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.kanalaes) }}
                 {{ form_widget(edit_form.kanalaes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        {% if eremuak.kanalatable %}
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+        {% else %}
+        <div class="col-sm-12 hidden">
+        {% endif %}
             {{ form_errors(edit_form.kanalak) }}
             {{ form_widget(edit_form.kanalak, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
 
 
+    {% if (eremuak.kostuatext or eremuak.kostuatable) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.kostuaeu, 'ZENBAT KOSTATZEN DA?', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.kostualabeleu }}</h2>
             </div>
+            {% if eremuak.kostuatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.kostuaeu) }}
                 {{ form_widget(edit_form.kostuaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.kostuaes, 'CUÁNTO CUESTA', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.kostualabeles }}</h2>
             </div>
+            {% if eremuak.kostuatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.kostuaes) }}
                 {{ form_widget(edit_form.kostuaes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        {% if eremuak.kostuatable %}
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+        {% else %}
+        <div class="col-sm-12 hidden">
+        {% endif %}
             <div>
                 <br/>
                 {{ form_errors(edit_form.azpiatalak) }}
@@ -198,70 +285,112 @@
         </div>
     </div>
 
+
+    {% if (eremuak.ebazpensinpli or eremuak.arduraaitorpena or eremuak.aurreikusi or eremuak.arrunta or eremuak.isiltasunadmin) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>PROZEDURAREN EPEA</h2>
+                <h2>{{ labelak.epealabeleu }}</h2>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>PLAZO DEL PROCEDIMIENTO</h2>
+                <h2>{{ labelak.epealabeles }}</h2>
             </div>
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+            {% if eremuak.aurreikusi %}
             <div>
-                {{ form_label(edit_form.aurreikusi, 'Aurreikusitako epea / Plazo estimado', { 'label_attr': {'class': 'control-label'} }) }}
+            {% else %}
+            <div class="hidden">
+            {% endif %}
+                {#{{ form_label(edit_form.aurreikusi, 'Aurreikusitako epea / Plazo estimado', { 'label_attr': {'class': 'control-label'} }) }}#}
+                <label class="control-label">{{ labelak.aurreikusilabeleu }}/{{ labelak.aurreikusilabeles }}</label>
                 {{ form_errors(edit_form.aurreikusi) }}
                 {{ form_widget(edit_form.aurreikusi, {'attr': {'class': 'form-control'}}) }}
             </div>
+            {% if eremuak.arrunta %}
             <div>
-                {{ form_label(edit_form.arrunta, 'Prozedura arrunta. Legezko gehienezko epea / Procedimiento habitual. Plazo limite legal', { 'label_attr': {'class': 'control-label'} }) }}
+            {% else %}
+            <div class="hidden">
+            {% endif %}
+                <label class="control-label">{{ labelak.arruntalabeleu }}/{{ labelak.arruntalabeles }}</label>
                 {{ form_errors(edit_form.arrunta) }}
                 {{ form_widget(edit_form.arrunta, {'attr': {'class': 'form-control'}}) }}
             </div>
+            {% if eremuak.ebazpensinpli %}
             <div>
-                {{ form_label(edit_form.ebazpensinpli, 'Prozedura sinplifikatua onartzen da? (30 egun)', { 'label_attr': {'class': 'control-label'} }) }}
+            {% else %}
+            <div class="hidden">
+            {% endif %}
+                <label class="control-label">{{ labelak.ebazpensinplilabeleu }}</label>
                 {{ form_errors(edit_form.ebazpensinpli) }}
                 {{ form_widget(edit_form.ebazpensinpli, {'attr': {'class': 'c-checkbox'}}) }}
-                {{ form_label(edit_form.ebazpensinpli, '¿Admite procedimiento simplificado? (30 dias)', { 'label_attr': {'class': 'control-label'} }) }}
+                <label class="control-label">{{ labelak.ebazpensinplilabeles }}</label>
             </div>
+            {% if eremuak.arduraaitorpena %}
             <div>
-                {{ form_label(edit_form.arduraaitorpena, 'Erantzunkizun-aitorpena onartzen da?', { 'label_attr': {'class': 'control-label'} }) }}
+            {% else %}
+            <div class="hidden">
+            {% endif %}
+                <label class="control-label">{{ labelak.arduraaitorpenalabeleu }}</label>
                 {{ form_errors(edit_form.arduraaitorpena) }}
                 {{ form_widget(edit_form.arduraaitorpena, {'attr': {'class': 'c-checkbox'}}) }}
-                {{ form_label(edit_form.arduraaitorpena, '¿Admite declaración de responsabilidad?', { 'label_attr': {'class': 'control-label'} }) }}
+                <label class="control-label">{{ labelak.arduraaitorpenalabeles }}</label>
             </div>
+            {% if eremuak.isiltasunadmin %}
             <div>
-                {{ form_label(edit_form.isiltasunadmin, 'Isiltasun-administratiboaren izaera / Carácter del silencio administrativo', { 'label_attr': {'class': 'control-label'} }) }}
+            {% else %}
+            <div class="hidden">
+            {% endif %}
+                <label class="control-label">{{ labelak.isiltasunadminlabeleu }}/{{ labelak.isiltasunadminlabeles }}</label>
                 {{ form_errors(edit_form.isiltasunadmin) }}
                 {{ form_widget(edit_form.isiltasunadmin, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
 
+    {% if (eremuak.araudiatext or eremuak.araudiatable) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.araudiaeu, 'ARAUDI APLIKAGARRIA', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.araudialabeleu }}</h2>
             </div>
+            {% if eremuak.araudiatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.araudiaeu) }}
                 {{ form_widget(edit_form.araudiaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.araudiaes, 'NORMATIVA APLICABLE', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.araudialabeles }}</h2>
             </div>
+            {% if eremuak.araudiatext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.araudiaes) }}
                 {{ form_widget(edit_form.araudiaes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        {% if eremuak.araudiatable %}
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+        {% else %}
+        <div class="col-sm-12 hidden">
+        {% endif %}
             <div>
                 <br/>
                 {{ form_errors(edit_form.araudiak) }}
@@ -270,27 +399,43 @@
         </div>
     </div>
 
+    {% if (eremuak.prozeduratext or eremuak.prozeduratable) %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.prozeduraeu, 'ESKAERA JASO ONDOREN JARRAITU BEHARREKO PROZEDURA', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.prozeduralabeleu }}</h2>
             </div>
+            {% if eremuak.prozeduratext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.prozeduraeu) }}
                 {{ form_widget(edit_form.prozeduraeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.prozeduraes, 'PROCEDIMIENTO A SEGUIR DESPUÉS DE LA SOLICITUD', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+                <h2>{{ labelak.prozeduralabeles }}</h2>
             </div>
+            {% if eremuak.prozeduratext %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_errors(edit_form.prozeduraes) }}
                 {{ form_widget(edit_form.prozeduraes, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
+        {% if eremuak.prozeduratable %}
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+        {% else %}
+        <div class="col-sm-12 hidden">
+        {% endif %}
             <div>
                 <br/>
                 {{ form_errors(edit_form.prozedurak) }}
@@ -299,79 +444,105 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.tramiteakeu, 'GEROAGOKO IZAPIDEEN LABURPENA', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+    {% if (eremuak.tramiteatext or eremuak.tramiteatable) %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.tramitealabeleu }}</h2>
+                </div>
+                {% if eremuak.tramiteatext %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.tramiteakeu) }}
+                        {{ form_widget(edit_form.tramiteakeu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
             </div>
-            <div>
-                {{ form_errors(edit_form.tramiteakeu) }}
-                {{ form_widget(edit_form.tramiteakeu, {'attr': {'class': 'form-control'}}) }}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.tramitealabeles }}</h2>
+                </div>
+                {% if eremuak.tramiteatext %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.tramiteakes) }}
+                        {{ form_widget(edit_form.tramiteakes, {'attr': {'class': 'form-control'}}) }}
+                    </div>
             </div>
+            {% if eremuak.tramiteatable %}
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+            {% else %}
+                <div class="col-sm-12 hidden">
+            {% endif %}
+                    <div>
+                        <br/>
+                        {{ form_errors(edit_form.tramiteak) }}
+                        {{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-group'}}) }}
+                    </div>
+                </div>
         </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.tramiteakes, 'RESUMEN DE TRÁMITES POSTERIORES', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+
+    {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+            <div class="col-sm-6">
+                <div class="page-header">
+                        <h2>{{ labelak.norkebatzilabeleu }}</h2>
+                </div>
+                {% if eremuak.norkebatzitext %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.norkonartueu) }}
+                        {{ form_widget(edit_form.norkonartueu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
             </div>
-            <div>
-                {{ form_errors(edit_form.tramiteakes) }}
-                {{ form_widget(edit_form.tramiteakes, {'attr': {'class': 'form-control'}}) }}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.norkebatzilabeles }}</h2>
+                </div>
+                {% if eremuak.norkebatzitext %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.norkonartues) }}
+                        {{ form_widget(edit_form.norkonartues, {'attr': {'class': 'form-control'}}) }}
+                    </div>
             </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div>
-                <br/>
-                {{ form_errors(edit_form.tramiteak) }}
-                {{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-group'}}) }}
-            </div>
-        </div>
+            {% if eremuak.norkebatzitable %}
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+            {% else %}
+                <div class="col-sm-12 hidden">
+            {% endif %}
+                    <div>
+                        {{ form_errors(edit_form.norkebatzi) }}
+                        {{ form_widget(edit_form.norkebatzi, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
     </div>
+
 
     <div class="row">
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.norkebatzi, 'NORK ONARTU BEHAR DU', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.norkonartueu) }}
-                {{ form_widget(edit_form.norkonartueu, {'attr': {'class': 'form-control'}}) }}
+                <h2>{{ labelak.udalsailalabeleu }}</h2>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.norkebatzi, 'QUIÉN LO APRUEBA', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.norkonartues) }}
-                {{ form_widget(edit_form.norkonartues, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div>
-                {{ form_errors(edit_form.norkebatzi) }}
-                {{ form_widget(edit_form.norkebatzi, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.azpisaila, 'IZAPIDETZEKO ARDURA DUEN UDAL SAILA', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.azpisaila, 'DEPARTAMENTO MUNICIPAL RESPONSABLE DE LA TRAMITACIÓN', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
+                <h2>{{ labelak.udalsailalabeles }}</h2>
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -383,166 +554,224 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.oharrakeu, 'OHARRAK', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+    {% if eremuak.oharraktext %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.oharraklabeleu }}</h2>
+                </div>
+                <div>
+                    {{ form_errors(edit_form.oharrakeu) }}
+                    {{ form_widget(edit_form.oharrakeu, {'attr': {'class': 'form-control'}}) }}
+                </div>
             </div>
-            <div>
-                {{ form_errors(edit_form.oharrakeu) }}
-                {{ form_widget(edit_form.oharrakeu, {'attr': {'class': 'form-control'}}) }}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.oharraklabeles }}</h2>
+                </div>
+                <div>
+                    {{ form_errors(edit_form.oharrakes) }}
+                    {{ form_widget(edit_form.oharrakes, {'attr': {'class': 'form-control'}}) }}
+                </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.oharrakes, 'OBSERVACIONES', { 'label_attr': {'class': 'control-label'} }) }}</h2>
+
+    {% if (eremuak.besteak1text or eremuak.besteak1table) %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.besteak1labeleu }}</h2>
+                </div>
+                {% if eremuak.besteak1text %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.besteak1eu) }}
+                        {{ form_widget(edit_form.besteak1eu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
             </div>
-            <div>
-                {{ form_errors(edit_form.oharrakes) }}
-                {{ form_widget(edit_form.oharrakes, {'attr': {'class': 'form-control'}}) }}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.besteak1labeles }}</h2>
+                </div>
+                {% if eremuak.besteak1text %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.besteak1es) }}
+                        {{ form_widget(edit_form.besteak1es, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            {% if eremuak.besteak1table %}
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+            {% else %}
+                <div class="col-sm-12 hidden">
+            {% endif %}
+                    <br/>
+                    {{ form_errors(edit_form.besteak1ak) }}
+                    {{ form_widget(edit_form.besteak1ak, {'attr': {'class': 'form-group'}}) }}
+                </div>
+        </div>
+
+
+
+    {% if (eremuak.besteak2text or eremuak.besteak2table) %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.besteak2labeleu }}</h2>
+                </div>
+                {% if eremuak.besteak2text %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.besteak2eu) }}
+                        {{ form_widget(edit_form.besteak2eu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.besteak2labeles }}</h2>
+                </div>
+                {% if eremuak.besteak2text %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.besteak2es) }}
+                        {{ form_widget(edit_form.besteak2es, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            {% if eremuak.besteak2table %}
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+            {% else %}
+                <div class="col-sm-12 hidden">
+            {% endif %}
+                <div>
+                    <br/>
+                    {{ form_errors(edit_form.besteak2ak) }}
+                    {{ form_widget(edit_form.besteak2ak, {'attr': {'class': 'form-group'}}) }}
+                </div>
             </div>
         </div>
-    </div>
+
+    {% if (eremuak.besteak3text or eremuak.besteak3table) %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.besteak3labeleu }}</h2>
+                </div>
+                {% if eremuak.besteak3text %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.besteak3eu) }}
+                        {{ form_widget(edit_form.besteak3eu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.besteak3labeleu }}</h2>
+                </div>
+                {% if eremuak.besteak3text %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.besteak3es) }}
+                        {{ form_widget(edit_form.besteak3es, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            {% if eremuak.besteak2table %}
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+            {% else %}
+                <div class="col-sm-12 hidden">
+            {% endif %}
+                    <div>
+                        <br/>
+                        {{ form_errors(edit_form.besteak3ak) }}
+                        {{ form_widget(edit_form.besteak3ak, {'attr': {'class': 'form-group'}}) }}
+                    </div>
+                </div>
+        </div>
+
+    {% if (eremuak.datuenbabesatext or eremuak.datuenbabesatable) %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.datuenbabesalabeleu }}</h2>
+                </div>
+                {% if eremuak.datuenbabesatext %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.datuenbabesaeu) }}
+                        {{ form_widget(edit_form.datuenbabesaeu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.datuenbabesalabeles }}</h2>
+                </div>
+                {% if eremuak.datuenbabesatext %}
+                    <div>
+                {% else %}
+                    <div class="hidden">
+                {% endif %}
+                        {{ form_errors(edit_form.datuenbabesaes) }}
+                        {{ form_widget(edit_form.datuenbabesaes, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+            </div>
+            {% if eremuak.datuenbabesatable %}
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+            {% else %}
+                <div class="col-sm-12 hidden">
+            {% endif %}
+                    <div>
+                        {{ form_errors(edit_form.datuenbabesa) }}
+                        {{ form_widget(edit_form.datuenbabesa, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+        </div>
 
     <div class="row">
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.besteak1eu, 'BESTEAK1', { 'label_attr': {'class': 'control-label'} }) }}</h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.besteak1eu) }}
-                {{ form_widget(edit_form.besteak1eu, {'attr': {'class': 'form-control'}}) }}
+                <h2>FAMILIAK</h2>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>{{ form_label(edit_form.besteak1es, 'BESTEAK1', { 'label_attr': {'class': 'control-label'} }) }}</h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.besteak1es) }}
-                {{ form_widget(edit_form.besteak1es, {'attr': {'class': 'form-control'}}) }}
+                <h2>FAMILIAS</h2>
             </div>
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <div>
-                <br/>
-                {{ form_errors(edit_form.besteak1ak) }}
-                {{ form_widget(edit_form.besteak1ak, {'attr': {'class': 'form-group'}}) }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.besteak2eu, 'BESTEAK2', { 'label_attr': {'class': 'control-label'} }) }}</h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.besteak2eu) }}
-                {{ form_widget(edit_form.besteak2eu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.besteak2es, 'BESTEAK2', { 'label_attr': {'class': 'control-label'} }) }}</h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.besteak2es) }}
-                {{ form_widget(edit_form.besteak2es, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div>
-                <br/>
-                {{ form_errors(edit_form.besteak2ak) }}
-                {{ form_widget(edit_form.besteak2ak, {'attr': {'class': 'form-group'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.besteak3eu, 'BESTEAK3', { 'label_attr': {'class': 'control-label'} }) }}</h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.besteak3eu) }}
-                {{ form_widget(edit_form.besteak3eu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ form_label(edit_form.besteak3es, 'BESTEAK3', { 'label_attr': {'class': 'control-label'} }) }}</h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.besteak3es) }}
-                {{ form_widget(edit_form.besteak3es, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div>
-                <br/>
-                {{ form_errors(edit_form.besteak3ak) }}
-                {{ form_widget(edit_form.besteak3ak, {'attr': {'class': 'form-group'}}) }}
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.datuenbabesa, 'DATU PERTSONALEN BABESA', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.datuenbabesaeu) }}
-                {{ form_widget(edit_form.datuenbabesaeu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.datuenbabesa, 'PROTECCIÓN DE DATOS DE CARÁCTER PERSONAL', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
-            </div>
-            <div>
-                {{ form_errors(edit_form.datuenbabesaes) }}
-                {{ form_widget(edit_form.datuenbabesaes, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div>
-
-                {{ form_errors(edit_form.datuenbabesa) }}
-                {{ form_widget(edit_form.datuenbabesa, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.familiak, 'FAMILIAK', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.familiak, 'FAMILIAS', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div>
-
                 {{ form_errors(edit_form.familiak) }}
                 {{ form_widget(edit_form.familiak, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -551,22 +780,17 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.etiketak, 'ETIKETAK', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
+                <h2>ETIKETAK</h2>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.etiketak, 'ETIQUETAS', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
+                <h2>ETIQUETAS</h2>
             </div>
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             <div>
-
                 {{ form_errors(edit_form.etiketak) }}
                 {{ form_widget(edit_form.etiketak, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -576,16 +800,12 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.zerbitzua, 'ESPEDIENTE KUDEAKETA', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
+                <h2>ESPEDIENTE KUDEAKETA</h2>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h2>
-                    {{ form_label(edit_form.zerbitzua, 'GESTIÓN DE EXPEDIENTES', { 'label_attr': {'class': 'control-label'} }) }}
-                </h2>
+                <h2>GESTIÓN DE EXPEDIENTES</h2>
             </div>
         </div>
         <div class="col-sm-2"></div>
