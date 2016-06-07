@@ -146,7 +146,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.dokumentazioak) }}
-                {{ form_widget(edit_form.dokumentazioak, {'attr': {'class': 'form-group'}}) }}
+                {{ form_widget(edit_form.dokumentazioak, {'attr': {'class': 'form-group select2'}}) }}
             </div>
         </div>
     </div>
@@ -191,7 +191,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.doklagunak) }}
-                {{ form_widget(edit_form.doklagunak, {'attr': {'class': 'form-group'}}) }}
+                {{ form_widget(edit_form.doklagunak, {'attr': {'class': 'form-group select2'}}) }}
             </div>
         </div>
     </div>
@@ -235,7 +235,7 @@
         <div class="col-sm-12 hidden">
         {% endif %}
             {{ form_errors(edit_form.kanalak) }}
-            {{ form_widget(edit_form.kanalak, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(edit_form.kanalak, {'attr': {'class': 'form-control select2'}}) }}
         </div>
     </div>
 
@@ -280,7 +280,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.azpiatalak) }}
-                {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group'}}) }}
+                {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
             </div>
         </div>
     </div>
@@ -484,7 +484,7 @@
                     <div>
                         <br/>
                         {{ form_errors(edit_form.tramiteak) }}
-                        {{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-group'}}) }}
+                        {{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-group select2'}}) }}
                     </div>
                 </div>
         </div>
@@ -618,7 +618,7 @@
             {% endif %}
                     <br/>
                     {{ form_errors(edit_form.besteak1ak) }}
-                    {{ form_widget(edit_form.besteak1ak, {'attr': {'class': 'form-group'}}) }}
+                    {{ form_widget(edit_form.besteak1ak, {'attr': {'class': 'form-group select2'}}) }}
                 </div>
         </div>
 
@@ -664,7 +664,7 @@
                 <div>
                     <br/>
                     {{ form_errors(edit_form.besteak2ak) }}
-                    {{ form_widget(edit_form.besteak2ak, {'attr': {'class': 'form-group'}}) }}
+                    {{ form_widget(edit_form.besteak2ak, {'attr': {'class': 'form-group select2'}}) }}
                 </div>
             </div>
         </div>
@@ -709,7 +709,7 @@
                     <div>
                         <br/>
                         {{ form_errors(edit_form.besteak3ak) }}
-                        {{ form_widget(edit_form.besteak3ak, {'attr': {'class': 'form-group'}}) }}
+                        {{ form_widget(edit_form.besteak3ak, {'attr': {'class': 'form-group select2'}}) }}
                     </div>
                 </div>
         </div>
@@ -901,6 +901,39 @@
                 theme: 'bootstrap',
                 tags: true
             });
+            $('#fitxa_kanalak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_doklagunak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_besteak1ak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_besteak2ak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_besteak3ak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_azpiatalak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_tramiteak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_dokumentazioak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+
 
         });
     </script>

@@ -39,6 +39,12 @@ class Baldintza
     private $id;
 
 
+    public function __toString()
+    {
+        return $this->getBaldintzaeu();
+    }
+
+
 
     /**
      * Set baldintzaeu

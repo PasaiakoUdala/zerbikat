@@ -113,7 +113,7 @@ class FitxaType extends AbstractType
                 'required' => false,
                 'multiple'=>'multiple',
                 'placeholder' => 'Aukeratu dokumentuak',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'group_by' => 'dokumentumota',
             ))
 
@@ -134,7 +134,7 @@ class FitxaType extends AbstractType
                 'class' => 'BackendBundle:Tramitea',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu tramiteak'
             ))
             ->add('kanalak', EntityType::class, array(
@@ -149,21 +149,21 @@ class FitxaType extends AbstractType
                 'class' => 'BackendBundle:Besteak1',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu besteak1'
             ))
             ->add('besteak2ak', EntityType::class, array(
                 'class' => 'BackendBundle:Besteak2',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu besteak2'
             ))
             ->add('besteak3ak', EntityType::class, array(
                 'class' => 'BackendBundle:Besteak3',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu besteak3'
             ))
             ->add('norkeskatuak', EntityType::class, array(
@@ -177,14 +177,14 @@ class FitxaType extends AbstractType
                 'class' => 'BackendBundle:Doklagun',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu dokumentazio lagungarria'
             ))
             ->add('azpiatalak', EntityType::class, array(
                 'class' => 'BackendBundle:Azpiatala',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu kostu taulak',
                  'group_by' => 'atala'
             ))
