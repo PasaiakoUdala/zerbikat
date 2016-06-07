@@ -773,7 +773,7 @@
         <div class="col-sm-8">
             <div>
                 {{ form_errors(edit_form.familiak) }}
-                {{ form_widget(edit_form.familiak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.familiak, {'attr': {'class': 'form-control select2'}}) }}
             </div>
         </div>
     </div>
@@ -792,7 +792,7 @@
         <div class="col-sm-8">
             <div>
                 {{ form_errors(edit_form.etiketak) }}
-                {{ form_widget(edit_form.etiketak, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.etiketak, {'attr': {'class': 'form-control select2'}}) }}
             </div>
         </div>
     </div>
@@ -885,4 +885,23 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(function () {
+            $('#fitxa_etiketak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_familiak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+
+        });
+    </script>
 {% endblock %}
