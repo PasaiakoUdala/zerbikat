@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+
+    {% for familia in familiak %}
+            <div class="list-group">
+                <div class="list-group-item active">
+                    <h4 class="list-group-item-heading active">{{ familia.familiaeu }}</h4>
+                    <p class="list-group-item-text">{{ familia.deskribapenaeu }}</p>
+                </div>
+                    {% for fitxa in familia.fitxak %}
+                        <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="list-group-item">{{ fitxa.deskribapenaeu }}</a>
+                    {% endfor %}
+            </div>
+    {% endfor %}
+
+    <div class="list-group">
+        <div class="list-group-item active">
+            <h4 class="list-group-item-heading active">GEHIEN KONTSULTATUTAKOAK</h4>
+            <p class="list-group-item-text">Gehien kontsultatuko tramiteak</p>
+        </div>
+        {#{% for fitxa in fitxak %}#}
+            {#<a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="list-group-item">{{ fitxa.deskribapenaeu }}</a>#}
+        {#{% endfor %}#}
+        {% set kont=0 %}
+        {% for fitxa in fitxak if kont < 10 %}
+            <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="list-group-item">{{ fitxa.deskribapenaeu }}</a>
+            {% set kont=kont+1 %}
+        {% endfor %}
+    </div>
+
+    {#<table class="table">#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Kodea</th>#}
+                {#<th>Deskribapena</th>#}
+                {#<th>Saila</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for fitxa in fitxas %}#}
+            {#<tr>#}
+                {#<td>{{ fitxa.espedientekodea }}</td>#}
+                {#<td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.deskribapenaeu }}<br>#}
+                {#{{ fitxa.deskribapenaes }}</a></td>#}
+                {#<td>#}
+                    {#{% if fitxa.azpisaila %} {{ fitxa.azpisaila.saila }}<br>{{ fitxa.azpisaila }}#}
+                    {#{% endif %}#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+
+{% endblock %}
