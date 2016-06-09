@@ -2560,4 +2560,52 @@ class Eremuak
     {
         return $this->udalsailalabeles;
     }
+
+    /**
+     * Set epealabeleu
+     *
+     * @param string $epealabeleu
+     *
+     * @return Eremuak
+     */
+    public function setEpealabeleu($epealabeleu)
+    {
+        $this->epealabeleu = $epealabeleu;
+
+        return $this;
+    }
+
+    /**
+     * Get epealabeleu
+     *
+     * @return string
+     */
+    public function getEpealabeleu()
+    {
+        return $this->epealabeleu;
+    }
+
+    /**
+     * Set epealabeles
+     *
+     * @param string $epealabeles
+     *
+     * @return Eremuak
+     */
+    public function setEpealabeles($epealabeles)
+    {
+        $this->epealabeles = $epealabeles;
+
+        return $this;
+    }
+
+    /**
+     * Get epealabeles
+     *
+     * @return string
+     */
+    public function getEpealabeles()
+    {
+        return $this->epealabeles;
+    }
 }

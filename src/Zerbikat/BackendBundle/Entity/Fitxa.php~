@@ -444,12 +444,23 @@ class Fitxa
      */
     private $etiketak;
 
+//    /**
+//     * @var tramiteak[]
+//     *
+//     * @ORM\OneToMany(targetEntity="FitxaTramitea", mappedBy="fitxa", cascade={"remove"})
+//     */
+//    private $tramiteak;
+
     /**
-     * @var tramiteak[]
-     *
-     * @ORM\OneToMany(targetEntity="FitxaTramitea", mappedBy="fitxa", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Tramitea")
+     * @ORM\JoinTable(name="fitxa_tramitea",
+     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tramitea_id", referencedColumnName="id", unique=true)}
+     *      )
      */
     private $tramiteak;
+
+
 
     /**
      * @var norkeskatuak[]

@@ -444,12 +444,23 @@ class Fitxa
      */
     private $etiketak;
 
+//    /**
+//     * @var tramiteak[]
+//     *
+//     * @ORM\OneToMany(targetEntity="FitxaTramitea", mappedBy="fitxa", cascade={"remove"})
+//     */
+//    private $tramiteak;
+
     /**
-     * @var tramiteak[]
-     *
-     * @ORM\OneToMany(targetEntity="FitxaTramitea", mappedBy="fitxa", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Tramitea")
+     * @ORM\JoinTable(name="fitxa_tramitea",
+     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tramitea_id", referencedColumnName="id", unique=true)}
+     *      )
      */
     private $tramiteak;
+
+
 
     /**
      * @var norkeskatuak[]
@@ -465,13 +476,24 @@ class Fitxa
      */
     private $doklagunak;
 
+//    /**
+//     * @var prozedurak[]
+//     *
+//     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" , cascade={"remove"})
+//     */
+//    private $prozedurak;
+
     /**
-     * @var prozedurak[]
-     *
-     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" , cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Prozedura")
+     * @ORM\JoinTable(name="fitxa_prozedura",
+     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
+     *      )
      */
     private $prozedurak;
-    
+
+
+
     /**
      * @var azpiatalak[]
      *
