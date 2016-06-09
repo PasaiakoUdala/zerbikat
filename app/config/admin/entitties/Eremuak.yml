@@ -122,5 +122,7 @@ easy_admin:
                     - { property: 'udalsailalabeles', label: 'Udal saila etiketa (es)', css_class: 'col-sm-5 large' }
                     - { property: 'epealabeleu', label: 'Prozeduraren epea etiketa (eu)', css_class: 'col-sm-5 large' }
                     - { property: 'epealabeles', label: 'Prozeduraren epea etiketa (es)', css_class: 'col-sm-5 large' }
+                    - { property: 'doanlabeleu', label: 'Kostua hutsik dagoeneko etiketa (eu)', css_class: 'col-sm-5 large' }
+                    - { property: 'doanlabeles', label: 'Kostua hutsik dagoeneko etiketa (es)', css_class: 'col-sm-5 large' }
 
                     - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }

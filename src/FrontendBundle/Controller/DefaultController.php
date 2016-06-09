@@ -18,7 +18,7 @@ class DefaultController extends Controller
 
 
     /**
-     * @Route("/{udala}/{_locale}/",
+     * @Route("/{udala}/{_locale}/", name="frontend_fitxa_index",
      *         requirements={
      *           "_locale": "eu|es",
      *           "udala": "\d+"
@@ -81,16 +81,16 @@ class DefaultController extends Controller
             FROM BackendBundle:Eremuak f
             WHERE f.udala = :udala
         ');
-        $query->setParameter('udala', '064');
+        $query->setParameter('udala', $udala);
         //$eremuak = $query->getResult();
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery('
-          SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.tramitealabeleu,f.tramitealabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.udalsailalabeleu,f.udalsailalabeles,f.epealabeleu,f.epealabeles
+          SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.tramitealabeleu,f.tramitealabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.udalsailalabeleu,f.udalsailalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles
             FROM BackendBundle:Eremuak f
             WHERE f.udala = :udala
         ');
-        $query->setParameter('udala', '064');
+        $query->setParameter('udala', $udala);
         $labelak = $query->getSingleResult();
 
 

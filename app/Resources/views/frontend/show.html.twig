@@ -5,20 +5,6 @@
     {#{{ dump(labelak)}}#}
 
     <table class="table table-bordered">
-    <tr><th class="col-md-2 text-center">
-            <img src='{{ fitxa.udala.logoa }}' />
-            <h4>{{ fitxa.udala.izendapenaeu }}</h4>
-            <h5>{{ fitxa.udala.ifk }}</h5>
-        </th>
-        <th class="col-md-1"><h1>{{ fitxa.espedientekodea }}</h1></th>
-        <th class="col-md-9">
-            <h2>
-                {% if app.request.locale == 'eu'%}{{ fitxa.deskribapenaeu }}
-                {% else %}{{ fitxa.deskribapenaes }}
-                {% endif %}
-            </h2>
-        </th>
-    </tr>
         <tr><td colspan="3" class="text-right">
                 {% if fitxa.updatedAt %}
                     {% if app.request.locale == 'eu'%}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}
@@ -26,6 +12,20 @@
                     {% endif %}
                 {% endif %}
             </td>
+        </tr>
+        <tr><th class="col-md-2 text-center">
+                <img src='{{ fitxa.udala.logoa }}' />
+                <h4>{{ fitxa.udala.izendapenaeu }}</h4>
+                <h5>{{ fitxa.udala.ifk }}</h5>
+            </th>
+            <th class="col-md-1"><h1>{{ fitxa.espedientekodea }}</h1></th>
+            <th class="col-md-9">
+                <h2>
+                    {% if app.request.locale == 'eu'%}{{ fitxa.deskribapenaeu }}
+                    {% else %}{{ fitxa.deskribapenaes }}
+                    {% endif %}
+                </h2>
+            </th>
         </tr>
     </table>
 
@@ -224,9 +224,14 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="page-header">
-                <h3>{{ labelak.kostualabeleu }}</h3>
+                <h3>
+                    {% if app.request.locale == 'eu'%}{{ labelak.kostualabeleu }}
+                    {% else %}{{ labelak.kostualabeles }}
+                    {% endif %}
+                </h3>
             </div>
             <div>
+                {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                 {% for azpiatal in fitxa.azpiatalak %}
                     <table  class="table table-bordered">
@@ -256,12 +261,22 @@
                             </tr>
                         {% endfor %}
                     </table>
+                    {% set kont=kont+1 %}
                 {% endfor %}
                 {% endif %}
                 {% if eremuak.kostuatext %}
-                    {% if app.request.locale == 'eu'%}{{ fitxa.kostuaeu |raw}}
-                    {% else %}{{ fitxa.kostuaes |raw}}
+                    {% if app.request.locale == 'eu'%}
+                        {{ fitxa.kostuaeu |raw}}
+                    {% else %}
+                        {{ fitxa.kostuaes |raw}}
                     {% endif %}
+                {% endif %}
+
+                {% if (fitxa.kostuaeu is empty and kont==0 and app.request.locale == 'eu') %}
+                            {{ labelak.doanlabeleu }}
+                {% endif %}
+                {% if (fitxa.kostuaes is empty and kont==0 and app.request.locale == 'es') %}
+                            {{ labelak.doanlabeles }}
                 {% endif %}
             </div>
         </div>
@@ -341,9 +356,21 @@
                     {% for araua in fitxa.araudiak %}
                         <li>
                             {% if app.request.locale == 'eu'%}
-                                <a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}
+                                {#<a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}#}
+                                {% if araua.araudia.estekaeu %}
+                                    <a href="{{ araua.araudia.estekaeu }}">
+                                        {{ araua.araudia.arauaeu }} </a> {{ araua.atalaeu }}
+                                {% else %}
+                                    {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
+                                {% endif %}
                             {% else %}
-                                <a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
+                                {#<a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}#}
+                                {% if araua.araudia.estekaes %}
+                                    <a href="{{ araua.araudia.estekaes }}">
+                                        {{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
+                                {% else %}
+                                    {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
+                                {% endif %}
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -643,10 +670,15 @@
         </div>
     </div>
     {% endif %}
-
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('fitxa_index') }}">Back to the list</a>
+            <a href="{{ path('frontend_fitxa_index', { 'udala': udala }) }}" class="btn btn-primary">
+                {% if app.request.locale == 'eu'%}Atzera
+                {% else %}Atras
+                {% endif %}
+            </a>
         </li>
     </ul>
+</div>
 {% endblock %}

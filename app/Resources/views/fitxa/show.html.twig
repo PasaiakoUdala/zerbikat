@@ -246,6 +246,7 @@
                 <h3>{{ labelak.kostualabeleu }}</h3>
             </div>
             <div>
+                {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                 {% for azpiatal in fitxa.azpiatalak %}
                     <table  class="table table-bordered">
@@ -271,9 +272,13 @@
                             </tr>
                         {% endfor %}
                     </table>
+                    {% set kont=kont+1 %}
                 {% endfor %}
                 {% endif %}
                 {% if eremuak.kostuatext %}{{ fitxa.kostuaeu |raw}}{% endif %}
+                {% if (fitxa.kostuaeu is empty and kont==0) %}
+                    {{ labelak.doanlabeleu }}
+                {% endif %}
             </div>
         </div>
         <div class="col-sm-6">
@@ -281,6 +286,7 @@
                 <h3>{{ labelak.kostualabeles }}</h3>
             </div>
             <div>
+                {% set kont=0 %}
                 {% if eremuak.kostuatext %}
                 {% for azpiatal in fitxa.azpiatalak %}
                     <table  class="table table-bordered">
@@ -297,18 +303,23 @@
                                 <td colspan="2">{{ parrafo.testuaes }} </td>
                             </tr>
                         {% endfor %}
-
                         {% for kontzeptu in azpiatal.kontzeptuak %}
                             <tr>
                                 <td>{{ kontzeptu.kontzeptuaes }} ({{ kontzeptu.baldintza }})</td>
                                 <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
-
                             </tr>
                         {% endfor %}
                     </table>
+                    {% set kont=kont+1 %}
                 {% endfor %}
                 {% endif %}
-                {% if eremuak.kostuatext %}{{ fitxa.kostuaeu |raw}}{% endif %}
+                {% if eremuak.kostuatext %}
+                    {{ fitxa.kostuaes |raw}}
+                {% endif %}
+                {% if (fitxa.kostuaes is empty and kont==0) %}
+                    {{ labelak.doanlabeles }}
+                {% endif %}
+
             </div>
         </div>
     </div>
@@ -375,7 +386,15 @@
                 {% if eremuak.araudiatable %}
                 <ul>
                     {% for araua in fitxa.araudiak %}
-                        <li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>
+                        {#<li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>#}
+                        <li>
+                        {% if araudia.araua.estekaeu %}
+                            <a href="{{ arauda.araudia.estekaeu }}">
+                                {{ araua.araudia.arauaeu }} </a> {{ araua.atalaeu }}
+                        {% else %}
+                            {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
+                        {% endif %}
+                        </li>
                     {% endfor %}
                 </ul>
                 {% endif %}
@@ -392,6 +411,16 @@
                 <ul>
                     {% for araua in fitxa.araudiak %}
                         <li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>
+                        <li>
+                            {% if araudia.araua.estekaes %}
+                                <a href="{{ arauda.araudia.estekaes }}">
+                                    {{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
+                            {% else %}
+                                {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
+                            {% endif %}
+                        </li>
+
+
                     {% endfor %}
                 </ul>
                 {% endif %}

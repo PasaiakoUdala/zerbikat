@@ -612,6 +612,20 @@ class Eremuak
      */
     private $epealabeles;
 
+    /**
+     * @var doanlabeleu
+     *
+     * @ORM\Column(name="doanlabeleu", type="string", length=255, nullable=true)
+     */
+    private $doanlabeleu;
+
+    /**
+     * @var doanlabeles
+     *
+     * @ORM\Column(name="doanlabeles", type="string", length=255, nullable=true)
+     */
+    private $doanlabeles;
+
 
     /**
      * Constructor
@@ -715,6 +729,9 @@ class Eremuak
 
         $this->epealabeles = "PLAZO DEL PROCEDIMIENTO";
         $this->epealabeleu = "PROZEDURAREN EPEA";
+
+        $this->doanlabeles = "Gratuito";
+        $this->doanlabeleu = "Doan";
     }
 
 
@@ -2607,5 +2624,53 @@ class Eremuak
     public function getEpealabeles()
     {
         return $this->epealabeles;
+    }
+
+    /**
+     * Set doanlabeleu
+     *
+     * @param string $doanlabeleu
+     *
+     * @return Eremuak
+     */
+    public function setDoanlabeleu($doanlabeleu)
+    {
+        $this->doanlabeleu = $doanlabeleu;
+
+        return $this;
+    }
+
+    /**
+     * Get doanlabeleu
+     *
+     * @return string
+     */
+    public function getDoanlabeleu()
+    {
+        return $this->doanlabeleu;
+    }
+
+    /**
+     * Set doanlabeles
+     *
+     * @param string $doanlabeles
+     *
+     * @return Eremuak
+     */
+    public function setDoanlabeles($doanlabeles)
+    {
+        $this->doanlabeles = $doanlabeles;
+
+        return $this;
+    }
+
+    /**
+     * Get doanlabeles
+     *
+     * @return string
+     */
+    public function getDoanlabeles()
+    {
+        return $this->doanlabeles;
     }
 }

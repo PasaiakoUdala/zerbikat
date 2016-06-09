@@ -1,0 +1,20 @@
+.fitxaMenua
+{
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 40px;
+    display: block;
+    /*        background: rgba(255, 255, 165, 0.5);*/
+    position: fixed; /* could be absolute */
+    top: 0; right: 0;
+}
+
+.fitxaMenua UL
+{
+    list-style: none;
+}
+.fitxaMenua UL LI
+{
+    display: inline;
+    margin-right: 20px;
+}
