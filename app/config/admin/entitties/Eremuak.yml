@@ -121,8 +121,8 @@ easy_admin:
                     - { property: 'kanalalabeleu', label: 'Kanala etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'kanalalabeles', label: 'Kanala etiketa (es)', css_class: 'col-sm-4 large' }
 
-                    - { property: 'udalsailalabeleu', label: 'Udal saila etiketa (eu)', css_class: 'col-sm-5 large' }
-                    - { property: 'udalsailalabeles', label: 'Udal saila etiketa (es)', css_class: 'col-sm-5 large' }
+#                    - { property: 'udalsailalabeleu', label: 'Udal saila etiketa (eu)', css_class: 'col-sm-5 large' }
+#                    - { property: 'udalsailalabeles', label: 'Udal saila etiketa (es)', css_class: 'col-sm-5 large' }
                     - { property: 'epealabeleu', label: 'Prozeduraren epea etiketa (eu)', css_class: 'col-sm-5 large' }
                     - { property: 'epealabeles', label: 'Prozeduraren epea etiketa (es)', css_class: 'col-sm-5 large' }
                     - { property: 'doanlabeleu', label: 'Kostua hutsik dagoeneko etiketa (eu)', css_class: 'col-sm-5 large' }

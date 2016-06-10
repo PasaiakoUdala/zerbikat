@@ -13,9 +13,11 @@ backend:
     prefix:   /
 
 easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/"
+#    resource: "@EasyAdminBundle/Controller/"
+    resource: "@BackendBundle/Controller/AdminController.php"
     type:     annotation
-    prefix:   /admin
+    prefix:   /admin/
+#    prefix:   /admin/{udala}
 
 api:
     type:     rest

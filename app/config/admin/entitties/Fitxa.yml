@@ -11,6 +11,6 @@ easy_admin:
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields:
-                    - { property: 'espedientekodea', label: 'Espediente Kodea' }
+                    - { property: 'espedientekodea', label: 'Kodea' }
                     - { property: 'deskribapenaeu', label: 'Deskribapena' }
                     - { property: 'azpisaila', label: 'Azpisaila' }
