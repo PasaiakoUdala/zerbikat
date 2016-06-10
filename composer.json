@@ -26,7 +26,8 @@
         "egeloen/ckeditor-bundle": "^4.0",
         "friendsofsymfony/rest-bundle": "^1.7",
         "jms/serializer-bundle": "^1.1",
-        "nelmio/api-doc-bundle": "^2.12"
+        "nelmio/api-doc-bundle": "^2.12",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
 
     },
     "require-dev": {
