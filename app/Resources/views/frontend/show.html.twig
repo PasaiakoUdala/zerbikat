@@ -252,8 +252,14 @@
                         {% for kontzeptu in azpiatal.kontzeptuak %}
                             <tr>
                                 <td>
-                                    {% if app.request.locale == 'eu'%}{{ kontzeptu.kontzeptuaeu }} ({{ kontzeptu.baldintza }})
-                                    {% else %}{{ kontzeptu.kontzeptuaes }} ({{ kontzeptu.baldintza.baldintzaes }})
+                                    {% if app.request.locale == 'eu'%}{{ kontzeptu.kontzeptuaeu }}
+                                        {% if kontzeptu.baldintza %}
+                                            ({{ kontzeptu.baldintza.baldintzaeu }})
+                                        {% endif %}
+                                    {% else %}{{ kontzeptu.kontzeptuaes }}
+                                        {% if kontzeptu.baldintza %}
+                                                ({{ kontzeptu.baldintza.baldintzaes }})
+                                        {% endif %}
                                     {% endif %}
                                 </td>
                                 <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
@@ -477,8 +483,8 @@
         <div class="col-sm-12">
             <div class="page-header">
                 <h3>
-                    {% if app.request.locale == 'eu'%}{{ labelak.udalsailalabeleu }}
-                    {% else %}{{ labelak.udalsailalabeles }}
+                    {% if app.request.locale == 'eu'%}{{ labelak.azpisailalabeleu }}
+                    {% else %}{{ labelak.azpisailalabeles }}
                     {% endif %}
                 </h3>
             </div>
@@ -508,6 +514,27 @@
         </div>
     </div>
     {% endif %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <h3>
+                    {% if app.request.locale == 'eu'%}JARRAIBIDEAK (barne erabilera)
+                    {% else %}INSTRUCCIONES (uso interno)
+                    {% endif %}
+                </h3>
+            </div>
+            <div>
+                {% if app.request.locale == 'eu'%}{{ fitxa.jarraibideakeu |raw}}
+                {% else %}{{ fitxa.jarraibideakes |raw}}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+
 
     {% if (eremuak.besteak1text or eremuak.besteak1table) %}
     <div class="row">

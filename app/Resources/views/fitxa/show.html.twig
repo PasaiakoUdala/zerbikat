@@ -5,7 +5,12 @@
     {#{{ dump(labelak)}}#}
 
     <table class="table table-bordered">
-    <tr><th class="col-md-2 text-center">
+        <tr>
+            <td colspan="3" class="text-right">
+                {% if fitxa.updatedAt %}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}
+            </td>
+        </tr>
+        <tr><th class="col-md-2 text-center">
             <img src='{{ fitxa.udala.logoa }}' />
             <h4>{{ fitxa.udala.izendapenaeu }}</h4>
             <h5>{{ fitxa.udala.ifk }}</h5>
@@ -15,11 +20,12 @@
             <h2>{{ fitxa.deskribapenaeu }}</h2>
             <h3>{{ fitxa.deskribapenaes }}</h3>
         </th>
-    </tr>
-        <tr><td colspan="3" class="text-right">
-                {% if fitxa.updatedAt %}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}
-            </td>
         </tr>
+        {#<tr>#}
+            {#<td colspan="3" class="text-right">#}
+                {#{% if fitxa.updatedAt %}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}#}
+            {#</td>#}
+        {#</tr>#}
     </table>
 
     {% if eremuak.helburuatext %}
@@ -266,7 +272,11 @@
 
                         {% for kontzeptu in azpiatal.kontzeptuak %}
                             <tr>
-                                <td>{{ kontzeptu.kontzeptuaeu }} ({{ kontzeptu.baldintza }})</td>
+                                <td>{{ kontzeptu.kontzeptuaeu }}
+                                    {% if kontzeptu.baldintza %}
+                                        ({{ kontzeptu.baldintza.baldintzaeu }})
+                                    {% endif %}
+                                </td>
                                 <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
 
                             </tr>
@@ -305,7 +315,11 @@
                         {% endfor %}
                         {% for kontzeptu in azpiatal.kontzeptuak %}
                             <tr>
-                                <td>{{ kontzeptu.kontzeptuaes }} ({{ kontzeptu.baldintza }})</td>
+                                <td>{{ kontzeptu.kontzeptuaes }}
+                                    {% if kontzeptu.baldintza %}
+                                        ({{ kontzeptu.baldintza.baldintzaes }})
+                                    {% endif %}
+                                </td>
                                 <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
                             </tr>
                         {% endfor %}
@@ -388,8 +402,8 @@
                     {% for araua in fitxa.araudiak %}
                         {#<li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>#}
                         <li>
-                        {% if araudia.araua.estekaeu %}
-                            <a href="{{ arauda.araudia.estekaeu }}">
+                        {% if araua.araudia.estekaeu %}
+                            <a href="{{ araua.araudia.estekaeu }}">
                                 {{ araua.araudia.arauaeu }} </a> {{ araua.atalaeu }}
                         {% else %}
                             {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
@@ -410,10 +424,10 @@
                 {% if eremuak.araudiatable %}
                 <ul>
                     {% for araua in fitxa.araudiak %}
-                        <li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>
+                        {#<li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>#}
                         <li>
-                            {% if araudia.araua.estekaes %}
-                                <a href="{{ arauda.araudia.estekaes }}">
+                            {% if araua.araudia.estekaes %}
+                                <a href="{{ araua.araudia.estekaes }}">
                                     {{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
                             {% else %}
                                 {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
@@ -524,10 +538,11 @@
     </div>
     {% endif %}
 
+    {% if (eremuak.azpisailatable) %}
     <div class="row">
         <div class="col-sm-6">
             <div class="page-header">
-                <h3>{{ labelak.udalsailalabeleu }}</h3>
+                <h3>{{ labelak.azpisailalabeleu }}</h3>
             </div>
             <div>
                 {{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}
@@ -535,13 +550,14 @@
         </div>
         <div class="col-sm-6">
             <div class="page-header">
-                <h3>{{ labelak.udalsailalabeles }}</h3>
+                <h3>{{ labelak.azpisailalabeles }}</h3>
             </div>
             <div>
                 {{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}
             </div>
         </div>
     </div>
+    {% endif %}
 
     {% if eremuak.oharraktext %}
     <div class="row">
@@ -563,6 +579,29 @@
         </div>
     </div>
     {% endif %}
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="page-header">
+                {#<h3>{{ labelak.oharraklabeleu }}</h3>#}
+                <h3>JARRAIBIDEAK (barne erabilera)</h3>
+            </div>
+            <div>
+                {{ fitxa.jarraibideakeu |raw}}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="page-header">
+                {#<h3>{{ labelak.oharraklabeles }}</h3>#}
+                <h3>INSTRUCCIONES (uso interno)</h3>
+            </div>
+            <div>
+                {{ fitxa.jarraibideakes |raw}}
+            </div>
+        </div>
+    </div>
+
+
 
     {% if (eremuak.besteak1text or eremuak.besteak1table) %}
     <div class="row">
@@ -740,17 +779,17 @@
     </div>
     {% endif %}
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('fitxa_index') }}">Back to the list</a>
+            <a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
         </li>
         <li>
-            <a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}">Edit</a>
+            <a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="btn btn-primary">Aldatu</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        {#<li>#}
+            {#{{ form_start(delete_form) }}<input type="submit" value="Ezabatu" class="btn btn-primary">{{ form_end(delete_form) }}#}
+        {#</li>#}
     </ul>
+</div>
 {% endblock %}

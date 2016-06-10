@@ -44,6 +44,13 @@ class Azpisaila
     private $arduraduna;
 
     /**
+     * @var arduradunahaz
+     *
+     * @ORM\Column(name="arduradunahaz", type="string", length=255, nullable=true)
+     */
+    private $arduradunahaz;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
@@ -512,5 +519,29 @@ class Azpisaila
     public function getBarrutia()
     {
         return $this->barrutia;
+    }
+
+    /**
+     * Set arduradunahaz
+     *
+     * @param string $arduradunahaz
+     *
+     * @return Azpisaila
+     */
+    public function setArduradunahaz($arduradunahaz)
+    {
+        $this->arduradunahaz = $arduradunahaz;
+
+        return $this;
+    }
+
+    /**
+     * Get arduradunahaz
+     *
+     * @return string
+     */
+    public function getArduradunahaz()
+    {
+        return $this->arduradunahaz;
     }
 }

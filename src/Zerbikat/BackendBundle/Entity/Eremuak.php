@@ -434,6 +434,26 @@ class Eremuak
      */
     private $datuenbabesalabeles;
 
+    /**
+     * @var azpisailatable
+     *
+     * @ORM\Column(name="azpisailatable", type="boolean", nullable=false,options={"default" = false})
+     */
+    private $azpisailatable;
+
+    /**
+     * @var azpisailalabeleu
+     *
+     * @ORM\Column(name="azpisailalabeleu", type="string", length=255, nullable=true)
+     */
+    private $azpisailalabeleu;
+
+    /**
+     * @var azpisailalabeles
+     *
+     * @ORM\Column(name="azpisailalabeles", type="string", length=255, nullable=true)
+     */
+    private $azpisailalabeles;
 
     /**
      * @var norkebatzitext
@@ -583,19 +603,19 @@ class Eremuak
     private $kanalalabeles;
 
 
-    /**
-     * @var udalsailalabeleu
-     *
-     * @ORM\Column(name="udalsailalabeleu", type="string", length=255, nullable=true)
-     */
-    private $udalsailalabeleu;
-
-    /**
-     * @var udalsailalabeles
-     *
-     * @ORM\Column(name="udalsailalabeles", type="string", length=255, nullable=true)
-     */
-    private $udalsailalabeles;
+//    /**
+//     * @var udalsailalabeleu
+//     *
+//     * @ORM\Column(name="udalsailalabeleu", type="string", length=255, nullable=true)
+//     */
+//    private $udalsailalabeleu;
+//
+//    /**
+//     * @var udalsailalabeles
+//     *
+//     * @ORM\Column(name="udalsailalabeles", type="string", length=255, nullable=true)
+//     */
+//    private $udalsailalabeles;
 
 
     /**
@@ -687,6 +707,10 @@ class Eremuak
         $this->kanalatable = true;
         $this->kanalatext = false;
 
+        $this->azpisailalabeles = "DEPARTAMENTO MUNICIPAL RESPONSABLE DE LA TRAMITACIÓN";
+        $this->azpisailalabeleu = "IZAPIDETZEKO ARDURA DUEN UDAL SAILA";
+        $this->azpisailatable = true;
+
         $this->norkebatzilabeles = "¿QUIÉN LO APRUEBA?";
         $this->norkebatzilabeleu = "NORK ONARTU BEHAR DU?";
         $this->norkebatzitable = true;
@@ -708,11 +732,10 @@ class Eremuak
         $this->tramiteatext = true;
 
 
-        $this->besteak1labeles = "INSTRUCCIONES";
-        $this->besteak1labeleu = "ARGIBIDEAK";
+        $this->besteak1labeles = "";
+        $this->besteak1labeleu = "";
         $this->besteak1table = false;
-        $this->besteak1text = true;
-
+        $this->besteak1text = false;
 
 
         $this->besteak2labeles = "";
@@ -724,8 +747,8 @@ class Eremuak
         $this->besteak3table = false;
         $this->besteak3text = false;
 
-        $this->udalsailalabeles = "DEPARTAMENTO MUNICIPAL RESPONSABLE DE LA TRAMITACIÓN";
-        $this->udalsailalabeleu = "IZAPIDETZEKO ARDURA DUEN UDAL SAILA";
+//        $this->udalsailalabeles = "DEPARTAMENTO MUNICIPAL RESPONSABLE DE LA TRAMITACIÓN";
+//        $this->udalsailalabeleu = "IZAPIDETZEKO ARDURA DUEN UDAL SAILA";
 
         $this->epealabeles = "PLAZO DEL PROCEDIMIENTO";
         $this->epealabeleu = "PROZEDURAREN EPEA";
@@ -2672,5 +2695,77 @@ class Eremuak
     public function getDoanlabeles()
     {
         return $this->doanlabeles;
+    }
+
+    /**
+     * Set azpisailatable
+     *
+     * @param boolean $azpisailatable
+     *
+     * @return Eremuak
+     */
+    public function setAzpisailatable($azpisailatable)
+    {
+        $this->azpisailatable = $azpisailatable;
+
+        return $this;
+    }
+
+    /**
+     * Get azpisailatable
+     *
+     * @return boolean
+     */
+    public function getAzpisailatable()
+    {
+        return $this->azpisailatable;
+    }
+
+    /**
+     * Set azpisailalabeleu
+     *
+     * @param string $azpisailalabeleu
+     *
+     * @return Eremuak
+     */
+    public function setAzpisailalabeleu($azpisailalabeleu)
+    {
+        $this->azpisailalabeleu = $azpisailalabeleu;
+
+        return $this;
+    }
+
+    /**
+     * Get azpisailalabeleu
+     *
+     * @return string
+     */
+    public function getAzpisailalabeleu()
+    {
+        return $this->azpisailalabeleu;
+    }
+
+    /**
+     * Set azpisailalabeles
+     *
+     * @param string $azpisailalabeles
+     *
+     * @return Eremuak
+     */
+    public function setAzpisailalabeles($azpisailalabeles)
+    {
+        $this->azpisailalabeles = $azpisailalabeles;
+
+        return $this;
+    }
+
+    /**
+     * Get azpisailalabeles
+     *
+     * @return string
+     */
+    public function getAzpisailalabeles()
+    {
+        return $this->azpisailalabeles;
     }
 }

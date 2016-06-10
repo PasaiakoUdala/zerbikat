@@ -82,6 +82,9 @@ easy_admin:
                     - { property: 'norkebatzilabeleu', label: 'Nork ebatzi etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'norkebatzilabeles', label: 'Nork ebatzi etiketa (es)', css_class: 'col-sm-4 large' }
 
+                    - { property: 'azpisailatable', label: 'Udal saila (taula)', css_class: 'col-sm-4 large' }
+                    - { property: 'azpisailalabeleu', label: 'Udal saila (eu)', css_class: 'col-sm-4 large' }
+                    - { property: 'azpisailalabeles', label: 'Udal saila (es)', css_class: 'col-sm-4 large' }
 
                     - { property: 'doklaguntext', label: 'Dok. lag. (txt)', css_class: 'col-sm-2 large' }
                     - { property: 'doklaguntable', label: 'Dok. lag. (taula)', css_class: 'col-sm-2 large' }

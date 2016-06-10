@@ -326,6 +326,20 @@ class Fitxa
     private $arrunta;
 
     /**
+     * @var jarraibideakeu
+     *
+     * @ORM\Column(name="jarraibideakeu", type="text", length=65535, nullable=true)
+     */
+    private $jarraibideakeu;
+
+    /**
+     * @var jarraibideakes
+     *
+     * @ORM\Column(name="jarraibideakes", type="text", length=65535, nullable=true)
+     */
+    private $jarraibideakes;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="besteak1eu", type="text", length=65535, nullable=true)
@@ -2172,5 +2186,53 @@ class Fitxa
     public function getIsiltasunadmin()
     {
         return $this->isiltasunadmin;
+    }
+
+    /**
+     * Set jarraibideakeu
+     *
+     * @param string $jarraibideakeu
+     *
+     * @return Fitxa
+     */
+    public function setJarraibideakeu($jarraibideakeu)
+    {
+        $this->jarraibideakeu = $jarraibideakeu;
+
+        return $this;
+    }
+
+    /**
+     * Get jarraibideakeu
+     *
+     * @return string
+     */
+    public function getJarraibideakeu()
+    {
+        return $this->jarraibideakeu;
+    }
+
+    /**
+     * Set jarraibideakes
+     *
+     * @param string $jarraibideakes
+     *
+     * @return Fitxa
+     */
+    public function setJarraibideakes($jarraibideakes)
+    {
+        $this->jarraibideakes = $jarraibideakes;
+
+        return $this;
+    }
+
+    /**
+     * Get jarraibideakes
+     *
+     * @return string
+     */
+    public function getJarraibideakes()
+    {
+        return $this->jarraibideakes;
     }
 }

@@ -60,6 +60,10 @@ class FitxaType extends AbstractType
                 'config' => array()))
             ->add('oharrakes',CKEditorType::class, array(
                 'config' => array()))
+            ->add('jarraibideakeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('jarraibideakes',CKEditorType::class, array(
+                'config' => array()))
             ->add('publikoa')
             ->add('hitzarmena')
             ->add('kontsultak')

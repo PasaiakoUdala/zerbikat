@@ -579,6 +579,31 @@
             </div>
         </div>
 
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="page-header">
+                {#<h2>{{ labelak.eu }}</h2>#}
+                <h2>JARRAIBIDEAK (barne erabilera)</h2>
+            </div>
+        <div>
+                    {{ form_errors(edit_form.jarraibideakeu) }}
+                    {{ form_widget(edit_form.jarraibideakeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="page-header">
+                {#<h2>{{ labelak.es }}</h2>#}
+                <h2>INSTRUCCIONES (uso interno)</h2>
+            </div>
+            <div>
+                {{ form_errors(edit_form.jarraibideakes) }}
+                {{ form_widget(edit_form.jarraibideakes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
     {% if (eremuak.besteak1text or eremuak.besteak1table) %}
         <div class="row">
     {% else %}
@@ -866,26 +891,26 @@
         </div>
     </div>
 
-
+<div class="fitxaMenua">
     <ul>
         <li>
-            <input type="submit" value="Gorde" />
+            <input type="submit" value="Gorde" class="btn btn-primary"/>
         </li>
-        <li>            <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">Fitxa ikusi</a>
+        <li>            <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="btn btn-primary">Fitxa ikusi</a>
         </li>
     {{ form_end(edit_form) }}
 
 
-        <li>
-            <a href="{{ path('fitxa_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        {#<li>#}
+            {#<a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
     </ul>
-
+</div>
 {% endblock %}
 
 {% block javascripts %}
