@@ -114,6 +114,7 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Udala
       - Zerbikat\BackendBundle\Entity\Espedientekudeaketa
       - Zerbikat\BackendBundle\Entity\Eremuak
+      - Zerbikat\BackendBundle\Entity\User
 
 ivory_ck_editor:
     input_sync: true
@@ -158,3 +159,8 @@ fos_rest:
     body_listener: true
     routing_loader:
             default_format: json
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Zerbikat\BackendBundle\Entity\User

@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        User:
+            class: Zerbikat\BackendBundle\Entity\User
+            label: 'Erabiltzaileak'
+
+            list:
+                title: '%%entity_label%%'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: '-delete', label: '', icon: 'trash' }
+                fields:
+                    - id
+                    - { property: 'username', label: 'Erabiltzailea' }
+                    - email
+            form:
+                title: '%%entity_label%%'
+                fields:
+                    - enabled
+                    - username
+                    - email
+                    - plainPassword
+                    - roles
+                    - udala

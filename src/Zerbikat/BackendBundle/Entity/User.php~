@@ -37,28 +37,4 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
-
-    /**
-     * Set udala
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
-     *
-     * @return User
-     */
-    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
-    {
-        $this->udala = $udala;
-
-        return $this;
-    }
-
-    /**
-     * Get udala
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Udala
-     */
-    public function getUdala()
-    {
-        return $this->udala;
-    }
 }

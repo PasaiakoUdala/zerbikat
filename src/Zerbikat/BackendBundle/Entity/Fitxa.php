@@ -474,22 +474,6 @@ class Fitxa
      */
     private $tramiteak;
 
-
-
-    /**
-     * @var norkeskatuak[]
-     *
-     * @ORM\ManyToMany(targetEntity="Norkeskatu",inversedBy="fitxak",cascade={"remove"})
-     */
-    private $norkeskatuak;
-
-    /**
-     * @var doklagunak[]
-     *
-     * @ORM\ManyToMany(targetEntity="Doklagun",inversedBy="fitxak",cascade={"remove"})
-     */
-    private $doklagunak;
-
 //    /**
 //     * @var prozedurak[]
 //     *
@@ -505,6 +489,22 @@ class Fitxa
      *      )
      */
     private $prozedurak;
+
+    /**
+     * @var norkeskatuak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Norkeskatu",inversedBy="fitxak",cascade={"remove"})
+     */
+    private $norkeskatuak;
+
+    /**
+     * @var doklagunak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Doklagun",inversedBy="fitxak",cascade={"remove"})
+     */
+    private $doklagunak;
+
+
 
 
 
