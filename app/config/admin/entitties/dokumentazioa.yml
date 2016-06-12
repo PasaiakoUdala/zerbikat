@@ -17,3 +17,12 @@ easy_admin:
 #                    - 'Araumota'
 #                    - { property: 'parent', label: 'Parent category' }
 #                    - 'products'
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', type: 'ckeditor' }
+                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', type: 'ckeditor' }
+                    - { property: 'estekaeu', label: 'Esteka (eu)' }
+                    - { property: 'estekaes', label: 'Esteka (es)' }
+                    - { property: 'dokumentumota', label: 'Arau-mota' }
+#                    - udala

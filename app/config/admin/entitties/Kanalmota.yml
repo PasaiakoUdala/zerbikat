@@ -15,8 +15,8 @@ easy_admin:
                     - { property: 'esteka', label: 'Esteka?' }
             form:
                 fields:
-                    - { property: 'motaeu', label: 'Mota (eu)', css_class: 'col-sm-12 large' }
-                    - { property: 'motaes', label: 'Mota (es)', css_class: 'col-sm-12 large' }
                     - { property: 'esteka', label: 'Esteka behar du?', css_class: 'col-sm-8 large' }
-                    - { property: 'ikonoa', label: 'Ikonoa', css_class: 'col-sm-12 large' }
-                    - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }
+                    - { property: 'motaeu', label: 'Mota (eu)', css_class: 'col-sm-6 large' }
+                    - { property: 'motaes', label: 'Mota (es)', css_class: 'col-sm-6 large' }
+#                    - { property: 'ikonoa', label: 'Ikonoa', css_class: 'col-sm-12 large' }
+#                    - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }

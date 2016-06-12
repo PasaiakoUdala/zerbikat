@@ -25,6 +25,9 @@ easy_admin:
             - { label: 'Tramiteak', icon: 'file-new', entity: 'Tramitea' }
             - { label: 'Kanal-motak', icon: 'file-new', entity: 'Kanalmota' }
             - { label: 'Kanalak', icon: 'file-new', entity: 'Kanala' }
+            - { label: 'Taula gehigarria (besteak1)', icon: 'file-new', entity: 'Besteak1' }
+            - { label: 'Taula gehigarria (besteak2)', icon: 'file-new', entity: 'Besteak2' }
+            - { label: 'Taula gehigarria (besteak3)', icon: 'file-new', entity: 'Besteak3' }
         - label: 'KUDEAKETA'
           children:
             - { label: 'Zerbitzuak', icon: 'file-new', entity: 'Zerbitzua' }

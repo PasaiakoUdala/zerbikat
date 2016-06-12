@@ -14,3 +14,9 @@ easy_admin:
 #                    - { property: 'kodea', label: 'Atal Kodea' }
                     - { property: 'baldintzaeu', label: 'Baldintza' }
 #                   - { property: 'azpisaila', label: 'Azpisaila' }
+
+            form:
+                fields:
+                    - { property: 'baldintzaeu', label: 'Baldintza (eu)', css_class: 'col-sm-6' }
+                    - { property: 'baldintzaes', label: 'Baldintza (es)', css_class: 'col-sm-6' }
+#                    - Udala

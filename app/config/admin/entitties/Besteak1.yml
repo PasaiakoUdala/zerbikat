@@ -1,8 +1,8 @@
 easy_admin:
     entities:
-        Araudia:
-            class: Zerbikat\BackendBundle\Entity\Araudia
-            label: 'Araudi zerrenda'
+        Besteak1:
+            class: Zerbikat\BackendBundle\Entity\Besteak1
+            label: 'Besteak1'
             list:
                 max_results: 50
                 title: '%%entity_label%%'
@@ -12,18 +12,13 @@ easy_admin:
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields:
                     - 'Kodea'
-#                    - { property: 'araumota', label: 'Arau-mota' }
-                    - { property: 'arauaeu', label: 'Araua' }
-#                    - 'Araumota'
-#                    - { property: 'parent', label: 'Parent category' }
-#                    - 'products'
+                    - { property: 'izenburuaeu', label: 'Izenburua' }
+
             form:
-#                title: '%%entity_label%%'
                 fields:
                     - { property: 'kodea', label: 'Kodea' }
-                    - { property: 'arauaeu', label: 'Araua (eu)' }
-                    - { property: 'arauaes', label: 'Araua (es)' }
+                    - { property: 'izenburuaeu', label: 'Izenburua (eu)' }
+                    - { property: 'izenburuaes', label: 'Izenburua (es)' }
                     - { property: 'estekaeu', label: 'Esteka (eu)', type: 'url' }
                     - { property: 'estekaes', label: 'Esteka (es)', type: 'url' }
-                    - { property: 'araumota', label: 'Arau-mota' }
 #                    - udala

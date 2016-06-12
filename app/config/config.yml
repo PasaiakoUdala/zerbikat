@@ -114,6 +114,9 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Udala
       - Zerbikat\BackendBundle\Entity\Espedientekudeaketa
       - Zerbikat\BackendBundle\Entity\Eremuak
+      - Zerbikat\BackendBundle\Entity\Besteak1
+      - Zerbikat\BackendBundle\Entity\Besteak2
+      - Zerbikat\BackendBundle\Entity\Besteak3
       - Zerbikat\BackendBundle\Entity\User
 
 ivory_ck_editor:

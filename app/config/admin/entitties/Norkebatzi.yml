@@ -1,0 +1,20 @@
+easy_admin:
+    entities:
+        Norkebatzi:
+            class: Zerbikat\BackendBundle\Entity\Norkebatzi
+            label: 'Nork ebatzi'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'norkeu', label: 'Nork ebatzi (eu)' }
+                    - { property: 'norkes', label: 'Nork ebatzi (es)' }
+            form:
+                fields:
+                    - { property: 'norkeu', label: 'Nork ebatzi (eu)', css_class: 'col-sm-6' }
+                    - { property: 'norkes', label: 'Nork ebatzi (es)', css_class: 'col-sm-6' }
+#                    - udala

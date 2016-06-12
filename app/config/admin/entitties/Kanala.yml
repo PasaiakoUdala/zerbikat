@@ -17,17 +17,20 @@ easy_admin:
 
             form:
                 fields:
-                    - { property: 'izenaeu', label: 'Izena (eu)', css_class: 'col-sm-12 large' }
-                    - { property: 'izenaes', label: 'Izena (es)', css_class: 'col-sm-12 large' }
-                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', css_class: 'col-sm-12 large' }
-                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', css_class: 'col-sm-12 large' }
-                    - { property: 'estekaeu', label: 'Esteka (eu): URL, email,....', css_class: 'col-sm-8 large' }
-                    - { property: 'estekaes', label: 'Esteka (es): URL, email,....', css_class: 'col-sm-8 large' }
-                    - { property: 'telefonoa', label: 'Telefono zenbakia', css_class: 'col-sm-6 large' }
-                    - { property: 'fax', label: 'FAX zenbakia', css_class: 'col-sm-6 large' }
-                    - { property: 'kanalmota', type_options: { placeholder: 'Aukeratu kanal-mota...' } }
-                    - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }
-                    - { property: 'barrutia', type_options: { placeholder: 'Aukeratu barrutia...' } }
-                    - { property: 'eraikina', type_options: { placeholder: 'Aukeratu eraikina...' } }
-                    - { property: 'kalea', type_options: { placeholder: 'Aukeratu kalea...' }, css_class: 'col-sm-9' }
-                    - { property: 'kalezbkia', label: 'Kale zenbakia', css_class: 'col-sm-3' }
+                    - { property: 'izenaeu', label: 'Izena (eu)', css_class: 'col-sm-6 large' }
+                    - { property: 'izenaes', label: 'Izena (es)', css_class: 'col-sm-6 large' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', css_class: 'col-sm-6 large' }
+                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', css_class: 'col-sm-6 large' }
+                    - { property: 'estekaeu', label: 'Esteka (eu): URL, email,....', css_class: 'col-sm-6 large' }
+                    - { property: 'estekaes', label: 'Esteka (es): URL, email,....', css_class: 'col-sm-6 large' }
+
+                    - { property: 'kanalmota', type_options: { placeholder: 'Aukeratu kanal-mota...' }, css_class: 'col-sm-4' }
+                    - { property: 'telefonoa', label: 'Telefono zenbakia', css_class: 'col-sm-4' }
+                    - { property: 'fax', label: 'FAX zenbakia', css_class: 'col-sm-4' }
+
+                    - { property: 'barrutia',label: 'Barrutia', type_options: { placeholder: 'Aukeratu barrutia...' }, css_class: 'col-sm-3' }
+                    - { property: 'kalea',label: 'Kalea', type_options: { placeholder: 'Aukeratu kalea...' }, css_class: 'col-sm-4' }
+                    - { property: 'kalezbkia', label: 'Kale-zbkia', css_class: 'col-sm-1' }
+                    - { property: 'eraikina',label: 'Eraikina', type_options: { placeholder: 'Aukeratu eraikina...' }, css_class: 'col-sm-4' }
+
+#                    - { property: 'udala', type_options: { placeholder: 'Aukeratu Udala...' } }

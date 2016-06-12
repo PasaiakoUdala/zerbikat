@@ -14,3 +14,8 @@ easy_admin:
 #                    - { property: 'kodea', label: 'Atal Kodea' }
                     - { property: 'motaeu', label: 'Mota' }
 #                   - { property: 'azpisaila', label: 'Azpisaila' }
+            form:
+                fields:
+                    - { property: 'motaeu', label: 'Mota (eu)', css_class: 'col-sm-6' }
+                    - { property: 'motaes', label: 'Mota (es)', css_class: 'col-sm-6' }
+#                    - Udala

@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+        Familia:
+            class: Zerbikat\BackendBundle\Entity\Familia
+            label: 'Familia'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'familiaeu', label: 'Familia (eu)' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)' }
+
+            form:
+                fields:
+                    - { property: 'familiaeu', label: 'Familia (eu)', css_class: 'col-sm-8' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', css_class: 'col-sm-12' }
+                    - { property: 'familiaes', label: 'Familia (es)', css_class: 'col-sm-8' }
+                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', css_class: 'col-sm-12' }
+#                    - udala

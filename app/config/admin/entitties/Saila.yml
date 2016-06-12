@@ -17,3 +17,10 @@ easy_admin:
 #                    - 'Araumota'
 #                    - { property: 'parent', label: 'Parent category' }
 #                    - 'products'
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'sailaeu', label: 'Saila (eu)' }
+                    - { property: 'sailaes', label: 'Saila (es)' }
+                    - { property: 'arduraduna', label: 'Arduraduna' }
+#                    - udala

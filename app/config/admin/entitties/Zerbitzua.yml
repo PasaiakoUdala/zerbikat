@@ -7,10 +7,16 @@ easy_admin:
                 max_results: 50
                 title: '%%entity_label%%'
                 actions:
-                    - { name: 'show', label: '', icon: 'search' }
+#                    - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields:
                     - { property: 'kodea', label: 'Zerbitzu Kodea' }
                     - { property: 'zerbitzuaeu', label: 'Zerbitzua' }
 #                   - { property: 'azpisaila', label: 'Azpisaila' }
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'zerbitzuaeu', label: 'Zerbitzua (eu)' }
+                    - { property: 'zerbitzuaes', label: 'Zerbitzua (es)' }
+#                    - udala

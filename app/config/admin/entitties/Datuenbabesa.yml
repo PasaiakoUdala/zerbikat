@@ -17,3 +17,14 @@ easy_admin:
 #                    - 'Araumota'
 #                    - { property: 'parent', label: 'Parent category' }
 #                    - 'products'
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-3' }
+                    - { property: 'maila', label: 'Maila', css_class: 'col-sm-3' }
+                    - { property: 'izenaeu', label: 'Izena (eu)', css_class: 'col-sm-10' }
+                    - { property: 'izenaes', label: 'Izena (es)', css_class: 'col-sm-10' }
+                    - { property: 'xedeaeu', label: 'Xedea (eu)', css_class: 'col-sm-6', type: 'ckeditor'  }
+                    - { property: 'xedeaes', label: 'Xedea (es)', css_class: 'col-sm-6', type: 'ckeditor'  }
+                    - { property: 'lagapenakeu', label: 'Lagapenak (eu)', css_class: 'col-sm-12' }
+                    - { property: 'lagapenakes', label: 'Lagapenak (es)', css_class: 'col-sm-12' }
+#                    - udala

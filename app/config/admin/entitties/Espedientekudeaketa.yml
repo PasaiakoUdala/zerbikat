@@ -7,9 +7,14 @@ easy_admin:
                 max_results: 50
                 title: '%%entity_label%%'
                 actions:
-                    - { name: 'show', label: '', icon: 'search' }
+#                    - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields:
                     - { property: 'izenaeu', label: 'Espediente-Kudeaketa' }
 #                   - { property: 'azpisaila', label: 'Azpisaila' }
+
+            form:
+                fields:
+                    - { property: 'izenaeu', label: 'Izena (eu)', css_class: 'col-sm-6' }
+                    - { property: 'izenaes', label: 'Izena (es)', css_class: 'col-sm-6' }
