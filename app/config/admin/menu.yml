@@ -8,26 +8,36 @@ easy_admin:
         - { label: 'Sailak', entity: 'Saila' }
         - { label: 'Azpisailak', entity: 'Azpisaila' }
         - { label: 'Datuen Babesa', entity: 'Datuenbabesa' }
-        - { label: 'Taula Laguntzaileak' }
-        - label: 'Sailkapena'
+
+
+        - { label: 'BESTE TAULAK' }
+        - label: 'BESTE TAULAK'
+          children:
+            - { label: 'Dokumentazio lagungarria', entity: 'Doklagun' }
+            - { label: 'Prozedurak', entity: 'Prozedura' }
+            - { label: 'Tramiteak', entity: 'Tramitea' }
+            - { label: 'Kanalak', entity: 'Kanala' }
+            - { label: 'Taula gehigarria (besteak1)',  entity: 'Besteak1' }
+            - { label: 'Taula gehigarria (besteak2)',  entity: 'Besteak2' }
+            - { label: 'Taula gehigarria (besteak3)', entity: 'Besteak3' }
+#        - { label: 'TAULA LAGUNGARRIAK' }
+        - label: 'SAILKAPENA'
 #         icon: 'users'
           children:
             - { label: 'Etiketak', icon: 'file-new', entity: 'Etiketa' }
             - { label: 'Familiak', icon: 'file-list', entity: 'Familia' }
 #           - { label: 'Payments Received', entity: 'Payment', params: { sortField: 'paidAt' } }
-        - label: 'Taula Laguntzaileak'
+        - label: 'Taula Lagungarriak'
           children:
             - { label: 'Epe arruntak', icon: 'file-new', entity: 'Arrunta' }
             - { label: 'Aurreikusitako epeak', icon: 'file-new', entity: 'Aurreikusi' }
+            - { label: 'Isiltasun administratiboa', icon: 'file-new', entity: 'IsiltasunAdministratiboa' }
+            - { label: 'Nork eska dezake', icon: 'file-new', entity: 'Norkeskatu' }
             - { label: 'Arau-motak', icon: 'file-new', entity: 'Araumota' }
             - { label: 'Dokumentu-mota', icon: 'file-new', entity: 'Dokumentumota' }
             - { label: 'Ebazleak', icon: 'file-new', entity: 'Norkebatzi' }
-            - { label: 'Tramiteak', icon: 'file-new', entity: 'Tramitea' }
             - { label: 'Kanal-motak', icon: 'file-new', entity: 'Kanalmota' }
-            - { label: 'Kanalak', icon: 'file-new', entity: 'Kanala' }
-            - { label: 'Taula gehigarria (besteak1)', icon: 'file-new', entity: 'Besteak1' }
-            - { label: 'Taula gehigarria (besteak2)', icon: 'file-new', entity: 'Besteak2' }
-            - { label: 'Taula gehigarria (besteak3)', icon: 'file-new', entity: 'Besteak3' }
+
         - label: 'KUDEAKETA'
           children:
             - { label: 'Zerbitzuak', icon: 'file-new', entity: 'Zerbitzua' }
@@ -36,10 +46,17 @@ easy_admin:
             - { label: 'Espediente-kudeaketa', icon: 'file-new', entity: 'Espedientekudeaketa' }
             - { label: 'Erabiltzaileak', icon: 'file-new', entity: 'User' }
 
+        - label: 'KALE IZENDEGIA'
+          children:
+            - { label: 'Barrutiak', icon: 'file-new', entity: 'Barrutia' }
+            - { label: 'Kaleak', icon: 'file-new', entity: 'Kalea' }
+            - { label: 'Eraikinak', icon: 'file-new', entity: 'Eraikina' }
+
         - label: 'Zerga Ordenantzak'
           children:
             - { label: 'Ordenantzak', icon: 'file-new', entity: 'Ordenantza' }
             - { label: 'Atalak', icon: 'file-new', entity: 'Atala' }
             - { label: 'Taulak', icon: 'file-new', entity: 'Azpiatala' }
+            - { label: 'Kontzeptuak', icon: 'file-new', entity: 'Kontzeptua' }
             - { label: 'Baldintzak', icon: 'file-new', entity: 'Baldintza' }
             - { label: 'Kontzeptu-motak', icon: 'file-new', entity: 'Kontzeptumota' }

@@ -5,7 +5,7 @@ namespace Zerbikat\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-
+use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 /**
  * Familia
@@ -13,6 +13,7 @@ use JMS\Serializer\Annotation\Expose;
  * @ORM\Table(name="familia")
  * @ORM\Entity
  * @ExclusionPolicy("all")
+ * @UdalaEgiaztatu(userFieldName="udala_id")
  */
 class Familia
 {

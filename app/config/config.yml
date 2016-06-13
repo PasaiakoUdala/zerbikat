@@ -62,6 +62,10 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        filters:
+            udala_filter:
+                class:   Zerbikat\BackendBundle\Filter\UdalaFilter
+                enabled: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -118,6 +122,15 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Besteak2
       - Zerbikat\BackendBundle\Entity\Besteak3
       - Zerbikat\BackendBundle\Entity\User
+      - Zerbikat\BackendBundle\Entity\Doklagun
+      - Zerbikat\BackendBundle\Entity\Prozedura
+      - Zerbikat\BackendBundle\Entity\Tramitea
+      - Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+      - Zerbikat\BackendBundle\Entity\Norkeskatu
+      - Zerbikat\BackendBundle\Entity\Barrutia
+      - Zerbikat\BackendBundle\Entity\Kalea
+      - Zerbikat\BackendBundle\Entity\Eraikina
+      - Zerbikat\BackendBundle\Entity\Kontzeptua
 
 ivory_ck_editor:
     input_sync: true

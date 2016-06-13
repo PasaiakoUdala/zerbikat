@@ -6,14 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
-
+use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 /**
  * Fitxa
  *
  * @ORM\Table(name="fitxa", indexes={@ORM\Index(name="aurreikusi_id_idx", columns={"aurreikusi_id"}), @ORM\Index(name="arrunta_id_idx", columns={"arrunta_id"}), @ORM\Index(name="norkebatzi_id_idx", columns={"norkebatzi_id"}), @ORM\Index(name="azpisaila_id_idx", columns={"azpisaila_id"}), @ORM\Index(name="datuenbabesa_id_idx", columns={"datuenbabesa_id"}), @ORM\Index(name="zerbitzua_id_idx", columns={"zerbitzua_id"})})
  * @ORM\Entity
- * @ExclusionPolicy("all") 
+ * @ExclusionPolicy("all")
+ * @UdalaEgiaztatu(userFieldName="udala_id")
  */
 class Fitxa
 {
@@ -27,7 +28,10 @@ class Fitxa
      */
     private $id;
 
-    /** @ORM\ManyToOne(targetEntity="Udala") */
+    /** 
+     * @ORM\ManyToOne(targetEntity="Udala") 
+     *
+     */
     private $udala;
 
     /**

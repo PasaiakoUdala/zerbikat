@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        IsiltasunAdministratiboa:
+            class: Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+            label: 'Isiltasuna administratiboaren izaera'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'isiltasuneu', label: 'Isiltasun administratiboa' }
+            form:
+                fields:
+                    - { property: 'isiltasuneu', label: 'Isiltasun administratiboa (eu)'}
+                    - { property: 'isiltasunes', label: 'Isiltasun administratiboa (es)' }
+#                    - udala

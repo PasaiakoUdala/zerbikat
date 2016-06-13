@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+        Doklagun:
+            class: Zerbikat\BackendBundle\Entity\Doklagun
+            label: 'Dokumentazio lagungarriak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'Kodea'
+                    - { property: 'deskribapenaeu', label: 'Agiria' }
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)'}
+                    - { property: 'deskribapenaes', label: 'Deskribapena (es)' }
+                    - { property: 'estekaeu', label: 'Esteka (eu)' }
+                    - { property: 'estekaes', label: 'Esteka (es)' }
+#                    - udala

@@ -3,12 +3,14 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 /**
  * Atalaparrafoa
  *
  * @ORM\Table(name="atalaparrafoa", indexes={@ORM\Index(name="atala_id_idx", columns={"atala_id"})})
  * @ORM\Entity
+ * @UdalaEgiaztatu(userFieldName="udala_id")
  */
 class Atalaparrafoa
 {
