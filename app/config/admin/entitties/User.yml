@@ -17,9 +17,12 @@ easy_admin:
             form:
                 title: '%%entity_label%%'
                 fields:
-                    - enabled
-                    - username
-                    - email
-                    - plainPassword
-                    - roles
-                    - udala
+#                    - enabled
+                    - { property: 'enabled', label: 'Aktibo?', css_class: 'col-sm-2' }
+                    - { property: 'username', label: 'NA', css_class: 'col-sm-2' }
+                    - { property: 'email', label: 'Email-a', css_class: 'col-sm-4' }
+                    - { property: 'plainpassword', label: 'Pasahitza', css_class: 'col-sm-4', type: 'text' }
+#                    - plainPassword
+                    - { property: 'udala',label: 'Udala', type_options: { placeholder: 'Aukeratu udala...' }, css_class: 'col-sm-5' }
+                    - { property: 'azpisaila',label: 'Saila', type_options: { placeholder: 'Aukeratu saila...' }, css_class: 'col-sm-5' }
+                    - { property: 'roles',label: 'Rol-ak', css_class: 'col-sm-4' }

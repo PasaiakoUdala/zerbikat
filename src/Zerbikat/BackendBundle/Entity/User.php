@@ -29,7 +29,15 @@ class User extends BaseUser
 //     */
 //    private $espedientekodea;
 
-
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\Azpisaila
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id")
+     * })
+     */
+    private $azpisaila;
 
 
     public function __construct()
@@ -60,5 +68,29 @@ class User extends BaseUser
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set azpisaila
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila
+     *
+     * @return User
+     */
+    public function setAzpisaila(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila = null)
+    {
+        $this->azpisaila = $azpisaila;
+
+        return $this;
+    }
+
+    /**
+     * Get azpisaila
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Azpisaila
+     */
+    public function getAzpisaila()
+    {
+        return $this->azpisaila;
     }
 }

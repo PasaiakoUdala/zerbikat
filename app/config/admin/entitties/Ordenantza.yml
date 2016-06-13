@@ -13,4 +13,12 @@ easy_admin:
                 fields:
                     - { property: 'kodea', label: 'Ordenantza Kodea' }
                     - { property: 'izenburuaeu', label: 'Izenburua' }
-#                   - { property: 'azpisaila', label: 'Azpisaila' }
+#                    - { property: 'createdAt', label: 'Azpisaila' }
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'izenburuaeu', label: 'Izenburua (eu)' }
+                    - { property: 'izenburuaes', label: 'Izenburua (es)' }
+#                    - udala
+#                    - createdAt
+#                    - updatedAt

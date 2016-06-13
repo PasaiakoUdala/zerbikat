@@ -14,8 +14,11 @@ easy_admin:
                     - { property: 'kodea', label: 'Atal Kodea' }
                     - { property: 'izenburuaeu', label: 'Izenburua' }
 #                   - { property: 'azpisaila', label: 'Azpisaila' }
-
-#            form:
-#                fields:
-                    # ...
-#                    - { property: 'izenburuaeu', type: 'ckeditor' }
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'izenburuaeu', label: 'Izenburua (eu)' }
+                    - { property: 'izenburuaes', label: 'Izenburua (es)' }
+#                    - udala
+#                    - createdAt
+#                    - updatedAt

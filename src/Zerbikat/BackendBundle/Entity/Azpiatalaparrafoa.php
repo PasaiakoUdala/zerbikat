@@ -69,7 +69,12 @@ class Azpiatalaparrafoa
      */
     private $azpiatala;
 
-       
+
+    public function __toString()
+    {
+        return $this->getTestuaeu();
+    }
+
 
 
     /**

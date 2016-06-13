@@ -105,6 +105,16 @@ class Kontzeptua
 
 
 
+
+    public function __toString()
+    {
+        return $this->getKontzeptuaeu();
+    }
+
+
+
+
+
     /**
      * Set kodea
      *
