@@ -1,0 +1,30 @@
+easy_admin:
+    entities:
+        Kontzeptua:
+            class: Zerbikat\BackendBundle\Entity\Kontzeptua
+            label: 'Kontzeptuak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'kontzeptuaeu', label: 'Kontzeptua (eu)' }
+                    - { property: 'baldintza', label: 'Baldintza' }
+                    - { property: 'kopurua', label: 'Kopurua' }
+                    - { property: 'unitatea', label: 'Unitatea' }
+            form:
+                fields:
+                    - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-2'}
+                    - { property: 'kontzeptumota', label: 'Kontzeptu-mota', css_class: 'col-sm-5'}
+                    - { property: 'baldintza', label: 'Baldintza', css_class: 'col-sm-5' }
+                    - { property: 'kontzeptuaeu', label: 'Kontzeptua (eu)', css_class: 'col-sm-6',type: 'text' }
+                    - { property: 'kontzeptuaes', label: 'Kontzeptua (es)', css_class: 'col-sm-6',type: 'text' }
+                    - { property: 'kopurua', label: 'Kopurua', css_class: 'col-sm-4' }
+                    - { property: 'unitatea', label: 'Unitatea', css_class: 'col-sm-4' }
+#                    - { property: 'norkeu', label: 'Nork eska dezake (eu)', css_class: 'col-sm-6' }
+#                    - { property: 'norkes', label: 'Nork eska dezake (es)', css_class: 'col-sm-6' }
+#                    - udala

@@ -20,10 +20,11 @@ easy_admin:
             form:
 #                title: '%%entity_label%%'
                 fields:
-                    - { property: 'kodea', label: 'Kodea' }
+                    - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-3' }
+                    - { property: 'araumota', label: 'Arau-mota', css_class: 'col-sm-6' }
                     - { property: 'arauaeu', label: 'Araua (eu)' }
                     - { property: 'arauaes', label: 'Araua (es)' }
                     - { property: 'estekaeu', label: 'Esteka (eu)', type: 'url' }
                     - { property: 'estekaes', label: 'Esteka (es)', type: 'url' }
-                    - { property: 'araumota', label: 'Arau-mota' }
+
 #                    - udala

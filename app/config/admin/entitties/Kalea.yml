@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+        Kalea:
+            class: Zerbikat\BackendBundle\Entity\Kalea
+            label: 'Kalea'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'Izena', label: 'Kalea' }
+                    - { property: 'barrutia', label: 'Barrutia' }
+            form:
+                fields:
+                    - { property: 'izena', label: 'Izena', css_class: 'col-sm-6' }
+                    - { property: 'google', label: 'Google-eko izena', css_class: 'col-sm-6' }
+                    - { property: 'barrutia', label: 'Barrutia', css_class: 'col-sm-6' }
+#                    - udala
+#                    - azpisailak
+#                    - kanalak

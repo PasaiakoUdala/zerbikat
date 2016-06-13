@@ -1,0 +1,23 @@
+easy_admin:
+    entities:
+        Eraikina:
+            class: Zerbikat\BackendBundle\Entity\Eraikina
+            label: 'Eraikina'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'Izena', label: 'Kalea' }
+                    - { property: 'barrutia', label: 'Barrutia' }
+            form:
+                fields:
+                    - { property: 'izena', label: 'Izena', css_class: 'col-sm-6' }
+                    - { property: 'barrutia', label: 'Barrutia', css_class: 'col-sm-4' }
+                    - { property: 'longitudea', label: 'Longitudea', css_class: 'col-sm-6' }
+                    - { property: 'latitudea', label: 'Latitudea', css_class: 'col-sm-6' }
+#                    - udala
+#                    - azpisailak

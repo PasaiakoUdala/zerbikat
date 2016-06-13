@@ -1,0 +1,19 @@
+easy_admin:
+    entities:
+        Barrutia:
+            class: Zerbikat\BackendBundle\Entity\Barrutia
+            label: 'Barrutiak'
+            list:
+                max_results: 50
+                title: '%%entity_label%%'
+                actions:
+#                   - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - { property: 'Izena', label: 'Barrutia' }
+            form:
+                fields:
+                    - { property: 'izena', label: 'Barrutia', css_class: 'col-sm-6' }
+#                    - udala
+#                    - Azpisaila

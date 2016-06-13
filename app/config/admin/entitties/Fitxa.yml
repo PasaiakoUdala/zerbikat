@@ -14,3 +14,13 @@ easy_admin:
                     - { property: 'espedientekodea', label: 'Kodea' }
                     - { property: 'deskribapenaeu', label: 'Deskribapena' }
                     - { property: 'azpisaila', label: 'Azpisaila' }
+#            show:
+#                fields:
+#                    - { property: 'espedientekodea', label: 'Kodea', css_class: 'col-sm-2' }
+#                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', css_class: 'col-sm-6' }
+#                    - { property: 'espedientekodea', label: 'Kodea', css_class: 'col-sm-2' }
+#                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', css_class: 'col-sm-6' }
+#                    - { property: 'helburuaeu', label: 'Helburua (eu)',type: 'raw', css_class: 'col-sm-6' }
+#                    - { property: 'helburuaes', label: 'Helburua (es)',type: 'raw', css_class: 'col-sm-6' }
+#                    - { property: 'norkeu', label: 'Nork eska dezake (eu)',type: 'raw', css_class: 'col-sm-6' }
+#                    - { property: 'norkes', label: 'Nork eska dezake (es)',type: 'raw', css_class: 'col-sm-6' }

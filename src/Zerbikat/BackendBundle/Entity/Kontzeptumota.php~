@@ -3,12 +3,14 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 /**
  * Kontzeptumota
  *
  * @ORM\Table(name="kontzeptumota")
  * @ORM\Entity
+ * @UdalaEgiaztatu(userFieldName="udala_id")
  */
 class Kontzeptumota
 {
@@ -38,7 +40,12 @@ class Kontzeptumota
      */
     private $id;
 
+    public function __toString()
+    {
+        return $this->getMotaeu();
+    }
 
+    
 
     /**
      * Set motaeu

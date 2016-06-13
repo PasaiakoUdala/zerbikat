@@ -19,10 +19,13 @@ easy_admin:
 #                    - 'products'
             form:
                 fields:
-                    - { property: 'kodea', label: 'Kodea' }
-                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', type: 'ckeditor' }
-                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', type: 'ckeditor' }
+                    - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-2' }
+                    - { property: 'dokumentumota', label: 'Dokumentu-mota', css_class: 'col-sm-6' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', type: 'text' }
+                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', type: 'text' }
+#                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', type: 'ckeditor' }
+#                    - { property: 'deskribapenaes', label: 'Deskribapena (es)', type: 'ckeditor' }
                     - { property: 'estekaeu', label: 'Esteka (eu)' }
                     - { property: 'estekaes', label: 'Esteka (es)' }
-                    - { property: 'dokumentumota', label: 'Arau-mota' }
+
 #                    - udala

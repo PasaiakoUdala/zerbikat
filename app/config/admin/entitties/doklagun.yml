@@ -15,9 +15,9 @@ easy_admin:
                     - { property: 'deskribapenaeu', label: 'Agiria' }
             form:
                 fields:
-                    - { property: 'kodea', label: 'Kodea' }
-                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)'}
-                    - { property: 'deskribapenaes', label: 'Deskribapena (es)' }
-                    - { property: 'estekaeu', label: 'Esteka (eu)' }
-                    - { property: 'estekaes', label: 'Esteka (es)' }
+                    - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-8' }
+                    - { property: 'deskribapenaeu', label: 'Deskribapena (eu)',type: 'text', css_class: 'col-sm-6'}
+                    - { property: 'deskribapenaes', label: 'Deskribapena (es)',type: 'text', css_class: 'col-sm-6' }
+                    - { property: 'estekaeu', label: 'Esteka (eu)', css_class: 'col-sm-6' }
+                    - { property: 'estekaes', label: 'Esteka (es)', css_class: 'col-sm-6' }
 #                    - udala

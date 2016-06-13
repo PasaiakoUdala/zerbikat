@@ -19,8 +19,9 @@ easy_admin:
 #                    - 'products'
             form:
                 fields:
-                    - { property: 'kodea', label: 'Kodea' }
-                    - { property: 'sailaeu', label: 'Saila (eu)' }
-                    - { property: 'sailaes', label: 'Saila (es)' }
-                    - { property: 'arduraduna', label: 'Arduraduna' }
+                    - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-2' }
+                    - { property: 'arduraduna', label: 'Arduraduna', css_class: 'col-sm-6' }
+                    - { property: 'sailaeu', label: 'Saila (eu)', css_class: 'col-sm-6' }
+                    - { property: 'sailaes', label: 'Saila (es)', css_class: 'col-sm-6' }
+
 #                    - udala

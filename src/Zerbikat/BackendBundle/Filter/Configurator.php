@@ -24,8 +24,13 @@ class Configurator
     {
         if ($user = $this->getUser()) {
             $filter = $this->em->getFilters()->enable('udala_filter');
-            $filter->setParameter('udala_id', $user->getudala()->getId());
-            $filter->setAnnotationReader($this->reader);
+            if ($user->getudala()) {
+                $filter->setParameter('udala_id', $user->getudala()->getId());
+                $filter->setAnnotationReader($this->reader);
+            } else
+            {
+                return '' ;
+            }
         }
     }
 

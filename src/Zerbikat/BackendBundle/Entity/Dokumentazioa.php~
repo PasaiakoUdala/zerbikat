@@ -3,12 +3,14 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 /**
  * Dokumentazioa
  *
  * @ORM\Table(name="dokumentazioa", indexes={@ORM\Index(name="dokumentumota_id_idx", columns={"dokumentumota_id"})})
  * @ORM\Entity
+ * @UdalaEgiaztatu(userFieldName="udala_id")
  */
 class Dokumentazioa
 {
