@@ -478,40 +478,40 @@
     </div>
     {% endif %}
 
-    {% if (eremuak.tramiteatext or eremuak.tramiteatable) %}
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h3>{{ labelak.tramitealabeleu }}</h3>
-            </div>
-            <div>
-                {% if eremuak.tramiteatext %} {{ fitxa.tramiteakeu |raw }}{% endif %}
-                {% if eremuak.tramiteatable %}
-                <ul>
-                    {% for tramitea in fitxa.tramiteak %}
-                        <li>{{ tramitea.tramiteaeu }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h3>{{ labelak.tramitealabeleu }}</h3>
-            </div>
-            <div>
-                {% if eremuak.tramiteatext %} {{ fitxa.tramiteakes |raw }}{% endif %}
-                {% if eremuak.tramiteatable %}
-                <ul>
-                    {% for tramitea in fitxa.tramiteak %}
-                        <li>{{ tramitea.tramiteaes }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    {% endif %}
+    {#{% if (eremuak.tramiteatext or eremuak.tramiteatable) %}#}
+    {#<div class="row">#}
+        {#<div class="col-sm-6">#}
+            {#<div class="page-header">#}
+                {#<h3>{{ labelak.tramitealabeleu }}</h3>#}
+            {#</div>#}
+            {#<div>#}
+                {#{% if eremuak.tramiteatext %} {{ fitxa.tramiteakeu |raw }}{% endif %}#}
+                {#{% if eremuak.tramiteatable %}#}
+                {#<ul>#}
+                    {#{% for tramitea in fitxa.tramiteak %}#}
+                        {#<li>{{ tramitea.tramiteaeu }}</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
+                {#{% endif %}#}
+            {#</div>#}
+        {#</div>#}
+        {#<div class="col-sm-6">#}
+            {#<div class="page-header">#}
+                {#<h3>{{ labelak.tramitealabeleu }}</h3>#}
+            {#</div>#}
+            {#<div>#}
+                {#{% if eremuak.tramiteatext %} {{ fitxa.tramiteakes |raw }}{% endif %}#}
+                {#{% if eremuak.tramiteatable %}#}
+                {#<ul>#}
+                    {#{% for tramitea in fitxa.tramiteak %}#}
+                        {#<li>{{ tramitea.tramiteaes }}</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
+                {#{% endif %}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    {#{% endif %}#}
 
     {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
     <div class="row">

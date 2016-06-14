@@ -153,19 +153,19 @@ class Fitxa
      */
     private $prozeduraes;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tramiteakeu", type="text", length=65535, nullable=true)
-     */
-    private $tramiteakeu;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tramiteakes", type="text", length=65535, nullable=true)
-     */
-    private $tramiteakes;
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="tramiteakeu", type="text", length=65535, nullable=true)
+//     */
+//    private $tramiteakeu;
+//
+//    /**
+//     * @var string
+//     *
+//     * @ORM\Column(name="tramiteakes", type="text", length=65535, nullable=true)
+//     */
+//    private $tramiteakes;
 
     /**
      * @var string
@@ -469,14 +469,14 @@ class Fitxa
 //     */
 //    private $tramiteak;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Tramitea")
-     * @ORM\JoinTable(name="fitxa_tramitea",
-     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="tramitea_id", referencedColumnName="id", unique=true)}
-     *      )
-     */
-    private $tramiteak;
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Tramitea")
+//     * @ORM\JoinTable(name="fitxa_tramitea",
+//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="tramitea_id", referencedColumnName="id", unique=true)}
+//     *      )
+//     */
+//    private $tramiteak;
 
 //    /**
 //     * @var prozedurak[]
@@ -557,11 +557,23 @@ class Fitxa
         $this->besteak2ak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->besteak3ak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->etiketak = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tramiteak = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->tramiteak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->norkeskatuak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->doklagunak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -973,54 +985,6 @@ class Fitxa
     }
 
     /**
-     * Set tramiteakeu
-     *
-     * @param string $tramiteakeu
-     *
-     * @return Fitxa
-     */
-    public function setTramiteakeu($tramiteakeu)
-    {
-        $this->tramiteakeu = $tramiteakeu;
-
-        return $this;
-    }
-
-    /**
-     * Get tramiteakeu
-     *
-     * @return string
-     */
-    public function getTramiteakeu()
-    {
-        return $this->tramiteakeu;
-    }
-
-    /**
-     * Set tramiteakes
-     *
-     * @param string $tramiteakes
-     *
-     * @return Fitxa
-     */
-    public function setTramiteakes($tramiteakes)
-    {
-        $this->tramiteakes = $tramiteakes;
-
-        return $this;
-    }
-
-    /**
-     * Get tramiteakes
-     *
-     * @return string
-     */
-    public function getTramiteakes()
-    {
-        return $this->tramiteakes;
-    }
-
-    /**
      * Set doklaguneu
      *
      * @param string $doklaguneu
@@ -1357,13 +1321,51 @@ class Fitxa
     }
 
     /**
-     * Get id
+     * Set jarraibideakeu
      *
-     * @return integer
+     * @param string $jarraibideakeu
+     *
+     * @return Fitxa
      */
-    public function getId()
+    public function setJarraibideakeu($jarraibideakeu)
     {
-        return $this->id;
+        $this->jarraibideakeu = $jarraibideakeu;
+
+        return $this;
+    }
+
+    /**
+     * Get jarraibideakeu
+     *
+     * @return string
+     */
+    public function getJarraibideakeu()
+    {
+        return $this->jarraibideakeu;
+    }
+
+    /**
+     * Set jarraibideakes
+     *
+     * @param string $jarraibideakes
+     *
+     * @return Fitxa
+     */
+    public function setJarraibideakes($jarraibideakes)
+    {
+        $this->jarraibideakes = $jarraibideakes;
+
+        return $this;
+    }
+
+    /**
+     * Get jarraibideakes
+     *
+     * @return string
+     */
+    public function getJarraibideakes()
+    {
+        return $this->jarraibideakes;
     }
 
     /**
@@ -1999,37 +2001,37 @@ class Fitxa
     }
 
     /**
-     * Add tramiteak
+     * Add prozedurak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak
+     * @param \Zerbikat\BackendBundle\Entity\Prozedura $prozedurak
      *
      * @return Fitxa
      */
-    public function addTramiteak(\Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak)
+    public function addProzedurak(\Zerbikat\BackendBundle\Entity\Prozedura $prozedurak)
     {
-        $this->tramiteak[] = $tramiteak;
+        $this->prozedurak[] = $prozedurak;
 
         return $this;
     }
 
     /**
-     * Remove tramiteak
+     * Remove prozedurak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak
+     * @param \Zerbikat\BackendBundle\Entity\Prozedura $prozedurak
      */
-    public function removeTramiteak(\Zerbikat\BackendBundle\Entity\FitxaTramitea $tramiteak)
+    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\Prozedura $prozedurak)
     {
-        $this->tramiteak->removeElement($tramiteak);
+        $this->prozedurak->removeElement($prozedurak);
     }
 
     /**
-     * Get tramiteak
+     * Get prozedurak
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTramiteak()
+    public function getProzedurak()
     {
-        return $this->tramiteak;
+        return $this->prozedurak;
     }
 
     /**
@@ -2101,40 +2103,6 @@ class Fitxa
     }
 
     /**
-     * Add prozedurak
-     *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
-     *
-     * @return Fitxa
-     */
-    public function addProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
-    {
-        $this->prozedurak[] = $prozedurak;
-
-        return $this;
-    }
-
-    /**
-     * Remove prozedurak
-     *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
-     */
-    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
-    {
-        $this->prozedurak->removeElement($prozedurak);
-    }
-
-    /**
-     * Get prozedurak
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProzedurak()
-    {
-        return $this->prozedurak;
-    }
-
-    /**
      * Add azpiatalak
      *
      * @param \Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak
@@ -2190,53 +2158,5 @@ class Fitxa
     public function getIsiltasunadmin()
     {
         return $this->isiltasunadmin;
-    }
-
-    /**
-     * Set jarraibideakeu
-     *
-     * @param string $jarraibideakeu
-     *
-     * @return Fitxa
-     */
-    public function setJarraibideakeu($jarraibideakeu)
-    {
-        $this->jarraibideakeu = $jarraibideakeu;
-
-        return $this;
-    }
-
-    /**
-     * Get jarraibideakeu
-     *
-     * @return string
-     */
-    public function getJarraibideakeu()
-    {
-        return $this->jarraibideakeu;
-    }
-
-    /**
-     * Set jarraibideakes
-     *
-     * @param string $jarraibideakes
-     *
-     * @return Fitxa
-     */
-    public function setJarraibideakes($jarraibideakes)
-    {
-        $this->jarraibideakes = $jarraibideakes;
-
-        return $this;
-    }
-
-    /**
-     * Get jarraibideakes
-     *
-     * @return string
-     */
-    public function getJarraibideakes()
-    {
-        return $this->jarraibideakes;
     }
 }

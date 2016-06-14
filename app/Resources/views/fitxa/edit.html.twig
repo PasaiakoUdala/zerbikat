@@ -444,50 +444,50 @@
         </div>
     </div>
 
-    {% if (eremuak.tramiteatext or eremuak.tramiteatable) %}
-        <div class="row">
-    {% else %}
-        <div class="row hidden">
-    {% endif %}
-            <div class="col-sm-6">
-                <div class="page-header">
-                    <h2>{{ labelak.tramitealabeleu }}</h2>
-                </div>
-                {% if eremuak.tramiteatext %}
-                    <div>
-                {% else %}
-                    <div class="hidden">
-                {% endif %}
-                        {{ form_errors(edit_form.tramiteakeu) }}
-                        {{ form_widget(edit_form.tramiteakeu, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="page-header">
-                    <h2>{{ labelak.tramitealabeles }}</h2>
-                </div>
-                {% if eremuak.tramiteatext %}
-                    <div>
-                {% else %}
-                    <div class="hidden">
-                {% endif %}
-                        {{ form_errors(edit_form.tramiteakes) }}
-                        {{ form_widget(edit_form.tramiteakes, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-            </div>
-            {% if eremuak.tramiteatable %}
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-            {% else %}
-                <div class="col-sm-12 hidden">
-            {% endif %}
-                    <div>
-                        <br/>
-                        {{ form_errors(edit_form.tramiteak) }}
-                        {{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-group select2'}}) }}
-                    </div>
-                </div>
-        </div>
+    {#{% if (eremuak.tramiteatext or eremuak.tramiteatable) %}#}
+        {#<div class="row">#}
+    {#{% else %}#}
+        {#<div class="row hidden">#}
+    {#{% endif %}#}
+            {#<div class="col-sm-6">#}
+                {#<div class="page-header">#}
+                    {#<h2>{{ labelak.tramitealabeleu }}</h2>#}
+                {#</div>#}
+                {#{% if eremuak.tramiteatext %}#}
+                    {#<div>#}
+                {#{% else %}#}
+                    {#<div class="hidden">#}
+                {#{% endif %}#}
+                        {#{{ form_errors(edit_form.tramiteakeu) }}#}
+                        {#{{ form_widget(edit_form.tramiteakeu, {'attr': {'class': 'form-control'}}) }}#}
+                    {#</div>#}
+            {#</div>#}
+            {#<div class="col-sm-6">#}
+                {#<div class="page-header">#}
+                    {#<h2>{{ labelak.tramitealabeles }}</h2>#}
+                {#</div>#}
+                {#{% if eremuak.tramiteatext %}#}
+                    {#<div>#}
+                {#{% else %}#}
+                    {#<div class="hidden">#}
+                {#{% endif %}#}
+                        {#{{ form_errors(edit_form.tramiteakes) }}#}
+                        {#{{ form_widget(edit_form.tramiteakes, {'attr': {'class': 'form-control'}}) }}#}
+                    {#</div>#}
+            {#</div>#}
+            {#{% if eremuak.tramiteatable %}#}
+                {#<div class="col-sm-2"></div>#}
+                {#<div class="col-sm-8">#}
+            {#{% else %}#}
+                {#<div class="col-sm-12 hidden">#}
+            {#{% endif %}#}
+                    {#<div>#}
+                        {#<br/>#}
+                        {#{{ form_errors(edit_form.tramiteak) }}#}
+                        {#{{ form_widget(edit_form.tramiteak, {'attr': {'class': 'form-group select2'}}) }}#}
+                    {#</div>#}
+                {#</div>#}
+        {#</div>#}
 
     {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
         <div class="row">
@@ -950,10 +950,10 @@
                 theme: 'bootstrap',
                 tags: true
             });
-            $('#fitxa_tramiteak').select2({
-                theme: 'bootstrap',
-                tags: true
-            });
+//            $('#fitxa_tramiteak').select2({
+//                theme: 'bootstrap',
+//                tags: true
+//            });
             $('#fitxa_dokumentazioak').select2({
                 theme: 'bootstrap',
                 tags: true

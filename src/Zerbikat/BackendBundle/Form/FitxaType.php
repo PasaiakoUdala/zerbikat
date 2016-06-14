@@ -48,10 +48,10 @@ class FitxaType extends AbstractType
                 'config' => array()))
             ->add('prozeduraes',CKEditorType::class, array(
                 'config' => array()))
-            ->add('tramiteakeu',CKEditorType::class, array(
-                'config' => array()))
-            ->add('tramiteakes',CKEditorType::class, array(
-                'config' => array()))
+//            ->add('tramiteakeu',CKEditorType::class, array(
+//                'config' => array()))
+//            ->add('tramiteakes',CKEditorType::class, array(
+//                'config' => array()))
             ->add('doklaguneu',CKEditorType::class, array(
                 'config' => array()))
             ->add('doklagunes',CKEditorType::class, array(
@@ -134,13 +134,13 @@ class FitxaType extends AbstractType
                 'placeholder' => 'Aukeratu etiketak',
                 'empty_data'  => null,
             ))
-            ->add('tramiteak', EntityType::class, array(
-                'class' => 'BackendBundle:Tramitea',
-                'required' => false,
-                'multiple'=>'multiple',
-//                'expanded' => true ,
-                'placeholder' => 'Aukeratu tramiteak'
-            ))
+//            ->add('tramiteak', EntityType::class, array(
+//                'class' => 'BackendBundle:Tramitea',
+//                'required' => false,
+//                'multiple'=>'multiple',
+////                'expanded' => true ,
+//                'placeholder' => 'Aukeratu tramiteak'
+//            ))
             ->add('kanalak', EntityType::class, array(
                 'class' => 'BackendBundle:Kanala',
                 'required' => false,

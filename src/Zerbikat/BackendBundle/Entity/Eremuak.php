@@ -346,34 +346,34 @@ class Eremuak
 
 
 
-    /**
-     * @var tramiteatext
-     *
-     * @ORM\Column(name="tramiteatext", type="boolean", nullable=false,options={"default" = false})
-     */
-    private $tramiteatext;
+//    /**
+//     * @var tramiteatext
+//     *
+//     * @ORM\Column(name="tramiteatext", type="boolean", nullable=false,options={"default" = false})
+//     */
+//    private $tramiteatext;
+//
+//    /**
+//     * @var tramiteatable
+//     *
+//     * @ORM\Column(name="tramiteatable", type="boolean", nullable=false,options={"default" = false})
+//     */
+//    private $tramiteatable;
 
-    /**
-     * @var tramiteatable
-     *
-     * @ORM\Column(name="tramiteatable", type="boolean", nullable=false,options={"default" = false})
-     */
-    private $tramiteatable;
 
-
-    /**
-     * @var tramitealabeleu
-     *
-     * @ORM\Column(name="tramitealabeleu", type="string", length=255, nullable=true)
-     */
-    private $tramitealabeleu;
-
-    /**
-     * @var tramitealabeles
-     *
-     * @ORM\Column(name="tramitealabeles", type="string", length=255, nullable=true)
-     */
-    private $tramitealabeles;
+//    /**
+//     * @var tramitealabeleu
+//     *
+//     * @ORM\Column(name="tramitealabeleu", type="string", length=255, nullable=true)
+//     */
+//    private $tramitealabeleu;
+//
+//    /**
+//     * @var tramitealabeles
+//     *
+//     * @ORM\Column(name="tramitealabeles", type="string", length=255, nullable=true)
+//     */
+//    private $tramitealabeles;
 
 
 

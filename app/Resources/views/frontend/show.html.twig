@@ -419,37 +419,37 @@
     </div>
     {% endif %}
 
-    {% if (eremuak.tramiteatext or eremuak.tramiteatable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
-                    {% if app.request.locale == 'eu'%}{{ labelak.tramitealabeleu }}
-                    {% else %}{{ labelak.tramitealabeles }}
-                    {% endif %}
-                </h3>
-            </div>
-            <div>
-                {% if eremuak.tramiteatext %}
-                    {% if app.request.locale == 'eu'%}{{ fitxa.tramiteakeu |raw }}
-                    {% else %}{{ fitxa.tramiteakes |raw }}
-                    {% endif %}
-                {% endif %}
-                {% if eremuak.tramiteatable %}
-                <ul>
-                    {% for tramitea in fitxa.tramiteak %}
-                        <li>
-                            {% if app.request.locale == 'eu'%}{{ tramitea.tramiteaeu }}
-                            {% else %}{{ tramitea.tramiteaes }}
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    {% endif %}
+    {#{% if (eremuak.tramiteatext or eremuak.tramiteatable) %}#}
+    {#<div class="row">#}
+        {#<div class="col-sm-12">#}
+            {#<div class="page-header">#}
+                {#<h3>#}
+                    {#{% if app.request.locale == 'eu'%}{{ labelak.tramitealabeleu }}#}
+                    {#{% else %}{{ labelak.tramitealabeles }}#}
+                    {#{% endif %}#}
+                {#</h3>#}
+            {#</div>#}
+            {#<div>#}
+                {#{% if eremuak.tramiteatext %}#}
+                    {#{% if app.request.locale == 'eu'%}{{ fitxa.tramiteakeu |raw }}#}
+                    {#{% else %}{{ fitxa.tramiteakes |raw }}#}
+                    {#{% endif %}#}
+                {#{% endif %}#}
+                {#{% if eremuak.tramiteatable %}#}
+                {#<ul>#}
+                    {#{% for tramitea in fitxa.tramiteak %}#}
+                        {#<li>#}
+                            {#{% if app.request.locale == 'eu'%}{{ tramitea.tramiteaeu }}#}
+                            {#{% else %}{{ tramitea.tramiteaes }}#}
+                            {#{% endif %}#}
+                        {#</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
+                {#{% endif %}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    {#{% endif %}#}
 
     {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
     <div class="row">

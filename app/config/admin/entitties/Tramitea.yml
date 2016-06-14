@@ -1,20 +1,20 @@
-easy_admin:
-    entities:
-        Tramitea:
-            class: Zerbikat\BackendBundle\Entity\Tramitea
-            label: 'Tramite zerrenda'
-            list:
-                max_results: 50
-                title: '%%entity_label%%'
-                actions:
-#                   - { name: 'show', label: '', icon: 'search' }
-                    - { name: 'edit', label: '', icon: 'edit' }
-                    - { name: 'delete', label: '', icon: 'trash' }
-                fields:
-                    - { property: 'tramiteaeu', label: 'Tramitea (eu)' }
-                    - { property: 'tramiteaes', label: 'Tramitea (es)' }
-            form:
-                fields:
-                    - { property: 'tramiteaeu', label: 'Tramitea (eu)', css_class: 'col-sm-6' }
-                    - { property: 'tramiteaes', label: 'Tramitea (es)', css_class: 'col-sm-6' }
-#                    - udala
+#easy_admin:
+#    entities:
+#        Tramitea:
+#            class: Zerbikat\BackendBundle\Entity\Tramitea
+#            label: 'Tramite zerrenda'
+#            list:
+#                max_results: 50
+#                title: '%%entity_label%%'
+#                actions:
+##                   - { name: 'show', label: '', icon: 'search' }
+#                    - { name: 'edit', label: '', icon: 'edit' }
+#                    - { name: 'delete', label: '', icon: 'trash' }
+#                fields:
+#                    - { property: 'tramiteaeu', label: 'Tramitea (eu)' }
+#                    - { property: 'tramiteaes', label: 'Tramitea (es)' }
+#            form:
+#                fields:
+#                    - { property: 'tramiteaeu', label: 'Tramitea (eu)', css_class: 'col-sm-6' }
+#                    - { property: 'tramiteaes', label: 'Tramitea (es)', css_class: 'col-sm-6' }
+##                    - udala
