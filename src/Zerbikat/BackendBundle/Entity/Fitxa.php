@@ -153,20 +153,6 @@ class Fitxa
      */
     private $prozeduraes;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="tramiteakeu", type="text", length=65535, nullable=true)
-//     */
-//    private $tramiteakeu;
-//
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="tramiteakes", type="text", length=65535, nullable=true)
-//     */
-//    private $tramiteakes;
-
     /**
      * @var string
      *
@@ -463,22 +449,6 @@ class Fitxa
     private $etiketak;
 
 //    /**
-//     * @var tramiteak[]
-//     *
-//     * @ORM\OneToMany(targetEntity="FitxaTramitea", mappedBy="fitxa", cascade={"remove"})
-//     */
-//    private $tramiteak;
-
-//    /**
-//     * @ORM\ManyToMany(targetEntity="Tramitea")
-//     * @ORM\JoinTable(name="fitxa_tramitea",
-//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-//     *      inverseJoinColumns={@ORM\JoinColumn(name="tramitea_id", referencedColumnName="id", unique=true)}
-//     *      )
-//     */
-//    private $tramiteak;
-
-//    /**
 //     * @var prozedurak[]
 //     *
 //     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" , cascade={"remove"})
@@ -557,7 +527,6 @@ class Fitxa
         $this->besteak2ak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->besteak3ak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->etiketak = new \Doctrine\Common\Collections\ArrayCollection();
-//        $this->tramiteak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->norkeskatuak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->doklagunak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();

@@ -17,6 +17,7 @@ easy_admin:
 
             form:
                 fields:
+                    - { property: 'telematikoa', label: 'Telematikoa da?', css_class: 'col-sm-10 large' }
                     - { property: 'izenaeu', label: 'Izena (eu)', css_class: 'col-sm-6 large' }
                     - { property: 'izenaes', label: 'Izena (es)', css_class: 'col-sm-6 large' }
                     - { property: 'deskribapenaeu', label: 'Deskribapena (eu)', css_class: 'col-sm-6 large' }

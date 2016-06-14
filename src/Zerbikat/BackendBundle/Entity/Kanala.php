@@ -108,7 +108,16 @@ class Kanala
     private $ordutegia;
 
 
-
+    /**
+     * @var telemoatikoa
+     *
+     * @ORM\Column(name="telematikoa", type="boolean", nullable=true)
+     */
+    private $telematikoa;
+       
+    
+    
+    
     /**
      *  ERLAZIOAK 
      */
@@ -629,5 +638,29 @@ class Kanala
     public function getEstekaes()
     {
         return $this->estekaes;
+    }
+
+    /**
+     * Set telematikoa
+     *
+     * @param boolean $telematikoa
+     *
+     * @return Kanala
+     */
+    public function setTelematikoa($telematikoa)
+    {
+        $this->telematikoa = $telematikoa;
+
+        return $this;
+    }
+
+    /**
+     * Get telematikoa
+     *
+     * @return boolean
+     */
+    public function getTelematikoa()
+    {
+        return $this->telematikoa;
     }
 }

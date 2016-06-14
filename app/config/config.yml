@@ -103,7 +103,6 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Fitxa
       - Zerbikat\BackendBundle\Entity\FitxaAraudia
       - Zerbikat\BackendBundle\Entity\FitxaDokumentazioa
-#      - Zerbikat\BackendBundle\Entity\FitxaTramitea
       - Zerbikat\BackendBundle\Entity\Kalea
       - Zerbikat\BackendBundle\Entity\Kontzeptua
       - Zerbikat\BackendBundle\Entity\Kontzeptumota
@@ -111,7 +110,6 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\Ordenantza
       - Zerbikat\BackendBundle\Entity\Ordenantzaparrafoa
       - Zerbikat\BackendBundle\Entity\Saila
-      - Zerbikat\BackendBundle\Entity\Tramitea
       - Zerbikat\BackendBundle\Entity\Kanalmota
       - Zerbikat\BackendBundle\Entity\Kanala
       - Zerbikat\BackendBundle\Entity\Zerbitzua
@@ -124,7 +122,6 @@ easy_admin:
       - Zerbikat\BackendBundle\Entity\User
       - Zerbikat\BackendBundle\Entity\Doklagun
       - Zerbikat\BackendBundle\Entity\Prozedura
-#      - Zerbikat\BackendBundle\Entity\Tramitea
       - Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
       - Zerbikat\BackendBundle\Entity\Norkeskatu
       - Zerbikat\BackendBundle\Entity\Barrutia

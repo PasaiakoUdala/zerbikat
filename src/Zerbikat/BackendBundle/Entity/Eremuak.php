@@ -346,36 +346,6 @@ class Eremuak
 
 
 
-//    /**
-//     * @var tramiteatext
-//     *
-//     * @ORM\Column(name="tramiteatext", type="boolean", nullable=false,options={"default" = false})
-//     */
-//    private $tramiteatext;
-//
-//    /**
-//     * @var tramiteatable
-//     *
-//     * @ORM\Column(name="tramiteatable", type="boolean", nullable=false,options={"default" = false})
-//     */
-//    private $tramiteatable;
-
-
-//    /**
-//     * @var tramitealabeleu
-//     *
-//     * @ORM\Column(name="tramitealabeleu", type="string", length=255, nullable=true)
-//     */
-//    private $tramitealabeleu;
-//
-//    /**
-//     * @var tramitealabeles
-//     *
-//     * @ORM\Column(name="tramitealabeles", type="string", length=255, nullable=true)
-//     */
-//    private $tramitealabeles;
-
-
 
     /**
      * @var doklaguntext
@@ -603,21 +573,6 @@ class Eremuak
      * @ORM\Column(name="kanalalabeles", type="string", length=255, nullable=true)
      */
     private $kanalalabeles;
-
-
-//    /**
-//     * @var udalsailalabeleu
-//     *
-//     * @ORM\Column(name="udalsailalabeleu", type="string", length=255, nullable=true)
-//     */
-//    private $udalsailalabeleu;
-//
-//    /**
-//     * @var udalsailalabeles
-//     *
-//     * @ORM\Column(name="udalsailalabeles", type="string", length=255, nullable=true)
-//     */
-//    private $udalsailalabeles;
 
 
     /**

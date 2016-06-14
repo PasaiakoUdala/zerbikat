@@ -72,11 +72,6 @@ easy_admin:
                     - { property: 'prozeduralabeleu', label: 'Prozedurak etiketa (eu)', css_class: 'col-sm-4 large' }
                     - { property: 'prozeduralabeles', label: 'Prozedurak etiketa (es)', css_class: 'col-sm-4 large' }
 
-#                    - { property: 'tramiteatext', label: 'Tramiteak (txt)', css_class: 'col-sm-2 large' }
-#                    - { property: 'tramiteatable', label: 'Tramiteak (taula)', css_class: 'col-sm-2 large' }
-#                    - { property: 'tramitealabeleu', label: 'Tramiteak etiketa (eu)', css_class: 'col-sm-4 large' }
-#                    - { property: 'tramitealabeles', label: 'Tramiteak etiketa (es)', css_class: 'col-sm-4 large' }
-
                     - { property: 'norkebatzitext', label: 'Nork ebatzi (txt)', css_class: 'col-sm-2 large' }
                     - { property: 'norkebatzitable', label: 'Nork ebatzi (taula)', css_class: 'col-sm-2 large' }
                     - { property: 'norkebatzilabeleu', label: 'Nork ebatzi etiketa (eu)', css_class: 'col-sm-4 large' }

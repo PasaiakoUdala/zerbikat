@@ -15,7 +15,6 @@ easy_admin:
           children:
             - { label: 'Dokumentazio lagungarria', entity: 'Doklagun' }
             - { label: 'Prozedurak', entity: 'Prozedura' }
-            - { label: 'Tramiteak', entity: 'Tramitea' }
             - { label: 'Kanalak', entity: 'Kanala' }
             - { label: 'Taula gehigarria (besteak1)',  entity: 'Besteak1' }
             - { label: 'Taula gehigarria (besteak2)',  entity: 'Besteak2' }
