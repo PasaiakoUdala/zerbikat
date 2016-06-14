@@ -19,4 +19,4 @@ easy_admin:
                     - { property: 'kodea', label: 'Kodea' }
                     - { property: 'zerbitzuaeu', label: 'Zerbitzua (eu)' }
                     - { property: 'zerbitzuaes', label: 'Zerbitzua (es)' }
-#                    - udala
+                    - espedientekudeaketa

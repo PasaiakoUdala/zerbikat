@@ -18,3 +18,6 @@ easy_admin:
                 fields:
                     - { property: 'izenaeu', label: 'Izena (eu)', css_class: 'col-sm-6' }
                     - { property: 'izenaes', label: 'Izena (es)', css_class: 'col-sm-6' }
+                    - { property: 'urleu', label: 'URL-a (eu)', css_class: 'col-sm-6' }
+                    - { property: 'urles', label: 'URL-a (es)', css_class: 'col-sm-6' }
+                    - zerbitzuak

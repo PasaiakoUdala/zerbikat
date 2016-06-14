@@ -39,11 +39,11 @@ easy_admin:
 
         - label: 'KUDEAKETA'
           children:
-            - { label: 'Zerbitzuak', icon: 'file-new', entity: 'Zerbitzua' }
             - { label: 'Udalak', icon: 'file-new', entity: 'Udala' }
+            - { label: 'Erabiltzaileak', icon: 'file-new', entity: 'User' }
             - { label: 'Eremuen konfigurazioa', icon: 'file-new', entity: 'Eremuak' }
             - { label: 'Espediente-kudeaketa', icon: 'file-new', entity: 'Espedientekudeaketa' }
-            - { label: 'Erabiltzaileak', icon: 'file-new', entity: 'User' }
+            - { label: 'Zerbitzuak', icon: 'file-new', entity: 'Zerbitzua' }
 
         - label: 'KALE IZENDEGIA'
           children:

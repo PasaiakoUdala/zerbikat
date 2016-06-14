@@ -36,12 +36,37 @@ class Espedientekudeaketa
      */
     private $izenaes;
 
-    
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urleu", type="string", length=255)
+     */
+    private $urleu;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urles", type="string", length=255)
+     */
+    private $urles;
+
+    
     public function __toString()
     {
         return $this->getIzenaeu();
     }
+
+
+    /**
+     * @var zerbitzuak[]
+     *
+     * @ORM\OneToMany(targetEntity="Zerbitzua",cascade={"remove"},mappedBy="espedientekudeaketa")
+     */
+    private $zerbitzuak;
+
+
 
 
     /**
@@ -100,5 +125,94 @@ class Espedientekudeaketa
     public function getIzenaes()
     {
         return $this->izenaes;
+    }
+
+    /**
+     * Set urleu
+     *
+     * @param string $urleu
+     *
+     * @return Espedientekudeaketa
+     */
+    public function setUrleu($urleu)
+    {
+        $this->urleu = $urleu;
+
+        return $this;
+    }
+
+    /**
+     * Get urleu
+     *
+     * @return string
+     */
+    public function getUrleu()
+    {
+        return $this->urleu;
+    }
+
+    /**
+     * Set urles
+     *
+     * @param string $urles
+     *
+     * @return Espedientekudeaketa
+     */
+    public function setUrles($urles)
+    {
+        $this->urles = $urles;
+
+        return $this;
+    }
+
+    /**
+     * Get urles
+     *
+     * @return string
+     */
+    public function getUrles()
+    {
+        return $this->urles;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->zerbitzuak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add zerbitzuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak
+     *
+     * @return Espedientekudeaketa
+     */
+    public function addZerbitzuak(\Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak)
+    {
+        $this->zerbitzuak[] = $zerbitzuak;
+
+        return $this;
+    }
+
+    /**
+     * Remove zerbitzuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak
+     */
+    public function removeZerbitzuak(\Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak)
+    {
+        $this->zerbitzuak->removeElement($zerbitzuak);
+    }
+
+    /**
+     * Get zerbitzuak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getZerbitzuak()
+    {
+        return $this->zerbitzuak;
     }
 }

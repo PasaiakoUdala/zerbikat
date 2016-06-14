@@ -12,9 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Zerbitzua
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
+//    /** @ORM\ManyToOne(targetEntity="Udala") */
+//    private $udala;
 
+    /** @ORM\ManyToOne(targetEntity="Espedientekudeaketa") */
+    private $espedientekudeaketa;
+    
     /**
      * @var string
      *
@@ -153,5 +156,29 @@ class Zerbitzua
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set espedientekudeaketa
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Espedientekudeaketa $espedientekudeaketa
+     *
+     * @return Zerbitzua
+     */
+    public function setEspedientekudeaketa(\Zerbikat\BackendBundle\Entity\Espedientekudeaketa $espedientekudeaketa = null)
+    {
+        $this->espedientekudeaketa = $espedientekudeaketa;
+
+        return $this;
+    }
+
+    /**
+     * Get espedientekudeaketa
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Espedientekudeaketa
+     */
+    public function getEspedientekudeaketa()
+    {
+        return $this->espedientekudeaketa;
     }
 }

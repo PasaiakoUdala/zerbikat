@@ -639,4 +639,28 @@ class Kanala
     {
         return $this->estekaes;
     }
+
+    /**
+     * Set telematikoa
+     *
+     * @param boolean $telematikoa
+     *
+     * @return Kanala
+     */
+    public function setTelematikoa($telematikoa)
+    {
+        $this->telematikoa = $telematikoa;
+
+        return $this;
+    }
+
+    /**
+     * Get telematikoa
+     *
+     * @return boolean
+     */
+    public function getTelematikoa()
+    {
+        return $this->telematikoa;
+    }
 }
