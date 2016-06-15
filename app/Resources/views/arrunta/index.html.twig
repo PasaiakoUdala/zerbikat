@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Epe-Arruntak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Epe arunta</th>
+                {#<th>Epeaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for arruntum in arruntas %}
+            <tr>
+                {#<td><a href="{{ path('arrunta_show', { 'id': arruntum.id }) }}">{{ arruntum.epeaeu }}</a></td>#}
+                <td><a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}">{{ arruntum.epeaeu }}</a></td>
+                {#<td>{{ arruntum.epeaes }}</td>#}
+                {#<td>{{ arruntum.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('arrunta_show', { 'id': arruntum.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('arrunta_new') }}" class="btn btn-primary">Epe berria sortu</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

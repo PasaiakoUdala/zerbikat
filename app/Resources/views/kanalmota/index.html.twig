@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kanalmota list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Motaeu</th>
+                <th>Motaes</th>
+                <th>Esteka</th>
+                <th>Ikonoa</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kanalmotum in kanalmotas %}
+            <tr>
+                <td><a href="{{ path('kanalmota_show', { 'id': kanalmotum.id }) }}">{{ kanalmotum.id }}</a></td>
+                <td>{{ kanalmotum.motaeu }}</td>
+                <td>{{ kanalmotum.motaes }}</td>
+                <td>{% if kanalmotum.esteka %}Yes{% else %}No{% endif %}</td>
+                <td>{{ kanalmotum.ikonoa }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('kanalmota_show', { 'id': kanalmotum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kanalmota_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

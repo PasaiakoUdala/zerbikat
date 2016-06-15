@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Barrutiak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Izena</th>
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for barrutium in barrutias %}
+            <tr>
+                <td><a href="{{ path('barrutia_edit', { 'id': barrutium.id }) }}">{{ barrutium.izena }}</a></td>
+                {#<td>{{ barrutium.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('barrutia_show', { 'id': barrutium.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('barrutia_edit', { 'id': barrutium.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('barrutia_new') }}" class="btn btn-primary">Barruti berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

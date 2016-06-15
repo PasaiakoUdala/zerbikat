@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kostu Taulak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Izenburuaeu</th>
+                {#<th>Izenburuaes</th>#}
+                {#<th>Createdat</th>#}
+                {#<th>Updatedat</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for azpiatala in azpiatalas %}
+            <tr>
+                {#<td><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">{{ azpiatala.kodea }}</a></td>#}
+                <td><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">
+                        {{ azpiatala.atala.ordenantza.kodea }}.{{ azpiatala.atala.kodea }}.{{ azpiatala.kodea }}
+
+                    </a></td>
+                <td>{{ azpiatala.izenburuaeu }}</td>
+                {#<td>{{ azpiatala.izenburuaes }}</td>#}
+                {#<td>{% if azpiatala.createdAt %}{{ azpiatala.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>{% if azpiatala.updatedAt %}{{ azpiatala.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>{{ azpiatala.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('azpiatala_new') }}" class="btn btn-primary">Taula berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

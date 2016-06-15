@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kontzeptua</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ kontzeptua.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Kontzeptuaeu</th>
+                <td>{{ kontzeptua.kontzeptuaeu }}</td>
+            </tr>
+            <tr>
+                <th>Kontzeptuaes</th>
+                <td>{{ kontzeptua.kontzeptuaes }}</td>
+            </tr>
+            <tr>
+                <th>Kopurua</th>
+                <td>{{ kontzeptua.kopurua }}</td>
+            </tr>
+            <tr>
+                <th>Unitatea</th>
+                <td>{{ kontzeptua.unitatea }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if kontzeptua.createdAt %}{{ kontzeptua.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if kontzeptua.updatedAt %}{{ kontzeptua.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ kontzeptua.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kontzeptua_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Agiriak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Deskribapenaeu</th>
+                {#<th>Deskribapenaes</th>#}
+                {#<th>Estekaeu</th>#}
+                {#<th>Estekaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for dokumentazioa in dokumentazioas %}
+            <tr>
+                <td><a href="{{ path('dokumentazioa_show', { 'id': dokumentazioa.id }) }}">{{ dokumentazioa.kodea }}</a></td>
+                <td><a href="{{ path('dokumentazioa_show', { 'id': dokumentazioa.id }) }}">{{ dokumentazioa.deskribapenaeu }}</a></td>
+                {#<td>{{ dokumentazioa.deskribapenaes }}</td>#}
+                {#<td>{{ dokumentazioa.estekaeu }}</td>#}
+                {#<td>{{ dokumentazioa.estekaes }}</td>#}
+                {#<td>{{ dokumentazioa.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('dokumentazioa_show', { 'id': dokumentazioa.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('dokumentazioa_edit', { 'id': dokumentazioa.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('dokumentazioa_new') }}" class="btn btn-primary">Sarrera berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

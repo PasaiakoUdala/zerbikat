@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dokumentazioa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ dokumentazioa.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaeu</th>
+                <td>{{ dokumentazioa.deskribapenaeu }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaes</th>
+                <td>{{ dokumentazioa.deskribapenaes }}</td>
+            </tr>
+            <tr>
+                <th>Estekaeu</th>
+                <td>{{ dokumentazioa.estekaeu }}</td>
+            </tr>
+            <tr>
+                <th>Estekaes</th>
+                <td>{{ dokumentazioa.estekaes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ dokumentazioa.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dokumentazioa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('dokumentazioa_edit', { 'id': dokumentazioa.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Familia</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ familium.id }}</td>
+            </tr>
+            <tr>
+                <th>Familiaeu</th>
+                <td>{{ familium.familiaeu }}</td>
+            </tr>
+            <tr>
+                <th>Familiaes</th>
+                <td>{{ familium.familiaes }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaeu</th>
+                <td>{{ familium.deskribapenaeu }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaes</th>
+                <td>{{ familium.deskribapenaes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('familia_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('familia_edit', { 'id': familium.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

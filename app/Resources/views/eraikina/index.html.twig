@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Eraikinak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Izena</th>
+                <th>Koordenadak</th>
+                {#<th>Latitudea</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for eraikina in eraikinas %}
+            <tr>
+                <td><a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}">{{ eraikina.izena }}</a></td>
+                <td>({{ eraikina.longitudea }}, {{ eraikina.latitudea }})</td>
+                {#<td>{{ eraikina.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('eraikina_show', { 'id': eraikina.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('eraikina_new') }}" class="btn btn-primary">Sarrera berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

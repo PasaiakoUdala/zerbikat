@@ -87,10 +87,10 @@ class Udala
     private $lopdes;
 
 
-//    /**
-//     * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala")
-//     */
-//    protected $eremuak;
+    /**
+     * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala")
+     */
+    protected $eremuak;
 
 
     /**

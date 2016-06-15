@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Familiak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {#<th>Id</th>#}
+                <th>Familiaeu</th>
+                {#<th>Familiaes</th>#}
+                <th>Deskribapenaeu</th>
+                {#<th>Deskribapenaes</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for familium in familias %}
+            <tr>
+                <td><a href="{{ path('familia_edit', { 'id': familium.id }) }}">{{ familium.familiaeu }}</a></td>
+                {#<td>{{ familium.familiaeu }}</td>#}
+                {#<td>{{ familium.familiaes }}</td>#}
+                <td>{{ familium.deskribapenaeu }}</td>
+                {#<td>{{ familium.deskribapenaes }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('familia_show', { 'id': familium.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('familia_edit', { 'id': familium.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('familia_new') }}" class="btn btn-primary">Familia berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

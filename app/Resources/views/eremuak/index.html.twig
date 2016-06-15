@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Eremuak list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Oharraktext</th>
+                <th>Oharraklabeleu</th>
+                <th>Oharraklabeles</th>
+                <th>Helburuatext</th>
+                <th>Helburualabeleu</th>
+                <th>Helburualabeles</th>
+                <th>Ebazpensinpli</th>
+                <th>Ebazpensinplilabeleu</th>
+                <th>Ebazpensinplilabeles</th>
+                <th>Arduraaitorpena</th>
+                <th>Arduraaitorpenalabeleu</th>
+                <th>Arduraaitorpenalabeles</th>
+                <th>Aurreikusi</th>
+                <th>Aurreikusilabeleu</th>
+                <th>Aurreikusilabeles</th>
+                <th>Arrunta</th>
+                <th>Arruntalabeleu</th>
+                <th>Arruntalabeles</th>
+                <th>Isiltasunadmin</th>
+                <th>Isiltasunadminlabeleu</th>
+                <th>Isiltasunadminlabeles</th>
+                <th>Norkeskatutext</th>
+                <th>Norkeskatutable</th>
+                <th>Norkeskatulabeleu</th>
+                <th>Norkeskatulabeles</th>
+                <th>Dokumentazioatext</th>
+                <th>Dokumentazioatable</th>
+                <th>Dokumentazioalabeleu</th>
+                <th>Dokumentazioalabeles</th>
+                <th>Kostuatext</th>
+                <th>Kostuatable</th>
+                <th>Kostualabeleu</th>
+                <th>Kostualabeles</th>
+                <th>Araudiatext</th>
+                <th>Araudiatable</th>
+                <th>Araudialabeleu</th>
+                <th>Araudialabeles</th>
+                <th>Prozeduratext</th>
+                <th>Prozeduratable</th>
+                <th>Prozeduralabeleu</th>
+                <th>Prozeduralabeles</th>
+                <th>Doklaguntext</th>
+                <th>Doklaguntable</th>
+                <th>Doklagunlabeleu</th>
+                <th>Doklagunlabeles</th>
+                <th>Datuenbabesatext</th>
+                <th>Datuenbabesatable</th>
+                <th>Datuenbabesalabeleu</th>
+                <th>Datuenbabesalabeles</th>
+                <th>Azpisailatable</th>
+                <th>Azpisailalabeleu</th>
+                <th>Azpisailalabeles</th>
+                <th>Norkebatzitext</th>
+                <th>Norkebatzitable</th>
+                <th>Norkebatzilabeleu</th>
+                <th>Norkebatzilabeles</th>
+                <th>Besteak1text</th>
+                <th>Besteak1table</th>
+                <th>Besteak1labeleu</th>
+                <th>Besteak1labeles</th>
+                <th>Besteak2text</th>
+                <th>Besteak2table</th>
+                <th>Besteak2labeleu</th>
+                <th>Besteak2labeles</th>
+                <th>Besteak3text</th>
+                <th>Besteak3table</th>
+                <th>Besteak3labeleu</th>
+                <th>Besteak3labeles</th>
+                <th>Kanalatext</th>
+                <th>Kanalatable</th>
+                <th>Kanalalabeleu</th>
+                <th>Kanalalabeles</th>
+                <th>Epealabeleu</th>
+                <th>Epealabeles</th>
+                <th>Doanlabeleu</th>
+                <th>Doanlabeles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eremuak in eremuaks %}
+            <tr>
+                <td><a href="{{ path('eremuak_show', { 'id': eremuak.id }) }}">{{ eremuak.id }}</a></td>
+                <td>{% if eremuak.oharraktext %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.oharraklabeleu }}</td>
+                <td>{{ eremuak.oharraklabeles }}</td>
+                <td>{% if eremuak.helburuatext %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.helburualabeleu }}</td>
+                <td>{{ eremuak.helburualabeles }}</td>
+                <td>{% if eremuak.ebazpensinpli %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.ebazpensinplilabeleu }}</td>
+                <td>{{ eremuak.ebazpensinplilabeles }}</td>
+                <td>{% if eremuak.arduraaitorpena %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.arduraaitorpenalabeleu }}</td>
+                <td>{{ eremuak.arduraaitorpenalabeles }}</td>
+                <td>{% if eremuak.aurreikusi %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.aurreikusilabeleu }}</td>
+                <td>{{ eremuak.aurreikusilabeles }}</td>
+                <td>{% if eremuak.arrunta %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.arruntalabeleu }}</td>
+                <td>{{ eremuak.arruntalabeles }}</td>
+                <td>{% if eremuak.isiltasunadmin %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.isiltasunadminlabeleu }}</td>
+                <td>{{ eremuak.isiltasunadminlabeles }}</td>
+                <td>{% if eremuak.norkeskatutext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.norkeskatutable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.norkeskatulabeleu }}</td>
+                <td>{{ eremuak.norkeskatulabeles }}</td>
+                <td>{% if eremuak.dokumentazioatext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.dokumentazioatable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.dokumentazioalabeleu }}</td>
+                <td>{{ eremuak.dokumentazioalabeles }}</td>
+                <td>{% if eremuak.kostuatext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.kostuatable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.kostualabeleu }}</td>
+                <td>{{ eremuak.kostualabeles }}</td>
+                <td>{% if eremuak.araudiatext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.araudiatable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.araudialabeleu }}</td>
+                <td>{{ eremuak.araudialabeles }}</td>
+                <td>{% if eremuak.prozeduratext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.prozeduratable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.prozeduralabeleu }}</td>
+                <td>{{ eremuak.prozeduralabeles }}</td>
+                <td>{% if eremuak.doklaguntext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.doklaguntable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.doklagunlabeleu }}</td>
+                <td>{{ eremuak.doklagunlabeles }}</td>
+                <td>{% if eremuak.datuenbabesatext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.datuenbabesatable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.datuenbabesalabeleu }}</td>
+                <td>{{ eremuak.datuenbabesalabeles }}</td>
+                <td>{% if eremuak.azpisailatable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.azpisailalabeleu }}</td>
+                <td>{{ eremuak.azpisailalabeles }}</td>
+                <td>{% if eremuak.norkebatzitext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.norkebatzitable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.norkebatzilabeleu }}</td>
+                <td>{{ eremuak.norkebatzilabeles }}</td>
+                <td>{% if eremuak.besteak1text %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.besteak1table %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.besteak1labeleu }}</td>
+                <td>{{ eremuak.besteak1labeles }}</td>
+                <td>{% if eremuak.besteak2text %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.besteak2table %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.besteak2labeleu }}</td>
+                <td>{{ eremuak.besteak2labeles }}</td>
+                <td>{% if eremuak.besteak3text %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.besteak3table %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.besteak3labeleu }}</td>
+                <td>{{ eremuak.besteak3labeles }}</td>
+                <td>{% if eremuak.kanalatext %}Yes{% else %}No{% endif %}</td>
+                <td>{% if eremuak.kanalatable %}Yes{% else %}No{% endif %}</td>
+                <td>{{ eremuak.kanalalabeleu }}</td>
+                <td>{{ eremuak.kanalalabeles }}</td>
+                <td>{{ eremuak.epealabeleu }}</td>
+                <td>{{ eremuak.epealabeles }}</td>
+                <td>{{ eremuak.doanlabeleu }}</td>
+                <td>{{ eremuak.doanlabeles }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('eremuak_show', { 'id': eremuak.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('eremuak_edit', { 'id': eremuak.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('eremuak_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Azpi-sailak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Azpisaila</th>
+                {#<th>Azpisailaes</th>#}
+                <th>Arduraduna</th>
+                {#<th>Arduradunahaz</th>#}
+                <th>Kontaktua</th>
+                {#<th>Telefonoa</th>#}
+                {#<th>Fax</th>#}
+                <th>Helbidea</th>
+                {#<th>Hizkia</th>#}
+                {#<th>Ordutegia</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for azpisaila in azpisailas %}
+            <tr>
+                <td><a href="{{ path('azpisaila_show', { 'id': azpisaila.id }) }}">{{ azpisaila.kodea }}</a></td>
+                <td>{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaeu }}</td>
+                {#<td>{{ azpisaila.azpisailaes }}</td>#}
+                <td>{{ azpisaila.arduraduna }}</td>
+                {#<td>{{ azpisaila.arduradunahaz }}</td>#}
+                <td>{{ azpisaila.email }}<br/>
+                    {{ azpisaila.telefonoa }}<br/>
+                    {{ azpisaila.fax }}<br/>
+                    {{ azpisaila.ordutegia }}
+                <td>{{ azpisaila.kalea }} {{ azpisaila.kaleZbkia }}, {{ azpisaila.barrutia }}<br/>
+                    {{ azpisaila.eraikina }}
+                </td>
+
+                {#<td>{{ azpisaila.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('azpisaila_show', { 'id': azpisaila.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('azpisaila_new') }}" class="btn btn-primary">Azpi-sail berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

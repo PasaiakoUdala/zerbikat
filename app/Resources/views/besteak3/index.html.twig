@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ app.user.udala.eremuak.besteak3labeleu }} zerrenda</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Izenburuaeu</th>
+                {#<th>Izenburuaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Estekaeu</th>#}
+                {#<th>Estekaes</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for besteak3 in besteak3s %}
+            <tr>
+                <td><a href="{{ path('besteak3_edit', { 'id': besteak3.id }) }}">{{ besteak3.kodea }}</a></td>
+                <td><a href="{{ path('besteak3_edit', { 'id': besteak3.id }) }}">{{ besteak3.izenburuaeu }}</a></td>
+                {#<td>{{ besteak3.izenburuaes }}</td>#}
+                {#<td>{{ besteak3.id }}</td>#}
+                {#<td>{{ besteak3.estekaeu }}</td>#}
+                {#<td>{{ besteak3.estekaes }}</td>#}
+                {#<td>{{ besteak3.kodea }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('besteak3_show', { 'id': besteak3.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('besteak3_edit', { 'id': besteak3.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="fitxaMenua">
+        <ul>
+            <li>
+                <a href="{{ path('besteak3_new') }}" class="btn btn-primary">Sarrera berria</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

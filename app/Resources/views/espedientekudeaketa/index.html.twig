@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Espedientekudeaketa list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Izenaeu</th>
+                <th>Izenaes</th>
+                <th>Urleu</th>
+                <th>Urles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for espedientekudeaketum in espedientekudeaketas %}
+            <tr>
+                <td><a href="{{ path('espedientekudeaketa_show', { 'id': espedientekudeaketum.id }) }}">{{ espedientekudeaketum.id }}</a></td>
+                <td>{{ espedientekudeaketum.izenaeu }}</td>
+                <td>{{ espedientekudeaketum.izenaes }}</td>
+                <td>{{ espedientekudeaketum.urleu }}</td>
+                <td>{{ espedientekudeaketum.urles }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('espedientekudeaketa_show', { 'id': espedientekudeaketum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('espedientekudeaketa_edit', { 'id': espedientekudeaketum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('espedientekudeaketa_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

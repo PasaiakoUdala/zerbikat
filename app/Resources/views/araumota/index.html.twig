@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Arau-motak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Motaeu</th>
+                {#<th>Motaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for araumotum in araumotas %}
+            <tr>
+                {#<td><a href="{{ path('araumota_show', { 'id': araumotum.id }) }}">{{ araumotum.kodea }}</a></td>#}
+                <td><a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}">{{ araumotum.kodea }}</a></td>
+                <td>{{ araumotum.motaeu }}</td>
+                {#<td>{{ araumotum.motaes }}</td>#}
+                {#<td>{{ araumotum.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('araumota_show', { 'id': araumotum.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('araumota_new') }}" class="btn btn-primary">Arau-mota berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

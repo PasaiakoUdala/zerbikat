@@ -1,3 +1,151 @@
+backend_tramitea:
+    resource: "@BackendBundle/Controller/TramiteaController.php"
+    type:     annotation
+
+backend_saila:
+    resource: "@BackendBundle/Controller/SailaController.php"
+    type:     annotation
+
+backend_prozedura:
+    resource: "@BackendBundle/Controller/ProzeduraController.php"
+    type:     annotation
+
+backend_ordenantzaparrafoa:
+    resource: "@BackendBundle/Controller/OrdenantzaparrafoaController.php"
+    type:     annotation
+
+backend_ordenantza:
+    resource: "@BackendBundle/Controller/OrdenantzaController.php"
+    type:     annotation
+
+backend_norkeskatu:
+    resource: "@BackendBundle/Controller/NorkeskatuController.php"
+    type:     annotation
+
+backend_norkebatzi:
+    resource: "@BackendBundle/Controller/NorkebatziController.php"
+    type:     annotation
+
+backend_kontzeptumota:
+    resource: "@BackendBundle/Controller/KontzeptumotaController.php"
+    type:     annotation
+
+backend_kontzeptua:
+    resource: "@BackendBundle/Controller/KontzeptuaController.php"
+    type:     annotation
+
+backend_kanalmota:
+    resource: "@BackendBundle/Controller/KanalmotaController.php"
+    type:     annotation
+
+backend_kanala:
+    resource: "@BackendBundle/Controller/KanalaController.php"
+    type:     annotation
+
+backend_kalea:
+    resource: "@BackendBundle/Controller/KaleaController.php"
+    type:     annotation
+
+backend_isiltasun_administratiboa:
+    resource: "@BackendBundle/Controller/IsiltasunAdministratiboaController.php"
+    type:     annotation
+
+backend_familia:
+    resource: "@BackendBundle/Controller/FamiliaController.php"
+    type:     annotation
+
+backend_etiketa:
+    resource: "@BackendBundle/Controller/EtiketaController.php"
+    type:     annotation
+
+backend_espedientekudeaketa:
+    resource: "@BackendBundle/Controller/EspedientekudeaketaController.php"
+    type:     annotation
+
+backend_eremuak:
+    resource: "@BackendBundle/Controller/EremuakController.php"
+    type:     annotation
+
+backend_eraikina:
+    resource: "@BackendBundle/Controller/EraikinaController.php"
+    type:     annotation
+
+backend_dokumentumota:
+    resource: "@BackendBundle/Controller/DokumentumotaController.php"
+    type:     annotation
+
+backend_dokumentazioa:
+    resource: "@BackendBundle/Controller/DokumentazioaController.php"
+    type:     annotation
+
+backend_doklagun:
+    resource: "@BackendBundle/Controller/DoklagunController.php"
+    type:     annotation
+
+backend_datuenbabesa:
+    resource: "@BackendBundle/Controller/DatuenbabesaController.php"
+    type:     annotation
+
+backend_besteak3:
+    resource: "@BackendBundle/Controller/Besteak3Controller.php"
+    type:     annotation
+
+backend_besteak2:
+    resource: "@BackendBundle/Controller/Besteak2Controller.php"
+    type:     annotation
+
+backend_besteak1:
+    resource: "@BackendBundle/Controller/Besteak1Controller.php"
+    type:     annotation
+
+backend_barrutia:
+    resource: "@BackendBundle/Controller/BarrutiaController.php"
+    type:     annotation
+
+backend_baldintza:
+    resource: "@BackendBundle/Controller/BaldintzaController.php"
+    type:     annotation
+
+backend_azpisaila:
+    resource: "@BackendBundle/Controller/AzpisailaController.php"
+    type:     annotation
+
+backend_azpiatalaparrafoa:
+    resource: "@BackendBundle/Controller/AzpiatalaparrafoaController.php"
+    type:     annotation
+
+backend_azpiatala:
+    resource: "@BackendBundle/Controller/AzpiatalaController.php"
+    type:     annotation
+
+backend_aurreikusi:
+    resource: "@BackendBundle/Controller/AurreikusiController.php"
+    type:     annotation
+
+backend_atalaparrafoa:
+    resource: "@BackendBundle/Controller/AtalaparrafoaController.php"
+    type:     annotation
+
+backend_atala:
+    resource: "@BackendBundle/Controller/AtalaController.php"
+    type:     annotation
+
+backend_arrunta:
+    resource: "@BackendBundle/Controller/ArruntaController.php"
+    type:     annotation
+
+backend_arrunta:
+    resource: "@BackendBundle/Controller/ArruntaController.php"
+    type:     annotation
+
+backend_araumota:
+    resource: "@BackendBundle/Controller/AraumotaController.php"
+    type:     annotation
+
+backend_araudia:
+    resource: "@BackendBundle/Controller/AraudiaController.php"
+    type:     annotation
+
 
 backend_fitxa:
     resource: "@BackendBundle/Controller/FitxaController.php"

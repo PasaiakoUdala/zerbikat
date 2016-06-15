@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Norkebatzi</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Norkeu</th>
+                <td>{{ norkebatzi.norkeu }}</td>
+            </tr>
+            <tr>
+                <th>Norkes</th>
+                <td>{{ norkebatzi.norkes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ norkebatzi.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('norkebatzi_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('norkebatzi_edit', { 'id': norkebatzi.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

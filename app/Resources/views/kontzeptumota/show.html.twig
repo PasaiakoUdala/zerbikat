@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kontzeptumota</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Motaeu</th>
+                <td>{{ kontzeptumotum.motaeu }}</td>
+            </tr>
+            <tr>
+                <th>Motaes</th>
+                <td>{{ kontzeptumotum.motaes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ kontzeptumotum.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kontzeptumota_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

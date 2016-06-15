@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Doklagun</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ doklagun.id }}</td>
+            </tr>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ doklagun.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaeu</th>
+                <td>{{ doklagun.deskribapenaeu }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaes</th>
+                <td>{{ doklagun.deskribapenaes }}</td>
+            </tr>
+            <tr>
+                <th>Estekaeu</th>
+                <td>{{ doklagun.estekaeu }}</td>
+            </tr>
+            <tr>
+                <th>Estekaes</th>
+                <td>{{ doklagun.estekaes }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('doklagun_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

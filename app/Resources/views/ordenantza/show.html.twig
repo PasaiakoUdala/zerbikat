@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ordenantza</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ ordenantza.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Izenburuaeu</th>
+                <td>{{ ordenantza.izenburuaeu }}</td>
+            </tr>
+            <tr>
+                <th>Izenburuaes</th>
+                <td>{{ ordenantza.izenburuaes }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if ordenantza.createdAt %}{{ ordenantza.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if ordenantza.updatedAt %}{{ ordenantza.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ ordenantza.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ordenantza_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('ordenantza_edit', { 'id': ordenantza.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

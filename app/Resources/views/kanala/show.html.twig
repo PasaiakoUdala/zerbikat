@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kanala</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ kanala.id }}</td>
+            </tr>
+            <tr>
+                <th>Izenaeu</th>
+                <td>{{ kanala.izenaeu }}</td>
+            </tr>
+            <tr>
+                <th>Izenaes</th>
+                <td>{{ kanala.izenaes }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaeu</th>
+                <td>{{ kanala.deskribapenaeu }}</td>
+            </tr>
+            <tr>
+                <th>Deskribapenaes</th>
+                <td>{{ kanala.deskribapenaes }}</td>
+            </tr>
+            <tr>
+                <th>Estekaeu</th>
+                <td>{{ kanala.estekaeu }}</td>
+            </tr>
+            <tr>
+                <th>Estekaes</th>
+                <td>{{ kanala.estekaes }}</td>
+            </tr>
+            <tr>
+                <th>Telefonoa</th>
+                <td>{{ kanala.telefonoa }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ kanala.fax }}</td>
+            </tr>
+            <tr>
+                <th>Kalezbkia</th>
+                <td>{{ kanala.kalezbkia }}</td>
+            </tr>
+            <tr>
+                <th>Postakodea</th>
+                <td>{{ kanala.postakodea }}</td>
+            </tr>
+            <tr>
+                <th>Ordutegia</th>
+                <td>{{ kanala.ordutegia }}</td>
+            </tr>
+            <tr>
+                <th>Telematikoa</th>
+                <td>{% if kanala.telematikoa %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kanala_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('kanala_edit', { 'id': kanala.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

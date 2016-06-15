@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Norkeskatu list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Norkeu</th>
+                <th>Norkes</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for norkeskatu in norkeskatus %}
+            <tr>
+                <td><a href="{{ path('norkeskatu_show', { 'id': norkeskatu.id }) }}">{{ norkeskatu.norkeu }}</a></td>
+                <td>{{ norkeskatu.norkes }}</td>
+                <td>{{ norkeskatu.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('norkeskatu_show', { 'id': norkeskatu.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('norkeskatu_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

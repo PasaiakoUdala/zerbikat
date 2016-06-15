@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Aurreikusitako epeak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                {#<th>Aurreikusitako Epea</th>#}
+                {#<th>Epeaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for aurreikusi in aurreikusis %}
+            <tr>
+                {#<td><a href="{{ path('aurreikusi_show', { 'id': aurreikusi.id }) }}">{{ aurreikusi.epeaeu }}</a></td>#}
+                <td><a href="{{ path('aurreikusi_edit', { 'id': aurreikusi.id }) }}">{{ aurreikusi.epeaeu }}</a></td>
+                {#<td>{{ aurreikusi.epeaes }}</td>#}
+                {#<td>{{ aurreikusi.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('aurreikusi_show', { 'id': aurreikusi.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('aurreikusi_edit', { 'id': aurreikusi.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('aurreikusi_new') }}" class="btn btn-primary">Epe berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

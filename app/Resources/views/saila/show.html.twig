@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Saila</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ saila.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Sailaeu</th>
+                <td>{{ saila.sailaeu }}</td>
+            </tr>
+            <tr>
+                <th>Sailaes</th>
+                <td>{{ saila.sailaes }}</td>
+            </tr>
+            <tr>
+                <th>Arduraduna</th>
+                <td>{{ saila.arduraduna }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ saila.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('saila_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('saila_edit', { 'id': saila.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

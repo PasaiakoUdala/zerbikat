@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Araumota</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ araumotum.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Motaeu</th>
+                <td>{{ araumotum.motaeu }}</td>
+            </tr>
+            <tr>
+                <th>Motaes</th>
+                <td>{{ araumotum.motaes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ araumotum.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('araumota_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dokumentumota</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ dokumentumotum.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Motaeu</th>
+                <td>{{ dokumentumotum.motaeu }}</td>
+            </tr>
+            <tr>
+                <th>Motaes</th>
+                <td>{{ dokumentumotum.motaes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ dokumentumotum.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('dokumentumota_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

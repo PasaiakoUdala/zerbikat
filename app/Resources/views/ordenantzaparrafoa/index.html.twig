@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ordenantzaparrafoa list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ordena</th>
+                <th>Testuaeu</th>
+                <th>Testuaes</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ordenantzaparrafoa in ordenantzaparrafoas %}
+            <tr>
+                <td><a href="{{ path('ordenantzaparrafoa_show', { 'id': ordenantzaparrafoa.id }) }}">{{ ordenantzaparrafoa.ordena }}</a></td>
+                <td>{{ ordenantzaparrafoa.testuaeu }}</td>
+                <td>{{ ordenantzaparrafoa.testuaes }}</td>
+                <td>{% if ordenantzaparrafoa.createdAt %}{{ ordenantzaparrafoa.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if ordenantzaparrafoa.updatedAt %}{{ ordenantzaparrafoa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ ordenantzaparrafoa.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ordenantzaparrafoa_show', { 'id': ordenantzaparrafoa.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ordenantzaparrafoa_edit', { 'id': ordenantzaparrafoa.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ordenantzaparrafoa_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

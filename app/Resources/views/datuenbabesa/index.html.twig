@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Datuen-babesa</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Maila</th>
+                <th>Izenaeu</th>
+                {#<th>Izenaes</th>#}
+                <th>Xedeaeu</th>
+                {#<th>Xedeaes</th>#}
+                {#<th>Lagapenakeu</th>#}
+                {#<th>Lagapenakes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for datuenbabesa in datuenbabesas %}
+            <tr>
+                <td><a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}">{{ datuenbabesa.kodea }}</a></td>
+                <td>{{ datuenbabesa.maila }}</td>
+                <td><a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}">{{ datuenbabesa.izenaeu }}</a></td>
+                {#<td>{{ datuenbabesa.izenaes }}</td>#}
+                <td>{{ datuenbabesa.xedeaeu }}</td>
+                {#<td>{{ datuenbabesa.xedeaes }}</td>#}
+                {#<td>{{ datuenbabesa.lagapenakeu }}</td>#}
+                {#<td>{{ datuenbabesa.lagapenakes }}</td>#}
+                {#<td>{{ datuenbabesa.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('datuenbabesa_show', { 'id': datuenbabesa.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('datuenbabesa_new') }}" class="btn btn-primary">Sarrera berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

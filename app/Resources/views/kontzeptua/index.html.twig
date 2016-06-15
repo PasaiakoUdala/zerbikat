@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Kontzeptua list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Kodea</th>
+                <th>Kontzeptuaeu</th>
+                <th>Kontzeptuaes</th>
+                <th>Kopurua</th>
+                <th>Unitatea</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for kontzeptua in kontzeptuas %}
+            <tr>
+                <td><a href="{{ path('kontzeptua_show', { 'id': kontzeptua.id }) }}">{{ kontzeptua.kodea }}</a></td>
+                <td>{{ kontzeptua.kontzeptuaeu }}</td>
+                <td>{{ kontzeptua.kontzeptuaes }}</td>
+                <td>{{ kontzeptua.kopurua }}</td>
+                <td>{{ kontzeptua.unitatea }}</td>
+                <td>{% if kontzeptua.createdAt %}{{ kontzeptua.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if kontzeptua.updatedAt %}{{ kontzeptua.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ kontzeptua.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('kontzeptua_show', { 'id': kontzeptua.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('kontzeptua_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

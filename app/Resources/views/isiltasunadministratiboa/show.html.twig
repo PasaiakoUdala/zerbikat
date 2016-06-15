@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>IsiltasunAdministratiboa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Isiltasuneu</th>
+                <td>{{ isiltasunAdministratiboa.isiltasuneu }}</td>
+            </tr>
+            <tr>
+                <th>Isiltasunes</th>
+                <td>{{ isiltasunAdministratiboa.isiltasunes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ isiltasunAdministratiboa.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('isiltasunadministratiboa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('isiltasunadministratiboa_edit', { 'id': isiltasunAdministratiboa.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

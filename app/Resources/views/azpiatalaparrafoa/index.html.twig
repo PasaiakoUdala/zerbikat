@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Azpiatalaparrafoa list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ordena</th>
+                <th>Testuaeu</th>
+                <th>Testuaes</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for azpiatalaparrafoa in azpiatalaparrafoas %}
+            <tr>
+                <td><a href="{{ path('azpiatalaparrafoa_show', { 'id': azpiatalaparrafoa.id }) }}">{{ azpiatalaparrafoa.ordena }}</a></td>
+                <td>{{ azpiatalaparrafoa.testuaeu }}</td>
+                <td>{{ azpiatalaparrafoa.testuaes }}</td>
+                <td>{% if azpiatalaparrafoa.createdAt %}{{ azpiatalaparrafoa.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if azpiatalaparrafoa.updatedAt %}{{ azpiatalaparrafoa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ azpiatalaparrafoa.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('azpiatalaparrafoa_show', { 'id': azpiatalaparrafoa.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('azpiatalaparrafoa_edit', { 'id': azpiatalaparrafoa.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('azpiatalaparrafoa_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

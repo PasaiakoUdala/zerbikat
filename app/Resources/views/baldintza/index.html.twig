@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Baldintzak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Baldintzaeu</th>
+                {#<th>Baldintzaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for baldintza in baldintzas %}
+            <tr>
+                <td><a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">{{ baldintza.baldintzaeu }}</a></td>
+                {#<td>{{ baldintza.baldintzaes }}</td>#}
+                {#<td>{{ baldintza.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('baldintza_show', { 'id': baldintza.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('baldintza_new') }}" class="btn btn-primary">Baldintza berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

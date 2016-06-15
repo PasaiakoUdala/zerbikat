@@ -1,0 +1,140 @@
+<?php
+
+namespace Zerbikat\BackendBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Zerbikat\BackendBundle\Entity\Ordenantzaparrafoa;
+use Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType;
+
+/**
+ * Ordenantzaparrafoa controller.
+ *
+ * @Route("/ordenantzaparrafoa")
+ */
+class OrdenantzaparrafoaController extends Controller
+{
+    /**
+     * Lists all Ordenantzaparrafoa entities.
+     *
+     * @Route("/", name="ordenantzaparrafoa_index")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ordenantzaparrafoas = $em->getRepository('BackendBundle:Ordenantzaparrafoa')->findAll();
+
+        return $this->render('ordenantzaparrafoa/index.html.twig', array(
+            'ordenantzaparrafoas' => $ordenantzaparrafoas,
+        ));
+    }
+
+    /**
+     * Creates a new Ordenantzaparrafoa entity.
+     *
+     * @Route("/new", name="ordenantzaparrafoa_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {
+        $ordenantzaparrafoa = new Ordenantzaparrafoa();
+        $form = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType', $ordenantzaparrafoa);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ordenantzaparrafoa);
+            $em->flush();
+
+            return $this->redirectToRoute('ordenantzaparrafoa_show', array('id' => $ordenantzaparrafoa->getId()));
+        }
+
+        return $this->render('ordenantzaparrafoa/new.html.twig', array(
+            'ordenantzaparrafoa' => $ordenantzaparrafoa,
+            'form' => $form->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a Ordenantzaparrafoa entity.
+     *
+     * @Route("/{id}", name="ordenantzaparrafoa_show")
+     * @Method("GET")
+     */
+    public function showAction(Ordenantzaparrafoa $ordenantzaparrafoa)
+    {
+        $deleteForm = $this->createDeleteForm($ordenantzaparrafoa);
+
+        return $this->render('ordenantzaparrafoa/show.html.twig', array(
+            'ordenantzaparrafoa' => $ordenantzaparrafoa,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Displays a form to edit an existing Ordenantzaparrafoa entity.
+     *
+     * @Route("/{id}/edit", name="ordenantzaparrafoa_edit")
+     * @Method({"GET", "POST"})
+     */
+    public function editAction(Request $request, Ordenantzaparrafoa $ordenantzaparrafoa)
+    {
+        $deleteForm = $this->createDeleteForm($ordenantzaparrafoa);
+        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType', $ordenantzaparrafoa);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ordenantzaparrafoa);
+            $em->flush();
+
+            return $this->redirectToRoute('ordenantzaparrafoa_edit', array('id' => $ordenantzaparrafoa->getId()));
+        }
+
+        return $this->render('ordenantzaparrafoa/edit.html.twig', array(
+            'ordenantzaparrafoa' => $ordenantzaparrafoa,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Deletes a Ordenantzaparrafoa entity.
+     *
+     * @Route("/{id}", name="ordenantzaparrafoa_delete")
+     * @Method("DELETE")
+     */
+    public function deleteAction(Request $request, Ordenantzaparrafoa $ordenantzaparrafoa)
+    {
+        $form = $this->createDeleteForm($ordenantzaparrafoa);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($ordenantzaparrafoa);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('ordenantzaparrafoa_index');
+    }
+
+    /**
+     * Creates a form to delete a Ordenantzaparrafoa entity.
+     *
+     * @param Ordenantzaparrafoa $ordenantzaparrafoa The Ordenantzaparrafoa entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Ordenantzaparrafoa $ordenantzaparrafoa)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('ordenantzaparrafoa_delete', array('id' => $ordenantzaparrafoa->getId())))
+            ->setMethod('DELETE')
+            ->getForm()
+        ;
+    }
+}

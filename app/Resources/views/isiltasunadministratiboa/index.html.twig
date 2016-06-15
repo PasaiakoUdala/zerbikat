@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Isiltasun-Administratiboak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Isiltasun administratiboaren izaera</th>
+                {#<th>Isiltasunes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for isiltasunAdministratiboa in isiltasunAdministratiboas %}
+            <tr>
+                <td><a href="{{ path('isiltasunadministratiboa_edit', { 'id': isiltasunAdministratiboa.id }) }}">{{ isiltasunAdministratiboa.isiltasuneu }}</a></td>
+                {#<td>{{ isiltasunAdministratiboa.isiltasunes }}</td>#}
+                {#<td>{{ isiltasunAdministratiboa.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('isiltasunadministratiboa_show', { 'id': isiltasunAdministratiboa.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('isiltasunadministratiboa_edit', { 'id': isiltasunAdministratiboa.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('isiltasunadministratiboa_new') }}" class="btn btn-primary">Sarrera berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

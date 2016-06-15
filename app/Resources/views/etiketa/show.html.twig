@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Etiketa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Etiketaeu</th>
+                <td>{{ etiketum.etiketaeu }}</td>
+            </tr>
+            <tr>
+                <th>Etiketaes</th>
+                <td>{{ etiketum.etiketaes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ etiketum.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('etiketa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('etiketa_edit', { 'id': etiketum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

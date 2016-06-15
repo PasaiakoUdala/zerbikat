@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Prozedura list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Prozeduraeu</th>
+                <th>Prozeduraes</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prozedura in prozeduras %}
+            <tr>
+                <td><a href="{{ path('prozedura_show', { 'id': prozedura.id }) }}">{{ prozedura.prozeduraeu }}</a></td>
+                <td>{{ prozedura.prozeduraes }}</td>
+                <td>{{ prozedura.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('prozedura_show', { 'id': prozedura.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('prozedura_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

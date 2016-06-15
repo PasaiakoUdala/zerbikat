@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Datuenbabesa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Izenaeu</th>
+                <td>{{ datuenbabesa.izenaeu }}</td>
+            </tr>
+            <tr>
+                <th>Izenaes</th>
+                <td>{{ datuenbabesa.izenaes }}</td>
+            </tr>
+            <tr>
+                <th>Xedeaeu</th>
+                <td>{{ datuenbabesa.xedeaeu }}</td>
+            </tr>
+            <tr>
+                <th>Xedeaes</th>
+                <td>{{ datuenbabesa.xedeaes }}</td>
+            </tr>
+            <tr>
+                <th>Maila</th>
+                <td>{{ datuenbabesa.maila }}</td>
+            </tr>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ datuenbabesa.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Lagapenakeu</th>
+                <td>{{ datuenbabesa.lagapenakeu }}</td>
+            </tr>
+            <tr>
+                <th>Lagapenakes</th>
+                <td>{{ datuenbabesa.lagapenakes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ datuenbabesa.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('datuenbabesa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

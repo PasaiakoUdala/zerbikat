@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Besteak2</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Izenburuaeu</th>
+                <td>{{ besteak2.izenburuaeu }}</td>
+            </tr>
+            <tr>
+                <th>Izenburuaes</th>
+                <td>{{ besteak2.izenburuaes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ besteak2.id }}</td>
+            </tr>
+            <tr>
+                <th>Estekaeu</th>
+                <td>{{ besteak2.estekaeu }}</td>
+            </tr>
+            <tr>
+                <th>Estekaes</th>
+                <td>{{ besteak2.estekaes }}</td>
+            </tr>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ besteak2.kodea }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('besteak2_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('besteak2_edit', { 'id': besteak2.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

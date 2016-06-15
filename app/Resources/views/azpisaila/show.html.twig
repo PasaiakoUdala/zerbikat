@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Azpisaila</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ azpisaila.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Azpisailaeu</th>
+                <td>{{ azpisaila.azpisailaeu }}</td>
+            </tr>
+            <tr>
+                <th>Azpisailaes</th>
+                <td>{{ azpisaila.azpisailaes }}</td>
+            </tr>
+            <tr>
+                <th>Arduraduna</th>
+                <td>{{ azpisaila.arduraduna }}</td>
+            </tr>
+            <tr>
+                <th>Arduradunahaz</th>
+                <td>{{ azpisaila.arduradunahaz }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ azpisaila.email }}</td>
+            </tr>
+            <tr>
+                <th>Telefonoa</th>
+                <td>{{ azpisaila.telefonoa }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ azpisaila.fax }}</td>
+            </tr>
+            <tr>
+                <th>Kalezbkia</th>
+                <td>{{ azpisaila.kaleZbkia }}</td>
+            </tr>
+            <tr>
+                <th>Hizkia</th>
+                <td>{{ azpisaila.hizkia }}</td>
+            </tr>
+            <tr>
+                <th>Ordutegia</th>
+                <td>{{ azpisaila.ordutegia }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ azpisaila.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('azpisaila_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

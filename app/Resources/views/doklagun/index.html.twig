@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ app.user.udala.eremuak.doklagunlabeleu }}</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                {#<th>Id</th>#}
+                <th>Kodea</th>
+                <th>Deskribapenaeu</th>
+                {#<th>Deskribapenaes</th>#}
+                {#<th>Estekaeu</th>#}
+                {#<th>Estekaes</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for doklagun in doklaguns %}
+            <tr>
+                <td><a href="{{ path('doklagun_show', { 'id': doklagun.id }) }}">{{ doklagun.kodea }}</a></td>
+                <td>{{ doklagun.deskribapenaeu }}</td>
+                {#<td>{{ doklagun.deskribapenaes }}</td>#}
+                {#<td>{{ doklagun.estekaeu }}</td>#}
+                {#<td>{{ doklagun.estekaes }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('doklagun_show', { 'id': doklagun.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('doklagun_new') }}" class="btn btn-primary">Sarrera berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Atalaparrafoa</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Ordena</th>
+                <td>{{ atalaparrafoa.ordena }}</td>
+            </tr>
+            <tr>
+                <th>Testuaeu</th>
+                <td>{{ atalaparrafoa.testuaeu }}</td>
+            </tr>
+            <tr>
+                <th>Testuaes</th>
+                <td>{{ atalaparrafoa.testuaes }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if atalaparrafoa.createdAt %}{{ atalaparrafoa.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if atalaparrafoa.updatedAt %}{{ atalaparrafoa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ atalaparrafoa.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('atalaparrafoa_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('atalaparrafoa_edit', { 'id': atalaparrafoa.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

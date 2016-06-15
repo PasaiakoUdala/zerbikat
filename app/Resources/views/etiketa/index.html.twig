@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Etiketak</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Etiketa</th>
+                {#<th>Etiketaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for etiketum in etiketas %}
+            <tr>
+                <td><a href="{{ path('etiketa_edit', { 'id': etiketum.id }) }}">{{ etiketum.etiketaeu }}</a></td>
+                {#<td>{{ etiketum.etiketaes }}</td>#}
+                {#<td>{{ etiketum.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('etiketa_show', { 'id': etiketum.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('etiketa_edit', { 'id': etiketum.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<div class="fitxaMenua">
+    <ul>
+        <li>
+            <a href="{{ path('etiketa_new') }}" class="btn btn-primary">Etiketa berria</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

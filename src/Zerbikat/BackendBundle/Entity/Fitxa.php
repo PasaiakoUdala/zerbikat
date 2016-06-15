@@ -531,6 +531,9 @@ class Fitxa
         $this->doklagunak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
+
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
 
