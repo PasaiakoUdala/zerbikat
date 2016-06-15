@@ -89,7 +89,7 @@
         <tbody>
         {% for eremuak in eremuaks %}
             <tr>
-                <td><a href="{{ path('eremuak_show', { 'id': eremuak.id }) }}">{{ eremuak.id }}</a></td>
+                <td><a href="{{ path('eremuak_edit', { 'id': eremuak.id }) }}">{{ eremuak.id }}</a></td>
                 <td>{% if eremuak.oharraktext %}Yes{% else %}No{% endif %}</td>
                 <td>{{ eremuak.oharraklabeleu }}</td>
                 <td>{{ eremuak.oharraklabeles }}</td>

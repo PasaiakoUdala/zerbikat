@@ -21,7 +21,7 @@ class Besteak1Type extends AbstractType
             ->add('estekaes')
             ->add('kodea')
             ->add('udala')
-            ->add('fitxak')
+//            ->add('fitxak')
         ;
     }
     

@@ -21,7 +21,7 @@
         <tbody>
         {% for datuenbabesa in datuenbabesas %}
             <tr>
-                <td><a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}">{{ datuenbabesa.kodea }}</a></td>
+                <td>{{ datuenbabesa.kodea }}</td>
                 <td>{{ datuenbabesa.maila }}</td>
                 <td><a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}">{{ datuenbabesa.izenaeu }}</a></td>
                 {#<td>{{ datuenbabesa.izenaes }}</td>#}

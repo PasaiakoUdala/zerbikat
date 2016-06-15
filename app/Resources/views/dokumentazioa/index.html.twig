@@ -18,8 +18,8 @@
         <tbody>
         {% for dokumentazioa in dokumentazioas %}
             <tr>
-                <td><a href="{{ path('dokumentazioa_show', { 'id': dokumentazioa.id }) }}">{{ dokumentazioa.kodea }}</a></td>
-                <td><a href="{{ path('dokumentazioa_show', { 'id': dokumentazioa.id }) }}">{{ dokumentazioa.deskribapenaeu }}</a></td>
+                <td><a href="{{ path('dokumentazioa_edit', { 'id': dokumentazioa.id }) }}">{{ dokumentazioa.kodea }}</a></td>
+                <td><a href="{{ path('dokumentazioa_edit', { 'id': dokumentazioa.id }) }}">{{ dokumentazioa.deskribapenaeu }}</a></td>
                 {#<td>{{ dokumentazioa.deskribapenaes }}</td>#}
                 {#<td>{{ dokumentazioa.estekaeu }}</td>#}
                 {#<td>{{ dokumentazioa.estekaes }}</td>#}

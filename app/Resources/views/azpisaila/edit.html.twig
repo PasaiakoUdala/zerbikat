@@ -1,21 +1,161 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Azpisaila edit</h1>
+    <h1>Azpi-saila aldatu</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {#{{ form_widget(edit_form) }}#}
 
+    <div class="row">
+        <div class="col-sm-3">
+            <div>
+                {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.kodea) }}
+                {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div>
+                {{ form_label(edit_form.hizkia, 'Hizkia: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.hizkia) }}
+                {{ form_widget(edit_form.hizkia, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div>
+                {{ form_label(edit_form.saila, 'Saila: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.saila) }}
+                {{ form_widget(edit_form.saila, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.azpisailaeu, 'Azpisaila (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.azpisailaeu) }}
+                {{ form_widget(edit_form.azpisailaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.azpisailaes, 'Azpisaila (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.azpisailaes) }}
+                {{ form_widget(edit_form.azpisailaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.arduraduna, 'Arduraduna: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.arduraduna) }}
+                {{ form_widget(edit_form.arduraduna, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.arduradunahaz, 'Arduraduna (HAZ): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.arduradunahaz) }}
+                {{ form_widget(edit_form.arduradunahaz, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div>
+                {{ form_label(edit_form.barrutia, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.barrutia) }}
+                {{ form_widget(edit_form.barrutia, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                {{ form_label(edit_form.kalea, 'Kalea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.kalea) }}
+                {{ form_widget(edit_form.kalea, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div>
+                {{ form_label(edit_form.kaleZbkia, 'Kale zenbakia: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.kaleZbkia) }}
+                {{ form_widget(edit_form.kaleZbkia, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div>
+                {{ form_label(edit_form.eraikina, 'Eraikina: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.eraikina) }}
+                {{ form_widget(edit_form.eraikina, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+    </div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(edit_form.email, 'Email: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.email) }}
+            {{ form_widget(edit_form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(edit_form.telefonoa, 'Telefonoa: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.telefonoa) }}
+            {{ form_widget(edit_form.telefonoa, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(edit_form.fax, 'FAX: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.fax) }}
+            {{ form_widget(edit_form.fax, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(edit_form.ordutegia, 'Ordutegia: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.ordutegia) }}
+            {{ form_widget(edit_form.ordutegia, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="row hidden">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.udala) }}
+                {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+<div class="fitxaMenua">
     <ul>
+        <input type="submit" value="Gorde" class="btn btn-primary"/>
+    {{ form_end(edit_form) }}
         <li>
-            <a href="{{ path('azpisaila_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('azpisaila_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
         </li>
     </ul>
+</div>
 {% endblock %}

@@ -18,7 +18,7 @@ class KanalmotaType extends AbstractType
             ->add('motaeu')
             ->add('motaes')
             ->add('esteka')
-            ->add('ikonoa')
+//            ->add('ikonoa')
             ->add('udala')
         ;
     }

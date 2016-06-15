@@ -1,21 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Araudia edit</h1>
+    <h1>Araudia aldatu</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {#{{ form_widget(edit_form) }}#}
 
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.kodea) }}
+            {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.araumota, 'Arau-mota: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.araumota) }}
+            {{ form_widget(edit_form.araumota, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.arauaeu, 'Araua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.arauaeu) }}
+            {{ form_widget(edit_form.arauaeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.arauaes, 'Araua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.arauaes) }}
+            {{ form_widget(edit_form.arauaes, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.estekaeu, 'Esteka (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.estekaeu) }}
+            {{ form_widget(edit_form.estekaeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.estekaes, 'Esteka (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.estekaes) }}
+            {{ form_widget(edit_form.estekaes, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+
+    <div class="col-sm-6 hidden">
+        <div>
+            {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.udala) }}
+            {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+
+<div class="fitxaMenua">
     <ul>
+        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+    {{ form_end(edit_form) }}
         <li>
-            <a href="{{ path('araudia_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('araudia_index') }}" class="btn btn-primary">Zerrendara</a>
         </li>
     </ul>
 {% endblock %}

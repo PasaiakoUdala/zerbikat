@@ -1,21 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Kontzeptumota edit</h1>
+    <h1>Kontzeptu-mota aldatu</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {#{{ form_widget(edit_form) }}#}
 
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.motaeu, 'Kontzeptu-mota (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.motaeu) }}
+                {{ form_widget(edit_form.motaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.motaes, 'Kontzeptu-mota (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.motaes) }}
+                {{ form_widget(edit_form.motaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row hidden">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.udala) }}
+                {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+<div class="fitxaMenua">
     <ul>
+        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+    {{ form_end(edit_form) }}
         <li>
-            <a href="{{ path('kontzeptumota_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('kontzeptumota_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
         </li>
     </ul>
+</div>
 {% endblock %}

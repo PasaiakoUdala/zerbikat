@@ -169,7 +169,7 @@ class FitxaController extends Controller
         $labelak = $query->getSingleResult();
 
 //        }
-        if ($fitxa->getUdala==$this->getUser()->getUdala()) {
+        if ($fitxa->getUdala()==$this->getUser()->getUdala()) {
             return $this->render('fitxa/edit.html.twig', array(
                 'fitxa' => $fitxa,
                 'edit_form' => $editForm->createView(),

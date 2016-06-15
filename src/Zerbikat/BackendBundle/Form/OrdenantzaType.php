@@ -19,10 +19,8 @@ class OrdenantzaType extends AbstractType
             ->add('kodea')
             ->add('izenburuaeu')
             ->add('izenburuaes')
-//            ->add('createdAt', 'datetime')
-//            ->add('updatedAt', 'datetime')
-            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
-            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
+//            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
+//            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
             ->add('udala')
         ;
     }

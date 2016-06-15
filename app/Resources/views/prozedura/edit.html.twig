@@ -1,21 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Prozedura edit</h1>
+    <h1>Prozedura aldatu</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {#{{ form_widget(edit_form) }}#}
 
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                {{ form_label(edit_form.prozeduraeu, 'Prozedura (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.prozeduraeu) }}
+                {{ form_widget(edit_form.prozeduraeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div>
+                {{ form_label(edit_form.prozeduraes, 'Prozedura (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.prozeduraes) }}
+                {{ form_widget(edit_form.prozeduraes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row hidden">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.udala) }}
+                {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+<div class="fitxaMenua">
     <ul>
+        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+    {{ form_end(edit_form) }}
         <li>
-            <a href="{{ path('prozedura_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('prozedura_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
         </li>
     </ul>
+</div>
 {% endblock %}

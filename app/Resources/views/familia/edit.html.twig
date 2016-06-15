@@ -1,21 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Familia edit</h1>
+    <h1>Familia aldatu</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {#{{ form_widget(edit_form) }}#}
 
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.familiaeu, 'Familia (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.familiaeu) }}
+                {{ form_widget(edit_form.familiaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.familiaes, 'Familia (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.familiaes) }}
+                {{ form_widget(edit_form.familiaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.deskribapenaeu, 'Deskribapena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.deskribapenaeu) }}
+                {{ form_widget(edit_form.deskribapenaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.deskribapenaes, 'Deskribapena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.deskribapenaes) }}
+                {{ form_widget(edit_form.deskribapenaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 hidden">
+        <div>
+            {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.udala) }}
+            {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+
+<div class="fitxaMenua">
     <ul>
+        <input type="submit" value="Gorde" class="btn btn-primary"/>
+    {{ form_end(edit_form) }}
         <li>
-            <a href="{{ path('familia_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('familia_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
         </li>
     </ul>
+</div>
 {% endblock %}

@@ -21,7 +21,7 @@ class DoklagunType extends AbstractType
             ->add('estekaeu')
             ->add('estekaes')
             ->add('udala')
-            ->add('fitxak')
+//            ->add('fitxak')
         ;
     }
     

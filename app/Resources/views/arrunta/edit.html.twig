@@ -1,21 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Arrunta edit</h1>
+    <h1>Epe Arruntak</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {#{{ form_widget(edit_form) }}#}
 
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.epeaeu, 'Epea (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.epeaeu) }}
+            {{ form_widget(edit_form.epeaeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(edit_form.epeaes, 'Epea (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.epeaes) }}
+            {{ form_widget(edit_form.epeaes, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6 hidden">
+        <div>
+            {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.udala) }}
+            {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+
+
+
+
+
+
+<div class="fitxaMenua">
     <ul>
+        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+    {{ form_end(edit_form) }}
         <li>
-            <a href="{{ path('arrunta_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('arrunta_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
         </li>
     </ul>
+</div>
+
 {% endblock %}

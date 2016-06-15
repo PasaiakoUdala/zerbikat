@@ -17,8 +17,8 @@
         <tbody>
         {% for doklagun in doklaguns %}
             <tr>
-                <td><a href="{{ path('doklagun_show', { 'id': doklagun.id }) }}">{{ doklagun.kodea }}</a></td>
-                <td>{{ doklagun.deskribapenaeu }}</td>
+                <td><a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}">{{ doklagun.kodea }}</a></td>
+                <td><a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}">{{ doklagun.deskribapenaeu }}</a></td>
                 {#<td>{{ doklagun.deskribapenaes }}</td>#}
                 {#<td>{{ doklagun.estekaeu }}</td>#}
                 {#<td>{{ doklagun.estekaes }}</td>#}

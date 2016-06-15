@@ -18,7 +18,7 @@ class EtiketaType extends AbstractType
             ->add('etiketaeu')
             ->add('etiketaes')
             ->add('udala')
-            ->add('fitxak')
+//            ->add('fitxak')
         ;
     }
     

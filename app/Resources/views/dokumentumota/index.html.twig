@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Dokumentumota list</h1>
+    <h1>Dokumentu-motak</h1>
 
     <table class="table">
         <thead>
@@ -16,7 +16,7 @@
         <tbody>
         {% for dokumentumotum in dokumentumotas %}
             <tr>
-                <td><a href="{{ path('dokumentumota_show', { 'id': dokumentumotum.id }) }}">{{ dokumentumotum.kodea }}</a></td>
+                <td><a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}">{{ dokumentumotum.kodea }}</a></td>
                 <td>{{ dokumentumotum.motaeu }}</td>
                 {#<td>{{ dokumentumotum.motaes }}</td>#}
                 {#<td>{{ dokumentumotum.id }}</td>#}
