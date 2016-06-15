@@ -1,41 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Norkeskatu list</h1>
+    <h1>Nork eska dezake</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Norkeu</th>
-                <th>Norkes</th>
-                <th>Id</th>
-                <th>Actions</th>
+                {#<th>Norkes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for norkeskatu in norkeskatus %}
             <tr>
-                <td><a href="{{ path('norkeskatu_show', { 'id': norkeskatu.id }) }}">{{ norkeskatu.norkeu }}</a></td>
-                <td>{{ norkeskatu.norkes }}</td>
-                <td>{{ norkeskatu.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('norkeskatu_show', { 'id': norkeskatu.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}">{{ norkeskatu.norkeu }}</a></td>
+                {#<td>{{ norkeskatu.norkes }}</td>#}
+                {#<td>{{ norkeskatu.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('norkeskatu_show', { 'id': norkeskatu.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('norkeskatu_new') }}">Create a new entry</a>
+            <a href="{{ path('norkeskatu_new') }}" class="btn btn-primary">Sarrera berria</a>
         </li>
     </ul>
+</div>
 {% endblock %}

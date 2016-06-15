@@ -5,6 +5,7 @@ namespace Zerbikat\BackendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class OrdenantzaType extends AbstractType
 {
@@ -18,8 +19,10 @@ class OrdenantzaType extends AbstractType
             ->add('kodea')
             ->add('izenburuaeu')
             ->add('izenburuaes')
-            ->add('createdAt', 'datetime')
-            ->add('updatedAt', 'datetime')
+//            ->add('createdAt', 'datetime')
+//            ->add('updatedAt', 'datetime')
+            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
+            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
             ->add('udala')
         ;
     }

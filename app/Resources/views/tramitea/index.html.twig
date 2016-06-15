@@ -1,41 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Tramitea list</h1>
+    <h1>Tramiteak</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Tramiteaeu</th>
-                <th>Tramiteaes</th>
-                <th>Id</th>
-                <th>Actions</th>
+                <th>Tramitea</th>
+                {#<th>Tramiteaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for tramitea in tramiteas %}
             <tr>
-                <td><a href="{{ path('tramitea_show', { 'id': tramitea.id }) }}">{{ tramitea.tramiteaeu }}</a></td>
-                <td>{{ tramitea.tramiteaes }}</td>
-                <td>{{ tramitea.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tramitea_show', { 'id': tramitea.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}">{{ tramitea.tramiteaeu }}</a></td>
+                {#<td>{{ tramitea.tramiteaes }}</td>#}
+                {#<td>{{ tramitea.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('tramitea_show', { 'id': tramitea.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('tramitea_new') }}">Create a new entry</a>
+            <a href="{{ path('tramitea_new') }}" class="btn btn-primary">Create a new entry</a>
         </li>
     </ul>
+</div>
 {% endblock %}

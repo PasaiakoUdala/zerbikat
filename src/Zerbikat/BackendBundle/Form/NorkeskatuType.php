@@ -18,7 +18,7 @@ class NorkeskatuType extends AbstractType
             ->add('norkeu')
             ->add('norkes')
             ->add('udala')
-            ->add('fitxak')
+//            ->add('fitxak')
         ;
     }
     

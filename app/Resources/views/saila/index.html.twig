@@ -1,45 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Saila list</h1>
+    <h1>Sailak</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
-                <th>Sailaeu</th>
-                <th>Sailaes</th>
+                <th>Saila</th>
+                {#<th>Sailaes</th>#}
                 <th>Arduraduna</th>
-                <th>Id</th>
-                <th>Actions</th>
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for saila in sailas %}
             <tr>
-                <td><a href="{{ path('saila_show', { 'id': saila.id }) }}">{{ saila.kodea }}</a></td>
-                <td>{{ saila.sailaeu }}</td>
-                <td>{{ saila.sailaes }}</td>
+                <td><a href="{{ path('saila_edit', { 'id': saila.id }) }}">{{ saila.kodea }}</a></td>
+                <td><a href="{{ path('saila_edit', { 'id': saila.id }) }}">{{ saila.sailaeu }}</a></td>
+                {#<td>{{ saila.sailaes }}</td>#}
                 <td>{{ saila.arduraduna }}</td>
-                <td>{{ saila.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('saila_show', { 'id': saila.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('saila_edit', { 'id': saila.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                {#<td>{{ saila.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('saila_show', { 'id': saila.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('saila_edit', { 'id': saila.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('saila_new') }}">Create a new entry</a>
+            <a href="{{ path('saila_new') }}" class="btn btn-primary">Sail berria</a>
         </li>
     </ul>
+</div>
 {% endblock %}

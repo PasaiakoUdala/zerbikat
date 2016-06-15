@@ -32,7 +32,7 @@ class KanalaType extends AbstractType
             ->add('kalea')
             ->add('eraikina')
             ->add('barrutia')
-            ->add('fitxak')
+//            ->add('fitxak')
         ;
     }
     

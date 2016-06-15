@@ -3,43 +3,45 @@
 {% block body %}
     <h1>Kanalmota list</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Motaeu</th>
-                <th>Motaes</th>
+                {#<th>Id</th>#}
+                <th>Mota</th>
+                {#<th>Motaes</th>#}
                 <th>Esteka</th>
-                <th>Ikonoa</th>
-                <th>Actions</th>
+                {#<th>Ikonoa</th>#}
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for kanalmotum in kanalmotas %}
             <tr>
-                <td><a href="{{ path('kanalmota_show', { 'id': kanalmotum.id }) }}">{{ kanalmotum.id }}</a></td>
-                <td>{{ kanalmotum.motaeu }}</td>
-                <td>{{ kanalmotum.motaes }}</td>
+                <td><a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">{{ kanalmotum.motaeu }}</a></td>
+                {#<td>{{ kanalmotum.motaeu }}</td>#}
+                {#<td>{{ kanalmotum.motaes }}</td>#}
                 <td>{% if kanalmotum.esteka %}Yes{% else %}No{% endif %}</td>
-                <td>{{ kanalmotum.ikonoa }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('kanalmota_show', { 'id': kanalmotum.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                {#<td>{{ kanalmotum.ikonoa }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kanalmota_show', { 'id': kanalmotum.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('kanalmota_new') }}">Create a new entry</a>
+            <a href="{{ path('kanalmota_new') }}" class="btn btn-primary">Mota berria</a>
         </li>
     </ul>
+</div>
 {% endblock %}

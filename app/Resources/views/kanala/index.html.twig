@@ -1,61 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Kanala list</h1>
+    <h1>Kanalak</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Izenaeu</th>
-                <th>Izenaes</th>
-                <th>Deskribapenaeu</th>
-                <th>Deskribapenaes</th>
-                <th>Estekaeu</th>
-                <th>Estekaes</th>
-                <th>Telefonoa</th>
-                <th>Fax</th>
-                <th>Kalezbkia</th>
-                <th>Postakodea</th>
-                <th>Ordutegia</th>
-                <th>Telematikoa</th>
-                <th>Actions</th>
+                {#<th>Id</th>#}
+                <th>Kanal-mota</th>
+                <th>Izena</th>
+                {#<th>Izenaes</th>#}
+                <th>Deskribapena</th>
+                {#<th>Deskribapenaes</th>#}
+                {#<th>Estekaeu</th>#}
+                {#<th>Estekaes</th>#}
+                {#<th>Telefonoa</th>#}
+                {#<th>Fax</th>#}
+                {#<th>Kalezbkia</th>#}
+                {#<th>Postakodea</th>#}
+                {#<th>Ordutegia</th>#}
+                <th>Telematikoa da?</th>
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for kanala in kanalas %}
             <tr>
-                <td><a href="{{ path('kanala_show', { 'id': kanala.id }) }}">{{ kanala.id }}</a></td>
-                <td>{{ kanala.izenaeu }}</td>
-                <td>{{ kanala.izenaes }}</td>
+                <td>{{ kanala.kanalmota }}</td>
+                <td><a href="{{ path('kanala_show', { 'id': kanala.id }) }}">{{ kanala.izenaeu }}</a></td>
+                {#<td>{{ kanala.izenaeu }}</td>#}
+                {#<td>{{ kanala.izenaes }}</td>#}
                 <td>{{ kanala.deskribapenaeu }}</td>
-                <td>{{ kanala.deskribapenaes }}</td>
-                <td>{{ kanala.estekaeu }}</td>
-                <td>{{ kanala.estekaes }}</td>
-                <td>{{ kanala.telefonoa }}</td>
-                <td>{{ kanala.fax }}</td>
-                <td>{{ kanala.kalezbkia }}</td>
-                <td>{{ kanala.postakodea }}</td>
-                <td>{{ kanala.ordutegia }}</td>
+                {#<td>{{ kanala.deskribapenaes }}</td>#}
+                {#<td>{{ kanala.estekaeu }}</td>#}
+                {#<td>{{ kanala.estekaes }}</td>#}
+                {#<td>{{ kanala.telefonoa }}</td>#}
+                {#<td>{{ kanala.fax }}</td>#}
+                {#<td>{{ kanala.kalezbkia }}</td>#}
+                {#<td>{{ kanala.postakodea }}</td>#}
+                {#<td>{{ kanala.ordutegia }}</td>#}
                 <td>{% if kanala.telematikoa %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('kanala_show', { 'id': kanala.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('kanala_edit', { 'id': kanala.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kanala_show', { 'id': kanala.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kanala_edit', { 'id': kanala.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('kanala_new') }}">Create a new entry</a>
+            <a href="{{ path('kanala_new') }}" class="btn btn-primary">Kanal berria</a>
         </li>
     </ul>
+</div>
 {% endblock %}

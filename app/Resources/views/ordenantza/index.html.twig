@@ -1,47 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ordenantza list</h1>
+    <h1>Ordenantzak</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
-                <th>Izenburuaes</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Id</th>
-                <th>Actions</th>
+                {#<th>Izenburuaes</th>#}
+                {#<th>Createdat</th>#}
+                {#<th>Updatedat</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for ordenantza in ordenantzas %}
             <tr>
-                <td><a href="{{ path('ordenantza_show', { 'id': ordenantza.id }) }}">{{ ordenantza.kodea }}</a></td>
+                <td><a href="{{ path('ordenantza_edit', { 'id': ordenantza.id }) }}">{{ ordenantza.kodea }}</a></td>
                 <td>{{ ordenantza.izenburuaeu }}</td>
-                <td>{{ ordenantza.izenburuaes }}</td>
-                <td>{% if ordenantza.createdAt %}{{ ordenantza.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if ordenantza.updatedAt %}{{ ordenantza.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ ordenantza.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('ordenantza_show', { 'id': ordenantza.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ordenantza_edit', { 'id': ordenantza.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                {#<td>{{ ordenantza.izenburuaes }}</td>#}
+                {#<td>{% if ordenantza.createdAt %}{{ ordenantza.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>{% if ordenantza.updatedAt %}{{ ordenantza.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>{{ ordenantza.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('ordenantza_show', { 'id': ordenantza.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('ordenantza_edit', { 'id': ordenantza.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('ordenantza_new') }}">Create a new entry</a>
+            <a href="{{ path('ordenantza_new') }}" class="btn btn-primary">Ordenantza berria</a>
         </li>
     </ul>
+</div>
 {% endblock %}

@@ -3,39 +3,41 @@
 {% block body %}
     <h1>Kalea list</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Izena</th>
-                <th>Google</th>
-                <th>Id</th>
-                <th>Actions</th>
+                {#<th>Google</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for kalea in kaleas %}
             <tr>
-                <td><a href="{{ path('kalea_show', { 'id': kalea.id }) }}">{{ kalea.izena }}</a></td>
-                <td>{{ kalea.google }}</td>
-                <td>{{ kalea.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('kalea_show', { 'id': kalea.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('kalea_edit', { 'id': kalea.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('kalea_edit', { 'id': kalea.id }) }}">{{ kalea.izena }}</a></td>
+                {#<td>{{ kalea.google }}</td>#}
+                {#<td>{{ kalea.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kalea_show', { 'id': kalea.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kalea_edit', { 'id': kalea.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('kalea_new') }}">Create a new entry</a>
+            <a href="{{ path('kalea_new') }}" class="btn btn-primary">Kale berria</a>
         </li>
     </ul>
+</div>
 {% endblock %}

@@ -1,41 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Kontzeptumota list</h1>
+    <h1>Kontzeptu-motak</h1>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Motaeu</th>
-                <th>Motaes</th>
-                <th>Id</th>
-                <th>Actions</th>
+                {#<th>Motaes</th>#}
+                {#<th>Id</th>#}
+                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for kontzeptumotum in kontzeptumotas %}
             <tr>
-                <td><a href="{{ path('kontzeptumota_show', { 'id': kontzeptumotum.id }) }}">{{ kontzeptumotum.motaeu }}</a></td>
-                <td>{{ kontzeptumotum.motaes }}</td>
-                <td>{{ kontzeptumotum.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('kontzeptumota_show', { 'id': kontzeptumotum.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}">{{ kontzeptumotum.motaeu }}</a></td>
+                {#<td>{{ kontzeptumotum.motaes }}</td>#}
+                {#<td>{{ kontzeptumotum.id }}</td>#}
+                {#<td>#}
+                    {#<ul>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kontzeptumota_show', { 'id': kontzeptumotum.id }) }}">show</a>#}
+                        {#</li>#}
+                        {#<li>#}
+                            {#<a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}">edit</a>#}
+                        {#</li>#}
+                    {#</ul>#}
+                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+<div class="fitxaMenua">
     <ul>
         <li>
-            <a href="{{ path('kontzeptumota_new') }}">Create a new entry</a>
+            <a href="{{ path('kontzeptumota_new') }}" class="btn btn-primary">Mota berria</a>
         </li>
     </ul>
+</div>
 {% endblock %}
