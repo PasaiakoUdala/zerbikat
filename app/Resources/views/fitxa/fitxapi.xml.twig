@@ -1,0 +1,102 @@
+{#{{ data | serialize('xml') }}#}
+
+{#{% dump(fitxa) %}#}
+
+<result>
+    <entry>
+        <espedientekodea>
+            {{ fitxa.espedientekodea }}
+        </espedientekodea>
+    </entry>
+    <entry>
+        <deskribapenaeu>{{ fitxa.deskribapenaeu }}</deskribapenaeu>
+        <deskribapenaes>{{ fitxa.deskribapenaes }}</deskribapenaes>
+    </entry>
+
+    {% if eremuak.helburuatext %}
+    <entry>
+        <helburuaeu>
+            <label>{{ labelak.helburualabeleu }}</label>
+            <text>{{ fitxa.helburuaeu }}</text>
+        </helburuaeu>
+        <helburuaes>
+            <label>{{ labelak.helburualabeles }}</label>
+            <text>{{ fitxa.helburuaes}}</text>
+        </helburuaes>
+    </entry>
+    {% endif %}
+
+
+    {% if (eremuak.norkeskatutext or eremuak.norkeskatutable) %}
+        <entry>
+            <norkeskatueu>
+                <label>{{ labelak.norkeskatulabeleu }}</label>
+                {% if eremuak.norkeskatutext %}
+                    <text>{{ fitxa.norkeu }}</text>
+                {% endif %}
+                {% if eremuak.norkeskatutable %}
+                    <text>
+                    {% for nork in fitxa.norkeskatuak %}
+                        <li>{{ nork.norkeu }}</li>
+                    {% endfor %}
+                    </text>
+                {% endif %}
+            </norkeskatueu>
+            <norkeskatues>
+                <label>{{ labelak.norkeskatulabeles }}</label>
+                {% if eremuak.norkeskatutext %}
+                    <text>{{ fitxa.norkes}}</text>
+                {% endif %}
+                {% if eremuak.norkeskatutable %}
+                    <text>
+                        {% for nork in fitxa.norkeskatuak %}
+                            <li>{{ nork.norkes }}</li>
+                        {% endfor %}
+                    </text>
+                {% endif %}
+            </norkeskatues>
+        </entry>
+    {% endif %}
+
+
+    {% if (eremuak.dokumentazioatext or eremuak.dokumentazioatable) %}
+        <entry>
+            <dokumentazioaeu>
+                <label>{{ labelak.dokumentazioalabeleu }}</label>
+                {% if eremuak.dokumentazioatext %}
+                    <text>{{ fitxa.dokumentazioaeu }}</text>
+
+                {% endif %}
+                {% if eremuak.dokumentazioatable %}
+                    <text>
+                        {% for dokumentazioa in fitxa.dokumentazioak %}
+                            <item>
+                                <kodea>{{ dokumentazioa.dokumentazioa.kodea }}</kodea>
+                                <izena>{{ dokumentazioa.dokumentazioa.deskribapenaeu }}</izena>
+                                 {%if dokumentazioa.dokumentazioa.estekaeu %}<esteka>{{ dokumentazioa.dokumentazioa.estekaeu }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </text>
+                {% endif %}
+            </dokumentazioaeu>
+            <dokumentazioaes>
+                <label>{{ labelak.dokumentazioalabeles }}</label>
+                {% if eremuak.dokumentazioatext %}
+                    <text>{{ fitxa.dokumentazioaes}}</text>
+                {% endif %}
+                {% if eremuak.dokumentazioatable %}
+                    <text>
+                        {% for dokumentazioa in fitxa.dokumentazioak %}
+                            <item>
+                                <kodea>{{ dokumentazioa.dokumentazioa.kodea }}</kodea>
+                                <izena>{{ dokumentazioa.dokumentazioa.deskribapenaes }}</izena>
+                                {%if dokumentazioa.dokumentazioa.estekaes %}<esteka>{{ dokumentazioa.dokumentazioa.estekaes }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </text>
+                {% endif %}
+            </dokumentazioaes>
+        </entry>
+    {% endif %}
+
+</result>

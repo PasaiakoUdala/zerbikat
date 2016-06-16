@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Zerbikat\BackendBundle\Entity\Fitxa;
 
 class ApiController extends FOSRestController
 {
@@ -52,6 +53,17 @@ class ApiController extends FOSRestController
         $query->setParameter('udala', $udala);
         $familiak = $query->getResult();
 
+        $query = $em->createQuery('
+          SELECT f
+            FROM BackendBundle:Fitxa f
+              INNER JOIN f.udala u
+            WHERE u.kodea = :udala
+            ORDER BY f.kontsultak
+        ');
+        $query->setMaxResults(10);
+        $query->setParameter('udala', $udala);
+        $kontsul = $query->getResult();
+        array_push($familiak,$kontsul);
 
         $view = View::create();
         $view->setData($familiak);
@@ -80,7 +92,7 @@ class ApiController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery('
-          SELECT f
+            SELECT f.id,f.espedientekodea,f.deskribapenaeu,f.deskribapenaes
             FROM BackendBundle:Fitxa f
               INNER JOIN f.familiak ff
             WHERE ff.id = :id
@@ -89,13 +101,64 @@ class ApiController extends FOSRestController
         $query->setParameter('id', $id);
 
 
-        $fitxak = $query->getResult();
-
+        $fitxak = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+        
+        $arr=[];
+        foreach ($fitxak as $f)  {
+            $fitxa = New Fitxa();
+            $fitxa->setId($f['id']);
+            if (is_null($f['espedientekodea']))
+                $fitxa->setEspedientekodea('');
+            else $fitxa->setEspedientekodea($f['espedientekodea']);
+            $fitxa->setDeskribapenaeu($f['deskribapenaeu']);
+            $fitxa->setDeskribapenaes($f['deskribapenaes']);
+           array_push($arr, $fitxa);
+        }
+    
+//        $fitxak = $query->getResult();
         $view = View::create();
-        $view->setData($fitxak);
+        $view->setData($arr);
         return $view;
 
     }// "get_fitxak"            [GET] /fitxak/{id}
+
+
+
+    /**
+     * Fitxa irakurri.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Fitxa irakurri",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @return array data
+     *
+     * @Annotations\View()
+     */
+    public function getFitxaAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $query = $em->createQuery('
+          SELECT f
+            FROM BackendBundle:Fitxa f
+            WHERE f.id = :id
+        ');
+        $query->setParameter('id', $id);
+
+
+        $fitxa = $query->getResult();
+
+        $view = View::create();
+        $view->setData($fitxa);
+        return $view;
+
+    }// "get_fitxa"            [GET] /fitxa/{id}
 
 
 
