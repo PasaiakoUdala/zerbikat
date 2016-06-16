@@ -29,19 +29,8 @@ class FitxaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-//        $query = $em->createQuery('
-//          SELECT f
-//            FROM BackendBundle:Fitxa f
-//            WHERE f.id = :id
-//        ');
-
-
-//        $query->setParameter('id', 12);
-//
-//        $fitxa = $query->getResult();
-
-
         $fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(array('id'=>12));
+
 
 
         $query = $em->createQuery('
@@ -60,7 +49,8 @@ class FitxaController extends Controller
         $query->setParameter('udala', $fitxa->getUdala());
         $labelak = $query->getSingleResult();
 
-
+///Udala irakurri fitxatik
+        $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();
 
 
 //        dump($fitxa);
@@ -92,6 +82,7 @@ class FitxaController extends Controller
                 'fitxa' => $fitxa,
                 'eremuak' => $eremuak,
                 'labelak' => $labelak,
+                'kanalmotak'=>$kanalmotak,
             ),
             $response
         );
