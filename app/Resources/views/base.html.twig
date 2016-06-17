@@ -17,6 +17,14 @@
 <div class="container theme-showcase" role="main">
         {% block body %}
 
+                <div class="navbar navbar-fixed-top">
+                        <div class="navbar-inner">
+                                {#<a class="brand" href="#">Awesome!</a>#}
+                                {{ knp_menu_render('BackendBundle:Builder:mainMenu') }}
+                        </div>
+                </div>
+
+
         {% endblock %}
 </div>
 
