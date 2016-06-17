@@ -1,4 +1,4 @@
-{#{{ data | serialize('xml') }}#}
+<?xml version="1.0" encoding="UTF-8"?>
 
 {#{% dump(fitxa) %}#}
 
@@ -355,7 +355,237 @@
     </entry>
     {% endif %}
 
+    {% if (eremuak.prozeduratext or eremuak.prozeduratable) %}
+    <entry>
+        <prozeduraeu>
+            <label>{{ labelak.prozeduralabeleu }}</label>
+            {% if eremuak.prozeduratext %}
+                <text>{{ fitxa.prozeduraeu }}</text>
+            {% endif %}
+            {% if eremuak.prozeduratable %}
+                <list>
+                    {% for prozedura in fitxa.prozedurak %}
+                        <item>
+                            <izena>{{ prozedura.prozedura.prozeduraeu }}</izena>
+                        </item>
+                    {% endfor %}
+                </list>
+            {% endif %}
+        </prozeduraeu>
+        <prozeduraes>
+            <label>{{ labelak.prozeduralabeles }}</label>
+            {% if eremuak.prozeduratext %}
+                <text>{{ fitxa.prozeduraes }}</text>
+            {% endif %}
+            {% if eremuak.prozeduratable %}
+                <list>
+                    {% for prozedura in fitxa.prozedurak %}
+                        <item>
+                            <izena>{{ prozedura.prozedura.prozeduraeu }}</izena>
+                        </item>
+                    {% endfor %}
+                </list>
+            {% endif %}
+         </prozeduraes>
+    </entry>
+    {% endif %}
 
+
+    {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
+        <entry>
+            <norkebatzieu>
+                <label>{{ labelak.norkebatzilabeleu }}</label>
+                {% if eremuak.norkebatzitext %}
+                    <text>{{ fitxa.norkebatzieu }}</text>
+                {% endif %}
+                {% if eremuak.norkebatzitable %}
+                    <item>{{ fitxa.norkebatzi.norkeu }}</item>
+                {% endif %}
+            </norkebatzieu>
+            <norkebatzies>
+                <label>{{ labelak.norkebatzilabeles }}</label>
+                {% if eremuak.norkebatzitext %}
+                    <text>{{ fitxa.norkebatzies }}</text>
+                {% endif %}
+                {% if eremuak.norkebatzitable %}
+                    <item>{{ fitxa.norkebatzi.norkes }}</item>
+                {% endif %}
+            </norkebatzies>
+        </entry>
+    {% endif %}
+
+    {% if (eremuak.azpisailatable) %}
+        <entry>
+            <azpisailaeu>
+                <label>{{ labelak.azpisailalabeleu }}</label>
+                <text>{{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}</text>
+            </azpisailaeu>
+            <azpisailaes>
+                <label>{{ labelak.azpisailalabeles }}</label>
+                <text>{{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}</text>
+            </azpisailaes>
+        </entry>
+    {% endif %}
+
+
+    {% if eremuak.oharraktext %}
+        <entry>
+            <oharrakeu>
+                <label>{{ labelak.oharraklabeleu }}</label>
+                <text>{{ fitxa.oharrakeu }}</text>
+            </oharrakeu>
+            <oharrakes>
+                <label>{{ labelak.oharraklabeles }}</label>
+                <text>{{ fitxa.oharrakes }}</text>
+            </oharrakes>
+        </entry>
+    {% endif %}
+
+
+    {% if (eremuak.besteak1text or eremuak.besteak1table) %}
+        <entry>
+            <besteak1eu>
+                <label>{{ labelak.besteak1labeleu }}</label>
+                {% if eremuak.besteak1text %}
+                    <text>{{ fitxa.besteak1eu }}</text>
+                {% endif %}
+                {% if eremuak.besteak1table %}
+                    <list>
+                        {% for besteak1 in fitxa.besteak1ak %}
+                            <item>
+                                <izena>{{ besteak1.izenburuaeu }}</izena>
+                                {% if besteak1.estekaeu %}<esteka>{{ besteak1.estekaeu }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </list>
+                {% endif %}
+            </besteak1eu>
+            <besteak1es>
+                <label>{{ labelak.besteak1labeles }}</label>
+                {% if eremuak.besteak1text %}
+                    <text>{{ fitxa.besteak1es }}</text>
+                {% endif %}
+                {% if eremuak.besteak1table %}
+                    <list>
+                        {% for besteak1 in fitxa.besteak1ak %}
+                            <item>
+                                <izena>{{ besteak1.izenburuaes }}</izena>
+                                {% if besteak1.estekaes %}<esteka>{{ besteak1.estekaes }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </list>
+                {% endif %}
+            </besteak1es>
+        </entry>
+    {% endif %}
+
+
+    {% if (eremuak.besteak2text or eremuak.besteak2table) %}
+        <entry>
+            <besteak2eu>
+                <label>{{ labelak.besteak2labeleu }}</label>
+                {% if eremuak.besteak2text %}
+                    <text>{{ fitxa.besteak2eu }}</text>
+                {% endif %}
+                {% if eremuak.besteak2table %}
+                    <list>
+                        {% for besteak2 in fitxa.besteak2ak %}
+                            <item>
+                                <izena>{{ besteak2.izenburuaeu }}</izena>
+                                {% if besteak2.estekaeu %}<esteka>{{ besteak2.estekaeu }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </list>
+                {% endif %}
+            </besteak2eu>
+            <besteak2es>
+                <label>{{ labelak.besteak2labeles }}</label>
+                {% if eremuak.besteak2text %}
+                    <text>{{ fitxa.besteak2es }}</text>
+                {% endif %}
+                {% if eremuak.besteak2table %}
+                    <list>
+                        {% for besteak2 in fitxa.besteak2ak %}
+                            <item>
+                                <izena>{{ besteak2.izenburuaes }}</izena>
+                                {% if besteak2.estekaes %}<esteka>{{ besteak2.estekaes }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </list>
+                {% endif %}
+            </besteak2es>
+        </entry>
+    {% endif %}
+
+
+    {% if (eremuak.besteak3text or eremuak.besteak3table) %}
+        <entry>
+            <besteak2eu>
+                <label>{{ labelak.besteak3labeleu }}</label>
+                {% if eremuak.besteak3text %}
+                    <text>{{ fitxa.besteak3eu }}</text>
+                {% endif %}
+                {% if eremuak.besteak3table %}
+                    <list>
+                        {% for besteak3 in fitxa.besteak3ak %}
+                            <item>
+                                <izena>{{ besteak3.izenburuaeu }}</izena>
+                                {% if besteak3.estekaeu %}<esteka>{{ besteak3.estekaeu }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </list>
+                {% endif %}
+            </besteak2eu>
+            <besteak2es>
+                <label>{{ labelak.besteak3labeles }}</label>
+                {% if eremuak.besteak3text %}
+                    <text>{{ fitxa.besteak3es }}</text>
+                {% endif %}
+                {% if eremuak.besteak3table %}
+                    <list>
+                        {% for besteak3 in fitxa.besteak3ak %}
+                            <item>
+                                <izena>{{ besteak3.izenburuaes }}</izena>
+                                {% if besteak3.estekaes %}<esteka>{{ besteak3.estekaes }}</esteka>{% endif %}
+                            </item>
+                        {% endfor %}
+                    </list>
+                {% endif %}
+            </besteak2es>
+        </entry>
+    {% endif %}
+
+
+    {% if (eremuak.datuenbabesatext or eremuak.datuenbabesatable) %}
+        <entry>
+            <datuenbabesaeu>
+                <label>{{ labelak.besteak3labeleu }}</label>
+                <text>
+                    {% if eremuak.datuenbabesatable %}
+                        {{ fitxa.udala.lopdeu|replace({ ('$$$fitxa.datuenbabesa.izenaeu$$$'): fitxa.datuenbabesa.izenaeu })
+                        |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
+                        |replace({ ('$$$fitxa.datuenbabesa.xedeaeu$$$'): fitxa.datuenbabesa.xedeaeu })
+                        |replace({ ('$$$fitxa.datuenbabesa.lagapenakeu$$$'): fitxa.datuenbabesa.lagapenakeu })
+                        |raw}}
+                    {% endif %}
+                    {% if eremuak.datuenbabesatext %}{{ fitxa.datuenbabesaeu |raw}}{% endif %}
+                </text>
+            </datuenbabesaeu>
+            <datuenbabesaes>
+                <label>{{ labelak.besteak3labeleu }}</label>
+                <text>
+                    {% if eremuak.datuenbabesatable %}
+                        {{ fitxa.udala.lopdes|replace({ ('$$$fitxa.datuenbabesa.izenaes$$$'): fitxa.datuenbabesa.izenaes })
+                        |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
+                        |replace({ ('$$$fitxa.datuenbabesa.xedeaes$$$'): fitxa.datuenbabesa.xedeaes })
+                        |replace({ ('$$$fitxa.datuenbabesa.lagapenakes$$$'): fitxa.datuenbabesa.lagapenakes })
+                        |raw}}
+                    {% endif %}
+                    {% if eremuak.datuenbabesatext %}{{ fitxa.datuenbabesaeu |raw}}{% endif %}
+                </text>
+            </datuenbabesaes>
+        </entry>
+    {% endif %}
 
 
 </result>
