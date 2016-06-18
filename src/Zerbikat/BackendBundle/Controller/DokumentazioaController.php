@@ -24,13 +24,17 @@ class DokumentazioaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $dokumentazioas = $em->getRepository('BackendBundle:Dokumentazioa')->findAll();
-
-        return $this->render('dokumentazioa/index.html.twig', array(
-            'dokumentazioas' => $dokumentazioas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $dokumentazioas = $em->getRepository('BackendBundle:Dokumentazioa')->findAll();
+            return $this->render('dokumentazioa/index.html.twig', array(
+                'dokumentazioas' => $dokumentazioas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

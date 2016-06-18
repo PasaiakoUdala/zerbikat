@@ -24,13 +24,17 @@ class EtiketaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $etiketas = $em->getRepository('BackendBundle:Etiketa')->findAll();
-
-        return $this->render('etiketa/index.html.twig', array(
-            'etiketas' => $etiketas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $etiketas = $em->getRepository('BackendBundle:Etiketa')->findAll();
+            return $this->render('etiketa/index.html.twig', array(
+                'etiketas' => $etiketas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

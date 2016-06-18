@@ -24,13 +24,17 @@ class SailaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $sailas = $em->getRepository('BackendBundle:Saila')->findAll();
-
-        return $this->render('saila/index.html.twig', array(
-            'sailas' => $sailas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $sailas = $em->getRepository('BackendBundle:Saila')->findAll();
+            return $this->render('saila/index.html.twig', array(
+                'sailas' => $sailas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

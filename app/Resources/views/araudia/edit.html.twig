@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Araudia aldatu</h1>
+    {#<h1>Araudia aldatu</h1>#}
 
     {{ form_start(edit_form) }}
         {#{{ form_widget(edit_form) }}#}
+    <ul class="list-inline pull-right" role="tablist">
+        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+        {#<li><a href="{{ path('araudia_show', { 'id': araudia.id }) }}" class="btn btn-primary">Araua ikusi</a></li>#}
+        <li><a href="{{ path('araudia_index') }}" class="btn btn-primary" >Zerrendara itzuli</a></li>
+    </ul>
 
+
+<div class="row">
     <div class="col-sm-6">
         <div>
             {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -13,7 +20,6 @@
             {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
-
     <div class="col-sm-6">
         <div>
             {{ form_label(edit_form.araumota, 'Arau-mota: ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -21,7 +27,9 @@
             {{ form_widget(edit_form.araumota, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
+</div>
 
+<div class="row">
     <div class="col-sm-6">
         <div>
             {{ form_label(edit_form.arauaeu, 'Araua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -29,7 +37,6 @@
             {{ form_widget(edit_form.arauaeu, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
-
     <div class="col-sm-6">
         <div>
             {{ form_label(edit_form.arauaes, 'Araua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -37,7 +44,9 @@
             {{ form_widget(edit_form.arauaes, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
+</div>
 
+<div class="row">
     <div class="col-sm-6">
         <div>
             {{ form_label(edit_form.estekaeu, 'Esteka (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -53,8 +62,9 @@
             {{ form_widget(edit_form.estekaes, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
+</div>
 
-
+<div class="row">
     <div class="col-sm-6 hidden">
         <div>
             {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -62,14 +72,15 @@
             {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
+</div>
 
-
-<div class="fitxaMenua">
-    <ul>
-        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+{#<div class="fitxaMenua">#}
+    {#<ul>#}
+        {#<li><input type="submit" value="Gorde" class="btn btn-primary"/></li>#}
     {{ form_end(edit_form) }}
-        <li>
-            <a href="{{ path('araudia_index') }}" class="btn btn-primary">Zerrendara</a>
-        </li>
-    </ul>
+        {#<li>#}
+            {#<a href="{{ path('araudia_index') }}" class="btn btn-primary">Zerrendara</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#</div>#}
 {% endblock %}

@@ -24,15 +24,19 @@ class AraumotaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $araumotas = $em->getRepository('BackendBundle:Araumota')->findAll();
-
-        return $this->render('araumota/index.html.twig', array(
-            'araumotas' => $araumotas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) 
+        {
+            $em = $this->getDoctrine()->getManager();
+            $araumotas = $em->getRepository('BackendBundle:Araumota')->findAll();
+            return $this->render('araumota/index.html.twig', array(
+                'araumotas' => $araumotas,
+            ));
+        } else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
-
     /**
      * Creates a new Araumota entity.
      *

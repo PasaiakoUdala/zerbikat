@@ -24,13 +24,18 @@ class DoklagunController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $doklaguns = $em->getRepository('BackendBundle:Doklagun')->findAll();
-
-        return $this->render('doklagun/index.html.twig', array(
-            'doklaguns' => $doklaguns,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $doklaguns = $em->getRepository('BackendBundle:Doklagun')->findAll();
+            return $this->render('doklagun/index.html.twig', array(
+                'doklaguns' => $doklaguns,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

@@ -24,13 +24,19 @@ class ArruntaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
 
-        $arruntas = $em->getRepository('BackendBundle:Arrunta')->findAll();
+            $arruntas = $em->getRepository('BackendBundle:Arrunta')->findAll();
 
-        return $this->render('arrunta/index.html.twig', array(
-            'arruntas' => $arruntas,
-        ));
+            return $this->render('arrunta/index.html.twig', array(
+                'arruntas' => $arruntas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

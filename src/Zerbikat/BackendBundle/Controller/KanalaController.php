@@ -24,13 +24,17 @@ class KanalaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $kanalas = $em->getRepository('BackendBundle:Kanala')->findAll();
-
-        return $this->render('kanala/index.html.twig', array(
-            'kanalas' => $kanalas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $kanalas = $em->getRepository('BackendBundle:Kanala')->findAll();
+            return $this->render('kanala/index.html.twig', array(
+                'kanalas' => $kanalas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

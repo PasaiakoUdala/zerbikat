@@ -24,13 +24,17 @@ class OrdenantzaparrafoaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $ordenantzaparrafoas = $em->getRepository('BackendBundle:Ordenantzaparrafoa')->findAll();
-
-        return $this->render('ordenantzaparrafoa/index.html.twig', array(
-            'ordenantzaparrafoas' => $ordenantzaparrafoas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $ordenantzaparrafoas = $em->getRepository('BackendBundle:Ordenantzaparrafoa')->findAll();
+            return $this->render('ordenantzaparrafoa/index.html.twig', array(
+                'ordenantzaparrafoas' => $ordenantzaparrafoas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

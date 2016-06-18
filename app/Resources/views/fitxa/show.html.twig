@@ -3,12 +3,12 @@
 
 {% block menua %}
     {{ parent() }}
-    <ul class="nav nav-pills pull-right" role="tablist">
-        <li role="presentation" class="active btn-sm"><a href="{{ path('fitxa_index') }}" >Zerrendara itzuli</a></li>
-        <li role="presentation" class="active btn-sm"><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}">Aldatu</a></li>
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('fitxa_index') }}" class="btn btn-primary" >Zerrendara itzuli</a></li>
+        <li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="btn btn-primary">Aldatu</a></li>
     </ul>
-
 {% endblock %}
+
 {% block body %}
 
 

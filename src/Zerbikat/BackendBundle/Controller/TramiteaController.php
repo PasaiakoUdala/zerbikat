@@ -24,13 +24,17 @@ class TramiteaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $tramiteas = $em->getRepository('BackendBundle:Tramitea')->findAll();
-
-        return $this->render('tramitea/index.html.twig', array(
-            'tramiteas' => $tramiteas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $tramiteas = $em->getRepository('BackendBundle:Tramitea')->findAll();
+            return $this->render('tramitea/index.html.twig', array(
+                'tramiteas' => $tramiteas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

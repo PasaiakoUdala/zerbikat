@@ -24,13 +24,17 @@ class NorkeskatuController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $norkeskatus = $em->getRepository('BackendBundle:Norkeskatu')->findAll();
-
-        return $this->render('norkeskatu/index.html.twig', array(
-            'norkeskatus' => $norkeskatus,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $norkeskatus = $em->getRepository('BackendBundle:Norkeskatu')->findAll();
+            return $this->render('norkeskatu/index.html.twig', array(
+                'norkeskatus' => $norkeskatus,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

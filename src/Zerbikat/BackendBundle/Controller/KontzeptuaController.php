@@ -24,13 +24,17 @@ class KontzeptuaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $kontzeptuas = $em->getRepository('BackendBundle:Kontzeptua')->findAll();
-
-        return $this->render('kontzeptua/index.html.twig', array(
-            'kontzeptuas' => $kontzeptuas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $kontzeptuas = $em->getRepository('BackendBundle:Kontzeptua')->findAll();
+            return $this->render('kontzeptua/index.html.twig', array(
+                'kontzeptuas' => $kontzeptuas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

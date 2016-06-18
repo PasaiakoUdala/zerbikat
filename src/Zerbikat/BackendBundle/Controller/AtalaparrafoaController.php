@@ -24,13 +24,19 @@ class AtalaparrafoaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
 
-        $atalaparrafoas = $em->getRepository('BackendBundle:Atalaparrafoa')->findAll();
+            $atalaparrafoas = $em->getRepository('BackendBundle:Atalaparrafoa')->findAll();
 
-        return $this->render('atalaparrafoa/index.html.twig', array(
-            'atalaparrafoas' => $atalaparrafoas,
-        ));
+            return $this->render('atalaparrafoa/index.html.twig', array(
+                'atalaparrafoas' => $atalaparrafoas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

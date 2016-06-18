@@ -24,13 +24,17 @@ class Besteak3Controller extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $besteak3s = $em->getRepository('BackendBundle:Besteak3')->findAll();
-
-        return $this->render('besteak3/index.html.twig', array(
-            'besteak3s' => $besteak3s,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $besteak3s = $em->getRepository('BackendBundle:Besteak3')->findAll();
+            return $this->render('besteak3/index.html.twig', array(
+                'besteak3s' => $besteak3s,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

@@ -1,48 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Azpiatala</h1>
 
-    <table>
+{% block menua %}
+    {{ parent() }}
+    <ul class="nav nav-pills pull-right" role="tablist">
+        <li role="presentation" class="active btn-sm"><a href="{{ path('azpiatala_index') }}" >Zerrendara itzuli</a></li>
+    </ul>
+{% endblock %}
+
+
+
+{% block body %}
+<h1>Kostu taula</h1>
+
+<div class="row">
+    <div class="col-sm-10">
+    <table class="table table-bordered">
         <tbody>
             <tr>
-                <th>Kodea</th>
-                <td>{{ azpiatala.kodea }}</td>
+                <th colspan="6">{{ azpiatala.atala }}{{ azpiatala.kodea }}.{{ azpiatala.izenburuaeu }}</th>
+                <th colspan="6">{{ azpiatala.atala }}{{ azpiatala.kodea }}.{{ azpiatala.izenburuaes }}</th>
             </tr>
+            {% for parrafoa in azpiatala.parrafoak %}
+                <tr>
+                    <td colspan="6">{{ parrafoa.testuaeu|raw }}</td>
+                    <td colspan="6">{{ parrafoa.testuaes|raw }}</td>
+                </tr>
+            {% endfor %}
+
+            {% for kontzeptua in azpiatala.kontzeptuak %}
             <tr>
-                <th>Izenburuaeu</th>
-                <td>{{ azpiatala.izenburuaeu }}</td>
+                <td colspan="5">
+                    {{ kontzeptua.kontzeptuaeu }}
+                    {% if kontzeptua.baldintza %}({{ kontzeptua.baldintza.baldintzaeu }}){% endif %}
+                </td>
+                <td colspan="2">{{ kontzeptua.kopurua }}{{ kontzeptua.unitatea }}</td>
+                <td colspan="5">
+                    {{ kontzeptua.kontzeptuaes }}
+                    {% if kontzeptua.baldintza %}({{ kontzeptua.baldintza.baldintzaes }}){% endif %}
+                </td>
             </tr>
-            <tr>
-                <th>Izenburuaes</th>
-                <td>{{ azpiatala.izenburuaes }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if azpiatala.createdAt %}{{ azpiatala.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Updatedat</th>
-                <td>{% if azpiatala.updatedAt %}{{ azpiatala.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ azpiatala.id }}</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('azpiatala_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    </div>
+</div>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('azpiatala_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}">Edit</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

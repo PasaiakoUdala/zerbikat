@@ -24,13 +24,17 @@ class BarrutiaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $barrutias = $em->getRepository('BackendBundle:Barrutia')->findAll();
-
-        return $this->render('barrutia/index.html.twig', array(
-            'barrutias' => $barrutias,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $barrutias = $em->getRepository('BackendBundle:Barrutia')->findAll();
+            return $this->render('barrutia/index.html.twig', array(
+                'barrutias' => $barrutias,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

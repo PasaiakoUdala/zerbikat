@@ -24,13 +24,17 @@ class FamiliaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $familias = $em->getRepository('BackendBundle:Familia')->findAll();
-
-        return $this->render('familia/index.html.twig', array(
-            'familias' => $familias,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $familias = $em->getRepository('BackendBundle:Familia')->findAll();
+            return $this->render('familia/index.html.twig', array(
+                'familias' => $familias,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

@@ -24,13 +24,18 @@ class IsiltasunAdministratiboaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $isiltasunAdministratiboas = $em->getRepository('BackendBundle:IsiltasunAdministratiboa')->findAll();
-
-        return $this->render('isiltasunadministratiboa/index.html.twig', array(
-            'isiltasunAdministratiboas' => $isiltasunAdministratiboas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) 
+        {
+            $em = $this->getDoctrine()->getManager();
+            $isiltasunAdministratiboas = $em->getRepository('BackendBundle:IsiltasunAdministratiboa')->findAll();
+            return $this->render('isiltasunadministratiboa/index.html.twig', array(
+                'isiltasunAdministratiboas' => $isiltasunAdministratiboas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

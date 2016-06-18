@@ -24,13 +24,17 @@ class EraikinaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $eraikinas = $em->getRepository('BackendBundle:Eraikina')->findAll();
-
-        return $this->render('eraikina/index.html.twig', array(
-            'eraikinas' => $eraikinas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $eraikinas = $em->getRepository('BackendBundle:Eraikina')->findAll();
+            return $this->render('eraikina/index.html.twig', array(
+                'eraikinas' => $eraikinas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

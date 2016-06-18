@@ -24,13 +24,17 @@ class ProzeduraController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $prozeduras = $em->getRepository('BackendBundle:Prozedura')->findAll();
-
-        return $this->render('prozedura/index.html.twig', array(
-            'prozeduras' => $prozeduras,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $prozeduras = $em->getRepository('BackendBundle:Prozedura')->findAll();
+            return $this->render('prozedura/index.html.twig', array(
+                'prozeduras' => $prozeduras,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

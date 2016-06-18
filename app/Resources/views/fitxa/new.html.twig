@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Fitxa berria</h1>
+    {#<h1>Fitxa berria</h1>#}
 
     {{ form_start(form) }}
         {#{{ form_widget(form) }}#}
 
-
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>
+        <li><input type="submit" value="Sortu" class="btn btn-primary"/></li>
+    </ul>
 
 
     <div class="row">
@@ -868,13 +871,13 @@
         {#<input type="submit" value="Create" class="btn btn-primary"/>#}
         {#{{ form_end(form) }}#}
 
-    <div class="fitxaMenua">
-    <ul>
-        <li></li><input type="submit" value="Create" class="btn btn-primary"/></li>
+    {#<div class="fitxaMenua">#}
+    {#<ul>#}
+        {#<li></li><input type="submit" value="Create" class="btn btn-primary"/></li>#}
     {{ form_end(form) }}
-        <li><a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>
-    </ul>
-    </div>
+        {#<li><a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>#}
+    {#</ul>#}
+    {#</div>#}
 {% endblock %}
 
 {% block javascripts %}

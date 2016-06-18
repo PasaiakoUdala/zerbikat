@@ -24,13 +24,18 @@ class AzpisailaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $azpisailas = $em->getRepository('BackendBundle:Azpisaila')->findAll();
-
-        return $this->render('azpisaila/index.html.twig', array(
-            'azpisailas' => $azpisailas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) 
+        {
+            $em = $this->getDoctrine()->getManager();
+            $azpisailas = $em->getRepository('BackendBundle:Azpisaila')->findAll();
+            return $this->render('azpisaila/index.html.twig', array(
+                'azpisailas' => $azpisailas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');            
+        }
     }
 
     /**

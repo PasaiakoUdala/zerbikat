@@ -1,9 +1,23 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block body %}
 <!--    <h1>Fitxa editatu</h1> -->
 
     {{ form_start(edit_form) }}
+
+    <ul class="list-inline pull-right" role="tablist">
+        {#<li><a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>#}
+        {#<li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="btn btn-primary">Aldatu</a></li>#}
+        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+        <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="btn btn-primary">Fitxa ikusi</a></li>
+    </ul>
+
+
+
+
+
 {#-        {{ //form_widget(edit_form) }} -#}
 
     <div class="row">
@@ -847,13 +861,10 @@
         </div>
     </div>
 
-<div class="fitxaMenua">
-    <ul>
-        <li>
-            <input type="submit" value="Gorde" class="btn btn-primary"/>
-        </li>
-        <li>            <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="btn btn-primary">Fitxa ikusi</a>
-        </li>
+{#<div class="fitxaMenua">#}
+    {#<ul>#}
+        {#<li><input type="submit" value="Gorde" class="btn btn-primary"/></li>#}
+        {#<li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="btn btn-primary">Fitxa ikusi</a></li>#}
     {{ form_end(edit_form) }}
 
 
@@ -865,8 +876,8 @@
                 {#<input type="submit" value="Delete">#}
             {#{{ form_end(delete_form) }}#}
         {#</li>#}
-    </ul>
-</div>
+    {#</ul>#}
+{#</div>#}
 {% endblock %}
 
 {% block javascripts %}

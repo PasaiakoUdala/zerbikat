@@ -25,13 +25,18 @@ class FitxaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+//        $erab=$this->getUser();
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_USER'))
+        {
+            $em = $this->getDoctrine()->getManager();
 
-        $fitxas = $em->getRepository('BackendBundle:Fitxa')->findAll();
+            $fitxas = $em->getRepository('BackendBundle:Fitxa')->findAll();
 
-        return $this->render('fitxa/index.html.twig', array(
-            'fitxas' => $fitxas,
-        ));
+            return $this->render('fitxa/index.html.twig', array(
+                'fitxas' => $fitxas,
+            ));
+        }
     }
 
     /**
@@ -42,49 +47,48 @@ class FitxaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $fitxa = new Fitxa();
-        $fitxa->setUdala($this->getUser()->getUdala());
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_USER')) {
+            $fitxa = new Fitxa();
+//            $fitxa->setUdala($this->getUser()->getUdala());
 
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\FitxaType', $fitxa);
-        $form->handleRequest($request);
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\FitxaType', $fitxa);
+            $form->handleRequest($request);
 
-        $form->getData()->setUdala($this->getUser()->getUdala());
-        $form->setData($form->getData());
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-        $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
-            $em->persist($fitxa);
-            $em->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $fitxa->setCreatedAt(new \DateTime());
+//                $em = $this->getDoctrine()->getManager();
+                $em->persist($fitxa);
+                $em->flush();
 
-            return $this->redirectToRoute('fitxa_show', array('id' => $fitxa->getId()));
+                return $this->redirectToRoute('fitxa_show', array('id' => $fitxa->getId()));
+            }
+            $query = $em->createQuery('
+            SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
+              FROM BackendBundle:Eremuak f
+          ');
+            //$eremuak = $query->getResult();
+            $eremuak = $query->getSingleResult();
+
+            $query = $em->createQuery('
+            SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
+              FROM BackendBundle:Eremuak f
+          ');
+            $labelak = $query->getSingleResult();
+
+            return $this->render('fitxa/new.html.twig', array(
+                'fitxa' => $fitxa,
+                'form' => $form->createView(),
+                'eremuak' => $eremuak,
+                'labelak' => $labelak
+            ));
         }
-        $query = $em->createQuery('
-          SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
-            FROM BackendBundle:Eremuak f
-        ');
-//        $query->setParameter('udala', '064');
-        //$eremuak = $query->getResult();
-        $eremuak = $query->getSingleResult();
-
-        $query = $em->createQuery('
-          SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
-            FROM BackendBundle:Eremuak f
-        ');
-//        $query->setParameter('udala', '064');
-        $labelak = $query->getSingleResult();
-
-
-
-        return $this->render('fitxa/new.html.twig', array(
-            'fitxa' => $fitxa,
-            'form' => $form->createView(),
-            'eremuak'=> $eremuak,
-            'labelak'=> $labelak
-        ));
     }
-
     /**
      * Finds and displays a Fitxa entity.
      *
@@ -98,26 +102,17 @@ class FitxaController extends Controller
         $em = $this->getDoctrine()->getManager();
         $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();
 
-//        $eremuak = $em->getRepository('BackendBundle:Eremuak')->findAll(array('udala'=>'064'));
-
-
         $query = $em->createQuery('
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
             FROM BackendBundle:Eremuak f
-            WHERE f.udala = :udala
         ');
-        $query->setParameter('udala', '064');
-        //$eremuak = $query->getResult();
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery('
           SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
             FROM BackendBundle:Eremuak f
-            WHERE f.udala = :udala
         ');
-        $query->setParameter('udala', '064');
         $labelak = $query->getSingleResult();
-
 
         return $this->render('fitxa/show.html.twig', array(
             'fitxa' => $fitxa,
@@ -142,31 +137,23 @@ class FitxaController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-//            $em = $this->getDoctrine()->getManager();
+        if ($editForm->isSubmitted() && $editForm->isValid())
+        {
             $fitxa->setUpdatedAt(new \DateTime());
-
             $em->persist($fitxa);
             $em->flush();
-
             return $this->redirectToRoute('fitxa_edit', array('id' => $fitxa->getId()));
         }
-
         $query = $em->createQuery('
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
             FROM BackendBundle:Eremuak f
-            WHERE f.udala = :udala
         ');
-        $query->setParameter('udala', '064');
-        //$eremuak = $query->getResult();
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery('
           SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
             FROM BackendBundle:Eremuak f
-            WHERE f.udala = :udala
         ');
-        $query->setParameter('udala', '064');
         $labelak = $query->getSingleResult();
 
 //        }
@@ -192,15 +179,17 @@ class FitxaController extends Controller
      */
     public function deleteAction(Request $request, Fitxa $fitxa)
     {
-        $form = $this->createDeleteForm($fitxa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($fitxa);
-            $em->flush();
+        //udala egokia den eta admin baimena duen egiaztatu
+        $auth_checker = $this->get('security.authorization_checker');
+        if (($auth_checker->isGranted('ROLE_ADMIN'))&&($fitxa->getUdala()==$this->getUser()->getUdala())) {
+            $form = $this->createDeleteForm($fitxa);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($fitxa);
+                $em->flush();
+            }
         }
-
         return $this->redirectToRoute('fitxa_index');
     }
 

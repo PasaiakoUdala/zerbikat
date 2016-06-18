@@ -24,13 +24,17 @@ class KanalmotaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $kanalmotas = $em->getRepository('BackendBundle:Kanalmota')->findAll();
-
-        return $this->render('kanalmota/index.html.twig', array(
-            'kanalmotas' => $kanalmotas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $kanalmotas = $em->getRepository('BackendBundle:Kanalmota')->findAll();
+            return $this->render('kanalmota/index.html.twig', array(
+                'kanalmotas' => $kanalmotas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

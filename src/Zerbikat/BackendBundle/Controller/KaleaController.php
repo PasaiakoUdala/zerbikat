@@ -24,13 +24,17 @@ class KaleaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $kaleas = $em->getRepository('BackendBundle:Kalea')->findAll();
-
-        return $this->render('kalea/index.html.twig', array(
-            'kaleas' => $kaleas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $kaleas = $em->getRepository('BackendBundle:Kalea')->findAll();
+            return $this->render('kalea/index.html.twig', array(
+                'kaleas' => $kaleas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

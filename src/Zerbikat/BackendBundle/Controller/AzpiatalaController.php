@@ -24,13 +24,19 @@ class AzpiatalaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
 
-        $azpiatalas = $em->getRepository('BackendBundle:Azpiatala')->findAll();
+            $azpiatalas = $em->getRepository('BackendBundle:Azpiatala')->findAll();
 
-        return $this->render('azpiatala/index.html.twig', array(
-            'azpiatalas' => $azpiatalas,
-        ));
+            return $this->render('azpiatala/index.html.twig', array(
+                'azpiatalas' => $azpiatalas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

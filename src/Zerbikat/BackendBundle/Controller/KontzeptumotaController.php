@@ -24,13 +24,18 @@ class KontzeptumotaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $kontzeptumotas = $em->getRepository('BackendBundle:Kontzeptumota')->findAll();
-
-        return $this->render('kontzeptumota/index.html.twig', array(
-            'kontzeptumotas' => $kontzeptumotas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $kontzeptumotas = $em->getRepository('BackendBundle:Kontzeptumota')->findAll();
+            return $this->render('kontzeptumota/index.html.twig', array(
+                'kontzeptumotas' => $kontzeptumotas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

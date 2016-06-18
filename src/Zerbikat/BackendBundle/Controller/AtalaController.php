@@ -24,13 +24,19 @@ class AtalaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
 
-        $atalas = $em->getRepository('BackendBundle:Atala')->findAll();
+            $atalas = $em->getRepository('BackendBundle:Atala')->findAll();
 
-        return $this->render('atala/index.html.twig', array(
-            'atalas' => $atalas,
-        ));
+            return $this->render('atala/index.html.twig', array(
+                'atalas' => $atalas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

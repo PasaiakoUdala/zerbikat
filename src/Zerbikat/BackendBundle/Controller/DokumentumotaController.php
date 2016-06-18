@@ -24,13 +24,17 @@ class DokumentumotaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $dokumentumotas = $em->getRepository('BackendBundle:Dokumentumota')->findAll();
-
-        return $this->render('dokumentumota/index.html.twig', array(
-            'dokumentumotas' => $dokumentumotas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $dokumentumotas = $em->getRepository('BackendBundle:Dokumentumota')->findAll();
+            return $this->render('dokumentumota/index.html.twig', array(
+                'dokumentumotas' => $dokumentumotas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

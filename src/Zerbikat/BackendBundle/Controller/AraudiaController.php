@@ -24,14 +24,22 @@ class AraudiaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $em = $this->getDoctrine()->getManager();
 
-        $araudias = $em->getRepository('BackendBundle:Araudia')->findAll();
+            $araudias = $em->getRepository('BackendBundle:Araudia')->findAll();
 
-        return $this->render('araudia/index.html.twig', array(
-            'araudias' => $araudias,
-        ));
+            return $this->render('araudia/index.html.twig', array(
+                'araudias' => $araudias,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
+
 
     /**
      * Creates a new Araudia entity.

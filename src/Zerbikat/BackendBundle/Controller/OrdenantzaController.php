@@ -24,13 +24,17 @@ class OrdenantzaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $ordenantzas = $em->getRepository('BackendBundle:Ordenantza')->findAll();
-
-        return $this->render('ordenantza/index.html.twig', array(
-            'ordenantzas' => $ordenantzas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $ordenantzas = $em->getRepository('BackendBundle:Ordenantza')->findAll();
+            return $this->render('ordenantza/index.html.twig', array(
+                'ordenantzas' => $ordenantzas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

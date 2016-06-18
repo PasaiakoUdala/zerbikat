@@ -24,13 +24,18 @@ class AurreikusiController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $aurreikusis = $em->getRepository('BackendBundle:Aurreikusi')->findAll();
-
-        return $this->render('aurreikusi/index.html.twig', array(
-            'aurreikusis' => $aurreikusis,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $aurreikusis = $em->getRepository('BackendBundle:Aurreikusi')->findAll();
+            return $this->render('aurreikusi/index.html.twig', array(
+                'aurreikusis' => $aurreikusis,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');        
+        }
     }
 
     /**

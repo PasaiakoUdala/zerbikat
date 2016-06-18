@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block menua %}
+
+
+    {{ parent() }}
+
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('araudia_new') }}" class="btn btn-primary">Arau berria</a></li>
+    </ul>
+{% endblock %}
+
+
 {% block body %}
     <h1>Araudiak</h1>
 
@@ -8,11 +19,6 @@
             <tr>
                 <th>Kodea</th>
                 <th>Araua</th>
-                {#<th>Arauaes</th>#}
-                {#<th>Estekaeu</th>#}
-                {#<th>Estekaes</th>#}
-                {#<th>Id</th>#}
-                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
@@ -21,10 +27,6 @@
                 {#<td><a href="{{ path('araudia_show', { 'id': araudium.id }) }}">{{ araudium.kodea }}</a></td>#}
                 <td><a href="{{ path('araudia_edit', { 'id': araudium.id }) }}">{{ araudium.kodea }}</a></td>
                 <td>{{ araudium.arauaeu }}</td>
-                {#<td>{{ araudium.arauaes }}</td>#}
-                {#<td>{{ araudium.estekaeu }}</td>#}
-                {#<td>{{ araudium.estekaes }}</td>#}
-                {#<td>{{ araudium.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
                         {#<li>#}
@@ -39,11 +41,4 @@
         {% endfor %}
         </tbody>
     </table>
-<div class="fitxaMenua">
-    <ul>
-        <li>
-            <a href="{{ path('araudia_new') }}" class="btn btn-primary">Arau berria</a>
-        </li>
-    </ul>
-</div>
 {% endblock %}

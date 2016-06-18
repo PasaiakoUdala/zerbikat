@@ -24,13 +24,17 @@ class DatuenbabesaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $datuenbabesas = $em->getRepository('BackendBundle:Datuenbabesa')->findAll();
-
-        return $this->render('datuenbabesa/index.html.twig', array(
-            'datuenbabesas' => $datuenbabesas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $datuenbabesas = $em->getRepository('BackendBundle:Datuenbabesa')->findAll();
+            return $this->render('datuenbabesa/index.html.twig', array(
+                'datuenbabesas' => $datuenbabesas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**

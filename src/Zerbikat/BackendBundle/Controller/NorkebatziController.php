@@ -24,13 +24,17 @@ class NorkebatziController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $norkebatzis = $em->getRepository('BackendBundle:Norkebatzi')->findAll();
-
-        return $this->render('norkebatzi/index.html.twig', array(
-            'norkebatzis' => $norkebatzis,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $norkebatzis = $em->getRepository('BackendBundle:Norkebatzi')->findAll();
+            return $this->render('norkebatzi/index.html.twig', array(
+                'norkebatzis' => $norkebatzis,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**
