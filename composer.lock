@@ -3105,7 +3105,7 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",

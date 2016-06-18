@@ -14,23 +14,109 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body role="document" onload="tamaina()">
-<div class="container theme-showcase" role="main">
-        {% block body %}
 
-                <div class="navbar navbar-fixed-top">
-                        <div class="navbar-inner">
-                                {#<a class="brand" href="#">Awesome!</a>#}
-                                {{ knp_menu_render('BackendBundle:Builder:mainMenu') }}
+        {% block menua %}
+                {#<div class="navbar navbar-fixed-top">#}
+                        {#<div class="navbar-inner">#}
+                                {#{{ knp_menu_render('BackendBundle:Builder:mainMenu') }}#}
+                        {#</div>#}
+                {#</div>#}
+        <nav class="navbar navbar-inverse ">
+                <div class="container">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand"> ZERBItzuen KATalagoa</a>
                         </div>
-                </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                        <li ><a href="{{ path('fitxa_index') }}" >Fitxa</a></li>
+                                        <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaNagusiak')";>Taula nagusiak<span class="caret"></span></a>
+                                                <ul class="dropdown-menu" id="menuaNagusiak">
+                                                        <li><a href="{{ path('araudia_index') }}" >Araudia</a></li>
+                                                        <li><a href="{{ path('dokumentazioa_index') }}" >Agiriak</a></li>
+                                                        <li><a href="{{ path('saila_index') }}" >Sailak</a></li>
+                                                        <li><a href="{{ path('azpisaila_index') }}" >Azpisailak</a></li>
+                                                        <li><a href="{{ path('datuenbabesa_index') }}" >Datuen babesa</a></li>
+                                                        <li><a href="{{ path('prozedura_index') }}" >Prozedurak</a></li>
+                                                        <li><a href="{{ path('kanala_index') }}" >Kanalak</a></li>
+                                                        <li><a href="{{ path('norkebatzi_index') }}" >Ebazleak</a></li>
+                                                        <li><a href="{{ path('doklagun_index') }}" >Dokumentazio lagungarria</a></li>
+                                                        <li><a href="{{ path('besteak1_index') }}" >Besteak1 taula</a></li>
+                                                        <li><a href="{{ path('besteak2_index') }}" >Besteak2 taula</a></li>
+                                                        <li><a href="{{ path('besteak3_index') }}" >Besteak3 taula</a></li>
+                                                        <li><a href="{{ path('norkeskatu_index') }}" >Nork eska dezake</a></li>
+                                                </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaSailkapena')";>Sailkapena<span class="caret"></span></a>
+                                                <ul class="dropdown-menu" id="menuaSailkapena">
+                                                        <li><a href="{{ path('etiketa_index') }}" >Etiketak</a></li>
+                                                        <li><a href="{{ path('familia_index') }}" >Familia</a></li>
+                                                </ul>
+                                        </li>
 
+                                        <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menua')";>Taula laguntzaileak
+                                                <span class="caret"></span></a>
+                                                <ul class="dropdown-menu" id="menua">
+                                                        {#<li role="separator" class="divider"></li>#}
+                                                        <li class="dropdown-header">Taula laguntzaileak</li>
+                                                        <li role="separator" class="divider"></li>
+                                                        <li><a href="{{ path('arrunta_index') }}" >Epe arruntak</a></li>
+                                                        <li><a href="{{ path('aurreikusi_index') }}" >Aurreikusitako epeak</a></li>
+                                                        <li><a href="{{ path('isiltasunadministratiboa_index') }}" >Isiltasun administratiboaren izaerak</a></li>
+                                                        <li><a href="{{ path('araumota_index') }}" >Arau-motak</a></li>
+                                                        <li><a href="{{ path('dokumentumota_index') }}" >Dokumetnu-motak</a></li>
+                                                        <li><a href="{{ path('kanala_index') }}" >Kanal-motak</a></li>
+
+                                                        <li role="separator" class="divider"></li>
+                                                        <li class="dropdown-header">Kale izendegia</li>
+                                                        <li role="separator" class="divider"></li>
+                                                        <li><a href="{{ path('barrutia_index') }}" >Barrutiak</a></li>
+                                                        <li><a href="{{ path('kalea_index') }}" >Kaleak</a></li>
+                                                        <li><a href="{{ path('eraikina_index') }}" >Eraikinak</a></li>
+
+                                                        <li role="separator" class="divider"></li>
+                                                        <li class="dropdown-header">Zerga Ordenantzak</li>
+                                                        <li role="separator" class="divider"></li>
+                                                        <li><a href="{{ path('ordenantza_index') }}" >Ordenantzak</a></li>
+                                                        <li><a href="{{ path('atala_index') }}" >Atalak</a></li>
+                                                        <li><a href="{{ path('azpiatala_index') }}" >Kostu-taulak</a></li>
+                                                        <li><a href="{{ path('baldintza_index') }}" >Baldintzak</a></li>
+                                                        <li><a href="{{ path('kontzeptumota_index') }}" >Kontzeptu-motak</a></li>
+                                                </ul>
+                                         </li>
+                                        <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaAdmin')";>Admin<span class="caret"></span></a>
+                                                <ul class="dropdown-menu" id="menuaAdmin">
+                                                        {#<li><a href="{{ path('udala_index') }}" >Udala</a></li>#}
+                                                        {#<li><a href="{{ path('user_index') }}" >Erabiltzaileak</a></li>#}
+                                                        <li><a href="{{ path('eremuak_index') }}" >Eremuak</a></li>
+                                                        <li><a href="{{ path('espedientekudeaketa_index') }}" >Espediente kudeaketa</a></li>
+                                                        {#<li><a href="{{ path('zerbitzua_index') }}" >Zerbitzua</a></li>#}
+                                                </ul>
+                                        </li>
+                                </ul>
+                        </div><!--/.nav-collapse -->
+                </div>
+        </nav>
+        {% endblock %}
+
+
+        <div class="container theme-showcase" role="main">
+        {% block body %}
 
         {% endblock %}
 </div>
 
 
 {% block javascripts %}
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="{{ asset('bundles/backend/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bundles/easyadmin/javascript/select2.full.min.js') }}"></script>

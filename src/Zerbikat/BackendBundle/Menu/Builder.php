@@ -41,11 +41,21 @@ use ContainerAwareTrait;
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav');
 
-        $menu->addChild('Projects', array('route' => 'fitxa_index'))
+        $menu->addChild('Fitxa', array('route' => 'fitxa_index'))
             ->setAttribute('icon', 'icon-list');
 
-        $menu->addChild('Employees', array('route' => 'fitxa_index'))
+        $menu->addChild('Araudia', array('route' => 'araudia_index'))
             ->setAttribute('icon', 'icon-group');
+
+
+
+        $menu->addChild('User', array('label' => 'Hi visitor'))
+            ->setAttribute('dropdown', true)
+            ->setAttribute('icon', 'icon-user');
+        $menu['User']->addChild('Edit profile', array('route' => 'dokumentazioa_index'))
+            ->setAttribute('icon', 'icon-edit');
+
+
         return $menu;
 
 

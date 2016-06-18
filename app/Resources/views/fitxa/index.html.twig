@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block menua %}
+    {{ parent() }}
+        {#<ul class="nav nav-tabs pull-right" role="tablist">#}
+            {#<li role="presentation" class="text-right active"><a href="{{ path('fitxa_new') }}" >Fitxa berria</a></li>#}
+        {#</ul>#}
+        <ul class="nav nav-pills pull-right" role="tablist">
+            <li role="presentation" class="active btn-sm"><a href="{{ path('fitxa_new') }}" >Fitxa berria</a></li>
+        </ul>
+
+{% endblock %}
+
 {% block body %}
     {{ parent() }}
 
@@ -21,16 +32,21 @@
                     {% if fitxa.azpisaila %} {{ fitxa.azpisaila.saila }}<br>{{ fitxa.azpisaila }}
                     {% endif %}
                 </td>
+                <td>
+                    <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">
+                    <i class="fa fa-edit"></i></a>
+                </td>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-<div class="fitxaMenua">
-    <ul>
-        <li>
-            <a href="{{ path('fitxa_new') }}" class="btn btn-primary">Fitxa berria</a>
-        </li>
-    </ul>
-</div>
+{#<div class="fitxaMenua">#}
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('fitxa_new') }}" class="btn btn-primary">Fitxa berria</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#</div>#}
 {% endblock %}

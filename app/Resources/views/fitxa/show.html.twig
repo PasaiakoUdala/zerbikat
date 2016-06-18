@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
 
+{% block menua %}
+    {{ parent() }}
+    <ul class="nav nav-pills pull-right" role="tablist">
+        <li role="presentation" class="active btn-sm"><a href="{{ path('fitxa_index') }}" >Zerrendara itzuli</a></li>
+        <li role="presentation" class="active btn-sm"><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}">Aldatu</a></li>
+    </ul>
 
+{% endblock %}
 {% block body %}
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        {#<a class="brand" href="#">Awesome!</a>#}
-            {{ knp_menu_render('BackendBundle:Builder:mainMenu') }}
-    </div>
-</div>
 
     {#{{ dump(eremuak)}}#}
     {#{{ dump(labelak)}}#}
@@ -754,17 +755,17 @@
     </div>
     {% endif %}
 
-<div class="fitxaMenua">
-    <ul>
-        <li>
-            <a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
-        </li>
-        <li>
-            <a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="btn btn-primary">Aldatu</a>
-        </li>
+{#<div class="fitxaMenua">#}
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="btn btn-primary">Aldatu</a>#}
+        {#</li>#}
         {#<li>#}
             {#{{ form_start(delete_form) }}<input type="submit" value="Ezabatu" class="btn btn-primary">{{ form_end(delete_form) }}#}
         {#</li>#}
-    </ul>
-</div>
+    {#</ul>#}
+{#</div>#}
 {% endblock %}
