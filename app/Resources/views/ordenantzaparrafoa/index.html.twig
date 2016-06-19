@@ -1,36 +1,37 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('ordenantzaparrafoa_new') }}" class="btn btn-primary">Parrafo berria</a></li>
+    </ul>
+{% endblock %}
 {% block body %}
-    <h1>Ordenantzaparrafoa list</h1>
+    {#<h1>Ordenantzaparrafoa list</h1>#}
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Ordena</th>
                 <th>Testuaeu</th>
                 <th>Testuaes</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Id</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for ordenantzaparrafoa in ordenantzaparrafoas %}
             <tr>
-                <td><a href="{{ path('ordenantzaparrafoa_show', { 'id': ordenantzaparrafoa.id }) }}">{{ ordenantzaparrafoa.ordena }}</a></td>
-                <td>{{ ordenantzaparrafoa.testuaeu }}</td>
-                <td>{{ ordenantzaparrafoa.testuaes }}</td>
-                <td>{% if ordenantzaparrafoa.createdAt %}{{ ordenantzaparrafoa.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if ordenantzaparrafoa.updatedAt %}{{ ordenantzaparrafoa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ ordenantzaparrafoa.id }}</td>
+                {#<td><a href="{{ path('ordenantzaparrafoa_show', { 'id': ordenantzaparrafoa.id }) }}">{{ ordenantzaparrafoa.ordena }}</a></td>#}
+                <td>{{ ordenantzaparrafoa.testuaeu |raw}}</td>
+                <td>{{ ordenantzaparrafoa.testuaes |raw}}</td>
+                {#<td>{% if ordenantzaparrafoa.createdAt %}{{ ordenantzaparrafoa.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>{% if ordenantzaparrafoa.updatedAt %}{{ ordenantzaparrafoa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+                {#<td>{{ ordenantzaparrafoa.id }}</td>#}
                 <td>
                     <ul>
+                        {#<li>#}
+                            {#<a href="{{ path('ordenantzaparrafoa_show', { 'id': ordenantzaparrafoa.id }) }}">show</a>#}
+                        {#</li>#}
                         <li>
-                            <a href="{{ path('ordenantzaparrafoa_show', { 'id': ordenantzaparrafoa.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('ordenantzaparrafoa_edit', { 'id': ordenantzaparrafoa.id }) }}">edit</a>
+                            <a href="{{ path('ordenantzaparrafoa_edit', { 'id': ordenantzaparrafoa.id }) }}" class="btn btn-primary">aldatu</a>
                         </li>
                     </ul>
                 </td>
@@ -38,10 +39,9 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('ordenantzaparrafoa_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('ordenantzaparrafoa_new') }}">Create a new entry</a>#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

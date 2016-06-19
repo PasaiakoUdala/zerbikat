@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('aurreikusi_new') }}" class="btn btn-primary">Epe berria</a></li>
+    </ul>
+{% endblock %}
 {% block body %}
     <h1>Aurreikusitako epeak</h1>
 
@@ -34,11 +39,11 @@
         </tbody>
     </table>
 
-<div class="fitxaMenua">
-    <ul>
-        <li>
-            <a href="{{ path('aurreikusi_new') }}" class="btn btn-primary">Epe berria</a>
-        </li>
-    </ul>
-</div>
+{#<div class="fitxaMenua">#}
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('aurreikusi_new') }}" class="btn btn-primary">Epe berria</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#</div>#}
 {% endblock %}

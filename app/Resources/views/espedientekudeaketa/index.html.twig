@@ -1,34 +1,38 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('espedientekudeaketa_new') }}" class="btn btn-primary">Sarrera berria</a></li>
+    </ul>
+{% endblock %}
 {% block body %}
-    <h1>Espedientekudeaketa list</h1>
-
+    <h1>Espediente-kudeaketa zerrenda</h1>
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                {#<th>Id</th>#}
                 <th>Izenaeu</th>
-                <th>Izenaes</th>
+                {#<th>Izenaes</th>#}
                 <th>Urleu</th>
-                <th>Urles</th>
+                {#<th>Urles</th>#}
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for espedientekudeaketum in espedientekudeaketas %}
             <tr>
-                <td><a href="{{ path('espedientekudeaketa_show', { 'id': espedientekudeaketum.id }) }}">{{ espedientekudeaketum.id }}</a></td>
+                {#<td><a href="{{ path('espedientekudeaketa_show', { 'id': espedientekudeaketum.id }) }}">{{ espedientekudeaketum.id }}</a></td>#}
                 <td>{{ espedientekudeaketum.izenaeu }}</td>
-                <td>{{ espedientekudeaketum.izenaes }}</td>
-                <td>{{ espedientekudeaketum.urleu }}</td>
-                <td>{{ espedientekudeaketum.urles }}</td>
+                {#<td>{{ espedientekudeaketum.izenaes }}</td>#}
+                {#<td>{{ espedientekudeaketum.urleu }}</td>#}
+                {#<td>{{ espedientekudeaketum.urles }}</td>#}
                 <td>
                     <ul>
+                        {#<li>#}
+                            {#<a href="{{ path('espedientekudeaketa_show', { 'id': espedientekudeaketum.id }) }}">show</a>#}
+                        {#</li>#}
                         <li>
-                            <a href="{{ path('espedientekudeaketa_show', { 'id': espedientekudeaketum.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('espedientekudeaketa_edit', { 'id': espedientekudeaketum.id }) }}">edit</a>
+                            <a href="{{ path('espedientekudeaketa_edit', { 'id': espedientekudeaketum.id }) }}">Aldatu</a>
                         </li>
                     </ul>
                 </td>
@@ -37,9 +41,9 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('espedientekudeaketa_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('espedientekudeaketa_new') }}">Create a new entry</a>#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

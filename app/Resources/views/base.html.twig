@@ -17,6 +17,9 @@
 
         {% block menua %}
 {% if is_granted('ROLE_KUDEAKETA') %}
+{#{% dump(labelak) %} #}
+
+        {% eremu=this->user %}
         <nav class="navbar navbar-inverse ">
                 <div class="container">
                         <div class="navbar-header">
@@ -69,7 +72,7 @@
                                                         <li><a href="{{ path('isiltasunadministratiboa_index') }}" >Isiltasun administratiboaren izaerak</a></li>
                                                         <li><a href="{{ path('araumota_index') }}" >Arau-motak</a></li>
                                                         <li><a href="{{ path('dokumentumota_index') }}" >Dokumetnu-motak</a></li>
-                                                        <li><a href="{{ path('kanala_index') }}" >Kanal-motak</a></li>
+                                                        <li><a href="{{ path('kanalmota_index') }}" >Kanal-motak</a></li>
 
                                                         <li role="separator" class="divider"></li>
                                                         <li class="dropdown-header">Kale izendegia</li>

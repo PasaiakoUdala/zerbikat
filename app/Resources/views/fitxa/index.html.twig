@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block menua %}
     {{ parent() }}
         {% if is_granted('ROLE_KUDEAKETA') %}
@@ -7,7 +6,6 @@
                 <li><a href="{{ path('fitxa_new') }}" class="btn btn-primary">Fitxa berria</a></li>
             </ul>
         {% endif %}
-
 {% endblock %}
 
 {% block body %}

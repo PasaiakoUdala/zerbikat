@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('besteak1_new') }}" class="btn btn-primary">Besteak1 berria</a></li>
+    </ul>
+{% endblock %}
 {% block body %}
     <h1>{{ app.user.udala.eremuak.besteak1labeleu }} zerrenda</h1>
     <table class="table">
@@ -39,11 +44,11 @@
         </tbody>
     </table>
 
-<div class="fitxaMenua">
-    <ul>
-        <li>
-            <a href="{{ path('besteak1_new') }}" class="btn btn-primary">Sarrera berria</a>
-        </li>
-    </ul>
-</div>
+{#<div class="fitxaMenua">#}
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('besteak1_new') }}" class="btn btn-primary">Sarrera berria</a>#}
+        {#</li>#}
+    {#</ul>#}
+{#</div>#}
 {% endblock %}

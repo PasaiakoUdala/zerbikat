@@ -1,43 +1,30 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <ul class="list-inline pull-right" role="tablist">
+        <li><a href="{{ path('zerbitzua_new') }}" class="btn btn-primary">Zerbitzu berria</a></li>
+    </ul>
+{% endblock %}
 {% block body %}
-    <h1>Zerbitzua list</h1>
-
     <table>
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Zerbitzuaeu</th>
-                <th>Zerbitzuaes</th>
-                <th>Id</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for zerbitzua in zerbitzuas %}
             <tr>
-                <td><a href="{{ path('zerbitzua_show', { 'id': zerbitzua.id }) }}">{{ zerbitzua.kodea }}</a></td>
+                <td><a href="{{ path('zerbitzua_edit', { 'id': zerbitzua.id }) }}">{{ zerbitzua.kodea }}</a></td>
                 <td>{{ zerbitzua.zerbitzuaeu }}</td>
-                <td>{{ zerbitzua.zerbitzuaes }}</td>
-                <td>{{ zerbitzua.id }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('zerbitzua_show', { 'id': zerbitzua.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('zerbitzua_edit', { 'id': zerbitzua.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('zerbitzua_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('zerbitzua_new') }}">Create a new entry</a>#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

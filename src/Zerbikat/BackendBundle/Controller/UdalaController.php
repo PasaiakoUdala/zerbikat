@@ -98,7 +98,7 @@ class UdalaController extends Controller
     public function editAction(Request $request, Udala $udala)
     {
         $auth_checker = $this->get('security.authorization_checker');
-        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($udala->getUdala()==$this->getUser()->getUdala()))
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($udala==$this->getUser()->getUdala()))
             ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
         {
             $deleteForm = $this->createDeleteForm($udala);

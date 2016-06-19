@@ -1,14 +1,10 @@
 {% extends 'base.html.twig' %}
-
 {% block menua %}
     {{ parent() }}
-
     <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('azpiatala_new') }}" class="btn btn-primary">Taula berria</a></li>
+        <li><a href="{{ path('azpiatala_new') }}" class="btn btn-primary">Kostu-taula berria</a></li>
     </ul>
-
 {% endblock %}
-
 
 {% block body %}
     <h1>Kostu Taulak</h1>
