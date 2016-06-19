@@ -133,16 +133,23 @@ class AzpisailaController extends Controller
      */
     public function deleteAction(Request $request, Azpisaila $azpisaila)
     {
-        $form = $this->createDeleteForm($azpisaila);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($azpisaila);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($azpisaila->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($azpisaila);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($azpisaila);
+                $em->flush();
+            }
+            return $this->redirectToRoute('azpisaila_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('azpisaila_index');
     }
 
     /**

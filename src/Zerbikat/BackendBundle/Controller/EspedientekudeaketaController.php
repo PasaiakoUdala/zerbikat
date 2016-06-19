@@ -128,16 +128,22 @@ class EspedientekudeaketaController extends Controller
      */
     public function deleteAction(Request $request, Espedientekudeaketa $espedientekudeaketum)
     {
-        $form = $this->createDeleteForm($espedientekudeaketum);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($espedientekudeaketum);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $form = $this->createDeleteForm($espedientekudeaketum);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($espedientekudeaketum);
+                $em->flush();
+            }
+            return $this->redirectToRoute('espedientekudeaketa_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('espedientekudeaketa_index');
     }
 
     /**

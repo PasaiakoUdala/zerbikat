@@ -135,16 +135,23 @@ class AraudiaController extends Controller
      */
     public function deleteAction(Request $request, Araudia $araudium)
     {
-        $form = $this->createDeleteForm($araudium);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($araudium);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($araudium->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($araudium);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($araudium);
+                $em->flush();
+            }
+            return $this->redirectToRoute('araudia_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('araudia_index');
     }
 
     /**

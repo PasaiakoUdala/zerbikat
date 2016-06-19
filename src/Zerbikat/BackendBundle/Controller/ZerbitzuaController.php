@@ -129,16 +129,22 @@ class ZerbitzuaController extends Controller
      */
     public function deleteAction(Request $request, Zerbitzua $zerbitzua)
     {
-        $form = $this->createDeleteForm($zerbitzua);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($zerbitzua);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $form = $this->createDeleteForm($zerbitzua);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($zerbitzua);
+                $em->flush();
+            }
+            return $this->redirectToRoute('zerbitzua_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('zerbitzua_index');
     }
 
     /**

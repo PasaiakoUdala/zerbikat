@@ -132,16 +132,23 @@ class KanalaController extends Controller
      */
     public function deleteAction(Request $request, Kanala $kanala)
     {
-        $form = $this->createDeleteForm($kanala);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($kanala);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('kanala_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kanala->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {        
+            $form = $this->createDeleteForm($kanala);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($kanala);
+                $em->flush();
+            }
+            return $this->redirectToRoute('kanala_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

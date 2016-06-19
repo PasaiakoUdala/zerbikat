@@ -132,16 +132,22 @@ class UdalaController extends Controller
      */
     public function deleteAction(Request $request, Udala $udala)
     {
-        $form = $this->createDeleteForm($udala);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($udala);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('udala_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $form = $this->createDeleteForm($udala);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($udala);
+                $em->flush();
+            }
+            return $this->redirectToRoute('udala_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

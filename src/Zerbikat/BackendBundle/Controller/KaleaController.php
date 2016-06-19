@@ -132,16 +132,23 @@ class KaleaController extends Controller
      */
     public function deleteAction(Request $request, Kalea $kalea)
     {
-        $form = $this->createDeleteForm($kalea);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($kalea);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('kalea_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kalea->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($kalea);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($kalea);
+                $em->flush();
+            }
+            return $this->redirectToRoute('kalea_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

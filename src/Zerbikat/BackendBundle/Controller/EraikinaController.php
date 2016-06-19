@@ -132,16 +132,23 @@ class EraikinaController extends Controller
      */
     public function deleteAction(Request $request, Eraikina $eraikina)
     {
-        $form = $this->createDeleteForm($eraikina);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($eraikina);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($eraikina->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($eraikina);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($eraikina);
+                $em->flush();
+            }
+            return $this->redirectToRoute('eraikina_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('eraikina_index');
     }
 
     /**

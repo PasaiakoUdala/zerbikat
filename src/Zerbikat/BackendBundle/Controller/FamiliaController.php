@@ -132,16 +132,23 @@ class FamiliaController extends Controller
      */
     public function deleteAction(Request $request, Familia $familium)
     {
-        $form = $this->createDeleteForm($familium);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($familium);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('familia_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($familium->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($familium);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($familium);
+                $em->flush();
+            }
+            return $this->redirectToRoute('familia_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

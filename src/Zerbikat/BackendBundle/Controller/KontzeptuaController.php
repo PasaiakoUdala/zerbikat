@@ -132,16 +132,23 @@ class KontzeptuaController extends Controller
      */
     public function deleteAction(Request $request, Kontzeptua $kontzeptua)
     {
-        $form = $this->createDeleteForm($kontzeptua);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($kontzeptua);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('kontzeptua_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kontzeptua->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($kontzeptua);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($kontzeptua);
+                $em->flush();
+            }
+            return $this->redirectToRoute('kontzeptua_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

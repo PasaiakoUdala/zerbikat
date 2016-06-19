@@ -132,16 +132,23 @@ class DokumentazioaController extends Controller
      */
     public function deleteAction(Request $request, Dokumentazioa $dokumentazioa)
     {
-        $form = $this->createDeleteForm($dokumentazioa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($dokumentazioa);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($dokumentazioa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($dokumentazioa);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($dokumentazioa);
+                $em->flush();
+            }
+            return $this->redirectToRoute('dokumentazioa_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('dokumentazioa_index');
     }
 
     /**

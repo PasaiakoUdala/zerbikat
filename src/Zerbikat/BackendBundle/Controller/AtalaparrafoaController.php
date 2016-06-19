@@ -133,16 +133,23 @@ class AtalaparrafoaController extends Controller
      */
     public function deleteAction(Request $request, Atalaparrafoa $atalaparrafoa)
     {
-        $form = $this->createDeleteForm($atalaparrafoa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($atalaparrafoa);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($atalaparrafoa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {        
+            $form = $this->createDeleteForm($atalaparrafoa);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($atalaparrafoa);
+                $em->flush();
+            }
+            return $this->redirectToRoute('atalaparrafoa_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('atalaparrafoa_index');
     }
 
     /**

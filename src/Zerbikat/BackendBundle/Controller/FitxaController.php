@@ -187,18 +187,27 @@ class FitxaController extends Controller
      */
     public function deleteAction(Request $request, Fitxa $fitxa)
     {
-        //udala egokia den eta admin baimena duen egiaztatu
         $auth_checker = $this->get('security.authorization_checker');
-        if (($auth_checker->isGranted('ROLE_ADMIN'))&&($fitxa->getUdala()==$this->getUser()->getUdala())) {
-            $form = $this->createDeleteForm($fitxa);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->remove($fitxa);
-                $em->flush();
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($fitxa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            //udala egokia den eta admin baimena duen egiaztatu
+            $auth_checker = $this->get('security.authorization_checker');
+            if (($auth_checker->isGranted('ROLE_ADMIN'))&&($fitxa->getUdala()==$this->getUser()->getUdala())) {
+                $form = $this->createDeleteForm($fitxa);
+                $form->handleRequest($request);
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->remove($fitxa);
+                    $em->flush();
+                }
             }
+            return $this->redirectToRoute('fitxa_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-        return $this->redirectToRoute('fitxa_index');
     }
 
     /**

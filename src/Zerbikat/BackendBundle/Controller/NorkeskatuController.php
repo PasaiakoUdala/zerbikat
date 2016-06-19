@@ -132,16 +132,23 @@ class NorkeskatuController extends Controller
      */
     public function deleteAction(Request $request, Norkeskatu $norkeskatu)
     {
-        $form = $this->createDeleteForm($norkeskatu);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($norkeskatu);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('norkeskatu_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($norkeskatu->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($norkeskatu);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($norkeskatu);
+                $em->flush();
+            }
+            return $this->redirectToRoute('norkeskatu_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

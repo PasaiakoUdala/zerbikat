@@ -132,16 +132,23 @@ class Besteak1Controller extends Controller
      */
     public function deleteAction(Request $request, Besteak1 $besteak1)
     {
-        $form = $this->createDeleteForm($besteak1);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($besteak1);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('besteak1_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($besteak1->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($besteak1);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($besteak1);
+                $em->flush();
+            }
+            return $this->redirectToRoute('besteak1_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

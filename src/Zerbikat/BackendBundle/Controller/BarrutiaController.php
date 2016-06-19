@@ -132,16 +132,23 @@ class BarrutiaController extends Controller
      */
     public function deleteAction(Request $request, Barrutia $barrutium)
     {
-        $form = $this->createDeleteForm($barrutium);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($barrutium);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('barrutia_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($barrutium->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($barrutium);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($barrutium);
+                $em->flush();
+            }
+            return $this->redirectToRoute('barrutia_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

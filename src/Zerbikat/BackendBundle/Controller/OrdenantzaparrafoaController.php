@@ -132,16 +132,23 @@ class OrdenantzaparrafoaController extends Controller
      */
     public function deleteAction(Request $request, Ordenantzaparrafoa $ordenantzaparrafoa)
     {
-        $form = $this->createDeleteForm($ordenantzaparrafoa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($ordenantzaparrafoa);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('ordenantzaparrafoa_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($ordenantzaparrafoa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($ordenantzaparrafoa);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($ordenantzaparrafoa);
+                $em->flush();
+            }
+            return $this->redirectToRoute('ordenantzaparrafoa_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

@@ -133,16 +133,23 @@ class AurreikusiController extends Controller
      */
     public function deleteAction(Request $request, Aurreikusi $aurreikusi)
     {
-        $form = $this->createDeleteForm($aurreikusi);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($aurreikusi);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($aurreikusi->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($aurreikusi);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($aurreikusi);
+                $em->flush();
+            }
+            return $this->redirectToRoute('aurreikusi_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('aurreikusi_index');
     }
 
     /**

@@ -132,16 +132,23 @@ class DatuenbabesaController extends Controller
      */
     public function deleteAction(Request $request, Datuenbabesa $datuenbabesa)
     {
-        $form = $this->createDeleteForm($datuenbabesa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($datuenbabesa);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($datuenbabesa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($datuenbabesa);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($datuenbabesa);
+                $em->flush();
+            }
+            return $this->redirectToRoute('datuenbabesa_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('datuenbabesa_index');
     }
 
     /**

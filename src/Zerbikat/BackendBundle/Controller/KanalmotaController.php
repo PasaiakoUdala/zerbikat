@@ -132,16 +132,23 @@ class KanalmotaController extends Controller
      */
     public function deleteAction(Request $request, Kanalmota $kanalmotum)
     {
-        $form = $this->createDeleteForm($kanalmotum);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($kanalmotum);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kanalmotum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($kanalmotum);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($kanalmotum);
+                $em->flush();
+            }
+            return $this->redirectToRoute('kanalmota_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('kanalmota_index');
     }
 
     /**

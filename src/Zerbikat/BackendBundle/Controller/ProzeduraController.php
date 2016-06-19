@@ -132,16 +132,23 @@ class ProzeduraController extends Controller
      */
     public function deleteAction(Request $request, Prozedura $prozedura)
     {
-        $form = $this->createDeleteForm($prozedura);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($prozedura);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('prozedura_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($prozedura->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($prozedura);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($prozedura);
+                $em->flush();
+            }
+            return $this->redirectToRoute('prozedura_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

@@ -105,7 +105,7 @@ class KontzeptumotaController extends Controller
             $deleteForm = $this->createDeleteForm($kontzeptumotum);
             $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptumotaType', $kontzeptumotum);
             $editForm->handleRequest($request);
-    
+
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($kontzeptumotum);
@@ -133,16 +133,23 @@ class KontzeptumotaController extends Controller
      */
     public function deleteAction(Request $request, Kontzeptumota $kontzeptumotum)
     {
-        $form = $this->createDeleteForm($kontzeptumotum);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($kontzeptumotum);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kontzeptumotum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($kontzeptumotum);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($kontzeptumotum);
+                $em->flush();
+            }
+            return $this->redirectToRoute('kontzeptumota_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('kontzeptumota_index');
     }
 
     /**

@@ -128,16 +128,23 @@ class AzpiatalaparrafoaController extends Controller
      */
     public function deleteAction(Request $request, Azpiatalaparrafoa $azpiatalaparrafoa)
     {
-        $form = $this->createDeleteForm($azpiatalaparrafoa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($azpiatalaparrafoa);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($azpiatalaparrafoa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($azpiatalaparrafoa);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($azpiatalaparrafoa);
+                $em->flush();
+            }
+            return $this->redirectToRoute('azpiatalaparrafoa_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('azpiatalaparrafoa_index');
     }
 
     /**

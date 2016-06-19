@@ -132,16 +132,23 @@ class NorkebatziController extends Controller
      */
     public function deleteAction(Request $request, Norkebatzi $norkebatzi)
     {
-        $form = $this->createDeleteForm($norkebatzi);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($norkebatzi);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('norkebatzi_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($norkebatzi->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($norkebatzi);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($norkebatzi);
+                $em->flush();
+            }
+            return $this->redirectToRoute('norkebatzi_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

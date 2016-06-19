@@ -132,16 +132,23 @@ class OrdenantzaController extends Controller
      */
     public function deleteAction(Request $request, Ordenantza $ordenantza)
     {
-        $form = $this->createDeleteForm($ordenantza);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($ordenantza);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($ordenantza->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($ordenantza);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($ordenantza);
+                $em->flush();
+            }
+            return $this->redirectToRoute('ordenantza_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('ordenantza_index');
     }
 
     /**

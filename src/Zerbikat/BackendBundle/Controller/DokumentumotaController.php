@@ -132,16 +132,23 @@ class DokumentumotaController extends Controller
      */
     public function deleteAction(Request $request, Dokumentumota $dokumentumotum)
     {
-        $form = $this->createDeleteForm($dokumentumotum);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($dokumentumotum);
-            $em->flush();
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($dokumentumotum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($dokumentumotum);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($dokumentumotum);
+                $em->flush();
+            }
+            return $this->redirectToRoute('dokumentumota_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->redirectToRoute('dokumentumota_index');
     }
 
     /**

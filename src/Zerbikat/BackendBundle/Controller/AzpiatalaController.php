@@ -134,16 +134,23 @@ class AzpiatalaController extends Controller
      */
     public function deleteAction(Request $request, Azpiatala $azpiatala)
     {
-        $form = $this->createDeleteForm($azpiatala);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($azpiatala);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('azpiatala_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($azpiatala->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($azpiatala);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($azpiatala);
+                $em->flush();
+            }
+            return $this->redirectToRoute('azpiatala_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

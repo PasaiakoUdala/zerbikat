@@ -132,16 +132,23 @@ class TramiteaController extends Controller
      */
     public function deleteAction(Request $request, Tramitea $tramitea)
     {
-        $form = $this->createDeleteForm($tramitea);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($tramitea);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('tramitea_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($tramitea->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($tramitea);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($tramitea);
+                $em->flush();
+            }
+            return $this->redirectToRoute('tramitea_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

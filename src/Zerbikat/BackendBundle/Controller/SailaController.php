@@ -132,16 +132,23 @@ class SailaController extends Controller
      */
     public function deleteAction(Request $request, Saila $saila)
     {
-        $form = $this->createDeleteForm($saila);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($saila);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('saila_index');
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($saila->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $form = $this->createDeleteForm($saila);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($saila);
+                $em->flush();
+            }
+            return $this->redirectToRoute('saila_index');
+        }else
+        {
+            //baimenik ez
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**
