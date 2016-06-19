@@ -95,23 +95,30 @@ class ZerbitzuaController extends Controller
      */
     public function editAction(Request $request, Zerbitzua $zerbitzua)
     {
-        $deleteForm = $this->createDeleteForm($zerbitzua);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\ZerbitzuaType', $zerbitzua);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($zerbitzua);
-            $em->flush();
-
-            return $this->redirectToRoute('zerbitzua_edit', array('id' => $zerbitzua->getId()));
-        }
-
-        return $this->render('zerbitzua/edit.html.twig', array(
-            'zerbitzua' => $zerbitzua,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $deleteForm = $this->createDeleteForm($zerbitzua);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\ZerbitzuaType', $zerbitzua);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($zerbitzua);
+                $em->flush();
+    
+                return $this->redirectToRoute('zerbitzua_edit', array('id' => $zerbitzua->getId()));
+            }
+    
+            return $this->render('zerbitzua/edit.html.twig', array(
+                'zerbitzua' => $zerbitzua,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

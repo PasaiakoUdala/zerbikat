@@ -97,23 +97,31 @@ class KanalaController extends Controller
      */
     public function editAction(Request $request, Kanala $kanala)
     {
-        $deleteForm = $this->createDeleteForm($kanala);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KanalaType', $kanala);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kanala->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($kanala);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KanalaType', $kanala);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kanala);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kanala);
+                $em->flush();
 
-            return $this->redirectToRoute('kanala_edit', array('id' => $kanala->getId()));
+                return $this->redirectToRoute('kanala_edit', array('id' => $kanala->getId()));
+            }
+
+            return $this->render('kanala/edit.html.twig', array(
+                'kanala' => $kanala,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('kanala/edit.html.twig', array(
-            'kanala' => $kanala,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

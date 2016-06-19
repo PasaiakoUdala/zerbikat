@@ -97,23 +97,31 @@ class UdalaController extends Controller
      */
     public function editAction(Request $request, Udala $udala)
     {
-        $deleteForm = $this->createDeleteForm($udala);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\UdalaType', $udala);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($udala->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($udala);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\UdalaType', $udala);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($udala);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($udala);
+                $em->flush();
 
-            return $this->redirectToRoute('udala_edit', array('id' => $udala->getId()));
+                return $this->redirectToRoute('udala_edit', array('id' => $udala->getId()));
+            }
+
+            return $this->render('udala/edit.html.twig', array(
+                'udala' => $udala,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('udala/edit.html.twig', array(
-            'udala' => $udala,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

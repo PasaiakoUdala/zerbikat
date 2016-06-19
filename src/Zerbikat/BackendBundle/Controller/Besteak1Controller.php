@@ -97,23 +97,31 @@ class Besteak1Controller extends Controller
      */
     public function editAction(Request $request, Besteak1 $besteak1)
     {
-        $deleteForm = $this->createDeleteForm($besteak1);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\Besteak1Type', $besteak1);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($besteak1);
-            $em->flush();
-
-            return $this->redirectToRoute('besteak1_edit', array('id' => $besteak1->getId()));
-        }
-
-        return $this->render('besteak1/edit.html.twig', array(
-            'besteak1' => $besteak1,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($besteak1->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($besteak1);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\Besteak1Type', $besteak1);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($besteak1);
+                $em->flush();
+    
+                return $this->redirectToRoute('besteak1_edit', array('id' => $besteak1->getId()));
+            }
+    
+            return $this->render('besteak1/edit.html.twig', array(
+                'besteak1' => $besteak1,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

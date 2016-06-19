@@ -97,23 +97,31 @@ class SailaController extends Controller
      */
     public function editAction(Request $request, Saila $saila)
     {
-        $deleteForm = $this->createDeleteForm($saila);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\SailaType', $saila);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($saila);
-            $em->flush();
-
-            return $this->redirectToRoute('saila_edit', array('id' => $saila->getId()));
-        }
-
-        return $this->render('saila/edit.html.twig', array(
-            'saila' => $saila,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($saila->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($saila);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\SailaType', $saila);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($saila);
+                $em->flush();
+    
+                return $this->redirectToRoute('saila_edit', array('id' => $saila->getId()));
+            }
+    
+            return $this->render('saila/edit.html.twig', array(
+                'saila' => $saila,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

@@ -97,23 +97,31 @@ class DokumentazioaController extends Controller
      */
     public function editAction(Request $request, Dokumentazioa $dokumentazioa)
     {
-        $deleteForm = $this->createDeleteForm($dokumentazioa);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\DokumentazioaType', $dokumentazioa);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($dokumentazioa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($dokumentazioa);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\DokumentazioaType', $dokumentazioa);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($dokumentazioa);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($dokumentazioa);
+                $em->flush();
 
-            return $this->redirectToRoute('dokumentazioa_edit', array('id' => $dokumentazioa->getId()));
+                return $this->redirectToRoute('dokumentazioa_edit', array('id' => $dokumentazioa->getId()));
+            }
+
+            return $this->render('dokumentazioa/edit.html.twig', array(
+                'dokumentazioa' => $dokumentazioa,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('dokumentazioa/edit.html.twig', array(
-            'dokumentazioa' => $dokumentazioa,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

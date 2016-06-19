@@ -97,23 +97,31 @@ class KontzeptuaController extends Controller
      */
     public function editAction(Request $request, Kontzeptua $kontzeptua)
     {
-        $deleteForm = $this->createDeleteForm($kontzeptua);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptuaType', $kontzeptua);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kontzeptua->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($kontzeptua);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptuaType', $kontzeptua);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kontzeptua);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kontzeptua);
+                $em->flush();
 
-            return $this->redirectToRoute('kontzeptua_edit', array('id' => $kontzeptua->getId()));
+                return $this->redirectToRoute('kontzeptua_edit', array('id' => $kontzeptua->getId()));
+            }
+
+            return $this->render('kontzeptua/edit.html.twig', array(
+                'kontzeptua' => $kontzeptua,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('kontzeptua/edit.html.twig', array(
-            'kontzeptua' => $kontzeptua,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

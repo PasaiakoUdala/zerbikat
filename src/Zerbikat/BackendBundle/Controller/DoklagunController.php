@@ -98,23 +98,31 @@ class DoklagunController extends Controller
      */
     public function editAction(Request $request, Doklagun $doklagun)
     {
-        $deleteForm = $this->createDeleteForm($doklagun);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\DoklagunType', $doklagun);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($doklagun->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($doklagun);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\DoklagunType', $doklagun);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($doklagun);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($doklagun);
+                $em->flush();
 
-            return $this->redirectToRoute('doklagun_edit', array('id' => $doklagun->getId()));
+                return $this->redirectToRoute('doklagun_edit', array('id' => $doklagun->getId()));
+            }
+
+            return $this->render('doklagun/edit.html.twig', array(
+                'doklagun' => $doklagun,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('doklagun/edit.html.twig', array(
-            'doklagun' => $doklagun,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

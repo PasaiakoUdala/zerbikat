@@ -97,23 +97,31 @@ class KaleaController extends Controller
      */
     public function editAction(Request $request, Kalea $kalea)
     {
-        $deleteForm = $this->createDeleteForm($kalea);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KaleaType', $kalea);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kalea);
-            $em->flush();
-
-            return $this->redirectToRoute('kalea_edit', array('id' => $kalea->getId()));
-        }
-
-        return $this->render('kalea/edit.html.twig', array(
-            'kalea' => $kalea,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kalea->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($kalea);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KaleaType', $kalea);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kalea);
+                $em->flush();
+    
+                return $this->redirectToRoute('kalea_edit', array('id' => $kalea->getId()));
+            }
+    
+            return $this->render('kalea/edit.html.twig', array(
+                'kalea' => $kalea,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

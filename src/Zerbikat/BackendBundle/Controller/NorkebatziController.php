@@ -97,23 +97,31 @@ class NorkebatziController extends Controller
      */
     public function editAction(Request $request, Norkebatzi $norkebatzi)
     {
-        $deleteForm = $this->createDeleteForm($norkebatzi);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\NorkebatziType', $norkebatzi);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($norkebatzi->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($norkebatzi);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\NorkebatziType', $norkebatzi);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($norkebatzi);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($norkebatzi);
+                $em->flush();
 
-            return $this->redirectToRoute('norkebatzi_edit', array('id' => $norkebatzi->getId()));
+                return $this->redirectToRoute('norkebatzi_edit', array('id' => $norkebatzi->getId()));
+            }
+
+            return $this->render('norkebatzi/edit.html.twig', array(
+                'norkebatzi' => $norkebatzi,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('norkebatzi/edit.html.twig', array(
-            'norkebatzi' => $norkebatzi,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

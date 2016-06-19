@@ -97,23 +97,31 @@ class EtiketaController extends Controller
      */
     public function editAction(Request $request, Etiketa $etiketum)
     {
-        $deleteForm = $this->createDeleteForm($etiketum);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\EtiketaType', $etiketum);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($etiketum);
-            $em->flush();
-
-            return $this->redirectToRoute('etiketa_edit', array('id' => $etiketum->getId()));
-        }
-
-        return $this->render('etiketa/edit.html.twig', array(
-            'etiketum' => $etiketum,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($etiketum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($etiketum);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\EtiketaType', $etiketum);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($etiketum);
+                $em->flush();
+    
+                return $this->redirectToRoute('etiketa_edit', array('id' => $etiketum->getId()));
+            }
+    
+            return $this->render('etiketa/edit.html.twig', array(
+                'etiketum' => $etiketum,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

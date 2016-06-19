@@ -97,23 +97,31 @@ class EraikinaController extends Controller
      */
     public function editAction(Request $request, Eraikina $eraikina)
     {
-        $deleteForm = $this->createDeleteForm($eraikina);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\EraikinaType', $eraikina);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($eraikina);
-            $em->flush();
-
-            return $this->redirectToRoute('eraikina_edit', array('id' => $eraikina->getId()));
-        }
-
-        return $this->render('eraikina/edit.html.twig', array(
-            'eraikina' => $eraikina,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($eraikina->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($eraikina);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\EraikinaType', $eraikina);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($eraikina);
+                $em->flush();
+    
+                return $this->redirectToRoute('eraikina_edit', array('id' => $eraikina->getId()));
+            }
+    
+            return $this->render('eraikina/edit.html.twig', array(
+                'eraikina' => $eraikina,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

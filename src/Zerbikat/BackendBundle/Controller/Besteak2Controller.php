@@ -97,23 +97,31 @@ class Besteak2Controller extends Controller
      */
     public function editAction(Request $request, Besteak2 $besteak2)
     {
-        $deleteForm = $this->createDeleteForm($besteak2);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\Besteak2Type', $besteak2);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($besteak2->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($besteak2);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\Besteak2Type', $besteak2);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($besteak2);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($besteak2);
+                $em->flush();
 
-            return $this->redirectToRoute('besteak2_edit', array('id' => $besteak2->getId()));
+                return $this->redirectToRoute('besteak2_edit', array('id' => $besteak2->getId()));
+            }
+
+            return $this->render('besteak2/edit.html.twig', array(
+                'besteak2' => $besteak2,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('besteak2/edit.html.twig', array(
-            'besteak2' => $besteak2,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

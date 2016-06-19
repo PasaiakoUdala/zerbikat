@@ -93,23 +93,31 @@ class AzpiatalaparrafoaController extends Controller
      */
     public function editAction(Request $request, Azpiatalaparrafoa $azpiatalaparrafoa)
     {
-        $deleteForm = $this->createDeleteForm($azpiatalaparrafoa);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaparrafoaType', $azpiatalaparrafoa);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($azpiatalaparrafoa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($azpiatalaparrafoa);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaparrafoaType', $azpiatalaparrafoa);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($azpiatalaparrafoa);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($azpiatalaparrafoa);
+                $em->flush();
 
-            return $this->redirectToRoute('azpiatalaparrafoa_edit', array('id' => $azpiatalaparrafoa->getId()));
+                return $this->redirectToRoute('azpiatalaparrafoa_edit', array('id' => $azpiatalaparrafoa->getId()));
+            }
+
+            return $this->render('azpiatalaparrafoa/edit.html.twig', array(
+                'azpiatalaparrafoa' => $azpiatalaparrafoa,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('azpiatalaparrafoa/edit.html.twig', array(
-            'azpiatalaparrafoa' => $azpiatalaparrafoa,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

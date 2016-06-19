@@ -97,23 +97,31 @@ class FamiliaController extends Controller
      */
     public function editAction(Request $request, Familia $familium)
     {
-        $deleteForm = $this->createDeleteForm($familium);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FamiliaType', $familium);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($familium->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($familium);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FamiliaType', $familium);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($familium);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($familium);
+                $em->flush();
 
-            return $this->redirectToRoute('familia_edit', array('id' => $familium->getId()));
+                return $this->redirectToRoute('familia_edit', array('id' => $familium->getId()));
+            }
+
+            return $this->render('familia/edit.html.twig', array(
+                'familium' => $familium,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('familia/edit.html.twig', array(
-            'familium' => $familium,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

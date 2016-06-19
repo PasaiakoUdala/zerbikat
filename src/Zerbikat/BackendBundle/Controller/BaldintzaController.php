@@ -99,23 +99,31 @@ class BaldintzaController extends Controller
      */
     public function editAction(Request $request, Baldintza $baldintza)
     {
-        $deleteForm = $this->createDeleteForm($baldintza);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\BaldintzaType', $baldintza);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($baldintza->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($baldintza);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\BaldintzaType', $baldintza);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($baldintza);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($baldintza);
+                $em->flush();
 
-            return $this->redirectToRoute('baldintza_edit', array('id' => $baldintza->getId()));
+                return $this->redirectToRoute('baldintza_edit', array('id' => $baldintza->getId()));
+            }
+
+            return $this->render('baldintza/edit.html.twig', array(
+                'baldintza' => $baldintza,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('baldintza/edit.html.twig', array(
-            'baldintza' => $baldintza,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

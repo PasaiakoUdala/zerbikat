@@ -100,23 +100,31 @@ class AraudiaController extends Controller
      */
     public function editAction(Request $request, Araudia $araudium)
     {
-        $deleteForm = $this->createDeleteForm($araudium);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AraudiaType', $araudium);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($araudium->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($araudium);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AraudiaType', $araudium);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($araudium);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($araudium);
+                $em->flush();
 
-            return $this->redirectToRoute('araudia_edit', array('id' => $araudium->getId()));
+                return $this->redirectToRoute('araudia_edit', array('id' => $araudium->getId()));
+            }
+
+            return $this->render('araudia/edit.html.twig', array(
+                'araudium' => $araudium,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('araudia/edit.html.twig', array(
-            'araudium' => $araudium,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

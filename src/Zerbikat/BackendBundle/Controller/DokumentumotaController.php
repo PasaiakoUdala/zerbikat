@@ -97,23 +97,31 @@ class DokumentumotaController extends Controller
      */
     public function editAction(Request $request, Dokumentumota $dokumentumotum)
     {
-        $deleteForm = $this->createDeleteForm($dokumentumotum);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\DokumentumotaType', $dokumentumotum);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($dokumentumotum);
-            $em->flush();
-
-            return $this->redirectToRoute('dokumentumota_edit', array('id' => $dokumentumotum->getId()));
-        }
-
-        return $this->render('dokumentumota/edit.html.twig', array(
-            'dokumentumotum' => $dokumentumotum,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($dokumentumotum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($dokumentumotum);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\DokumentumotaType', $dokumentumotum);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($dokumentumotum);
+                $em->flush();
+    
+                return $this->redirectToRoute('dokumentumota_edit', array('id' => $dokumentumotum->getId()));
+            }
+    
+            return $this->render('dokumentumota/edit.html.twig', array(
+                'dokumentumotum' => $dokumentumotum,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

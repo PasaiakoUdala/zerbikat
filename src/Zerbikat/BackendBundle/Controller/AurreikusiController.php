@@ -98,23 +98,31 @@ class AurreikusiController extends Controller
      */
     public function editAction(Request $request, Aurreikusi $aurreikusi)
     {
-        $deleteForm = $this->createDeleteForm($aurreikusi);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AurreikusiType', $aurreikusi);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($aurreikusi->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($aurreikusi);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AurreikusiType', $aurreikusi);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($aurreikusi);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($aurreikusi);
+                $em->flush();
 
-            return $this->redirectToRoute('aurreikusi_edit', array('id' => $aurreikusi->getId()));
+                return $this->redirectToRoute('aurreikusi_edit', array('id' => $aurreikusi->getId()));
+            }
+
+            return $this->render('aurreikusi/edit.html.twig', array(
+                'aurreikusi' => $aurreikusi,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('aurreikusi/edit.html.twig', array(
-            'aurreikusi' => $aurreikusi,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

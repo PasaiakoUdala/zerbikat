@@ -97,23 +97,31 @@ class OrdenantzaparrafoaController extends Controller
      */
     public function editAction(Request $request, Ordenantzaparrafoa $ordenantzaparrafoa)
     {
-        $deleteForm = $this->createDeleteForm($ordenantzaparrafoa);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType', $ordenantzaparrafoa);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($ordenantzaparrafoa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($ordenantzaparrafoa);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType', $ordenantzaparrafoa);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ordenantzaparrafoa);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($ordenantzaparrafoa);
+                $em->flush();
 
-            return $this->redirectToRoute('ordenantzaparrafoa_edit', array('id' => $ordenantzaparrafoa->getId()));
+                return $this->redirectToRoute('ordenantzaparrafoa_edit', array('id' => $ordenantzaparrafoa->getId()));
+            }
+
+            return $this->render('ordenantzaparrafoa/edit.html.twig', array(
+                'ordenantzaparrafoa' => $ordenantzaparrafoa,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('ordenantzaparrafoa/edit.html.twig', array(
-            'ordenantzaparrafoa' => $ordenantzaparrafoa,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

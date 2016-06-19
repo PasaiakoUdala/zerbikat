@@ -98,23 +98,31 @@ class AzpisailaController extends Controller
      */
     public function editAction(Request $request, Azpisaila $azpisaila)
     {
-        $deleteForm = $this->createDeleteForm($azpisaila);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AzpisailaType', $azpisaila);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($azpisaila->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($azpisaila);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AzpisailaType', $azpisaila);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($azpisaila);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($azpisaila);
+                $em->flush();
 
-            return $this->redirectToRoute('azpisaila_edit', array('id' => $azpisaila->getId()));
+                return $this->redirectToRoute('azpisaila_edit', array('id' => $azpisaila->getId()));
+            }
+
+            return $this->render('azpisaila/edit.html.twig', array(
+                'azpisaila' => $azpisaila,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('azpisaila/edit.html.twig', array(
-            'azpisaila' => $azpisaila,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

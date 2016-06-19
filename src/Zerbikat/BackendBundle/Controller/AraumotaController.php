@@ -97,23 +97,31 @@ class AraumotaController extends Controller
      */
     public function editAction(Request $request, Araumota $araumotum)
     {
-        $deleteForm = $this->createDeleteForm($araumotum);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AraumotaType', $araumotum);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($araumotum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($araumotum);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AraumotaType', $araumotum);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($araumotum);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($araumotum);
+                $em->flush();
 
-            return $this->redirectToRoute('araumota_edit', array('id' => $araumotum->getId()));
+                return $this->redirectToRoute('araumota_edit', array('id' => $araumotum->getId()));
+            }
+
+            return $this->render('araumota/edit.html.twig', array(
+                'araumotum' => $araumotum,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('araumota/edit.html.twig', array(
-            'araumotum' => $araumotum,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

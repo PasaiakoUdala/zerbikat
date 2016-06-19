@@ -97,23 +97,31 @@ class OrdenantzaController extends Controller
      */
     public function editAction(Request $request, Ordenantza $ordenantza)
     {
-        $deleteForm = $this->createDeleteForm($ordenantza);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaType', $ordenantza);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ordenantza);
-            $em->flush();
-
-            return $this->redirectToRoute('ordenantza_edit', array('id' => $ordenantza->getId()));
-        }
-
-        return $this->render('ordenantza/edit.html.twig', array(
-            'ordenantza' => $ordenantza,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($ordenantza->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($ordenantza);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaType', $ordenantza);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($ordenantza);
+                $em->flush();
+    
+                return $this->redirectToRoute('ordenantza_edit', array('id' => $ordenantza->getId()));
+            }
+    
+            return $this->render('ordenantza/edit.html.twig', array(
+                'ordenantza' => $ordenantza,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

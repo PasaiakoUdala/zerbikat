@@ -97,23 +97,31 @@ class ProzeduraController extends Controller
      */
     public function editAction(Request $request, Prozedura $prozedura)
     {
-        $deleteForm = $this->createDeleteForm($prozedura);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\ProzeduraType', $prozedura);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($prozedura->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($prozedura);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\ProzeduraType', $prozedura);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($prozedura);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($prozedura);
+                $em->flush();
 
-            return $this->redirectToRoute('prozedura_edit', array('id' => $prozedura->getId()));
+                return $this->redirectToRoute('prozedura_edit', array('id' => $prozedura->getId()));
+            }
+
+            return $this->render('prozedura/edit.html.twig', array(
+                'prozedura' => $prozedura,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('prozedura/edit.html.twig', array(
-            'prozedura' => $prozedura,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

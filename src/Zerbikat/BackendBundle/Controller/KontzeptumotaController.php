@@ -98,23 +98,31 @@ class KontzeptumotaController extends Controller
      */
     public function editAction(Request $request, Kontzeptumota $kontzeptumotum)
     {
-        $deleteForm = $this->createDeleteForm($kontzeptumotum);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptumotaType', $kontzeptumotum);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($kontzeptumotum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($kontzeptumotum);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptumotaType', $kontzeptumotum);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kontzeptumotum);
+                $em->flush();
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kontzeptumotum);
-            $em->flush();
+                return $this->redirectToRoute('kontzeptumota_edit', array('id' => $kontzeptumotum->getId()));
+            }
 
-            return $this->redirectToRoute('kontzeptumota_edit', array('id' => $kontzeptumotum->getId()));
+            return $this->render('kontzeptumota/edit.html.twig', array(
+                'kontzeptumotum' => $kontzeptumotum,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('kontzeptumota/edit.html.twig', array(
-            'kontzeptumotum' => $kontzeptumotum,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

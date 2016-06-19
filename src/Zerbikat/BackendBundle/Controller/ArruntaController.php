@@ -99,23 +99,31 @@ class ArruntaController extends Controller
      */
     public function editAction(Request $request, Arrunta $arruntum)
     {
-        $deleteForm = $this->createDeleteForm($arruntum);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\ArruntaType', $arruntum);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($arruntum);
-            $em->flush();
-
-            return $this->redirectToRoute('arrunta_edit', array('id' => $arruntum->getId()));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($arruntum->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($arruntum);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\ArruntaType', $arruntum);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($arruntum);
+                $em->flush();
+    
+                return $this->redirectToRoute('arrunta_edit', array('id' => $arruntum->getId()));
+            }
+    
+            return $this->render('arrunta/edit.html.twig', array(
+                'arruntum' => $arruntum,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('arrunta/edit.html.twig', array(
-            'arruntum' => $arruntum,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

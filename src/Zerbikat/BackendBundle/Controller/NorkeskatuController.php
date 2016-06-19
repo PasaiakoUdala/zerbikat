@@ -97,23 +97,31 @@ class NorkeskatuController extends Controller
      */
     public function editAction(Request $request, Norkeskatu $norkeskatu)
     {
-        $deleteForm = $this->createDeleteForm($norkeskatu);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\NorkeskatuType', $norkeskatu);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($norkeskatu);
-            $em->flush();
-
-            return $this->redirectToRoute('norkeskatu_edit', array('id' => $norkeskatu->getId()));
-        }
-
-        return $this->render('norkeskatu/edit.html.twig', array(
-            'norkeskatu' => $norkeskatu,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($norkeskatu->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($norkeskatu);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\NorkeskatuType', $norkeskatu);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($norkeskatu);
+                $em->flush();
+    
+                return $this->redirectToRoute('norkeskatu_edit', array('id' => $norkeskatu->getId()));
+            }
+    
+            return $this->render('norkeskatu/edit.html.twig', array(
+                'norkeskatu' => $norkeskatu,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

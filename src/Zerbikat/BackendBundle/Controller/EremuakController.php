@@ -98,23 +98,31 @@ class EremuakController extends Controller
      */
     public function editAction(Request $request, Eremuak $eremuak)
     {
-        $deleteForm = $this->createDeleteForm($eremuak);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\EremuakType', $eremuak);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($eremuak->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($eremuak);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\EremuakType', $eremuak);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($eremuak);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($eremuak);
+                $em->flush();
 
-            return $this->redirectToRoute('eremuak_edit', array('id' => $eremuak->getId()));
+                return $this->redirectToRoute('eremuak_edit', array('id' => $eremuak->getId()));
+            }
+
+            return $this->render('eremuak/edit.html.twig', array(
+                'eremuak' => $eremuak,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('eremuak/edit.html.twig', array(
-            'eremuak' => $eremuak,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

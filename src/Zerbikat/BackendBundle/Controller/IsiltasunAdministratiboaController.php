@@ -97,23 +97,31 @@ class IsiltasunAdministratiboaController extends Controller
      */
     public function editAction(Request $request, IsiltasunAdministratiboa $isiltasunAdministratiboa)
     {
-        $deleteForm = $this->createDeleteForm($isiltasunAdministratiboa);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\IsiltasunAdministratiboaType', $isiltasunAdministratiboa);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($isiltasunAdministratiboa);
-            $em->flush();
-
-            return $this->redirectToRoute('isiltasunadministratiboa_edit', array('id' => $isiltasunAdministratiboa->getId()));
-        }
-
-        return $this->render('isiltasunadministratiboa/edit.html.twig', array(
-            'isiltasunAdministratiboa' => $isiltasunAdministratiboa,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($isiltasunAdministratiboa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($isiltasunAdministratiboa);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\IsiltasunAdministratiboaType', $isiltasunAdministratiboa);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($isiltasunAdministratiboa);
+                $em->flush();
+    
+                return $this->redirectToRoute('isiltasunadministratiboa_edit', array('id' => $isiltasunAdministratiboa->getId()));
+            }
+    
+            return $this->render('isiltasunadministratiboa/edit.html.twig', array(
+                'isiltasunAdministratiboa' => $isiltasunAdministratiboa,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

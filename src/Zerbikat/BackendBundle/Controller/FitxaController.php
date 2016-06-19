@@ -131,44 +131,52 @@ class FitxaController extends Controller
      */
     public function editAction(Request $request, Fitxa $fitxa)
     {
-        $deleteForm = $this->createDeleteForm($fitxa);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FitxaType', $fitxa);
-        $editForm->handleRequest($request);
-
-        $em = $this->getDoctrine()->getManager();
-
-        if ($editForm->isSubmitted() && $editForm->isValid())
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($fitxa->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
         {
-            $fitxa->setUpdatedAt(new \DateTime());
-            $em->persist($fitxa);
-            $em->flush();
-            return $this->redirectToRoute('fitxa_edit', array('id' => $fitxa->getId()));
-        }
-        $query = $em->createQuery('
-          SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
-            FROM BackendBundle:Eremuak f
-        ');
-        $eremuak = $query->getSingleResult();
-
-        $query = $em->createQuery('
-          SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
-            FROM BackendBundle:Eremuak f
-        ');
-        $labelak = $query->getSingleResult();
-
-//        }
-        if ($fitxa->getUdala()==$this->getUser()->getUdala()) {
-            return $this->render('fitxa/edit.html.twig', array(
-                'fitxa' => $fitxa,
-                'edit_form' => $editForm->createView(),
-                'delete_form' => $deleteForm->createView(),
-                'eremuak' => $eremuak,
-                'labelak' => $labelak
-            ));
-        } else
+            $deleteForm = $this->createDeleteForm($fitxa);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FitxaType', $fitxa);
+            $editForm->handleRequest($request);
+    
+            $em = $this->getDoctrine()->getManager();
+    
+            if ($editForm->isSubmitted() && $editForm->isValid())
+            {
+                $fitxa->setUpdatedAt(new \DateTime());
+                $em->persist($fitxa);
+                $em->flush();
+                return $this->redirectToRoute('fitxa_edit', array('id' => $fitxa->getId()));
+            }
+            $query = $em->createQuery('
+              SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
+                FROM BackendBundle:Eremuak f
+            ');
+            $eremuak = $query->getSingleResult();
+    
+            $query = $em->createQuery('
+              SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
+                FROM BackendBundle:Eremuak f
+            ');
+            $labelak = $query->getSingleResult();
+    
+    //        }
+            if ($fitxa->getUdala()==$this->getUser()->getUdala()) {
+                return $this->render('fitxa/edit.html.twig', array(
+                    'fitxa' => $fitxa,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
+                    'eremuak' => $eremuak,
+                    'labelak' => $labelak
+                ));
+            } else
+            {
+                return $this->redirectToRoute('fitxa_index');
+            }
+        }else
         {
             return $this->redirectToRoute('fitxa_index');
-        }
+        }            
     }
 
     /**

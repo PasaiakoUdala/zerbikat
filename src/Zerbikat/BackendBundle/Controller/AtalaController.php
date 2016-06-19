@@ -100,23 +100,31 @@ class AtalaController extends Controller
      */
     public function editAction(Request $request, Atala $atala)
     {
-        $deleteForm = $this->createDeleteForm($atala);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AtalaType', $atala);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($atala);
-            $em->flush();
-
-            return $this->redirectToRoute('atala_edit', array('id' => $atala->getId()));
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($atala->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($atala);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AtalaType', $atala);
+            $editForm->handleRequest($request);
+    
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($atala);
+                $em->flush();
+    
+                return $this->redirectToRoute('atala_edit', array('id' => $atala->getId()));
+            }
+    
+            return $this->render('atala/edit.html.twig', array(
+                'atala' => $atala,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('atala/edit.html.twig', array(
-            'atala' => $atala,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**

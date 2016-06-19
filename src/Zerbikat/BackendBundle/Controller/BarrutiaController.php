@@ -97,23 +97,31 @@ class BarrutiaController extends Controller
      */
     public function editAction(Request $request, Barrutia $barrutium)
     {
-        $deleteForm = $this->createDeleteForm($barrutium);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\BarrutiaType', $barrutium);
-        $editForm->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($barrutium->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $deleteForm = $this->createDeleteForm($barrutium);
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\BarrutiaType', $barrutium);
+            $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($barrutium);
-            $em->flush();
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($barrutium);
+                $em->flush();
 
-            return $this->redirectToRoute('barrutia_edit', array('id' => $barrutium->getId()));
+                return $this->redirectToRoute('barrutia_edit', array('id' => $barrutium->getId()));
+            }
+
+            return $this->render('barrutia/edit.html.twig', array(
+                'barrutium' => $barrutium,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('barrutia/edit.html.twig', array(
-            'barrutium' => $barrutium,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**
