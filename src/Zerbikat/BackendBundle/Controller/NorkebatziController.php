@@ -45,22 +45,32 @@ class NorkebatziController extends Controller
      */
     public function newAction(Request $request)
     {
-        $norkebatzi = new Norkebatzi();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\NorkebatziType', $norkebatzi);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $norkebatzi = new Norkebatzi();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\NorkebatziType', $norkebatzi);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($norkebatzi);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('norkebatzi_show', array('id' => $norkebatzi->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($norkebatzi);
+                $em->flush();
+
+                return $this->redirectToRoute('norkebatzi_show', array('id' => $norkebatzi->getId()));
+            }
+
+            return $this->render('norkebatzi/new.html.twig', array(
+                'norkebatzi' => $norkebatzi,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('norkebatzi/new.html.twig', array(
-            'norkebatzi' => $norkebatzi,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

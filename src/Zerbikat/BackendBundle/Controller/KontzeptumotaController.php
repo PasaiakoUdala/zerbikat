@@ -46,22 +46,32 @@ class KontzeptumotaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $kontzeptumotum = new Kontzeptumota();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptumotaType', $kontzeptumotum);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $kontzeptumotum = new Kontzeptumota();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptumotaType', $kontzeptumotum);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kontzeptumotum);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('kontzeptumota_show', array('id' => $kontzeptumotum->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kontzeptumotum);
+                $em->flush();
+
+                return $this->redirectToRoute('kontzeptumota_show', array('id' => $kontzeptumotum->getId()));
+            }
+
+            return $this->render('kontzeptumota/new.html.twig', array(
+                'kontzeptumotum' => $kontzeptumotum,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('kontzeptumota/new.html.twig', array(
-            'kontzeptumotum' => $kontzeptumotum,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

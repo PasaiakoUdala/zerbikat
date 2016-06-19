@@ -45,22 +45,32 @@ class EtiketaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $etiketum = new Etiketa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\EtiketaType', $etiketum);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $etiketum = new Etiketa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\EtiketaType', $etiketum);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($etiketum);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('etiketa_show', array('id' => $etiketum->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($etiketum);
+                $em->flush();
+
+                return $this->redirectToRoute('etiketa_show', array('id' => $etiketum->getId()));
+            }
+
+            return $this->render('etiketa/new.html.twig', array(
+                'etiketum' => $etiketum,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('etiketa/new.html.twig', array(
-            'etiketum' => $etiketum,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

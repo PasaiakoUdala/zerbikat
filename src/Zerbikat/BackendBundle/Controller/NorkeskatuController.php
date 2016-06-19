@@ -45,22 +45,32 @@ class NorkeskatuController extends Controller
      */
     public function newAction(Request $request)
     {
-        $norkeskatu = new Norkeskatu();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\NorkeskatuType', $norkeskatu);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $norkeskatu = new Norkeskatu();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\NorkeskatuType', $norkeskatu);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($norkeskatu);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('norkeskatu_show', array('id' => $norkeskatu->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($norkeskatu);
+                $em->flush();
+
+                return $this->redirectToRoute('norkeskatu_show', array('id' => $norkeskatu->getId()));
+            }
+
+            return $this->render('norkeskatu/new.html.twig', array(
+                'norkeskatu' => $norkeskatu,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('norkeskatu/new.html.twig', array(
-            'norkeskatu' => $norkeskatu,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

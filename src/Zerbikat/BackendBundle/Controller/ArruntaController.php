@@ -47,22 +47,32 @@ class ArruntaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $arruntum = new Arrunta();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\ArruntaType', $arruntum);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $arruntum = new Arrunta();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\ArruntaType', $arruntum);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($arruntum);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('arrunta_show', array('id' => $arruntum->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($arruntum);
+                $em->flush();
+
+                return $this->redirectToRoute('arrunta_show', array('id' => $arruntum->getId()));
+            }
+
+            return $this->render('arrunta/new.html.twig', array(
+                'arruntum' => $arruntum,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('arrunta/new.html.twig', array(
-            'arruntum' => $arruntum,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

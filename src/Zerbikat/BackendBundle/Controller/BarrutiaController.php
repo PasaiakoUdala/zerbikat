@@ -45,22 +45,32 @@ class BarrutiaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $barrutium = new Barrutia();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\BarrutiaType', $barrutium);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $barrutium = new Barrutia();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\BarrutiaType', $barrutium);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($barrutium);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('barrutia_show', array('id' => $barrutium->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($barrutium);
+                $em->flush();
+
+                return $this->redirectToRoute('barrutia_show', array('id' => $barrutium->getId()));
+            }
+
+            return $this->render('barrutia/new.html.twig', array(
+                'barrutium' => $barrutium,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('barrutia/new.html.twig', array(
-            'barrutium' => $barrutium,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

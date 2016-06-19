@@ -45,22 +45,32 @@ class FamiliaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $familium = new Familia();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\FamiliaType', $familium);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $familium = new Familia();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\FamiliaType', $familium);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($familium);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($familium);
+                $em->flush();
+
+                return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
+            }
+
+            return $this->render('familia/new.html.twig', array(
+                'familium' => $familium,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('familia/new.html.twig', array(
-            'familium' => $familium,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

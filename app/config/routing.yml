@@ -1,3 +1,11 @@
+backend_zerbitzua:
+    resource: "@BackendBundle/Controller/ZerbitzuaController.php"
+    type:     annotation
+
+backend_udala:
+    resource: "@BackendBundle/Controller/UdalaController.php"
+    type:     annotation
+
 backend_tramitea:
     resource: "@BackendBundle/Controller/TramiteaController.php"
     type:     annotation

@@ -62,6 +62,15 @@ class Ordenantza
     private $id;
 
 
+    /**
+     *          TOSTRING
+     */
+    public function __toString()
+    {
+        return
+            $this->getKodea().".-".$this->getIzenburuaeu();
+    }
+
 
     /**
      * Set kodea

@@ -45,22 +45,32 @@ class DatuenbabesaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $datuenbabesa = new Datuenbabesa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\DatuenbabesaType', $datuenbabesa);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) 
+        {
+            $datuenbabesa = new Datuenbabesa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\DatuenbabesaType', $datuenbabesa);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($datuenbabesa);
-            $em->flush();
-
-            return $this->redirectToRoute('datuenbabesa_show', array('id' => $datuenbabesa->getId()));
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($datuenbabesa);
+                $em->flush();
+    
+                return $this->redirectToRoute('datuenbabesa_show', array('id' => $datuenbabesa->getId()));
+            }
+    
+            return $this->render('datuenbabesa/new.html.twig', array(
+                'datuenbabesa' => $datuenbabesa,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('datuenbabesa/new.html.twig', array(
-            'datuenbabesa' => $datuenbabesa,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

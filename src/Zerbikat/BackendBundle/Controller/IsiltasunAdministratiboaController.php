@@ -46,22 +46,31 @@ class IsiltasunAdministratiboaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $isiltasunAdministratiboa = new IsiltasunAdministratiboa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\IsiltasunAdministratiboaType', $isiltasunAdministratiboa);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $isiltasunAdministratiboa = new IsiltasunAdministratiboa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\IsiltasunAdministratiboaType', $isiltasunAdministratiboa);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($isiltasunAdministratiboa);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('isiltasunadministratiboa_show', array('id' => $isiltasunAdministratiboa->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($isiltasunAdministratiboa);
+                $em->flush();
+
+                return $this->redirectToRoute('isiltasunadministratiboa_show', array('id' => $isiltasunAdministratiboa->getId()));
+            }
+
+            return $this->render('isiltasunadministratiboa/new.html.twig', array(
+                'isiltasunAdministratiboa' => $isiltasunAdministratiboa,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('isiltasunadministratiboa/new.html.twig', array(
-            'isiltasunAdministratiboa' => $isiltasunAdministratiboa,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

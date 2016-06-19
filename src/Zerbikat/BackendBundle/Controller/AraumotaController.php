@@ -45,22 +45,32 @@ class AraumotaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $araumotum = new Araumota();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AraumotaType', $araumotum);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $araumotum = new Araumota();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AraumotaType', $araumotum);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($araumotum);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('araumota_show', array('id' => $araumotum->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($araumotum);
+                $em->flush();
+
+                return $this->redirectToRoute('araumota_show', array('id' => $araumotum->getId()));
+            }
+
+            return $this->render('araumota/new.html.twig', array(
+                'araumotum' => $araumotum,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('araumota/new.html.twig', array(
-            'araumotum' => $araumotum,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

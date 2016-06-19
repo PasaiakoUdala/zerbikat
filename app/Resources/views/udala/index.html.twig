@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Udala list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Izenaeu</th>
+                <th>Izenaes</th>
+                <th>Kodea</th>
+                <th>Logoa</th>
+                <th>Ifk</th>
+                <th>Izendapenaeu</th>
+                <th>Izendapenaes</th>
+                <th>Lopdeu</th>
+                <th>Lopdes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for udala in udalas %}
+            <tr>
+                <td><a href="{{ path('udala_show', { 'id': udala.id }) }}">{{ udala.id }}</a></td>
+                <td>{{ udala.izenaeu }}</td>
+                <td>{{ udala.izenaes }}</td>
+                <td>{{ udala.kodea }}</td>
+                <td>{{ udala.logoa }}</td>
+                <td>{{ udala.ifk }}</td>
+                <td>{{ udala.izendapenaeu }}</td>
+                <td>{{ udala.izendapenaes }}</td>
+                <td>{{ udala.lopdeu }}</td>
+                <td>{{ udala.lopdes }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('udala_show', { 'id': udala.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('udala_edit', { 'id': udala.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('udala_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

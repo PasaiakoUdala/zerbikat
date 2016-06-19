@@ -45,22 +45,32 @@ class DokumentazioaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $dokumentazioa = new Dokumentazioa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\DokumentazioaType', $dokumentazioa);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) 
+        {
+            $dokumentazioa = new Dokumentazioa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\DokumentazioaType', $dokumentazioa);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($dokumentazioa);
-            $em->flush();
-
-            return $this->redirectToRoute('dokumentazioa_show', array('id' => $dokumentazioa->getId()));
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($dokumentazioa);
+                $em->flush();
+    
+                return $this->redirectToRoute('dokumentazioa_show', array('id' => $dokumentazioa->getId()));
+            }
+    
+            return $this->render('dokumentazioa/new.html.twig', array(
+                'dokumentazioa' => $dokumentazioa,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('dokumentazioa/new.html.twig', array(
-            'dokumentazioa' => $dokumentazioa,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

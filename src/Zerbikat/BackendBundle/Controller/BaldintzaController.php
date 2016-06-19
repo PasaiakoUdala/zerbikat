@@ -47,22 +47,32 @@ class BaldintzaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $baldintza = new Baldintza();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\BaldintzaType', $baldintza);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $baldintza = new Baldintza();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\BaldintzaType', $baldintza);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($baldintza);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('baldintza_show', array('id' => $baldintza->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($baldintza);
+                $em->flush();
+
+                return $this->redirectToRoute('baldintza_show', array('id' => $baldintza->getId()));
+            }
+
+            return $this->render('baldintza/new.html.twig', array(
+                'baldintza' => $baldintza,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('baldintza/new.html.twig', array(
-            'baldintza' => $baldintza,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

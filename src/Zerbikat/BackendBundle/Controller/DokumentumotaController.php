@@ -45,22 +45,32 @@ class DokumentumotaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $dokumentumotum = new Dokumentumota();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\DokumentumotaType', $dokumentumotum);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $dokumentumotum = new Dokumentumota();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\DokumentumotaType', $dokumentumotum);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($dokumentumotum);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('dokumentumota_show', array('id' => $dokumentumotum->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($dokumentumotum);
+                $em->flush();
+
+                return $this->redirectToRoute('dokumentumota_show', array('id' => $dokumentumotum->getId()));
+            }
+
+            return $this->render('dokumentumota/new.html.twig', array(
+                'dokumentumotum' => $dokumentumotum,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('dokumentumota/new.html.twig', array(
-            'dokumentumotum' => $dokumentumotum,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

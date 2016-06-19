@@ -45,22 +45,32 @@ class TramiteaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $tramitea = new Tramitea();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\TramiteaType', $tramitea);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $tramitea = new Tramitea();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\TramiteaType', $tramitea);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($tramitea);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('tramitea_show', array('id' => $tramitea->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($tramitea);
+                $em->flush();
+
+                return $this->redirectToRoute('tramitea_show', array('id' => $tramitea->getId()));
+            }
+
+            return $this->render('tramitea/new.html.twig', array(
+                'tramitea' => $tramitea,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('tramitea/new.html.twig', array(
-            'tramitea' => $tramitea,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

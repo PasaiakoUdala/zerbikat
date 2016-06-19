@@ -45,22 +45,32 @@ class EraikinaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $eraikina = new Eraikina();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\EraikinaType', $eraikina);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $eraikina = new Eraikina();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\EraikinaType', $eraikina);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($eraikina);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('eraikina_show', array('id' => $eraikina->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($eraikina);
+                $em->flush();
+
+                return $this->redirectToRoute('eraikina_show', array('id' => $eraikina->getId()));
+            }
+
+            return $this->render('eraikina/new.html.twig', array(
+                'eraikina' => $eraikina,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('eraikina/new.html.twig', array(
-            'eraikina' => $eraikina,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

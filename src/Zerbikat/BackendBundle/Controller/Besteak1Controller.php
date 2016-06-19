@@ -45,22 +45,32 @@ class Besteak1Controller extends Controller
      */
     public function newAction(Request $request)
     {
-        $besteak1 = new Besteak1();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\Besteak1Type', $besteak1);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $besteak1 = new Besteak1();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\Besteak1Type', $besteak1);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($besteak1);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('besteak1_show', array('id' => $besteak1->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($besteak1);
+                $em->flush();
+
+                return $this->redirectToRoute('besteak1_show', array('id' => $besteak1->getId()));
+            }
+
+            return $this->render('besteak1/new.html.twig', array(
+                'besteak1' => $besteak1,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('besteak1/new.html.twig', array(
-            'besteak1' => $besteak1,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

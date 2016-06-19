@@ -45,22 +45,32 @@ class OrdenantzaparrafoaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $ordenantzaparrafoa = new Ordenantzaparrafoa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType', $ordenantzaparrafoa);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $ordenantzaparrafoa = new Ordenantzaparrafoa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType', $ordenantzaparrafoa);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ordenantzaparrafoa);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('ordenantzaparrafoa_show', array('id' => $ordenantzaparrafoa->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($ordenantzaparrafoa);
+                $em->flush();
+
+                return $this->redirectToRoute('ordenantzaparrafoa_show', array('id' => $ordenantzaparrafoa->getId()));
+            }
+
+            return $this->render('ordenantzaparrafoa/new.html.twig', array(
+                'ordenantzaparrafoa' => $ordenantzaparrafoa,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('ordenantzaparrafoa/new.html.twig', array(
-            'ordenantzaparrafoa' => $ordenantzaparrafoa,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

@@ -45,22 +45,32 @@ class KanalmotaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $kanalmotum = new Kanalmota();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\KanalmotaType', $kanalmotum);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $kanalmotum = new Kanalmota();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\KanalmotaType', $kanalmotum);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kanalmotum);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('kanalmota_show', array('id' => $kanalmotum->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kanalmotum);
+                $em->flush();
+
+                return $this->redirectToRoute('kanalmota_show', array('id' => $kanalmotum->getId()));
+            }
+
+            return $this->render('kanalmota/new.html.twig', array(
+                'kanalmotum' => $kanalmotum,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('kanalmota/new.html.twig', array(
-            'kanalmotum' => $kanalmotum,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

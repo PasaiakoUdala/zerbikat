@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {#<h1>Udala edit</h1>#}
+
+    {{ form_start(edit_form) }}
+    <ul class="list-inline pull-right" role="tablist">
+        <input type="submit" value="Gorde" class="btn btn-primary"/>
+        <li><a href="{{ path('udala_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>
+    </ul>
+    <br><br>
+    {#{{ form_widget(edit_form) }}#}
+
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="control-label">Kodea:</label>
+            {{ form_errors(edit_form.kodea) }}
+            {{ form_widget(edit_form.kodea, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+        <div class="col-sm-4">
+            <label class="control-label">IKF/CIF:</label>
+            {{ form_errors(edit_form.ifk) }}
+            {{ form_widget(edit_form.ifk, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Espediente kudeaketa:</label>
+            {{ form_errors(edit_form.espedientekudeaketa) }}
+            {{ form_widget(edit_form.espedientekudeaketa, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Izena (eu):</label>
+            {{ form_errors(edit_form.izenaeu) }}
+            {{ form_widget(edit_form.izenaeu, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Izena (es):</label>
+            {{ form_errors(edit_form.izenaes) }}
+            {{ form_widget(edit_form.izenaes, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Izendapena (eu):</label>
+            {{ form_errors(edit_form.izendapenaeu) }}
+            {{ form_widget(edit_form.izendapenaeu, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Izendapena (es):</label>
+            {{ form_errors(edit_form.izendapenaes) }}
+            {{ form_widget(edit_form.izendapenaes, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">LOPD txantilla (eu):</label>
+            {{ form_errors(edit_form.lopdeu) }}
+            {{ form_widget(edit_form.lopdeu, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">LOPD txantilla (es):</label>
+            {{ form_errors(edit_form.lopdes) }}
+            {{ form_widget(edit_form.lopdes, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <label class="control-label">Logoa:</label>
+            {{ form_errors(edit_form.logoa) }}
+            {{ form_widget(edit_form.logoa, {'attr': {'class': 'c-checkbox'}}) }}
+        </div>
+    </div>
+
+    {#<ul class="list-inline pull-right" role="tablist">#}
+        {#<input type="submit" value="Edit" class="btn btn-primary"/>#}
+        {#<li><a href="{{ path('udala_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>#}
+    {#</ul>#}
+
+    {{ form_end(edit_form) }}
+{% endblock %}

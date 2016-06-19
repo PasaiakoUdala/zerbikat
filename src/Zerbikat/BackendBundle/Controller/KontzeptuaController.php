@@ -45,22 +45,32 @@ class KontzeptuaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $kontzeptua = new Kontzeptua();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptuaType', $kontzeptua);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $kontzeptua = new Kontzeptua();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptuaType', $kontzeptua);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kontzeptua);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('kontzeptua_show', array('id' => $kontzeptua->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kontzeptua);
+                $em->flush();
+
+                return $this->redirectToRoute('kontzeptua_show', array('id' => $kontzeptua->getId()));
+            }
+
+            return $this->render('kontzeptua/new.html.twig', array(
+                'kontzeptua' => $kontzeptua,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('kontzeptua/new.html.twig', array(
-            'kontzeptua' => $kontzeptua,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

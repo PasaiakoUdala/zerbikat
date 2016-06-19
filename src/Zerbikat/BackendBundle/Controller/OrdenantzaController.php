@@ -45,22 +45,32 @@ class OrdenantzaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $ordenantza = new Ordenantza();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaType', $ordenantza);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $ordenantza = new Ordenantza();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaType', $ordenantza);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ordenantza);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('ordenantza_show', array('id' => $ordenantza->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($ordenantza);
+                $em->flush();
+
+                return $this->redirectToRoute('ordenantza_show', array('id' => $ordenantza->getId()));
+            }
+
+            return $this->render('ordenantza/new.html.twig', array(
+                'ordenantza' => $ordenantza,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('ordenantza/new.html.twig', array(
-            'ordenantza' => $ordenantza,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

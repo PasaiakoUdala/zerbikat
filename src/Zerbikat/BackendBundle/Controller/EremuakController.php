@@ -24,13 +24,21 @@ class EremuakController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $eremuaks = $em->getRepository('BackendBundle:Eremuak')->findAll();
-
-        return $this->render('eremuak/index.html.twig', array(
-            'eremuaks' => $eremuaks,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $eremuaks = $em->getRepository('BackendBundle:Eremuak')->findAll();
+            return $this->render('eremuak/index.html.twig', array(
+                'eremuaks' => $eremuaks,
+            ));
+        }else if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            return $this->redirectToRoute('eremuak_edit', array('id' => $this->getUser()->getUdala()->getEremuak()->getId()));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**
@@ -41,22 +49,29 @@ class EremuakController extends Controller
      */
     public function newAction(Request $request)
     {
-        $eremuak = new Eremuak();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\EremuakType', $eremuak);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $eremuak = new Eremuak();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\EremuakType', $eremuak);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($eremuak);
-            $em->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($eremuak);
+                $em->flush();
 
-            return $this->redirectToRoute('eremuak_show', array('id' => $eremuak->getId()));
+                return $this->redirectToRoute('eremuak_show', array('id' => $eremuak->getId()));
+            }
+
+            return $this->render('eremuak/new.html.twig', array(
+                'eremuak' => $eremuak,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('eremuak/new.html.twig', array(
-            'eremuak' => $eremuak,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

@@ -41,22 +41,32 @@ class AzpiatalaparrafoaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $azpiatalaparrafoa = new Azpiatalaparrafoa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaparrafoaType', $azpiatalaparrafoa);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($azpiatalaparrafoa);
-            $em->flush();
-
-            return $this->redirectToRoute('azpiatalaparrafoa_show', array('id' => $azpiatalaparrafoa->getId()));
-        }
-
-        return $this->render('azpiatalaparrafoa/new.html.twig', array(
-            'azpiatalaparrafoa' => $azpiatalaparrafoa,
-            'form' => $form->createView(),
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) 
+        {
+            $azpiatalaparrafoa = new Azpiatalaparrafoa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaparrafoaType', $azpiatalaparrafoa);
+            $form->handleRequest($request);
+    
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($azpiatalaparrafoa);
+                $em->flush();
+    
+                return $this->redirectToRoute('azpiatalaparrafoa_show', array('id' => $azpiatalaparrafoa->getId()));
+            }
+    
+            return $this->render('azpiatalaparrafoa/new.html.twig', array(
+                'azpiatalaparrafoa' => $azpiatalaparrafoa,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

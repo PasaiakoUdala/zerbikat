@@ -24,13 +24,17 @@ class EspedientekudeaketaController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $espedientekudeaketas = $em->getRepository('BackendBundle:Espedientekudeaketa')->findAll();
-
-        return $this->render('espedientekudeaketa/index.html.twig', array(
-            'espedientekudeaketas' => $espedientekudeaketas,
-        ));
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_SUPER_ADMIN')) {
+            $em = $this->getDoctrine()->getManager();
+            $espedientekudeaketas = $em->getRepository('BackendBundle:Espedientekudeaketa')->findAll();
+            return $this->render('espedientekudeaketa/index.html.twig', array(
+                'espedientekudeaketas' => $espedientekudeaketas,
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }
     }
 
     /**
@@ -41,22 +45,29 @@ class EspedientekudeaketaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $espedientekudeaketum = new Espedientekudeaketa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\EspedientekudeaketaType', $espedientekudeaketum);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
+        {
+            $espedientekudeaketum = new Espedientekudeaketa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\EspedientekudeaketaType', $espedientekudeaketum);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($espedientekudeaketum);
-            $em->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($espedientekudeaketum);
+                $em->flush();
 
-            return $this->redirectToRoute('espedientekudeaketa_show', array('id' => $espedientekudeaketum->getId()));
+                return $this->redirectToRoute('espedientekudeaketa_show', array('id' => $espedientekudeaketum->getId()));
+            }
+
+            return $this->render('espedientekudeaketa/new.html.twig', array(
+                'espedientekudeaketum' => $espedientekudeaketum,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('espedientekudeaketa/new.html.twig', array(
-            'espedientekudeaketum' => $espedientekudeaketum,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

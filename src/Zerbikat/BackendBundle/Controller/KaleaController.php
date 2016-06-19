@@ -45,22 +45,32 @@ class KaleaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $kalea = new Kalea();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\KaleaType', $kalea);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) 
+        {
+            $kalea = new Kalea();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\KaleaType', $kalea);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kalea);
-            $em->flush();
-
-            return $this->redirectToRoute('kalea_show', array('id' => $kalea->getId()));
-        }
-
-        return $this->render('kalea/new.html.twig', array(
-            'kalea' => $kalea,
-            'form' => $form->createView(),
-        ));
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
+            
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kalea);
+                $em->flush();
+    
+                return $this->redirectToRoute('kalea_show', array('id' => $kalea->getId()));
+            }
+    
+            return $this->render('kalea/new.html.twig', array(
+                'kalea' => $kalea,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
+        }            
     }
 
     /**

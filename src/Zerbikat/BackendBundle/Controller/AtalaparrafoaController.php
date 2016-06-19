@@ -47,22 +47,31 @@ class AtalaparrafoaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $atalaparrafoa = new Atalaparrafoa();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AtalaparrafoaType', $atalaparrafoa);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $atalaparrafoa = new Atalaparrafoa();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AtalaparrafoaType', $atalaparrafoa);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($atalaparrafoa);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('atalaparrafoa_show', array('id' => $atalaparrafoa->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($atalaparrafoa);
+                $em->flush();
+
+                return $this->redirectToRoute('atalaparrafoa_show', array('id' => $atalaparrafoa->getId()));
+            }
+
+            return $this->render('atalaparrafoa/new.html.twig', array(
+                'atalaparrafoa' => $atalaparrafoa,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('atalaparrafoa/new.html.twig', array(
-            'atalaparrafoa' => $atalaparrafoa,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

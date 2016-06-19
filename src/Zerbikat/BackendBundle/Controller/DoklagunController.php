@@ -46,22 +46,32 @@ class DoklagunController extends Controller
      */
     public function newAction(Request $request)
     {
-        $doklagun = new Doklagun();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\DoklagunType', $doklagun);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $doklagun = new Doklagun();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\DoklagunType', $doklagun);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($doklagun);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('doklagun_show', array('id' => $doklagun->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($doklagun);
+                $em->flush();
+
+                return $this->redirectToRoute('doklagun_show', array('id' => $doklagun->getId()));
+            }
+
+            return $this->render('doklagun/new.html.twig', array(
+                'doklagun' => $doklagun,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('doklagun/new.html.twig', array(
-            'doklagun' => $doklagun,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

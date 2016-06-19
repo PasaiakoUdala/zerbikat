@@ -45,22 +45,32 @@ class KanalaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $kanala = new Kanala();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\KanalaType', $kanala);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $kanala = new Kanala();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\KanalaType', $kanala);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($kanala);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('kanala_show', array('id' => $kanala->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($kanala);
+                $em->flush();
+
+                return $this->redirectToRoute('kanala_show', array('id' => $kanala->getId()));
+            }
+
+            return $this->render('kanala/new.html.twig', array(
+                'kanala' => $kanala,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('kanala/new.html.twig', array(
-            'kanala' => $kanala,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

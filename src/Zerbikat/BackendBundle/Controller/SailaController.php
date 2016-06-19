@@ -45,22 +45,32 @@ class SailaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $saila = new Saila();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\SailaType', $saila);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $saila = new Saila();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\SailaType', $saila);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($saila);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('saila_show', array('id' => $saila->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($saila);
+                $em->flush();
+
+                return $this->redirectToRoute('saila_show', array('id' => $saila->getId()));
+            }
+
+            return $this->render('saila/new.html.twig', array(
+                'saila' => $saila,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('saila/new.html.twig', array(
-            'saila' => $saila,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

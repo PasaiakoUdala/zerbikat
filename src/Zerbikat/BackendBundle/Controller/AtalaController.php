@@ -47,22 +47,33 @@ class AtalaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $atala = new Atala();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AtalaType', $atala);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $atala = new Atala();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AtalaType', $atala);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($atala);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('atala_show', array('id' => $atala->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($atala);
+                $em->flush();
+
+                return $this->redirectToRoute('atala_show', array('id' => $atala->getId()));
+            }
+
+            return $this->render('atala/new.html.twig', array(
+                'atala' => $atala,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
 
-        return $this->render('atala/new.html.twig', array(
-            'atala' => $atala,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

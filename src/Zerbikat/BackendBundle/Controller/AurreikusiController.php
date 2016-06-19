@@ -46,22 +46,32 @@ class AurreikusiController extends Controller
      */
     public function newAction(Request $request)
     {
-        $aurreikusi = new Aurreikusi();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AurreikusiType', $aurreikusi);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $aurreikusi = new Aurreikusi();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AurreikusiType', $aurreikusi);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($aurreikusi);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('aurreikusi_show', array('id' => $aurreikusi->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($aurreikusi);
+                $em->flush();
+
+                return $this->redirectToRoute('aurreikusi_show', array('id' => $aurreikusi->getId()));
+            }
+
+            return $this->render('aurreikusi/new.html.twig', array(
+                'aurreikusi' => $aurreikusi,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('aurreikusi/new.html.twig', array(
-            'aurreikusi' => $aurreikusi,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

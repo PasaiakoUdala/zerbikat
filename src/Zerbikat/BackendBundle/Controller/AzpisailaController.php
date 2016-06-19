@@ -46,22 +46,32 @@ class AzpisailaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $azpisaila = new Azpisaila();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpisailaType', $azpisaila);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $azpisaila = new Azpisaila();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpisailaType', $azpisaila);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($azpisaila);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('azpisaila_show', array('id' => $azpisaila->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($azpisaila);
+                $em->flush();
+
+                return $this->redirectToRoute('azpisaila_show', array('id' => $azpisaila->getId()));
+            }
+
+            return $this->render('azpisaila/new.html.twig', array(
+                'azpisaila' => $azpisaila,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('azpisaila/new.html.twig', array(
-            'azpisaila' => $azpisaila,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

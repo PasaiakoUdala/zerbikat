@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Zerbitzua</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Kodea</th>
+                <td>{{ zerbitzua.kodea }}</td>
+            </tr>
+            <tr>
+                <th>Zerbitzuaeu</th>
+                <td>{{ zerbitzua.zerbitzuaeu }}</td>
+            </tr>
+            <tr>
+                <th>Zerbitzuaes</th>
+                <td>{{ zerbitzua.zerbitzuaes }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ zerbitzua.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('zerbitzua_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('zerbitzua_edit', { 'id': zerbitzua.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

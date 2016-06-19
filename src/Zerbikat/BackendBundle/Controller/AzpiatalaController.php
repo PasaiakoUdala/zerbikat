@@ -47,22 +47,32 @@ class AzpiatalaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $azpiatala = new Azpiatala();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaType', $azpiatala);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        {
+            $azpiatala = new Azpiatala();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaType', $azpiatala);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($azpiatala);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('azpiatala_show', array('id' => $azpiatala->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($azpiatala);
+                $em->flush();
+
+                return $this->redirectToRoute('azpiatala_show', array('id' => $azpiatala->getId()));
+            }
+
+            return $this->render('azpiatala/new.html.twig', array(
+                'azpiatala' => $azpiatala,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('azpiatala/new.html.twig', array(
-            'azpiatala' => $azpiatala,
-            'form' => $form->createView(),
-        ));
     }
 
     /**

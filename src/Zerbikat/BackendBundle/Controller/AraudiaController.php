@@ -49,22 +49,31 @@ class AraudiaController extends Controller
      */
     public function newAction(Request $request)
     {
-        $araudium = new Araudia();
-        $form = $this->createForm('Zerbikat\BackendBundle\Form\AraudiaType', $araudium);
-        $form->handleRequest($request);
+        $auth_checker = $this->get('security.authorization_checker');
+        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+            $araudium = new Araudia();
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\AraudiaType', $araudium);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($araudium);
-            $em->flush();
+            $form->getData()->setUdala($this->getUser()->getUdala());
+            $form->setData($form->getData());
 
-            return $this->redirectToRoute('araudia_show', array('id' => $araudium->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($araudium);
+                $em->flush();
+
+                return $this->redirectToRoute('araudia_show', array('id' => $araudium->getId()));
+            }
+
+            return $this->render('araudia/new.html.twig', array(
+                'araudium' => $araudium,
+                'form' => $form->createView(),
+            ));
+        }else
+        {
+            return $this->redirectToRoute('fitxa_index');
         }
-
-        return $this->render('araudia/new.html.twig', array(
-            'araudium' => $araudium,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
