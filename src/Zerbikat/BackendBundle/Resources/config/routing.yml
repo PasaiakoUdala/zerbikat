@@ -1,3 +1,7 @@
 backend_homepage:
     path:     /
     defaults: { _controller: BackendBundle:Default:index }
+
+backend_errorea:
+    path:     /errorea
+    defaults: { _controller: BackendBundle:Default:errorea  }

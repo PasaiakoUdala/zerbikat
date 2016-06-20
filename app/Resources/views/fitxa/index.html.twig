@@ -2,9 +2,18 @@
 {% block menua %}
     {{ parent() }}
         {% if is_granted('ROLE_KUDEAKETA') %}
-            <ul class="list-inline pull-right" role="tablist">
-                <li><a href="{{ path('fitxa_new') }}" class="btn btn-primary">Fitxa berria</a></li>
-            </ul>
+        <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand"> Fitxak</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ path('fitxa_new') }}" >Fitxa berria</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         {% endif %}
 {% endblock %}
 
@@ -49,3 +58,14 @@
     {#</ul>#}
 {#</div>#}
 {% endblock %}
+
+{#{% block javascripts %}#}
+    {#{{ parent() }}#}
+    {#<script type="text/javascript">#}
+        {#$(function () #}{#}#}
+            {#$('.navbar-lower').affix(#}{#}#}
+                {#offset: {top: 50}#}
+            {#});#}
+        {#});#}
+{#</script>#}
+{#{% endblock %}#}

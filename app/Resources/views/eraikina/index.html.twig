@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
+
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('eraikina_new') }}" class="btn btn-primary">Eraikin berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Eraikinak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('eraikina_new') }}">Eraikin berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
-    <h1>Eraikinak</h1>
-
     <table class="table">
         <thead>
             <tr>
                 <th>Izena</th>
                 <th>Koordenadak</th>
-                {#<th>Latitudea</th>#}
-                {#<th>Id</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -23,12 +29,8 @@
             <tr>
                 <td><a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}">{{ eraikina.izena }}</a></td>
                 <td>({{ eraikina.longitudea }}, {{ eraikina.latitudea }})</td>
-                {#<td>{{ eraikina.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('eraikina_show', { 'id': eraikina.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}">edit</a>#}
                         {#</li>#}
@@ -38,11 +40,4 @@
         {% endfor %}
         </tbody>
     </table>
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('eraikina_new') }}" class="btn btn-primary">Sarrera berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

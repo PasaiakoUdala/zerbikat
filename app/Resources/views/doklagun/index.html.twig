@@ -1,21 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('doklagun_new') }}" class="btn btn-primary">Sarrera berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.doklagunlabeleu }}{% endif %}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('doklagun_new') }}" >Sarrera berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+
 {% block body %}
-    <h1>{{ app.user.udala.eremuak.doklagunlabeleu }}</h1>
+    {#<h1>{{ app.user.udala.eremuak.doklagunlabeleu }}</h1>#}
     <table class="table">
         <thead>
             <tr>
                 {#<th>Id</th>#}
                 <th>Kodea</th>
                 <th>Deskribapenaeu</th>
-                {#<th>Deskribapenaes</th>#}
-                {#<th>Estekaeu</th>#}
-                {#<th>Estekaes</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -24,14 +31,8 @@
             <tr>
                 <td><a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}">{{ doklagun.kodea }}</a></td>
                 <td><a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}">{{ doklagun.deskribapenaeu }}</a></td>
-                {#<td>{{ doklagun.deskribapenaes }}</td>#}
-                {#<td>{{ doklagun.estekaeu }}</td>#}
-                {#<td>{{ doklagun.estekaes }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('doklagun_show', { 'id': doklagun.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}">edit</a>#}
                         {#</li>#}
@@ -41,11 +42,4 @@
         {% endfor %}
         </tbody>
     </table>
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('doklagun_new') }}" class="btn btn-primary">Sarrera berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

@@ -1,37 +1,34 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('kanalmota_new') }}" class="btn btn-primary">Kanal-mota berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Kanal-motak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('kanalmota_new') }}" >Kanal-mota berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
-    {#<h1>Kanalmota list</h1>#}
-
     <table class="table">
         <thead>
             <tr>
-                {#<th>Id</th>#}
                 <th>Mota</th>
-                {#<th>Motaes</th>#}
                 <th>Esteka</th>
-                {#<th>Ikonoa</th>#}
-                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for kanalmotum in kanalmotas %}
             <tr>
                 <td><a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">{{ kanalmotum.motaeu }}</a></td>
-                {#<td>{{ kanalmotum.motaeu }}</td>#}
-                {#<td>{{ kanalmotum.motaes }}</td>#}
                 <td>{% if kanalmotum.esteka %}Bai{% else %}Ez{% endif %}</td>
-                {#<td>{{ kanalmotum.ikonoa }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('kanalmota_show', { 'id': kanalmotum.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">edit</a>#}
                         {#</li>#}
@@ -41,11 +38,4 @@
         {% endfor %}
         </tbody>
     </table>
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('kanalmota_new') }}" class="btn btn-primary">Mota berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

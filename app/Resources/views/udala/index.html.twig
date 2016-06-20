@@ -1,18 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('udala_new') }}" class="btn btn-primary">Udal berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Udalak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('udala_new') }}" >Udal berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
-    <h1>Udalak</h1>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
-                <th>Udala</th>
                 <th>Ifk</th>
+                <th>Udala</th>
                 <th>Izendapenaeu</th>
             </tr>
         </thead>
@@ -20,15 +28,11 @@
         {% for udala in udalas %}
             <tr>
                 <td><a href="{{ path('udala_show', { 'id': udala.id }) }}">{{ udala.kodea }}</a></td>
-                <td>{{ udala.izenaeu }}</td>
                 <td>{{ udala.ifk }}</td>
+                <td>{{ udala.izenaeu }}</td>
+                <td>{{ udala.izendapenaeu }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('udala_new') }}">Create a new entry</a>#}
-        {#</li>#}
-    {#</ul>#}
 {% endblock %}

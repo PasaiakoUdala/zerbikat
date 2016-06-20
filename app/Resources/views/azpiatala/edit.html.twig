@@ -1,8 +1,21 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Kostu Taulak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="{{ path('azpiatala_index') }}" >Zerrendara itzuli</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 {% block body %}
-    <h1>Azpiatala aldatu</h1>
-
     {{ form_start(edit_form) }}
         {#{{ form_widget(edit_form) }}#}
     <div class="row">
@@ -38,7 +51,11 @@
             </div>
         </div>
     </div>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
+    {% else %}
     <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div>
                 {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -48,14 +65,5 @@
         </div>
     </div>
 
-
-<div class="fitxaMenua">
-    <ul>
-        <input type="submit" value="Gorde" class="btn btn-primary"/>
     {{ form_end(edit_form) }}
-        <li>
-            <a href="{{ path('azpiatala_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
-        </li>
-    </ul>
-</div>
 {% endblock %}

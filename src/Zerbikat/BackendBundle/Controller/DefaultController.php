@@ -28,4 +28,11 @@ class DefaultController extends Controller
         return $this->render('BackendBundle:Default:index.html.twig');
 
     }
+
+
+    public function erroreaAction()
+    {
+        return $this->render('BackendBundle:Default:errorea.html.twig');
+
+    }
 }

@@ -1,21 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('besteak1_new') }}" class="btn btn-primary">Besteak1 berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak1labeleu }}{% endif %}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('besteak1_new') }}" >{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak1labeleu }}{% else %}Sarrera{% endif %} berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+
 {% block body %}
-    <h1>{{ app.user.udala.eremuak.besteak1labeleu }} zerrenda</h1>
+    {#<h1>{{ app.user.udala.eremuak.besteak1labeleu }} zerrenda</h1>#}
     <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
                 <th>Izenburuaes</th>
-                {#<th>Id</th>#}
-                {#<th>Estekaeu</th>#}
-                {#<th>Estekaes</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -24,16 +31,8 @@
             <tr>
                 <td><a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}">{{ besteak1.kodea }}</a></td>
                 <td><a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}">{{ besteak1.izenburuaeu }}</a></td>
-                {#<td>{{ besteak1.izenburuaeu }}</td>#}
-                {#<td>{{ besteak1.id }}</td>#}
-                {#<td>{{ besteak1.estekaeu }}</td>#}
-                {#<td>{{ besteak1.estekaes }}</td>#}
-                {#<td>{{ besteak1.kodea }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('besteak1_show', { 'id': besteak1.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}">edit</a>#}
                         {#</li>#}
@@ -43,12 +42,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('besteak1_new') }}" class="btn btn-primary">Sarrera berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

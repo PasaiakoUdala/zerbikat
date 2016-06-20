@@ -1,12 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('besteak3_new') }}" class="btn btn-primary">Besteak3 berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak3labeleu }}{% endif %}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('besteak3_new') }}" >{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak3labeleu }}{% else %}Sarrera{% endif %} berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+
 {% block body %}
-    <h1>{{ app.user.udala.eremuak.besteak3labeleu }} zerrenda</h1>
+    {#<h1>{{ app.user.udala.eremuak.besteak3labeleu }} zerrenda</h1>#}
 
     <table class="table">
         <thead>

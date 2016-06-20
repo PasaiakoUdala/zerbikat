@@ -1,23 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('atala_new') }}" class="btn btn-primary">Atal berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Atalak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('atala_new') }}">Atal berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+
 {% block body %}
-    <h1>Atalak</h1>
+    {#<h1>Atalak</h1>#}
 
     <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Izenburua</th>
-                {#<th>Izenburuaes</th>#}
-                {#<th>Createdat</th>#}
-                {#<th>Updatedat</th>#}
-                {#<th>Id</th>#}
-                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
@@ -26,29 +31,8 @@
                 <td><a href="{{ path('atala_edit', { 'id': atala.id }) }}">
                         {{ atala.ordenantza.kodea }}.{{ atala.kodea }}</a></td>
                 <td>{{ atala.izenburuaeu }}</td>
-                {#<td>{{ atala.izenburuaes }}</td>#}
-                {#<td>{% if atala.createdAt %}{{ atala.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{% if atala.updatedAt %}{{ atala.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{{ atala.id }}</td>#}
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('atala_show', { 'id': atala.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="{{ path('atala_edit', { 'id': atala.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
             </tr>
         {% endfor %}
         </tbody>
     </table>
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('atala_new') }}" class="btn btn-primary">Atal berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

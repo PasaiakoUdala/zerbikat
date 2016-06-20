@@ -1,19 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('kontzeptumota_new') }}" class="btn btn-primary">Mota berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Kontzeptu-motak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('kontzeptumota_new') }}" >Mota berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
-    <h1>Kontzeptu-motak</h1>
-
     <table class="table">
         <thead>
             <tr>
                 <th>Motaeu</th>
-                {#<th>Motaes</th>#}
-                {#<th>Id</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -21,13 +26,8 @@
         {% for kontzeptumotum in kontzeptumotas %}
             <tr>
                 <td><a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}">{{ kontzeptumotum.motaeu }}</a></td>
-                {#<td>{{ kontzeptumotum.motaes }}</td>#}
-                {#<td>{{ kontzeptumotum.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('kontzeptumota_show', { 'id': kontzeptumotum.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}">edit</a>#}
                         {#</li>#}
@@ -37,11 +37,4 @@
         {% endfor %}
         </tbody>
     </table>
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('kontzeptumota_new') }}" class="btn btn-primary">Mota berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

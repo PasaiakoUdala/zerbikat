@@ -1,19 +1,25 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('prozedura_new') }}" class="btn btn-primary">Prozedura berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Prozedurak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('prozedura_new') }}">Prozedura berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
-{% block body %}
-    <h1>Prozedurak</h1>
 
+{% block body %}
     <table class="table">
         <thead>
             <tr>
                 <th>Prozeduraeu</th>
-                {#<th>Prozeduraes</th>#}
-                {#<th>Id</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -21,13 +27,8 @@
         {% for prozedura in prozeduras %}
             <tr>
                 <td><a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}">{{ prozedura.prozeduraeu }}</a></td>
-                {#<td>{{ prozedura.prozeduraes }}</td>#}
-                {#<td>{{ prozedura.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('prozedura_show', { 'id': prozedura.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}">edit</a>#}
                         {#</li>#}
@@ -37,11 +38,4 @@
         {% endfor %}
         </tbody>
     </table>
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('prozedura_new') }}" class="btn btn-primary">Prozedura berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

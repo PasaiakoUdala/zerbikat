@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('ordenantza_new') }}" class="btn btn-primary">Ordenantza berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Ordenantzak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('ordenantza_new') }}">Ordenantza berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
-    <h1>Ordenantzak</h1>
-
     <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
-                {#<th>Izenburuaes</th>#}
-                {#<th>Createdat</th>#}
-                {#<th>Updatedat</th>#}
-                {#<th>Id</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -25,15 +28,8 @@
             <tr>
                 <td><a href="{{ path('ordenantza_edit', { 'id': ordenantza.id }) }}">{{ ordenantza.kodea }}</a></td>
                 <td>{{ ordenantza.izenburuaeu }}</td>
-                {#<td>{{ ordenantza.izenburuaes }}</td>#}
-                {#<td>{% if ordenantza.createdAt %}{{ ordenantza.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{% if ordenantza.updatedAt %}{{ ordenantza.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{{ ordenantza.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('ordenantza_show', { 'id': ordenantza.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('ordenantza_edit', { 'id': ordenantza.id }) }}">edit</a>#}
                         {#</li>#}
@@ -43,11 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('ordenantza_new') }}" class="btn btn-primary">Ordenantza berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

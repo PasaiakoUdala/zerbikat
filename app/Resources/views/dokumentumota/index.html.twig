@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('dokumentumota_new') }}" class="btn btn-primary">Sarrera berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Dokumentu-motak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('dokumentumota_new') }}" >Sarrera berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
-{% block body %}
-    <h1>Dokumentu-motak</h1>
 
+{% block body %}
     <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Mota</th>
-                {#<th>Motaes</th>#}
-                {#<th>Id</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -23,13 +29,8 @@
             <tr>
                 <td><a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}">{{ dokumentumotum.kodea }}</a></td>
                 <td>{{ dokumentumotum.motaeu }}</td>
-                {#<td>{{ dokumentumotum.motaes }}</td>#}
-                {#<td>{{ dokumentumotum.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('dokumentumota_show', { 'id': dokumentumotum.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}">edit</a>#}
                         {#</li>#}
@@ -39,12 +40,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('dokumentumota_new') }}" class="btn btn-primary">Sarrera berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

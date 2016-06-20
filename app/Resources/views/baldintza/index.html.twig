@@ -1,19 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('baldintza_new') }}" class="btn btn-primary">Baldintza berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Baldintzak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('baldintza_new') }}">Baldintza berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
-{% block body %}
-    <h1>Baldintzak</h1>
 
+
+{% block body %}
     <table class="table">
         <thead>
             <tr>
                 <th>Baldintzaeu</th>
-                {#<th>Baldintzaes</th>#}
-                {#<th>Id</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -21,13 +28,8 @@
         {% for baldintza in baldintzas %}
             <tr>
                 <td><a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">{{ baldintza.baldintzaeu }}</a></td>
-                {#<td>{{ baldintza.baldintzaes }}</td>#}
-                {#<td>{{ baldintza.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('baldintza_show', { 'id': baldintza.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">edit</a>#}
                         {#</li>#}
@@ -37,12 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('baldintza_new') }}" class="btn btn-primary">Baldintza berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

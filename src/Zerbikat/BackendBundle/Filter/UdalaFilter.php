@@ -36,9 +36,9 @@ class UdalaFilter extends SQLFilter
             // No user id has been defined
             return '';
         }
-
-        if (empty($fieldName) || empty($udalaId)) {
-//        if (empty($fieldName) || ($udalaId=='138')) {
+//        if (empty($fieldName) || empty($udalaId)) {
+        //UDALA IZFE BADA EZ APLIKATU FILTROA (ROLE_SUPER_ADMIN????)
+        if (empty($fieldName) || ($udalaId=="'138'")) {
             return '';
         }
 

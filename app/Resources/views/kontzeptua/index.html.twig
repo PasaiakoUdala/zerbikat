@@ -1,23 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        <li><a href="{{ path('kontzeptua_new') }}" class="btn btn-primary">Kontzeptu berria</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Kontzeptuak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('kontzeptua_new') }}" >Kontzeptu berria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 {% block body %}
-    <h1>Kontzeptuak</h1>
-
     <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Kontzeptua</th>
-                {#<th>Kontzeptuaes</th>#}
                 <th>Kopurua</th>
-                {#<th>Createdat</th>#}
-                {#<th>Updatedat</th>#}
-                {#<th>Id</th>#}
                 {#<th>Actions</th>#}
             </tr>
         </thead>
@@ -25,21 +28,13 @@
         {% for kontzeptua in kontzeptuas %}
             <tr>
                 <td><a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}">
-                        {#{{ kontzeptua.azpiatala.atala.ordenantza.kodea }}{{ kontzeptua.azpiatala.atala.kodea }}#}
                         {{ kontzeptua.azpiatala }} --
                         {{ kontzeptua.kodea }}
                     </a></td>
                 <td>{{ kontzeptua.kontzeptuaeu }}</td>
-                {#<td>{{ kontzeptua.kontzeptuaes }}</td>#}
                 <td>{{ kontzeptua.kopurua }} {{ kontzeptua.unitatea }}</td>
-                {#<td>{% if kontzeptua.createdAt %}{{ kontzeptua.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{% if kontzeptua.updatedAt %}{{ kontzeptua.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{{ kontzeptua.id }}</td>#}
                 {#<td>#}
                     {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('kontzeptua_show', { 'id': kontzeptua.id }) }}">show</a>#}
-                        {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}">edit</a>#}
                         {#</li>#}
@@ -49,12 +44,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('kontzeptua_new') }}" class="btn btn-primary">Kontzeptu berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}
