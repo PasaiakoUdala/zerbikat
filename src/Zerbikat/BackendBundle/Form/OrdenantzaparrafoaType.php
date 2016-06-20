@@ -5,6 +5,7 @@ namespace Zerbikat\BackendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class OrdenantzaparrafoaType extends AbstractType
 {
@@ -16,8 +17,12 @@ class OrdenantzaparrafoaType extends AbstractType
     {
         $builder
             ->add('ordena')
-            ->add('testuaeu')
-            ->add('testuaes')
+//            ->add('testuaeu')
+            ->add('testuaeu',CKEditorType::class, array(
+                'config' => array()))
+            ->add('testuaes',CKEditorType::class, array(
+                'config' => array()))
+//            ->add('testuaes')
 //            ->add('createdAt', 'datetime')
 //            ->add('updatedAt', 'datetime')
             ->add('udala')

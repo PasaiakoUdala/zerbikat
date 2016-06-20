@@ -1,12 +1,23 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Kaleak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="{{ path('kalea_index') }}" >Zerrendara itzuli</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 {% block body %}
-    <h1>Kalea aldatu</h1>
-
     {{ form_start(edit_form) }}
         {#{{ form_widget(edit_form) }}#}
-
-
 
     <div class="row">
         <div class="col-sm-6">
@@ -28,9 +39,12 @@
 
 
 
-
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+<div class="row">
+{% else %}
 <div class="row hidden">
-    <div class="col-sm-4">
+{% endif %}
+    <div class="col-sm-4 hidden">
         <div>
             {{ form_label(edit_form.google, 'Google-eko izena: ', { 'label_attr': {'class': 'control-label'} }) }}
             {{ form_errors(edit_form.google) }}
@@ -46,13 +60,6 @@
     </div>
 </div>
 
-<div class="fitxaMenua">
-    <ul>
-        <li><input type="submit" value="Gorde" class="btn btn-primary"/></li>
+
     {{ form_end(edit_form) }}
-        <li>
-            <a href="{{ path('kalea_index') }}" class="btn btn-primary">Zerrendara itzuli</a>
-        </li>
-    </ul>
-</div>
 {% endblock %}

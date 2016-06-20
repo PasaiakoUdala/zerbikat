@@ -30,7 +30,7 @@
         {% for kanala in kanalas %}
             <tr>
                 <td>{{ kanala.kanalmota }}</td>
-                <td><a href="{{ path('kanala_show', { 'id': kanala.id }) }}">{{ kanala.izenaeu }}</a></td>
+                <td><a href="{{ path('kanala_edit', { 'id': kanala.id }) }}">{{ kanala.izenaeu }}</a></td>
                 <td>{{ kanala.deskribapenaeu }}</td>
                 <td>{% if kanala.telematikoa %}Bai{% else %}Ez{% endif %}</td>
                 {#<td>#}

@@ -1,12 +1,27 @@
 {% extends 'base.html.twig' %}
-
 {% block menua %}
     {{ parent() }}
-    <ul class="list-inline pull-right" role="tablist">
-        {% if is_granted('ROLE_SUPER_ADMIN') %}<li><a href="{{ path('udala_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>{% endif %}
-        {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('udala_edit', { 'id': udala.id }) }}" class="btn btn-primary">Aldatu</a></li>{% endif %}
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Udalak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}<li><a href="{{ path('udala_index') }}" >Zerrendara itzuli</a></li>{% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('udala_edit', { 'id': udala.id }) }}" >Aldatu</a></li>{% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+{#{% block menua %}#}
+    {#{{ parent() }}#}
+    {#<ul class="list-inline pull-right" role="tablist">#}
+        {#{% if is_granted('ROLE_SUPER_ADMIN') %}<li><a href="{{ path('udala_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>{% endif %}#}
+        {#{% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('udala_edit', { 'id': udala.id }) }}" class="btn btn-primary">Aldatu</a></li>{% endif %}#}
+    {#</ul>#}
+{#{% endblock %}#}
 
 {% block body %}
     <table class="table table-bordered">

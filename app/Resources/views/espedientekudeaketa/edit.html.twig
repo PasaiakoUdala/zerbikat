@@ -1,21 +1,58 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+<nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand">Espediente kudeaketa</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()">Gorde</a></li>
+                <li><a href="{{ path('espedientekudeaketa_index') }}" >Zerrendara itzuli</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
 {% block body %}
-    <h1>Espedientekudeaketa edit</h1>
+    {#<h1>Espedientekudeaketa edit</h1>#}
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {#{{ form_widget(edit_form) }}#}
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.izenaeu, 'Izena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.izenaeu) }}
+                {{ form_widget(edit_form.izenaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.izenaes, 'Izena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.izenaes) }}
+                {{ form_widget(edit_form.izenaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('espedientekudeaketa_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.urleu, 'URL (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.urleu) }}
+                {{ form_widget(edit_form.urleu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(edit_form.urles, 'URL (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.urles) }}
+                {{ form_widget(edit_form.urles, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(edit_form) }}
 {% endblock %}
