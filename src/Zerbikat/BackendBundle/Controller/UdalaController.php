@@ -37,7 +37,7 @@ class UdalaController extends Controller
             return $this->redirectToRoute('udala_show', array('id' => $this->getUser()->getUdala()->getId()));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -69,7 +69,7 @@ class UdalaController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -120,7 +120,7 @@ class UdalaController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -146,7 +146,7 @@ class UdalaController extends Controller
         }else
         {
             //baimenik ez
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }            
     }
 

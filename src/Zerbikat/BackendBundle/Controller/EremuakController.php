@@ -37,7 +37,7 @@ class EremuakController extends Controller
             return $this->redirectToRoute('eremuak_edit', array('id' => $this->getUser()->getUdala()->getEremuak()->getId()));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -70,7 +70,7 @@ class EremuakController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -121,7 +121,7 @@ class EremuakController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -147,7 +147,7 @@ class EremuakController extends Controller
         }else
         {
             //baimenik ez
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 

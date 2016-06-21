@@ -65,7 +65,7 @@ class AzpiatalaparrafoaController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }            
     }
 
@@ -116,7 +116,7 @@ class AzpiatalaparrafoaController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -143,7 +143,7 @@ class AzpiatalaparrafoaController extends Controller
         }else
         {
             //baimenik ez
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 

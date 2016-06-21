@@ -34,7 +34,7 @@ class ZerbitzuaController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }            
     }
 
@@ -60,14 +60,13 @@ class ZerbitzuaController extends Controller
 
                 return $this->redirectToRoute('zerbitzua_show', array('id' => $zerbitzua->getId()));
             }
-
             return $this->render('zerbitzua/new.html.twig', array(
                 'zerbitzua' => $zerbitzua,
                 'form' => $form->createView(),
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 
@@ -117,7 +116,7 @@ class ZerbitzuaController extends Controller
             ));
         }else
         {
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }            
     }
 
@@ -143,7 +142,7 @@ class ZerbitzuaController extends Controller
         }else
         {
             //baimenik ez
-            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
         }
     }
 

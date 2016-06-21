@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+    <nav class="navbar navbar-default navbar-lower @zindex-navbar" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand">Eremuak</a>
@@ -19,76 +19,78 @@
     {{ form_start(edit_form) }}
         {#{{ form_widget(edit_form) }}#}
     <div class="row">
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.helburuatext, 'Helburua: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.helburuatext) }}
-                {{ form_widget(edit_form.helburuatext, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div  class=" col-sm-12">
+                        {{ form_label(edit_form.helburuatext, 'Helburua: ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.helburuatext) }}
+                        {{ form_widget(edit_form.helburuatext, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.helburualabeleu, 'Helburua etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.helburualabeleu) }}
+                        {{ form_widget(edit_form.helburualabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.helburualabeles, 'Helburua etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.helburualabeles) }}
+                        {{ form_widget(edit_form.helburualabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.helburualabeleu, 'Helburua etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.helburualabeleu) }}
-                {{ form_widget(edit_form.helburualabeleu, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-6">
+                    {{ form_errors(edit_form.norkeskatutext) }}
+                    {{ form_label(edit_form.norkeskatutext, 'Nork eskatu (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(edit_form.norkeskatutext, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <div class="col-sm-6">
+                    {{ form_label(edit_form.norkeskatutable, 'Nork eskatu (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.norkeskatutable) }}
+                    {{ form_widget(edit_form.norkeskatutable, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.norkeskatulabeleu, 'Nork eska dezake etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.norkeskatulabeleu) }}
+                        {{ form_widget(edit_form.norkeskatulabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.norkeskatulabeles, 'Nork eska dezake etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.norkeskatulabeles) }}
+                        {{ form_widget(edit_form.norkeskatulabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.helburualabeles, 'Helburua etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.helburualabeles) }}
-                {{ form_widget(edit_form.helburualabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
+
     </div>
 
-    <div class="row">
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.norkeskatutext) }}
-                {{ form_label(edit_form.norkeskatutext, 'Nork eskatu (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.norkeskatutext, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.norkeskatutable, 'Nork eskatu (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.norkeskatutable) }}
-                {{ form_widget(edit_form.norkeskatutable, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.norkeskatulabeleu, 'Nork eska dezake etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.norkeskatulabeleu) }}
-                {{ form_widget(edit_form.norkeskatulabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.norkeskatulabeles, 'Nork eska dezake etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.norkeskatulabeles) }}
-                {{ form_widget(edit_form.norkeskatulabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
 
     <div class="row">
+        <div class="page-header"></div>
         <div class="col-sm-2">
             <div>
                 {{ form_errors(edit_form.dokumentazioatext) }}
                 {{ form_label(edit_form.dokumentazioatext, 'Agiriak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.dokumentazioatext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.dokumentazioatext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.dokumentazioatable, 'Agiriak (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.dokumentazioatable) }}
-                {{ form_widget(edit_form.dokumentazioatable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.dokumentazioatable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -108,19 +110,20 @@
     </div>
 
     <div class="row">
+        <div class="page-header"></div>
         <div class="col-sm-2">
             <div>
                 {{ form_errors(edit_form.doklaguntext) }}
                 {{ form_label(edit_form.doklaguntext, 'Dok. lagun. (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.doklaguntext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.doklaguntext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.doklaguntable, 'Dok. lagun. (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.doklaguntable) }}
-                {{ form_widget(edit_form.doklaguntable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.doklaguntable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -140,19 +143,20 @@
     </div>
 
     <div class="row">
+        <div class="page-header"></div>
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_errors(edit_form.kanalatext) }}
                 {{ form_label(edit_form.kanalatext, 'Kanala (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.kanalatext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.kanalatext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.kanalatable, 'Kanala (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kanalatable) }}
-                {{ form_widget(edit_form.kanalatable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.kanalatable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -173,19 +177,20 @@
 
 
     <div class="row">
+        <div class="page-header"></div>
         <div class="col-sm-2">
-            <div>
+            <div >
                 {{ form_errors(edit_form.kostuatext) }}
                 {{ form_label(edit_form.kostuatext, 'Kostua (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.kostuatext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.kostuatext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.kostuatable, 'Kostua (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kostuatable) }}
-                {{ form_widget(edit_form.kostuatable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.kostuatable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -209,14 +214,14 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-2"></div>
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.epealabeleu, 'Prozeduraren epea etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.epealabeleu) }}
                 {{ form_widget(edit_form.epealabeleu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.epealabeles, 'Prozeduraren epea etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.epealabeles) }}
                 {{ form_widget(edit_form.epealabeles, {'attr': {'class': 'form-control'}}) }}
@@ -225,12 +230,12 @@
     </div>
 
 
-    <div class="row">
+    <div class="row form-group">
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.aurreikusi, 'Aurreikusitako epea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.aurreikusi) }}
-                {{ form_widget(edit_form.aurreikusi, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.aurreikusi, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -249,12 +254,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row ">
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.arrunta, 'Epe arrunta: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.arrunta) }}
-                {{ form_widget(edit_form.arrunta, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.arrunta, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -279,7 +284,7 @@
             <div>
                 {{ form_label(edit_form.ebazpensinpli, 'Ebazpen sinplifikatua: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.ebazpensinpli) }}
-                {{ form_widget(edit_form.ebazpensinpli, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.ebazpensinpli, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -304,7 +309,7 @@
             <div>
                 {{ form_label(edit_form.arduraaitorpena, 'Ardura aitorpena: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.arduraaitorpena) }}
-                {{ form_widget(edit_form.arduraaitorpena, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.arduraaitorpena, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -329,7 +334,7 @@
             <div>
                 {{ form_label(edit_form.isiltasunadmin, 'Administrazio isiltasunaren izaera: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.isiltasunadmin) }}
-                {{ form_widget(edit_form.isiltasunadmin, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.isiltasunadmin, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -356,14 +361,14 @@
                 {{ form_errors(edit_form.araudiatext) }}
                 {{ form_label(edit_form.araudiatext, 'Araudia (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.araudiatext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.araudiatext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.araudiatable, 'Araudia (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.araudiatable) }}
-                {{ form_widget(edit_form.araudiatable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.araudiatable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -389,14 +394,14 @@
                 {{ form_errors(edit_form.prozeduratext) }}
                 {{ form_label(edit_form.prozeduratext, 'Prozedurak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.prozeduratext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.prozeduratext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.prozeduratable, 'Prozedurak (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.prozeduratable) }}
-                {{ form_widget(edit_form.prozeduratable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.prozeduratable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -422,14 +427,14 @@
                 {{ form_errors(edit_form.norkebatzitext) }}
                 {{ form_label(edit_form.norkebatzitext, 'Nork ebatzi (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.norkebatzitext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.norkebatzitext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.norkebatzitable, 'Nork ebatzi (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.norkebatzitable) }}
-                {{ form_widget(edit_form.norkebatzitable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.norkebatzitable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -454,7 +459,7 @@
             <div>
                 {{ form_label(edit_form.azpisailatable, 'Udal saila (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.azpisailatable) }}
-                {{ form_widget(edit_form.azpisailatable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.azpisailatable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -480,7 +485,7 @@
             <div>
                 {{ form_label(edit_form.oharraktext, 'Oharrak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.oharraktext) }}
-                {{ form_widget(edit_form.oharraktext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.oharraktext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2"></div>
@@ -507,14 +512,14 @@
                 {{ form_errors(edit_form.besteak1text) }}
                 {{ form_label(edit_form.besteak1text, 'Besteak1 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.besteak1text, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak1text, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.besteak1table, 'Besteak1 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.besteak1table) }}
-                {{ form_widget(edit_form.besteak1table, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak1table, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -540,14 +545,14 @@
                 {{ form_errors(edit_form.besteak2text) }}
                 {{ form_label(edit_form.besteak2text, 'Besteak2 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.besteak2text, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak2text, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.besteak2table, 'Besteak2 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.besteak2table) }}
-                {{ form_widget(edit_form.besteak2table, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak2table, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -573,14 +578,14 @@
                 {{ form_errors(edit_form.besteak3text) }}
                 {{ form_label(edit_form.besteak3text, 'Besteak3 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.besteak3text, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak3text, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.besteak3table, 'Besteak3 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.besteak3table) }}
-                {{ form_widget(edit_form.besteak3table, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.besteak3table, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
@@ -607,14 +612,14 @@
                 {{ form_errors(edit_form.datuenbabesatext) }}
                 {{ form_label(edit_form.datuenbabesatext, 'Datuen-babesa (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
 
-                {{ form_widget(edit_form.datuenbabesatext, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.datuenbabesatext, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div>
                 {{ form_label(edit_form.datuenbabesatable, 'Datuen-babesa (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.datuenbabesatable) }}
-                {{ form_widget(edit_form.datuenbabesatable, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.datuenbabesatable, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">

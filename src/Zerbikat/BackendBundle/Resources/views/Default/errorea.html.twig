@@ -1,46 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-    {#<nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">#}
-        {#<div class="container">#}
-            {#<div class="navbar-header">#}
-                {#<a class="navbar-brand ">ERROREA</a>#}
-            {#</div>#}
-            {#<div id="navbar" class="navbar-collapse collapse navbar-right">#}
-                {#<ul class="nav navbar-nav">#}
-                    {#<li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()">Gorde</a></li>#}
-                    {#<li><a href="{{ path('araudia_index') }}" >Zerrendara itzuli</a></li>#}
-                {#</ul>#}
-            {#</div>#}
-{#<br>#}
-            {#<div class="alert alert-danger" role="alert">#}
-                {#<strong>ERROREA!!  </strong> Ez daukazu ekintza horretarako baimenik.#}
-                {#<ul class="nav navbar-nav">#}
-
-                {#</ul>#}
-            {#</div>#}
-            {#<div class="alert alert-danger" role="alert">#}
-            {#<a href="{{ app.request.headers.get('referer') }}" class="btn btn-lg btn-danger">Atzera</a>#}
-            {#</div>#}
-        {#</div>#}
-    {#</nav>#}
-
+    <div class="alert alert-danger" role="alert">
+        <br>
+        <h4 class="text-center"><strong>ERROREA!! </strong> Ez daukazu ekintza horretarako baimenik.</h4>
+        <a href="{{ app.request.headers.get('referer') }}" class="btn btn-danger text-right navbar-right">Atzera</a>
+        <br />
+    </div>
 
 {% endblock %}
 {% block body %}
-    <div class="alert alert-danger" role="alert">
-        <strong>ERROREA</strong> Ez daukazu ekintza horretarako baimenik.
-        <a href="{{ app.request.headers.get('referer') }}" class="btn btn-danger text-right navbar-right">Atzera</a>
-    </div>
-    {#$url = htmlspecialchars($_SERVER['HTTP_REFERER']);#}
-    {#echo "<a href='$url'>back</a>";#}
-
-    {#{% dump(request) %}#}
-    {#{% url=htmlspecialchars(_SERVER['HTTP_REFERER']) %}#}
-    {#<a href="{{ url }}" class="btn btn-primary">Epe berria</a>#}
-
-    {#{% app.request.headers.get('referer') %}#}
-{#{% dump(app) %}#}
-    {#{{ app.request.headers.get('referer') }}#}
-    {#<a href="{{ app.request.headers.get('referer') }}" class="btn btn-lg btn-danger" >Atzera</a>#}
 {% endblock %}
