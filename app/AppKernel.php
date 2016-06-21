@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new ApiBundle\ApiBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new WhiteOctober\TCPDFBundle\WhiteOctoberTCPDFBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

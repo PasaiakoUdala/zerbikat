@@ -366,19 +366,21 @@
                         <li>
                             {% if app.request.locale == 'eu'%}
                                 {#<a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}#}
-                                {% if araua.araudia.estekaeu %}
-                                    <a href="{{ araua.araudia.estekaeu }}">
+                                {% if araua.estekaeu %}
+                                    <a href="{{ araua.audia.estekaeu }}">
                                         {{ araua.araudia.arauaeu }} </a> {{ araua.atalaeu }}
                                 {% else %}
                                     {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
                                 {% endif %}
                             {% else %}
                                 {#<a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}#}
-                                {% if araua.araudia.estekaes %}
-                                    <a href="{{ araua.araudia.estekaes }}">
-                                        {{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
+                                {% if araua.estekaes %}
+                                    <a href="{{ araua.estekaes }}">
+                                        {{ araua.arauaes }}</a>
+                                    {#{{ araua.atalaes }}#}
                                 {% else %}
-                                    {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
+                                    {{ araua.arauaes }}
+                                    {#- {{ araua.atalaes }}#}
                                 {% endif %}
                             {% endif %}
                         </li>

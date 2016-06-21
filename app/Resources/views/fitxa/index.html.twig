@@ -43,6 +43,7 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('fitxa_delete', { 'id': fitxa.id }) }}">Ezabatu</a>
                     {% endif %}
+                    <a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank">PDF</a>
                 </td>
 
             </tr>
