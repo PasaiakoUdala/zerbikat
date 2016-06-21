@@ -1,4 +1,4 @@
 Zerbikat
 ========================
 
-Pasaiako Udalak garatutako aplikazioa Fitak kudeatzeko
+Pasaiako Udalak garatutako aplikazioa Zerbitzuen katalogoa kudeatzeko.
