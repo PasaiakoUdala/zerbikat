@@ -72,606 +72,609 @@
                 </div>
             </div>
         </div>
-
     </div>
 
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-sm-6">
+                    {{ form_errors(edit_form.dokumentazioatext) }}
+                    {{ form_label(edit_form.dokumentazioatext, 'Agiriak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(edit_form.dokumentazioatext, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_label(edit_form.dokumentazioatable, 'Agiriak (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.dokumentazioatable) }}
+                    {{ form_widget(edit_form.dokumentazioatable, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <br/>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ form_label(edit_form.dokumentazioalabeleu, 'Agiriak etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.dokumentazioalabeleu) }}
+                    {{ form_widget(edit_form.dokumentazioalabeleu, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.dokumentazioalabeles, 'Agiriak etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.dokumentazioalabeles) }}
+                    {{ form_widget(edit_form.dokumentazioalabeles, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-sm-6">
+                    {{ form_errors(edit_form.doklaguntext) }}
+                    {{ form_label(edit_form.doklaguntext, 'Dok. lagun. (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(edit_form.doklaguntext, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_label(edit_form.doklaguntable, 'Dok. lagun. (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.doklaguntable) }}
+                    {{ form_widget(edit_form.doklaguntable, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <br/>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ form_label(edit_form.doklagunlabeleu, 'Dok. lagun. etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.doklagunlabeleu) }}
+                    {{ form_widget(edit_form.doklagunlabeleu, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.doklagunlabeles, 'Dok. lagun. etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.doklagunlabeles) }}
+                    {{ form_widget(edit_form.doklagunlabeles, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-sm-6">
+                    {{ form_errors(edit_form.kanalatext) }}
+                    {{ form_label(edit_form.kanalatext, 'Kanala (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(edit_form.kanalatext, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_label(edit_form.kanalatable, 'Kanala (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.kanalatable) }}
+                    {{ form_widget(edit_form.kanalatable, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <br/>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ form_label(edit_form.kanalalabeleu, 'Kanala etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.kanalalabeleu) }}
+                    {{ form_widget(edit_form.kanalalabeleu, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.kanalalabeles, 'Kanala etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.kanalalabeles) }}
+                    {{ form_widget(edit_form.kanalalabeles, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-sm-6">
+                    {{ form_errors(edit_form.kostuatext) }}
+                    {{ form_label(edit_form.kostuatext, 'Kostua (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(edit_form.kostuatext, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_label(edit_form.kostuatable, 'Kostua (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.kostuatable) }}
+                    {{ form_widget(edit_form.kostuatable, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <br/>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ form_label(edit_form.kostualabeleu, 'Kostua etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.kostualabeleu) }}
+                    {{ form_widget(edit_form.kostualabeleu, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.kostualabeles, 'Kostua etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.kostualabeles) }}
+                    {{ form_widget(edit_form.kostualabeles, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.dokumentazioatext) }}
-                {{ form_label(edit_form.dokumentazioatext, 'Agiriak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.dokumentazioatext, {'attr': {'class': 'c-checkbox'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-12">
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.epealabeleu, 'Prozeduraren epea etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.epealabeleu) }}
+                        {{ form_widget(edit_form.epealabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.epealabeles, 'Prozeduraren epea etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.epealabeles) }}
+                        {{ form_widget(edit_form.epealabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.dokumentazioatable, 'Agiriak (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.dokumentazioatable) }}
-                {{ form_widget(edit_form.dokumentazioatable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.dokumentazioalabeleu, 'Agiriak etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.dokumentazioalabeleu) }}
-                {{ form_widget(edit_form.dokumentazioalabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.dokumentazioalabeles, 'Agiriak etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.dokumentazioalabeles) }}
-                {{ form_widget(edit_form.dokumentazioalabeles, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-12">
+                        {{ form_label(edit_form.aurreikusi, 'Aurreikusitako epea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.aurreikusi) }}
+                        {{ form_widget(edit_form.aurreikusi, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.aurreikusilabeleu, 'Aurreikusitako epea etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.aurreikusilabeleu) }}
+                        {{ form_widget(edit_form.aurreikusilabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.aurreikusilabeles, 'Aurreikusitako epea etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.aurreikusilabeles) }}
+                        {{ form_widget(edit_form.aurreikusilabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.doklaguntext) }}
-                {{ form_label(edit_form.doklaguntext, 'Dok. lagun. (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.doklaguntext, {'attr': {'class': 'c-checkbox'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-12">
+                        {{ form_label(edit_form.arrunta, 'Epe arrunta: ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.arrunta) }}
+                        {{ form_widget(edit_form.arrunta, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.arruntalabeleu, 'Epe arrunta etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.arruntalabeleu) }}
+                        {{ form_widget(edit_form.arruntalabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.arruntalabeles, 'Epe arrunta etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.arruntalabeles) }}
+                        {{ form_widget(edit_form.arruntalabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.doklaguntable, 'Dok. lagun. (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.doklaguntable) }}
-                {{ form_widget(edit_form.doklaguntable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.doklagunlabeleu, 'Dok. lagun. etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.doklagunlabeleu) }}
-                {{ form_widget(edit_form.doklagunlabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.doklagunlabeles, 'Dok. lagun. etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.doklagunlabeles) }}
-                {{ form_widget(edit_form.doklagunlabeles, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div  class=" col-sm-12">
+                        {{ form_label(edit_form.ebazpensinpli, 'Ebazpen sinplifikatua: ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.ebazpensinpli) }}
+                        {{ form_widget(edit_form.ebazpensinpli, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.ebazpensinplilabeleu, 'Ebazpen sinplifikatua etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.ebazpensinplilabeleu) }}
+                        {{ form_widget(edit_form.ebazpensinplilabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.ebazpensinplilabeles, 'Ebazpen sinplifikatua etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.ebazpensinplilabeles) }}
+                        {{ form_widget(edit_form.ebazpensinplilabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
     <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                {{ form_errors(edit_form.kanalatext) }}
-                {{ form_label(edit_form.kanalatext, 'Kanala (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.kanalatext, {'attr': {'class': 'c-checkbox'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div  class=" col-sm-12">
+                        {{ form_label(edit_form.arduraaitorpena, 'Ardura aitorpena: ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.arduraaitorpena) }}
+                        {{ form_widget(edit_form.arduraaitorpena, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.arduraaitorpenalabeleu, 'Ardura aitorpena etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.arduraaitorpenalabeleu) }}
+                        {{ form_widget(edit_form.arduraaitorpenalabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.arduraaitorpenalabeles, 'Ardura aitorpena etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.arduraaitorpenalabeles) }}
+                        {{ form_widget(edit_form.arduraaitorpenalabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.kanalatable, 'Kanala (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kanalatable) }}
-                {{ form_widget(edit_form.kanalatable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.kanalalabeleu, 'Kanala etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kanalalabeleu) }}
-                {{ form_widget(edit_form.kanalalabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.kanalalabeles, 'Kanala etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kanalalabeles) }}
-                {{ form_widget(edit_form.kanalalabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div >
-                {{ form_errors(edit_form.kostuatext) }}
-                {{ form_label(edit_form.kostuatext, 'Kostua (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.kostuatext, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.kostuatable, 'Kostua (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kostuatable) }}
-                {{ form_widget(edit_form.kostuatable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.kostualabeleu, 'Kostua etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kostualabeleu) }}
-                {{ form_widget(edit_form.kostualabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.kostualabeles, 'Kostua etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kostualabeles) }}
-                {{ form_widget(edit_form.kostualabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                {{ form_label(edit_form.epealabeleu, 'Prozeduraren epea etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.epealabeleu) }}
-                {{ form_widget(edit_form.epealabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                {{ form_label(edit_form.epealabeles, 'Prozeduraren epea etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.epealabeles) }}
-                {{ form_widget(edit_form.epealabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row form-group">
-        <div class="col-sm-2">
-            <div class="form-group">
-                {{ form_label(edit_form.aurreikusi, 'Aurreikusitako epea: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.aurreikusi) }}
-                {{ form_widget(edit_form.aurreikusi, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.aurreikusilabeleu, 'Aurreikusitako epea etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.aurreikusilabeleu) }}
-                {{ form_widget(edit_form.aurreikusilabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.aurreikusilabeles, 'Aurreikusitako epea etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.aurreikusilabeles) }}
-                {{ form_widget(edit_form.aurreikusilabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-    <div class="row ">
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.arrunta, 'Epe arrunta: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.arrunta) }}
-                {{ form_widget(edit_form.arrunta, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.arruntalabeleu, 'Epe arrunta etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.arruntalabeleu) }}
-                {{ form_widget(edit_form.arruntalabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.arruntalabeles, 'Epe arrunta etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.arruntalabeles) }}
-                {{ form_widget(edit_form.arruntalabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.ebazpensinpli, 'Ebazpen sinplifikatua: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.ebazpensinpli) }}
-                {{ form_widget(edit_form.ebazpensinpli, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.ebazpensinplilabeleu, 'Ebazpen sinplifikatua etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.ebazpensinplilabeleu) }}
-                {{ form_widget(edit_form.ebazpensinplilabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.ebazpensinplilabeles, 'Ebazpen sinplifikatua etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.ebazpensinplilabeles) }}
-                {{ form_widget(edit_form.ebazpensinplilabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.arduraaitorpena, 'Ardura aitorpena: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.arduraaitorpena) }}
-                {{ form_widget(edit_form.arduraaitorpena, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.arduraaitorpenalabeleu, 'Ardura aitorpena etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.arduraaitorpenalabeleu) }}
-                {{ form_widget(edit_form.arduraaitorpenalabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.arduraaitorpenalabeles, 'Ardura aitorpena etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.arduraaitorpenalabeles) }}
-                {{ form_widget(edit_form.arduraaitorpenalabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.isiltasunadmin, 'Administrazio isiltasunaren izaera: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.isiltasunadmin) }}
-                {{ form_widget(edit_form.isiltasunadmin, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.isiltasunadminlabeleu, 'Administrazio isiltasunaren izaera etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.isiltasunadminlabeleu) }}
-                {{ form_widget(edit_form.isiltasunadminlabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.isiltasunadminlabeles, 'Administrazio isiltasunaren izaera etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.isiltasunadminlabeles) }}
-                {{ form_widget(edit_form.isiltasunadminlabeles, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div  class=" col-sm-12">
+                        {{ form_label(edit_form.isiltasunadmin, 'Administrazio isiltasunaren izaera: ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.isiltasunadmin) }}
+                        {{ form_widget(edit_form.isiltasunadmin, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.isiltasunadminlabeleu, 'Administrazio isiltasunaren izaera etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.isiltasunadminlabeleu) }}
+                        {{ form_widget(edit_form.isiltasunadminlabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.isiltasunadminlabeles, 'Administrazio isiltasunaren izaera etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.isiltasunadminlabeles) }}
+                        {{ form_widget(edit_form.isiltasunadminlabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.araudiatext) }}
-                {{ form_label(edit_form.araudiatext, 'Araudia (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.araudiatext, {'attr': {'class': 'c-checkbox'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-6">
+                        {{ form_errors(edit_form.araudiatext) }}
+                        {{ form_label(edit_form.araudiatext, 'Araudia (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_widget(edit_form.araudiatext, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(edit_form.araudiatable, 'Araudia (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.araudiatable) }}
+                        {{ form_widget(edit_form.araudiatable, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.araudialabeleu, 'Araudia etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.araudialabeleu) }}
+                        {{ form_widget(edit_form.araudialabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.araudialabeles, 'Araudia etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.araudialabeles) }}
+                        {{ form_widget(edit_form.araudialabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.araudiatable, 'Araudia (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.araudiatable) }}
-                {{ form_widget(edit_form.araudiatable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.araudialabeleu, 'Araudia etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.araudialabeleu) }}
-                {{ form_widget(edit_form.araudialabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.araudialabeles, 'Araudia etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.araudialabeles) }}
-                {{ form_widget(edit_form.araudialabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.prozeduratext) }}
-                {{ form_label(edit_form.prozeduratext, 'Prozedurak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.prozeduratext, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.prozeduratable, 'Prozedurak (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.prozeduratable) }}
-                {{ form_widget(edit_form.prozeduratable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.prozeduralabeleu, 'Prozedurak etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.prozeduralabeleu) }}
-                {{ form_widget(edit_form.prozeduralabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.prozeduralabeles, 'Prozedurak etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.prozeduralabeles) }}
-                {{ form_widget(edit_form.prozeduralabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.norkebatzitext) }}
-                {{ form_label(edit_form.norkebatzitext, 'Nork ebatzi (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.norkebatzitext, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.norkebatzitable, 'Nork ebatzi (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.norkebatzitable) }}
-                {{ form_widget(edit_form.norkebatzitable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.norkebatzilabeleu, 'Nork ebatzi etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.norkebatzilabeleu) }}
-                {{ form_widget(edit_form.norkebatzilabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.norkebatzilabeles, 'Nork ebatzi etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.norkebatzilabeles) }}
-                {{ form_widget(edit_form.norkebatzilabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.azpisailatable, 'Udal saila (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.azpisailatable) }}
-                {{ form_widget(edit_form.azpisailatable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.azpisailalabeleu, 'Udal saila etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.azpisailalabeleu) }}
-                {{ form_widget(edit_form.azpisailalabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.azpisailalabeles, 'Udal saila etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.azpisailalabeles) }}
-                {{ form_widget(edit_form.azpisailalabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.oharraktext, 'Oharrak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.oharraktext) }}
-                {{ form_widget(edit_form.oharraktext, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.oharraklabeleu, 'Oharrak etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.oharraklabeleu) }}
-                {{ form_widget(edit_form.oharraklabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.oharraklabeles, 'Oharrak etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.oharraklabeles) }}
-                {{ form_widget(edit_form.oharraklabeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.besteak1text) }}
-                {{ form_label(edit_form.besteak1text, 'Besteak1 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.besteak1text, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.besteak1table, 'Besteak1 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak1table) }}
-                {{ form_widget(edit_form.besteak1table, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.besteak1labeleu, 'Besteak1 etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak1labeleu) }}
-                {{ form_widget(edit_form.besteak1labeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.besteak1labeles, 'Besteak1 etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak1labeles) }}
-                {{ form_widget(edit_form.besteak1labeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.besteak2text) }}
-                {{ form_label(edit_form.besteak2text, 'Besteak2 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.besteak2text, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.besteak2table, 'Besteak2 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak2table) }}
-                {{ form_widget(edit_form.besteak2table, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.besteak2labeleu, 'Besteak2 etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak2labeleu) }}
-                {{ form_widget(edit_form.besteak2labeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.besteak2labeles, 'Besteak2 etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak2labeles) }}
-                {{ form_widget(edit_form.besteak2labeles, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.besteak3text) }}
-                {{ form_label(edit_form.besteak3text, 'Besteak3 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.besteak3text, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.besteak3table, 'Besteak3 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak3table) }}
-                {{ form_widget(edit_form.besteak3table, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.besteak3labeleu, 'Besteak3 etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak3labeleu) }}
-                {{ form_widget(edit_form.besteak3labeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.besteak3labeles, 'Besteak3 etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.besteak3labeles) }}
-                {{ form_widget(edit_form.besteak3labeles, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-6">
+                        {{ form_errors(edit_form.prozeduratext) }}
+                        {{ form_label(edit_form.prozeduratext, 'Prozedurak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_widget(edit_form.prozeduratext, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(edit_form.prozeduratable, 'Prozedurak (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.prozeduratable) }}
+                        {{ form_widget(edit_form.prozeduratable, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.prozeduralabeleu, 'Prozedurak etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.prozeduralabeleu) }}
+                        {{ form_widget(edit_form.prozeduralabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.prozeduralabeles, 'Prozedurak etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.prozeduralabeles) }}
+                        {{ form_widget(edit_form.prozeduralabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_errors(edit_form.datuenbabesatext) }}
-                {{ form_label(edit_form.datuenbabesatext, 'Datuen-babesa (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
-
-                {{ form_widget(edit_form.datuenbabesatext, {'attr': {'class': 'c-checkbox'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-6">
+                        {{ form_errors(edit_form.norkebatzitext) }}
+                        {{ form_label(edit_form.norkebatzitext, 'Nork ebatzi (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_widget(edit_form.norkebatzitext, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(edit_form.norkebatzitable, 'Nork ebatzi (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.norkebatzitable) }}
+                        {{ form_widget(edit_form.norkebatzitable, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.norkebatzilabeleu, 'Nork ebatzi etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.norkebatzilabeleu) }}
+                        {{ form_widget(edit_form.norkebatzilabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.norkebatzilabeles, 'Nork ebatzi etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.norkebatzilabeles) }}
+                        {{ form_widget(edit_form.norkebatzilabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2">
-            <div>
-                {{ form_label(edit_form.datuenbabesatable, 'Datuen-babesa (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.datuenbabesatable) }}
-                {{ form_widget(edit_form.datuenbabesatable, {'attr': {'class': 'c-checkbox'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.datuenbabesalabeleu, 'Datuen-babesa etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.datuenbabesalabeleu) }}
-                {{ form_widget(edit_form.datuenbabesalabeleu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.datuenbabesalabeles, 'Datuen-babesa etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.datuenbabesalabeles) }}
-                {{ form_widget(edit_form.datuenbabesalabeles, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-12">
+                        {{ form_label(edit_form.azpisailatable, 'Udal saila (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.azpisailatable) }}
+                        {{ form_widget(edit_form.azpisailatable, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.azpisailalabeleu, 'Udal saila etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.azpisailalabeleu) }}
+                        {{ form_widget(edit_form.azpisailalabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.azpisailalabeles, 'Udal saila etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.azpisailalabeles) }}
+                        {{ form_widget(edit_form.azpisailalabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 
     <div class="row">
-        <div class="page-header"></div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.doanlabeleu, 'Kostua hutsik dagoeneko etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.doanlabeleu) }}
-                {{ form_widget(edit_form.doanlabeleu, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div  class=" col-sm-12">
+                        {{ form_label(edit_form.oharraktext, 'Oharrak (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.oharraktext) }}
+                        {{ form_widget(edit_form.oharraktext, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.oharraklabeleu, 'Oharrak etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.oharraklabeleu) }}
+                        {{ form_widget(edit_form.oharraklabeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.oharraklabeles, 'Oharrak etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.oharraklabeles) }}
+                        {{ form_widget(edit_form.oharraklabeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div>
-                {{ form_label(edit_form.doanlabeles, 'Kostua hutsik dagoeneko etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.doanlabeles) }}
-                {{ form_widget(edit_form.doanlabeles, {'attr': {'class': 'form-control'}}) }}
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-6">
+                        {{ form_errors(edit_form.besteak1text) }}
+                        {{ form_label(edit_form.besteak1text, 'Besteak1 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_widget(edit_form.besteak1text, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(edit_form.besteak1table, 'Besteak1 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak1table) }}
+                        {{ form_widget(edit_form.besteak1table, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.besteak1labeleu, 'Besteak1 etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak1labeleu) }}
+                        {{ form_widget(edit_form.besteak1labeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.besteak1labeles, 'Besteak1 etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak1labeles) }}
+                        {{ form_widget(edit_form.besteak1labeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-6">
+                        {{ form_errors(edit_form.besteak2text) }}
+                        {{ form_label(edit_form.besteak2text, 'Besteak2 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_widget(edit_form.besteak2text, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(edit_form.besteak2table, 'Besteak2 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak2table) }}
+                        {{ form_widget(edit_form.besteak2table, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.besteak2labeleu, 'Besteak2 etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak2labeleu) }}
+                        {{ form_widget(edit_form.besteak2labeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.besteak2labeles, 'Besteak2 etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak2labeles) }}
+                        {{ form_widget(edit_form.besteak2labeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="col-sm-6">
+                        {{ form_errors(edit_form.besteak3text) }}
+                        {{ form_label(edit_form.besteak3text, 'Besteak3 (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_widget(edit_form.besteak3text, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_label(edit_form.besteak3table, 'Besteak3 (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak3table) }}
+                        {{ form_widget(edit_form.besteak3table, {'attr': {'class': 'c-checkbox'}}) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form_label(edit_form.besteak3labeleu, 'Besteak3 etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak3labeleu) }}
+                        {{ form_widget(edit_form.besteak3labeleu, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(edit_form.besteak3labeles, 'Besteak3 etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                        {{ form_errors(edit_form.besteak3labeles) }}
+                        {{ form_widget(edit_form.besteak3labeles, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-sm-6">
+                    {{ form_errors(edit_form.datuenbabesatext) }}
+                    {{ form_label(edit_form.datuenbabesatext, 'Datuen-babesa (txt): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_widget(edit_form.datuenbabesatext, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_label(edit_form.datuenbabesatable, 'Datuen-babesa (taula): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.datuenbabesatable) }}
+                    {{ form_widget(edit_form.datuenbabesatable, {'attr': {'class': 'c-checkbox'}}) }}
+                </div>
+                <br/>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ form_label(edit_form.datuenbabesalabeleu, 'Datuen-babesa etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.datuenbabesalabeleu) }}
+                    {{ form_widget(edit_form.datuenbabesalabeleu, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.datuenbabesalabeles, 'Datuen-babesa etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.datuenbabesalabeles) }}
+                    {{ form_widget(edit_form.datuenbabesalabeles, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="col-sm-12">
+                </div>
+                <br/>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    {{ form_label(edit_form.doanlabeleu, 'Kostua hutsik dagoeneko etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.doanlabeleu) }}
+                    {{ form_widget(edit_form.doanlabeleu, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(edit_form.doanlabeles, 'Kostua hutsik dagoeneko etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.doanlabeles) }}
+                    {{ form_widget(edit_form.doanlabeles, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     {% if is_granted('ROLE_SUPER_ADMIN') %}
     <div class="row">
     {% else %}
     <div class="row hidden">
-    {% endif %}
-        <div class="page-header"></div>
+        {% endif %}
         <div class="col-sm-6">
-            <div>
-                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.udala) }}
-                {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div  class=" col-sm-12">
+                        {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                    </div>
+                    <br/>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                        {{ form_errors(edit_form.udala) }}
+                        {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+
+    {#{% if is_granted('ROLE_SUPER_ADMIN') %}#}
+    {#<div class="row">#}
+    {#{% else %}#}
+    {#<div class="row hidden">#}
+    {#{% endif %}#}
+        {#<div class="page-header"></div>#}
+        {#<div class="col-sm-6">#}
+            {#<div>#}
+                {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                {#{{ form_errors(edit_form.udala) }}#}
+                {#{{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 
 
     {{ form_end(edit_form) }}
