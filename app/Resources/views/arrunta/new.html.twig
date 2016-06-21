@@ -1,16 +1,57 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Epe Arruntak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="{{ path('arrunta_index') }}" >Utzi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 {% block body %}
-    <h1>Arrunta creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {#{{ form_widget(form) }}#}
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(form.epeaeu, 'Epea (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.epeaeu) }}
+                {{ form_widget(form.epeaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('arrunta_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(form.epeaes, 'Epea (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.epeaes) }}
+                {{ form_widget(form.epeaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.udala) }}
+                {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {{ form_end(form) }}
 {% endblock %}

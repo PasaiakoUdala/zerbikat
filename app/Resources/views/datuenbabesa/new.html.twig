@@ -1,16 +1,117 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Datuen-babesa</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="{{ path('datuenbabesa_index') }}" >Utzi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 {% block body %}
-    <h1>Datuenbabesa creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {#{{ form_widget(form) }}#}
 
-    <ul>
-        <li>
-            <a href="{{ path('datuenbabesa_index') }}">Back to the list</a>
-        </li>
-    </ul>
+<div class="row">
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.maila, 'Maila: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.maila) }}
+            {{ form_widget(form.maila, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.kodea) }}
+            {{ form_widget(form.kodea, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.izenaeu, 'Izena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.izenaeu) }}
+            {{ form_widget(form.izenaeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.izenaes, 'Izena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.izenaes) }}
+            {{ form_widget(form.izenaes, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.xedeaeu, 'Xedea (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.xedeaeu) }}
+            {{ form_widget(form.xedeaeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.xedeaes, 'Xedea (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.xedeaes) }}
+            {{ form_widget(form.xedeaes, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.lagapenakeu, 'Lagapenak (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.lagapenakeu) }}
+            {{ form_widget(form.lagapenakeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.lagapenakes, 'Lagapenak (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.lagapenakes) }}
+            {{ form_widget(form.lagapenakes, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+<div class="row">
+    {% else %}
+    <div class="row hidden">
+        {% endif %}
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.udala) }}
+                {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    {{ form_end(form) }}
 {% endblock %}

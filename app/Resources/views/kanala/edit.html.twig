@@ -20,14 +20,14 @@
         {#{{ form_widget(edit_form) }}#}
     <div class="row">
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.telematikoa, 'Telematikoa da? ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.telematikoa) }}
-                {{ form_widget(edit_form.telematikoa, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(edit_form.telematikoa, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-3">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kanalmota, 'Kanal-mota: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kanalmota) }}
                 {{ form_widget(edit_form.kanalmota, {'attr': {'class': 'form-control'}}) }}
@@ -38,7 +38,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.izenaeu, 'Kanala (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.izenaeu) }}
                 {{ form_widget(edit_form.izenaeu, {'attr': {'class': 'form-control'}}) }}
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.izenaes, 'Kanala (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.izenaes) }}
                 {{ form_widget(edit_form.izenaes, {'attr': {'class': 'form-control'}}) }}
@@ -55,7 +55,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.deskribapenaeu, 'Deskribapena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.deskribapenaeu) }}
                 {{ form_widget(edit_form.deskribapenaeu, {'attr': {'class': 'form-control'}}) }}
@@ -63,7 +63,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.deskribapenaes, 'Deskribapena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.deskribapenaes) }}
                 {{ form_widget(edit_form.deskribapenaes, {'attr': {'class': 'form-control'}}) }}
@@ -72,7 +72,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.estekaeu, 'Esteka (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.estekaeu) }}
                 {{ form_widget(edit_form.estekaeu, {'attr': {'class': 'form-control'}}) }}
@@ -80,7 +80,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.estekaes, 'Esteka (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.estekaes) }}
                 {{ form_widget(edit_form.estekaes, {'attr': {'class': 'form-control'}}) }}
@@ -90,21 +90,21 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.telefonoa, 'Telefonoa: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.telefonoa) }}
                 {{ form_widget(edit_form.telefonoa, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.fax, 'FAX: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.fax) }}
                 {{ form_widget(edit_form.fax, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.ordutegia, 'Ordutegia: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.ordutegia) }}
                 {{ form_widget(edit_form.ordutegia, {'attr': {'class': 'form-control'}}) }}
@@ -114,35 +114,35 @@
 
     <div class="row">
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.barrutia, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.barrutia) }}
                 {{ form_widget(edit_form.barrutia, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kalea, 'Kalea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kalea) }}
                 {{ form_widget(edit_form.kalea, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kalezbkia, 'Kale zenbakia: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kalezbkia) }}
                 {{ form_widget(edit_form.kalezbkia, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.eraikina, 'Eraikina: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.eraikina) }}
                 {{ form_widget(edit_form.eraikina, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.postakodea, 'Posta kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.postakodea) }}
                 {{ form_widget(edit_form.postakodea, {'attr': {'class': 'form-control'}}) }}
@@ -162,7 +162,7 @@
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}

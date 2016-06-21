@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.ordena, 'Ordena: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.ordena) }}
                 {{ form_widget(edit_form.ordena, {'attr': {'class': 'form-control'}}) }}
@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-sm-10">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.ordenantza, 'Ordenantza: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.ordenantza) }}
                 {{ form_widget(edit_form.ordenantza, {'attr': {'class': 'form-control'}}) }}
@@ -39,14 +39,14 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.testuaeu, 'Testua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.testuaeu) }}
                 {{ form_widget(edit_form.testuaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.testuaes, 'Testua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.testuaes) }}
                 {{ form_widget(edit_form.testuaes, {'attr': {'class': 'form-control'}}) }}
@@ -60,7 +60,7 @@
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}

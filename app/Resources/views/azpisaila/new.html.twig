@@ -1,16 +1,170 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Azpi-sailak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="{{ path('azpisaila_index') }}" >Zerrendara itzuli</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 {% block body %}
-    <h1>Azpisaila creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {#{{ form_widget(form) }}#}
 
-    <ul>
-        <li>
-            <a href="{{ path('azpisaila_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+<div class="row">
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.kodea) }}
+            {{ form_widget(form.kodea, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.hizkia, 'Hizkia: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.hizkia) }}
+            {{ form_widget(form.hizkia, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <div>
+            {{ form_label(form.saila, 'Saila: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.saila) }}
+            {{ form_widget(form.saila, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.azpisailaeu, 'Azpisaila (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.azpisailaeu) }}
+            {{ form_widget(form.azpisailaeu, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.azpisailaes, 'Azpisaila (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.azpisailaes) }}
+            {{ form_widget(form.azpisailaes, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.arduraduna, 'Arduraduna: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.arduraduna) }}
+            {{ form_widget(form.arduraduna, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div>
+            {{ form_label(form.arduradunahaz, 'Arduraduna (HAZ): ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.arduradunahaz) }}
+            {{ form_widget(form.arduradunahaz, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.barrutia, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.barrutia) }}
+            {{ form_widget(form.barrutia, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div>
+            {{ form_label(form.kalea, 'Kalea: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.kalea) }}
+            {{ form_widget(form.kalea, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div>
+            {{ form_label(form.kaleZbkia, 'Kale zenbakia: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.kaleZbkia) }}
+            {{ form_widget(form.kaleZbkia, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.eraikina, 'Eraikina: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.eraikina) }}
+            {{ form_widget(form.eraikina, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.email, 'Email: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.telefonoa, 'Telefonoa: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.telefonoa) }}
+            {{ form_widget(form.telefonoa, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.fax, 'FAX: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.fax) }}
+            {{ form_widget(form.fax, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            {{ form_label(form.ordutegia, 'Ordutegia: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(form.ordutegia) }}
+            {{ form_widget(form.ordutegia, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>
+
+
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+<div class="row">
+    {% else %}
+    <div class="row hidden">
+        {% endif %}
+        <div class="col-sm-6">
+            <div>
+                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.udala) }}
+                {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    {{ form_end(form) }}
 {% endblock %}

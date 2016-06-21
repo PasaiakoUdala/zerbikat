@@ -1,16 +1,106 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Kontzeptuak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="{{ path('kontzeptua_index') }}" >Utzi</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 {% block body %}
-    <h1>Kontzeptua creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {#{{ form_widget(form) }}#}
 
-    <ul>
-        <li>
-            <a href="{{ path('kontzeptua_index') }}">Back to the list</a>
-        </li>
-    </ul>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                {{ form_label(form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.kodea) }}
+                {{ form_widget(form.kodea, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                {{ form_label(form.kontzeptumota, 'Kontzeptu-mota: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.kontzeptumota) }}
+                {{ form_widget(form.kontzeptumota, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                {{ form_label(form.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.azpiatala) }}
+                {{ form_widget(form.azpiatala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(form.kontzeptuaeu, 'Kontzeptua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.kontzeptuaeu) }}
+                {{ form_widget(form.kontzeptuaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(form.kontzeptuaes, 'Kontzeptua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.kontzeptuaes) }}
+                {{ form_widget(form.kontzeptuaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                {{ form_label(form.kopurua, 'Kopurua: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.kopurua) }}
+                {{ form_widget(form.kopurua, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                {{ form_label(form.unitatea, 'Unitatea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.unitatea) }}
+                {{ form_widget(form.unitatea, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(form.baldintza, 'Baldintza: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.baldintza) }}
+                {{ form_widget(form.baldintza, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.udala) }}
+                {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+    {{ form_end(form) }}
 {% endblock %}

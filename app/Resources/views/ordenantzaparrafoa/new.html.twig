@@ -1,16 +1,76 @@
 {% extends 'base.html.twig' %}
-
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Ordenantzaren parrafoak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="{{ path('ordenantzaparrafoa_index') }}" >Zerrendara itzuli</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
 {% block body %}
-    <h1>Ordenantzaparrafoa creation</h1>
-
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {#{{ form_widget(form) }}#}
 
-    <ul>
-        <li>
-            <a href="{{ path('ordenantzaparrafoa_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="form-group">
+                {{ form_label(form.ordena, 'Ordena: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.ordena) }}
+                {{ form_widget(form.ordena, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-10">
+            <div class="form-group">
+                {{ form_label(form.ordenantza, 'Ordenantza: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.ordenantza) }}
+                {{ form_widget(form.ordenantza, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(form.testuaeu, 'Testua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.testuaeu) }}
+                {{ form_widget(form.testuaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(form.testuaes, 'Testua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.testuaes) }}
+                {{ form_widget(form.testuaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
+    {% else %}
+    <div class="row hidden">
+        {% endif %}
+        <div class="col-sm-6">
+            <div class="form-group">
+                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.udala) }}
+                {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    {{ form_end(form) }}
 {% endblock %}
