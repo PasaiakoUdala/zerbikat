@@ -428,11 +428,13 @@
                     {% for araua in fitxa.araudiak %}
                         {#<li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>#}
                         <li>
-                        {% if araua.araudia.estekaeu %}
-                            <a href="{{ araua.araudia.estekaeu }}">
-                                {{ araua.araudia.arauaeu }} </a> {{ araua.atalaeu }}
+                        {% if araua.estekaeu %}
+                            <a href="{{ araua.estekaeu }}">
+                                {{ araua.arauaeu }} </a>
+                            {#{{ araua.atalaeu }}#}
                         {% else %}
-                            {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
+                            {{ araua.arauaeu }}
+                            {#- {{ araua.atalaeu }}#}
                         {% endif %}
                         </li>
                     {% endfor %}
@@ -452,11 +454,13 @@
                     {% for araua in fitxa.araudiak %}
                         {#<li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>#}
                         <li>
-                            {% if araua.araudia.estekaes %}
-                                <a href="{{ araua.araudia.estekaes }}">
-                                    {{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
+                            {% if araua.estekaes %}
+                                <a href="{{ araua.estekaes }}">
+                                    {{ araua.arauaes }}</a>
+                                {#{{ araua.atalaes }}#}
                             {% else %}
-                                {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
+                                {{ araua.arauaes }}
+                                {#- {{ araua.atalaes }}#}
                             {% endif %}
                         </li>
 
@@ -480,7 +484,8 @@
                 {% if eremuak.prozeduratable %}
                 <ul>
                     {% for prozedura in fitxa.prozedurak %}
-                        <li>{{ prozedura.prozedura.prozeduraeu }}</li>
+                        {#<li>{{ prozedura.prozedura.prozeduraeu }}</li>#}
+                        <li>{{ prozedura.prozeduraeu }}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
@@ -495,7 +500,8 @@
                 {% if eremuak.prozeduratable %}
                 <ul>
                     {% for prozedura in fitxa.prozedurak %}
-                        <li>{{ prozedura.prozedura.prozeduraes }}</li>
+                        {#<li>{{ prozedura.prozedura.prozeduraes }}</li>#}
+                        <li>{{ prozedura.prozeduraes }}</li>
                     {% endfor %}
                 </ul>
                 {%  endif %}

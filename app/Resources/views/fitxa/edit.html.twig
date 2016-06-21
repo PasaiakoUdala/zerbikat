@@ -408,7 +408,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.araudiak) }}
-                {{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group'}}) }}
+                {{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group select2'}}) }}
             </div>
         </div>
     </div>
@@ -453,7 +453,7 @@
             <div>
                 <br/>
                 {{ form_errors(edit_form.prozedurak) }}
-                {{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-group'}}) }}
+                {{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-group select2'}}) }}
             </div>
         </div>
     </div>
@@ -753,7 +753,11 @@
                 </div>
         </div>
 
+    {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>FAMILIAK</h2>
@@ -772,7 +776,13 @@
             </div>
         </div>
     </div>
+
+
+    {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>ETIKETAK</h2>
@@ -792,7 +802,12 @@
         </div>
     </div>
 
+
+    {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>ESPEDIENTE KUDEAKETA</h2>
@@ -818,7 +833,13 @@
         </div>
     </div>
 
+
+
+    {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>ADMIN</h2>
@@ -831,15 +852,23 @@
         </div>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
             <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_label(edit_form.udala, 'Udala', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
-
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+            <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_label(edit_form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kontsultak) }}
                 {{ form_widget(edit_form.kontsultak, {'attr': {'class': 'form-control'}}) }}
-
 
                 {{ form_errors(edit_form.publikoa) }}
                 {{ form_widget(edit_form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}
@@ -848,8 +877,12 @@
                 {{ form_errors(edit_form.hitzarmena) }}
                 {{ form_widget(edit_form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}
                 {{ form_label(edit_form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}
-
-                <br>
+            </div>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <div>
+            {% else %}
+            <div class="hidden">
+            {% endif %}
                 {{ form_label(edit_form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.createdAt) }}
                 {{ form_widget(edit_form.createdAt, {'attr': {'class': 'form-control'}}) }}
@@ -861,23 +894,8 @@
         </div>
     </div>
 
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li><input type="submit" value="Gorde" class="btn btn-primary"/></li>#}
-        {#<li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="btn btn-primary">Fitxa ikusi</a></li>#}
+
     {{ form_end(edit_form) }}
-
-
-        {#<li>#}
-            {#<a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#{{ form_start(delete_form) }}#}
-                {#<input type="submit" value="Delete">#}
-            {#{{ form_end(delete_form) }}#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}
 
 {% block javascripts %}
@@ -917,6 +935,15 @@
                 theme: 'bootstrap',
                 tags: true
             });
+            $('#fitxa_araudiak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+            $('#fitxa_prozedurak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+
 //            $('#fitxa_tramiteak').select2({
 //                theme: 'bootstrap',
 //                tags: true

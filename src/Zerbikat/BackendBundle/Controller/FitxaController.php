@@ -138,7 +138,7 @@ class FitxaController extends Controller
     public function editAction(Request $request, Fitxa $fitxa)
     {
         $auth_checker = $this->get('security.authorization_checker');
-        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($fitxa->getUdala()==$this->getUser()->getUdala()))
+        if((($auth_checker->isGranted('ROLE_USER')) && ($fitxa->getUdala()==$this->getUser()->getUdala()))
             ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
         {
             $deleteForm = $this->createDeleteForm($fitxa);
@@ -167,7 +167,7 @@ class FitxaController extends Controller
             $labelak = $query->getSingleResult();
     
     //        }
-            if ($fitxa->getUdala()==$this->getUser()->getUdala()) {
+//            if ($fitxa->getUdala()==$this->getUser()->getUdala()) {
                 return $this->render('fitxa/edit.html.twig', array(
                     'fitxa' => $fitxa,
                     'edit_form' => $editForm->createView(),
@@ -175,10 +175,10 @@ class FitxaController extends Controller
                     'eremuak' => $eremuak,
                     'labelak' => $labelak
                 ));
-            } else
-            {
-                return $this->redirectToRoute('fitxa_index');
-            }
+//            } else
+//            {
+//                return $this->redirectToRoute('fitxa_index');
+//            }
         }else
         {
             return $this->redirectToRoute('backend_errorea');

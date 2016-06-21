@@ -397,13 +397,6 @@ class Fitxa
 
 
     /**
-     * @var araudiak[]
-     * @Expose
-     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
-     */
-    private $araudiak;
-
-    /**
      * @var dokumentazioak[]
      * @Expose
      * @ORM\OneToMany(targetEntity="FitxaDokumentazioa", mappedBy="fitxa", cascade={"remove"})
@@ -454,6 +447,8 @@ class Fitxa
      */
     private $etiketak;
 
+
+
 //    /**
 //     * @var prozedurak[]
 //     *
@@ -470,6 +465,29 @@ class Fitxa
      * @Expose
      */
     private $prozedurak;
+
+
+
+
+//    /**
+//     * @var araudiak[]
+//     * @Expose
+//     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
+//     */
+//    private $araudiak;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Araudia")
+     * @ORM\JoinTable(name="fitxa_araudia",
+     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
+     *      )
+     * @Expose
+     */
+    private $araudiak;
+
+
+    
 
     /**
      * @var norkeskatuak[]

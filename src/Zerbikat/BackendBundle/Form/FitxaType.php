@@ -108,7 +108,7 @@ class FitxaType extends AbstractType
                 'class' => 'BackendBundle:Araudia',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu arauak',
                 'group_by' => 'araumota',
             ))

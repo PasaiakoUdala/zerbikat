@@ -57,28 +57,28 @@ class Fitxa
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="helburuaeu", type="text", length=65535, nullable=true)
      */
     private $helburuaeu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="helburuaes", type="text", length=65535, nullable=true)
      */
     private $helburuaes;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="norkeu", type="text", length=65535, nullable=true)
      */
     private $norkeu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="norkes", type="text", length=65535, nullable=true)
      */
     private $norkes;
@@ -92,119 +92,119 @@ class Fitxa
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="dokumentazioaes", type="text", length=65535, nullable=true)
      */
     private $dokumentazioaes;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="kostuaeu", type="text", length=65535, nullable=true)
      */
     private $kostuaeu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="kostuaes", type="text", length=65535, nullable=true)
      */
     private $kostuaes;
 
     /**
      * @var boolean
-     *
+     * @Expose
      * @ORM\Column(name="ebazpensinpli", type="boolean", nullable=true)
      */
     private $ebazpensinpli;
 
     /**
      * @var boolean
-     *
+     * @Expose
      * @ORM\Column(name="arduraaitorpena", type="boolean", nullable=true)
      */
     private $arduraaitorpena;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="araudiaeu", type="text", length=65535, nullable=true)
      */
     private $araudiaeu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="araudiaes", type="text", length=65535, nullable=true)
      */
     private $araudiaes;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="prozeduraeu", type="text", length=65535, nullable=true)
      */
     private $prozeduraeu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="prozeduraes", type="text", length=65535, nullable=true)
      */
     private $prozeduraes;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="doklaguneu", type="text", length=65535, nullable=true)
      */
     private $doklaguneu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="doklagunes", type="text", length=65535, nullable=true)
      */
     private $doklagunes;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="oharrakeu", type="text", length=65535, nullable=true)
      */
     private $oharrakeu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="oharrakes", type="text", length=65535, nullable=true)
      */
     private $oharrakes;
 
     /**
      * @var datuenbabesaeu
-     *
+     * @Expose
      * @ORM\Column(name="datuenbabesaeu", type="text", length=65535, nullable=true)
      */
     private $datuenbabesaeu;
 
     /**
      * @var datuenbabesaes
-     *
+     * @Expose
      * @ORM\Column(name="datuenbabesaes", type="text", length=65535, nullable=true)
      */
     private $datuenbabesaes;
 
     /**
      * @var norkonartueu
-     *
+     * @Expose
      * @ORM\Column(name="norkonartueu", type="text", length=65535, nullable=true)
      */
     private $norkonartueu;
 
     /**
      * @var norkonartues
-     *
+     * @Expose
      * @ORM\Column(name="norkonartues", type="text", length=65535, nullable=true)
      */
     private $norkonartues;
@@ -212,14 +212,14 @@ class Fitxa
 
     /**
      * @var boolean
-     *
+     * @Expose
      * @ORM\Column(name="publikoa", type="boolean", nullable=true)
      */
     private $publikoa;
 
     /**
      * @var boolean
-     *
+     * @Expose
      * @ORM\Column(name="hitzarmena", type="boolean", nullable=true)
      */
     private $hitzarmena;
@@ -227,14 +227,14 @@ class Fitxa
 
     /**
      * @var integer
-     *
+     * @Expose
      * @ORM\Column(name="kontsultak", type="bigint", nullable=true)
      */
     private $kontsultak;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="parametroa", type="string", length=50, nullable=true)
      */
     private $parametroa;
@@ -248,7 +248,6 @@ class Fitxa
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      */
     private $updatedAt;
@@ -262,6 +261,7 @@ class Fitxa
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id")
      * })
+     * @Expose
      */
     private $norkebatzi;
 
@@ -272,6 +272,7 @@ class Fitxa
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id")
      * })
+     * @Expose
      */
     private $zerbitzua;
 
@@ -282,6 +283,7 @@ class Fitxa
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id")
      * })
+     * @Expose
      */
     private $datuenbabesa;
 
@@ -292,6 +294,7 @@ class Fitxa
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id")
      * })
+     * @Expose
      */
     private $azpisaila;
 
@@ -302,6 +305,7 @@ class Fitxa
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id")
      * })
+     * @Expose
      */
     private $aurreikusi;
 
@@ -312,6 +316,7 @@ class Fitxa
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id")
      * })
+     * @Expose
      */
     private $arrunta;
 
@@ -331,54 +336,55 @@ class Fitxa
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="besteak1eu", type="text", length=65535, nullable=true)
+     * @Expose
      */
     private $besteak1eu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="besteak1es", type="text", length=65535, nullable=true)
      */
     private $besteak1es;
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="besteak2eu", type="text", length=65535, nullable=true)
      */
     private $besteak2eu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="besteak2es", type="text", length=65535, nullable=true)
      */
     private $besteak2es;
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="besteak3eu", type="text", length=65535, nullable=true)
      */
     private $besteak3eu;
 
     /**
      * @var string
-     *
+     * @Expose
      * @ORM\Column(name="besteak3es", type="text", length=65535, nullable=true)
      */
     private $besteak3es;
 
     /**
      * @var kanalaeu
-     *
+     * @Expose
      * @ORM\Column(name="kanalaeu", type="text", length=65535, nullable=true)
      */
     private $kanalaeu;
 
     /**
      * @var kanalaes
-     *
+     * @Expose
      * @ORM\Column(name="kanalaes", type="text", length=65535, nullable=true)
      */
     private $kanalaes;
@@ -391,22 +397,15 @@ class Fitxa
 
 
     /**
-     * @var araudiak[]
-     *
-     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
-     */
-    private $araudiak;
-
-    /**
      * @var dokumentazioak[]
-     *
+     * @Expose
      * @ORM\OneToMany(targetEntity="FitxaDokumentazioa", mappedBy="fitxa", cascade={"remove"})
      */
     private $dokumentazioak;
 
     /**
      * @var kanalak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Kanala",cascade={"remove"},inversedBy="fitxak")
      */
     private $kanalak;
@@ -415,38 +414,40 @@ class Fitxa
 
     /**
      * @var familiak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Familia",cascade={"remove"},inversedBy="fitxak")
      */
     private $familiak;
 
     /**
      * @var besteak1ak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Besteak1",cascade={"remove"},inversedBy="fitxak")
      */
     private $besteak1ak;
 
     /**
      * @var besteak2ak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Besteak2",cascade={"remove"},inversedBy="fitxak")
      */
     private $besteak2ak;
 
     /**
      * @var besteak3ak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Besteak3",cascade={"remove"},inversedBy="fitxak")
      */
     private $besteak3ak;
     
     /**
      * @var etiketak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Etiketa",cascade={"remove"},inversedBy="fitxak")
      */
     private $etiketak;
+
+
 
 //    /**
 //     * @var prozedurak[]
@@ -461,19 +462,43 @@ class Fitxa
      *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
      *      )
+     * @Expose
      */
     private $prozedurak;
 
+
+
+
+//    /**
+//     * @var araudiak[]
+//     * @Expose
+//     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
+//     */
+//    private $araudiak;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Araudia")
+     * @ORM\JoinTable(name="fitxa_araudia",
+     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id", unique=true)}
+     *      )
+     * @Expose
+     */
+    private $araudiak;
+
+
+    
+
     /**
      * @var norkeskatuak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Norkeskatu",inversedBy="fitxak",cascade={"remove"})
      */
     private $norkeskatuak;
 
     /**
      * @var doklagunak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Doklagun",inversedBy="fitxak",cascade={"remove"})
      */
     private $doklagunak;
@@ -484,7 +509,7 @@ class Fitxa
 
     /**
      * @var azpiatalak[]
-     *
+     * @Expose
      * @ORM\ManyToMany(targetEntity="Azpiatala",inversedBy="fitxak",cascade={"remove"})
      * @ORM\JoinTable(name="fitxa_azpiatala")
      */
@@ -493,7 +518,7 @@ class Fitxa
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
-     *
+     * @Expose
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa",inversedBy="fitxak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id")
@@ -531,8 +556,23 @@ class Fitxa
         $this->doklagunak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
+
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
+
+    /**
+     * Set id
+     *
+     * @return integer
+     */
+    public function setId($id)
+    {
+        $this->id=$id;
+
+        return $this;
+    }
 
 
     /**

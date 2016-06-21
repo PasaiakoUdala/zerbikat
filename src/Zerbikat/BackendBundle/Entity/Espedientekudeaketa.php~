@@ -174,4 +174,45 @@ class Espedientekudeaketa
     {
         return $this->urles;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->zerbitzuak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add zerbitzuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak
+     *
+     * @return Espedientekudeaketa
+     */
+    public function addZerbitzuak(\Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak)
+    {
+        $this->zerbitzuak[] = $zerbitzuak;
+
+        return $this;
+    }
+
+    /**
+     * Remove zerbitzuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak
+     */
+    public function removeZerbitzuak(\Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzuak)
+    {
+        $this->zerbitzuak->removeElement($zerbitzuak);
+    }
+
+    /**
+     * Get zerbitzuak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getZerbitzuak()
+    {
+        return $this->zerbitzuak;
+    }
 }

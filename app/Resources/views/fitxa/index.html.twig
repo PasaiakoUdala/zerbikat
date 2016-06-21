@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block menua %}
     {{ parent() }}
-        {% if is_granted('ROLE_KUDEAKETA') %}
+        {% if is_granted('ROLE_USER') %}
         <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
             <div class="container">
                 <div class="navbar-header">
