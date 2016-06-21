@@ -53,8 +53,8 @@ class DoklagunController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\DoklagunType', $doklagun);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -62,6 +62,10 @@ class DoklagunController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('doklagun_show', array('id' => $doklagun->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('doklagun/new.html.twig', array(

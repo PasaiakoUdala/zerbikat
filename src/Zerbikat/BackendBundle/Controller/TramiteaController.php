@@ -52,8 +52,8 @@ class TramiteaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\TramiteaType', $tramitea);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class TramiteaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('tramitea_show', array('id' => $tramitea->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('tramitea/new.html.twig', array(

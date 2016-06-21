@@ -52,8 +52,8 @@ class KanalmotaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\KanalmotaType', $kanalmotum);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class KanalmotaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('kanalmota_show', array('id' => $kanalmotum->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('kanalmota/new.html.twig', array(

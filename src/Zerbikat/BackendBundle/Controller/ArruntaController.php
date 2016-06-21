@@ -54,8 +54,8 @@ class ArruntaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\ArruntaType', $arruntum);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -63,6 +63,10 @@ class ArruntaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('arrunta_show', array('id' => $arruntum->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('arrunta/new.html.twig', array(

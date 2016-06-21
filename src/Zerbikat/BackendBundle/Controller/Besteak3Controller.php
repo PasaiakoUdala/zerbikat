@@ -52,8 +52,6 @@ class Besteak3Controller extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\Besteak3Type', $besteak3);
             $form->handleRequest($request);
 
-
-
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($besteak3);

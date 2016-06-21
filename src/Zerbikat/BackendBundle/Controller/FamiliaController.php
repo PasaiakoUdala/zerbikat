@@ -52,8 +52,8 @@ class FamiliaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\FamiliaType', $familium);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class FamiliaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('familia/new.html.twig', array(

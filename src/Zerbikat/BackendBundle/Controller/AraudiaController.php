@@ -56,8 +56,8 @@ class AraudiaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\AraudiaType', $araudium);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -65,7 +65,12 @@ class AraudiaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('araudia_show', array('id' => $araudium->getId()));
+            }else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
+            
 
             return $this->render('araudia/new.html.twig', array(
                 'araudium' => $araudium,

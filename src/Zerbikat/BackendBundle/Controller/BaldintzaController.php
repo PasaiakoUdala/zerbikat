@@ -54,8 +54,8 @@ class BaldintzaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\BaldintzaType', $baldintza);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -63,6 +63,10 @@ class BaldintzaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('baldintza_show', array('id' => $baldintza->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('baldintza/new.html.twig', array(

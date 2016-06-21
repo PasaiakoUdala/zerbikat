@@ -52,8 +52,8 @@ class EtiketaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\EtiketaType', $etiketum);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class EtiketaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('etiketa_show', array('id' => $etiketum->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('etiketa/new.html.twig', array(

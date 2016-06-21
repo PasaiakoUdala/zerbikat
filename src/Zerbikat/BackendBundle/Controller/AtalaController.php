@@ -55,8 +55,8 @@ class AtalaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\AtalaType', $atala);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -64,6 +64,10 @@ class AtalaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('atala_show', array('id' => $atala->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('atala/new.html.twig', array(

@@ -53,8 +53,8 @@ class AraumotaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\AraumotaType', $araumotum);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -62,6 +62,10 @@ class AraumotaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('araumota_show', array('id' => $araumotum->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('araumota/new.html.twig', array(

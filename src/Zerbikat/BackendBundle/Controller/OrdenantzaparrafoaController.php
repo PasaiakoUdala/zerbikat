@@ -52,8 +52,8 @@ class OrdenantzaparrafoaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\OrdenantzaparrafoaType', $ordenantzaparrafoa);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class OrdenantzaparrafoaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('ordenantzaparrafoa_show', array('id' => $ordenantzaparrafoa->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('ordenantzaparrafoa/new.html.twig', array(

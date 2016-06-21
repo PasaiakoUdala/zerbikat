@@ -52,8 +52,8 @@ class NorkeskatuController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\NorkeskatuType', $norkeskatu);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class NorkeskatuController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('norkeskatu_show', array('id' => $norkeskatu->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('norkeskatu/new.html.twig', array(

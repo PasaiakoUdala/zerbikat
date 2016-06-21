@@ -52,8 +52,8 @@ class EraikinaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\EraikinaType', $eraikina);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class EraikinaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('eraikina_show', array('id' => $eraikina->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('eraikina/new.html.twig', array(

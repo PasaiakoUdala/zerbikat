@@ -52,8 +52,8 @@ class KanalaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\KanalaType', $kanala);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class KanalaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('kanala_show', array('id' => $kanala->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('kanala/new.html.twig', array(

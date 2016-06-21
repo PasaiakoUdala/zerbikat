@@ -52,8 +52,8 @@ class IsiltasunAdministratiboaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\IsiltasunAdministratiboaType', $isiltasunAdministratiboa);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class IsiltasunAdministratiboaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('isiltasunadministratiboa_show', array('id' => $isiltasunAdministratiboa->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('isiltasunadministratiboa/new.html.twig', array(

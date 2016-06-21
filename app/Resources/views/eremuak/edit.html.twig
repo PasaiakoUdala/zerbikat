@@ -651,7 +651,6 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                         {{ form_errors(edit_form.udala) }}
                         {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
                     </div>
@@ -659,23 +658,6 @@
             </div>
         </div>
     </div>
-
-
-    {#{% if is_granted('ROLE_SUPER_ADMIN') %}#}
-    {#<div class="row">#}
-    {#{% else %}#}
-    {#<div class="row hidden">#}
-    {#{% endif %}#}
-        {#<div class="page-header"></div>#}
-        {#<div class="col-sm-6">#}
-            {#<div>#}
-                {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
-                {#{{ form_errors(edit_form.udala) }}#}
-                {#{{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-
 
     {{ form_end(edit_form) }}
 {% endblock %}

@@ -52,8 +52,8 @@ class DatuenbabesaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\DatuenbabesaType', $datuenbabesa);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
             
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class DatuenbabesaController extends Controller
                 $em->flush();
     
                 return $this->redirectToRoute('datuenbabesa_show', array('id' => $datuenbabesa->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
     
             return $this->render('datuenbabesa/new.html.twig', array(

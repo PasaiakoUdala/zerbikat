@@ -52,8 +52,8 @@ class SailaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\SailaType', $saila);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class SailaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('saila_show', array('id' => $saila->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('saila/new.html.twig', array(

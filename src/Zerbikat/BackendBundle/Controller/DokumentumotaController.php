@@ -52,14 +52,18 @@ class DokumentumotaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\DokumentumotaType', $dokumentumotum);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($dokumentumotum);
                 $em->flush();
                 return $this->redirectToRoute('dokumentumota_show', array('id' => $dokumentumotum->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('dokumentumota/new.html.twig', array(

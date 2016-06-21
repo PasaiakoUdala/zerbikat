@@ -55,8 +55,8 @@ class AzpiatalaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaType', $azpiatala);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -64,6 +64,10 @@ class AzpiatalaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('azpiatala_show', array('id' => $azpiatala->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('azpiatala/new.html.twig', array(

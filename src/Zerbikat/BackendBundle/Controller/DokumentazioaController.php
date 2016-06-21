@@ -52,8 +52,8 @@ class DokumentazioaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\DokumentazioaType', $dokumentazioa);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
     
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class DokumentazioaController extends Controller
                 $em->flush();
     
                 return $this->redirectToRoute('dokumentazioa_show', array('id' => $dokumentazioa->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
     
             return $this->render('dokumentazioa/new.html.twig', array(

@@ -53,8 +53,8 @@ class KontzeptumotaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\KontzeptumotaType', $kontzeptumotum);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -62,6 +62,10 @@ class KontzeptumotaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('kontzeptumota_show', array('id' => $kontzeptumotum->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('kontzeptumota/new.html.twig', array(

@@ -52,8 +52,8 @@ class Besteak1Controller extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\Besteak1Type', $besteak1);
             $form->handleRequest($request);
 
-            $form->getData()->setUdala($this->getUser()->getUdala());
-            $form->setData($form->getData());
+//            $form->getData()->setUdala($this->getUser()->getUdala());
+//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -61,6 +61,10 @@ class Besteak1Controller extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('besteak1_show', array('id' => $besteak1->getId()));
+            } else
+            {
+                $form->getData()->setUdala($this->getUser()->getUdala());
+                $form->setData($form->getData());
             }
 
             return $this->render('besteak1/new.html.twig', array(
