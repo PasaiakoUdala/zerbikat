@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('atala_new') }}">Atal berria</a></li>
+                    <li><a href="{{ path('atala_new') }}" class="fa fa-plus"> Atal berria</a></li>
                 </ul>
             </div>
         </div>
@@ -28,9 +28,12 @@
         <tbody>
         {% for atala in atalas %}
             <tr>
-                <td><a href="{{ path('atala_edit', { 'id': atala.id }) }}">
-                        {{ atala.ordenantza.kodea }}.{{ atala.kodea }}</a></td>
+                {#<td><a href="{{ path('atala_edit', { 'id': atala.id }) }}">#}
+                <td>{{ atala.ordenantza.kodea }}.{{ atala.kodea }}</td>
                 <td>{{ atala.izenburuaeu }}</td>
+                <td>
+                    <a href="{{ path('atala_edit', { 'id': atala.id }) }}" class="fa fa-pencil"></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

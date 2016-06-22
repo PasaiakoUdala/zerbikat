@@ -1,13 +1,20 @@
 {% extends 'base.html.twig' %}
-
-
 {% block menua %}
     {{ parent() }}
-    <ul class="nav nav-pills pull-right" role="tablist">
-        <li role="presentation" class="active btn-sm"><a href="{{ path('azpiatala_index') }}" >Zerrendara itzuli</a></li>
-    </ul>
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Kostu Taulak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('azpiatala_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
+                    <li><a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}" class="fa fa-pencil"> Aldatu</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
-
 
 
 {% block body %}

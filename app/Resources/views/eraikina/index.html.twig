@@ -9,7 +9,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('eraikina_new') }}">Eraikin berria</a></li>
+                    <li><a href="{{ path('eraikina_new') }}" class="fa fa-plus"> Eraikin berria</a></li>
                 </ul>
             </div>
         </div>
@@ -27,15 +27,11 @@
         <tbody>
         {% for eraikina in eraikinas %}
             <tr>
-                <td><a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}">{{ eraikina.izena }}</a></td>
+                <td>{{ eraikina.izena }}</td>
                 <td>({{ eraikina.longitudea }}, {{ eraikina.latitudea }})</td>
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
+                <td>
+                            <a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}" class="fa fa-pencil"></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

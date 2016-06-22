@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('besteak1_new') }}" >{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak1labeleu }}{% else %}Sarrera{% endif %} berria</a></li>
+                    <li><a href="{{ path('besteak1_new') }}" class="fa fa-plus">{% if app.user.udala.eremuak %} {{ app.user.udala.eremuak.besteak1labeleu }}{% else %}Sarrera{% endif %} berria</a></li>
                 </ul>
             </div>
         </div>
@@ -22,22 +22,22 @@
             <tr>
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
-                <th>Izenburuaes</th>
+                <th></th>
                 {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
         {% for besteak1 in besteak1s %}
             <tr>
-                <td><a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}">{{ besteak1.kodea }}</a></td>
-                <td><a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}">{{ besteak1.izenburuaeu }}</a></td>
-                {#<td>#}
+                <td>{{ besteak1.kodea }}</td>
+                <td>{{ besteak1.izenburuaeu }}</td>
+                <td>
                     {#<ul>#}
                         {#<li>#}
-                            {#<a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}">edit</a>#}
+                            <a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

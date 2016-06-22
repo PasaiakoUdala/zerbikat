@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('dokumentumota_new') }}" >Sarrera berria</a></li>
+                    <li><a href="{{ path('dokumentumota_new') }}" class="fa fa-plus"> Sarrera berria</a></li>
                 </ul>
             </div>
         </div>
@@ -27,15 +27,15 @@
         <tbody>
         {% for dokumentumotum in dokumentumotas %}
             <tr>
-                <td><a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}">{{ dokumentumotum.kodea }}</a></td>
+                <td>{{ dokumentumotum.kodea }}</td>
                 <td>{{ dokumentumotum.motaeu }}</td>
-                {#<td>#}
+                <td>
                     {#<ul>#}
                         {#<li>#}
-                            {#<a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}">edit</a>#}
+                            <a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('arrunta_new') }}" >Epe berria sortu</a></li>
+                    <li><a href="{{ path('arrunta_new') }}" class="fa fa-plus"> Epe berria sortu</a></li>
                 </ul>
             </div>
         </div>
@@ -25,17 +25,18 @@
         {% for arruntum in arruntas %}
             <tr>
                 {#<td><a href="{{ path('arrunta_show', { 'id': arruntum.id }) }}">{{ arruntum.epeaeu }}</a></td>#}
-                <td><a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}">{{ arruntum.epeaeu }}</a></td>
-                {#<td>#}
+                {#<td><a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}">{{ arruntum.epeaeu }}</a></td>#}
+                <td>{{ arruntum.epeaeu }}</td>
+                <td>
                     {#<ul>#}
                         {#<li>#}
                             {#<a href="{{ path('arrunta_show', { 'id': arruntum.id }) }}">show</a>#}
                         {#</li>#}
                         {#<li>#}
-                            {#<a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}">edit</a>#}
+                            <a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}"  class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

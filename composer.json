@@ -29,7 +29,8 @@
         "nelmio/api-doc-bundle": "^2.12",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "knplabs/knp-menu-bundle": "^2.0",
-        "whiteoctober/tcpdf-bundle": "^1.0"
+        "whiteoctober/tcpdf-bundle": "^1.0",
+        "bmatzner/fontawesome-bundle": "^4.6"
 
     },
     "require-dev": {

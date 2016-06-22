@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('kontzeptua_new') }}" >Kontzeptu berria</a></li>
+                    <li><a href="{{ path('kontzeptua_new') }}" class="fa fa-plus"> Kontzeptu berria</a></li>
                 </ul>
             </div>
         </div>
@@ -21,25 +21,22 @@
                 <th>Kodea</th>
                 <th>Kontzeptua</th>
                 <th>Kopurua</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for kontzeptua in kontzeptuas %}
             <tr>
-                <td><a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}">
-                        {{ kontzeptua.azpiatala }} --
-                        {{ kontzeptua.kodea }}
-                    </a></td>
+                <td>{{ kontzeptua.azpiatala }} -- {{ kontzeptua.kodea }}</td>
                 <td>{{ kontzeptua.kontzeptuaeu }}</td>
                 <td>{{ kontzeptua.kopurua }} {{ kontzeptua.unitatea }}</td>
-                {#<td>#}
+                <td>
                     {#<ul>#}
                         {#<li>#}
-                            {#<a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}">edit</a>#}
+                            <a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -18,8 +18,8 @@ class AtalaparrafoaType extends AbstractType
             ->add('ordena')
             ->add('testuaeu')
             ->add('testuaes')
-            ->add('createdAt', 'datetime')
-            ->add('updatedAt', 'datetime')
+//            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
+//            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
             ->add('udala')
             ->add('atala')
         ;

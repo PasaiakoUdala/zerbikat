@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('norkeskatu_new') }}">Sarrera berria</a></li>
+                    <li><a href="{{ path('norkeskatu_new') }}" class="fa fa-plus"> Sarrera berria</a></li>
                 </ul>
             </div>
         </div>
@@ -19,20 +19,14 @@
         <thead>
             <tr>
                 <th>Norkeu</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for norkeskatu in norkeskatus %}
             <tr>
-                <td><a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}">{{ norkeskatu.norkeu }}</a></td>
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
+                <td>{{ norkeskatu.norkeu }}</td>
+                <td><a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}" class="fa fa-pencil"></a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('kanalmota_new') }}" >Kanal-mota berria</a></li>
+                    <li><a href="{{ path('kanalmota_new') }}" class="fa fa-plus"> Kanal-mota berria</a></li>
                 </ul>
             </div>
         </div>
@@ -20,20 +20,21 @@
             <tr>
                 <th>Mota</th>
                 <th>Esteka</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for kanalmotum in kanalmotas %}
             <tr>
-                <td><a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">{{ kanalmotum.motaeu }}</a></td>
+                <td>{{ kanalmotum.motaeu }}</td>
                 <td>{% if kanalmotum.esteka %}Bai{% else %}Ez{% endif %}</td>
-                {#<td>#}
+                <td>
                     {#<ul>#}
                         {#<li>#}
-                            {#<a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}">edit</a>#}
+                            <a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

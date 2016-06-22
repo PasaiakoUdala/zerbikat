@@ -8,9 +8,9 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()">Gorde</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
                     {#<li><a href="{{ path('fitxa_show') }}" >Fitxa ikusi</a></li>#}
-                    <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" >Fitxa ikusi</a></li>
+                    <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="fa fa-search"> Fitxa ikusi</a></li>
                 </ul>
             </div>
         </div>

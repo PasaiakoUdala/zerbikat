@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('kalea_new') }}" >Kale berria</a></li>
+                    <li><a href="{{ path('kalea_new') }}" class="fa fa-plus"> Kale berria</a></li>
                 </ul>
             </div>
         </div>
@@ -22,25 +22,25 @@
                 <th>Izena</th>
                 {#<th>Google</th>#}
                 {#<th>Id</th>#}
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for kalea in kaleas %}
             <tr>
-                <td><a href="{{ path('kalea_edit', { 'id': kalea.id }) }}">{{ kalea.izena }}</a></td>
+                <td>{{ kalea.izena }}</td>
                 {#<td>{{ kalea.google }}</td>#}
                 {#<td>{{ kalea.id }}</td>#}
-                {#<td>#}
+                <td>
                     {#<ul>#}
                         {#<li>#}
                             {#<a href="{{ path('kalea_show', { 'id': kalea.id }) }}">show</a>#}
                         {#</li>#}
                         {#<li>#}
-                            {#<a href="{{ path('kalea_edit', { 'id': kalea.id }) }}">edit</a>#}
+                            <a href="{{ path('kalea_edit', { 'id': kalea.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

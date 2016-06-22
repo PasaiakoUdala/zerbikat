@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('tramitea_new') }}" >Tramite berria</a></li>
+                    <li><a href="{{ path('tramitea_new') }}" class="fa fa-plus"> Tramite berria</a></li>
                 </ul>
             </div>
         </div>
@@ -25,14 +25,8 @@
         <tbody>
         {% for tramitea in tramiteas %}
             <tr>
-                <td><a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}">{{ tramitea.tramiteaeu }}</a></td>
-                 {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
+                <td>{{ tramitea.tramiteaeu }}</td>
+                 <td><a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}" class="fa fa-pencil"></a></td>
             </tr>
         {% endfor %}
         </tbody>

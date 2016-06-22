@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('azpiatala_new') }}">Kostu-taula berria</a></li>
+                    <li><a href="{{ path('azpiatala_new') }}" class="fa fa-plus"> Kostu-taula berria</a></li>
                 </ul>
             </div>
         </div>
@@ -29,21 +29,19 @@
         {% for azpiatala in azpiatalas %}
             <tr>
                 {#<td><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">{{ azpiatala.kodea }}</a></td>#}
-                <td><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">
-                        {{ azpiatala.atala.ordenantza.kodea }}.{{ azpiatala.atala.kodea }}.{{ azpiatala.kodea }}
+                <td>{{ azpiatala.atala.ordenantza.kodea }}.{{ azpiatala.atala.kodea }}.{{ azpiatala.kodea }}</td>
 
-                    </a></td>
                 <td>{{ azpiatala.izenburuaeu }}</td>
-                {#<td>#}
+                <td>
                     {#<ul>#}
                         {#<li>#}
-                            {#<a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">show</a>#}
+                            <a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}" class="fa fa-search"></a>
                         {#</li>#}
                         {#<li>#}
                             {#<a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}">edit</a>#}
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

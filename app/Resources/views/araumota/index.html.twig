@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('araumota_new') }}">Arau-mota berria</a></li>
+                    <li><a href="{{ path('araumota_new') }}" class="fa fa-plus"> Arau-mota berria</a></li>
                 </ul>
             </div>
         </div>
@@ -32,20 +32,21 @@
         {% for araumotum in araumotas %}
             <tr>
                 {#<td><a href="{{ path('araumota_show', { 'id': araumotum.id }) }}">{{ araumotum.kodea }}</a></td>#}
-                <td><a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}">{{ araumotum.kodea }}</a></td>
+                {#<td><a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}">{{ araumotum.kodea }}</a></td>#}
+                <td>{{ araumotum.kodea }}</td>
                 <td>{{ araumotum.motaeu }}</td>
                 {#<td>{{ araumotum.motaes }}</td>#}
                 {#<td>{{ araumotum.id }}</td>#}
-                {#<td>#}
+                <td>
                     {#<ul>#}
                         {#<li>#}
                             {#<a href="{{ path('araumota_show', { 'id': araumotum.id }) }}">show</a>#}
                         {#</li>#}
                         {#<li>#}
-                            {#<a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}">edit</a>#}
+                            <a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

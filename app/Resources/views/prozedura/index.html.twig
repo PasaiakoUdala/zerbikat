@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('prozedura_new') }}">Prozedura berria</a></li>
+                    <li><a href="{{ path('prozedura_new') }}" class="fa fa-plus"> Prozedura berria</a></li>
                 </ul>
             </div>
         </div>
@@ -26,14 +26,8 @@
         <tbody>
         {% for prozedura in prozeduras %}
             <tr>
-                <td><a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}">{{ prozedura.prozeduraeu }}</a></td>
-                {#<td>#}
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
-                {#</td>#}
+                <td>{{ prozedura.prozeduraeu }}</td>
+                <td><a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}" class="fa fa-pencil"></a></td>
             </tr>
         {% endfor %}
         </tbody>

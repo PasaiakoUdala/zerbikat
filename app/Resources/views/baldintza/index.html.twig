@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('baldintza_new') }}">Baldintza berria</a></li>
+                    <li><a href="{{ path('baldintza_new') }}" class="fa fa-plus"> Baldintza berria</a></li>
                 </ul>
             </div>
         </div>
@@ -27,14 +27,15 @@
         <tbody>
         {% for baldintza in baldintzas %}
             <tr>
-                <td><a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">{{ baldintza.baldintzaeu }}</a></td>
-                {#<td>#}
+                {#<td><a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">{{ baldintza.baldintzaeu }}</a></td>#}
+                <td>{{ baldintza.baldintzaeu }}</td>
+                <td>
                     {#<ul>#}
                         {#<li>#}
-                            {#<a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">edit</a>#}
+                            <a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>

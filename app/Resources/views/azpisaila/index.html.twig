@@ -8,7 +8,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('azpisaila_new') }}">Azpi-saila berria</a></li>
+                    <li><a href="{{ path('azpisaila_new') }}" class="fa fa-plus"> Azpi-saila berria</a></li>
                 </ul>
             </div>
         </div>
@@ -38,30 +38,31 @@
         <tbody>
         {% for azpisaila in azpisailas %}
             <tr>
-                <td><a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}">{{ azpisaila.kodea }}</a></td>
+                {#<td><a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}">{{ azpisaila.kodea }}</a></td>#}
+                <td>{{ azpisaila.kodea }}</td>
                 <td>{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaeu }}</td>
                 {#<td>{{ azpisaila.azpisailaes }}</td>#}
                 <td>{{ azpisaila.arduraduna }}</td>
                 {#<td>{{ azpisaila.arduradunahaz }}</td>#}
-                <td>{{ azpisaila.email }}<br/>
-                    {{ azpisaila.telefonoa }}<br/>
-                    {{ azpisaila.fax }}<br/>
-                    {{ azpisaila.ordutegia }}
+                <td>{% if azpisaila.email %}{{ azpisaila.email }}<br/>{% endif %}
+                    {% if azpisaila.telefonoa %}{{ azpisaila.telefonoa }}<br/>{% endif %}
+                    {% if azpisaila.fax %}{{ azpisaila.fax }}<br/>{% endif %}
+                    {% if azpisaila.ordutegia %}{{ azpisaila.ordutegia }}{% endif %}
                 <td>{{ azpisaila.kalea }} {{ azpisaila.kaleZbkia }}, {{ azpisaila.barrutia }}<br/>
                     {{ azpisaila.eraikina }}
                 </td>
 
                 {#<td>{{ azpisaila.id }}</td>#}
-                {#<td>#}
+                <td>
                     {#<ul>#}
                         {#<li>#}
                             {#<a href="{{ path('azpisaila_show', { 'id': azpisaila.id }) }}">show</a>#}
                         {#</li>#}
                         {#<li>#}
-                            {#<a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}">edit</a>#}
+                            <a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}" class="fa fa-pencil"></a>
                         {#</li>#}
                     {#</ul>#}
-                {#</td>#}
+                </td>
             </tr>
         {% endfor %}
         </tbody>
