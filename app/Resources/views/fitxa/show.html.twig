@@ -517,7 +517,7 @@
                 <h3>{{ labelak.norkebatzilabeleu }}</h3>
             </div>
             <div>
-                {% if eremuak.norkebatzitable %}{{ fitxa.norkebatzi.norkeu }}{% endif %}
+                {% if (eremuak.norkebatzitable and fitxa.norkebatzi) %}{{ fitxa.norkebatzi.norkeu }}{% endif %}
 
                 {% if eremuak.norkebatzitext %}{{ fitxa.norkonartueu|raw }}{% endif %}
 
@@ -528,7 +528,7 @@
                 <h3>{{ labelak.norkebatzilabeles }}</h3>
             </div>
             <div>
-                {% if eremuak.norkebatzitable %}{{ fitxa.norkebatzi.norkes }}{% endif %}
+                {% if eremuak.norkebatzitable and fitxa.norkebatzi %}{{ fitxa.norkebatzi.norkes }}{% endif %}
                 {% if eremuak.norkebatzitext %}{{ fitxa.norkonartues|raw }}{% endif %}
             </div>
         </div>
@@ -542,7 +542,9 @@
                 <h3>{{ labelak.azpisailalabeleu }}</h3>
             </div>
             <div>
-                {{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}
+                {% if fitxa.azpisaila %}
+                    {{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}
+                {% endif %}
             </div>
         </div>
         <div class="col-sm-6">
@@ -550,7 +552,9 @@
                 <h3>{{ labelak.azpisailalabeles }}</h3>
             </div>
             <div>
-                {{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}
+                {% if fitxa.azpisaila %}
+                    {{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -748,7 +752,7 @@
                 <h3>{{ labelak.datuenbabesalabeleu }}</h3>
             </div>
             <div>
-                {% if eremuak.datuenbabesatable %}
+                {% if eremuak.datuenbabesatable and fitxa.datuenbabesa %}
                 {{ fitxa.udala.lopdeu|replace({ ('$$$fitxa.datuenbabesa.izenaeu$$$'): fitxa.datuenbabesa.izenaeu })
                 |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
                 |replace({ ('$$$fitxa.datuenbabesa.xedeaeu$$$'): fitxa.datuenbabesa.xedeaeu })
@@ -763,7 +767,7 @@
                 <h3>{{ labelak.datuenbabesalabeles }}</h3>
             </div>
             <div>
-                {% if eremuak.datuenbabesatable %}
+                {% if eremuak.datuenbabesatable and fitxa.datuenbabesa %}
                 {{ fitxa.udala.lopdes|replace({ ('$$$fitxa.datuenbabesa.izenaes$$$'): fitxa.datuenbabesa.izenaes })
                 |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
                 |replace({ ('$$$fitxa.datuenbabesa.xedeaes$$$'): fitxa.datuenbabesa.xedeaes })

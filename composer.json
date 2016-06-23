@@ -30,7 +30,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "knplabs/knp-menu-bundle": "^2.0",
         "whiteoctober/tcpdf-bundle": "^1.0",
-        "bmatzner/fontawesome-bundle": "^4.6"
+        "bmatzner/fontawesome-bundle": "^4.6",
+        "guzzlehttp/guzzle": "^6.2"
 
     },
     "require-dev": {
