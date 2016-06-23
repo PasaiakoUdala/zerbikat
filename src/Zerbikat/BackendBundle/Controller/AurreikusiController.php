@@ -29,8 +29,15 @@ class AurreikusiController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $aurreikusis = $em->getRepository('BackendBundle:Aurreikusi')->findAll();
+
+            $deleteForms = array();
+            foreach ($aurreikusis as $aurreikusi) {
+                $deleteForms[$aurreikusi->getId()] = $this->createDeleteForm($aurreikusi)->createView();
+            }
+
             return $this->render('aurreikusi/index.html.twig', array(
                 'aurreikusis' => $aurreikusis,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

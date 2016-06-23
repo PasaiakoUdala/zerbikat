@@ -28,8 +28,15 @@ class EraikinaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $eraikinas = $em->getRepository('BackendBundle:Eraikina')->findAll();
+
+            $deleteForms = array();
+            foreach ($eraikinas as $eraikina) {
+                $deleteForms[$eraikina->getId()] = $this->createDeleteForm($eraikina)->createView();
+            }
+
             return $this->render('eraikina/index.html.twig', array(
                 'eraikinas' => $eraikinas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

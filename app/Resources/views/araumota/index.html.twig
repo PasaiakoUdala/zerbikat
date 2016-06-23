@@ -23,29 +23,23 @@
             <tr>
                 <th>Kodea</th>
                 <th>Motaeu</th>
-                {#<th>Motaes</th>#}
-                {#<th>Id</th>#}
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for araumotum in araumotas %}
             <tr>
-                {#<td><a href="{{ path('araumota_show', { 'id': araumotum.id }) }}">{{ araumotum.kodea }}</a></td>#}
-                {#<td><a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}">{{ araumotum.kodea }}</a></td>#}
                 <td>{{ araumotum.kodea }}</td>
                 <td>{{ araumotum.motaeu }}</td>
-                {#<td>{{ araumotum.motaes }}</td>#}
-                {#<td>{{ araumotum.id }}</td>#}
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('araumota_show', { 'id': araumotum.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            <a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[araumotum.id],{'attr': {'id': araumotum.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ araumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[araumotum.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

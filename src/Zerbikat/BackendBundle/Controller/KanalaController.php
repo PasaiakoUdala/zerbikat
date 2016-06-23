@@ -28,8 +28,15 @@ class KanalaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $kanalas = $em->getRepository('BackendBundle:Kanala')->findAll();
+
+            $deleteForms = array();
+            foreach ($kanalas as $kanala) {
+                $deleteForms[$kanala->getId()] = $this->createDeleteForm($kanala)->createView();
+            }
+            
             return $this->render('kanala/index.html.twig', array(
                 'kanalas' => $kanalas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

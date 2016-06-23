@@ -28,8 +28,15 @@ class NorkebatziController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $norkebatzis = $em->getRepository('BackendBundle:Norkebatzi')->findAll();
+
+            $deleteForms = array();
+            foreach ($norkebatzis as $norkebatzi) {
+                $deleteForms[$norkebatzi->getId()] = $this->createDeleteForm($norkebatzi)->createView();
+            }
+            
             return $this->render('norkebatzi/index.html.twig', array(
                 'norkebatzis' => $norkebatzis,
+                'deleteforms' => $deleteForms                
             ));
         }else
         {

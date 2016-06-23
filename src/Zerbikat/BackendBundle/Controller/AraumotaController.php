@@ -29,8 +29,15 @@ class AraumotaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $araumotas = $em->getRepository('BackendBundle:Araumota')->findAll();
+
+            $deleteForms = array();
+            foreach ($araumotas as $araumota) {
+                $deleteForms[$araumota->getId()] = $this->createDeleteForm($araumota)->createView();
+            }
+
             return $this->render('araumota/index.html.twig', array(
                 'araumotas' => $araumotas,
+                'deleteforms' => $deleteForms
             ));
         } else
         {

@@ -19,14 +19,23 @@
         <thead>
             <tr>
                 <th>Tramitea</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for tramitea in tramiteas %}
             <tr>
                 <td>{{ tramitea.tramiteaeu }}</td>
-                 <td><a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}" class="fa fa-pencil"></a></td>
+                 <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('tramitea_edit', { 'id': tramitea.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[tramitea.id],{'attr': {'id': tramitea.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ tramitea.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[tramitea.id]) }}</li>
+                        {% endif %}
+                    </ul>
+                 </td>
             </tr>
         {% endfor %}
         </tbody>

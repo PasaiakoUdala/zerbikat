@@ -29,8 +29,15 @@ class DoklagunController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $doklaguns = $em->getRepository('BackendBundle:Doklagun')->findAll();
+
+            $deleteForms = array();
+            foreach ($doklaguns as $doklagun) {
+                $deleteForms[$doklagun->getId()] = $this->createDeleteForm($doklagun)->createView();
+            }
+
             return $this->render('doklagun/index.html.twig', array(
                 'doklaguns' => $doklaguns,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

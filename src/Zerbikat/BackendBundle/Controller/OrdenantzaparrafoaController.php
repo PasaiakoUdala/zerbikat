@@ -28,8 +28,15 @@ class OrdenantzaparrafoaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $ordenantzaparrafoas = $em->getRepository('BackendBundle:Ordenantzaparrafoa')->findAll();
+
+            $deleteForms = array();
+            foreach ($ordenantzaparrafoas as $ordenantzaparrafoa) {
+                $deleteForms[$ordenantzaparrafoa->getId()] = $this->createDeleteForm($ordenantzaparrafoa)->createView();
+            }
+
             return $this->render('ordenantzaparrafoa/index.html.twig', array(
                 'ordenantzaparrafoas' => $ordenantzaparrafoas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

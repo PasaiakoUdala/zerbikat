@@ -29,8 +29,15 @@ class AzpisailaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $azpisailas = $em->getRepository('BackendBundle:Azpisaila')->findAll();
+
+            $deleteForms = array();
+            foreach ($azpisailas as $azpisaila) {
+                $deleteForms[$azpisaila->getId()] = $this->createDeleteForm($azpisaila)->createView();
+            }
+            
             return $this->render('azpisaila/index.html.twig', array(
                 'azpisailas' => $azpisailas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

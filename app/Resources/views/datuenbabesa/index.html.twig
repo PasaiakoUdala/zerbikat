@@ -25,7 +25,7 @@
                 <th>Maila</th>
                 <th>Izenaeu</th>
                 <th>Xedeaeu</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,12 +35,15 @@
                 <td>{{ datuenbabesa.maila }}</td>
                 <td>{{ datuenbabesa.izenaeu }}</td>
                 <td>{{ datuenbabesa.xedeaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('datuenbabesa_edit', { 'id': datuenbabesa.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[datuenbabesa.id],{'attr': {'id': datuenbabesa.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ datuenbabesa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[datuenbabesa.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

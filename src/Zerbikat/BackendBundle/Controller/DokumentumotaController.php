@@ -28,8 +28,14 @@ class DokumentumotaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $dokumentumotas = $em->getRepository('BackendBundle:Dokumentumota')->findAll();
+            
+            $deleteForms = array();
+            foreach ($dokumentumotas as $dokumentumota) {
+                $deleteForms[$dokumentumota->getId()] = $this->createDeleteForm($dokumentumota)->createView();
+            }
             return $this->render('dokumentumota/index.html.twig', array(
                 'dokumentumotas' => $dokumentumotas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

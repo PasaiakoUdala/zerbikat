@@ -38,17 +38,15 @@
                 <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.deskribapenaeu }}<br>
                 {{ fitxa.deskribapenaes }}</a></td>
                 <td>
-                    {#{% if fitxa.azpisaila %}#}
-                    {#{% if fitxa.azpisaila.saila %}{{ fitxa.azpisaila.saila }}{% endif %}#}
-                        {#<br>{{ fitxa.azpisaila.azpisailaeu }}#}
-                    {#{% endif %}#}
+                    {% if fitxa.azpisaila %}
+                    {% if fitxa.azpisaila.saila %}{{ fitxa.azpisaila.saila }}{% endif %}
+                        <br>{{ fitxa.azpisaila.azpisailaeu }}
+                    {% endif %}
                 </td>
-                <td NOWRAP>
-                    <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" ><i class="fa fa-search"></i></a>
-                    {#{% if is_granted('ROLE_ADMIN') %}#}
-                        {#<a href="{{ path('fitxa_delete', { 'id': fitxa.id }) }}"><i class="fa fa-trash text-danger"></i></a>#}
-                    {#{% endif %}#}
-                    <a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" ><i class="fa fa-file-pdf-o"></i></a>
+                <td NOWRAP><ul class="list-inline">
+
+                    <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" ><i class="fa fa-search"></i></a></li>
+                    </li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" ><i class="fa fa-file-pdf-o"></i></a></li>
 
                     {#{% if is_granted('ROLE_ADMIN') %}#}
                         {#{{ form_start(deleteforms[fitxa.id]) }}#}
@@ -57,19 +55,12 @@
                     {#{% endif %}#}
 
                     {% if is_granted('ROLE_ADMIN') %}
-                        {{ form_start(deleteforms[fitxa.id],{'attr': {'id': fitxa.id}}) }}
-                            {#<button type="submit" ><i class="fa fa-trash text-danger"></i></button>#}
-                            {#<a href="#"  onclick><i class="fa fa-trash text-danger"></i></a>#}
-                            {#<a href="#" onclick="document.forms['{{ deleteforms[fitxa.id].vars.name }}'].submit()">#}
-                                {#<i class="fa fa-trash text-danger"></i>#}
-                            {#</a>#}
-                        <a href="#" onclick="document.getElementById({{ fitxa.id }}).submit();" >
-                                <i class="fa fa-trash text-danger"></i>
-                        </a>
-                        {{ form_end(deleteforms[fitxa.id]) }}
+                        <li>{{ form_start(deleteforms[fitxa.id],{'attr': {'id': fitxa.id}}) }}
+                            <a href="#" onclick="document.getElementById({{ fitxa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                        {{ form_end(deleteforms[fitxa.id]) }}</li>
                     {% endif %}
 
-                </td>
+                    </ul></td>
 
             </tr>
         {% endfor %}

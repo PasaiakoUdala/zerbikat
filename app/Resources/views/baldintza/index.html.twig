@@ -21,20 +21,23 @@
         <thead>
             <tr>
                 <th>Baldintzaeu</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for baldintza in baldintzas %}
             <tr>
-                {#<td><a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}">{{ baldintza.baldintzaeu }}</a></td>#}
                 <td>{{ baldintza.baldintzaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[baldintza.id],{'attr': {'id': baldintza.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ baldintza.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[baldintza.id]) }}</li>
+                        {% endif %}
+
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

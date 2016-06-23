@@ -27,11 +27,16 @@ class ArruntaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-
             $arruntas = $em->getRepository('BackendBundle:Arrunta')->findAll();
+
+            $deleteForms = array();
+            foreach ($arruntas as $arrunta) {
+                $deleteForms[$arrunta->getId()] = $this->createDeleteForm($arrunta)->createView();
+            }
 
             return $this->render('arrunta/index.html.twig', array(
                 'arruntas' => $arruntas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

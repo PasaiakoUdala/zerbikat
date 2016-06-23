@@ -28,7 +28,16 @@
             <tr>
                 <td>{{ ordenantzaparrafoa.testuaeu |raw}}</td>
                 <td>{{ ordenantzaparrafoa.testuaes |raw}}</td>
-                <td><a href="{{ path('ordenantzaparrafoa_edit', { 'id': ordenantzaparrafoa.id }) }}" class="fa fa-pencil"></a></td>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('ordenantzaparrafoa_edit', { 'id': ordenantzaparrafoa.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[ordenantzaparrafoa.id],{'attr': {'id': ordenantzaparrafoa.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ ordenantzaparrafoa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[ordenantzaparrafoa.id]) }}</li>
+                        {% endif %}
+                    </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -22,7 +22,7 @@
             <tr>
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,15 +32,17 @@
                 <td>{{ azpiatala.atala.ordenantza.kodea }}.{{ azpiatala.atala.kodea }}.{{ azpiatala.kodea }}</td>
 
                 <td>{{ azpiatala.izenburuaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li>
                             <a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}" class="fa fa-search"></a>
-                        {#</li>#}
-                        {#<li>#}
-                            {#<a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}">edit</a>#}
-                        {#</li>#}
-                    {#</ul>#}
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[azpiatala.id],{'attr': {'id': azpiatala.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ azpiatala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[azpiatala.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

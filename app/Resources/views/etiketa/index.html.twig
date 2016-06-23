@@ -27,12 +27,15 @@
         {% for etiketum in etiketas %}
             <tr>
                 <td>{{ etiketum.etiketaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('etiketa_edit', { 'id': etiketum.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('etiketa_edit', { 'id': etiketum.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[etiketum.id],{'attr': {'id': etiketum.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ etiketum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[etiketum.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

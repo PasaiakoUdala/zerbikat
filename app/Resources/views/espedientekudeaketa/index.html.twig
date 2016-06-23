@@ -16,11 +16,9 @@
 {% endblock %}
 
 {% block body %}
-    {#<h1>Espediente-kudeaketa zerrenda</h1>#}
     <table class="table">
         <thead>
             <tr>
-                {#<th>Id</th>#}
                 <th>Izenaeu</th>
                 <th>Urleu</th>
                 <th></th>
@@ -31,8 +29,15 @@
             <tr>
                 <td>{{ espedientekudeaketum.izenaeu }}</td>
                 <td>{{ espedientekudeaketum.urleu }}</td>
-                <td>
-                            <a href="{{ path('espedientekudeaketa_edit', { 'id': espedientekudeaketum.id }) }}" class="fa fa-pencil"></a>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('espedientekudeaketa_edit', { 'id': espedientekudeaketum.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[espedientekudeaketum.id],{'attr': {'id': espedientekudeaketum.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ espedientekudeaketum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[espedientekudeaketum.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

@@ -27,11 +27,16 @@ class AzpiatalaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-
             $azpiatalas = $em->getRepository('BackendBundle:Azpiatala')->findAll();
 
+            $deleteForms = array();
+            foreach ($azpiatalas as $azpiatala) {
+                $deleteForms[$azpiatala->getId()] = $this->createDeleteForm($azpiatala)->createView();
+            }
+            
             return $this->render('azpiatala/index.html.twig', array(
                 'azpiatalas' => $azpiatalas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

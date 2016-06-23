@@ -28,8 +28,15 @@ class KanalmotaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $kanalmotas = $em->getRepository('BackendBundle:Kanalmota')->findAll();
+
+            $deleteForms = array();
+            foreach ($kanalmotas as $kanalmota) {
+                $deleteForms[$kanalmota->getId()] = $this->createDeleteForm($kanalmota)->createView();
+            }
+
             return $this->render('kanalmota/index.html.twig', array(
                 'kanalmotas' => $kanalmotas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

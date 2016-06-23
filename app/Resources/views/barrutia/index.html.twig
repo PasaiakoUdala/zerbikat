@@ -16,13 +16,10 @@
 {% endblock %}
 
 {% block body %}
-    {#<h1>Barrutiak</h1>#}
-
     <table class="table">
         <thead>
             <tr>
                 <th>Izena</th>
-                {#<th>Id</th>#}
                 <th></th>
             </tr>
         </thead>
@@ -30,27 +27,18 @@
         {% for barrutium in barrutias %}
             <tr>
                 <td>{{ barrutium.izena }}</td>
-                {#<td>{{ barrutium.id }}</td>#}
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('barrutia_show', { 'id': barrutium.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            <a href="{{ path('barrutia_edit', { 'id': barrutium.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('barrutia_edit', { 'id': barrutium.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[barrutium.id],{'attr': {'id': barrutium.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ barrutium.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[barrutium.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('barrutia_new') }}" class="btn btn-primary">Barruti berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

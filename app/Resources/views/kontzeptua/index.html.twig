@@ -30,12 +30,17 @@
                 <td>{{ kontzeptua.azpiatala }} -- {{ kontzeptua.kodea }}</td>
                 <td>{{ kontzeptua.kontzeptuaeu }}</td>
                 <td>{{ kontzeptua.kopurua }} {{ kontzeptua.unitatea }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('kontzeptua_edit', { 'id': kontzeptua.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[kontzeptua.id],{'attr': {'id': kontzeptua.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ kontzeptua.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[kontzeptua.id]) }}</li>
+                        {% endif %}
+
+
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

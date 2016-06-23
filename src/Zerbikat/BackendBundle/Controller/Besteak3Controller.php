@@ -28,8 +28,15 @@ class Besteak3Controller extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $besteak3s = $em->getRepository('BackendBundle:Besteak3')->findAll();
+
+            $deleteForms = array();
+            foreach ($besteak3s as $besteak3) {
+                $deleteForms[$besteak3->getId()] = $this->createDeleteForm($besteak3)->createView();
+            }
+
             return $this->render('besteak3/index.html.twig', array(
                 'besteak3s' => $besteak3s,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

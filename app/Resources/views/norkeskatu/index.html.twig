@@ -26,7 +26,17 @@
         {% for norkeskatu in norkeskatus %}
             <tr>
                 <td>{{ norkeskatu.norkeu }}</td>
-                <td><a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}" class="fa fa-pencil"></a></td>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[norkeskatu.id],{'attr': {'id': norkeskatu.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ norkeskatu.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[norkeskatu.id]) }}</li>
+                        {% endif %}
+                    </ul>
+                </td>
+
             </tr>
         {% endfor %}
         </tbody>

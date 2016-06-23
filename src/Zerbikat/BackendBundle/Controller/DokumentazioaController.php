@@ -28,8 +28,15 @@ class DokumentazioaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $dokumentazioas = $em->getRepository('BackendBundle:Dokumentazioa')->findAll();
+
+            $deleteForms = array();
+            foreach ($dokumentazioas as $dokumentazioa) {
+                $deleteForms[$dokumentazioa->getId()] = $this->createDeleteForm($dokumentazioa)->createView();
+            }
+            
             return $this->render('dokumentazioa/index.html.twig', array(
                 'dokumentazioas' => $dokumentazioas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

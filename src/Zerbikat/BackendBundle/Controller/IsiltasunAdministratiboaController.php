@@ -29,8 +29,15 @@ class IsiltasunAdministratiboaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $isiltasunAdministratiboas = $em->getRepository('BackendBundle:IsiltasunAdministratiboa')->findAll();
+
+            $deleteForms = array();
+            foreach ($isiltasunAdministratiboas as $isiltasunAdministratiboa) {
+                $deleteForms[$isiltasunAdministratiboa->getId()] = $this->createDeleteForm($isiltasunAdministratiboa)->createView();
+            }
+            
             return $this->render('isiltasunadministratiboa/index.html.twig', array(
                 'isiltasunAdministratiboas' => $isiltasunAdministratiboas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

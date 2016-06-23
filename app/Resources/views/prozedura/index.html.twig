@@ -27,7 +27,16 @@
         {% for prozedura in prozeduras %}
             <tr>
                 <td>{{ prozedura.prozeduraeu }}</td>
-                <td><a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}" class="fa fa-pencil"></a></td>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[prozedura.id],{'attr': {'id': prozedura.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ prozedura.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[prozedura.id]) }}</li>
+                        {% endif %}
+                    </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

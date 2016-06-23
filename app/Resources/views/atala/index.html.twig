@@ -16,23 +16,28 @@
 {% endblock %}
 
 {% block body %}
-    {#<h1>Atalak</h1>#}
-
     <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Izenburua</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for atala in atalas %}
             <tr>
-                {#<td><a href="{{ path('atala_edit', { 'id': atala.id }) }}">#}
                 <td>{{ atala.ordenantza.kodea }}.{{ atala.kodea }}</td>
                 <td>{{ atala.izenburuaeu }}</td>
-                <td>
-                    <a href="{{ path('atala_edit', { 'id': atala.id }) }}" class="fa fa-pencil"></a>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('atala_edit', { 'id': atala.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[atala.id],{'attr': {'id': atala.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ atala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[atala.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

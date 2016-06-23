@@ -15,7 +15,6 @@
     </nav>
 {% endblock %}
 {% block body %}
-    {#<h1>Agiriak</h1>#}
     <table class="table">
         <thead>
             <tr>
@@ -29,12 +28,15 @@
             <tr>
                 <td>{{ dokumentazioa.kodea }}</td>
                 <td>{{ dokumentazioa.deskribapenaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('dokumentazioa_edit', { 'id': dokumentazioa.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('dokumentazioa_edit', { 'id': dokumentazioa.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[dokumentazioa.id],{'attr': {'id': dokumentazioa.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ dokumentazioa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[dokumentazioa.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

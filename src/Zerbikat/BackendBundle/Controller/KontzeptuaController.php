@@ -28,8 +28,15 @@ class KontzeptuaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $kontzeptuas = $em->getRepository('BackendBundle:Kontzeptua')->findAll();
+
+            $deleteForms = array();
+            foreach ($kontzeptuas as $kontzeptua) {
+                $deleteForms[$kontzeptua->getId()] = $this->createDeleteForm($kontzeptua)->createView();
+            }
+
             return $this->render('kontzeptua/index.html.twig', array(
                 'kontzeptuas' => $kontzeptuas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

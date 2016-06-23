@@ -21,6 +21,7 @@
                 <th>Kodea</th>
                 <th>Espediente kudeaketa</th>
                 <th>Zerbitzuaeu</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,7 +30,16 @@
                 <td>{{ zerbitzua.kodea }}</td>
                 <td>{{ zerbitzua.espedientekudeaketa }}</td>
                 <td>{{ zerbitzua.zerbitzuaeu }}</td>
-                <td><a href="{{ path('zerbitzua_edit', { 'id': zerbitzua.id }) }}" class="fa fa-pencil"></td>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('zerbitzua_edit', { 'id': zerbitzua.id }) }}" ><i class="fa fa-pencil"></i></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[zerbitzua.id],{'attr': {'id': zerbitzua.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ zerbitzua.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[zerbitzua.id]) }}</li>
+                        {% endif %}
+                    </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

@@ -28,8 +28,15 @@ class TramiteaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $tramiteas = $em->getRepository('BackendBundle:Tramitea')->findAll();
+
+            $deleteForms = array();
+            foreach ($tramiteas as $tramiea) {
+                $deleteForms[$tramiea->getId()] = $this->createDeleteForm($tramiea)->createView();
+            }
+            
             return $this->render('tramitea/index.html.twig', array(
                 'tramiteas' => $tramiteas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

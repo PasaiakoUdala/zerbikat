@@ -29,12 +29,15 @@
             <tr>
                 <td>{{ besteak2.kodea }}</td>
                 <td>{{ besteak2.izenburuaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('besteak2_edit', { 'id': besteak2.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('besteak2_edit', { 'id': besteak2.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[besteak2.id],{'attr': {'id': besteak2.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ besteak2.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[besteak2.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

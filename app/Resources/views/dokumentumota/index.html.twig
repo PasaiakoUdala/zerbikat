@@ -29,12 +29,15 @@
             <tr>
                 <td>{{ dokumentumotum.kodea }}</td>
                 <td>{{ dokumentumotum.motaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[dokumentumotum.id],{'attr': {'id': dokumentumotum.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ dokumentumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[dokumentumotum.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

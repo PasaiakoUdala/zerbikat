@@ -33,12 +33,16 @@
                 <td></td>
                 <td>{{ kanala.deskribapenaeu }}</td>
                 <td>{% if kanala.telematikoa %}Bai{% else %}Ez{% endif %}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('kanala_edit', { 'id': kanala.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('kanala_edit', { 'id': kanala.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[kanala.id],{'attr': {'id': kanala.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ kanala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[kanala.id]) }}</li>
+                        {% endif %}
+
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

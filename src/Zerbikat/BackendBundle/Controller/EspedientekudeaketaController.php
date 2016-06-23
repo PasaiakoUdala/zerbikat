@@ -28,8 +28,15 @@ class EspedientekudeaketaController extends Controller
         if ($auth_checker->isGranted('ROLE_SUPER_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $espedientekudeaketas = $em->getRepository('BackendBundle:Espedientekudeaketa')->findAll();
+
+            $deleteForms = array();
+            foreach ($espedientekudeaketas as $espedientekudeaketa) {
+                $deleteForms[$espedientekudeaketa->getId()] = $this->createDeleteForm($espedientekudeaketa)->createView();
+            }
+
             return $this->render('espedientekudeaketa/index.html.twig', array(
                 'espedientekudeaketas' => $espedientekudeaketas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

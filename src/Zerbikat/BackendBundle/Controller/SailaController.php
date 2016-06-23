@@ -28,8 +28,15 @@ class SailaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $sailas = $em->getRepository('BackendBundle:Saila')->findAll();
+
+            $deleteForms = array();
+            foreach ($sailas as $saila) {
+                $deleteForms[$saila->getId()] = $this->createDeleteForm($saila)->createView();
+            }
+
             return $this->render('saila/index.html.twig', array(
                 'sailas' => $sailas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

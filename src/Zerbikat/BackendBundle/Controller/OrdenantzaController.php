@@ -28,8 +28,15 @@ class OrdenantzaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $ordenantzas = $em->getRepository('BackendBundle:Ordenantza')->findAll();
+
+            $deleteForms = array();
+            foreach ($ordenantzas as $ordenantza) {
+                $deleteForms[$ordenantza->getId()] = $this->createDeleteForm($ordenantza)->createView();
+            }
+            
             return $this->render('ordenantza/index.html.twig', array(
                 'ordenantzas' => $ordenantzas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

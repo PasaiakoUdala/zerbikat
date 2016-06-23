@@ -19,23 +19,24 @@
         <thead>
             <tr>
                 <th>Epea</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for arruntum in arruntas %}
             <tr>
-                {#<td><a href="{{ path('arrunta_show', { 'id': arruntum.id }) }}">{{ arruntum.epeaeu }}</a></td>#}
-                {#<td><a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}">{{ arruntum.epeaeu }}</a></td>#}
                 <td>{{ arruntum.epeaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('arrunta_show', { 'id': arruntum.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li>
                             <a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}"  class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[arruntum.id],{'attr': {'id': arruntum.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ arruntum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[arruntum.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

@@ -29,8 +29,15 @@ class KontzeptumotaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $kontzeptumotas = $em->getRepository('BackendBundle:Kontzeptumota')->findAll();
+
+            $deleteForms = array();
+            foreach ($kontzeptumotas as $kontzeptua) {
+                $deleteForms[$kontzeptua->getId()] = $this->createDeleteForm($kontzeptua)->createView();
+            }
+
             return $this->render('kontzeptumota/index.html.twig', array(
                 'kontzeptumotas' => $kontzeptumotas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

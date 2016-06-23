@@ -28,12 +28,15 @@
             <tr>
                 <td>{{ kanalmotum.motaeu }}</td>
                 <td>{% if kanalmotum.esteka %}Bai{% else %}Ez{% endif %}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('kanalmota_edit', { 'id': kanalmotum.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[kanalmotum.id],{'attr': {'id': kanalmotum.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ kanalmotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[kanalmotum.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

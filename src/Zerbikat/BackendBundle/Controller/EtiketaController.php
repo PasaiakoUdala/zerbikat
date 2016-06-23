@@ -28,8 +28,15 @@ class EtiketaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $etiketas = $em->getRepository('BackendBundle:Etiketa')->findAll();
+
+            $deleteForms = array();
+            foreach ($etiketas as $etiketa) {
+                $deleteForms[$etiketa->getId()] = $this->createDeleteForm($etiketa)->createView();
+            }
+            
             return $this->render('etiketa/index.html.twig', array(
                 'etiketas' => $etiketas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

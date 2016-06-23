@@ -28,8 +28,15 @@ class ProzeduraController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $prozeduras = $em->getRepository('BackendBundle:Prozedura')->findAll();
+
+            $deleteForms = array();
+            foreach ($prozeduras as $prozedura) {
+                $deleteForms[$prozedura->getId()] = $this->createDeleteForm($prozedura)->createView();
+            }
+            
             return $this->render('prozedura/index.html.twig', array(
                 'prozeduras' => $prozeduras,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

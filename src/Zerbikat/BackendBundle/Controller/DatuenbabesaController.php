@@ -28,8 +28,15 @@ class DatuenbabesaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $datuenbabesas = $em->getRepository('BackendBundle:Datuenbabesa')->findAll();
+
+            $deleteForms = array();
+            foreach ($datuenbabesas as $datuenbabesa) {
+                $deleteForms[$datuenbabesa->getId()] = $this->createDeleteForm($datuenbabesa)->createView();
+            }
+
             return $this->render('datuenbabesa/index.html.twig', array(
                 'datuenbabesas' => $datuenbabesas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

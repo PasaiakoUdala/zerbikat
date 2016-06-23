@@ -28,8 +28,15 @@ class NorkeskatuController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $norkeskatus = $em->getRepository('BackendBundle:Norkeskatu')->findAll();
+
+            $deleteForms = array();
+            foreach ($norkeskatus as $norkeskatu) {
+                $deleteForms[$norkeskatu->getId()] = $this->createDeleteForm($norkeskatu)->createView();
+            }
+
             return $this->render('norkeskatu/index.html.twig', array(
                 'norkeskatus' => $norkeskatus,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

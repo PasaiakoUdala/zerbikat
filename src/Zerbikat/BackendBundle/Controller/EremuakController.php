@@ -29,8 +29,15 @@ class EremuakController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $eremuaks = $em->getRepository('BackendBundle:Eremuak')->findAll();
+
+            $deleteForms = array();
+            foreach ($eremuaks as $eremuak) {
+                $deleteForms[$eremuak->getId()] = $this->createDeleteForm($eremuak)->createView();
+            }
+
             return $this->render('eremuak/index.html.twig', array(
                 'eremuaks' => $eremuaks,
+                'deleteforms' => $deleteForms
             ));
         }else if ($auth_checker->isGranted('ROLE_ADMIN'))
         {

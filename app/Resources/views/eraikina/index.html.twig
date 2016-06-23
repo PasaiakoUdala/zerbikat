@@ -21,7 +21,7 @@
             <tr>
                 <th>Izena</th>
                 <th>Koordenadak</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,8 +29,15 @@
             <tr>
                 <td>{{ eraikina.izena }}</td>
                 <td>({{ eraikina.longitudea }}, {{ eraikina.latitudea }})</td>
-                <td>
-                            <a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}" class="fa fa-pencil"></a>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}" class="fa fa-pencil"></a></li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>{{ form_start(deleteforms[eraikina.id],{'attr': {'id': eraikina.id}}) }}
+                            <a href="#" onclick="document.getElementById({{ eraikina.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                            {{ form_end(deleteforms[eraikina.id]) }}</li>
+                    {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

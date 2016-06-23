@@ -28,8 +28,15 @@ class BarrutiaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $barrutias = $em->getRepository('BackendBundle:Barrutia')->findAll();
+
+            $deleteForms = array();
+            foreach ($barrutias as $barrutia) {
+                $deleteForms[$barrutia->getId()] = $this->createDeleteForm($barrutia)->createView();
+            }
+
             return $this->render('barrutia/index.html.twig', array(
                 'barrutias' => $barrutias,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

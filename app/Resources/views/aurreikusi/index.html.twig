@@ -20,27 +20,26 @@
     <table class="table">
         <thead>
             <tr>
-                {#<th>Aurreikusitako Epea</th>#}
+                <th>Epea</th>
                 {#<th>Epeaes</th>#}
                 {#<th>Id</th>#}
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for aurreikusi in aurreikusis %}
             <tr>
-                {#<td><a href="{{ path('aurreikusi_show', { 'id': aurreikusi.id }) }}">{{ aurreikusi.epeaeu }}</a></td>#}
-                {#<td><a href="{{ path('aurreikusi_edit', { 'id': aurreikusi.id }) }}">{{ aurreikusi.epeaeu }}</a></td>#}
                 <td>{{ aurreikusi.epeaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            {#<a href="{{ path('aurreikusi_show', { 'id': aurreikusi.id }) }}">show</a>#}
-                        {#</li>#}
-                        {#<li>#}
-                            <a href="{{ path('aurreikusi_edit', { 'id': aurreikusi.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('aurreikusi_edit', { 'id': aurreikusi.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[aurreikusi.id],{'attr': {'id': aurreikusi.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ aurreikusi.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[aurreikusi.id]) }}</li>
+                        {% endif %}
+
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

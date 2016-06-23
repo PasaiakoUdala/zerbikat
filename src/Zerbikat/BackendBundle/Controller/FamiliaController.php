@@ -28,8 +28,15 @@ class FamiliaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $familias = $em->getRepository('BackendBundle:Familia')->findAll();
+
+            $deleteForms = array();
+            foreach ($familias as $familia) {
+                $deleteForms[$familia->getId()] = $this->createDeleteForm($familia)->createView();
+            }
+            
             return $this->render('familia/index.html.twig', array(
                 'familias' => $familias,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

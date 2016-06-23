@@ -27,11 +27,16 @@ class BaldintzaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-
             $baldintzas = $em->getRepository('BackendBundle:Baldintza')->findAll();
+
+            $deleteForms = array();
+            foreach ($baldintzas as $baldintza) {
+                $deleteForms[$baldintza->getId()] = $this->createDeleteForm($baldintza)->createView();
+            }
 
             return $this->render('baldintza/index.html.twig', array(
                 'baldintzas' => $baldintzas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

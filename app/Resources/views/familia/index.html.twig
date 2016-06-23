@@ -15,15 +15,11 @@
     </nav>
 {% endblock %}
 {% block body %}
-    {#<h1>Familiak</h1>#}
     <table class="table">
         <thead>
             <tr>
-                {#<th>Id</th>#}
                 <th>Familiaeu</th>
-                {#<th>Familiaes</th>#}
                 <th>Deskribapenaeu</th>
-                {#<th>Deskribapenaes</th>#}
                 <th></th>
             </tr>
         </thead>
@@ -32,7 +28,16 @@
             <tr>
                 <td>{{ familium.familiaeu }}</td>
                 <td>{{ familium.deskribapenaeu }}</td>
-                <td><a href="{{ path('familia_edit', { 'id': familium.id }) }}" class="fa fa-pencil"></a></td>
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('familia_edit', { 'id': familium.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[familium.id],{'attr': {'id': familium.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ familium.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[familium.id]) }}</li>
+                        {% endif %}
+                    </ul>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

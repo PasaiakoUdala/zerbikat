@@ -28,11 +28,16 @@ class AraudiaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN'))
         {
             $em = $this->getDoctrine()->getManager();
-
             $araudias = $em->getRepository('BackendBundle:Araudia')->findAll();
 
+            $deleteForms = array();
+            foreach ($araudias as $araudia) {
+                $deleteForms[$araudia->getId()] = $this->createDeleteForm($araudia)->createView();
+            }            
+            
             return $this->render('araudia/index.html.twig', array(
                 'araudias' => $araudias,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

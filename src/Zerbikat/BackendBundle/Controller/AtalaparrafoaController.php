@@ -27,11 +27,16 @@ class AtalaparrafoaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-
             $atalaparrafoas = $em->getRepository('BackendBundle:Atalaparrafoa')->findAll();
+
+            $deleteForms = array();
+            foreach ($atalaparrafoas as $parrafoa) {
+                $deleteForms[$parrafoa->getId()] = $this->createDeleteForm($parrafoa)->createView();
+            }
 
             return $this->render('atalaparrafoa/index.html.twig', array(
                 'atalaparrafoas' => $atalaparrafoas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

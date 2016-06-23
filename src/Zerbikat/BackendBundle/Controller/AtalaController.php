@@ -27,11 +27,16 @@ class AtalaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
-
             $atalas = $em->getRepository('BackendBundle:Atala')->findAll();
+
+            $deleteForms = array();
+            foreach ($atalas as $atala) {
+                $deleteForms[$atala->getId()] = $this->createDeleteForm($atala)->createView();
+            }
 
             return $this->render('atala/index.html.twig', array(
                 'atalas' => $atalas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

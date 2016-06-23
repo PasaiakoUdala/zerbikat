@@ -28,8 +28,15 @@ class KaleaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $kaleas = $em->getRepository('BackendBundle:Kalea')->findAll();
+
+            $deleteForms = array();
+            foreach ($kaleas as $kalea) {
+                $deleteForms[$kalea->getId()] = $this->createDeleteForm($kalea)->createView();
+            }
+
             return $this->render('kalea/index.html.twig', array(
                 'kaleas' => $kaleas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

@@ -25,11 +25,16 @@ class AzpiatalaparrafoaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $azpiatalaparrafoas = $em->getRepository('BackendBundle:Azpiatalaparrafoa')->findAll();
+
+        $deleteForms = array();
+        foreach ($azpiatalaparrafoas as $azpiatalaparrafoa) {
+            $deleteForms[$azpiatalaparrafoa->getId()] = $this->createDeleteForm($azpiatalaparrafoa)->createView();
+        }
 
         return $this->render('azpiatalaparrafoa/index.html.twig', array(
             'azpiatalaparrafoas' => $azpiatalaparrafoas,
+            'deleteforms' => $deleteForms
         ));
     }
 

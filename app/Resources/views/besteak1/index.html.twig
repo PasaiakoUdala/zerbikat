@@ -16,14 +16,12 @@
 {% endblock %}
 
 {% block body %}
-    {#<h1>{{ app.user.udala.eremuak.besteak1labeleu }} zerrenda</h1>#}
     <table class="table">
         <thead>
             <tr>
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
                 <th></th>
-                {#<th>Actions</th>#}
             </tr>
         </thead>
         <tbody>
@@ -31,12 +29,16 @@
             <tr>
                 <td>{{ besteak1.kodea }}</td>
                 <td>{{ besteak1.izenburuaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                        <li><a href="{{ path('besteak1_edit', { 'id': besteak1.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[besteak1.id],{'attr': {'id': besteak1.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ besteak1.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[besteak1.id]) }}</li>
+                        {% endif %}
+
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

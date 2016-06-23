@@ -29,8 +29,15 @@ class UdalaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $udalas = $em->getRepository('BackendBundle:Udala')->findAll();
+
+            $deleteForms = array();
+            foreach ($udalas as $udala) {
+                $deleteForms[$udala->getId()] = $this->createDeleteForm($udala)->createView();
+            }
+
             return $this->render('udala/index.html.twig', array(
                 'udalas' => $udalas,
+                'deleteforms' => $deleteForms
             ));
         }else if ($auth_checker->isGranted('ROLE_ADMIN'))
         {

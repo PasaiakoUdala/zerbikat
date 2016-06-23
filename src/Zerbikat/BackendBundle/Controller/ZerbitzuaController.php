@@ -29,8 +29,15 @@ class ZerbitzuaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $zerbitzuas = $em->getRepository('BackendBundle:Zerbitzua')->findAll();
+
+            $deleteForms = array();
+            foreach ($zerbitzuas as $zerbitzua) {
+                $deleteForms[$zerbitzua->getId()] = $this->createDeleteForm($zerbitzua)->createView();
+            }
+
             return $this->render('zerbitzua/index.html.twig', array(
                 'zerbitzuas' => $zerbitzuas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

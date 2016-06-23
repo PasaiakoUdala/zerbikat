@@ -26,12 +26,15 @@
         {% for kontzeptumotum in kontzeptumotas %}
             <tr>
                 <td>{{ kontzeptumotum.motaeu }}</td>
-                <td>
-                    {#<ul>#}
-                        {#<li>#}
-                            <a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}" class="fa fa-pencil"></a>
-                        {#</li>#}
-                    {#</ul>#}
+                <td NOWRAP class="text-right">
+                    <ul class="list-inline">
+                            <li><a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}" class="fa fa-pencil"></a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>{{ form_start(deleteforms[kontzeptumotum.id],{'attr': {'id': kontzeptumotum.id}}) }}
+                                <a href="#" onclick="document.getElementById({{ kontzeptumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                {{ form_end(deleteforms[kontzeptumotum.id]) }}</li>
+                        {% endif %}
+                    </ul>
                 </td>
             </tr>
         {% endfor %}
