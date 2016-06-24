@@ -17,40 +17,28 @@
 {% endblock %}
 {% block body %}
     {{ form_start(form) }}
-        {#{{ form_widget(form) }}#}
-
-<div class="row">
-    <div class="col-sm-6">
-        <div>
-            {{ form_label(form.izena, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
-            {{ form_errors(form.izena) }}
-            {{ form_widget(form.izena, {'attr': {'class': 'form-control'}}) }}
-        </div>
-    </div>
-</div>
-
-
-{% if is_granted('ROLE_SUPER_ADMIN') %}
-<div class="row">
-    {% else %}
-    <div class="row hidden">
-        {% endif %}
+    <div class="row">
         <div class="col-sm-6">
-            <div>
-                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(form.udala) }}
-                {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-group">
+                {{ form_label(form.izena, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.izena) }}
+                {{ form_widget(form.izena, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
-
-
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
+        {% else %}
+        <div class="row hidden">
+            {% endif %}
+            <div class="col-sm-6">
+                <div class="form-group">
+                    {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(form.udala) }}
+                    {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
     {{ form_end(form) }}
 {% endblock %}

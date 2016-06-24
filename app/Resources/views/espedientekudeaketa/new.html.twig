@@ -17,17 +17,16 @@
 {% endblock %}
 {% block body %}
     {{ form_start(form) }}
-        {#{{ form_widget(form) }}#}
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.izenaeu, 'Izena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.izenaeu) }}
                 {{ form_widget(form.izenaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.izenaes, 'Izena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.izenaes) }}
                 {{ form_widget(form.izenaes, {'attr': {'class': 'form-control'}}) }}
@@ -37,20 +36,19 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.urleu, 'URL (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.urleu) }}
                 {{ form_widget(form.urleu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.urles, 'URL (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.urles) }}
                 {{ form_widget(form.urles, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
-
     {{ form_end(form) }}
 {% endblock %}

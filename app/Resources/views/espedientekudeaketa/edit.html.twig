@@ -16,20 +16,18 @@
 </nav>
 {% endblock %}
 {% block body %}
-    {#<h1>Espedientekudeaketa edit</h1>#}
 
     {{ form_start(edit_form) }}
-        {#{{ form_widget(edit_form) }}#}
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.izenaeu, 'Izena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.izenaeu) }}
                 {{ form_widget(edit_form.izenaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.izenaes, 'Izena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.izenaes) }}
                 {{ form_widget(edit_form.izenaes, {'attr': {'class': 'form-control'}}) }}
@@ -39,20 +37,19 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.urleu, 'URL (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.urleu) }}
                 {{ form_widget(edit_form.urleu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.urles, 'URL (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.urles) }}
                 {{ form_widget(edit_form.urles, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
-
     {{ form_end(edit_form) }}
 {% endblock %}

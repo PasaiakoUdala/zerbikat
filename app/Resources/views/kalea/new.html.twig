@@ -17,19 +17,16 @@
 {% endblock %}
 {% block body %}
     {{ form_start(form) }}
-        {#{{ form_widget(form) }}#}
-
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.barrutia, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.barrutia) }}
                 {{ form_widget(form.barrutia, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
-
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.izena, 'Kale izena: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.izena) }}
                 {{ form_widget(form.izena, {'attr': {'class': 'form-control'}}) }}
@@ -37,29 +34,25 @@
         </div>
     </div>
 
-
-
     {% if is_granted('ROLE_SUPER_ADMIN') %}
     <div class="row">
     {% else %}
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-4 hidden">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.google, 'Google-eko izena: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.google) }}
                 {{ form_widget(form.google, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
-
-
     {{ form_end(form) }}
 {% endblock %}

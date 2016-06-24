@@ -17,26 +17,23 @@
 {% endblock %}
 {% block body %}
     {{ form_start(edit_form) }}
-        {#{{ form_widget(edit_form) }}#}
-
-
     <div class="row">
         <div class="col-sm-2">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kodea) }}
                 {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kontzeptumota, 'Kontzeptu-mota: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kontzeptumota) }}
                 {{ form_widget(edit_form.kontzeptumota, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.azpiatala) }}
                 {{ form_widget(edit_form.azpiatala, {'attr': {'class': 'form-control'}}) }}
@@ -44,17 +41,16 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kontzeptuaeu, 'Kontzeptua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kontzeptuaeu) }}
                 {{ form_widget(edit_form.kontzeptuaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kontzeptuaes, 'Kontzeptua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kontzeptuaes) }}
                 {{ form_widget(edit_form.kontzeptuaes, {'attr': {'class': 'form-control'}}) }}
@@ -64,21 +60,21 @@
 
     <div class="row">
         <div class="col-sm-3">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kopurua, 'Kopurua: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kopurua) }}
                 {{ form_widget(edit_form.kopurua, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-3">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.unitatea, 'Unitatea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.unitatea) }}
                 {{ form_widget(edit_form.unitatea, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.baldintza, 'Baldintza: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.baldintza) }}
                 {{ form_widget(edit_form.baldintza, {'attr': {'class': 'form-control'}}) }}
@@ -92,7 +88,7 @@
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}

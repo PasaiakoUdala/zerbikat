@@ -17,17 +17,16 @@
 {% endblock %}
 {% block body %}
     {{ form_start(form) }}
-        {#{{ form_widget(form) }}#}
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.barrutia, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.barrutia) }}
                 {{ form_widget(form.barrutia, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.izena, 'Eraikina: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.izena) }}
                 {{ form_widget(form.izena, {'attr': {'class': 'form-control'}}) }}
@@ -37,14 +36,14 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.longitudea, 'Longitudea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.longitudea) }}
                 {{ form_widget(form.longitudea, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.latitudea, 'Latitudea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.latitudea) }}
                 {{ form_widget(form.latitudea, {'attr': {'class': 'form-control'}}) }}
@@ -58,7 +57,7 @@
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}

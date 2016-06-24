@@ -18,11 +18,9 @@
 {% block body %}
 
     {{ form_start(edit_form) }}
-        {#{{ form_widget(edit_form) }}#}
-
     <div class="row">
         <div class="col-sm-3">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kodea) }}
                 {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
@@ -32,15 +30,14 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.deskribapenaeu, 'Deskribapena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.deskribapenaeu) }}
                 {{ form_widget(edit_form.deskribapenaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
-
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.deskribapenaes, 'Deskribapena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.deskribapenaes) }}
                 {{ form_widget(edit_form.deskribapenaes, {'attr': {'class': 'form-control'}}) }}
@@ -50,7 +47,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.estekaeu, 'Esteka (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.estekaeu) }}
                 {{ form_widget(edit_form.estekaeu, {'attr': {'class': 'form-control'}}) }}
@@ -58,7 +55,7 @@
         </div>
 
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.estekaes, 'Esteka (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.estekaes) }}
                 {{ form_widget(edit_form.estekaes, {'attr': {'class': 'form-control'}}) }}
@@ -66,21 +63,18 @@
         </div>
     </div>
 
-
     {% if is_granted('ROLE_SUPER_ADMIN') %}
     <div class="row">
     {% else %}
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
-
-
     {{ form_end(edit_form) }}
 {% endblock %}

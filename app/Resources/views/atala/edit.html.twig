@@ -20,7 +20,7 @@
         {#{{ form_widget(edit_form) }}#}
 <div class="row">
     <div class="col-sm-3">
-        <div>
+        <div class="form-group">
             {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
             {{ form_errors(edit_form.kodea) }}
             {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
@@ -29,7 +29,7 @@
 </div>
 <div class="row">
     <div class="col-sm-6">
-        <div>
+        <div class="form-group">
             {{ form_label(edit_form.izenburuaeu, 'Izenburua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
             {{ form_errors(edit_form.izenburuaeu) }}
             {{ form_widget(edit_form.izenburuaeu, {'attr': {'class': 'form-control'}}) }}
@@ -37,7 +37,7 @@
     </div>
 
     <div class="col-sm-6">
-        <div>
+        <div class="form-group">
             {{ form_label(edit_form.izenburuaes, 'Izenburua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
             {{ form_errors(edit_form.izenburuaes) }}
             {{ form_widget(edit_form.izenburuaes, {'attr': {'class': 'form-control'}}) }}
@@ -47,7 +47,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <div>
+        <div class="form-group">
             {{ form_label(edit_form.ordenantza, 'Ordenantza: ', { 'label_attr': {'class': 'control-label'} }) }}
             {{ form_errors(edit_form.ordenantza) }}
             {{ form_widget(edit_form.ordenantza, {'attr': {'class': 'form-control'}}) }}
@@ -61,8 +61,8 @@
 {% else %}
 <div class="row hidden">
 {% endif %}
-        <div class="col-sm-6">
-        <div>
+    <div class="col-sm-6">
+        <div class="form-group">
             {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
             {{ form_errors(edit_form.udala) }}
             {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}

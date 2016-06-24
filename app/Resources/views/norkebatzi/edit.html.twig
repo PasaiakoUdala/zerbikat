@@ -16,21 +16,17 @@
     </nav>
 {% endblock %}
 {% block body %}
-
     {{ form_start(edit_form) }}
-        {#{{ form_widget(edit_form) }}#}
-
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.norkeu, 'Nork ebatzi (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.norkeu) }}
                 {{ form_widget(edit_form.norkeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
-
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.norkes, 'Nork ebatzi (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.norkes) }}
                 {{ form_widget(edit_form.norkes, {'attr': {'class': 'form-control'}}) }}
@@ -44,13 +40,12 @@
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
-
     {{ form_end(edit_form) }}
 {% endblock %}

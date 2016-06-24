@@ -18,34 +18,34 @@
 {% block body %}
     {{ form_start(form) }}
         {#{{ form_widget(form) }}#}
-<div class="row">
-    <div class="col-sm-4">
-        <div class="form-group">
-            {{ form_label(form.esteka, 'Esteka behar du?: ', { 'label_attr': {'class': 'control-label'} }) }}
-            {{ form_errors(form.esteka) }}
-            {{ form_widget(form.esteka, {'attr': {'class': 'c-checkbox'}}) }}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                {{ form_label(form.esteka, 'Esteka behar du?: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.esteka) }}
+                {{ form_widget(form.esteka, {'attr': {'class': 'c-checkbox'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                {{ form_label(form.motaeu, 'Kanal-mota (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.motaeu) }}
+                {{ form_widget(form.motaeu, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                {{ form_label(form.motaes, 'Kanal-mota (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.motaes) }}
+                {{ form_widget(form.motaes, {'attr': {'class': 'form-control'}}) }}
+            </div>
         </div>
     </div>
 
-    <div class="col-sm-4">
-        <div class="form-group">
-            {{ form_label(form.motaeu, 'Kanal-mota (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
-            {{ form_errors(form.motaeu) }}
-            {{ form_widget(form.motaeu, {'attr': {'class': 'form-control'}}) }}
-        </div>
-    </div>
-
-    <div class="col-sm-4">
-        <div class="form-group">
-            {{ form_label(form.motaes, 'Kanal-mota (es): ', { 'label_attr': {'class': 'control-label'} }) }}
-            {{ form_errors(form.motaes) }}
-            {{ form_widget(form.motaes, {'attr': {'class': 'form-control'}}) }}
-        </div>
-    </div>
-</div>
-
-{% if is_granted('ROLE_SUPER_ADMIN') %}
-<div class="row">
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
     {% else %}
     <div class="row hidden">
         {% endif %}

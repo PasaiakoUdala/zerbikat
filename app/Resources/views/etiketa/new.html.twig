@@ -17,18 +17,16 @@
 {% endblock %}
 {% block body %}
     {{ form_start(form) }}
-        {#{{ form_widget(form) }}#}
-
     <div class="row">
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.etiketaeu, 'Etiketa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.etiketaeu) }}
                 {{ form_widget(form.etiketaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.etiketaes, 'Etiketa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.etiketaes) }}
                 {{ form_widget(form.etiketaes, {'attr': {'class': 'form-control'}}) }}
@@ -42,14 +40,12 @@
     <div class="row hidden">
     {% endif %}
         <div class="col-sm-6">
-            <div>
+            <div class="form-group">
                 {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
     </div>
-
-
     {{ form_end(form) }}
 {% endblock %}
