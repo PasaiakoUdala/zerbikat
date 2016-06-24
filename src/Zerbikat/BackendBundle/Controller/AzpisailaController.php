@@ -68,7 +68,8 @@ class AzpisailaController extends Controller
                 $em->persist($azpisaila);
                 $em->flush();
 
-                return $this->redirectToRoute('azpisaila_show', array('id' => $azpisaila->getId()));
+//                return $this->redirectToRoute('azpisaila_show', array('id' => $azpisaila->getId()));
+                return $this->redirectToRoute('azpisaila_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

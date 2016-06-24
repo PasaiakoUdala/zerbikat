@@ -67,7 +67,9 @@ class BaldintzaController extends Controller
                 $em->persist($baldintza);
                 $em->flush();
 
-                return $this->redirectToRoute('baldintza_show', array('id' => $baldintza->getId()));
+//                return $this->redirectToRoute('baldintza_show', array('id' => $baldintza->getId()));
+                return $this->redirectToRoute('baldintza_index');
+
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

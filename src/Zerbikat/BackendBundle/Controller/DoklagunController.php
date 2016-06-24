@@ -68,7 +68,8 @@ class DoklagunController extends Controller
                 $em->persist($doklagun);
                 $em->flush();
 
-                return $this->redirectToRoute('doklagun_show', array('id' => $doklagun->getId()));
+//                return $this->redirectToRoute('doklagun_show', array('id' => $doklagun->getId()));
+                return $this->redirectToRoute('doklagun_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

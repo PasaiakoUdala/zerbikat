@@ -69,7 +69,8 @@ class AraudiaController extends Controller
                 $em->persist($araudium);
                 $em->flush();
 
-                return $this->redirectToRoute('araudia_show', array('id' => $araudium->getId()));
+//                return $this->redirectToRoute('araudia_show', array('id' => $araudium->getId()));
+                return $this->redirectToRoute('araudia_index');
             }else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

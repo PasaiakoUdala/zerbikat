@@ -67,7 +67,8 @@ class NorkeskatuController extends Controller
                 $em->persist($norkeskatu);
                 $em->flush();
 
-                return $this->redirectToRoute('norkeskatu_show', array('id' => $norkeskatu->getId()));
+//                return $this->redirectToRoute('norkeskatu_show', array('id' => $norkeskatu->getId()));
+                return $this->redirectToRoute('norkeskatu_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

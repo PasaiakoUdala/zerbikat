@@ -22,7 +22,7 @@ class AtalaType extends AbstractType
 //            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
 //            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
             ->add('udala')
-//            ->add('ordenantza')
+            ->add('ordenantza')
         ;
     }
     

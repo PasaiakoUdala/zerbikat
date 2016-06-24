@@ -64,11 +64,14 @@ class AtalaController extends Controller
 //            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $atala->setCreatedAt(new \DateTime());
+                $atala->setUpdatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($atala);
                 $em->flush();
 
-                return $this->redirectToRoute('atala_show', array('id' => $atala->getId()));
+//                return $this->redirectToRoute('atala_show', array('id' => $atala->getId()));
+                return $this->redirectToRoute('atala_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

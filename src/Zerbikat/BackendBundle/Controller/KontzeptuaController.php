@@ -63,11 +63,14 @@ class KontzeptuaController extends Controller
 //            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $kontzeptua->setCreatedAt(new \DateTime());
+                $kontzeptua->setUpdatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($kontzeptua);
                 $em->flush();
 
-                return $this->redirectToRoute('kontzeptua_show', array('id' => $kontzeptua->getId()));
+//                return $this->redirectToRoute('kontzeptua_show', array('id' => $kontzeptua->getId()));
+                return $this->redirectToRoute('kontzeptua_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

@@ -67,7 +67,8 @@ class Besteak1Controller extends Controller
                 $em->persist($besteak1);
                 $em->flush();
 
-                return $this->redirectToRoute('besteak1_show', array('id' => $besteak1->getId()));
+//                return $this->redirectToRoute('besteak1_show', array('id' => $besteak1->getId()));
+                return $this->redirectToRoute('besteak1_index');                
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

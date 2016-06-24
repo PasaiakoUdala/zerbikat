@@ -68,7 +68,8 @@ class AraumotaController extends Controller
                 $em->persist($araumotum);
                 $em->flush();
 
-                return $this->redirectToRoute('araumota_show', array('id' => $araumotum->getId()));
+//                return $this->redirectToRoute('araumota_show', array('id' => $araumotum->getId()));
+                return $this->redirectToRoute('araumota_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

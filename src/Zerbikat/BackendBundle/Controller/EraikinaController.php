@@ -67,7 +67,8 @@ class EraikinaController extends Controller
                 $em->persist($eraikina);
                 $em->flush();
 
-                return $this->redirectToRoute('eraikina_show', array('id' => $eraikina->getId()));
+//                return $this->redirectToRoute('eraikina_show', array('id' => $eraikina->getId()));
+                return $this->redirectToRoute('eraikina_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

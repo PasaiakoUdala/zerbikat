@@ -67,7 +67,8 @@ class FamiliaController extends Controller
                 $em->persist($familium);
                 $em->flush();
 
-                return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
+//                return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
+                return $this->redirectToRoute('familia_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

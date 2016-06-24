@@ -67,7 +67,8 @@ class SailaController extends Controller
                 $em->persist($saila);
                 $em->flush();
 
-                return $this->redirectToRoute('saila_show', array('id' => $saila->getId()));
+//                return $this->redirectToRoute('saila_show', array('id' => $saila->getId()));
+                return $this->redirectToRoute('saila_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

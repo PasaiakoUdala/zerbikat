@@ -64,7 +64,8 @@ class EspedientekudeaketaController extends Controller
                 $em->persist($espedientekudeaketum);
                 $em->flush();
 
-                return $this->redirectToRoute('espedientekudeaketa_show', array('id' => $espedientekudeaketum->getId()));
+//                return $this->redirectToRoute('espedientekudeaketa_show', array('id' => $espedientekudeaketum->getId()));
+                return $this->redirectToRoute('espedientekudeaketa_index');
             }
 
             return $this->render('espedientekudeaketa/new.html.twig', array(

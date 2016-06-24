@@ -68,7 +68,8 @@ class EremuakController extends Controller
                 $em->persist($eremuak);
                 $em->flush();
 
-                return $this->redirectToRoute('eremuak_show', array('id' => $eremuak->getId()));
+//                return $this->redirectToRoute('eremuak_show', array('id' => $eremuak->getId()));
+                return $this->redirectToRoute('eremuak_index');
             }
 
             return $this->render('eremuak/new.html.twig', array(

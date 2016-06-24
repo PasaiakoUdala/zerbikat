@@ -65,7 +65,8 @@ class DokumentumotaController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($dokumentumotum);
                 $em->flush();
-                return $this->redirectToRoute('dokumentumota_show', array('id' => $dokumentumotum->getId()));
+//                return $this->redirectToRoute('dokumentumota_show', array('id' => $dokumentumotum->getId()));
+                return $this->redirectToRoute('dokumentumota_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

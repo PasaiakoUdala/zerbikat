@@ -64,6 +64,8 @@ class AzpiatalaController extends Controller
 //            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $azpiatala->setCreatedAt(new \DateTime());
+                $azpiatala->setUpdatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($azpiatala);
                 $em->flush();

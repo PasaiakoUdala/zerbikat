@@ -67,7 +67,8 @@ class ArruntaController extends Controller
                 $em->persist($arruntum);
                 $em->flush();
 
-                return $this->redirectToRoute('arrunta_show', array('id' => $arruntum->getId()));
+//                return $this->redirectToRoute('arrunta_show', array('id' => $arruntum->getId()));
+                return $this->redirectToRoute('arrunta_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

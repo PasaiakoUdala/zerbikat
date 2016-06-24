@@ -67,7 +67,8 @@ class IsiltasunAdministratiboaController extends Controller
                 $em->persist($isiltasunAdministratiboa);
                 $em->flush();
 
-                return $this->redirectToRoute('isiltasunadministratiboa_show', array('id' => $isiltasunAdministratiboa->getId()));
+//                return $this->redirectToRoute('isiltasunadministratiboa_show', array('id' => $isiltasunAdministratiboa->getId()));
+                return $this->redirectToRoute('isiltasunadministratiboa_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

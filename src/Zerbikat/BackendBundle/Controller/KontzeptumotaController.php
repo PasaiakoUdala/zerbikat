@@ -68,7 +68,8 @@ class KontzeptumotaController extends Controller
                 $em->persist($kontzeptumotum);
                 $em->flush();
 
-                return $this->redirectToRoute('kontzeptumota_show', array('id' => $kontzeptumotum->getId()));
+//                return $this->redirectToRoute('kontzeptumota_show', array('id' => $kontzeptumotum->getId()));
+                return $this->redirectToRoute('kontzeptumota_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

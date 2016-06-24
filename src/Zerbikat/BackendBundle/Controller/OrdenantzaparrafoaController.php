@@ -63,11 +63,14 @@ class OrdenantzaparrafoaController extends Controller
 //            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $ordenantzaparrafoa->setCreatedAt(new \DateTime());
+                $ordenantzaparrafoa->setUpdatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($ordenantzaparrafoa);
                 $em->flush();
 
-                return $this->redirectToRoute('ordenantzaparrafoa_show', array('id' => $ordenantzaparrafoa->getId()));
+//                return $this->redirectToRoute('ordenantzaparrafoa_show', array('id' => $ordenantzaparrafoa->getId()));
+                return $this->redirectToRoute('ordenantzaparrafoa_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

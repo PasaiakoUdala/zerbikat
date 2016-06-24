@@ -67,7 +67,8 @@ class KanalmotaController extends Controller
                 $em->persist($kanalmotum);
                 $em->flush();
 
-                return $this->redirectToRoute('kanalmota_show', array('id' => $kanalmotum->getId()));
+//                return $this->redirectToRoute('kanalmota_show', array('id' => $kanalmotum->getId()));
+                return $this->redirectToRoute('kanalmota_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

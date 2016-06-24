@@ -67,7 +67,8 @@ class EtiketaController extends Controller
                 $em->persist($etiketum);
                 $em->flush();
 
-                return $this->redirectToRoute('etiketa_show', array('id' => $etiketum->getId()));
+//                return $this->redirectToRoute('etiketa_show', array('id' => $etiketum->getId()));
+                return $this->redirectToRoute('etiketa_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

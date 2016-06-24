@@ -67,7 +67,8 @@ class NorkebatziController extends Controller
                 $em->persist($norkebatzi);
                 $em->flush();
 
-                return $this->redirectToRoute('norkebatzi_show', array('id' => $norkebatzi->getId()));
+//                return $this->redirectToRoute('norkebatzi_show', array('id' => $norkebatzi->getId()));
+                return $this->redirectToRoute('norkebatzi_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

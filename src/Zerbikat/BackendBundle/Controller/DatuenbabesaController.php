@@ -67,7 +67,8 @@ class DatuenbabesaController extends Controller
                 $em->persist($datuenbabesa);
                 $em->flush();
     
-                return $this->redirectToRoute('datuenbabesa_show', array('id' => $datuenbabesa->getId()));
+//                return $this->redirectToRoute('datuenbabesa_show', array('id' => $datuenbabesa->getId()));
+                return $this->redirectToRoute('datuenbabesa_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

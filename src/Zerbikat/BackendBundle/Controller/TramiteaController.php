@@ -67,7 +67,8 @@ class TramiteaController extends Controller
                 $em->persist($tramitea);
                 $em->flush();
 
-                return $this->redirectToRoute('tramitea_show', array('id' => $tramitea->getId()));
+//                return $this->redirectToRoute('tramitea_show', array('id' => $tramitea->getId()));
+                return $this->redirectToRoute('tramitea_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

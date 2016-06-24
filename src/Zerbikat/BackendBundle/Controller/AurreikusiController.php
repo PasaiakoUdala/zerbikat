@@ -69,7 +69,8 @@ class AurreikusiController extends Controller
                 $em->persist($aurreikusi);
                 $em->flush();
 
-                return $this->redirectToRoute('aurreikusi_show', array('id' => $aurreikusi->getId()));
+//                return $this->redirectToRoute('aurreikusi_show', array('id' => $aurreikusi->getId()));
+                return $this->redirectToRoute('aurreikusi_index');                
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

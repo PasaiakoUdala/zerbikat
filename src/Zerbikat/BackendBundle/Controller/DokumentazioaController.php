@@ -67,7 +67,8 @@ class DokumentazioaController extends Controller
                 $em->persist($dokumentazioa);
                 $em->flush();
     
-                return $this->redirectToRoute('dokumentazioa_show', array('id' => $dokumentazioa->getId()));
+//                return $this->redirectToRoute('dokumentazioa_show', array('id' => $dokumentazioa->getId()));
+                return $this->redirectToRoute('dokumentazioa_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

@@ -27,7 +27,7 @@
         <tbody>
         {% for atala in atalas %}
             <tr>
-                <td>{{ atala.ordenantza.kodea }}.{{ atala.kodea }}</td>
+                <td>{% if atala.ordenantza %}{{ atala.ordenantza.kodea }}.{% endif %}{{ atala.kodea }}</td>
                 <td>{{ atala.izenburuaeu }}</td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">

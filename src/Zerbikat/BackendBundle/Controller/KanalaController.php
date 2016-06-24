@@ -67,7 +67,8 @@ class KanalaController extends Controller
                 $em->persist($kanala);
                 $em->flush();
 
-                return $this->redirectToRoute('kanala_show', array('id' => $kanala->getId()));
+//                return $this->redirectToRoute('kanala_show', array('id' => $kanala->getId()));
+                return $this->redirectToRoute('kanala_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

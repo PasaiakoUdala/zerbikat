@@ -67,7 +67,9 @@ class BarrutiaController extends Controller
                 $em->persist($barrutium);
                 $em->flush();
 
-                return $this->redirectToRoute('barrutia_show', array('id' => $barrutium->getId()));
+//                return $this->redirectToRoute('barrutia_show', array('id' => $barrutium->getId()));
+                return $this->redirectToRoute('barrutia_index');
+
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

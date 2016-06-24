@@ -65,7 +65,8 @@ class ZerbitzuaController extends Controller
                 $em->persist($zerbitzua);
                 $em->flush();
 
-                return $this->redirectToRoute('zerbitzua_show', array('id' => $zerbitzua->getId()));
+//                return $this->redirectToRoute('zerbitzua_show', array('id' => $zerbitzua->getId()));
+                return $this->redirectToRoute('zerbitzua_index');
             }
             return $this->render('zerbitzua/new.html.twig', array(
                 'zerbitzua' => $zerbitzua,

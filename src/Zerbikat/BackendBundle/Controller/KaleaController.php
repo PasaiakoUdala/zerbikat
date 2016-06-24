@@ -67,7 +67,8 @@ class KaleaController extends Controller
                 $em->persist($kalea);
                 $em->flush();
     
-                return $this->redirectToRoute('kalea_show', array('id' => $kalea->getId()));
+//                return $this->redirectToRoute('kalea_show', array('id' => $kalea->getId()));
+                return $this->redirectToRoute('kalea_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());

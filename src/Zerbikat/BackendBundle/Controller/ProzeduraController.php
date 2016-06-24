@@ -67,7 +67,8 @@ class ProzeduraController extends Controller
                 $em->persist($prozedura);
                 $em->flush();
 
-                return $this->redirectToRoute('prozedura_show', array('id' => $prozedura->getId()));
+//                return $this->redirectToRoute('prozedura_show', array('id' => $prozedura->getId()));
+                return $this->redirectToRoute('prozedura_index');
             } else
             {
                 $form->getData()->setUdala($this->getUser()->getUdala());
