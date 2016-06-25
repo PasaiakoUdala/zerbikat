@@ -28,12 +28,6 @@ class Fitxa
      */
     private $id;
 
-    /** 
-     * @ORM\ManyToOne(targetEntity="Udala") 
-     *
-     */
-    private $udala;
-
     /**
      * @var string
      * @Expose
@@ -252,74 +246,6 @@ class Fitxa
      */
     private $updatedAt;
 
-
-
-    /**
-     * @var \Zerbikat\BackendBundle\Entity\Norkebatzi
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Norkebatzi")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id")
-     * })
-     * @Expose
-     */
-    private $norkebatzi;
-
-    /**
-     * @var \Zerbikat\BackendBundle\Entity\Zerbitzua
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Zerbitzua")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id")
-     * })
-     * @Expose
-     */
-    private $zerbitzua;
-
-    /**
-     * @var \Zerbikat\BackendBundle\Entity\Datuenbabesa
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Datuenbabesa")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id")
-     * })
-     * @Expose
-     */
-    private $datuenbabesa;
-
-    /**
-     * @var \Zerbikat\BackendBundle\Entity\Azpisaila
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id")
-     * })
-     * @Expose
-     */
-    private $azpisaila;
-
-    /**
-     * @var \Zerbikat\BackendBundle\Entity\Aurreikusi
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Aurreikusi")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id")
-     * })
-     * @Expose
-     */
-    private $aurreikusi;
-
-    /**
-     * @var \Zerbikat\BackendBundle\Entity\Arrunta
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Arrunta")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id")
-     * })
-     * @Expose
-     */
-    private $arrunta;
-
     /**
      * @var jarraibideakeu
      *
@@ -392,16 +318,103 @@ class Fitxa
 
 
     /**
-     *      ERLAZIOAK
+     *      ERLAZIOAK: ManyToOne
      */
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\Norkebatzi
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Norkebatzi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id")
+     * })
+     * @Expose
+     */
+    private $norkebatzi;
+
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\Zerbitzua
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Zerbitzua")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id")
+     * })
+     * @Expose
+     */
+    private $zerbitzua;
+
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\Datuenbabesa
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Datuenbabesa")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id")
+     * })
+     * @Expose
+     */
+    private $datuenbabesa;
+
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\Azpisaila
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id")
+     * })
+     * @Expose
+     */
+    private $azpisaila;
+
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\Aurreikusi
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Aurreikusi")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id")
+     * })
+     * @Expose
+     */
+    private $aurreikusi;
+
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\Arrunta
+     *
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Arrunta")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id")
+     * })
+     * @Expose
+     */
+    private $arrunta;
+
+    /**
+     * @var \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+     * @Expose
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa",inversedBy="fitxak")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id")
+     * })
+     */
+    private $isiltasunadmin;
+
+
+    /**
+     *      ERLAZIOAK: ManyToMany
+     */
 
     /**
      * @var dokumentazioak[]
      * @Expose
-     * @ORM\OneToMany(targetEntity="FitxaDokumentazioa", mappedBy="fitxa", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Dokumentazioa", inversedBy="fitxa", cascade={"remove"})
      */
     private $dokumentazioak;
+
 
     /**
      * @var kanalak[]
@@ -409,7 +422,6 @@ class Fitxa
      * @ORM\ManyToMany(targetEntity="Kanala",cascade={"remove"},inversedBy="fitxak")
      */
     private $kanalak;
-
 
 
     /**
@@ -447,48 +459,6 @@ class Fitxa
      */
     private $etiketak;
 
-
-
-//    /**
-//     * @var prozedurak[]
-//     *
-//     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" , cascade={"remove"})
-//     */
-//    private $prozedurak;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Prozedura")
-     * @ORM\JoinTable(name="fitxa_prozedura",
-     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
-     *      )
-     * @Expose
-     */
-    private $prozedurak;
-
-
-
-
-//    /**
-//     * @var araudiak[]
-//     * @Expose
-//     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
-//     */
-//    private $araudiak;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Araudia")
-     * @ORM\JoinTable(name="fitxa_araudia",
-     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
-     *      )
-     * @Expose
-     */
-    private $araudiak;
-
-
-    
-
     /**
      * @var norkeskatuak[]
      * @Expose
@@ -503,10 +473,6 @@ class Fitxa
      */
     private $doklagunak;
 
-
-
-
-
     /**
      * @var azpiatalak[]
      * @Expose
@@ -517,14 +483,47 @@ class Fitxa
 
 
     /**
-     * @var \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
-     * @Expose
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa",inversedBy="fitxak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id")
-     * })
+     *      ERLAZIOAK: ManyToMany + Extra fields
      */
-    private $isiltasunadmin;
+
+
+    /**
+     * @var prozedurak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" , cascade={"remove"})
+     */
+    private $prozedurak;
+
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Prozedura")
+//     * @ORM\JoinTable(name="fitxa_prozedura",
+//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
+//     *      )
+//     * @Expose
+//     */
+//    private $prozedurak;
+
+
+
+
+    /**
+     * @var araudiak[]
+     * @Expose
+     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
+     */
+    private $araudiak;
+
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Araudia")
+//     * @ORM\JoinTable(name="fitxa_araudia",
+//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
+//     *      )
+//     * @Expose
+//     */
+//    private $araudiak;
+
 
 
 

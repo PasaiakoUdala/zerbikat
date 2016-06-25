@@ -14,9 +14,6 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Araumota
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-    
     /**
      * @var string
      *
@@ -50,12 +47,26 @@ class Araumota
     /**
      *          ERLAZIOAK
      */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+
+
     /**
      * @var araudiak[]
      *
      * @ORM\OneToMany(targetEntity="Araudia", mappedBy="araumota", cascade={"remove"})
      */
     private $araudiak;
+
+
+    /**
+     *      FUNTZIOAK
+     */
 
     public function __toString()
     {

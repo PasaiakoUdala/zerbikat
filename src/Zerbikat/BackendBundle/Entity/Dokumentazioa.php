@@ -14,9 +14,16 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Dokumentazioa
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
     /**
      * @var string
      *
@@ -52,14 +59,18 @@ class Dokumentazioa
      */
     private $estekaes;
 
+
+
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     *          ERLAZIOAK
      */
-    private $id;
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\Dokumentumota
@@ -71,6 +82,13 @@ class Dokumentazioa
      */
     private $dokumentumota;
 
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="dokumentuak", cascade={"remove"})
+     */
+    private $fitxak;
+
 
     public function __toString()
     {
@@ -79,10 +97,20 @@ class Dokumentazioa
 
 
 
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Set kodea
      *
      * @param string $kodea
+     *
      * @return Dokumentazioa
      */
     public function setKodea($kodea)
@@ -95,7 +123,7 @@ class Dokumentazioa
     /**
      * Get kodea
      *
-     * @return string 
+     * @return string
      */
     public function getKodea()
     {
@@ -106,6 +134,7 @@ class Dokumentazioa
      * Set deskribapenaeu
      *
      * @param string $deskribapenaeu
+     *
      * @return Dokumentazioa
      */
     public function setDeskribapenaeu($deskribapenaeu)
@@ -118,7 +147,7 @@ class Dokumentazioa
     /**
      * Get deskribapenaeu
      *
-     * @return string 
+     * @return string
      */
     public function getDeskribapenaeu()
     {
@@ -129,6 +158,7 @@ class Dokumentazioa
      * Set deskribapenaes
      *
      * @param string $deskribapenaes
+     *
      * @return Dokumentazioa
      */
     public function setDeskribapenaes($deskribapenaes)
@@ -141,7 +171,7 @@ class Dokumentazioa
     /**
      * Get deskribapenaes
      *
-     * @return string 
+     * @return string
      */
     public function getDeskribapenaes()
     {
@@ -152,6 +182,7 @@ class Dokumentazioa
      * Set estekaeu
      *
      * @param string $estekaeu
+     *
      * @return Dokumentazioa
      */
     public function setEstekaeu($estekaeu)
@@ -164,7 +195,7 @@ class Dokumentazioa
     /**
      * Get estekaeu
      *
-     * @return string 
+     * @return string
      */
     public function getEstekaeu()
     {
@@ -175,6 +206,7 @@ class Dokumentazioa
      * Set estekaes
      *
      * @param string $estekaes
+     *
      * @return Dokumentazioa
      */
     public function setEstekaes($estekaes)
@@ -187,7 +219,7 @@ class Dokumentazioa
     /**
      * Get estekaes
      *
-     * @return string 
+     * @return string
      */
     public function getEstekaes()
     {
@@ -197,7 +229,7 @@ class Dokumentazioa
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -205,32 +237,10 @@ class Dokumentazioa
     }
 
     /**
-     * Set dokumentumota
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Dokumentumota $dokumentumota
-     * @return Dokumentazioa
-     */
-    public function setDokumentumota(\Zerbikat\BackendBundle\Entity\Dokumentumota $dokumentumota = null)
-    {
-        $this->dokumentumota = $dokumentumota;
-
-        return $this;
-    }
-
-    /**
-     * Get dokumentumota
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Dokumentumota 
-     */
-    public function getDokumentumota()
-    {
-        return $this->dokumentumota;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
      * @return Dokumentazioa
      */
     public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
@@ -243,10 +253,68 @@ class Dokumentazioa
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala 
+     * @return \Zerbikat\BackendBundle\Entity\Udala
      */
     public function getUdala()
     {
         return $this->udala;
     }
+
+    /**
+     * Set dokumentumota
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Dokumentumota $dokumentumota
+     *
+     * @return Dokumentazioa
+     */
+    public function setDokumentumota(\Zerbikat\BackendBundle\Entity\Dokumentumota $dokumentumota = null)
+    {
+        $this->dokumentumota = $dokumentumota;
+
+        return $this;
+    }
+
+    /**
+     * Get dokumentumota
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Dokumentumota
+     */
+    public function getDokumentumota()
+    {
+        return $this->dokumentumota;
+    }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     *
+     * @return Dokumentazioa
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
+   }
 }

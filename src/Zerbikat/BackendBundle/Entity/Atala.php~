@@ -76,7 +76,8 @@ class Atala
      */
     public function __toString()
     {
-        return $this->getOrdenantza()->getKodea().".".$this->getKodea().".".$this->getIzenburuaeu();
+//        return $this->getOrdenantza()->getKodea().".".$this->getKodea().".".$this->getIzenburuaeu();
+        return $this->getOrdenantza().".".$this->getKodea().".".$this->getIzenburuaeu();
     }
 
 

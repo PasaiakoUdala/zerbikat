@@ -14,8 +14,14 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Besteak2
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
     /**
      * @var string
@@ -31,14 +37,6 @@ class Besteak2
      */
     private $izenburuaes;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var string
@@ -66,6 +64,13 @@ class Besteak2
      *          ERLAZIOAK
      */
 
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+    
     /**
      * @var fitxak[]
      *

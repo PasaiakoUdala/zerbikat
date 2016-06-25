@@ -12,16 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Barrutia
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="izena", type="string", length=255, nullable=false)
-     */
-    private $izena;
-
     /**
      * @var integer
      *
@@ -30,11 +20,26 @@ class Barrutia
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="izena", type="string", length=255, nullable=false)
+     */
+    private $izena;
+
 
     /**
      *          ERLAZIOAK
      */
 
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+    
     /**
      * @var azpisailak[]
      *

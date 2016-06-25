@@ -24,17 +24,6 @@ class Eremuak
      */
     private $id;
 
-    /** @ORM\OneToOne(targetEntity="Udala") */
-    private $udala;
-
-//    /**
-//     * @ORM\OneToOne(targetEntity="Udala", inversedBy="eremuak")
-//     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id")
-//     */
-//    protected $udala;
-    
-    
-    
 
     /**
      * @var oharraktext
@@ -602,6 +591,18 @@ class Eremuak
      * @ORM\Column(name="doanlabeles", type="string", length=255, nullable=true)
      */
     private $doanlabeles;
+
+
+    /**
+     *          ERLAZIOAK
+     */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
 
 
     /**

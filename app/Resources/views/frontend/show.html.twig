@@ -97,20 +97,20 @@
                     {% for dokumentua in fitxa.dokumentazioak %}
                         <li>
                             {% if app.request.locale == 'eu'%}
-                                {% if dokumentua.dokumentazioa.estekaeu %}
-                                    <a href="{{ dokumentua.dokumentazioa.estekaeu }}">
-                                        {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaeu }}
+                                {% if dokumentua.estekaeu %}
+                                    <a href="{{ dokumentua.estekaeu }}">
+                                        {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaeu }}
                                     </a>
                                 {% else %}
-                                    {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaeu }}
+                                    {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaeu }}
                                 {% endif %}
                             {% else %}
-                                {% if dokumentua.dokumentazioa.estekaes %}
-                                    <a href="{{ dokumentua.dokumentazioa.estekaes }}">
-                                        {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaes }}
+                                {% if dokumentua.estekaes %}
+                                    <a href="{{ dokumentua.estekaes }}">
+                                        {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaes }}
                                     </a>
                                 {% else %}
-                                    {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaes }}
+                                    {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaes }}
                                 {% endif %}
                             {% endif %}
                         </li>
@@ -437,8 +437,10 @@
             </div>
             <div>
                 {% if eremuak.norkebatzitable %}
-                    {% if app.request.locale == 'eu'%}{{ fitxa.norkebatzi.norkeu }}
-                    {% else %}{{ fitxa.norkebatzi.norkes }}
+                    {% if fitxa.norkebatzi %}
+                        {% if app.request.locale == 'eu'%}{{ fitxa.norkebatzi.norkeu }}
+                        {% else %}{{ fitxa.norkebatzi.norkes }}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
 
@@ -463,8 +465,8 @@
                 </h3>
             </div>
             <div>
-                {% if app.request.locale == 'eu'%}{{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}
-                {% else %}{{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}
+                {% if app.request.locale == 'eu'%} {% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}{% endif %}
+                {% else %}{% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}{% endif %}
                 {% endif %}
             </div>
         </div>
@@ -648,18 +650,20 @@
             </div>
             <div>
                 {% if eremuak.datuenbabesatable %}
-                    {% if app.request.locale == 'eu'%}
-                        {{ fitxa.udala.lopdeu|replace({ ('$$$fitxa.datuenbabesa.izenaeu$$$'): fitxa.datuenbabesa.izenaeu })
-                        |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
-                        |replace({ ('$$$fitxa.datuenbabesa.xedeaeu$$$'): fitxa.datuenbabesa.xedeaeu })
-                        |replace({ ('$$$fitxa.datuenbabesa.lagapenakeu$$$'): fitxa.datuenbabesa.lagapenakeu })
-                        |raw}}
-                    {% else %}
-                        {{ fitxa.udala.lopdes|replace({ ('$$$fitxa.datuenbabesa.izenaes$$$'): fitxa.datuenbabesa.izenaes })
-                        |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
-                        |replace({ ('$$$fitxa.datuenbabesa.xedeaes$$$'): fitxa.datuenbabesa.xedeaes })
-                        |replace({ ('$$$fitxa.datuenbabesa.lagapenakes$$$'): fitxa.datuenbabesa.lagapenakes })
-                        |raw}}
+                    {% if fitxa.datuenbabesa %}
+                        {% if app.request.locale == 'eu'%}
+                            {{ fitxa.udala.lopdeu|replace({ ('$$$fitxa.datuenbabesa.izenaeu$$$'): fitxa.datuenbabesa.izenaeu })
+                            |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
+                            |replace({ ('$$$fitxa.datuenbabesa.xedeaeu$$$'): fitxa.datuenbabesa.xedeaeu })
+                            |replace({ ('$$$fitxa.datuenbabesa.lagapenakeu$$$'): fitxa.datuenbabesa.lagapenakeu })
+                            |raw}}
+                        {% else %}
+                            {{ fitxa.udala.lopdes|replace({ ('$$$fitxa.datuenbabesa.izenaes$$$'): fitxa.datuenbabesa.izenaes })
+                            |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
+                            |replace({ ('$$$fitxa.datuenbabesa.xedeaes$$$'): fitxa.datuenbabesa.xedeaes })
+                            |replace({ ('$$$fitxa.datuenbabesa.lagapenakes$$$'): fitxa.datuenbabesa.lagapenakes })
+                            |raw}}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
                 {% if eremuak.datuenbabesatext %}

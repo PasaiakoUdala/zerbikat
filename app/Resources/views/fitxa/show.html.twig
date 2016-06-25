@@ -121,12 +121,12 @@
                 <ul>
                     {% for dokumentua in fitxa.dokumentazioak %}
                         <li>
-                            {% if dokumentua.dokumentazioa.estekaeu %}
-                                <a href="{{ dokumentua.dokumentazioa.estekaeu }}">
-                                    {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaeu }}
+                            {% if dokumentua.estekaeu %}
+                                <a href="{{ dokumentua.estekaeu }}">
+                                    {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaeu }}
                                 </a>
                             {% else %}
-                                {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaeu }}
+                                {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaeu }}
                             {% endif %}
                         </li>
                     {% endfor %}
@@ -144,12 +144,12 @@
                 <ul>
                     {% for dokumentua in fitxa.dokumentazioak %}
                         <li>
-                            {% if dokumentua.dokumentazioa.estekaes %}
-                                <a href="{{ dokumentua.dokumentazioa.estekaes }}">
-                                    {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaes }}
+                            {% if dokumentua.estekaes %}
+                                <a href="{{ dokumentua.estekaes }}">
+                                    {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaes }}
                                 </a>
                             {% else %}
-                                {{ dokumentua.dokumentazioa.kodea }}-{{ dokumentua.dokumentazioa.deskribapenaes }}
+                                {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaes }}
                             {% endif %}
                         </li>
                     {% endfor %}

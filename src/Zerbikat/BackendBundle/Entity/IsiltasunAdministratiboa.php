@@ -15,6 +15,15 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 class IsiltasunAdministratiboa
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="isiltasuneu", type="string", length=255, nullable=true)
@@ -28,14 +37,6 @@ class IsiltasunAdministratiboa
      */
     private $isiltasunes;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      *          ERLAZIOAK
@@ -47,9 +48,22 @@ class IsiltasunAdministratiboa
      */
     private $fitxak;
 
-    /** @ORM\ManyToOne(targetEntity="Udala") */
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
     private $udala;
 
+    /**
+     *          FUNTZIOAK
+     */
+    
+    
+    /**
+     * @return string
+     * 
+     */
 
     public function __toString()
     {

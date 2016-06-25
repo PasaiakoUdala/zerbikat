@@ -24,9 +24,6 @@ class Kanala
     private $id;    
 
 
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-
     /**
      * @var string
      *
@@ -109,7 +106,7 @@ class Kanala
 
 
     /**
-     * @var telemoatikoa
+     * @var telematikoa
      *
      * @ORM\Column(name="telematikoa", type="boolean", nullable=true)
      */
@@ -121,6 +118,13 @@ class Kanala
     /**
      *  ERLAZIOAK 
      */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
 
     /**
      * @var Kanalmota
@@ -169,16 +173,19 @@ class Kanala
     
     
 
-    public function __toString()
-    {
-        return $this->getIzenaeu();
-    }
+
 
     /**
      *
      *      FUNTZIOAK
      *
      */
+
+    public function __toString()
+    {
+        return $this->getIzenaeu();
+    }
+
 
     /**
      * Constructor
