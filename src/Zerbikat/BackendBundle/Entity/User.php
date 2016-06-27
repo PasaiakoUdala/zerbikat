@@ -37,13 +37,19 @@ class User extends BaseUser
      * @var \Zerbikat\BackendBundle\Entity\Azpisaila
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $azpisaila;
 
 
+    /**
+     *      FUNTZIOAK
+     */
+
+    /**
+     *      Constructor.
+     */
     public function __construct()
     {
         parent::__construct();
