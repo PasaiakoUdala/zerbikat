@@ -67,6 +67,7 @@ class Besteak2
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -74,12 +75,14 @@ class Besteak2
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="besteak2ak", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="besteak2ak")
      */
     private $fitxak;
-    
-    
-    
+
+
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getIzenburuaeu();

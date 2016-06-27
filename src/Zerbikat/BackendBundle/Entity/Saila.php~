@@ -14,8 +14,14 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Saila
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
     /**
      * @var string
@@ -45,20 +51,19 @@ class Saila
      */
     private $arduraduna;
 
+
+
     /**
-     * @var integer
+     *          ERLAZIOAK
+     */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
      *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
-
-    /*
-     * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila", mappedBy="saila")
-     */
-    //private $azpisailak;
-
+    private $udala;
+    
     /**
      * @var azpisailak[]
      *

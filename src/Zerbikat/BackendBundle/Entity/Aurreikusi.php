@@ -47,6 +47,7 @@ class Aurreikusi
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;

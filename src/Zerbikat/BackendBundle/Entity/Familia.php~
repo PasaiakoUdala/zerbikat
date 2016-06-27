@@ -17,7 +17,6 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Familia
 {
-
     /**
      * @var integer
      * @Expose
@@ -27,9 +26,6 @@ class Familia
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
 
     /**
      *
@@ -67,14 +63,6 @@ class Familia
 
 
 
-
-
-    public function __toString()
-    {
-        return $this->getFamiliaeu();
-    }
-
-
     /**
      * 
      *      ERLAZIOAK
@@ -82,13 +70,32 @@ class Familia
      */
 
     /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+
+    /**
      * @var fitxak[]
      *
      * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="familiak", cascade={"remove"})
      */
     private $fitxak;
-    
-    
+
+
+    /**
+     *      FUNTZIOAK
+     */
+
+    /**
+     * @return string
+     */
+
+    public function __toString()
+    {
+        return $this->getFamiliaeu();
+    }
 
     /**
      * Constructor

@@ -45,11 +45,14 @@ class Baldintza
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
 
-
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getBaldintzaeu();

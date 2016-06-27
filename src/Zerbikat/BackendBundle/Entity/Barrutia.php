@@ -36,6 +36,7 @@ class Barrutia
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -47,6 +48,10 @@ class Barrutia
      */
     private $azpisailak;
 
+
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getIzena();

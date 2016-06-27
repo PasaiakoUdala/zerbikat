@@ -87,10 +87,7 @@ class Udala
     private $lopdes;
 
 
-    /**
-     * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala")
-     */
-    protected $eremuak;
+
 
 
     /**
@@ -98,10 +95,30 @@ class Udala
      */
 
 
-    /** @ORM\ManyToOne(targetEntity="Espedientekudeaketa") */
+    /**
+     * @ORM\ManyToOne(targetEntity="Espedientekudeaketa")
+     * @ORM\JoinColumn(name="espedientekudeaketa_id", referencedColumnName="id",onDelete="SET NULL")
+     */
     private $espedientekudeaketa;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala")
+     * @ORM\JoinColumn(name="eremuak_id", referencedColumnName="id",onDelete="SET NULL")
+     */
+    protected $eremuak;
 
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\OneToMany(targetEntity="Fitxa", mappedBy="udala")
+     */
+    private $fitxak;
+
+
+
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getIzenaeu();
@@ -109,6 +126,15 @@ class Udala
 
 
 
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -382,5 +408,39 @@ class Udala
     public function getEremuak()
     {
         return $this->eremuak;
+    }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     *
+     * @return Udala
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
     }
 }

@@ -599,7 +599,8 @@ class Eremuak
 
     /**
      * @var udala
-     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"}, inversedBy="eremuak")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;

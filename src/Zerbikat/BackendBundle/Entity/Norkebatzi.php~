@@ -14,8 +14,14 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Norkebatzi
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
     /**
      * @var string
@@ -31,16 +37,23 @@ class Norkebatzi
      */
     private $norkes;
 
+
+
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     *          ERLAZIOAK
      */
-    private $id;
 
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
 
+    public function __toString()
+    {
+        return $this->getNorkeu();
+    }
 
     /**
      * Set norkeu
@@ -98,10 +111,7 @@ class Norkebatzi
         return $this->id;
     }
 
-    public function __toString()
-    {
-        return $this->getNorkeu();
-    }
+
 
 
 

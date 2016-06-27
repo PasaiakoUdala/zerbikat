@@ -323,7 +323,7 @@ class Fitxa
 
     /**
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
-     *
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $udala;
 
@@ -332,7 +332,7 @@ class Fitxa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Norkebatzi")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      * @Expose
      */
@@ -343,7 +343,7 @@ class Fitxa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Zerbitzua")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      * @Expose
      */
@@ -354,7 +354,7 @@ class Fitxa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Datuenbabesa")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      * @Expose
      */
@@ -365,7 +365,7 @@ class Fitxa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      * @Expose
      */
@@ -376,7 +376,7 @@ class Fitxa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Aurreikusi")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      * @Expose
      */
@@ -387,7 +387,7 @@ class Fitxa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Arrunta")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      * @Expose
      */
@@ -398,7 +398,7 @@ class Fitxa
      * @Expose
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa",inversedBy="fitxak")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $isiltasunadmin;

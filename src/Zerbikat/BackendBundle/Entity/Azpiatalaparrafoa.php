@@ -65,23 +65,25 @@ class Azpiatalaparrafoa
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
     
     
-    
     /**
      * @var \Zerbikat\BackendBundle\Entity\Azpiatala
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala",inversedBy="parrafoak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="azpiatala_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala",inversedBy="parrafoak", cascade={"remove"})
+     * @ORM\JoinColumn(name="azpiatala_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      */
     private $azpiatala;
 
 
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getTestuaeu();

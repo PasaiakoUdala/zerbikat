@@ -65,6 +65,7 @@ class Ordenantzaparrafoa
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -72,13 +73,16 @@ class Ordenantzaparrafoa
     /**
      * @var \Zerbikat\BackendBundle\Entity\Ordenantza
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Ordenantza")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ordenantza_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Ordenantza",cascade={"remove"})
+     * @ORM\JoinColumn(name="ordenantza_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      */
     private $ordenantza;
-    
+
+
+    /**
+     *          FUNTZIOAK
+     */
 
     /**
      * Set ordena

@@ -67,6 +67,7 @@ class Doklagun
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -74,7 +75,7 @@ class Doklagun
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="doklagunak", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="doklagunak")
      */
     private $fitxak;
 
@@ -90,7 +91,7 @@ class Doklagun
 
 
     /**
-     * Constructor
+     *          Constructor
      */
     public function __construct()
     {

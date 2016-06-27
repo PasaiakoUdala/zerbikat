@@ -14,8 +14,14 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Etiketa
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
     /**
      * @var string
@@ -31,21 +37,20 @@ class Etiketa
      */
     private $etiketaes;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
 
     /**
      *
      *      ERLAZIOAK
      *
      */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+
 
     /**
      * @var fitxak[]
@@ -55,10 +60,7 @@ class Etiketa
     private $fitxak;
     
     
-     
-    
-    
-    
+
     public function __toString()
     {
         return $this->getEtiketaeu();

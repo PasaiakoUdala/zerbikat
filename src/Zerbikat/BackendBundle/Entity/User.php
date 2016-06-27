@@ -21,15 +21,17 @@ class User extends BaseUser
      */
     protected $id;
 
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
+    /**
+     *          ERLAZIOAK
+     */
 
-//    /**
-//     * @var string
-//     * @Expose
-//     * @ORM\Column(name="espedientekodea", type="string", length=9, nullable=true)
-//     */
-//    private $espedientekodea;
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="SET NULL")
+     *
+     */
+    private $udala;
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\Azpisaila

@@ -14,9 +14,16 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Dokumentazioa
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
     /**
      * @var string
      *
@@ -52,14 +59,18 @@ class Dokumentazioa
      */
     private $estekaes;
 
+
+
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     *          ERLAZIOAK
      */
-    private $id;
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\Dokumentumota
@@ -71,11 +82,10 @@ class Dokumentazioa
      */
     private $dokumentumota;
 
-
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="dokumentuak", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="dokumentazioak", cascade={"remove"})
      */
     private $fitxak;
 

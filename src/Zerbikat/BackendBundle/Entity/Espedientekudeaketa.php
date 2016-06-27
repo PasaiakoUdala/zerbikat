@@ -53,10 +53,19 @@ class Espedientekudeaketa
     private $urles;
 
     
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getIzenaeu();
     }
+
+
+
+    /**
+     *          FUNTZIOAK
+     */
 
 
     /**
@@ -65,8 +74,6 @@ class Espedientekudeaketa
      * @ORM\OneToMany(targetEntity="Zerbitzua",cascade={"remove"},mappedBy="espedientekudeaketa")
      */
     private $zerbitzuak;
-
-
 
 
     /**

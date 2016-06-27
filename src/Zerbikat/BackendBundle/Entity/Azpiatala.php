@@ -68,6 +68,7 @@ class Azpiatala
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -76,31 +77,30 @@ class Azpiatala
     /**
      * @var \Zerbikat\BackendBundle\Entity\Atala
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Atala")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="atala_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Atala", cascade={"remove"})
+     * @ORM\JoinColumn(name="atala_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      */
     private $atala;
 
     /**
      * @var kontzeptuak[]
      *
-     * @ORM\OneToMany(targetEntity="Kontzeptua", mappedBy="azpiatala", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Kontzeptua", mappedBy="azpiatala")
      */
     private $kontzeptuak;
 
     /**
      * @var parrafoak[]
      *
-     * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala")
      */
     private $parrafoak;
 
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="azpiatalak", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="azpiatalak")
      */
     private $fitxak;
 

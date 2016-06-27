@@ -45,6 +45,7 @@ class Prozedura
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -52,7 +53,7 @@ class Prozedura
     /**
      * @var fitxak[]
      *
-     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="prozedura" , cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="prozedura" )
      */
     private $fitxak;
 

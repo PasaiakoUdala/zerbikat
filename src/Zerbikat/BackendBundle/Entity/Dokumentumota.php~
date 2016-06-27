@@ -14,8 +14,14 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Dokumentumota
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
     
     /**
      * @var string
@@ -39,14 +45,28 @@ class Dokumentumota
     private $motaes;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     *          ERLAZIOAK
      */
-    private $id;
 
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+
+    /**
+     *      FUNTZIOAK
+     * 
+     * 
+     */
+
+
+    /**
+     * toString
+     * 
+     * @return string
+     */
     public function __toString()
     {
         return $this->getMotaeu();

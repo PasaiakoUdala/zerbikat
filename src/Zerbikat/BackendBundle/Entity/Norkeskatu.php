@@ -47,6 +47,7 @@ class Norkeskatu
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -54,7 +55,7 @@ class Norkeskatu
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="norkeskatuak", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="norkeskatuak")
      */
     private $fitxak;
 

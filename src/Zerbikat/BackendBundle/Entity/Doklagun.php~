@@ -15,9 +15,6 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  */
 class Doklagun
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-
     /**
      * @var integer
      *
@@ -26,7 +23,6 @@ class Doklagun
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
 
     /**
      * @var string
@@ -67,6 +63,13 @@ class Doklagun
     /**
      *          ERLAZIOAK
      */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
 
     /**
      * @var fitxak[]

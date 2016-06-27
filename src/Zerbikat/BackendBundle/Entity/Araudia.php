@@ -65,6 +65,7 @@ class Araudia
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -72,7 +73,7 @@ class Araudia
     /**
      * @var fitxak[]
      *
-     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="araudia", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="araudia")
      */
     private $fitxak;
 
@@ -80,11 +81,16 @@ class Araudia
      * @var \Zerbikat\BackendBundle\Entity\Araumota
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araumota",inversedBy="araudiak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="araumota_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="araumota_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $araumota;
+
+
+
+    /**
+     *      FUNTZIOAK
+     */
 
     public function __toString()
     {

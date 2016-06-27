@@ -42,6 +42,7 @@ class Kalea
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -49,10 +50,9 @@ class Kalea
     /**
      * @var \Zerbikat\BackendBundle\Entity\Barrutia
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Barrutia")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="barrutia_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Barrutia", cascade={"remove"})
+     * @ORM\JoinColumn(name="barrutia_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      */
     private $barrutia;
 
@@ -60,14 +60,14 @@ class Kalea
     /**
      * @var azpisailak[]
      *
-     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="kalea", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="kalea")
      */
     private $azpisailak;
 
     /**
      * @var kanalak[]
      *
-     * @ORM\OneToMany(targetEntity="Kanala", mappedBy="kalea", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Kanala", mappedBy="kalea")
      */
     private $kanalak;
 

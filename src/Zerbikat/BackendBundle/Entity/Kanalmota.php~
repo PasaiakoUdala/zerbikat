@@ -24,10 +24,6 @@ class Kanalmota
      */
     private $id;
 
-
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-
     /**
      * @var motaeu
      *
@@ -58,12 +54,32 @@ class Kanalmota
 
 
     /**
+     *          ERLAZIOAK
+     */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     *
+     */
+    private $udala;
+
+
+    /**
      * @var kanalak[]
      *
      * @ORM\OneToMany(targetEntity="Kanala", mappedBy="kanalmota", cascade={"remove"})
      */
     private $kanalak;
 
+
+    /**
+     *          FUNTZIOAK
+     */
+
+    /**
+     * @return string
+     */
 
     public function __toString()
     {

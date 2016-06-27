@@ -60,6 +60,7 @@ class Saila
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -67,11 +68,14 @@ class Saila
     /**
      * @var azpisailak[]
      *
-     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila")
      */
     private $azpisailak;
 
 
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getSailaeu();

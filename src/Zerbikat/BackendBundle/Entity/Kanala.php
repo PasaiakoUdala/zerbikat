@@ -122,6 +122,7 @@ class Kanala
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -129,6 +130,7 @@ class Kanala
     /**
      * @var Kanalmota
      * @ORM\ManyToOne(targetEntity="Kanalmota", inversedBy="kanalak")
+     * @ORM\JoinColumn(name="kanalmota_id", referencedColumnName="id",onDelete="SET NULL")
      */
     protected $kanalmota;
 
@@ -137,9 +139,8 @@ class Kanala
      * @var \Zerbikat\BackendBundle\Entity\Kalea
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Kalea",inversedBy="kanalak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="kalea_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="kalea_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $kalea;
 
@@ -147,9 +148,8 @@ class Kanala
      * @var \Zerbikat\BackendBundle\Entity\Eraikina
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Eraikina")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="eraikina_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="eraikina_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $eraikina;
 
@@ -157,24 +157,19 @@ class Kanala
      * @var \Zerbikat\BackendBundle\Entity\Barrutia
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Barrutia")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="barrutia_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="barrutia_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $barrutia;
 
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="kanalak", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="kanalak")
      */
     private $fitxak;
     
     
-    
-
-
-
     /**
      *
      *      FUNTZIOAK
