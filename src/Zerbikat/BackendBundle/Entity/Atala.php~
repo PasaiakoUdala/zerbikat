@@ -65,7 +65,7 @@ class Atala
 
     /**
      * @var udala
-     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Udala")
      * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
@@ -75,7 +75,7 @@ class Atala
     /**
      * @var \Zerbikat\BackendBundle\Entity\Ordenantza
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Ordenantza", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Ordenantza")
      * @ORM\JoinColumn(name="ordenantza_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */

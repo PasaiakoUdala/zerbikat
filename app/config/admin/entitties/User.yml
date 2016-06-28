@@ -12,9 +12,9 @@ easy_admin:
                     - { name: '-delete', label: '', icon: 'trash' }
                 fields:
                     - udala
-                    - id
                     - { property: 'username', label: 'Erabiltzailea' }
                     - email
+                    - roles
             form:
                 title: '%%entity_label%%'
                 fields:

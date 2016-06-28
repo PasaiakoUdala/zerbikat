@@ -35,21 +35,21 @@ class FitxaProzedura
 
     /**
      * @var udala
-     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Udala")
      * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Prozedura", inversedBy="fitxak", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Prozedura", inversedBy="fitxak")
      * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id",onDelete="CASCADE")
      *
      * */
     protected $prozedura;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Fitxa", inversedBy="prozedurak", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Fitxa", inversedBy="prozedurak")
      * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id",onDelete="CASCADE")
      *
      * */
@@ -65,4 +65,110 @@ class FitxaProzedura
     }
 
 
+
+    /**
+     * Set ordena
+     *
+     * @param integer $ordena
+     *
+     * @return FitxaProzedura
+     */
+    public function setOrdena($ordena)
+    {
+        $this->ordena = $ordena;
+
+        return $this;
+    }
+
+    /**
+     * Get ordena
+     *
+     * @return integer
+     */
+    public function getOrdena()
+    {
+        return $this->ordena;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return FitxaProzedura
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
+    }
+
+    /**
+     * Set prozedura
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Prozedura $prozedura
+     *
+     * @return FitxaProzedura
+     */
+    public function setProzedura(\Zerbikat\BackendBundle\Entity\Prozedura $prozedura = null)
+    {
+        $this->prozedura = $prozedura;
+
+        return $this;
+    }
+
+    /**
+     * Get prozedura
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Prozedura
+     */
+    public function getProzedura()
+    {
+        return $this->prozedura;
+    }
+
+    /**
+     * Set fitxa
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxa
+     *
+     * @return FitxaProzedura
+     */
+    public function setFitxa(\Zerbikat\BackendBundle\Entity\Fitxa $fitxa = null)
+    {
+        $this->fitxa = $fitxa;
+
+        return $this;
+    }
+
+    /**
+     * Get fitxa
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Fitxa
+     */
+    public function getFitxa()
+    {
+        return $this->fitxa;
+    }
 }

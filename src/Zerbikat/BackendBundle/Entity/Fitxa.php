@@ -323,7 +323,7 @@ class Fitxa
 
     /**
      * @ORM\ManyToOne(targetEntity="Udala")
-     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="SET NULL")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $udala;
 
@@ -480,42 +480,42 @@ class Fitxa
      */
 
 
-    /**
-     * @var prozedurak[]
-     *
-     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" )
-     */
-    private $prozedurak;
-
 //    /**
-//     * @ORM\ManyToMany(targetEntity="Prozedura")
-//     * @ORM\JoinTable(name="fitxa_prozedura",
-//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-//     *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
-//     *      )
-//     * @Expose
+//     * @var prozedurak[]
+//     *
+//     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" )
 //     */
 //    private $prozedurak;
 
-
-
-
     /**
-     * @var araudiak[]
+     * @ORM\ManyToMany(targetEntity="Prozedura")
+     * @ORM\JoinTable(name="fitxa_prozedura",
+     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
+     *      )
      * @Expose
-     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa")
      */
-    private $araudiak;
+    private $prozedurak;
+
+
+
 
 //    /**
-//     * @ORM\ManyToMany(targetEntity="Araudia")
-//     * @ORM\JoinTable(name="fitxa_araudia",
-//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-//     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
-//     *      )
+//     * @var araudiak[]
 //     * @Expose
+//     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa")
 //     */
 //    private $araudiak;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Araudia")
+     * @ORM\JoinTable(name="fitxa_araudia",
+     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
+     *      )
+     * @Expose
+     */
+    private $araudiak;
 
 
 

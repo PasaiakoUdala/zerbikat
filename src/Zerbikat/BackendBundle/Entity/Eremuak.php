@@ -599,7 +599,7 @@ class Eremuak
 
     /**
      * @var udala
-     * @ORM\ManyToOne(targetEntity="Udala", inversedBy="eremuak")
+     * @ORM\OneToOne(targetEntity="Udala", inversedBy="eremuak")
      * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
