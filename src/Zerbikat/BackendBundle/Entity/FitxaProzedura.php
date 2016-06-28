@@ -28,22 +28,42 @@ class FitxaProzedura
      */
     private $id;
 
+
+    /**
+     *          ERLAZIOAK
+     */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
+     *
+     */
+    private $udala;
+
     /**
      * @ORM\ManyToOne(targetEntity="Prozedura", inversedBy="fitxak")
-     * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      * */
     protected $prozedura;
 
     /**
      * @ORM\ManyToOne(targetEntity="Fitxa", inversedBy="prozedurak")
-     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      * */
     protected $fitxa;
 
+
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getTramitea();
     }
+
 
 
     /**
@@ -78,6 +98,30 @@ class FitxaProzedura
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return FitxaProzedura
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
     }
 
     /**

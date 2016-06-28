@@ -322,7 +322,7 @@ class Fitxa
      */
 
     /**
-     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Udala")
      * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $udala;
@@ -381,9 +381,8 @@ class Fitxa
      * @var \Zerbikat\BackendBundle\Entity\Arrunta
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Arrunta")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
+     * @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @Expose
      */
     private $arrunta;

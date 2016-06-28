@@ -53,6 +53,7 @@ class Eraikina
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -60,20 +61,22 @@ class Eraikina
     /**
      * @var \Zerbikat\BackendBundle\Entity\Barrutia
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Barrutia")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="barrutia_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Barrutia", cascade={"remove"})
+     * @ORM\JoinColumn(name="barrutia_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      */
     private $barrutia;
         
     /**
      * @var azpisailak[]
      *
-     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila")
      */
     private $azpisailak;
 
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getIzena();

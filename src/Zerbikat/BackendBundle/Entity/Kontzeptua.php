@@ -81,7 +81,7 @@ class Kontzeptua
 
     /**
      * @var udala
-     * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Udala")
      * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
@@ -109,7 +109,7 @@ class Kontzeptua
     /**
      * @var \Zerbikat\BackendBundle\Entity\Azpiatala
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala", inversedBy="kontzeptuak", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala", inversedBy="kontzeptuak")
      * @ORM\JoinColumn(name="azpiatala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */

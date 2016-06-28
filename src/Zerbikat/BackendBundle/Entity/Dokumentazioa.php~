@@ -68,6 +68,7 @@ class Dokumentazioa
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -76,20 +77,22 @@ class Dokumentazioa
      * @var \Zerbikat\BackendBundle\Entity\Dokumentumota
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Dokumentumota")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="dokumentumota_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="dokumentumota_id", referencedColumnName="id",onDelete="SET NULL")
+     * 
      */
     private $dokumentumota;
 
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="dokumentazioak", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="dokumentazioak")
      */
     private $fitxak;
 
 
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getKodea()."-".$this->getDeskribapenaeu();

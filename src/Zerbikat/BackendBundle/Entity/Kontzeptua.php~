@@ -82,6 +82,7 @@ class Kontzeptua
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -91,9 +92,8 @@ class Kontzeptua
      * @var \Zerbikat\BackendBundle\Entity\Kontzeptumota
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Kontzeptumota")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="kontzeptumota_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="kontzeptumota_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $kontzeptumota;
 
@@ -101,24 +101,24 @@ class Kontzeptua
      * @var \Zerbikat\BackendBundle\Entity\Baldintza
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Baldintza")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="baldintza_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="baldintza_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $baldintza;
 
     /**
      * @var \Zerbikat\BackendBundle\Entity\Azpiatala
      *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala", inversedBy="kontzeptuak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="azpiatala_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpiatala", inversedBy="kontzeptuak", cascade={"remove"})
+     * @ORM\JoinColumn(name="azpiatala_id", referencedColumnName="id",onDelete="CASCADE")
+     *
      */
     private $azpiatala;
 
 
-
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getKontzeptuaeu();

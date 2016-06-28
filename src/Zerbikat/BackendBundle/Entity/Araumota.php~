@@ -51,6 +51,7 @@ class Araumota
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -59,7 +60,7 @@ class Araumota
     /**
      * @var araudiak[]
      *
-     * @ORM\OneToMany(targetEntity="Araudia", mappedBy="araumota", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Araudia", mappedBy="araumota")
      */
     private $araudiak;
 

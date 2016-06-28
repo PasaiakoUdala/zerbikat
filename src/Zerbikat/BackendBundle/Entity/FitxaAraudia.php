@@ -13,9 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class FitxaAraudia
 {
-    /** @ORM\ManyToOne(targetEntity="Udala") */
-    private $udala;
-
     /**
      * @var string
      *
@@ -39,13 +36,26 @@ class FitxaAraudia
      */
     private $id;
 
+
+    /**
+     *          ERLAZIOAK
+     */
+
+    /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
+     *
+     */
+    private $udala;
+    
+    
     /**
      * @var \Zerbikat\BackendBundle\Entity\Fitxa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa",inversedBy="araudiak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id",onDelete="CASCADE")
+     * 
      */
     private $fitxa;
 
@@ -53,17 +63,19 @@ class FitxaAraudia
      * @var \Zerbikat\BackendBundle\Entity\Araudia
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araudia",inversedBy="fitxak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="araudia_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="araudia_id", referencedColumnName="id",onDelete="CASCADE")
+     * 
      */
     private $araudia;
+
+    /**
+     *          TOSTRING
+     */
 
     public function __toString()
     {
         return $this->araudia->getKodea()."-".$this->araudia->getArauaeu();
     }
-
 
 
 

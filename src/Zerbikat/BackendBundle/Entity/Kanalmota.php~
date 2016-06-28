@@ -60,6 +60,7 @@ class Kanalmota
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
@@ -68,7 +69,7 @@ class Kanalmota
     /**
      * @var kanalak[]
      *
-     * @ORM\OneToMany(targetEntity="Kanala", mappedBy="kanalmota", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Kanala", mappedBy="kanalmota")
      */
     private $kanalak;
 

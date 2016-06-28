@@ -49,7 +49,7 @@ class Zerbitzua
      */
 
     /**
-     * @ORM\ManyToOne(targetEntity="Espedientekudeaketa", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Espedientekudeaketa")
      * @ORM\JoinColumn(name="espedientekudeaketa_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $espedientekudeaketa;

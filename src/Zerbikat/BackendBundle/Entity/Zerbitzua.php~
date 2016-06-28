@@ -12,12 +12,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Zerbitzua
 {
-//    /** @ORM\ManyToOne(targetEntity="Udala") */
-//    private $udala;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="bigint")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
-    /** @ORM\ManyToOne(targetEntity="Espedientekudeaketa") */
-    private $espedientekudeaketa;
-    
+
     /**
      * @var string
      *
@@ -39,22 +43,29 @@ class Zerbitzua
      */
     private $zerbitzuaes;
 
+
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     *      ERLAZIOAK
      */
-    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Espedientekudeaketa", cascade={"remove"})
+     * @ORM\JoinColumn(name="espedientekudeaketa_id", referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $espedientekudeaketa;
 
 
+    /**
+     *          TOSTRING
+     */
     public function __toString()
     {
         return $this->getKodea()."-".$this->getZerbitzuaeu();
     }
-    
 
+    /**
+     *          FUNTZIOAK
+     */
 
     /**
      * Set kodea

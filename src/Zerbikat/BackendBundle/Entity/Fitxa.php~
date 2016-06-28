@@ -323,7 +323,7 @@ class Fitxa
 
     /**
      * @ORM\ManyToOne(targetEntity="Udala", cascade={"remove"})
-     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="SET NULL")     *
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $udala;
 
@@ -331,9 +331,8 @@ class Fitxa
      * @var \Zerbikat\BackendBundle\Entity\Norkebatzi
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Norkebatzi")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
+     * @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @Expose
      */
     private $norkebatzi;
@@ -342,9 +341,8 @@ class Fitxa
      * @var \Zerbikat\BackendBundle\Entity\Zerbitzua
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Zerbitzua")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
+     * @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @Expose
      */
     private $zerbitzua;
@@ -353,9 +351,8 @@ class Fitxa
      * @var \Zerbikat\BackendBundle\Entity\Datuenbabesa
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Datuenbabesa")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
+     * @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @Expose
      */
     private $datuenbabesa;
@@ -364,9 +361,8 @@ class Fitxa
      * @var \Zerbikat\BackendBundle\Entity\Azpisaila
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
+     * @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @Expose
      */
     private $azpisaila;
@@ -375,9 +371,8 @@ class Fitxa
      * @var \Zerbikat\BackendBundle\Entity\Aurreikusi
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Aurreikusi")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
+     * @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      * @Expose
      */
     private $aurreikusi;
@@ -397,9 +392,8 @@ class Fitxa
      * @var \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
      * @Expose
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa",inversedBy="fitxak")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id", onDelete="SET NULL")
-     * })
+     * @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id", onDelete="SET NULL")
+     *
      */
     private $isiltasunadmin;
 
@@ -411,7 +405,7 @@ class Fitxa
     /**
      * @var dokumentazioak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Dokumentazioa", inversedBy="fitxa", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Dokumentazioa", inversedBy="fitxa")
      */
     private $dokumentazioak;
 
@@ -419,7 +413,7 @@ class Fitxa
     /**
      * @var kanalak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Kanala",cascade={"remove"},inversedBy="fitxak")
+     * @ORM\ManyToMany(targetEntity="Kanala",inversedBy="fitxak")
      */
     private $kanalak;
 
@@ -427,56 +421,56 @@ class Fitxa
     /**
      * @var familiak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Familia",cascade={"remove"},inversedBy="fitxak")
+     * @ORM\ManyToMany(targetEntity="Familia",inversedBy="fitxak")
      */
     private $familiak;
 
     /**
      * @var besteak1ak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Besteak1",cascade={"remove"},inversedBy="fitxak")
+     * @ORM\ManyToMany(targetEntity="Besteak1",inversedBy="fitxak")
      */
     private $besteak1ak;
 
     /**
      * @var besteak2ak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Besteak2",cascade={"remove"},inversedBy="fitxak")
+     * @ORM\ManyToMany(targetEntity="Besteak2",inversedBy="fitxak")
      */
     private $besteak2ak;
 
     /**
      * @var besteak3ak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Besteak3",cascade={"remove"},inversedBy="fitxak")
+     * @ORM\ManyToMany(targetEntity="Besteak3",inversedBy="fitxak")
      */
     private $besteak3ak;
     
     /**
      * @var etiketak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Etiketa",cascade={"remove"},inversedBy="fitxak")
+     * @ORM\ManyToMany(targetEntity="Etiketa",inversedBy="fitxak")
      */
     private $etiketak;
 
     /**
      * @var norkeskatuak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Norkeskatu",inversedBy="fitxak",cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Norkeskatu",inversedBy="fitxak")
      */
     private $norkeskatuak;
 
     /**
      * @var doklagunak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Doklagun",inversedBy="fitxak",cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Doklagun",inversedBy="fitxak")
      */
     private $doklagunak;
 
     /**
      * @var azpiatalak[]
      * @Expose
-     * @ORM\ManyToMany(targetEntity="Azpiatala",inversedBy="fitxak",cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Azpiatala",inversedBy="fitxak")
      * @ORM\JoinTable(name="fitxa_azpiatala")
      */
     private $azpiatalak;
@@ -490,7 +484,7 @@ class Fitxa
     /**
      * @var prozedurak[]
      *
-     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" , cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" )
      */
     private $prozedurak;
 
@@ -510,7 +504,7 @@ class Fitxa
     /**
      * @var araudiak[]
      * @Expose
-     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa")
      */
     private $araudiak;
 
