@@ -41,4 +41,13 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="text-center">
+        {% if kaleas is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'kalea_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
 {% endblock %}

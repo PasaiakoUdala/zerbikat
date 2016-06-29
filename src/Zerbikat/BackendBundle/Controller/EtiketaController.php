@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Form\EtiketaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Etiketa controller.
@@ -19,24 +22,43 @@ class EtiketaController extends Controller
     /**
      * Lists all Etiketa entities.
      *
-     * @Route("/", name="etiketa_index")
+     * @Route("/", defaults={"page" = 1}, name="etiketa_index")
+     * @Route("/page{page}", name="etiketa_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $etiketas = $em->getRepository('BackendBundle:Etiketa')->findAll();
 
+            $adapter = new ArrayAdapter($etiketas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($etiketas as $etiketa) {
                 $deleteForms[$etiketa->getId()] = $this->createDeleteForm($etiketa)->createView();
             }
-            
+
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('etiketa/index.html.twig', array(
-                'etiketas' => $etiketas,
-                'deleteforms' => $deleteForms
+                'etiketas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

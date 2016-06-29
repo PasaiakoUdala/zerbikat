@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Araumota;
 use Zerbikat\BackendBundle\Form\AraumotaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Araumota controller.
@@ -19,10 +22,11 @@ class AraumotaController extends Controller
     /**
      * Lists all Araumota entities.
      *
-     * @Route("/", name="araumota_index")
+     * @Route("/", defaults={"page" = 1}, name="araumota_index")
+     * @Route("/page{page}", name="araumota_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) 
@@ -30,14 +34,31 @@ class AraumotaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $araumotas = $em->getRepository('BackendBundle:Araumota')->findAll();
 
+            $adapter = new ArrayAdapter($araumotas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($araumotas as $araumota) {
                 $deleteForms[$araumota->getId()] = $this->createDeleteForm($araumota)->createView();
             }
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Cette page n'existe pas.");
+            }
 
             return $this->render('araumota/index.html.twig', array(
-                'araumotas' => $araumotas,
-                'deleteforms' => $deleteForms
+                'araumotas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         } else
         {

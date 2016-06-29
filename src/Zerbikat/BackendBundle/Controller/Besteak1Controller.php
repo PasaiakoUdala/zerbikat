@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Besteak1;
 use Zerbikat\BackendBundle\Form\Besteak1Type;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Besteak1 controller.
@@ -19,24 +22,43 @@ class Besteak1Controller extends Controller
     /**
      * Lists all Besteak1 entities.
      *
-     * @Route("/", name="besteak1_index")
+     * @Route("/", defaults={"page" = 1}, name="besteak1_index")
+     * @Route("/page{page}", name="besteak1_index_paginated") 
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $besteak1s = $em->getRepository('BackendBundle:Besteak1')->findAll();
 
+            $adapter = new ArrayAdapter($besteak1s);
+            $pagerfanta = new Pagerfanta($adapter);            
+            
             $deleteForms = array();
             foreach ($besteak1s as $besteak1) {
                 $deleteForms[$besteak1->getId()] = $this->createDeleteForm($besteak1)->createView();
             }
 
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }            
+            
             return $this->render('besteak1/index.html.twig', array(
-                'besteak1s' => $besteak1s,
-                'deleteforms' => $deleteForms
+                'besteak1s' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,                
             ));
         }else
         {

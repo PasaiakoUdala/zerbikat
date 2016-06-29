@@ -43,4 +43,13 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="text-center">
+        {% if eraikinas is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'eraikina_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
 {% endblock %}

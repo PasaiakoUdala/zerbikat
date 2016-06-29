@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Zerbitzua;
 use Zerbikat\BackendBundle\Form\ZerbitzuaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Zerbitzua controller.
@@ -19,10 +22,11 @@ class ZerbitzuaController extends Controller
     /**
      * Lists all Zerbitzua entities.
      *
-     * @Route("/", name="zerbitzua_index")
+     * @Route("/", defaults={"page" = 1}, name="zerbitzua_index")
+     * @Route("/page{page}", name="zerbitzua_index_paginated") 
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_SUPER_ADMIN')) 
@@ -30,14 +34,32 @@ class ZerbitzuaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $zerbitzuas = $em->getRepository('BackendBundle:Zerbitzua')->findAll();
 
+            $adapter = new ArrayAdapter($zerbitzuas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($zerbitzuas as $zerbitzua) {
                 $deleteForms[$zerbitzua->getId()] = $this->createDeleteForm($zerbitzua)->createView();
             }
 
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+            
             return $this->render('zerbitzua/index.html.twig', array(
-                'zerbitzuas' => $zerbitzuas,
-                'deleteforms' => $deleteForms
+                'zerbitzuas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

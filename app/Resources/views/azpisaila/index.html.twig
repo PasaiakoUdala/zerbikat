@@ -56,11 +56,13 @@
         </tbody>
     </table>
 
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('azpisaila_new') }}" class="btn btn-primary">Azpi-sail berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
+    <div class="text-center">
+        {% if azpisailas is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'azpisaila_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
 {% endblock %}

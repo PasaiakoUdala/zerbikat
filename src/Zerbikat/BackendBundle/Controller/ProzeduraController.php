@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Prozedura;
 use Zerbikat\BackendBundle\Form\ProzeduraType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Prozedura controller.
@@ -19,24 +22,43 @@ class ProzeduraController extends Controller
     /**
      * Lists all Prozedura entities.
      *
-     * @Route("/", name="prozedura_index")
+     * @Route("/", defaults={"page" = 1}, name="prozedura_index")
+     * @Route("/page{page}", name="prozedura_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $prozeduras = $em->getRepository('BackendBundle:Prozedura')->findAll();
 
+            $adapter = new ArrayAdapter($prozeduras);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($prozeduras as $prozedura) {
                 $deleteForms[$prozedura->getId()] = $this->createDeleteForm($prozedura)->createView();
             }
-            
+
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('prozedura/index.html.twig', array(
-                'prozeduras' => $prozeduras,
-                'deleteforms' => $deleteForms
+                'prozeduras' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

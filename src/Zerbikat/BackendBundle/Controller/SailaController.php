@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Saila;
 use Zerbikat\BackendBundle\Form\SailaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Saila controller.
@@ -19,24 +22,43 @@ class SailaController extends Controller
     /**
      * Lists all Saila entities.
      *
-     * @Route("/", name="saila_index")
+     * @Route("/", defaults={"page" = 1}, name="saila_index")
+     * @Route("/page{page}", name="saila_index_paginated") 
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $sailas = $em->getRepository('BackendBundle:Saila')->findAll();
 
+            $adapter = new ArrayAdapter($sailas);
+            $pagerfanta = new Pagerfanta($adapter);
+            
             $deleteForms = array();
             foreach ($sailas as $saila) {
                 $deleteForms[$saila->getId()] = $this->createDeleteForm($saila)->createView();
             }
 
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+            
             return $this->render('saila/index.html.twig', array(
-                'sailas' => $sailas,
-                'deleteforms' => $deleteForms
+                'sailas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,                
             ));
         }else
         {

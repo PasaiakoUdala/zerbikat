@@ -46,11 +46,13 @@
         </tbody>
     </table>
 
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('aurreikusi_new') }}" class="btn btn-primary">Epe berria</a>#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
+    <div class="text-center">
+        {% if aurreikusis is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'aurreikusi_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
 {% endblock %}

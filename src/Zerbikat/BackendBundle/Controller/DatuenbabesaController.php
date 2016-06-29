@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Datuenbabesa;
 use Zerbikat\BackendBundle\Form\DatuenbabesaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Datuenbabesa controller.
@@ -19,24 +22,43 @@ class DatuenbabesaController extends Controller
     /**
      * Lists all Datuenbabesa entities.
      *
-     * @Route("/", name="datuenbabesa_index")
+     * @Route("/", defaults={"page" = 1}, name="datuenbabesa_index")
+     * @Route("/page{page}", name="datuenbabesa_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $datuenbabesas = $em->getRepository('BackendBundle:Datuenbabesa')->findAll();
 
+            $adapter = new ArrayAdapter($datuenbabesas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($datuenbabesas as $datuenbabesa) {
                 $deleteForms[$datuenbabesa->getId()] = $this->createDeleteForm($datuenbabesa)->createView();
             }
 
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('datuenbabesa/index.html.twig', array(
-                'datuenbabesas' => $datuenbabesas,
-                'deleteforms' => $deleteForms
+                'datuenbabesas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

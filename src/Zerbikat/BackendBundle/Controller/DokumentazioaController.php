@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Dokumentazioa;
 use Zerbikat\BackendBundle\Form\DokumentazioaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Dokumentazioa controller.
@@ -19,24 +22,43 @@ class DokumentazioaController extends Controller
     /**
      * Lists all Dokumentazioa entities.
      *
-     * @Route("/", name="dokumentazioa_index")
+     * @Route("/", defaults={"page" = 1}, name="dokumentazioa_index")
+     * @Route("/page{page}", name="dokumentazioa_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $dokumentazioas = $em->getRepository('BackendBundle:Dokumentazioa')->findAll();
 
+            $adapter = new ArrayAdapter($dokumentazioas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($dokumentazioas as $dokumentazioa) {
                 $deleteForms[$dokumentazioa->getId()] = $this->createDeleteForm($dokumentazioa)->createView();
             }
-            
+
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('dokumentazioa/index.html.twig', array(
-                'dokumentazioas' => $dokumentazioas,
-                'deleteforms' => $deleteForms
+                'dokumentazioas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

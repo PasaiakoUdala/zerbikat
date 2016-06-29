@@ -41,4 +41,14 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="text-center">
+        {% if barrutias is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'barrutia_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -42,9 +42,13 @@
         </tbody>
     </table>
 
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('eremuak_new') }}">Create a new entry</a>#}
-        {#</li>#}
-    {#</ul>#}
+    <div class="text-center">
+        {% if eremuaks is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'eremuak_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
 {% endblock %}

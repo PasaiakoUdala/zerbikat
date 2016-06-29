@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Kalea;
 use Zerbikat\BackendBundle\Form\KaleaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Kalea controller.
@@ -19,24 +22,43 @@ class KaleaController extends Controller
     /**
      * Lists all Kalea entities.
      *
-     * @Route("/", name="kalea_index")
+     * @Route("/", defaults={"page" = 1}, name="kalea_index")
+     * @Route("/page{page}", name="kalea_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $kaleas = $em->getRepository('BackendBundle:Kalea')->findAll();
 
+            $adapter = new ArrayAdapter($kaleas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($kaleas as $kalea) {
                 $deleteForms[$kalea->getId()] = $this->createDeleteForm($kalea)->createView();
             }
 
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('kalea/index.html.twig', array(
-                'kaleas' => $kaleas,
-                'deleteforms' => $deleteForms
+                'kaleas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

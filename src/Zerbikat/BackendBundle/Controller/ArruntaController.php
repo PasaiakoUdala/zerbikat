@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Arrunta;
 use Zerbikat\BackendBundle\Form\ArruntaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Arrunta controller.
@@ -19,24 +22,41 @@ class ArruntaController extends Controller
     /**
      * Lists all Arrunta entities.
      *
-     * @Route("/", name="arrunta_index")
+     * @Route("/", defaults={"page" = 1}, name="arrunta_index")
+     * @Route("/page{page}", name="arrunta_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $arruntas = $em->getRepository('BackendBundle:Arrunta')->findAll();
 
+            $adapter = new ArrayAdapter($arruntas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($arruntas as $arrunta) {
                 $deleteForms[$arrunta->getId()] = $this->createDeleteForm($arrunta)->createView();
             }
-
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
             return $this->render('arrunta/index.html.twig', array(
-                'arruntas' => $arruntas,
-                'deleteforms' => $deleteForms
+                'arruntas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

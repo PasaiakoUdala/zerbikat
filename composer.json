@@ -31,7 +31,8 @@
         "knplabs/knp-menu-bundle": "^2.0",
         "whiteoctober/tcpdf-bundle": "^1.0",
         "bmatzner/fontawesome-bundle": "^4.6",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "white-october/pagerfanta-bundle": "^1.0"
 
     },
     "require-dev": {

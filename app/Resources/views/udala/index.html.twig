@@ -22,6 +22,7 @@
                 <th>Ifk</th>
                 <th>Udala</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -46,4 +47,13 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="text-center">
+        {% if udalas is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'udala_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
 {% endblock %}

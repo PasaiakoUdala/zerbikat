@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Kanala;
 use Zerbikat\BackendBundle\Form\KanalaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Kanala controller.
@@ -19,24 +22,43 @@ class KanalaController extends Controller
     /**
      * Lists all Kanala entities.
      *
-     * @Route("/", name="kanala_index")
+     * @Route("/", defaults={"page" = 1}, name="kanala_index")
+     * @Route("/page{page}", name="kanala_index_paginated") 
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $kanalas = $em->getRepository('BackendBundle:Kanala')->findAll();
 
+            $adapter = new ArrayAdapter($kanalas);
+            $pagerfanta = new Pagerfanta($adapter);
+            
             $deleteForms = array();
             foreach ($kanalas as $kanala) {
                 $deleteForms[$kanala->getId()] = $this->createDeleteForm($kanala)->createView();
             }
+
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }            
             
             return $this->render('kanala/index.html.twig', array(
-                'kanalas' => $kanalas,
-                'deleteforms' => $deleteForms
+                'kanalas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

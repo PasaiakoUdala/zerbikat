@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Eremuak;
 use Zerbikat\BackendBundle\Form\EremuakType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Eremuak controller.
@@ -19,10 +22,11 @@ class EremuakController extends Controller
     /**
      * Lists all Eremuak entities.
      *
-     * @Route("/", name="eremuak_index")
+     * @Route("/", defaults={"page" = 1}, name="eremuak_index")
+     * @Route("/page{page}", name="eremuak_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_SUPER_ADMIN'))
@@ -30,14 +34,32 @@ class EremuakController extends Controller
             $em = $this->getDoctrine()->getManager();
             $eremuaks = $em->getRepository('BackendBundle:Eremuak')->findAll();
 
+            $adapter = new ArrayAdapter($eremuaks);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($eremuaks as $eremuak) {
                 $deleteForms[$eremuak->getId()] = $this->createDeleteForm($eremuak)->createView();
             }
 
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('eremuak/index.html.twig', array(
-                'eremuaks' => $eremuaks,
-                'deleteforms' => $deleteForms
+                'eremuaks' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else if ($auth_checker->isGranted('ROLE_ADMIN'))
         {

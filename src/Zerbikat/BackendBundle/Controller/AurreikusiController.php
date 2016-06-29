@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Aurreikusi;
 use Zerbikat\BackendBundle\Form\AurreikusiType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Aurreikusi controller.
@@ -19,10 +22,11 @@ class AurreikusiController extends Controller
     /**
      * Lists all Aurreikusi entities.
      *
-     * @Route("/", name="aurreikusi_index")
+     * @Route("/", defaults={"page" = 1}, name="aurreikusi_index")
+     * @Route("/page{page}", name="aurreikusi_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN'))
@@ -30,14 +34,32 @@ class AurreikusiController extends Controller
             $em = $this->getDoctrine()->getManager();
             $aurreikusis = $em->getRepository('BackendBundle:Aurreikusi')->findAll();
 
+            $adapter = new ArrayAdapter($aurreikusis);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($aurreikusis as $aurreikusi) {
                 $deleteForms[$aurreikusi->getId()] = $this->createDeleteForm($aurreikusi)->createView();
             }
 
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('aurreikusi/index.html.twig', array(
-                'aurreikusis' => $aurreikusis,
-                'deleteforms' => $deleteForms
+                'aurreikusis' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

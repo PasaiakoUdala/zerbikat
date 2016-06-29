@@ -67,5 +67,15 @@
         </tbody>
     </table>
 
+
+<div class="text-center">
+    {% if fitxas is not empty %}
+        {% if pager.haveToPaginate %}
+            {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'fitxa_index_paginated'}) }}
+        {% endif %}
+    {% else %}
+        <p>Ez da emaitzarik topatu</p>
+    {% endif %}
+</div>
 {% endblock %}
 

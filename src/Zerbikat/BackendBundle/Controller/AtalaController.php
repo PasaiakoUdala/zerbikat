@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Atala;
 use Zerbikat\BackendBundle\Form\AtalaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Atala controller.
@@ -20,23 +23,41 @@ class AtalaController extends Controller
      * Lists all Atala entities.
      *
      * @Route("/", name="atala_index")
+     * @Route("/", defaults={"page" = 1}, name="atala_index")
+     * @Route("/page{page}", name="atala_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $atalas = $em->getRepository('BackendBundle:Atala')->findAll();
 
+            $adapter = new ArrayAdapter($atalas);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($atalas as $atala) {
                 $deleteForms[$atala->getId()] = $this->createDeleteForm($atala)->createView();
             }
-
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
             return $this->render('atala/index.html.twig', array(
-                'atalas' => $atalas,
-                'deleteforms' => $deleteForms
+                'atalas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

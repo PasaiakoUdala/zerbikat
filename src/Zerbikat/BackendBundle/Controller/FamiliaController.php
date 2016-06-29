@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Form\FamiliaType;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 /**
  * Familia controller.
@@ -19,24 +22,43 @@ class FamiliaController extends Controller
     /**
      * Lists all Familia entities.
      *
-     * @Route("/", name="familia_index")
+     * @Route("/", defaults={"page" = 1}, name="familia_index")
+     * @Route("/page{page}", name="familia_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
             $em = $this->getDoctrine()->getManager();
             $familias = $em->getRepository('BackendBundle:Familia')->findAll();
 
+            $adapter = new ArrayAdapter($familias);
+            $pagerfanta = new Pagerfanta($adapter);
+
             $deleteForms = array();
             foreach ($familias as $familia) {
                 $deleteForms[$familia->getId()] = $this->createDeleteForm($familia)->createView();
             }
-            
+
+            try {
+                $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+                    ->setMaxPerPage(20)
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
             return $this->render('familia/index.html.twig', array(
-                'familias' => $familias,
-                'deleteforms' => $deleteForms
+                'familias' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {
