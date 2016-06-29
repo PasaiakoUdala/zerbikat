@@ -4,64 +4,58 @@
 {% endblock %}
 
 {% block body %}
-    {#{{ dump(eremuak)}}#}
-    {#{{ dump(labelak)}}#}
-
-    <table class="table table-bordered">
-        <tr><td colspan="3" class="text-right">
+    <table border="1"  cellpadding="4">
+        <tr>
+            <td colspan="12" style="text-align:right">
                 {% if fitxa.updatedAt %}
-                    {% if app.request.locale == 'eu'%}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}
-                    {% else %}Ultima actualización: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}
+                    {% if app.request.locale == 'eu'%}
+                        <span style="font-size: xx-small;">Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}</span>
+                    {% else %}
+                        <span style="font-size: xx-small;">Ultima actualización: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}</span>
                     {% endif %}
                 {% endif %}
             </td>
         </tr>
-        <tr><th class="col-md-2 text-center">
-                <img src='{{ fitxa.udala.logoa }}' />
-                <h4>{{ fitxa.udala.izendapenaeu }}</h4>
-                <h5>{{ fitxa.udala.ifk }}</h5>
+        <tr><th colspan="2">
+                <img src="{{ fitxa.udala.logoa }}" />
+                <h6 style="text-align:center">{{ fitxa.udala.izendapenaeu }}</h6>
+                <h6 style="text-align:center">{{ fitxa.udala.ifk }}</h6>
             </th>
-            <th class="col-md-1"><h1>{{ fitxa.espedientekodea }}</h1></th>
-            <th class="col-md-9">
-                <h2>
+            <th colspan="2"><h2>{{ fitxa.espedientekodea }}</h2></th>
+            <th colspan="8">
+                <h4>
                     {% if app.request.locale == 'eu'%}{{ fitxa.deskribapenaeu }}
                     {% else %}{{ fitxa.deskribapenaes }}
                     {% endif %}
-                </h2>
+                </h4>
             </th>
         </tr>
     </table>
 
     {% if eremuak.helburuatext %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
-                    {% if app.request.locale == 'eu'%}{{ labelak.helburualabeleu }}
-                    {% else %} {{ labelak.helburualabeles }}
-                    {% endif %}
-                </h3>
-            </div>
-            <div>
-                {% if app.request.locale == 'eu'%}{{fitxa.helburuaes|raw }}
-                {% else %} {{fitxa.helburuaes|raw }}
-                {% endif %}
-            </div>
-        </div>
+    <br />
+    <div>
+        <span  style="font-size: large; font-weight: bold">
+            {% if app.request.locale == 'eu'%}{{ labelak.helburualabeleu }}
+            {% else %}{{ labelak.helburualabeles }}
+            {% endif %}
+        </span>
+        <span style="font-size: small;">
+            {% if app.request.locale == 'eu'%}{{fitxa.helburuaes|raw }}
+            {% else %} {{fitxa.helburuaes|raw }}
+            {% endif %}
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.norkeskatutext or eremuak.norkeskatutable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
-                    {% if app.request.locale == 'eu'%}{{ labelak.norkeskatulabeleu }}
-                    {% else %}{{ labelak.norkeskatulabeles }}
-                    {% endif %}
-                </h3>
-            </div>
-            <div>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
+            {% if app.request.locale == 'eu'%}{{ labelak.norkeskatulabeleu }}
+            {% else %}{{ labelak.norkeskatulabeles }}
+            {% endif %}
+        </span>
+        <span style="font-size: small;">
                 {% if eremuak.norkeskatutext %}
                     {% if app.request.locale == 'eu'%}{{ fitxa.norkeu |raw }}
                     {% else %}{{ fitxa.norkes |raw }}
@@ -76,22 +70,18 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.dokumentazioatext or eremuak.dokumentazioatable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
-                    {% if app.request.locale == 'eu'%}{{ labelak.dokumentazioalabeleu }}
-                    {% else %}{{ labelak.dokumentazioalabeles }}
-                    {% endif %}
-                </h3>
-            </div>
-            <div>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
+            {% if app.request.locale == 'eu'%}{{ labelak.dokumentazioalabeleu }}
+            {% else %}{{ labelak.dokumentazioalabeles }}
+            {% endif %}
+        </span>
+        <span style="font-size: small;">
                 {% if eremuak.dokumentazioatable %}
                 <ul>
                     {% for dokumentua in fitxa.dokumentazioak %}
@@ -122,23 +112,19 @@
                     {% else %}{{ fitxa.dokumentazioaes|raw }}
                     {% endif %}
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.doklaguntext or eremuak.doklaguntable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.doklagunlabeleu }}
                     {% else %}{{ labelak.doklagunlabeles }}
                     {% endif %}
 
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;">
                 {% if eremuak.doklaguntext %}
                     {% if app.request.locale == 'eu'%}{{ fitxa.doklaguneu |raw}}
                     {% else %}{{ fitxa.doklagunes |raw}}
@@ -169,23 +155,19 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
 
     {% if (eremuak.kanalatext or eremuak.kanalatable) %}
     <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.kanalalabeleu }}
                     {% else %}{{ labelak.kanalalabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+                </span>
+        <span  style="font-size: small;">
                 {% if eremuak.kanalatable %}
                 {% for k in kanalmotak %}
                     {% set aurkitua=0 %}
@@ -217,44 +199,40 @@
                     {% else %}{{ fitxa.kanalaes |raw}}
                     {% endif %}
                 {% endif %}
-            </div>
-
-        </div>
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.kostuatext or eremuak.kostuatable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.kostualabeleu }}
                     {% else %}{{ labelak.kostualabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;">
+                <br />
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                 {% for azpiatal in fitxa.azpiatalak %}
-                    <table  class="table table-bordered">
+                    <br /><table  border="1" width="90%" cellpadding="6">
                         <tr>
-                            <th colspan=2>
-                                <a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">
+                            <th colspan="12"><b>
+                                {#<a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">#}
                                     {{ azpiatal.atala.ordenantza.kodea }}.{{ azpiatal.atala.kodea }}.{{ azpiatal.kodea }}-
                                     {{  azpiatal.izenburuaeu }}
-                                </a>
+                                {#</a>#}</b>
                             </th>
                         </tr>
                         {% for parrafo in azpiatal.parrafoak %}
                             <tr>
-                                <td colspan="2">{{ parrafo.testua }} </td>
+                                <td colspan="12">{{ parrafo.testua }} </td>
                             </tr>
                         {% endfor %}
 
                         {% for kontzeptu in azpiatal.kontzeptuak %}
                             <tr>
-                                <td>
+                                <td colspan="9" style="font-size: xx-small;">
                                     {% if app.request.locale == 'eu'%}{{ kontzeptu.kontzeptuaeu }}
                                         {% if kontzeptu.baldintza %}
                                             ({{ kontzeptu.baldintza.baldintzaeu }})
@@ -265,11 +243,13 @@
                                         {% endif %}
                                     {% endif %}
                                 </td>
-                                <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
+                                <td colspan="3" style="font-size: xx-small;">
+                                    {{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}
+                                </td>
 
                             </tr>
                         {% endfor %}
-                    </table>
+                    </table><br />
                     {% set kont=kont+1 %}
                 {% endfor %}
                 {% endif %}
@@ -287,22 +267,18 @@
                 {% if (fitxa.kostuaes is empty and kont==0 and app.request.locale == 'es') %}
                             {{ labelak.doanlabeles }}
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.ebazpensinpli or eremuak.arduraaitorpena or eremuak.aurreikusi or eremuak.arrunta or eremuak.isiltasunadmin) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.epealabeleu }}
                     {% else %}{{ labelak.epealabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <div  style="font-size: small;">
                 {% if eremuak.aurreikusi %}
                     {% if fitxa.aurreikusi %}
                         {% if app.request.locale == 'eu'%}{{ labelak.aurreikusilabeleu }}: {{ fitxa.aurreikusi.epeaeu }}
@@ -338,73 +314,65 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-            </div>
         </div>
     </div>
     {% endif %}
 
     {% if (eremuak.araudiatext or eremuak.araudiatable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.araudialabeleu }}
                     {% else %}{{ labelak.araudialabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
-                {% if eremuak.araudiatext %}
-                    {% if app.request.locale == 'eu'%}{{ fitxa.araudiaeu |raw}}
-                    {% else %}{{ fitxa.araudiaes |raw}}
-                    {% endif %}
+        </span>
+        <span  style="font-size: small;">
+            {% if eremuak.araudiatext %}
+                {% if app.request.locale == 'eu'%}{{ fitxa.araudiaeu |raw}}
+                {% else %}{{ fitxa.araudiaes |raw}}
                 {% endif %}
                 <br>
-                {% if eremuak.araudiatable %}
-                <ul>
-                    {% for araua in fitxa.araudiak %}
-                        <li>
-                            {% if app.request.locale == 'eu'%}
-                                {#<a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}#}
-                                {% if araua.estekaeu %}
-                                    <a href="{{ araua.estekaeu }}">
-                                        {{ araua.arauaeu }} </a>
-                                    {#{{ araua.atalaeu }}#}
-                                {% else %}
-                                    {{ araua.arauaeu }} -
-                                    {#{{ araua.atalaeu }}#}
-                                {% endif %}
+            {% endif %}
+            {% if eremuak.araudiatable %}
+            <ul>
+                {% for araua in fitxa.araudiak %}
+                    <li>
+                        {% if app.request.locale == 'eu'%}
+                            {#<a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}#}
+                            {% if araua.estekaeu %}
+                                <a href="{{ araua.estekaeu }}">
+                                    {{ araua.arauaeu }} </a>
+                                {#{{ araua.atalaeu }}#}
                             {% else %}
-                                {#<a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}#}
-                                {% if araua.estekaes %}
-                                    <a href="{{ araua.estekaes }}">
-                                        {{ araua.arauaes }}</a>
-                                    {#{{ araua.atalaes }}#}
-                                {% else %}
-                                    {{ araua.arauaes }}
-                                    {#- {{ araua.atalaes }}#}
-                                {% endif %}
+                                {{ araua.arauaeu }} -
+                                {#{{ araua.atalaeu }}#}
                             {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-        </div>
+                        {% else %}
+                            {#<a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}#}
+                            {% if araua.estekaes %}
+                                <a href="{{ araua.estekaes }}">
+                                    {{ araua.arauaes }}</a>
+                                {#{{ araua.atalaes }}#}
+                            {% else %}
+                                {{ araua.arauaes }}
+                                {#- {{ araua.atalaes }}#}
+                            {% endif %}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.prozeduratext or eremuak.prozeduratable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.prozeduralabeleu }}
                     {% else %}{{ labelak.prozeduralabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;"><br>
                 {% if eremuak.prozeduratext %}
                     {% if app.request.locale == 'eu'%}{{ fitxa.prozeduraeu |raw}}
                     {% else %}{{ fitxa.prozeduraes |raw}}
@@ -421,23 +389,19 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
 
     {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.norkebatzilabeleu }}
                     {% else %}{{ labelak.norkebatzilabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;"><br />
                 {% if eremuak.norkebatzitable %}
                     {% if fitxa.norkebatzi %}
                         {% if app.request.locale == 'eu'%}{{ fitxa.norkebatzi.norkeu }}
@@ -452,79 +416,63 @@
                     {% endif %}
                 {% endif %}
 
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.azpisailalabeleu }}
                     {% else %}{{ labelak.azpisailalabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;"><br />
                 {% if app.request.locale == 'eu'%} {% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}{% endif %}
                 {% else %}{% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}{% endif %}
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
 
     {% if eremuak.oharraktext %}
     <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.oharraklabeleu }}
                     {% else %}{{ labelak.oharraklabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;"><br />
                 {% if app.request.locale == 'eu'%}{{ fitxa.oharrakeu |raw}}
                 {% else %}{{ fitxa.oharrakes |raw}}
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
-                    {% if app.request.locale == 'eu'%}JARRAIBIDEAK (barne erabilera)
-                    {% else %}INSTRUCCIONES (uso interno)
-                    {% endif %}
-                </h3>
-            </div>
-            <div>
-                {% if app.request.locale == 'eu'%}{{ fitxa.jarraibideakeu |raw}}
-                {% else %}{{ fitxa.jarraibideakes |raw}}
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-
-
-
+    {#<div class="row">#}
+        {#<div class="col-sm-12">#}
+            {#<div class="page-header">#}
+                {#<h3>#}
+                    {#{% if app.request.locale == 'eu'%}JARRAIBIDEAK (barne erabilera)#}
+                    {#{% else %}INSTRUCCIONES (uso interno)#}
+                    {#{% endif %}#}
+                {#</h3>#}
+            {#</div>#}
+            {#<div>#}
+                {#{% if app.request.locale == 'eu'%}{{ fitxa.jarraibideakeu |raw}}#}
+                {#{% else %}{{ fitxa.jarraibideakes |raw}}#}
+                {#{% endif %}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
 
     {% if (eremuak.besteak1text or eremuak.besteak1table) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.besteak1labeleu }}
                     {% else %}{{ labelak.besteak1labeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;"><br />
                 {% if eremuak.besteak1text %}
                     {% if app.request.locale == 'eu'%}{{ fitxa.besteak1eu |raw}}
                     {% else %}{{ fitxa.besteak1es |raw}}
@@ -551,22 +499,18 @@
                 {% endfor %}
                 </ul>
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.besteak2text or eremuak.besteak2table) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.besteak2labeleu }}
                     {% else %}{{ labelak.besteak2labeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+                </span>
+        <span  style="font-size: small;"><br />
                 {% if eremuak.besteak2text  %}
                     {% if app.request.locale == 'eu'%}{{ fitxa.besteak2eu |raw}}
                     {% else %}{{ fitxa.besteak2es |raw}}
@@ -593,22 +537,18 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.besteak3text or eremuak.besteak3table) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.besteak3labeleu }}
                     {% else %}{{ labelak.besteak3labeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: small;"><br />
                 {% if eremuak.besteak3text %}
                     {% if app.request.locale == 'eu'%}{{ fitxa.besteak3eu |raw}}
                     {% else %}{{ fitxa.besteak3es |raw}}
@@ -635,22 +575,18 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
 
     {% if (eremuak.datuenbabesatext or eremuak.datuenbabesatable) %}
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-header">
-                <h3>
+    <div>
+        <span  style="font-size: large; font-weight: bold">
                     {% if app.request.locale == 'eu'%}{{ labelak.datuenbabesalabeleu }}
                     {% else %}{{ labelak.datuenbabesalabeles }}
                     {% endif %}
-                </h3>
-            </div>
-            <div>
+        </span>
+        <span  style="font-size: xx-small;"><br />
                 {% if eremuak.datuenbabesatable %}
                     {% if fitxa.datuenbabesa %}
                         {% if app.request.locale == 'eu'%}
@@ -673,20 +609,7 @@
                     {% else %}{{ fitxa.datuenbabesaes |raw}}
                     {% endif %}
                 {% endif %}
-            </div>
-        </div>
+        </span>
     </div>
     {% endif %}
-<div class="fitxaMenua">
-    <ul class="list-inline">
-        <li>
-            <a href="{{ path('frontend_fitxa_index', { 'udala': udala }) }}" class="btn btn-primary">
-                {% if app.request.locale == 'eu'%}Atzera
-                {% else %}Atras
-                {% endif %}
-            </a>
-        </li>
-        </li><a href="{{ path('frontend_fitxa_pdf', { 'id': fitxa.id ,'udala': udala}) }}" target="_blank" ><i class="fa fa-file-pdf-o"></i></a></li>
-    </ul>
-</div>
 {% endblock %}

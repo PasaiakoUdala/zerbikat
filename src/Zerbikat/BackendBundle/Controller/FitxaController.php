@@ -167,8 +167,6 @@ class FitxaController extends Controller
             'labelak'=> $labelak
         ));
 
-        dump($html->getContent());
-
         $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetAuthor($this->getUser()->getUdala());
 //        $pdf->SetTitle(('Our Code World Title'));
