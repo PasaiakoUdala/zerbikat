@@ -36,8 +36,11 @@
                     <ul class="list-inline">
                             <li><a href="{{ path('udala_show', { 'id': udala.id }) }}" class="fa fa-search"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[udala.id],{'attr': {'id': udala.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ udala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[udala.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[udala.id],{'attr': {'id': udala.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ udala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ udala.id }});" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[udala.id]) }}</li>
                         {% endif %}
 
@@ -56,4 +59,19 @@
             <p>Ez da emaitzarik topatu</p>
         {% endif %}
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id)
+        {
+            var r = confirm("Udala EZABATU. Ziur zaude? Ekintza honek udalaren erregistro guztiak ezabatuko ditu!!");
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

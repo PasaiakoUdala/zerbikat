@@ -34,8 +34,11 @@
                     <ul class="list-inline">
                         <li><a href="{{ path('aurreikusi_edit', { 'id': aurreikusi.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[aurreikusi.id],{'attr': {'id': aurreikusi.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ aurreikusi.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[aurreikusi.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[aurreikusi.id],{'attr': {'id': aurreikusi.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ aurreikusi.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ aurreikusi.id }});" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[aurreikusi.id]) }}</li>
                         {% endif %}
 
@@ -55,4 +58,19 @@
             <p>Ez da emaitzarik topatu</p>
         {% endif %}
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id)
+        {
+            var r = confirm("Epea EZABATU. Ziur zaude?");
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

@@ -32,8 +32,11 @@
                             <a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}"  class="fa fa-pencil"></a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[arruntum.id],{'attr': {'id': arruntum.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ arruntum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[arruntum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[arruntum.id],{'attr': {'id': arruntum.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ arruntum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ arruntum.id }});" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[arruntum.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -52,4 +55,19 @@
             <p>Ez da emaitzarik topatu</p>
         {% endif %}
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id)
+        {
+            var r = confirm("Epea EZABATU. Ziur zaude?");
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

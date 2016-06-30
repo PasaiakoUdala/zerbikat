@@ -44,7 +44,7 @@ class Besteak2Controller extends Controller
             try {
                 $entities = $pagerfanta
                     // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage(1)
+                    ->setMaxPerPage(20)
                     // Notre position actuelle (numéro de page)
                     ->setCurrentPage($page)
                     // On récupère nos entités via Pagerfanta,

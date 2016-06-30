@@ -35,8 +35,11 @@
                     <ul class="list-inline">
                         <li><a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[araumotum.id],{'attr': {'id': araumotum.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ araumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[araumotum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[araumotum.id],{'attr': {'id': araumotum.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ araumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ araumotum.id }});" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[araumotum.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -54,4 +57,19 @@
             <p>Ez da emaitzarik topatu</p>
         {% endif %}
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id)
+        {
+            var r = confirm("Arau-mota EZABATU. Ziur zaude?");
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

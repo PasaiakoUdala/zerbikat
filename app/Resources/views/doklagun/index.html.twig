@@ -33,8 +33,11 @@
                     <ul class="list-inline">
                         <li><a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[doklagun.id],{'attr': {'id': doklagun.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ doklagun.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[doklagun.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[doklagun.id],{'attr': {'id': doklagun.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ doklagun.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ doklagun.id }});" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[doklagun.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -54,4 +57,19 @@
         {% endif %}
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id)
+        {
+            var r = confirm("{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.doklagunlabeleu }}{% endif %} EZABATU. Ziur zaude?");
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

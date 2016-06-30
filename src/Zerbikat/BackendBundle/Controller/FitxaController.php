@@ -13,6 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+
+
 /**
  * Fitxa controller.
  *
@@ -273,6 +279,7 @@ class FitxaController extends Controller
      */
     public function deleteAction(Request $request, Fitxa $fitxa)
     {
+
         //udala egokia den eta admin baimena duen egiaztatu
         $auth_checker = $this->get('security.authorization_checker');
         if((($auth_checker->isGranted('ROLE_ADMIN')) && ($fitxa->getUdala()==$this->getUser()->getUdala()))

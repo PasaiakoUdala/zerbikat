@@ -55,9 +55,15 @@
                     {#{% endif %}#}
 
                     {% if is_granted('ROLE_ADMIN') %}
+                        {#<li>{{ form_start(deleteforms[fitxa.id],{'attr': {'id': fitxa.id}}) }}#}
+                            {#<a href="#" onclick="document.getElementById({{ fitxa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                        {#{{ form_end(deleteforms[fitxa.id]) }}</li>#}
+
+
                         <li>{{ form_start(deleteforms[fitxa.id],{'attr': {'id': fitxa.id}}) }}
-                            <a href="#" onclick="document.getElementById({{ fitxa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
-                        {{ form_end(deleteforms[fitxa.id]) }}</li>
+                            <a href="#" onclick="ezabatu({{ fitxa.id }});" ><i class="fa fa-trash text-warning"></i></a>
+                            {{ form_end(deleteforms[fitxa.id]) }}</li>
+
                     {% endif %}
 
                     </ul></td>
@@ -78,4 +84,18 @@
     {% endif %}
 </div>
 {% endblock %}
-
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+    function ezabatu (id)
+    {
+        var r = confirm("Fitxa EZABATU. Ziur zaude?");
+        if (r == true)
+        {
+            document.getElementById(id).submit()
+        }else
+        {
+        }
+    };
+    </script>
+{% endblock %}

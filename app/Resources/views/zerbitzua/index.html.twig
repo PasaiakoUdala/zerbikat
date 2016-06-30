@@ -34,8 +34,11 @@
                     <ul class="list-inline">
                             <li><a href="{{ path('zerbitzua_edit', { 'id': zerbitzua.id }) }}" ><i class="fa fa-pencil"></i></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[zerbitzua.id],{'attr': {'id': zerbitzua.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ zerbitzua.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[zerbitzua.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[zerbitzua.id],{'attr': {'id': zerbitzua.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ zerbitzua.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ zerbitzua.id }});" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[zerbitzua.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -54,4 +57,19 @@
         {% endif %}
     </div>
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id)
+        {
+            var r = confirm("Zerbitzua EZABATU. Ziur zaude?");
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}
