@@ -46,28 +46,28 @@ class Udala
     /**
      * @var string
      *
-     * @ORM\Column(name="logoa", type="string", length=255)
+     * @ORM\Column(name="logoa", type="string", length=255, nullable=true)
      */
     private $logoa;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ifk", type="string", length=255)
+     * @ORM\Column(name="ifk", type="string", length=255, nullable=true)
      */
     private $ifk;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="izendapenaeu", type="string", length=255)
+     * @ORM\Column(name="izendapenaeu", type="string", length=255, nullable=true)
      */
     private $izendapenaeu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="izendapenaes", type="string", length=255)
+     * @ORM\Column(name="izendapenaes", type="string", length=255, nullable=true)
      */
     private $izendapenaes;
 
@@ -88,7 +88,7 @@ class Udala
 
     /**
      * @var integer
-     * @ORM\Column(name="orrikatzea", type="bigint", nullable=true)
+     * @ORM\Column(name="orrikatzea", type="bigint", nullable=false)
      */
     private $orrikatzea;
 

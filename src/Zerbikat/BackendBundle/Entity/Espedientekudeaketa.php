@@ -25,14 +25,14 @@ class Espedientekudeaketa
     /**
      * @var string
      *
-     * @ORM\Column(name="izenaeu", type="string", length=255)
+     * @ORM\Column(name="izenaeu", type="string", length=255, nullable=true)
      */
     private $izenaeu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="izenaes", type="string", length=255)
+     * @ORM\Column(name="izenaes", type="string", length=255, nullable=true)
      */
     private $izenaes;
 
@@ -40,7 +40,7 @@ class Espedientekudeaketa
     /**
      * @var string
      *
-     * @ORM\Column(name="urleu", type="string", length=255)
+     * @ORM\Column(name="urleu", type="string", length=255, nullable=true)
      */
     private $urleu;
 
@@ -48,7 +48,7 @@ class Espedientekudeaketa
     /**
      * @var string
      *
-     * @ORM\Column(name="urles", type="string", length=255)
+     * @ORM\Column(name="urles", type="string", length=255, nullable=true)
      */
     private $urles;
 

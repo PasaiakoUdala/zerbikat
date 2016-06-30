@@ -26,56 +26,56 @@ class Datuenbabesa
     /**
      * @var string
      *
-     * @ORM\Column(name="izenaeu", type="string", length=255, nullable=false)
+     * @ORM\Column(name="izenaeu", type="string", length=255, nullable=true)
      */
     private $izenaeu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="izenaes", type="string", length=255, nullable=false)
+     * @ORM\Column(name="izenaes", type="string", length=255, nullable=true)
      */
     private $izenaes;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="xedeaeu", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="xedeaeu", type="text", length=65535, nullable=true)
      */
     private $xedeaeu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="xedeaes", type="text", length=65535, nullable=false)
+     * @ORM\Column(name="xedeaes", type="text", length=65535, nullable=true)
      */
     private $xedeaes;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="maila", type="string", length=45, nullable=false)
+     * @ORM\Column(name="maila", type="string", length=45, nullable=true)
      */
     private $maila;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="kodea", type="string", length=45, nullable=false)
+     * @ORM\Column(name="kodea", type="string", length=45, nullable=true)
      */
     private $kodea;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lagapenakeu", type="string", length=255, nullable=false)
+     * @ORM\Column(name="lagapenakeu", type="string", length=255, nullable=true)
      */
     private $lagapenakeu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lagapenakes", type="string", length=255, nullable=false)
+     * @ORM\Column(name="lagapenakes", type="string", length=255, nullable=true)
      */
     private $lagapenakes;
 

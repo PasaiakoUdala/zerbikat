@@ -24,7 +24,7 @@ class Barrutia
     /**
      * @var string
      *
-     * @ORM\Column(name="izena", type="string", length=255, nullable=false)
+     * @ORM\Column(name="izena", type="string", length=255, nullable=true)
      */
     private $izena;
 
