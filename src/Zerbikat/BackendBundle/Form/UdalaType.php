@@ -26,6 +26,7 @@ class UdalaType extends AbstractType
             ->add('lopdes')
 //            ->add('eremuak')
             ->add('espedientekudeaketa')
+            ->add('orrikatzea')
         ;
     }
     

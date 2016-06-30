@@ -43,7 +43,7 @@ class DokumentumotaController extends Controller
             try {
                 $entities = $pagerfanta
                     // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage(20)
+                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
                     // Notre position actuelle (numéro de page)
                     ->setCurrentPage($page)
                     // On récupère nos entités via Pagerfanta,

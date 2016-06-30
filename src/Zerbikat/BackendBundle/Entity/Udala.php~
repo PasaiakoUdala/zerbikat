@@ -86,7 +86,11 @@ class Udala
      */
     private $lopdes;
 
-
+    /**
+     * @var integer
+     * @ORM\Column(name="orrikatzea", type="bigint", nullable=true)
+     */
+    private $orrikatzea;
 
 
 

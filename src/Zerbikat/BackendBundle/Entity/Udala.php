@@ -86,7 +86,11 @@ class Udala
      */
     private $lopdes;
 
-
+    /**
+     * @var integer
+     * @ORM\Column(name="orrikatzea", type="bigint", nullable=true)
+     */
+    private $orrikatzea;
 
 
 
@@ -135,6 +139,9 @@ class Udala
      */
     public function __construct()
     {
+        $this->orrikatzea=25;
+
+
         $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -444,5 +451,29 @@ class Udala
     public function getFitxak()
     {
         return $this->fitxak;
+    }
+
+    /**
+     * Set orrikatzea
+     *
+     * @param integer $orrikatzea
+     *
+     * @return Udala
+     */
+    public function setOrrikatzea($orrikatzea)
+    {
+        $this->orrikatzea = $orrikatzea;
+
+        return $this;
+    }
+
+    /**
+     * Get orrikatzea
+     *
+     * @return integer
+     */
+    public function getOrrikatzea()
+    {
+        return $this->orrikatzea;
     }
 }
