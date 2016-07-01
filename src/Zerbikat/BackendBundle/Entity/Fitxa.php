@@ -480,44 +480,49 @@ class Fitxa
      */
 
 
-//    /**
-//     * @var prozedurak[]
-//     *
-//     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa" )
-//     */
-//    private $prozedurak;
-
     /**
-     * @ORM\ManyToMany(targetEntity="Prozedura")
-     * @ORM\JoinTable(name="fitxa_prozedura",
-     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
-     *      )
-     * @Expose
+     * @var prozedurak[]
+     *
+     * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa",cascade={"persist"} )
      */
     private $prozedurak;
 
-
-
-
 //    /**
-//     * @var araudiak[]
+//     * @ORM\ManyToMany(targetEntity="Prozedura")
+//     * @ORM\JoinTable(name="fitxa_prozedura",
+//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="prozedura_id", referencedColumnName="id", unique=true)}
+//     *      )
 //     * @Expose
-//     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa")
 //     */
-//    private $araudiak;
+//    private $prozedurak;
+
+
+
 
     /**
-     * @ORM\ManyToMany(targetEntity="Araudia")
-     * @ORM\JoinTable(name="fitxa_araudia",
-     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
-     *      )
+     * @var araudiak[]
      * @Expose
+     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa")
      */
     private $araudiak;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity="Araudia")
+//     * @ORM\JoinTable(name="fitxa_araudia",
+//     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
+//     *      )
+//     * @Expose
+//     */
+//    private $araudiak;
 
+
+
+    public function __toString()
+    {
+        return $this->getDeskribapenaeu();
+    }
 
 
     /**
@@ -549,22 +554,28 @@ class Fitxa
         $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();
         $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
 
+        $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();
+
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
 
 
-    /**
-     * Set id
-     *
-     * @return integer
-     */
-    public function setId($id)
+    public function addFitxaProzedura(FitxaProzedura $fitxaProzedura)
     {
-        $this->id=$id;
-
-        return $this;
+        $this->prozedurak->add($fitxaProzedura);
     }
+
+    public function removeFitxaProzedura(FitxaProzedura $fitxaProzedura)
+    {
+        $this->prozedurak->removeElement($fitxaProzedura);
+    }
+
+    /**
+     *
+     *      HEMENDIK AURRERA AUTOMATIKOKI SORTUTATOAK
+     *
+     */
 
 
     /**
@@ -1730,47 +1741,37 @@ class Fitxa
     }
 
     /**
-     * Add araudiak
+     * Set isiltasunadmin
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     * @param \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin
      *
      * @return Fitxa
      */
-    public function addAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    public function setIsiltasunadmin(\Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin = null)
     {
-        $this->araudiak[] = $araudiak;
+        $this->isiltasunadmin = $isiltasunadmin;
 
         return $this;
     }
 
     /**
-     * Remove araudiak
+     * Get isiltasunadmin
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     * @return \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
      */
-    public function removeAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    public function getIsiltasunadmin()
     {
-        $this->araudiak->removeElement($araudiak);
-    }
-
-    /**
-     * Get araudiak
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAraudiak()
-    {
-        return $this->araudiak;
+        return $this->isiltasunadmin;
     }
 
     /**
      * Add dokumentazioak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak
+     * @param \Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak
      *
      * @return Fitxa
      */
-    public function addDokumentazioak(\Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak)
+    public function addDokumentazioak(\Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak)
     {
         $this->dokumentazioak[] = $dokumentazioak;
 
@@ -1780,9 +1781,9 @@ class Fitxa
     /**
      * Remove dokumentazioak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak
+     * @param \Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak
      */
-    public function removeDokumentazioak(\Zerbikat\BackendBundle\Entity\FitxaDokumentazioa $dokumentazioak)
+    public function removeDokumentazioak(\Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak)
     {
         $this->dokumentazioak->removeElement($dokumentazioak);
     }
@@ -2002,40 +2003,6 @@ class Fitxa
     }
 
     /**
-     * Add prozedurak
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Prozedura $prozedurak
-     *
-     * @return Fitxa
-     */
-    public function addProzedurak(\Zerbikat\BackendBundle\Entity\Prozedura $prozedurak)
-    {
-        $this->prozedurak[] = $prozedurak;
-
-        return $this;
-    }
-
-    /**
-     * Remove prozedurak
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Prozedura $prozedurak
-     */
-    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\Prozedura $prozedurak)
-    {
-        $this->prozedurak->removeElement($prozedurak);
-    }
-
-    /**
-     * Get prozedurak
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProzedurak()
-    {
-        return $this->prozedurak;
-    }
-
-    /**
      * Add norkeskatuak
      *
      * @param \Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak
@@ -2138,26 +2105,70 @@ class Fitxa
     }
 
     /**
-     * Set isiltasunadmin
+     * Add prozedurak
      *
-     * @param \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
      *
      * @return Fitxa
      */
-    public function setIsiltasunadmin(\Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin = null)
+    public function addProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
     {
-        $this->isiltasunadmin = $isiltasunadmin;
+        $this->prozedurak[] = $prozedurak;
 
         return $this;
     }
 
     /**
-     * Get isiltasunadmin
+     * Remove prozedurak
      *
-     * @return \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
      */
-    public function getIsiltasunadmin()
+    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
     {
-        return $this->isiltasunadmin;
+        $this->prozedurak->removeElement($prozedurak);
+    }
+
+    /**
+     * Get prozedurak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProzedurak()
+    {
+        return $this->prozedurak;
+    }
+
+    /**
+     * Add araudiak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     *
+     * @return Fitxa
+     */
+    public function addAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    {
+        $this->araudiak[] = $araudiak;
+
+        return $this;
+    }
+
+    /**
+     * Remove araudiak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     */
+    public function removeAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    {
+        $this->araudiak->removeElement($araudiak);
+    }
+
+    /**
+     * Get araudiak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAraudiak()
+    {
+        return $this->araudiak;
     }
 }

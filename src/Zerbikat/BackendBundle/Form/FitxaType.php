@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+//use Zerbikat\BackendBundle\Entity\FitxaProzedura;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class FitxaType extends AbstractType
 {
@@ -192,12 +194,12 @@ class FitxaType extends AbstractType
                 'placeholder' => 'Aukeratu kostu taulak',
                  'group_by' => 'atala'
             ))
-            ->add('prozedurak' , EntityType::class, array(
-                'class'    => 'BackendBundle:Prozedura' ,
-                'required' => false,
-//                'property' => 'name' ,
-                'expanded' => true ,
-                'multiple' => true , ))
+//            ->add('prozedurak' , EntityType::class, array(
+//                'class'    => 'BackendBundle:Prozedura' ,
+//                'required' => false,
+////                'property' => 'name' ,
+//                'expanded' => true ,
+//                'multiple' => true , ))
 /*
             ->add('fitxaaraudia' , EntityType::class, array(
                 'class'    => 'BackendBundle:FitxaAraudia' ,
@@ -205,6 +207,16 @@ class FitxaType extends AbstractType
                 'expanded' => true ,
                 'multiple' => true , ))
 */
+
+//            ->add('prozedurak', new FitxaProzeduraType())
+//            ->add('prozedurak', 'collection', array('type' => new FitxaProzeduraType()))
+            ->add('prozedurak', CollectionType::class, array(
+                    'entry_type' => FitxaProzeduraType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                )
+            )
         ;
     }
     

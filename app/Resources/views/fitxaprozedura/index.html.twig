@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FitxaProzedura list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ordena</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fitxaProzedura in fitxaProzeduras %}
+            <tr>
+                <td><a href="{{ path('fitxaprozedura_show', { 'id': fitxaProzedura.id }) }}">{{ fitxaProzedura.ordena }}</a></td>
+                <td>{{ fitxaProzedura.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fitxaprozedura_show', { 'id': fitxaProzedura.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fitxaprozedura_edit', { 'id': fitxaProzedura.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fitxaprozedura_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

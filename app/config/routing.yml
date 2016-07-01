@@ -1,3 +1,7 @@
+backend_fitxa_prozedura:
+    resource: "@BackendBundle/Controller/FitxaProzeduraController.php"
+    type:     annotation
+
 user:
     resource: "@UserBundle/Controller/"
     type:     annotation

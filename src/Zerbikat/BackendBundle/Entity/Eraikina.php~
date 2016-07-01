@@ -26,21 +26,21 @@ class Eraikina
     /**
      * @var string
      *
-     * @ORM\Column(name="izena", type="string", length=255, nullable=false)
+     * @ORM\Column(name="izena", type="string", length=255, nullable=true)
      */
     private $izena;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="longitudea", type="float", precision=18, scale=6, nullable=false)
+     * @ORM\Column(name="longitudea", type="float", precision=18, scale=6, nullable=true)
      */
     private $longitudea;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="latitudea", type="float", precision=18, scale=6, nullable=false)
+     * @ORM\Column(name="latitudea", type="float", precision=18, scale=6, nullable=true)
      */
     private $latitudea;
 

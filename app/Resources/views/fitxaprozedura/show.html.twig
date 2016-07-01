@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FitxaProzedura</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Ordena</th>
+                <td>{{ fitxaProzedura.ordena }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ fitxaProzedura.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fitxaprozedura_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fitxaprozedura_edit', { 'id': fitxaProzedura.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

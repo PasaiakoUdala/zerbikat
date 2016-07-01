@@ -26,7 +26,7 @@ class Azpisaila
     /**
      * @var string
      *
-     * @ORM\Column(name="kodea", type="string", length=10, nullable=false)
+     * @ORM\Column(name="kodea", type="string", length=10, nullable=true)
      */
     private $kodea;
 

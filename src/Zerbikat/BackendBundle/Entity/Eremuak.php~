@@ -35,14 +35,14 @@ class Eremuak
     /**
      * @var oharraklabeleu
      *
-     * @ORM\Column(name="oharraklabeleu", type="string", length=255, nullable=false,options={"default" = "OHARRAK"})
+     * @ORM\Column(name="oharraklabeleu", type="string", length=255, nullable=true,options={"default" = "OHARRAK"})
      */
     private $oharraklabeleu;
 
     /**
      * @var oharraklabeles
      *
-     * @ORM\Column(name="oharraklabeles", type="string", length=255, nullable=false,options={"default" = "OBSERVACIONES"})
+     * @ORM\Column(name="oharraklabeles", type="string", length=255, nullable=true,options={"default" = "OBSERVACIONES"})
      */
     private $oharraklabeles;
 
@@ -50,7 +50,7 @@ class Eremuak
     /**
      * @var helburuatext
      *
-     * @ORM\Column(name="helburuatext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="helburuatext", type="boolean", nullable=true,options={"default" = false})
      */
     private $helburuatext;
 
@@ -72,7 +72,7 @@ class Eremuak
     /**
      * @var ebazpensinpli
      *
-     * @ORM\Column(name="ebazpensinpli", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="ebazpensinpli", type="boolean", nullable=true,options={"default" = false})
      */
     private $ebazpensinpli;
 
@@ -94,7 +94,7 @@ class Eremuak
     /**
      * @var arduraaitorpena
      *
-     * @ORM\Column(name="arduraaitorpena", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="arduraaitorpena", type="boolean", nullable=true,options={"default" = false})
      */
     private $arduraaitorpena;
 
@@ -117,7 +117,7 @@ class Eremuak
     /**
      * @var aurreikusi
      *
-     * @ORM\Column(name="aurreikusi", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="aurreikusi", type="boolean", nullable=true,options={"default" = false})
      */
     private $aurreikusi;
 
@@ -138,7 +138,7 @@ class Eremuak
     /**
      * @var arrunta
      *
-     * @ORM\Column(name="arrunta", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="arrunta", type="boolean", nullable=true,options={"default" = false})
      */
     private $arrunta;
 
@@ -160,7 +160,7 @@ class Eremuak
     /**
      * @var isiltasunadmin
      *
-     * @ORM\Column(name="isiltasunadmin", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="isiltasunadmin", type="boolean", nullable=true,options={"default" = false})
      */
     private $isiltasunadmin;
 
@@ -184,14 +184,14 @@ class Eremuak
     /**
      * @var norkeskatutext
      *
-     * @ORM\Column(name="norkeskatutext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="norkeskatutext", type="boolean", nullable=true,options={"default" = false})
      */
     private $norkeskatutext;
 
     /**
      * @var norkeskatutable
      *
-     * @ORM\Column(name="norkeskatutable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="norkeskatutable", type="boolean", nullable=true,options={"default" = false})
      */
     private $norkeskatutable;
 
@@ -215,14 +215,14 @@ class Eremuak
     /**
      * @var dokumentazioatext
      *
-     * @ORM\Column(name="dokumentazioatext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="dokumentazioatext", type="boolean", nullable=true,options={"default" = false})
      */
     private $dokumentazioatext;
 
     /**
      * @var dokumentazioatable
      *
-     * @ORM\Column(name="dokumentazioatable", type="boolean", nullable=false)
+     * @ORM\Column(name="dokumentazioatable", type="boolean", nullable=true)
      */
     private $dokumentazioatable;
 
@@ -246,14 +246,14 @@ class Eremuak
     /**
      * @var kostuatext
      *
-     * @ORM\Column(name="kostuatext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="kostuatext", type="boolean", nullable=true,options={"default" = false})
      */
     private $kostuatext;
 
     /**
      * @var kostuatable
      *
-     * @ORM\Column(name="kostuatable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="kostuatable", type="boolean", nullable=true,options={"default" = false})
      */
     private $kostuatable;
 
@@ -277,14 +277,14 @@ class Eremuak
     /**
      * @var araudiatext
      *
-     * @ORM\Column(name="araudiatext", type="boolean", nullable=false,options={"default" = true})
+     * @ORM\Column(name="araudiatext", type="boolean", nullable=true,options={"default" = true})
      */
     private $araudiatext;
 
     /**
      * @var araudiatable
      *
-     * @ORM\Column(name="araudiatable", type="boolean", nullable=false,options={"default" = true})
+     * @ORM\Column(name="araudiatable", type="boolean", nullable=true,options={"default" = true})
      */
     private $araudiatable;
 
@@ -307,14 +307,14 @@ class Eremuak
     /**
      * @var prozeduratext
      *
-     * @ORM\Column(name="prozeduratext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="prozeduratext", type="boolean", nullable=true,options={"default" = false})
      */
     private $prozeduratext;
 
     /**
      * @var prozeduratable
      *
-     * @ORM\Column(name="prozeduratable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="prozeduratable", type="boolean", nullable=true,options={"default" = false})
      */
     private $prozeduratable;
 
@@ -339,14 +339,14 @@ class Eremuak
     /**
      * @var doklaguntext
      *
-     * @ORM\Column(name="doklaguntext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="doklaguntext", type="boolean", nullable=true,options={"default" = false})
      */
     private $doklaguntext;
 
     /**
      * @var doklaguntable
      *
-     * @ORM\Column(name="doklaguntable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="doklaguntable", type="boolean", nullable=true,options={"default" = false})
      */
     private $doklaguntable;
 
@@ -369,14 +369,14 @@ class Eremuak
     /**
      * @var datuenbabesatext
      *
-     * @ORM\Column(name="datuenbabesatext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="datuenbabesatext", type="boolean", nullable=true,options={"default" = false})
      */
     private $datuenbabesatext;
 
     /**
      * @var datuenbabesatable
      *
-     * @ORM\Column(name="datuenbabesatable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="datuenbabesatable", type="boolean", nullable=true,options={"default" = false})
      */
     private $datuenbabesatable;
 
@@ -398,7 +398,7 @@ class Eremuak
     /**
      * @var azpisailatable
      *
-     * @ORM\Column(name="azpisailatable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="azpisailatable", type="boolean", nullable=true,options={"default" = false})
      */
     private $azpisailatable;
 
@@ -419,14 +419,14 @@ class Eremuak
     /**
      * @var norkebatzitext
      *
-     * @ORM\Column(name="norkebatzitext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="norkebatzitext", type="boolean", nullable=true,options={"default" = false})
      */
     private $norkebatzitext;
 
     /**
      * @var norkebatzitable
      *
-     * @ORM\Column(name="norkebatzitable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="norkebatzitable", type="boolean", nullable=true,options={"default" = false})
      */
     private $norkebatzitable;
 
@@ -451,14 +451,14 @@ class Eremuak
     /**
      * @var besteak1text
      *
-     * @ORM\Column(name="besteak1text", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="besteak1text", type="boolean", nullable=true,options={"default" = false})
      */
     private $besteak1text;
 
     /**
      * @var besteak1table
      *
-     * @ORM\Column(name="besteak1table", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="besteak1table", type="boolean", nullable=true,options={"default" = false})
      */
     private $besteak1table;
 
@@ -480,14 +480,14 @@ class Eremuak
     /**
      * @var besteak2text
      *
-     * @ORM\Column(name="besteak2text", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="besteak2text", type="boolean", nullable=true,options={"default" = false})
      */
     private $besteak2text;
 
     /**
      * @var besteak2table
      *
-     * @ORM\Column(name="besteak2table", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="besteak2table", type="boolean", nullable=true,options={"default" = false})
      */
     private $besteak2table;
 
@@ -510,14 +510,14 @@ class Eremuak
     /**
      * @var besteak3text
      *
-     * @ORM\Column(name="besteak3text", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="besteak3text", type="boolean", nullable=true,options={"default" = false})
      */
     private $besteak3text;
 
     /**
      * @var besteak3table
      *
-     * @ORM\Column(name="besteak3table", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="besteak3table", type="boolean", nullable=true,options={"default" = false})
      */
     private $besteak3table;
 
@@ -538,14 +538,14 @@ class Eremuak
     /**
      * @var kanalatext
      *
-     * @ORM\Column(name="kanalatext", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="kanalatext", type="boolean", nullable=true,options={"default" = false})
      */
     private $kanalatext;
 
     /**
      * @var kanalatable
      *
-     * @ORM\Column(name="kanalatable", type="boolean", nullable=false,options={"default" = false})
+     * @ORM\Column(name="kanalatable", type="boolean", nullable=true,options={"default" = false})
      */
     private $kanalatable;
 

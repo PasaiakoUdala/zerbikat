@@ -452,8 +452,31 @@
         {% endif %}
             <div>
                 <br/>
-                {{ form_errors(edit_form.prozedurak) }}
-                {{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-group select2'}}) }}
+                {#{{ form_errors(edit_form.prozedurak) }}#}
+                {#{{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-group select2'}}) }}#}
+                {#{{ form_row(edit_form.prozedurak) }}#}
+
+            {#{% block _prozedurak_entry_widget %}#}
+            {#<tr>#}
+                {#<td>{{ form_widget(edit_form.prozedurak) }}</td>#}
+            {#</tr>#}
+            {#{% endblock %}#}
+
+            <ul class="list-unstyled" id="prozedura-fields-list"
+                    data-prototype="{{ form_widget(edit_form.prozedurak.vars.prototype)|e }}">
+                {% for prozedura in edit_form.prozedurak %}
+                <li>
+                    {#{{ form_row(prozedura) }}#}
+                    {#<div class="col-sm-2">{{ form_widget(prozedura.udala, {'value' : fitxa.udala }) }}</div>#}
+                    <div class="col-sm-2 hidden">{{ form_widget(prozedura.udala) }}</div>
+                    <div class="col-sm-4 hidden">{{ form_widget(prozedura.fitxa) }}</div>
+                    <div class="col-sm-10">{{ form_widget(prozedura.prozedura) }}</div>
+                    <div class="col-sm-2">{{ form_widget(prozedura.ordena) }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+            <br />
+            <a href="#" id="add-prozedura">Gehitu prozedura</a>
             </div>
         </div>
     </div>
@@ -955,5 +978,32 @@
 
 
         });
+    </script>
+    <script type="text/javascript">
+        // Zenbat prozedura gehitu diren gorde
+        var prozeduraCount = '{{ edit_form.prozedurak|length }}';
+
+        jQuery(document).ready(function() {
+
+            jQuery('#add-prozedura').click(function(e) {
+                e.preventDefault();
+//                alert ("sartu da!!");
+                var prozeduraList = jQuery('#prozedura-fields-list');
+
+                // grab the prototype template
+                var newWidget = prozeduraList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, prozeduraCount);
+                prozeduraCount++;
+
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(prozeduraList);
+            });
+
+
+        })
     </script>
 {% endblock %}

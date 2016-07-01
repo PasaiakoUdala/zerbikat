@@ -36,21 +36,21 @@ class FitxaProzedura
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala")
-     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id")
      *
      */
     private $udala;
 
     /**
      * @ORM\ManyToOne(targetEntity="Prozedura", inversedBy="fitxak")
-     * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id",onDelete="CASCADE")
+     * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id")
      *
      * */
     protected $prozedura;
 
     /**
      * @ORM\ManyToOne(targetEntity="Fitxa", inversedBy="prozedurak")
-     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id",onDelete="CASCADE")
+     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
      *
      * */
     protected $fitxa;
@@ -61,7 +61,7 @@ class FitxaProzedura
      */
     public function __toString()
     {
-        return $this->getTramitea();
+        return $this->getProzedura()->getProzeduraeu();
     }
 
 

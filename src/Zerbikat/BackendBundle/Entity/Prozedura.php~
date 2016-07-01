@@ -66,7 +66,7 @@ class Prozedura
     {
         return $this->getProzeduraeu();
     }
-
+    
     /**
      * Constructor
      */

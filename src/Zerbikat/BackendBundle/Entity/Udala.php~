@@ -46,28 +46,28 @@ class Udala
     /**
      * @var string
      *
-     * @ORM\Column(name="logoa", type="string", length=255)
+     * @ORM\Column(name="logoa", type="string", length=255, nullable=true)
      */
     private $logoa;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ifk", type="string", length=255)
+     * @ORM\Column(name="ifk", type="string", length=255, nullable=true)
      */
     private $ifk;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="izendapenaeu", type="string", length=255)
+     * @ORM\Column(name="izendapenaeu", type="string", length=255, nullable=true)
      */
     private $izendapenaeu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="izendapenaes", type="string", length=255)
+     * @ORM\Column(name="izendapenaes", type="string", length=255, nullable=true)
      */
     private $izendapenaes;
 
@@ -88,7 +88,7 @@ class Udala
 
     /**
      * @var integer
-     * @ORM\Column(name="orrikatzea", type="bigint", nullable=true)
+     * @ORM\Column(name="orrikatzea", type="bigint", nullable=false)
      */
     private $orrikatzea;
 
@@ -139,6 +139,9 @@ class Udala
      */
     public function __construct()
     {
+        $this->orrikatzea=25;
+
+
         $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -448,5 +451,29 @@ class Udala
     public function getFitxak()
     {
         return $this->fitxak;
+    }
+
+    /**
+     * Set orrikatzea
+     *
+     * @param integer $orrikatzea
+     *
+     * @return Udala
+     */
+    public function setOrrikatzea($orrikatzea)
+    {
+        $this->orrikatzea = $orrikatzea;
+
+        return $this;
+    }
+
+    /**
+     * Get orrikatzea
+     *
+     * @return integer
+     */
+    public function getOrrikatzea()
+    {
+        return $this->orrikatzea;
     }
 }
