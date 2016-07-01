@@ -248,8 +248,10 @@
         {% else %}
         <div class="col-sm-12 hidden">
         {% endif %}
-            {{ form_errors(edit_form.kanalak) }}
-            {{ form_widget(edit_form.kanalak, {'attr': {'class': 'form-control select2'}}) }}
+            <div><br />
+                {{ form_errors(edit_form.kanalak) }}
+                {{ form_widget(edit_form.kanalak, {'attr': {'class': 'form-control select2'}}) }}
+            </div>
         </div>
     </div>
 
@@ -407,8 +409,31 @@
         {% endif %}
             <div>
                 <br/>
-                {{ form_errors(edit_form.araudiak) }}
-                {{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group select2'}}) }}
+                {#{{ form_errors(edit_form.araudiak) }}#}
+                {#{{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group select2'}}) }}#}
+
+
+           <ul class="list-unstyled" id="araudia-fields-list"
+                    data-prototype="{{ form_widget(edit_form.araudiak.vars.prototype)|e }}">
+                {% for araudia in edit_form.araudiak %}
+                <li>
+                    {#{{ form_row(prozedura) }}#}
+                    {#<div class="col-sm-2">{{ form_widget(prozedura.udala, {'value' : fitxa.udala }) }}</div>#}
+                    <div class="col-sm-2 hidden">{{ form_widget(araudia.udala) }}</div>
+                    <div class="col-sm-4 hidden">{{ form_widget(araudia.fitxa) }}</div>
+                    <div class="col-sm-8">{{ form_widget(araudia.araudia) }}</div>
+                    <div class="col-sm-2">{{ form_widget(araudia.atalaeu) }}</div>
+                    <div class="col-sm-2">{{ form_widget(araudia.atalaes) }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+            <br />
+            <a href="#" id="add-araudia">Gehitu araudia</a>
+
+
+
+
+
             </div>
         </div>
     </div>
@@ -982,6 +1007,7 @@
     <script type="text/javascript">
         // Zenbat prozedura gehitu diren gorde
         var prozeduraCount = '{{ edit_form.prozedurak|length }}';
+        var araudiaCount = '{{ edit_form.araudiak|length }}';
 
         jQuery(document).ready(function() {
 
@@ -1002,7 +1028,23 @@
                 var newLi = jQuery('<li></li>').html(newWidget);
                 newLi.appendTo(prozeduraList);
             });
+            jQuery('#add-araudia').click(function(e) {
+                e.preventDefault();
+//                alert ("sartu da!!");
+                var araudiaList = jQuery('#araudia-fields-list');
 
+                // grab the prototype template
+                var newWidget = araudiaList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, araudiaCount);
+                araudiaCount++;
+
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(araudiaList);
+            });
 
         })
     </script>

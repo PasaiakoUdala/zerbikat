@@ -106,14 +106,14 @@ class FitxaType extends AbstractType
             ->add('azpisaila')
             ->add('aurreikusi')
             ->add('arrunta')
-            ->add('araudiak', EntityType::class, array(
-                'class' => 'BackendBundle:Araudia',
-                'required' => false,
-                'multiple'=>'multiple',
-//                'expanded' => true ,
-                'placeholder' => 'Aukeratu arauak',
-                'group_by' => 'araumota',
-            ))
+//            ->add('araudiak', EntityType::class, array(
+//                'class' => 'BackendBundle:Araudia',
+//                'required' => false,
+//                'multiple'=>'multiple',
+////                'expanded' => true ,
+//                'placeholder' => 'Aukeratu arauak',
+//                'group_by' => 'araumota',
+//            ))
             ->add('dokumentazioak', EntityType::class, array(
                 'class' => 'BackendBundle:Dokumentazioa',
                 'required' => false,
@@ -215,8 +215,14 @@ class FitxaType extends AbstractType
                     'allow_add' => true,
                     'allow_delete' => true,
                     'by_reference' => false,
-                )
-            )
+                ))
+            ->add('araudiak', CollectionType::class, array(
+                'entry_type' => FitxaAraudiaType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ))
+
         ;
     }
     

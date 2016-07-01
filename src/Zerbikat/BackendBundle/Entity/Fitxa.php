@@ -503,7 +503,7 @@ class Fitxa
     /**
      * @var araudiak[]
      * @Expose
-     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa")
+     * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa",cascade={"persist"})
      */
     private $araudiak;
 
@@ -571,12 +571,24 @@ class Fitxa
         $this->prozedurak->removeElement($fitxaProzedura);
     }
 
+    public function addFitxaAraudia(FitxaAraudia $fitxaAraudia)
+    {
+        $this->araudiak->add($fitxaAraudia);
+    }
+
+    public function removeFitxaAraudia(FitxaAraudia $fitxaAraudia)
+    {
+        $this->araudiak->removeElement($fitxaAraudia);
+    }
+
     /**
      *
      *      HEMENDIK AURRERA AUTOMATIKOKI SORTUTATOAK
      *
      */
 
+
+    
 
     /**
      * Get id
