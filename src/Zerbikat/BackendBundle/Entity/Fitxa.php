@@ -484,6 +484,7 @@ class Fitxa
      * @var prozedurak[]
      *
      * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa",cascade={"persist"} )
+     * @ORM\OrderBy({"ordena" = "ASC"})
      */
     private $prozedurak;
 
@@ -517,6 +518,12 @@ class Fitxa
 //     */
 //    private $araudiak;
 
+    /**
+     * @var kostuak[]
+     * @Expose
+     * @ORM\OneToMany(targetEntity="FitxaKostua", mappedBy="fitxa",cascade={"persist"})
+     */
+    private $kostuak;
 
 
     public function __toString()
@@ -555,6 +562,7 @@ class Fitxa
         $this->azpiatalak = new \Doctrine\Common\Collections\ArrayCollection();
 
         $this->prozedurak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kostuak = new \Doctrine\Common\Collections\ArrayCollection();
 
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
@@ -581,6 +589,17 @@ class Fitxa
         $this->araudiak->removeElement($fitxaAraudia);
     }
 
+    public function addFitxaKostua(FitxaKostua $fitxaKostua)
+    {
+        $this->kostuak->add($fitxaKostua);
+    }
+
+    public function removeFitxaKostua(FitxaKostua $fitxaKostua)
+    {
+        $this->kostuak->removeElement($fitxaKostua);
+    }
+
+
     /**
      *
      *      HEMENDIK AURRERA AUTOMATIKOKI SORTUTATOAK
@@ -588,7 +607,7 @@ class Fitxa
      */
 
 
-    
+
 
     /**
      * Get id
@@ -2182,5 +2201,39 @@ class Fitxa
     public function getAraudiak()
     {
         return $this->araudiak;
+    }
+
+    /**
+     * Add kostuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak
+     *
+     * @return Fitxa
+     */
+    public function addKostuak(\Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak)
+    {
+        $this->kostuak[] = $kostuak;
+
+        return $this;
+    }
+
+    /**
+     * Remove kostuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak
+     */
+    public function removeKostuak(\Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak)
+    {
+        $this->kostuak->removeElement($kostuak);
+    }
+
+    /**
+     * Get kostuak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKostuak()
+    {
+        return $this->kostuak;
     }
 }

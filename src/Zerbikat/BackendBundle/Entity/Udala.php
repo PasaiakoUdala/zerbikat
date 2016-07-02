@@ -93,6 +93,13 @@ class Udala
     private $orrikatzea;
 
 
+    /**
+     * @var zergaor
+     *
+     * @ORM\Column(name="zergaor", type="boolean", nullable=true,options={"default" = false})
+     */
+    private $zergaor;
+
 
     /**
      *      ERLAZIOAK
@@ -475,5 +482,29 @@ class Udala
     public function getOrrikatzea()
     {
         return $this->orrikatzea;
+    }
+
+    /**
+     * Set zergaor
+     *
+     * @param boolean $zergaor
+     *
+     * @return Udala
+     */
+    public function setZergaor($zergaor)
+    {
+        $this->zergaor = $zergaor;
+
+        return $this;
+    }
+
+    /**
+     * Get zergaor
+     *
+     * @return boolean
+     */
+    public function getZergaor()
+    {
+        return $this->zergaor;
     }
 }

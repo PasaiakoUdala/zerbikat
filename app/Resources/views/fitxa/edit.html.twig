@@ -293,11 +293,29 @@
         {% else %}
         <div class="col-sm-12 hidden">
         {% endif %}
-            <div>
-                <br/>
-                {{ form_errors(edit_form.azpiatalak) }}
-                {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
-            </div>
+            {#<div>#}
+                {% if fitxa.udala.zergaor %}
+                    {#<div class="form-group">#}
+                    <ul class="list-unstyled" id="kostua-fields-list"
+                        data-prototype="{{ form_widget(edit_form.kostuak.vars.prototype)|e }}">
+                    {% for kostua in edit_form.kostuak %}
+                        <li class="form-group">
+                            <div class="col-sm-2 hidden">{{ form_widget(kostua.udala) }}</div>
+                            <div class="col-sm-4 hidden">{{ form_widget(kostua.fitxa) }}</div>
+                            <div class="col-sm-10">{{ form_widget(kostua.kostua) }}</div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                    <br />
+                    <a href="#" id="add-kostua" class="col-sm-8">Gehitu kostu taula</a>
+                    {#</div>#}
+                {% else %}
+                    <div class="form-group">
+                        {{ form_errors(edit_form.azpiatalak) }}
+                        {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
+                    </div>
+                {% endif %}
+            {#</div>#}
         </div>
     </div>
 
@@ -477,17 +495,7 @@
         {% endif %}
             <div>
                 <br/>
-                {#{{ form_errors(edit_form.prozedurak) }}#}
-                {#{{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-group select2'}}) }}#}
-                {#{{ form_row(edit_form.prozedurak) }}#}
-
-            {#{% block _prozedurak_entry_widget %}#}
-            {#<tr>#}
-                {#<td>{{ form_widget(edit_form.prozedurak) }}</td>#}
-            {#</tr>#}
-            {#{% endblock %}#}
-
-            <ul class="list-unstyled" id="prozedura-fields-list"
+                <ul class="list-unstyled" id="prozedura-fields-list"
                     data-prototype="{{ form_widget(edit_form.prozedurak.vars.prototype)|e }}">
                 {% for prozedura in edit_form.prozedurak %}
                 <li>
@@ -900,10 +908,16 @@
                 <h2>ADMIN</h2>
             </div>
         </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
+        {#<div class="col-sm-2"></div>#}
+        {#<div class="col-sm-8">#}
             {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <div>
+            <div class="col-sm-2">
             {% else %}
             <div class="hidden">
             {% endif %}
@@ -912,38 +926,42 @@
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>
             {% if is_granted('ROLE_ADMIN') %}
-            <div>
+            <div class="col-sm-9">
             {% else %}
             <div class="hidden">
             {% endif %}
-                <div class="form-group">
+                <div class="form-group col-sm-4" >
                 {{ form_label(edit_form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kontsultak) }}
                 {{ form_widget(edit_form.kontsultak, {'attr': {'class': 'form-control'}}) }}
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-4">
                 {{ form_errors(edit_form.publikoa) }}
                 {{ form_widget(edit_form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}
-                {{ form_label(edit_form.publikoa, 'Publikoa', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_label(edit_form.publikoa, 'Publikoa da?', { 'label_attr': {'class': 'control-label'} }) }}
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-4">
                 {{ form_errors(edit_form.hitzarmena) }}
                 {{ form_widget(edit_form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}
                 {{ form_label(edit_form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}
                 </div>
             </div>
-            {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <div>
-            {% else %}
-            <div class="hidden">
-            {% endif %}
-                {{ form_label(edit_form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.createdAt) }}
-                {{ form_widget(edit_form.createdAt, {'attr': {'class': 'form-control'}}) }}
-
-                {{ form_label(edit_form.updatedAt, 'Azken aldaketa', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.updatedAt) }}
-                {{ form_widget(edit_form.updatedAt, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
+                <div class="form-group col-sm-4">
+                    {{ form_label(edit_form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.createdAt) }}
+                    {{ form_widget(edit_form.createdAt, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group col-sm-4">
+                    {{ form_label(edit_form.updatedAt, 'Azken aldaketa', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.updatedAt) }}
+                    {{ form_widget(edit_form.updatedAt, {'attr': {'class': 'form-control'}}) }}
+                </div>
             </div>
         </div>
     </div>
@@ -998,10 +1016,11 @@
                 tags: true
             });
 
-//            $('#fitxa_tramiteak').select2({
-//                theme: 'bootstrap',
-//                tags: true
-//            });
+            $('#fitxa_norkeskatuak').select2({
+                theme: 'bootstrap',
+                tags: true
+            });
+
             $('#fitxa_dokumentazioak').select2({
                 theme: 'bootstrap',
                 tags: true
@@ -1014,6 +1033,7 @@
         // Zenbat prozedura gehitu diren gorde
         var prozeduraCount = '{{ edit_form.prozedurak|length }}';
         var araudiaCount = '{{ edit_form.araudiak|length }}';
+        var kostuaCount = '{{ edit_form.kostuak|length }}';
 
         jQuery(document).ready(function() {
 
@@ -1051,7 +1071,23 @@
                 var newLi = jQuery('<li></li>').html(newWidget);
                 newLi.appendTo(araudiaList);
             });
+            jQuery('#add-kostua').click(function(e) {
+                e.preventDefault();
+//                alert ("sartu da!!");
+                var kostuaList = jQuery('#kostua-fields-list');
 
+                // grab the prototype template
+                var newWidget = kostuaList.attr('data-prototype');
+                // replace the "__name__" used in the id and name of the prototype
+                // with a number that's unique to your emails
+                // end name attribute looks like name="contact[emails][2]"
+                newWidget = newWidget.replace(/__name__/g, kostuaCount);
+                kostuaCount++;
+
+                // create a new list element and add it to the list
+                var newLi = jQuery('<li></li>').html(newWidget);
+                newLi.appendTo(kostuaList);
+            });
         })
     </script>
 {% endblock %}

@@ -30,7 +30,7 @@
         <div class="col-md-2"><br /><br />
             <h1>
                 {{ form_label(form.espedientekodea, 'KODEA: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {#{{ form_errors(new_form.espedientekodea) }}#}
+                {{ form_errors(form.espedientekodea) }}
                 {{ form_widget(form.espedientekodea, {'attr': {'class': 'form-control ckeditor'}}) }}
             </h1>
         </div>
@@ -833,53 +833,6 @@
             </div>
         </div>
 
-
-
-    {#{% if is_granted('ROLE_ADMIN') %}#}
-        {#<div class="row">#}
-    {#{% else %}#}
-        {#<div class="row hidden">#}
-    {#{% endif %}#}
-            {#<div class="col-sm-6">#}
-                {#<div class="page-header">#}
-                    {#<h2>ADMIN</h2>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="col-sm-6">#}
-                {#<div class="page-header">#}
-                    {#<h2>ADMIN</h2>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="col-sm-2"></div>#}
-            {#<div class="col-sm-8">#}
-                {#<div>#}
-                    {#{{ form_label(form.udala, 'Udala', { 'label_attr': {'class': 'control-label'} }) }}#}
-                    {#{{ form_errors(form.udala) }}#}
-                    {#{{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}#}
-
-                    {#{{ form_label(form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}#}
-                    {#{{ form_errors(form.kontsultak) }}#}
-                    {#{{ form_widget(form.kontsultak, {'attr': {'class': 'form-control'}}) }}#}
-
-                    {#{{ form_errors(form.publikoa) }}#}
-                    {#{{ form_widget(form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}#}
-                    {#{{ form_label(form.publikoa, 'Publikoa', { 'label_attr': {'class': 'control-label'} }) }}#}
-
-                    {#{{ form_errors(form.hitzarmena) }}#}
-                    {#{{ form_widget(form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}#}
-                    {#{{ form_label(form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}#}
-
-                    {#<br>#}
-                    {#{{ form_label(form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}#}
-                    {#{{ form_errors(form.createdAt) }}#}
-                    {#{{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}#}
-
-                    {#{{ form_label(form.updatedAt, 'Azken aldaketa', { 'label_attr': {'class': 'control-label'} }) }}#}
-                    {#{{ form_errors(form.updatedAt) }}#}
-                    {#{{ form_widget(form.updatedAt, {'attr': {'class': 'form-control'}}) }}#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
     {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
     {% else %}
@@ -895,10 +848,14 @@
                 <h2>ADMIN</h2>
             </div>
         </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+    <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
             {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <div>
+            <div class="col-sm-2">
             {% else %}
             <div class="hidden">
             {% endif %}
@@ -907,50 +864,49 @@
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>
             {% if is_granted('ROLE_ADMIN') %}
-            <div>
+            <div class="col-sm-9">
             {% else %}
             <div class="hidden">
             {% endif %}
+                <div class="form-group col-sm-4" >
                 {{ form_label(form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.kontsultak) }}
                 {{ form_widget(form.kontsultak, {'attr': {'class': 'form-control'}}) }}
-
+                </div>
+                <div class="form-group col-sm-4">
                 {{ form_errors(form.publikoa) }}
                 {{ form_widget(form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}
-                {{ form_label(form.publikoa, 'Publikoa', { 'label_attr': {'class': 'control-label'} }) }}
-
+                {{ form_label(form.publikoa, 'Publikoa da?', { 'label_attr': {'class': 'control-label'} }) }}
+                </div>
+                <div class="form-group col-sm-4">
                 {{ form_errors(form.hitzarmena) }}
                 {{ form_widget(form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}
                 {{ form_label(form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}
+                </div>
             </div>
-            {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <div>
-            {% else %}
-            <div class="hidden">
-            {% endif %}
-                {{ form_label(form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(form.createdAt) }}
-                {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
-
-                {{ form_label(form.updatedAt, 'Azken aldaketa', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(form.updatedAt) }}
-                {{ form_widget(form.updatedAt, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="row">
+    {% else %}
+    <div class="row hidden">
+    {% endif %}
+                <div class="form-group col-sm-4">
+                    {{ form_label(form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(form.createdAt) }}
+                    {{ form_widget(form.createdAt, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group col-sm-4">
+                    {{ form_label(form.updatedAt, 'Azken aldaketa', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(form.updatedAt) }}
+                    {{ form_widget(form.updatedAt, {'attr': {'class': 'form-control'}}) }}
+                </div>
             </div>
         </div>
     </div>
 
 
 
-        {#<input type="submit" value="Create" class="btn btn-primary"/>#}
-        {#{{ form_end(form) }}#}
-
-    {#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li></li><input type="submit" value="Create" class="btn btn-primary"/></li>#}
     {{ form_end(form) }}
-        {#<li><a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a></li>#}
-    {#</ul>#}
-    {#</div>#}
 {% endblock %}
 
 {% block javascripts %}

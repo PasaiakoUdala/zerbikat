@@ -5,6 +5,7 @@ namespace Zerbikat\BackendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class UdalaType extends AbstractType
 {
@@ -27,6 +28,8 @@ class UdalaType extends AbstractType
 //            ->add('eremuak')
             ->add('espedientekudeaketa')
             ->add('orrikatzea')
+            ->add('zergaor', CheckboxType::class, array(
+                'label'    => 'Zerga ordenantzen aplikazioa erabiltzen du?'))
         ;
     }
     

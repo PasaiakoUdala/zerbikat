@@ -176,7 +176,7 @@ class FitxaType extends AbstractType
                 'class' => 'BackendBundle:Norkeskatu',
                 'required' => false,
                 'multiple'=>'multiple',
-                'expanded' => true ,
+//                'expanded' => true ,
                 'placeholder' => 'Aukeratu nork eska dezakeen'
             ))
             ->add('doklagunak', EntityType::class, array(
@@ -222,7 +222,12 @@ class FitxaType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
-
+            ->add('kostuak', CollectionType::class, array(
+                'entry_type' => FitxaKostuaType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ))
         ;
     }
     

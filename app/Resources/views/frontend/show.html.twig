@@ -263,42 +263,54 @@
             <div>
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
-                {% for azpiatal in fitxa.azpiatalak %}
-                    <table  class="table table-bordered">
-                        <tr>
-                            <th colspan=2>
-                                <a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">
-                                    {{ azpiatal.atala.ordenantza.kodea }}.{{ azpiatal.atala.kodea }}.{{ azpiatal.kodea }}-
-                                    {{  azpiatal.izenburuaeu }}
-                                </a>
-                            </th>
-                        </tr>
-                        {% for parrafo in azpiatal.parrafoak %}
-                            <tr>
-                                <td colspan="2">{{ parrafo.testua }} </td>
-                            </tr>
+                    {% if fitxa.udala.zergaor %}
+                        {% for kostutaula in fitxa.kostuak %}
+                            <table  class="table table-bordered">
+                                <tr>
+                                    <th colspan=2>
+                                        {{ kostutaula.kostua }}
+                                    </th>
+                                </tr>
+                            </table>
                         {% endfor %}
+                    {% else %}
+                        {% for azpiatal in fitxa.azpiatalak %}
+                            <table  class="table table-bordered">
+                                <tr>
+                                    <th colspan=2>
+                                        <a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">
+                                            {{ azpiatal.atala.ordenantza.kodea }}.{{ azpiatal.atala.kodea }}.{{ azpiatal.kodea }}-
+                                            {{  azpiatal.izenburuaeu }}
+                                        </a>
+                                    </th>
+                                </tr>
+                                {% for parrafo in azpiatal.parrafoak %}
+                                    <tr>
+                                        <td colspan="2">{{ parrafo.testua }} </td>
+                                    </tr>
+                                {% endfor %}
 
-                        {% for kontzeptu in azpiatal.kontzeptuak %}
-                            <tr>
-                                <td>
-                                    {% if app.request.locale == 'eu'%}{{ kontzeptu.kontzeptuaeu }}
-                                        {% if kontzeptu.baldintza %}
-                                            ({{ kontzeptu.baldintza.baldintzaeu }})
-                                        {% endif %}
-                                    {% else %}{{ kontzeptu.kontzeptuaes }}
-                                        {% if kontzeptu.baldintza %}
-                                                ({{ kontzeptu.baldintza.baldintzaes }})
-                                        {% endif %}
-                                    {% endif %}
-                                </td>
-                                <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
+                                {% for kontzeptu in azpiatal.kontzeptuak %}
+                                    <tr>
+                                        <td>
+                                            {% if app.request.locale == 'eu'%}{{ kontzeptu.kontzeptuaeu }}
+                                                {% if kontzeptu.baldintza %}
+                                                    ({{ kontzeptu.baldintza.baldintzaeu }})
+                                                {% endif %}
+                                            {% else %}{{ kontzeptu.kontzeptuaes }}
+                                                {% if kontzeptu.baldintza %}
+                                                        ({{ kontzeptu.baldintza.baldintzaes }})
+                                                {% endif %}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
 
-                            </tr>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                            {% set kont=kont+1 %}
                         {% endfor %}
-                    </table>
-                    {% set kont=kont+1 %}
-                {% endfor %}
+                    {% endif %}
                 {% endif %}
                 {% if eremuak.kostuatext %}
                     {% if app.request.locale == 'eu'%}
