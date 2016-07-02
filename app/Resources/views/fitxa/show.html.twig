@@ -10,25 +10,15 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ path('fitxa_index') }}"  class="fa fa-undo"> Zerrendara itzuli</a></li>
                     <li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="fa fa-pencil"> Aldatu</a></li>
+                    <li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" class="fa fa-file-pdf-o"> Pdf (Barne erabilera)</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 {% endblock %}
 
-{#{% block menua %}#}
-    {#{{ parent() }}#}
-    {#<ul class="list-inline pull-right" role="tablist">#}
-        {#<li><a href="{{ path('fitxa_index') }}" class="btn btn-primary" >Zerrendara itzuli</a></li>#}
-        {#<li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="btn btn-primary">Aldatu</a></li>#}
-    {#</ul>#}
-{#{% endblock %}#}
 
 {% block body %}
-
-
-    {#{{ dump(eremuak)}}#}
-    {#{{ dump(labelak)}}#}
 
     <table class="table table-bordered">
         <tr>
@@ -47,11 +37,6 @@
             <h3>{{ fitxa.deskribapenaes }}</h3>
         </th>
         </tr>
-        {#<tr>#}
-            {#<td colspan="3" class="text-right">#}
-                {#{% if fitxa.updatedAt %}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}#}
-            {#</td>#}
-        {#</tr>#}
     </table>
 
     {% if eremuak.helburuatext %}
@@ -779,18 +764,4 @@
         </div>
     </div>
     {% endif %}
-
-{#<div class="fitxaMenua">#}
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('fitxa_index') }}" class="btn btn-primary">Zerrendara itzuli</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#<a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="btn btn-primary">Aldatu</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#{{ form_start(delete_form) }}<input type="submit" value="Ezabatu" class="btn btn-primary">{{ form_end(delete_form) }}#}
-        {#</li>#}
-    {#</ul>#}
-{#</div>#}
 {% endblock %}

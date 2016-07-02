@@ -5,8 +5,6 @@
 
 {% block body %}
     {{ parent() }}
-    <br /><br />
-
     {% for familia in familiak %}
             <div class="list-group col-sm-6">
                 <a class="list-group-item active" style="cursor: pointer;" onclick="erakutsiEzkutatu('fam{{familia.id}}')">

@@ -1,12 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block menua %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand"></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    {#<li><a href="{{ path('fitxa_index') }}"  class="fa fa-undo"> Zerrendara itzuli</a></li>#}
+                    <li>
+                        <a href="{{ path('frontend_fitxa_index', { 'udala': udala }) }}" class="fa fa-undo">
+                            {% if app.request.locale == 'eu'%}Atzera
+                            {% else %}Atras
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li><a href="{{ path('frontend_fitxa_pdf', { 'id': fitxa.id ,'udala': udala}) }}" target="_blank" class="fa fa-file-pdf-o" >
+                            {% if app.request.locale == 'eu'%}Pdf (eu)
+                            {% else %}Pdf (es)
+                            {% endif %}
+                        </a></li>
+                    <li><a href="{{ path('frontend_fitxa_pdfelebi', { 'id': fitxa.id ,'udala': udala}) }}" target="_blank" class="fa fa-file-pdf-o" >
+                            Pdf (eu+es)
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
 
 {% block body %}
     {#{{ dump(eremuak)}}#}
     {#{{ dump(labelak)}}#}
-
+<div style="padding-top: 20px;">
     <table class="table table-bordered">
         <tr><td colspan="3" class="text-right">
                 {% if fitxa.updatedAt %}
@@ -673,16 +700,18 @@
         </div>
     </div>
     {% endif %}
-<div class="fitxaMenua">
-    <ul class="list-inline">
-        <li>
-            <a href="{{ path('frontend_fitxa_index', { 'udala': udala }) }}" class="btn btn-primary">
-                {% if app.request.locale == 'eu'%}Atzera
-                {% else %}Atras
-                {% endif %}
-            </a>
-        </li>
-        </li><a href="{{ path('frontend_fitxa_pdf', { 'id': fitxa.id ,'udala': udala}) }}" target="_blank" ><i class="fa fa-file-pdf-o"></i></a></li>
-    </ul>
+{#<div class="fitxaMenua">#}
+    {#<ul class="list-inline">#}
+        {#<li>#}
+            {#<a href="{{ path('frontend_fitxa_index', { 'udala': udala }) }}" class="btn btn-primary">#}
+                {#{% if app.request.locale == 'eu'%}Atzera#}
+                {#{% else %}Atras#}
+                {#{% endif %}#}
+            {#</a>#}
+        {#</li>#}
+        {#</li><a href="{{ path('frontend_fitxa_pdf', { 'id': fitxa.id ,'udala': udala}) }}" target="_blank" ><i class="fa fa-file-pdf-o"></i></a></li>#}
+    {#</ul>#}
+{#</div>#}
+
 </div>
 {% endblock %}
