@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+    {% block stylesheets %}{% endblock %}
+
+    <title>{% block title %}Saioa hasi{% endblock %}</title>
+
+
+    <!-- Latest compiled and minified CSS -->
+
+    <link href="{{ asset('bundles/backend/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('bundles/backend/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('bundles/backend/css/signin.css') }}" rel="stylesheet" media="screen">
+    <!-- Latest compiled and minified JavaScript -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('js/html5shiv.min.js') }}></script>
+    <script src="{{ asset('js/respond.min.js') }}></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+    {% block content %}
+
+        <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+    {% endblock %}
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+<script src="{{ asset('js/jquery.js') }}"></script>
+<!-- Include all JavaScripts, compiled by Assetic -->
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
+
