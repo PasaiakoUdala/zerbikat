@@ -867,16 +867,18 @@
             </div>
         </div>
         <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div>
+        <div class="col-sm-6">
+            <div class="form-group">
                 {{ form_label(edit_form.zerbitzua, 'Zerbitzua', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.zerbitzua) }}
                 {{ form_widget(edit_form.zerbitzua, {'attr': {'class': 'form-control'}}) }}
-
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
                 {{ form_label(edit_form.parametroa, 'Parametroa', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.parametroa) }}
                 {{ form_widget(edit_form.parametroa, {'attr': {'class': 'form-control'}}) }}
-
             </div>
         </div>
     </div>
@@ -914,17 +916,21 @@
             {% else %}
             <div class="hidden">
             {% endif %}
+                <div class="form-group">
                 {{ form_label(edit_form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.kontsultak) }}
                 {{ form_widget(edit_form.kontsultak, {'attr': {'class': 'form-control'}}) }}
-
+                </div>
+                <div class="form-group">
                 {{ form_errors(edit_form.publikoa) }}
                 {{ form_widget(edit_form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}
                 {{ form_label(edit_form.publikoa, 'Publikoa', { 'label_attr': {'class': 'control-label'} }) }}
-
+                </div>
+                <div class="form-group">
                 {{ form_errors(edit_form.hitzarmena) }}
                 {{ form_widget(edit_form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}
                 {{ form_label(edit_form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}
+                </div>
             </div>
             {% if is_granted('ROLE_SUPER_ADMIN') %}
             <div>
