@@ -32,9 +32,10 @@ class DefaultController extends Controller
 
 //        $fitxas = $em->getRepository('BackendBundle:Fitxa')->findAll();
 
+//        WHERE f.udala = :udala
         $query = $em->createQuery('
-          SELECT f FROM BackendBundle:Fitxa f
-            WHERE f.udala = :udala
+          SELECT f FROM BackendBundle:Fitxa f LEFT JOIN BackendBundle:Udala u  WITH f.udala=u.id
+            WHERE u.kodea = :udala
             ORDER BY f.kontsultak DESC 
         ');
         $query->setParameter('udala', $udala);
@@ -42,8 +43,8 @@ class DefaultController extends Controller
 
 
         $query = $em->createQuery('
-          SELECT f FROM BackendBundle:Familia f
-            WHERE f.udala = :udala
+          SELECT f FROM BackendBundle:Familia f LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
+            WHERE u.kodea = :udala
         ');
         $query->setParameter('udala', $udala);
         $familiak = $query->getResult();
