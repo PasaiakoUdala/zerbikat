@@ -63,5 +63,90 @@
             </div>
         </div>
     </div>
+
+    {#<div class="row">#}
+        {#<ul class="list-unstyled" id="kontzeptua-fields-list"#}
+            {#data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">#}
+            {#{% for kontzeptua in edit_form.kontzeptuak %}#}
+                {#<li class="form-group row">#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.udala) }}</div>#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.azpiatala) }}</div>#}
+                    {#<div class="col-sm-1">{{ form_widget(kontzeptua.kodea) }}</div>#}
+                    {#<div class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaeu) }}</div>#}
+                    {#<div class="col-sm-1">#}
+                        {#{{ form_widget(kontzeptua.kopurua) }}#}
+                        {#{{ form_widget(kontzeptua.unitatea) }}#}
+                    {#</div>#}
+                    {#<div class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</div>#}
+                    {#<div class="col-sm-2">#}
+                        {#{{ form_widget(kontzeptua.kontzeptumota) }}#}
+                        {#{{ form_widget(kontzeptua.baldintza) }}#}
+                    {#</div>#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
+        {#<br />#}
+        {#<a href="#" id="add-kontzeptua" class="col-sm-8">Gehitu kontzeptua</a>#}
+    {#</div>#}
+    <table class="table-bordered" id="kontzeptua-fields-list"
+            data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">
+            {% for kontzeptua in edit_form.kontzeptuak %}
+                <tr class="form-group row">
+                    <div class="hidden">{{ form_widget(kontzeptua.udala) }}</div>
+                    <div class="hidden">{{ form_widget(kontzeptua.azpiatala) }}</div>
+                    <div class="hidden">{{ form_widget(kontzeptua.createdAt) }}</div>
+                    <div class="hidden">{{ form_widget(kontzeptua.updatedAt) }}</div>
+                    <td class="col-sm-1">{{ form_widget(kontzeptua.kodea) }}</td>
+                    <td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaeu) }}</td>
+                    <td class="col-sm-1">
+                        {{ form_widget(kontzeptua.kopurua) }}
+                        {{ form_widget(kontzeptua.unitatea) }}
+                    </td>
+                    <td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</td>
+                    <td class="col-sm-2">
+                        {{ form_widget(kontzeptua.kontzeptumota) }}
+                        {{ form_widget(kontzeptua.baldintza) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br />
+        <a href="#" id="add-kontzeptua" class="col-sm-8">Gehitu kontzeptua</a>
+    </div>
+
+
+
+
+
+
+
     {{ form_end(edit_form) }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script type="text/javascript">
+    // Zenbat prozedura gehitu diren gorde
+    var kontzeptuaCount = '{{ edit_form.kontzeptuak|length }}';
+
+    jQuery(document).ready(function() {
+
+        jQuery('#add-kontzeptua').click(function(e) {
+            e.preventDefault();
+//                alert ("sartu da!!");
+            var kontzeptuaList = jQuery('#kontzeptua-fields-list');
+
+            // grab the prototype template
+            var newWidget = kontzeptuaList.attr('data-prototype');
+            // replace the "__name__" used in the id and name of the prototype
+            // with a number that's unique to your emails
+            // end name attribute looks like name="contact[emails][2]"
+            newWidget = newWidget.replace(/__name__/g, kontzeptuaCount);
+            kontzeptuaCount++;
+
+            // create a new list element and add it to the list
+            var newLi = jQuery('<tr></tr>').html(newWidget);
+            newLi.appendTo(kontzeptuaList);
+        });
+    })
+</script>
 {% endblock %}

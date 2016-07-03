@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class AzpiatalaType extends AbstractType
 {
@@ -24,6 +25,12 @@ class AzpiatalaType extends AbstractType
             ->add('udala')
             ->add('atala')
 //            ->add('fitxak')
+            ->add('kontzeptuak', CollectionType::class, array(
+                'entry_type' => KontzeptuaType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+            ))
         ;
     }
     

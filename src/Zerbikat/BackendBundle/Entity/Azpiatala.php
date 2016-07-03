@@ -86,7 +86,7 @@ class Azpiatala
     /**
      * @var kontzeptuak[]
      *
-     * @ORM\OneToMany(targetEntity="Kontzeptua", mappedBy="azpiatala")
+     * @ORM\OneToMany(targetEntity="Kontzeptua", mappedBy="azpiatala",cascade={"persist"})
      */
     private $kontzeptuak;
 
@@ -124,6 +124,25 @@ class Azpiatala
         $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function addKontzeptua(Kontzeptua $kontzeptua)
+    {
+        $this->kontzeptuak->add($kontzeptua);
+    }
+
+    public function removeKontzeptua(Kontzeptua $kontzeptua)
+    {
+        $this->kontzeptuak->removeElement($kontzeptua);
+    }
+    
+    
+
+    /**
+     *          HEMENDIK AURRERA AUTOMATIKOKI SORTUTAKOAK 
+     */
+    
+    
+    
+    
     /**
      * Set kodea
      *
