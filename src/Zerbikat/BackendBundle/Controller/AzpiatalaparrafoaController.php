@@ -57,6 +57,8 @@ class AzpiatalaparrafoaController extends Controller
 //            $form->setData($form->getData());
             
             if ($form->isSubmitted() && $form->isValid()) {
+//                $azpiatalaparrafoa->setCreatedAt(new \DateTime());
+//                $azpiatalaparrafoa->setUpdatedAt(new \DateTime());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($azpiatalaparrafoa);
                 $em->flush();

@@ -5,7 +5,7 @@ namespace Zerbikat\BackendBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
 
 class KontzeptuaType extends AbstractType
 {
@@ -21,8 +21,8 @@ class KontzeptuaType extends AbstractType
             ->add('kontzeptuaes')
             ->add('kopurua')
             ->add('unitatea')
-            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
-            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
+//            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
+//            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
             ->add('udala')
             ->add('kontzeptumota')
             ->add('baldintza')

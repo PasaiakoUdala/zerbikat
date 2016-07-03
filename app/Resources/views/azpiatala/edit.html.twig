@@ -10,6 +10,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
                     <li><a href="{{ path('azpiatala_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
+                    <li><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}" class="fa fa-search"> Taula ikusi</a></li>
                 </ul>
             </div>
         </div>
@@ -18,104 +19,208 @@
 {% block body %}
     {{ form_start(edit_form) }}
         {#{{ form_widget(edit_form) }}#}
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="form-group">
-                {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kodea) }}
-                {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
-            </div>
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <div class="row">
+    {% else %}
+        <div class="row hidden">
+    {% endif %}
+    <div class="col-sm-6">
+        <div class="form-group">
+            {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+            {{ form_errors(edit_form.udala) }}
+            {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="col-sm-6">
-            <div class="form-group">
+    </div>
+    </div>
+
+    <table class="table table-bordered">
+        <tr>
+            <td colspan="12">
                 {{ form_label(edit_form.atala, 'Atala: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.atala) }}
                 {{ form_widget(edit_form.atala, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="col-sm-2">
+                {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(edit_form.kodea) }}
+                {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
+            </td>
+            <td colspan="5" class="col-sm-5">
                 {{ form_label(edit_form.izenburuaeu, 'Izenburua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.izenburuaeu) }}
                 {{ form_widget(edit_form.izenburuaeu, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
+            </td>
+            <td colspan="5" class="col-sm-5">
                 {{ form_label(edit_form.izenburuaes, 'Izenburua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.izenburuaes) }}
                 {{ form_widget(edit_form.izenburuaes, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-    {% if is_granted('ROLE_SUPER_ADMIN') %}
-    <div class="row">
-    {% else %}
-    <div class="row hidden">
-    {% endif %}
-        <div class="col-sm-6">
-            <div class="form-group">
-                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.udala) }}
-                {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
+            </td>
+        </tr>
+    </table>
+
 
     {#<div class="row">#}
-        {#<ul class="list-unstyled" id="kontzeptua-fields-list"#}
-            {#data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">#}
-            {#{% for kontzeptua in edit_form.kontzeptuak %}#}
-                {#<li class="form-group row">#}
-                    {#<div class="hidden">{{ form_widget(kontzeptua.udala) }}</div>#}
-                    {#<div class="hidden">{{ form_widget(kontzeptua.azpiatala) }}</div>#}
-                    {#<div class="col-sm-1">{{ form_widget(kontzeptua.kodea) }}</div>#}
-                    {#<div class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaeu) }}</div>#}
-                    {#<div class="col-sm-1">#}
-                        {#{{ form_widget(kontzeptua.kopurua) }}#}
-                        {#{{ form_widget(kontzeptua.unitatea) }}#}
-                    {#</div>#}
-                    {#<div class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</div>#}
-                    {#<div class="col-sm-2">#}
-                        {#{{ form_widget(kontzeptua.kontzeptumota) }}#}
-                        {#{{ form_widget(kontzeptua.baldintza) }}#}
-                    {#</div>#}
-                {#</li>#}
-            {#{% endfor %}#}
-        {#</ul>#}
-        {#<br />#}
-        {#<a href="#" id="add-kontzeptua" class="col-sm-8">Gehitu kontzeptua</a>#}
+        {#<div class="col-sm-3">#}
+            {#<div class="form-group">#}
+                {#{{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                {#{{ form_errors(edit_form.kodea) }}#}
+                {#{{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}#}
+            {#</div>#}
+        {#</div>#}
+        {#<div class="col-sm-6">#}
+            {#<div class="form-group">#}
+                {#{{ form_label(edit_form.atala, 'Atala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                {#{{ form_errors(edit_form.atala) }}#}
+                {#{{ form_widget(edit_form.atala, {'attr': {'class': 'form-control'}}) }}#}
+            {#</div>#}
+        {#</div>#}
     {#</div>#}
-    <table class="table-bordered" id="kontzeptua-fields-list"
-            data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">
+    {#<div class="row">#}
+        {#<div class="col-sm-6">#}
+            {#<div class="form-group">#}
+                {#{{ form_label(edit_form.izenburuaeu, 'Izenburua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                {#{{ form_errors(edit_form.izenburuaeu) }}#}
+                {#{{ form_widget(edit_form.izenburuaeu, {'attr': {'class': 'form-control'}}) }}#}
+            {#</div>#}
+        {#</div>#}
+        {#<div class="col-sm-6">#}
+            {#<div class="form-group">#}
+                {#{{ form_label(edit_form.izenburuaes, 'Izenburua (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                {#{{ form_errors(edit_form.izenburuaes) }}#}
+                {#{{ form_widget(edit_form.izenburuaes, {'attr': {'class': 'form-control'}}) }}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+
+    <table class="table table-bordered" id="parrafoa-fields-list" data-prototype="{% filter escape %}
+    {% include 'azpiatalaparrafoa/prototype_new.html.twig' with {'form': edit_form.parrafoak.vars.prototype} %}{% endfilter %}">
+            <tr><th colspan="1">Ordena:</th><th colspan="5">Testua (eu)</th><th colspan="1"></th><th colspan="5">Testua (es)</th></tr>
+        {% for parrafoa in edit_form.parrafoak %}
+            {#<tr class="hidden">#}
+                {#<td colspan="3" class="col-sm-6">#}
+                    {#{{ form_label(parrafoa.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    {#{{ form_widget(parrafoa.udala) }}#}
+                {#</td>#}
+                {#<td colspan="3" class="col-sm-6">#}
+                    {#{{ form_label(parrafoa.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    {#{{ form_widget(parrafoa.azpiatala) }}#}
+                {#</td>#}
+            {#</tr>#}
+            <tr>
+                <td colspan="1" class="col-sm-1">
+                    {#{{ form_label(parrafoa.ordena, 'Ordena: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    {{ form_widget(parrafoa.ordena) }}
+
+                    <div class="hidden">
+                        {#{{ form_label(parrafoa.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                        {{ form_widget(parrafoa.udala) }}
+                    </div>
+
+                    <div class="hidden">
+                        {#{{ form_label(parrafoa.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                        {{ form_widget(parrafoa.azpiatala) }}
+                    </div>
+
+                </td>
+                <td colspan="5" class="col-sm-5">
+                    {#{{ form_label(parrafoa.testuaeu, 'Testua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    {{ form_widget(parrafoa.testuaeu) }}
+                </td>
+                <td colspan="1" class="col-sm-1"></td>
+                <td colspan="5" class="col-sm-5">
+                    {#{{ form_label(parrafoa.testuaes, 'Testua (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    {{ form_widget(parrafoa.testuaes) }}
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="12" class="text-right col-sm-12"><a href="#" id="add-parrafoa" class="col-sm-12">Parrafoa gehitu</a></td>
+        </tr>
+    </table>
+
+
+
+     <div class="row">
+         {#<ul class="list-unstyled" id="kontzeptua-fields-list"#}
+             {#data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">#}
+        <ul class="list-unstyled" id="kontzeptua-fields-list" data-prototype="{% filter escape %}
+        {% include 'kontzeptua/prototype_new.html.twig' with {'form': edit_form.kontzeptuak.vars.prototype} %}{% endfilter %}">
+
             {% for kontzeptua in edit_form.kontzeptuak %}
-                <tr class="form-group row">
+                <li class="form-group row">
                     <div class="hidden">{{ form_widget(kontzeptua.udala) }}</div>
                     <div class="hidden">{{ form_widget(kontzeptua.azpiatala) }}</div>
-                    <div class="hidden">{{ form_widget(kontzeptua.createdAt) }}</div>
-                    <div class="hidden">{{ form_widget(kontzeptua.updatedAt) }}</div>
-                    <td class="col-sm-1">{{ form_widget(kontzeptua.kodea) }}</td>
-                    <td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaeu) }}</td>
-                    <td class="col-sm-1">
+                    <div class="col-sm-1">{{ form_widget(kontzeptua.kodea) }}</div>
+                    <div class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaeu) }}</div>
+                    <div class="col-sm-1">
                         {{ form_widget(kontzeptua.kopurua) }}
                         {{ form_widget(kontzeptua.unitatea) }}
-                    </td>
-                    <td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</td>
-                    <td class="col-sm-2">
+                    </div>
+                    <div class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</div>
+                    <div class="col-sm-2">
                         {{ form_widget(kontzeptua.kontzeptumota) }}
                         {{ form_widget(kontzeptua.baldintza) }}
-                    </td>
-                </tr>
+                    </div>
+                </li>
             {% endfor %}
-        </table>
+        </ul>
         <br />
-        <a href="#" id="add-kontzeptua" class="col-sm-8">Gehitu kontzeptua</a>
+        <a href="#" id="add-kontzeptua" class="col-sm-12 text-right">Gehitu kontzeptua</a>
+    </div>
+    {#<table class="table table-bordered" id="kontzeptua-fields-list"#}
+            {#data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">#}
+            {#{% for kontzeptua in edit_form.kontzeptuak %}#}
+                {#<tr class="form-group row">#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.udala) }}</div>#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.azpiatala) }}</div>#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.createdAt) }}</div>#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.updatedAt) }}</div>#}
+                    {#<td class="col-sm-1">{{ form_widget(kontzeptua.kodea) }}</td>#}
+                    {#<td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaeu) }}</td>#}
+                    {#<td class="col-sm-1">#}
+                        {#{{ form_widget(kontzeptua.kopurua) }}#}
+                        {#{{ form_widget(kontzeptua.unitatea) }}#}
+                    {#</td>#}
+                    {#<td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</td>#}
+                    {#<td class="col-sm-2">#}
+                        {#{{ form_widget(kontzeptua.kontzeptumota) }}#}
+                        {#{{ form_widget(kontzeptua.baldintza) }}#}
+                    {#</td>#}
+
+                    {#<div class="hidden">{{ form_widget(kontzeptua.udala) }}</div>#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.azpiatala) }}</div>#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.createdAt) }}</div>#}
+                    {#<div class="hidden">{{ form_widget(kontzeptua.updatedAt) }}</div>#}
+                    {#<td class="col-sm-1">{{ form_widget(kontzeptua.kodea) }}</td>#}
+                    {#<td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaeu) }}</td>#}
+                    {#<td class="col-sm-1">#}
+                        {#{{ form_widget(kontzeptua.kopurua) }}#}
+                        {#{{ form_widget(kontzeptua.unitatea) }}#}
+                    {#</td>#}
+                    {#<td class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</td>#}
+                    {#<td class="col-sm-2">#}
+                        {#{{ form_widget(kontzeptua.kontzeptumota) }}#}
+                        {#{{ form_widget(kontzeptua.baldintza) }}#}
+                    {#</td>#}
+
+
+                {#</tr>#}
+            {#{% endfor %}#}
+        {#</table>#}
+
+
+
+        <br />
+        {#<a href="#" id="add-kontzeptua" class="col-sm-8">Gehitu kontzeptua</a>#}
     </div>
 
-
-
+    {#<div>#}
+        {#{{ form_row(edit_form.kontzeptuak.vars.prototype) }}#}
+    {#</div>#}
 
 
 
@@ -127,8 +232,28 @@
 <script type="text/javascript">
     // Zenbat prozedura gehitu diren gorde
     var kontzeptuaCount = '{{ edit_form.kontzeptuak|length }}';
+    var parrafoaCount = '{{ edit_form.parrafoak|length }}';
 
     jQuery(document).ready(function() {
+        jQuery('#add-parrafoa').click(function(e) {
+            e.preventDefault();
+//                alert ("sartu da!!");
+            var parrafoaList = jQuery('#parrafoa-fields-list');
+
+            // grab the prototype template
+            var newWidget = parrafoaList.attr('data-prototype');
+            // replace the "__name__" used in the id and name of the prototype
+            // with a number that's unique to your emails
+            // end name attribute looks like name="contact[emails][2]"
+            newWidget = newWidget.replace(/__name__/g, parrafoaCount);
+            parrafoaCount++;
+
+            // create a new list element and add it to the list
+            var newLi = jQuery('<tr></tr>').html(newWidget);
+            newLi.appendTo(parrafoaList);
+        });
+
+
 
         jQuery('#add-kontzeptua').click(function(e) {
             e.preventDefault();
@@ -144,9 +269,10 @@
             kontzeptuaCount++;
 
             // create a new list element and add it to the list
-            var newLi = jQuery('<tr></tr>').html(newWidget);
+            var newLi = jQuery('<li></li>').html(newWidget);
             newLi.appendTo(kontzeptuaList);
         });
+
     })
 </script>
 {% endblock %}

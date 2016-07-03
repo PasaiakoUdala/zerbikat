@@ -29,6 +29,14 @@ class AzpiatalaType extends AbstractType
                 'entry_type' => KontzeptuaType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
+            ))
+            ->add('parrafoak', CollectionType::class, array(
+                'entry_type' => AzpiatalaparrafoaType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
                 'by_reference' => false,
             ))
         ;

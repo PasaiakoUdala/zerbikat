@@ -45,21 +45,6 @@ class Azpiatala
      */
     private $izenburuaes;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-     */
-    private $updatedAt;
-
-
 
     /**
      *          ERLAZIOAK
@@ -93,7 +78,7 @@ class Azpiatala
     /**
      * @var parrafoak[]
      *
-     * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala")
+     * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala",cascade={"persist"})
      */
     private $parrafoak;
 
@@ -133,8 +118,16 @@ class Azpiatala
     {
         $this->kontzeptuak->removeElement($kontzeptua);
     }
-    
-    
+
+    public function addParrafoa(Parrafoa $parrafoa)
+    {
+        $this->parrafoak->add($parrafoa);
+    }
+
+    public function removeParrafoa(Parrafoa $parrafoa)
+    {
+        $this->parrafoak->removeElement($parrafoa);
+    }
 
     /**
      *          HEMENDIK AURRERA AUTOMATIKOKI SORTUTAKOAK 
