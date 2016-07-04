@@ -296,13 +296,15 @@
             {#<div>#}
                 {% if fitxa.udala.zergaor %}
                     {#<div class="form-group">#}
-                    <ul class="list-unstyled" id="kostua-fields-list"
-                        data-prototype="{{ form_widget(edit_form.kostuak.vars.prototype)|e }}">
+                    {#<ul class="list-unstyled" id="kostua-fields-list"#}
+                        {#data-prototype="{{ form_widget(edit_form.kostuak.vars.prototype)|e }}">#}
+                    <ul class="list-unstyled" id="kostua-fields-list" data-prototype="{% filter escape %}
+                        {% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype} %}{% endfilter %}">
                     {% for kostua in edit_form.kostuak %}
                         <li class="form-group">
                             <div class="col-sm-2 hidden">{{ form_widget(kostua.udala) }}</div>
                             <div class="col-sm-4 hidden">{{ form_widget(kostua.fitxa) }}</div>
-                            <div class="col-sm-10">{{ form_widget(kostua.kostua) }}</div>
+                            <div class="col-sm-12">{{ form_widget(kostua.kostua) }}</div>
                         </li>
                     {% endfor %}
                     </ul>
@@ -449,7 +451,7 @@
                 </li>
                 {% endfor %}
             </ul>
-            <br />
+            <br /><br />
             <a href="#" id="add-araudia">Gehitu araudia</a>
 
 

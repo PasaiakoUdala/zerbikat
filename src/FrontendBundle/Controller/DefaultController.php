@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Fitxa;
+use GuzzleHttp;
 
 class DefaultController extends Controller
 {
@@ -95,12 +96,23 @@ class DefaultController extends Controller
         $labelak = $query->getSingleResult();
 
 
+        $kostuZerrenda= array();
+        foreach ($fitxa->getKostuak() as $kostu)
+        {
+            $client = new GuzzleHttp\Client();
+            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $fitxaKostua = (string)$proba->getBody();
+            $array = json_decode($fitxaKostua, true);
+            $kostuZerrenda[] = $array;
+        }
+
         return $this->render('frontend/show.html.twig', array(
             'fitxa' => $fitxa,
             'kanalmotak'=>$kanalmotak,
             'eremuak'=> $eremuak,
             'labelak'=> $labelak,
             'udala' =>$udala,
+            'kostuZerrenda'=>$kostuZerrenda
         ));
     }
 
@@ -134,12 +146,23 @@ class DefaultController extends Controller
         $query->setParameter('udala', $udala);
         $labelak = $query->getSingleResult();
 
+        $kostuZerrenda= array();
+        foreach ($fitxa->getKostuak() as $kostu)
+        {
+            $client = new GuzzleHttp\Client();
+            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $fitxaKostua = (string)$proba->getBody();
+            $array = json_decode($fitxaKostua, true);
+            $kostuZerrenda[] = $array;
+        }
+
         $html= $this->render('frontend/pdf.html.twig', array(
             'fitxa' => $fitxa,
             'kanalmotak'=>$kanalmotak,
             'eremuak'=> $eremuak,
             'labelak'=> $labelak,
             'udala' =>$udala,
+            'kostuZerrenda'=>$kostuZerrenda
         ));
 
         $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -188,12 +211,23 @@ class DefaultController extends Controller
         $query->setParameter('udala', $udala);
         $labelak = $query->getSingleResult();
 
+        $kostuZerrenda= array();
+        foreach ($fitxa->getKostuak() as $kostu)
+        {
+            $client = new GuzzleHttp\Client();
+            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $fitxaKostua = (string)$proba->getBody();
+            $array = json_decode($fitxaKostua, true);
+            $kostuZerrenda[] = $array;
+        }
+
         $html= $this->render('frontend/pdfelebi.html.twig', array(
             'fitxa' => $fitxa,
             'kanalmotak'=>$kanalmotak,
             'eremuak'=> $eremuak,
             'labelak'=> $labelak,
             'udala' =>$udala,
+            'kostuZerrenda'=>$kostuZerrenda
         ));
 
         $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

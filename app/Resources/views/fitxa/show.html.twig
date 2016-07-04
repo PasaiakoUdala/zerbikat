@@ -266,13 +266,29 @@
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                     {% if fitxa.udala.zergaor %}
-                        {% for kostutaula in fitxa.kostuak %}
+                        {#{% for kostutaula in fitxa.kostuak %}#}
+                        {% for kostutaula in kostuZerrenda %}
                             <table  class="table table-bordered">
                                 <tr>
-                                    <th colspan=2>
-                                        {{ kostutaula.kostua }}
+                                    <th colspan="2" class="text-center">
+                                        {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaeu'] }}
                                     </th>
                                 </tr>
+                                        {% for parrafo in kostutaula['parrafoak'] %}
+                                            <tr>
+                                                <td colspan="2">
+                                                {{ parrafo['testuaeu']| raw }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                            <tr>
+                                                <td>{{ kontzeptu['kontzeptuaeu'] }}</td>
+                                                <td NOWRAP>
+                                                    {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
                             </table>
                         {% endfor %}
                     {% else %}
@@ -321,13 +337,28 @@
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                     {% if fitxa.udala.zergaor %}
-                        {% for kostutaula in fitxa.kostuak %}
+                        {% for kostutaula in kostuZerrenda %}
                             <table  class="table table-bordered">
                                 <tr>
-                                    <th colspan=2>
-                                        {{ kostutaula.kostua }}
+                                    <th colspan="2" class="text-center">
+                                        {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaes'] }}
                                     </th>
                                 </tr>
+                                {% for parrafo in kostutaula['parrafoak'] %}
+                                    <tr>
+                                        <td colspan="2">
+                                            {{ parrafo['testuaes']| raw }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                    <tr>
+                                        <td>{{ kontzeptu['kontzeptuaes'] }}</td>
+                                        <td NOWRAP>
+                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </table>
                         {% endfor %}
                     {% else %}

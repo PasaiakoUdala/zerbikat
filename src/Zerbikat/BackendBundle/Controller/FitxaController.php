@@ -18,6 +18,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 
+use GuzzleHttp;
+
 
 /**
  * Fitxa controller.
@@ -159,6 +161,20 @@ class FitxaController extends Controller
         $em = $this->getDoctrine()->getManager();
         $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();
 
+        $kostuZerrenda= array();
+        foreach ($fitxa->getKostuak() as $kostu)
+        {
+//            dump($kostu);
+            $client = new GuzzleHttp\Client();
+            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $fitxaKostua = (string)$proba->getBody();
+            $array = json_decode($fitxaKostua, true);
+//            dump($fitxaKostua);
+//            dump($array);
+            $kostuZerrenda[] = $array;
+        }
+        dump($kostuZerrenda);
+
         $query = $em->createQuery('
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
             FROM BackendBundle:Eremuak f
@@ -180,7 +196,8 @@ class FitxaController extends Controller
             'kanalmotak'=>$kanalmotak,
             'delete_form' => $deleteForm->createView(),
             'eremuak'=> $eremuak,
-            'labelak'=> $labelak
+            'labelak'=> $labelak,
+            'kostuZerrenda'=>$kostuZerrenda
         ));
     }
 
@@ -213,12 +230,24 @@ class FitxaController extends Controller
         $query->setParameter('udala', $fitxa->getUdala());
         $labelak = $query->getSingleResult();
 
+        $kostuZerrenda= array();
+        foreach ($fitxa->getKostuak() as $kostu)
+        {
+            $client = new GuzzleHttp\Client();
+            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $fitxaKostua = (string)$proba->getBody();
+            $array = json_decode($fitxaKostua, true);
+            $kostuZerrenda[] = $array;
+        }
+
+
         $html= $this->render('fitxa/pdf.html.twig', array(
             'fitxa' => $fitxa,
             'kanalmotak'=>$kanalmotak,
             'delete_form' => $deleteForm->createView(),
             'eremuak'=> $eremuak,
-            'labelak'=> $labelak
+            'labelak'=> $labelak,
+            'kostuZerrenda'=>$kostuZerrenda
         ));
 
         $pdf = $this->get("white_october.tcpdf")->create('vertical', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);

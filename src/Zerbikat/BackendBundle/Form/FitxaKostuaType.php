@@ -26,20 +26,15 @@ class FitxaKostuaType extends AbstractType
         $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalak.json' );
         $valftp = (string)$proba->getBody();
         $array = json_decode($valftp, true);
-//        dump ($array);
 
         $resp=array();
         foreach ($array as $a)
         {
-//            dump($a['izenburuaeu']);
             $resp[$a['izenburuaeu']] = $a['id'];
-
         }
-    dump($resp);
 
         $builder
             ->add('udala')
-//            ->add('kostua')
             ->add('fitxa')
             ->add('kostua', ChoiceType::class, array(
 //                'choice_list' => new \Zerbikat\BackendBundle\Utils\ApiIrakurgailua(),

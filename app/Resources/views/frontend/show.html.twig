@@ -264,13 +264,42 @@
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                     {% if fitxa.udala.zergaor %}
-                        {% for kostutaula in fitxa.kostuak %}
+                        {% for kostutaula in kostuZerrenda %}
                             <table  class="table table-bordered">
                                 <tr>
-                                    <th colspan=2>
-                                        {{ kostutaula.kostua }}
+                                    <th colspan="2" class="text-center">
+                                        {% if app.request.locale == 'eu'%}
+                                            {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaeu'] }}
+                                        {% else %}
+                                            {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaes'] }}
+                                        {% endif %}
                                     </th>
                                 </tr>
+                                {% for parrafo in kostutaula['parrafoak'] %}
+                                    <tr>
+                                        <td colspan="2">
+                                            {% if app.request.locale == 'eu'%}
+                                                {{ parrafo['testuaeu']| raw }}
+                                            {% else %}
+                                                {{ parrafo['testuaes']| raw }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                    <tr>
+                                        <td>
+                                            {% if app.request.locale == 'eu'%}
+                                                {{ kontzeptu['kontzeptuaeu'] }}
+                                            {% else %}
+                                                {{ kontzeptu['kontzeptuaes'] }}
+                                            {% endif %}
+                                        </td>
+                                        <td NOWRAP>
+                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </table>
                         {% endfor %}
                     {% else %}
@@ -278,15 +307,22 @@
                             <table  class="table table-bordered">
                                 <tr>
                                     <th colspan=2>
-                                        <a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">
-                                            {{ azpiatal.atala.ordenantza.kodea }}.{{ azpiatal.atala.kodea }}.{{ azpiatal.kodea }}-
-                                            {{  azpiatal.izenburuaeu }}
-                                        </a>
+                                        {% if app.request.locale == 'eu'%}
+                                            {{ azpiatal.kodea }}-{{  azpiatal.izenburuaeu }}
+                                        {% else %}
+                                            {{ azpiatal.kodea }}-{{  azpiatal.izenburuaes }}
+                                        {% endif %}
                                     </th>
                                 </tr>
                                 {% for parrafo in azpiatal.parrafoak %}
                                     <tr>
-                                        <td colspan="2">{{ parrafo.testua }} </td>
+                                        <td colspan="2">
+                                            {% if app.request.locale == 'eu'%}
+                                                {{ parrafo.testuaeu }}
+                                            {% else %}
+                                                {{ parrafo.testuaes }}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% endfor %}
 

@@ -256,13 +256,28 @@
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                     {% if fitxa.udala.zergaor %}
-                        {% for kostutaula in fitxa.kostuak %}
+                        {% for kostutaula in kostuZerrenda %}
                             <table border="1" cellspacing="0" cellpadding="4" width="90%">
                                 <tr>
-                                    <th colspan=2>
-                                        {{ kostutaula.kostua }}
+                                    <th colspan="12" class="text-center">
+                                        {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaeu'] }}
                                     </th>
                                 </tr>
+                                {% for parrafo in kostutaula['parrafoak'] %}
+                                    <tr>
+                                        <td colspan="12">
+                                            {{ parrafo['testuaeu']| raw }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                    <tr>
+                                        <td  colspan="9">{{ kontzeptu['kontzeptuaeu'] }}</td>
+                                        <td NOWRAP  colspan="3">
+                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </table>
                         {% endfor %}
                     {% else %}
@@ -308,13 +323,37 @@
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                     {% if fitxa.udala.zergaor %}
-                        {% for kostutaula in fitxa.kostuak %}
+                        {#{% for kostutaula in fitxa.kostuak %}#}
+                            {#<table border="1" cellspacing="0" cellpadding="4" width="90%">#}
+                                {#<tr>#}
+                                    {#<th colspan=2>#}
+                                        {#{{ kostutaula.kostua }}#}
+                                    {#</th>#}
+                                {#</tr>#}
+                            {#</table>#}
+                        {#{% endfor %}#}
+                        {% for kostutaula in kostuZerrenda %}
                             <table border="1" cellspacing="0" cellpadding="4" width="90%">
                                 <tr>
-                                    <th colspan=2>
-                                        {{ kostutaula.kostua }}
+                                    <th colspan="12" class="text-center">
+                                        {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaes'] }}
                                     </th>
                                 </tr>
+                                {% for parrafo in kostutaula['parrafoak'] %}
+                                    <tr>
+                                        <td colspan="12">
+                                            {{ parrafo['testuaes']| raw }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                    <tr>
+                                        <td  colspan="9">{{ kontzeptu['kontzeptuaes'] }}</td>
+                                        <td NOWRAP  colspan="3">
+                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                             </table>
                         {% endfor %}
                     {% else %}

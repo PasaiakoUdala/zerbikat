@@ -10,26 +10,26 @@
                         {#{{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}#}
                         {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}, {'value' : fitxa.udala } ) }}
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-5">
                         {{ form_label(form.fitxa) }}
                         {#{{ form_errors(form.fitxa) }}#}
                         {{ form_widget(form.fitxa, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <div class="col-sm-3">
-                        {{ form_label(form.araudia) }}
+                    <div class="col-sm-5">
+                        {{ form_label(form.kostua) }}
                         {#{{ form_errors(form.prozedura) }}#}
-                        {{ form_widget(form.araudia, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.kostua, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <div class="col-sm-2">
-                        {{ form_label(form.atalaeu) }}
+                    {#<div class="col-sm-1">#}
+                        {#{{ form_label(form.atalaeu) }}#}
                         {#{{ form_errors(form.ordena) }}#}
-                        {{ form_widget(form.atalaeu, {'attr': {'class': 'form-control'}}, {'value' : '111' }) }}
-                    </div>
-                    <div class="col-sm-2">
-                        {{ form_label(form.atalaes) }}
+                        {#{{ form_widget(form.atalaeu, {'attr': {'class': 'form-control'}}, {'value' : '111' }) }}#}
+                    {#</div>#}
+                    {#<div class="col-sm-1">#}
+                        {#{{ form_label(form.atalaes) }}#}
                         {#{{ form_errors(form.ordena) }}#}
-                        {{ form_widget(form.atalaes, {'attr': {'class': 'form-control'}}) }}
-                    </div>
+                        {#{{ form_widget(form.atalaes, {'attr': {'class': 'form-control'}}) }}#}
+                    {#</div>#}
         {#</li>#}
         {#</div>#}
     {#{{ form_end(form) }}#}

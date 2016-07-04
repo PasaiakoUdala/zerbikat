@@ -215,23 +215,60 @@
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                     {% if fitxa.udala.zergaor %}
-                        {% for kostutaula in fitxa.kostuak %}
-                            <br /><table border="1" width="90%" cellpadding="6">
-                                        <tr>
-                                            <th colspan=2>
-                                                {{ kostutaula.kostua }}
-                                            </th>
-                                        </tr>
-                                    </table>
+                        {% for kostutaula in kostuZerrenda %}
+                            <br /><br /><table  border="1" width="90%" cellpadding="6">
+                                <tr>
+                                    <th colspan="12" class="text-center" style="font-size: small;"><b>
+                                        {% if app.request.locale == 'eu'%}
+                                            {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaeu'] }}
+                                        {% else %}
+                                            {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaes'] }}
+                                        {% endif %}
+                                    </b></th>
+                                </tr>
+                                {% for parrafo in kostutaula['parrafoak'] %}
+                                    <tr>
+                                        <td colspan="12" style="font-size: small;">
+                                            {% if app.request.locale == 'eu'%}
+                                                {{ parrafo['testuaeu']| raw }}
+                                            {% else %}
+                                                {{ parrafo['testuaes']| raw }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                    <tr>
+                                        <td colspan="9" style="font-size: small;">
+                                            {% if app.request.locale == 'eu'%}
+                                                {{ kontzeptu['kontzeptuaeu'] }}
+                                            {% else %}
+                                                {{ kontzeptu['kontzeptuaes'] }}
+                                            {% endif %}
+                                        </td>
+                                        <td NOWRAP colspan="3" style="font-size: small;">
+                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
                         {% endfor %}
+                        {#{% for kostutaula in fitxa.kostuak %}#}
+                            {#<br /><table border="1" width="90%" cellpadding="6">#}
+                                        {#<tr>#}
+                                            {#<th colspan=2>#}
+                                                {#{{ kostutaula.kostua }}#}
+                                            {#</th>#}
+                                        {#</tr>#}
+                                    {#</table>#}
+                        {#{% endfor %}#}
                     {% else %}
                         {% for azpiatal in fitxa.azpiatalak %}
                             <br /><table  border="1" width="90%" cellpadding="6">
                                 <tr>
                                     <th colspan="12"><b>
                                         {#<a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">#}
-                                            {{ azpiatal.atala.ordenantza.kodea }}.{{ azpiatal.atala.kodea }}.{{ azpiatal.kodea }}-
-                                            {{  azpiatal.izenburuaeu }}
+                                            {{ azpiatal.kodea }}-{{  azpiatal.izenburuaeu }}
                                         {#</a>#}</b>
                                     </th>
                                 </tr>
