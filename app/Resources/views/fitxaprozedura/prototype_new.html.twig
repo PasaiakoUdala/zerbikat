@@ -1,0 +1,30 @@
+{% block body %}
+    {#{{ form_start(form) }}#}
+        {#{{ form_widget(form) }}#}
+
+        {#<div class="row">#}
+{#<li>#}
+            <div class="col-sm-2">
+                {{ form_label(form.udala) }}
+                {#{{ form_errors(form.udala) }}#}
+                {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-sm-4">
+                {{ form_label(form.fitxa) }}
+                {#{{ form_errors(form.fitxa) }}#}
+                {{ form_widget(form.fitxa, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-sm-4">
+                {{ form_label(form.prozedura) }}
+                {#{{ form_errors(form.prozedura) }}#}
+                {{ form_widget(form.prozedura, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-sm-2">
+                {{ form_label(form.ordena) }}
+                {#{{ form_errors(form.ordena) }}#}
+                {{ form_widget(form.ordena, {'attr': {'class': 'form-control'}}) }}
+            </div>
+{#</li>#}
+        {#</div>#}
+    {#{{ form_end(form) }}#}
+{% endblock %}

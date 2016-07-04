@@ -191,8 +191,8 @@ class FitxaType extends AbstractType
                 'required' => false,
                 'multiple'=>'multiple',
 //                'expanded' => true ,
-                'placeholder' => 'Aukeratu kostu taulak',
-                 'group_by' => 'atala'
+                'placeholder' => 'Aukeratu kostu taulak'
+
             ))
 //            ->add('prozedurak' , EntityType::class, array(
 //                'class'    => 'BackendBundle:Prozedura' ,

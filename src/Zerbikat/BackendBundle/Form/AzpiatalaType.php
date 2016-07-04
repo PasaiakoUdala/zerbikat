@@ -23,7 +23,7 @@ class AzpiatalaType extends AbstractType
 //            ->add('createdAt',DatetimeType::class, array('widget' => 'single_text'))
 //            ->add('updatedAt',DatetimeType::class, array('widget' => 'single_text'))
             ->add('udala')
-            ->add('atala')
+//            ->add('atala')
 //            ->add('fitxak')
             ->add('kontzeptuak', CollectionType::class, array(
                 'entry_type' => KontzeptuaType::class,

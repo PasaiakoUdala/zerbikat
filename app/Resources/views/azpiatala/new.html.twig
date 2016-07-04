@@ -19,23 +19,23 @@
     {{ form_start(form) }}
 
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="form-group">
                 {{ form_label(form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.kodea) }}
                 {{ form_widget(form.kodea, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                {{ form_label(form.atala, 'Atala: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(form.atala) }}
-                {{ form_widget(form.atala, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
+        {#<div class="col-sm-6">#}
+            {#<div class="form-group">#}
+                {#{{ form_label(form.atala, 'Atala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                {#{{ form_errors(form.atala) }}#}
+                {#{{ form_widget(form.atala, {'attr': {'class': 'form-control'}}) }}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+    {#<div class="row">#}
+        <div class="col-sm-5">
             <div class="form-group">
                 {{ form_label(form.izenburuaeu, 'Izenburua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.izenburuaeu) }}
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="form-group">
                 {{ form_label(form.izenburuaes, 'Izenburua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.izenburuaes) }}

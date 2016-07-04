@@ -1,33 +1,56 @@
 {#{% extends 'base.html.twig' %}#}
-{#{% block menua %}#}
-{#{% endblock %}#}
 {% block body %}
     {{ form_start(form) }}
         {#{{ form_widget(form) }}#}
 
-    <div class="row">
+    {#<div class="row">#}
 
         {#<div class="col-sm-1">{{ form_widget(form.udala) }}</div>#}
         {#<div class="col-sm-1">{{ form_widget(form.udala, {'value' : '64'}) }}</div>#}
         {#{% dump(app.user.udala) %}#}
-        <div class="col-sm-1">{{ form_widget(form.udala, {'value' : app.user.udala }) }}</div>
+        {#<div class="col-sm-1">{{ form_widget(form.udala, {'value' : app.user.udala }) }}</div>#}
 
-        <div class="col-sm-1">{{ form_widget(form.azpiatala) }}</div>
-    </div>
-    <div class="row">
-        <div class="col-sm-1">{{ form_widget(form.kodea) }}</div>
-        <div class="col-sm-4">{{ form_widget(form.kontzeptuaeu) }}</div>
-        <div class="col-sm-1">
-            {{ form_widget(form.kopurua) }}
-            {{ form_widget(form.unitatea) }}
-        </div>
-        <div class="col-sm-4">{{ form_widget(form.kontzeptuaes) }}</div>
-        <div class="col-sm-2">
-            {{ form_widget(form.kontzeptumota) }}
-            {{ form_widget(form.baldintza) }}
-        </div>
-    </div>
+        {#<div class="col-sm-1">{{ form_widget(form.azpiatala) }}</div>#}
+    {#</div>#}
+    {#<div class="row">#}
+        {#<div class="col-sm-1">{{ form_widget(form.kodea) }}</div>#}
+        {#<div class="col-sm-4">{{ form_widget(form.kontzeptuaeu) }}</div>#}
+        {#<div class="col-sm-1">#}
+            {#{{ form_widget(form.kopurua) }}#}
+            {#{{ form_widget(form.unitatea) }}#}
+        {#</div>#}
+        {#<div class="col-sm-4">{{ form_widget(form.kontzeptuaes) }}</div>#}
+        {#<div class="col-sm-2">#}
+            {#{{ form_widget(form.kontzeptumota) }}#}
+            {#{{ form_widget(form.baldintza) }}#}
+        {#</div>#}
+    {#</div>#}
 
 
+    <tr>
+        <td colspan="1" class="col-sm-1">
+            {#<div class="col-sm-1">{{ form_widget(form.udala) }}</div>#}
+            {#<div class="col-sm-1">{{ form_widget(form.udala, {'value' : '64'}) }}</div>#}
+            {#{% dump(app.user.udala) %}#}
+            {{ form_widget(form.udala, {'value' : app.user.udala }) }}
+            {{ form_widget(form.azpiatala) }}
+            {{ form_widget(form.kodea) }}
+        </td>
+
+        <td colspan="4" class="col-sm-4">
+            {{ form_widget(form.kontzeptuaeu) }}
+        </td>
+        <td colspan="1" class="col-sm-1">
+                {{ form_widget(form.kopurua) }}
+                {{ form_widget(form.unitatea) }}
+        </td>
+        <td colspan="4" class="col-sm-4">
+            {{ form_widget(form.kontzeptuaes) }}
+        </td>
+        <td colspan="2" class="col-sm-2">
+                {{ form_widget(form.kontzeptumota) }}
+                {{ form_widget(form.baldintza) }}
+        </td>
+    </tr>
     {{ form_end(form) }}
 {% endblock %}

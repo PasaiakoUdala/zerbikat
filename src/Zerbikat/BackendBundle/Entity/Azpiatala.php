@@ -8,7 +8,7 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 /**
  * Azpiatala
  *
- * @ORM\Table(name="azpiatala", indexes={@ORM\Index(name="atala_id_idx", columns={"atala_id"})})
+ * @ORM\Table(name="azpiatala")
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
  */
@@ -59,14 +59,14 @@ class Azpiatala
     private $udala;
 
 
-    /**
-     * @var \Zerbikat\BackendBundle\Entity\Atala
-     *
-     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Atala")
-     * @ORM\JoinColumn(name="atala_id", referencedColumnName="id",onDelete="CASCADE")
-     *
-     */
-    private $atala;
+//    /**
+//     * @var \Zerbikat\BackendBundle\Entity\Atala
+//     *
+//     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Atala")
+//     * @ORM\JoinColumn(name="atala_id", referencedColumnName="id",onDelete="CASCADE")
+//     *
+//     */
+//    private $atala;
 
     /**
      * @var kontzeptuak[]
@@ -79,6 +79,7 @@ class Azpiatala
      * @var parrafoak[]
      *
      * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala",cascade={"persist"})
+     * @ORM\OrderBy({"ordena" = "ASC"})
      */
     private $parrafoak;
 
@@ -96,7 +97,7 @@ class Azpiatala
     public function __toString()
     {
         return
-            $this->getAtala()->getOrdenantza()->getKodea().".".$this->getAtala()->getKodea().".".$this->getKodea()."-".$this->getIzenburuaeu();
+            $this->getKodea()."-".$this->getIzenburuaeu();
     }
 
     /**
@@ -136,6 +137,18 @@ class Azpiatala
     
     
     
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /**
      * Set kodea
      *
@@ -209,64 +222,6 @@ class Azpiatala
     }
 
     /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Azpiatala
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Azpiatala
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
@@ -288,30 +243,6 @@ class Azpiatala
     public function getUdala()
     {
         return $this->udala;
-    }
-
-    /**
-     * Set atala
-     *
-     * @param \Zerbikat\BackendBundle\Entity\Atala $atala
-     *
-     * @return Azpiatala
-     */
-    public function setAtala(\Zerbikat\BackendBundle\Entity\Atala $atala = null)
-    {
-        $this->atala = $atala;
-
-        return $this;
-    }
-
-    /**
-     * Get atala
-     *
-     * @return \Zerbikat\BackendBundle\Entity\Atala
-     */
-    public function getAtala()
-    {
-        return $this->atala;
     }
 
     /**

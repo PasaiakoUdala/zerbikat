@@ -310,7 +310,7 @@
                     <a href="#" id="add-kostua" class="col-sm-8">Gehitu kostu taula</a>
                     {#</div>#}
                 {% else %}
-                    <div class="form-group">
+                    <div class="form-group"><br />
                         {{ form_errors(edit_form.azpiatalak) }}
                         {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
                     </div>
@@ -431,8 +431,12 @@
                 {#{{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group select2'}}) }}#}
 
 
-           <ul class="list-unstyled" id="araudia-fields-list"
-                    data-prototype="{{ form_widget(edit_form.araudiak.vars.prototype)|e }}">
+           {#<ul class="list-unstyled" id="araudia-fields-list"#}
+                    {#data-prototype="{{ form_widget(edit_form.araudiak.vars.prototype)|e }}">#}
+            <ul class="list-unstyled" id="araudia-fields-list" data-prototype="{% filter escape %}
+            {% include 'fitxaaraudia/prototype_new.html.twig' with {'form': edit_form.araudiak.vars.prototype} %}{% endfilter %}">
+
+
                 {% for araudia in edit_form.araudiak %}
                 <li>
                     {#{{ form_row(prozedura) }}#}
@@ -495,8 +499,11 @@
         {% endif %}
             <div>
                 <br/>
-                <ul class="list-unstyled" id="prozedura-fields-list"
-                    data-prototype="{{ form_widget(edit_form.prozedurak.vars.prototype)|e }}">
+                {#<ul class="list-unstyled" id="prozedura-fields-list"#}
+                    {#data-prototype="{{ form_widget(edit_form.prozedurak.vars.prototype)|e }}">#}
+                <ul class="list-unstyled" id="prozedura-fields-list" data-prototype="{% filter escape %}
+                {% include 'fitxaprozedura/prototype_new.html.twig' with {'form': edit_form.prozedurak.vars.prototype} %}{% endfilter %}">
+
                 {% for prozedura in edit_form.prozedurak %}
                 <li>
                     {#{{ form_row(prozedura) }}#}

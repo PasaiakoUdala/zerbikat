@@ -18,15 +18,13 @@
 
 
 {% block body %}
-<h1>Kostu taula</h1>
-
 <div class="row">
     <div class="col-sm-10">
     <table class="table table-bordered">
         <tbody>
             <tr>
-                <th colspan="6">{{ azpiatala.atala }}{{ azpiatala.kodea }}.{{ azpiatala.izenburuaeu }}</th>
-                <th colspan="6">{{ azpiatala.atala }}{{ azpiatala.kodea }}.{{ azpiatala.izenburuaes }}</th>
+                <th colspan="6">{{ azpiatala.kodea }}.{{ azpiatala.izenburuaeu }}</th>
+                <th colspan="6">{{ azpiatala.kodea }}.{{ azpiatala.izenburuaes }}</th>
             </tr>
             {% for parrafoa in azpiatala.parrafoak %}
                 <tr>

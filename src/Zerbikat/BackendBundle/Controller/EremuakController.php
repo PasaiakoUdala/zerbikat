@@ -63,6 +63,10 @@ class EremuakController extends Controller
             ));
         }else if ($auth_checker->isGranted('ROLE_ADMIN'))
         {
+            $udala=$this->getUser()->getUdala()->getIzenaeu();
+            $eremuak=$this->getUser()->getUdala()->getEremuak();
+
+            dump($this->getUser());
             return $this->redirectToRoute('eremuak_edit', array('id' => $this->getUser()->getUdala()->getEremuak()->getId()));
         }else
         {

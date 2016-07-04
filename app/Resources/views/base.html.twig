@@ -23,10 +23,6 @@
         <![endif]-->
 
         <style>
-                div.navbar:hover
-                {
-                        padding: 15px !important;
-                }
                 .affix {
                         top: 2;
                         width: 100%;
@@ -54,7 +50,7 @@
                         /*padding: 25px !important;*/
                 }
                 .affix + .container-fluid {
-                        padding-top: 5px;
+                        /*padding-top: 5px;*/
                 }
         </style>
 </head>
@@ -129,8 +125,8 @@
                                                         <li role="separator" class="divider"></li>
                                                         <li class="dropdown-header">Zerga Ordenantzak</li>
                                                         <li role="separator" class="divider"></li>
-                                                        <li><a href="{{ path('ordenantza_index') }}" >Ordenantzak</a></li>
-                                                        <li><a href="{{ path('atala_index') }}" >Atalak</a></li>
+                                                        {#<li><a href="{{ path('ordenantza_index') }}" >Ordenantzak</a></li>#}
+                                                        {#<li><a href="{{ path('atala_index') }}" >Atalak</a></li>#}
                                                         <li><a href="{{ path('azpiatala_index') }}" >Kostu-taulak</a></li>
                                                         <li><a href="{{ path('baldintza_index') }}" >Baldintzak</a></li>
                                                         <li><a href="{{ path('kontzeptumota_index') }}" >Kontzeptu-motak</a></li>
