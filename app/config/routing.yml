@@ -15,10 +15,6 @@ backend_udala:
     resource: "@BackendBundle/Controller/UdalaController.php"
     type:     annotation
 
-backend_tramitea:
-    resource: "@BackendBundle/Controller/TramiteaController.php"
-    type:     annotation
-
 backend_saila:
     resource: "@BackendBundle/Controller/SailaController.php"
     type:     annotation
