@@ -292,11 +292,21 @@
         {% else %}
         <div class="col-sm-12 hidden">
         {% endif %}
-            <div>
-                <br/>
-                {{ form_errors(form.azpiatalak) }}
-                {{ form_widget(form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
-            </div>
+                {% if fitxa.udala.zergaor %}
+                    <div class="hidden">
+                        {{ form_widget(form.kostuak, {'attr': {'class': 'form-group select2'}}) }}
+                        {{ form_widget(form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
+                    </div>
+                {% else %}
+                    <div class="hidden">
+                        {{ form_widget(form.kostuak, {'attr': {'class': 'form-group select2'}}) }}
+                    </div>
+                    <div class="form-group">
+                        <br/>
+                        {{ form_errors(form.azpiatalak) }}
+                        {{ form_widget(form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
+                    </div>
+                {% endif %}
         </div>
     </div>
 

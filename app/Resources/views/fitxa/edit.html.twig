@@ -293,25 +293,29 @@
         {% else %}
         <div class="col-sm-12 hidden">
         {% endif %}
-            {#<div>#}
                 {% if fitxa.udala.zergaor %}
-                    {#<div class="form-group">#}
-                    {#<ul class="list-unstyled" id="kostua-fields-list"#}
-                        {#data-prototype="{{ form_widget(edit_form.kostuak.vars.prototype)|e }}">#}
                     <ul class="list-unstyled" id="kostua-fields-list" data-prototype="{% filter escape %}
                         {% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype} %}{% endfilter %}">
+                    {% set kont=0 %}
                     {% for kostua in edit_form.kostuak %}
                         <li class="form-group">
                             <div class="col-sm-2 hidden">{{ form_widget(kostua.udala) }}</div>
                             <div class="col-sm-4 hidden">{{ form_widget(kostua.fitxa) }}</div>
                             <div class="col-sm-12">{{ form_widget(kostua.kostua) }}</div>
                         </li>
+                        {% set kont=1 %}
                     {% endfor %}
+                    {% if kont==0 %}{{ form_widget(edit_form.kostuak, {'attr': {'class': 'form-group hidden'}}) }}{% endif %}
                     </ul>
                     <br />
                     <a href="#" id="add-kostua" class="col-sm-8">Gehitu kostu taula</a>
-                    {#</div>#}
+                    <div class="form-group hidden"><br />
+                        {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
+                    </div>
                 {% else %}
+                    <div class="hidden">
+                        {{ form_widget(form.kostuak, {'attr': {'class': 'form-group select2'}}) }}
+                    </div>
                     <div class="form-group"><br />
                         {{ form_errors(edit_form.azpiatalak) }}
                         {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
@@ -429,16 +433,9 @@
         {% endif %}
             <div>
                 <br/>
-                {#{{ form_errors(edit_form.araudiak) }}#}
-                {#{{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group select2'}}) }}#}
-
-
-           {#<ul class="list-unstyled" id="araudia-fields-list"#}
-                    {#data-prototype="{{ form_widget(edit_form.araudiak.vars.prototype)|e }}">#}
-            <ul class="list-unstyled" id="araudia-fields-list" data-prototype="{% filter escape %}
-            {% include 'fitxaaraudia/prototype_new.html.twig' with {'form': edit_form.araudiak.vars.prototype} %}{% endfilter %}">
-
-
+                <ul class="list-unstyled" id="araudia-fields-list" data-prototype="{% filter escape %}
+                {% include 'fitxaaraudia/prototype_new.html.twig' with {'form': edit_form.araudiak.vars.prototype} %}{% endfilter %}">
+                {% set kont=0 %}
                 {% for araudia in edit_form.araudiak %}
                 <li>
                     {#{{ form_row(prozedura) }}#}
@@ -449,15 +446,12 @@
                     <div class="col-sm-2">{{ form_widget(araudia.atalaeu) }}</div>
                     <div class="col-sm-2">{{ form_widget(araudia.atalaes) }}</div>
                 </li>
+                    {% set kont=1 %}
                 {% endfor %}
+                {% if kont==0 %}{{ form_widget(edit_form.araudiak, {'attr': {'class': 'form-group hidden'}}) }}{% endif %}
             </ul>
             <br /><br />
             <a href="#" id="add-araudia">Gehitu araudia</a>
-
-
-
-
-
             </div>
         </div>
     </div>
@@ -501,21 +495,20 @@
         {% endif %}
             <div>
                 <br/>
-                {#<ul class="list-unstyled" id="prozedura-fields-list"#}
-                    {#data-prototype="{{ form_widget(edit_form.prozedurak.vars.prototype)|e }}">#}
                 <ul class="list-unstyled" id="prozedura-fields-list" data-prototype="{% filter escape %}
                 {% include 'fitxaprozedura/prototype_new.html.twig' with {'form': edit_form.prozedurak.vars.prototype} %}{% endfilter %}">
 
+                {% set kont=0 %}
                 {% for prozedura in edit_form.prozedurak %}
                 <li>
-                    {#{{ form_row(prozedura) }}#}
-                    {#<div class="col-sm-2">{{ form_widget(prozedura.udala, {'value' : fitxa.udala }) }}</div>#}
                     <div class="col-sm-2 hidden">{{ form_widget(prozedura.udala) }}</div>
                     <div class="col-sm-4 hidden">{{ form_widget(prozedura.fitxa) }}</div>
                     <div class="col-sm-10">{{ form_widget(prozedura.prozedura) }}</div>
                     <div class="col-sm-2">{{ form_widget(prozedura.ordena) }}</div>
                 </li>
+                    {% set kont=1 %}
                 {% endfor %}
+                {% if kont==0 %}{{ form_widget(edit_form.prozedurak, {'attr': {'class': 'form-group hidden'}}) }}{% endif %}
             </ul>
             <br />
             <a href="#" id="add-prozedura">Gehitu prozedura</a>
