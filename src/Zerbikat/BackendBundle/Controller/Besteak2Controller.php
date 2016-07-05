@@ -29,7 +29,7 @@ class Besteak2Controller extends Controller
     public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
-        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+        if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
             $besteak2s = $em->getRepository('BackendBundle:Besteak2')->findAll();
 

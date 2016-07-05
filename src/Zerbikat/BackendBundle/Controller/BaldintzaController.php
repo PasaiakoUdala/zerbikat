@@ -25,7 +25,7 @@ class BaldintzaController extends Controller
     public function indexAction()
     {
         $auth_checker = $this->get('security.authorization_checker');
-        if ($auth_checker->isGranted('ROLE_ADMIN')) {
+        if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
             $baldintzas = $em->getRepository('BackendBundle:Baldintza')->findAll();
 
