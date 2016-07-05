@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Mota</th>
                 {#<th>Actions</th>#}
@@ -27,6 +28,7 @@
         <tbody>
         {% for dokumentumotum in dokumentumotas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ dokumentumotum.udala }}</td>{% endif %}
                 <td>{{ dokumentumotum.kodea }}</td>
                 <td>{{ dokumentumotum.motaeu }}</td>
                 <td NOWRAP class="text-right">

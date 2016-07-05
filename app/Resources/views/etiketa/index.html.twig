@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Etiketa</th>
                 <th></th>
             </tr>
@@ -26,6 +27,7 @@
         <tbody>
         {% for etiketum in etiketas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ etiketum.udala }}</td>{% endif %}
                 <td>{{ etiketum.etiketaeu }}</td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">

@@ -18,6 +18,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Mota</th>
                 <th>Esteka</th>
                 <th></th>
@@ -26,6 +27,7 @@
         <tbody>
         {% for kanalmotum in kanalmotas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ kanalmotum.udala }}</td>{% endif %}
                 <td>{{ kanalmotum.motaeu }}</td>
                 <td>{% if kanalmotum.esteka %}Bai{% else %}Ez{% endif %}</td>
                 <td NOWRAP class="text-right">

@@ -21,6 +21,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Motaeu</th>
                 <th></th>
@@ -29,6 +30,7 @@
         <tbody>
         {% for araumotum in araumotas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ araumotum.udala }}</td>{% endif %}
                 <td>{{ araumotum.kodea }}</td>
                 <td>{{ araumotum.motaeu }}</td>
                 <td NOWRAP class="text-right">

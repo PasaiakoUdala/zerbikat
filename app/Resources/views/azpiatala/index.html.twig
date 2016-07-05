@@ -20,6 +20,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
                 <th></th>
@@ -28,6 +29,7 @@
         <tbody>
         {% for azpiatala in azpiatalas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ azpiatala.udala }}</td>{% endif %}
                 {#<td><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">{{ azpiatala.kodea }}</a></td>#}
                 <td>{{ azpiatala.kodea }}</td>
 

@@ -23,6 +23,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Araua</th>
                 <th></th>
@@ -31,6 +32,7 @@
         <tbody>
         {% for araudium in araudias %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ araudium.udala }}</td>{% endif %}
                 {#<td><a href="{{ path('araudia_show', { 'id': araudium.id }) }}">{{ araudium.kodea }}</a></td>#}
                 {#<td><a href="{{ path('araudia_edit', { 'id': araudium.id }) }}">{{ araudium.kodea }}</a></td>#}
                 <td>{{ araudium.kodea }}</td>

@@ -18,6 +18,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Isiltasun administratiboaren izaera</th>
                 <th></th>
             </tr>
@@ -25,6 +26,7 @@
         <tbody>
         {% for isiltasunAdministratiboa in isiltasunAdministratiboas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ isiltasunAdministratiboa.udala }}</td>{% endif %}
                 <td>{{ isiltasunAdministratiboa.isiltasuneu }}</td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
