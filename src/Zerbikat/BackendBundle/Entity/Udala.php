@@ -113,7 +113,7 @@ class Udala
     private $espedientekudeaketa;
 
     /**
-     * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala")
+     * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala",fetch="EAGER")
      * @ORM\JoinColumn(name="eremuak_id", referencedColumnName="id",onDelete="SET NULL")
      */
     protected $eremuak;

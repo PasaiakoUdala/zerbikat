@@ -63,11 +63,25 @@ class EremuakController extends Controller
             ));
         }else if ($auth_checker->isGranted('ROLE_ADMIN'))
         {
-            $udala=$this->getUser()->getUdala()->getIzenaeu();
+
+            $udala=$this->getUser()->getUdala()->getId();
+            $em2 = $this->getDoctrine()->getManager();
+            $query = $em2->createQuery('
+              SELECT f.id
+                FROM BackendBundle:Eremuak f
+                WHERE f.udala = :udala
+              ');
+                $query->setParameter('udala', $udala);
+                $eremuid = $query->getSingleResult();
+
             $eremuak=$this->getUser()->getUdala()->getEremuak();
 
-            dump($this->getUser());
-            return $this->redirectToRoute('eremuak_edit', array('id' => $this->getUser()->getUdala()->getEremuak()->getId()));
+//            dump($this->getUser());
+//            dump($udala);
+//            dump($eremuid);
+
+//            return $this->redirectToRoute('eremuak_edit', array('id' => $this->getUser()->getUdala()->getEremuak()->getId()));
+            return $this->redirectToRoute('eremuak_edit', array('id' => $eremuid['id']));
         }else
         {
             return $this->redirectToRoute('backend_errorea');

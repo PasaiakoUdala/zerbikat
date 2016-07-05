@@ -95,7 +95,7 @@ class ApiController extends FOSRestController
             SELECT f.id,f.espedientekodea,f.deskribapenaeu,f.deskribapenaes
             FROM BackendBundle:Fitxa f
               INNER JOIN f.familiak ff
-            WHERE ff.id = :id
+            WHERE ff.id = :id AND f.publikoa=1
         ');
 
         $query->setParameter('id', $id);
