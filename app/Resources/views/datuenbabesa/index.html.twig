@@ -21,6 +21,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Maila</th>
                 <th>Izenaeu</th>
@@ -31,6 +32,7 @@
         <tbody>
         {% for datuenbabesa in datuenbabesas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ datuenbabesa.udala }}</td>{% endif %}
                 <td>{{ datuenbabesa.kodea }}</td>
                 <td>{{ datuenbabesa.maila }}</td>
                 <td>{{ datuenbabesa.izenaeu }}</td>

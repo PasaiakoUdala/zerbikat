@@ -1,13 +1,7 @@
 {% block body %}
-    {#{{ form_start(form) }}#}
-        {#{{ form_widget(form) }}#}
-
-        {#<div class="row">#}
-        {#<li>#}
                     <div class="col-sm-2">
                         {{ form_label(form.udala) }}
                         {#{{ form_errors(form.udala) }}#}
-                        {#{{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}#}
                         {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}, {'value' : fitxa.udala } ) }}
                     </div>
                     <div class="col-sm-5">
@@ -20,17 +14,4 @@
                         {#{{ form_errors(form.prozedura) }}#}
                         {{ form_widget(form.kostua, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    {#<div class="col-sm-1">#}
-                        {#{{ form_label(form.atalaeu) }}#}
-                        {#{{ form_errors(form.ordena) }}#}
-                        {#{{ form_widget(form.atalaeu, {'attr': {'class': 'form-control'}}, {'value' : '111' }) }}#}
-                    {#</div>#}
-                    {#<div class="col-sm-1">#}
-                        {#{{ form_label(form.atalaes) }}#}
-                        {#{{ form_errors(form.ordena) }}#}
-                        {#{{ form_widget(form.atalaes, {'attr': {'class': 'form-control'}}) }}#}
-                    {#</div>#}
-        {#</li>#}
-        {#</div>#}
-    {#{{ form_end(form) }}#}
 {% endblock %}

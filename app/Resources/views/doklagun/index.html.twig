@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Deskribapenaeu</th>
                 <th></th>
@@ -27,6 +28,7 @@
         <tbody>
         {% for doklagun in doklaguns %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ doklagun.udala }}</td>{% endif %}
                 <td>{{ doklagun.kodea }}</td>
                 <td>{{ doklagun.deskribapenaeu }}</td>
                 <td NOWRAP class="text-right">

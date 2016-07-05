@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Izenburuaeu</th>
                 <th></th>
@@ -27,6 +28,7 @@
         <tbody>
         {% for besteak2 in besteak2s %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ besteak2.udala }}</td>{% endif %}
                 <td>{{ besteak2.kodea }}</td>
                 <td>{{ besteak2.izenburuaeu }}</td>
                 <td NOWRAP class="text-right">

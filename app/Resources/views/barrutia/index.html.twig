@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Izena</th>
                 <th></th>
             </tr>
@@ -26,6 +27,7 @@
         <tbody>
         {% for barrutium in barrutias %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ barrutium.udala }}</td>{% endif %}
                 <td>{{ barrutium.izena }}</td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">

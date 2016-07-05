@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kanal-mota</th>
                 <th>Izena</th>
                 <th>Deskribapena</th>
@@ -29,6 +30,7 @@
         <tbody>
         {% for kanala in kanalas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ kanala.udala }}</td>{% endif %}
                 <td>{{ kanala.kanalmota }}</td>
                 <td>{{ kanala.izenaeu }}</td>
                 <td>{{ kanala.deskribapenaeu }}</td>

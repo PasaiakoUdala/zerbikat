@@ -19,6 +19,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Izena</th>
                 <th>Koordenadak</th>
                 <th></th>
@@ -27,6 +28,7 @@
         <tbody>
         {% for eraikina in eraikinas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ eraikina.udala }}</td>{% endif %}
                 <td>{{ eraikina.izena }}</td>
                 <td>({{ eraikina.longitudea }}, {{ eraikina.latitudea }})</td>
                 <td NOWRAP class="text-right">

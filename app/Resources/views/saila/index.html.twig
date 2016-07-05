@@ -18,6 +18,7 @@
     <table class="table">
         <thead>
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
                 <th>Kodea</th>
                 <th>Saila</th>
                 <th>Arduraduna</th>
@@ -27,6 +28,7 @@
         <tbody>
         {% for saila in sailas %}
             <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ saila.udala }}</td>{% endif %}
                 <td>{{ saila.kodea }}</td>
                 <td>{{ saila.sailaeu }}</td>
                 <td>{{ saila.arduraduna }}</td>
