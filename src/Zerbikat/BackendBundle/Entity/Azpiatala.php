@@ -120,12 +120,12 @@ class Azpiatala
         $this->kontzeptuak->removeElement($kontzeptua);
     }
 
-    public function addParrafoa(Parrafoa $parrafoa)
+    public function addParrafoa(Azpiatalaparrafoa $parrafoa)
     {
         $this->parrafoak->add($parrafoa);
     }
 
-    public function removeParrafoa(Parrafoa $parrafoa)
+    public function removeParrafoa(Azpiatalaparrafoa $parrafoa)
     {
         $this->parrafoak->removeElement($parrafoa);
     }
