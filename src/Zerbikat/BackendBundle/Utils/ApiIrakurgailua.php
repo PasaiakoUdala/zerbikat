@@ -14,7 +14,7 @@ class ApiIrakurgailua extends LazyChoiceList
         $client = new GuzzleHttp\Client();
         $res = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalak.json' );
 
-        dump ($res);
+//        dump ($res);
 //        return new ChoiceList($choices, $labels);
 
     }

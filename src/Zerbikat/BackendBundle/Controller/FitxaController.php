@@ -173,7 +173,7 @@ class FitxaController extends Controller
 //            dump($array);
             $kostuZerrenda[] = $array;
         }
-        dump($kostuZerrenda);
+//        dump($kostuZerrenda);
 
         $query = $em->createQuery('
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
@@ -350,7 +350,7 @@ class FitxaController extends Controller
                 $em->flush();
             }else
             {
-                dump($form);
+ //               dump($form);
 //                dump($request);
 
             }
