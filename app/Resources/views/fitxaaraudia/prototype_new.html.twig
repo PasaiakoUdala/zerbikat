@@ -1,22 +1,22 @@
 {% block body %}
-                    <div class="col-sm-2">
-                        {{ form_label(form.udala) }}
-                        {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}, {'value' : fitxa.udala } ) }}
+                    <div class="col-sm-2 hidden">
+                        {#{{ form_label(form.udala) }}#}
+                        {{ form_widget(form.udala, {'value' : fitxa.udala.id|number_format }, {'attr': {'class': 'form-control'}} ) }}
                     </div>
-                    <div class="col-sm-3">
-                        {{ form_label(form.fitxa) }}
-                        {{ form_widget(form.fitxa, {'attr': {'class': 'form-control'}}) }}
+                    <div class="col-sm-3 hidden">
+                        {#{{ form_label(form.fitxa) }}#}
+                        {{ form_widget(form.fitxa, {'value' : fitxa.id|number_format }, {'attr': {'class': 'form-control'}}) }}
                     </div>
-                    <div class="col-sm-3">
-                        {{ form_label(form.araudia) }}
+                    <div class="col-sm-7">
+                        {#{{ form_label(form.araudia) }}#}
                         {{ form_widget(form.araudia, {'attr': {'class': 'form-control'}}) }}
                     </div>
                     <div class="col-sm-2">
-                        {{ form_label(form.atalaeu) }}
+                        {#{{ form_label(form.atalaeu) }}#}
                         {{ form_widget(form.atalaeu, {'attr': {'class': 'form-control'}}, {'value' : '111' }) }}
                     </div>
                     <div class="col-sm-2">
-                        {{ form_label(form.atalaes) }}
+                        {#{{ form_label(form.atalaes) }}#}
                         {{ form_widget(form.atalaes, {'attr': {'class': 'form-control'}}) }}
                     </div>
 {% endblock %}

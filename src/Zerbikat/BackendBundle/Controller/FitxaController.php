@@ -312,6 +312,7 @@ class FitxaController extends Controller
                     if (false === $fitxa->getKostuak()->contains($kostu))
                     {
                         $kostu->setFitxa(null);
+                        $em->remove($kostu);
                         $em->persist($fitxa);
                     }
                 }
@@ -320,6 +321,7 @@ class FitxaController extends Controller
                     if (false === $fitxa->getAraudiak()->contains($araudi))
                     {
                         $araudi->setFitxa(null);
+                        $em->remove($araudi);
                         $em->persist($fitxa);
                     }
                 }
@@ -328,6 +330,7 @@ class FitxaController extends Controller
                     if (false === $fitxa->getProzedurak()->contains($prozedura))
                     {
                         $prozedura->setFitxa(null);
+                        $em->remove($prozedura);
                         $em->persist($fitxa);
                     }
                 }

@@ -243,12 +243,15 @@
         </div>
         {% if eremuak.kostuatable %}
         <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-10">
                 {% if fitxa.udala.zergaor %}
                     <ul class="list-unstyled" id="kostua-fields-list" data-prototype="{% filter escape %}
-                        {% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype} %}{% endfilter %}">
+                        {% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
+                        {#<li class="burua">#}
+                            {#<div class="col-sm-11"><b>Kostu-taula</b></div>#}
+                        {#</li>#}
                     {% for kostua in edit_form.kostuak %}
-                        <li class="form-group">
+                        <li>
                             <div class="col-sm-2 hidden">{{ form_widget(kostua.udala) }}</div>
                             <div class="col-sm-4 hidden">{{ form_widget(kostua.fitxa) }}</div>
                             <div class="col-sm-11">{{ form_widget(kostua.kostua) }}</div>
@@ -356,7 +359,12 @@
         <div class="col-sm-8">
             <div class="form-group">
                 <ul class="list-unstyled" id="araudia-fields-list" data-prototype="{% filter escape %}
-                {% include 'fitxaaraudia/prototype_new.html.twig' with {'form': edit_form.araudiak.vars.prototype} %}{% endfilter %}">
+                {% include 'fitxaaraudia/prototype_new.html.twig' with {'form': edit_form.araudiak.vars.prototype,'fitxa':fitxa} %}{% endfilter %}">
+                    <li class="burua">
+                        <div class="col-sm-7"><b>Araudia</b></div>
+                        <div class="col-sm-2"><b>Atala (eu)</b></div>
+                        <div class="col-sm-2"><b>Atala (es)</b></div>
+                    </li>
                     {% for araudia in edit_form.araudiak %}
                         <li>
                             <div class="col-sm-2 hidden">{{ form_widget(araudia.udala) }}</div>
@@ -404,7 +412,11 @@
         <div class="col-sm-8">
             <div class="form-group">
                 <ul class="list-unstyled" id="prozedura-fields-list" data-prototype="{% filter escape %}
-                {% include 'fitxaprozedura/prototype_new.html.twig' with {'form': edit_form.prozedurak.vars.prototype} %}{% endfilter %}">
+                {% include 'fitxaprozedura/prototype_new.html.twig' with {'form': edit_form.prozedurak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
+                    <li class="burua">
+                        <div class="col-sm-9"><b>Prozedura</b></div>
+                        <div class="col-sm-2"><b>Ordena</b></div>
+                    </li>
                     {% for prozedura in edit_form.prozedurak %}
                     <li>
                         <div class="col-sm-2 hidden">{{ form_widget(prozedura.udala) }}</div>
@@ -890,20 +902,23 @@
             $collectionHolder = $('#kostua-fields-list');
             // add a delete link to all of the existing tag form li elements
             $collectionHolder.find('li').each(function() {
-                addKostuaFormDeleteLink($(this));
+                if (!$(this).hasClass( "burua" ))
+                    addKostuaFormDeleteLink($(this));
             });
 
             // Araudiak dituen ul-a jaso
             $collectionHolder = $('#araudia-fields-list');
             // li elementu guztiei ezabatzeko ikonoa jarri
             $collectionHolder.find('li').each(function() {
-                addAraudiaFormDeleteLink($(this));
+                if (!$(this).hasClass( "burua" ))
+                    addAraudiaFormDeleteLink($(this));
             });
             // Prozedurak dituen ul-a jaso
             $collectionHolder = $('#prozedura-fields-list');
             // li elementu guztiei ezabatzeko ikonoa jarri
             $collectionHolder.find('li').each(function() {
-                addProzeduraFormDeleteLink($(this));
+                if (!$(this).hasClass( "burua" ))
+                    addProzeduraFormDeleteLink($(this));
             });
 
 

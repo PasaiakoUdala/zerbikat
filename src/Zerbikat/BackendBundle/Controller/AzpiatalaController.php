@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Azpiatala;
 use Zerbikat\BackendBundle\Form\AzpiatalaType;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Azpiatala controller.
  *
@@ -116,12 +118,44 @@ class AzpiatalaController extends Controller
         if((($auth_checker->isGranted('ROLE_ADMIN')) && ($azpiatala->getUdala()==$this->getUser()->getUdala()))
             ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
         {
+            // Create an ArrayCollection of the current Kontzeptuak objects in the database
+            $originalKontzeptuak = new ArrayCollection();
+            foreach ($azpiatala->getKontzeptuak() as $kontzeptu) {
+                $originalKontzeptuak->add($kontzeptu);
+            }
+            // Create an ArrayCollection of the current Kontzeptuak objects in the database
+            $originalParrafoak = new ArrayCollection();
+            foreach ($azpiatala->getParrafoak() as $parrafo) {
+                $originalParrafoak->add($parrafo);
+            }
+
             $deleteForm = $this->createDeleteForm($azpiatala);
             $editForm = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaType', $azpiatala);
             $editForm->handleRequest($request);
 
+            $em = $this->getDoctrine()->getManager();
+
             if ($editForm->isSubmitted() && $editForm->isValid()) {
-                $em = $this->getDoctrine()->getManager();
+                foreach ($originalKontzeptuak as $kontzeptu)
+                {
+                    if (false === $azpiatala->getKontzeptuak()->contains($kontzeptu))
+                    {
+                        $kontzeptu->setAzpiatala(null);
+                        $em->remove($kontzeptu);
+                        $em->persist($azpiatala);
+                    }
+                }
+                foreach ($originalParrafoak as $parrafo)
+                {
+                    if (false === $azpiatala->getParrafoak()->contains($parrafo))
+                    {
+                        $parrafo->setAzpiatala(null);
+                        $em->remove($parrafo);
+
+                        $em->persist($azpiatala);
+                    }
+                }
+
                 $em->persist($azpiatala);
                 $em->flush();
 

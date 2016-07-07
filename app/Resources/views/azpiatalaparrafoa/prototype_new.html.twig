@@ -4,25 +4,27 @@
     {{ form_start(form) }}
         {#{{ form_widget(form) }}#}
         <tr>
-            <td colspan="1" class="col-sm-1">
+            <td colspan="1" class="col-sm-1 hidden">
                     {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
-                    {{ form_widget(form.udala) }}
+                    {{ form_widget(form.udala,{'value' : azpiatala.udala.id|number_format }) }}
 
                     {{ form_label(form.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}
-                    {{ form_widget(form.azpiatala) }}
+                    {{ form_widget(form.azpiatala,{'value' : azpiatala.id|number_format }) }}
+            </td>
 
-                    {{ form_label(form.ordena, 'Ordena: ', { 'label_attr': {'class': 'control-label'} }) }}
+            <td colspan="1" class="col-sm-1">
+                    {#{{ form_label(form.ordena, 'Ordena: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_widget(form.ordena) }}
             </td>
             <td colspan="5" class="col-sm-5">
                     {#{{ form_label(form.testuaeu, 'Testua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_widget(form.testuaeu) }}
             </td>
-            <td colspan="1" class="col-sm-1"></td>
             <td colspan="5" class="col-sm-5">
                     {#{{ form_label(form.testuaes, 'Testua (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_widget(form.testuaes) }}
             </td>
+            <td colspan="1" class="col-sm-1"></td>
         </tr>
 
     {{ form_end(form) }}

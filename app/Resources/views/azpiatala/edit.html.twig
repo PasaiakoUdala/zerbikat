@@ -35,13 +35,6 @@
     </div>
 
     <table class="table table-bordered">
-        {#<tr>#}
-            {#<td colspan="12">#}
-                {#{{ form_label(edit_form.atala, 'Atala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
-                {#{{ form_errors(edit_form.atala) }}#}
-                {#{{ form_widget(edit_form.atala, {'attr': {'class': 'form-control'}}) }}#}
-            {#</td>#}
-        {#</tr>#}
         <tr>
             <td colspan="12" >
                 <div class="col-sm-2">
@@ -68,47 +61,34 @@
 
 
     <table class="table table-bordered" id="parrafoa-fields-list" data-prototype="{% filter escape %}
-    {% include 'azpiatalaparrafoa/prototype_new.html.twig' with {'form': edit_form.parrafoak.vars.prototype} %}{% endfilter %}">
-            <tr><th colspan="1">Ordena:</th><th colspan="5">Testua (eu)</th><th colspan="1"></th><th colspan="5">Testua (es)</th></tr>
+    {% include 'azpiatalaparrafoa/prototype_new.html.twig' with {'form': edit_form.parrafoak.vars.prototype,'azpiatala':azpiatala} %}{% endfilter %}">
+            <tr class="burua"><th colspan="1">Ordena:</th><th colspan="5">Testua (eu)</th><th colspan="5">Testua (es)</th><th colspan="1"></th></tr>
         {% for parrafoa in edit_form.parrafoak %}
-            {#<tr class="hidden">#}
-                {#<td colspan="3" class="col-sm-6">#}
-                    {#{{ form_label(parrafoa.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
-                    {#{{ form_widget(parrafoa.udala) }}#}
-                {#</td>#}
-                {#<td colspan="3" class="col-sm-6">#}
-                    {#{{ form_label(parrafoa.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
-                    {#{{ form_widget(parrafoa.azpiatala) }}#}
-                {#</td>#}
-            {#</tr>#}
             <tr>
                 <td colspan="1" class="col-sm-1">
                     {#{{ form_label(parrafoa.ordena, 'Ordena: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_widget(parrafoa.ordena) }}
-
                     <div class="hidden">
                         {#{{ form_label(parrafoa.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                         {{ form_widget(parrafoa.udala) }}
                     </div>
-
                     <div class="hidden">
                         {#{{ form_label(parrafoa.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                         {{ form_widget(parrafoa.azpiatala) }}
                     </div>
-
                 </td>
                 <td colspan="5" class="col-sm-5">
                     {#{{ form_label(parrafoa.testuaeu, 'Testua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_widget(parrafoa.testuaeu) }}
                 </td>
-                <td colspan="1" class="col-sm-1"></td>
                 <td colspan="5" class="col-sm-5">
                     {#{{ form_label(parrafoa.testuaes, 'Testua (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_widget(parrafoa.testuaes) }}
                 </td>
+                {#<td colspan="1" class="col-sm-1"></td>#}
             </tr>
         {% endfor %}
-        <tr>
+        <tr class="burua">
             <td colspan="12" class="text-right col-sm-12"><a href="#" id="add-parrafoa" class="col-sm-12">Parrafoa gehitu</a></td>
         </tr>
     </table>
@@ -116,7 +96,8 @@
     {#<table class="table table-bordered" id="kontzeptua-fields-list"#}
     {#data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">#}
     <table class="table table-bordered" id="kontzeptua-fields-list" data-prototype="{% filter escape %}
-    {% include 'kontzeptua/prototype_new.html.twig' with {'form': edit_form.kontzeptuak.vars.prototype} %}{% endfilter %}">
+    {% include 'kontzeptua/prototype_new.html.twig' with {'form': edit_form.kontzeptuak.vars.prototype,'azpiatala':azpiatala} %}{% endfilter %}">
+        <tr class="burua"><th colspan="1">Kodea:</th><th colspan="4">Testua (eu)</th><th colspan="1">Kopurua:<br/>Unitatea</th><th colspan="4">Testua (es)</th><th colspan="1">Mota<br>Baldintza</th></tr>
             {% for kontzeptua in edit_form.kontzeptuak %}
                 <tr>
                     <td colspan="1" class="col-sm-1">
@@ -132,13 +113,13 @@
                         {{ form_widget(kontzeptua.unitatea) }}
                     </td>
                     <td colspan="4" class="col-sm-4">{{ form_widget(kontzeptua.kontzeptuaes) }}</td>
-                    <td colspan="2" class="col-sm-2">
+                    <td colspan="1" class="col-sm-1">
                         {{ form_widget(kontzeptua.kontzeptumota) }}
                         {{ form_widget(kontzeptua.baldintza) }}
                     </td>
                 </tr>
             {% endfor %}
-        <tr>
+        <tr class="burua">
             <td colspan="12" class="text-right col-sm-12"><a href="#" id="add-kontzeptua" class="col-sm-12">Kontzeptua gehitu</a></td>
         </tr>
         </table>
@@ -147,9 +128,9 @@
 
 
 
-
-
+    <div class="hidden">
     {{ form_end(edit_form) }}
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -160,21 +141,22 @@
 
     jQuery(document).ready(function() {
 
-//        // Parrafoak dituen ul-a jaso
-//        $collectionHolder = $('#parrafoa-fields-list');
-//        // li elementu guztiei ezabatzeko ikonoa jarri
-//        $collectionHolder.find('li').each(function() {
-//            addAraudiaFormDeleteLink($(this));
-//        });
-//        // Prozedurak dituen ul-a jaso
-//        $collectionHolder = $('#prozedura-fields-list');
-//        // li elementu guztiei ezabatzeko ikonoa jarri
-//        $collectionHolder.find('li').each(function() {
-//            addProzeduraFormDeleteLink($(this));
-//        });
-
-
-
+        // Parrafoak dituen table-a jaso
+        $collectionHolder = $('#parrafoa-fields-list');
+        // tr elementu guztiei ezabatzeko ikonoa jarri
+        $collectionHolder.find('tr').each(function()
+        {
+            if (!$(this).hasClass( "burua" ))
+                addParrafoaFormDeleteLink($(this));
+        });
+        // Kontzeptuak dituen table-a jaso
+        $collectionHolder = $('#kontzeptua-fields-list');
+        // li elementu guztiei ezabatzeko ikonoa jarri
+        $collectionHolder.find('tr').each(function()
+        {
+            if (!$(this).hasClass( "burua" ))
+                addKontzeptuaFormDeleteLink($(this));
+        });
 
 
 
@@ -215,6 +197,32 @@
             var newLi = jQuery('<tr></tr>').html(newWidget);
             newLi.appendTo(kontzeptuaList);
         });
+
+        function addParrafoaFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<td class="col-sm-1"><a href="#"><i class="fa fa-times text-danger"></i></a></td>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+        function addKontzeptuaFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<td class="col-sm-1"><a href="#"><i class="fa fa-times text-danger"></i></a></td>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+
 
     })
 </script>
