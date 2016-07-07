@@ -8,6 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\FitxaProzedura;
 use Zerbikat\BackendBundle\Form\FitxaProzeduraType;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * FitxaProzedura controller.
@@ -104,6 +106,7 @@ class FitxaProzeduraController extends Controller
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+
     }
 
     /**

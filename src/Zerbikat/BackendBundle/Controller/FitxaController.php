@@ -20,6 +20,9 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 use GuzzleHttp;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
+
 
 /**
  * Fitxa controller.
@@ -281,12 +284,54 @@ class FitxaController extends Controller
         {
             $deleteForm = $this->createDeleteForm($fitxa);
             $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FitxaType', $fitxa);
-            $editForm->handleRequest($request);
 
+            // Create an ArrayCollection of the current Kostuak objects in the database
+            $originalKostuak = new ArrayCollection();
+            foreach ($fitxa->getKostuak() as $kostu) {
+                $originalKostuak->add($kostu);
+            }
+            // Create an ArrayCollection of the current Araudiak objects in the database
+            $originalAraudiak = new ArrayCollection();
+            foreach ($fitxa->getAraudiak() as $araudi) {
+                $originalAraudiak->add($araudi);
+            }
+            // Create an ArrayCollection of the current Prozedurak objects in the database
+            $originalProzedurak = new ArrayCollection();
+            foreach ($fitxa->getProzedurak() as $prozedura) {
+                $originalProzedurak->add($prozedura);
+            }
+
+            $editForm->handleRequest($request);
             $em = $this->getDoctrine()->getManager();
 
             if ($editForm->isSubmitted() && $editForm->isValid())
             {
+
+                foreach ($originalKostuak as $kostu)
+                {
+                    if (false === $fitxa->getKostuak()->contains($kostu))
+                    {
+                        $kostu->setFitxa(null);
+                        $em->persist($fitxa);
+                    }
+                }
+                foreach ($originalAraudiak as $araudi)
+                {
+                    if (false === $fitxa->getAraudiak()->contains($araudi))
+                    {
+                        $araudi->setFitxa(null);
+                        $em->persist($fitxa);
+                    }
+                }
+                foreach ($originalProzedurak as $prozedura)
+                {
+                    if (false === $fitxa->getProzedurak()->contains($prozedura))
+                    {
+                        $prozedura->setFitxa(null);
+                        $em->persist($fitxa);
+                    }
+                }
+
                 $fitxa->setUpdatedAt(new \DateTime());
                 $em->persist($fitxa);
                 $em->flush();
