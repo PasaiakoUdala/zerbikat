@@ -5,6 +5,11 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand"></a>
+                <ul class="nav navbar-nav">
+                    <li class="list-inline"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">ES</a></li>
+                    <li class="list-inline"><a href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'eu'}))}}">EU</a></li>
+                </ul>
+
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">

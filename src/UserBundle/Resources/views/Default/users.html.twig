@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block menua %}
+    {{ parent() }}
+    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Erabiltzaileak</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        {#<a href="{{ path('araudia_new') }}" class="fa fa-plus">#}
+                            Erabiltzaile berria</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block body %}
+
+
+<table class="table">
+    <thead>
+    <tr>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
+        <th>Erabiltzailea (NA)</th>
+        <th>Baimenak</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ user.udala }}</td>{% endif %}
+            <td>{{ user.username|e }}</td>
+            <td>{% for rola in user.roles %}
+                    {{ rola }}<br />
+                {% endfor %}
+            </td>
+
+
+
+            <td NOWRAP class="text-right">
+                <ul class="list-inline">
+                    <li><a href="{{ path('user_show',{ 'id': user.id } ,{ 'user': user }) }}" class="fa fa-search"></a></li>
+                    <li><a href="{{ path('user_edit', { 'id': user.id }) }}" class="fa fa-pencil"></a></li>
+                    {#{% if is_granted('ROLE_ADMIN') %}#}
+                        {#<li>{{ form_start(deleteforms[user.id],{'attr': {'id': user.id}}) }}#}
+                            {#<a href="#" onclick="ezabatu({{ user.id }});" ><i class="fa fa-trash text-danger"></i></a>#}
+                            {#{{ form_end(deleteforms[user.id]) }}</li>#}
+                    {#{% endif %}#}
+                </ul>
+            </td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+
+    <div class="text-center">
+        {% if users is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'users_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>Ez da emaitzarik topatu</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id)
+        {
+            var r = confirm("Erabiltzailea EZABATU. Ziur zaude?");
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
+{% endblock %}

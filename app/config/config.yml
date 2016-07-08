@@ -84,51 +84,8 @@ easy_admin:
 #    design:
 #      brand_color: 'Red'
     entities:
-#      - Zerbikat\BackendBundle\Entity\Araudia
-#      - Zerbikat\BackendBundle\Entity\Araumota
-#      - Zerbikat\BackendBundle\Entity\Arrunta
-#      - Zerbikat\BackendBundle\Entity\Atala
-#      - Zerbikat\BackendBundle\Entity\Atalaparrafoa
-#      - Zerbikat\BackendBundle\Entity\Aurreikusi
-#      - Zerbikat\BackendBundle\Entity\Azpiatala
-#      - Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa
-#      - Zerbikat\BackendBundle\Entity\Azpisaila
-#      - Zerbikat\BackendBundle\Entity\Baldintza
-#      - Zerbikat\BackendBundle\Entity\Barrutia
-#      - Zerbikat\BackendBundle\Entity\Datuenbabesa
-#      - Zerbikat\BackendBundle\Entity\Dokumentazioa
-#      - Zerbikat\BackendBundle\Entity\Dokumentumota
-#      - Zerbikat\BackendBundle\Entity\Eraikina
-#      - Zerbikat\BackendBundle\Entity\Etiketa
-#      - Zerbikat\BackendBundle\Entity\Familia
-#      - Zerbikat\BackendBundle\Entity\Fitxa
-#      - Zerbikat\BackendBundle\Entity\FitxaAraudia
-#      - Zerbikat\BackendBundle\Entity\FitxaDokumentazioa
-#      - Zerbikat\BackendBundle\Entity\Kalea
-#      - Zerbikat\BackendBundle\Entity\Kontzeptua
-#      - Zerbikat\BackendBundle\Entity\Kontzeptumota
-#      - Zerbikat\BackendBundle\Entity\Norkebatzi
-#      - Zerbikat\BackendBundle\Entity\Ordenantza
-#      - Zerbikat\BackendBundle\Entity\Ordenantzaparrafoa
-#      - Zerbikat\BackendBundle\Entity\Saila
-#      - Zerbikat\BackendBundle\Entity\Kanalmota
-#      - Zerbikat\BackendBundle\Entity\Kanala
-#      - Zerbikat\BackendBundle\Entity\Zerbitzua
-#      - Zerbikat\BackendBundle\Entity\Udala
-#      - Zerbikat\BackendBundle\Entity\Espedientekudeaketa
-#      - Zerbikat\BackendBundle\Entity\Eremuak
-#      - Zerbikat\BackendBundle\Entity\Besteak1
-#      - Zerbikat\BackendBundle\Entity\Besteak2
-#      - Zerbikat\BackendBundle\Entity\Besteak3
       - Zerbikat\BackendBundle\Entity\User
-#      - Zerbikat\BackendBundle\Entity\Doklagun
-#      - Zerbikat\BackendBundle\Entity\Prozedura
-#      - Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
-#      - Zerbikat\BackendBundle\Entity\Norkeskatu
-#      - Zerbikat\BackendBundle\Entity\Barrutia
-#      - Zerbikat\BackendBundle\Entity\Kalea
-#      - Zerbikat\BackendBundle\Entity\Eraikina
-#      - Zerbikat\BackendBundle\Entity\Kontzeptua
+
 
 ivory_ck_editor:
     input_sync: true
@@ -136,8 +93,9 @@ ivory_ck_editor:
     configs:
         simple_config:
             toolbar:
-                - { name: "styles", items: ['Source','Bold', 'Italic','Underline', 'BulletedList','NumberedList','Outdent','Indent', 'Link', 'PasteText'] }
-
+                - { name: "styles", items: ['Bold', 'Italic','Underline', 'BulletedList','NumberedList','Outdent','Indent', 'Link', 'PasteText'] }
+            jquery: true
+            forcePasteAsPlainText: true;
 
 nelmio_api_doc: ~
 

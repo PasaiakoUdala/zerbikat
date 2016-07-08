@@ -94,7 +94,7 @@ class ApiController extends FOSRestController
         $query = $em->createQuery('
             SELECT f.id,f.espedientekodea,f.deskribapenaeu,f.deskribapenaes
             FROM BackendBundle:Fitxa f
-              INNER JOIN f.familiak ff
+              LEFT JOIN f.familiak ff
             WHERE ff.id = :id AND f.publikoa=1
         ');
 
@@ -103,21 +103,23 @@ class ApiController extends FOSRestController
 
         $fitxak = $query->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
         
-        $arr=[];
-        foreach ($fitxak as $f)  {
-            $fitxa = New Fitxa();
-            $fitxa->setId($f['id']);
-            if (is_null($f['espedientekodea']))
-                $fitxa->setEspedientekodea('');
-            else $fitxa->setEspedientekodea($f['espedientekodea']);
-            $fitxa->setDeskribapenaeu($f['deskribapenaeu']);
-            $fitxa->setDeskribapenaes($f['deskribapenaes']);
-           array_push($arr, $fitxa);
-        }
+//        $arr=[];
+//        foreach ($fitxak as $f)  {
+//            $fitxa = New Fitxa();
+//            $fitxa->setId($f['id']);
+//            if (is_null($f['espedientekodea']))
+//                $fitxa->setEspedientekodea('');
+//            else $fitxa->setEspedientekodea($f['espedientekodea']);
+//            $fitxa->setDeskribapenaeu($f['deskribapenaeu']);
+//            $fitxa->setDeskribapenaes($f['deskribapenaes']);
+//           array_push($arr, $fitxa);
+//        }
     
 //        $fitxak = $query->getResult();
         $view = View::create();
-        $view->setData($arr);
+//        $view->setData($arr);
+        $view->setData($fitxak);
+
         return $view;
 
     }// "get_fitxak"            [GET] /fitxak/{id}
@@ -182,9 +184,8 @@ class ApiController extends FOSRestController
         $query->setParameter('udala', $fitxa->getUdala());
         $labelak = $query->getSingleResult();
 
-///Udala irakurri fitxatik (EGIN BEHAR DA!!)
-        $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();
 
+        $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();
 
         $response = new Response();
 //        $response->headers->set('Content-Type', 'xml');
