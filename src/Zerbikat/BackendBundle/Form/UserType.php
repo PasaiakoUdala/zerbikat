@@ -29,7 +29,6 @@ class UserType extends AbstractType
             ->add('email')
             ->add('roles')
             ->add('password')
-
 //            ->add('roles', CollectionType::class, array(
 //                'entry_type'   => ChoiceType::class,
 ////                'multiple'=>'multiple',
@@ -41,9 +40,6 @@ class UserType extends AbstractType
 //                        'ROLE_SUPER_ADMIN'    => 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'
 //            ),
 //        )))
-
-
-
         ;
     }
     

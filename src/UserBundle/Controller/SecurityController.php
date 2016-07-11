@@ -31,16 +31,36 @@ class SecurityController extends Controller
         $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ) );
         $miurl = $query_str['host'].'/'.$query_str['path'];
         $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ), PHP_URL_QUERY );
-        if ( $query_str != null ) {
+
+        $urlOsoa= $request->getSession()->get( '_security.main.target_path' )."\n";
+
+        if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
             parse_str( $query_str, $query_params );
             /* GET kodea*/
-            if ( $query_str != null ) {
-                $valget = $query_params["kodea"];
-                if ( $valget != "" ) {
-                    if ( $this->izfelogin( $valget, $miurl ) == 1 ) {
-//                        return $this->redirectToRoute( 'admin_ordenantza_index' );
+            if ( $query_str != null )
+            {
+                $NA=$query_params["DNI"];
+                $udala=$query_params["AYUN"];
+                $hizkuntza=$query_params["IDIOMA"];
+                $fitxategia=$query_params["ficheroAuten"];
+
+                if ($this->izfelogin ($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)==1)
+                {
                         return $this->redirectToRoute( 'fitxa_index' );
-                    }
+                }else
+                {
+//                        dump("else");
+                        $lastUsername = null;
+                        $csrfToken = $this->get( 'security.csrf.token_manager' )->getToken( 'authenticate' )->getValue();
+                        $error = null;
+                        return $this->renderLogin(
+                            array (
+                                'last_username' => $lastUsername,
+                                'error'         => $error,
+                                'csrf_token'    => $csrfToken,
+                            )
+                        );
+//                        return $this->render( 'FOSUserBundle:Security:login.html.twig', $data );
                 }
             }
         }
@@ -92,19 +112,20 @@ class SecurityController extends Controller
     {
         return $this->render( 'FOSUserBundle:Security:login.html.twig', $data );
     }
-    private function izfelogin ( $valget )
+
+
+    private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)
     {
         /* fitxategiko kodea */
-        $client = new GuzzleHttp\Client();
-        $res = $client->request( 'GET', 'http://obelix/izfe.txt' );
-        if ( $res->getStatusCode() == 200 ) {
-            $valftp = (string)$res->getBody();
-            $valftp = str_replace( PHP_EOL, '', $valftp );
-        }
-        /* Konparatu ta bestela errorea */
-        if ( $valftp == $valget ) {
+        $fitxategia = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r") or die("Unable to open file!");
+        $lerro=fgets($fitxategia);
+
+        /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
+        if ($lerro==$urlOsoa)
+        {
             $userManager = $this->container->get( 'fos_user.user_manager' );
-            $user = $userManager->findUserByUsername( '00000000' );
+            $user = $userManager->findUserByUsername( $NA );
+
             $token = new UsernamePasswordToken( $user, null, 'main', $user->getRoles() );
             $this->get( 'security.token_storage' )->setToken( $token );
             $this->get( 'session' )->set( '_security_main', serialize( $token ) );
@@ -112,8 +133,11 @@ class SecurityController extends Controller
         }
         return 0;
     }
+    
 
+    
 
+    
     /**
      * Lists all USERS .
      *
