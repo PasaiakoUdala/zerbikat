@@ -599,7 +599,7 @@ class Eremuak
 
     /**
      * @var udala
-     * @ORM\OneToOne(targetEntity="Udala", inversedBy="eremuak")
+     * @ORM\OneToOne(targetEntity="Udala", inversedBy="eremuak",fetch="EAGER")
      * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */

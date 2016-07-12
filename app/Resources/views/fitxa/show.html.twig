@@ -45,7 +45,7 @@
             <div class="page-header">
                 <h3>{{ labelak.helburualabeleu }}</h3>
             </div>
-            <div>
+            <div style="text-align: justify">
                 {{fitxa.helburuaeu|raw }}
             </div>
         </div>
@@ -214,11 +214,23 @@
                             <b>{{ k.motaeu }}:</b>
                             {% set aurkitua=1 %}
                         {% endif %}
-                        {% if k.esteka %}
-                            <li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>
+                        {% if kanal.telematikoa %}
+                            {% if fitxa.zerbitzua %}
+                                {% if ((fitxa.zerbitzua.kodea==00) or (fitxa.zerbitzua.kodea==02) or (fitxa.zerbitzua.kodea==03) or (fitxa.zerbitzua.kodea==04) or (fitxa.zerbitzua.kodea==07))%}
+                                     <li><a href="https://uzt.gipuzkoa.eus/home.do?De=EU{{ fitxa.udala.kodea }}{{ fitxa.zerbitzua.kodea }}" >
+                                             {{ kanal.izenaeu }}
+                                        </a></li>
+                                {% endif %}
+                            {% endif %}
                         {% else %}
-                            <li>{{ kanal.izenaeu }}</li>
+                            {% if k.esteka %}
+                                <li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>
+                            {% else %}
+                                <li>{{ kanal.izenaeu }}</li>
+                            {% endif %}
                         {% endif %}
+
+
                     {% endfor %}
                     </ul>
                 {% endfor %}
@@ -241,10 +253,20 @@
                                 <b>{{ k.motaes }}:</b>
                                 {% set aurkitua=1 %}
                             {% endif %}
-                            {% if k.esteka %}
-                                <li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>
+                            {% if kanal.telematikoa %}
+                                {% if fitxa.zerbitzua %}
+                                    {% if ((fitxa.zerbitzua.kodea==00) or (fitxa.zerbitzua.kodea==02) or (fitxa.zerbitzua.kodea==03) or (fitxa.zerbitzua.kodea==04) or (fitxa.zerbitzua.kodea==07))%}
+                                        <li><a href="https://uzt.gipuzkoa.eus/home.do?De=CA{{ fitxa.udala.kodea }}{{ fitxa.zerbitzua.kodea }}" >
+                                            {{ kanal.izenaes }}
+                                        </a></li>
+                                    {% endif %}
+                                {% endif %}
                             {% else %}
-                                <li>{{ kanal.izenaes }}</li>
+                                {% if k.esteka %}
+                                    <li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>
+                                {% else %}
+                                    <li>{{ kanal.izenaes }}</li>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </ul>

@@ -48,11 +48,11 @@ class Zerbitzua
      *      ERLAZIOAK
      */
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Espedientekudeaketa")
-     * @ORM\JoinColumn(name="espedientekudeaketa_id", referencedColumnName="id",onDelete="CASCADE")
-     */
-    private $espedientekudeaketa;
+//    /**
+//     * @ORM\ManyToOne(targetEntity="Espedientekudeaketa")
+//     * @ORM\JoinColumn(name="espedientekudeaketa_id", referencedColumnName="id",onDelete="CASCADE")
+//     */
+//    private $espedientekudeaketa;
 
 
     /**

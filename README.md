@@ -30,7 +30,7 @@ Zerbitzuen katalogoa kudeatzeko aplikazioa.
 #Instalaziorako jarraibideak
 
 #####MySQL
-``doc/zerbikat.sql`` fitxategia erabiliz phpmyadmin bidez datu basea sortu.
+``doc/Zerbikat.sql`` fitxategia erabiliz phpmyadmin bidez datu basea sortu.
 
 #####Composer
 Jarraitu jarraibideak [hemen](https://getcomposer.org/download/)

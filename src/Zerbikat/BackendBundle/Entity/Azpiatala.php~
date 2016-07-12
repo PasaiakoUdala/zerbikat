@@ -8,7 +8,7 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 /**
  * Azpiatala
  *
- * @ORM\Table(name="azpiatala", indexes={@ORM\Index(name="atala_id_idx", columns={"atala_id"})})
+ * @ORM\Table(name="azpiatala")
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
  */
@@ -97,7 +97,7 @@ class Azpiatala
     public function __toString()
     {
         return
-            $this->getAtala()->getOrdenantza()->getKodea().".".$this->getAtala()->getKodea().".".$this->getKodea()."-".$this->getIzenburuaeu();
+            $this->getKodea()."-".$this->getIzenburuaeu();
     }
 
     /**
@@ -120,12 +120,12 @@ class Azpiatala
         $this->kontzeptuak->removeElement($kontzeptua);
     }
 
-    public function addParrafoa(Parrafoa $parrafoa)
+    public function addParrafoa(Azpiatalaparrafoa $parrafoa)
     {
         $this->parrafoak->add($parrafoa);
     }
 
-    public function removeParrafoa(Parrafoa $parrafoa)
+    public function removeParrafoa(Azpiatalaparrafoa $parrafoa)
     {
         $this->parrafoak->removeElement($parrafoa);
     }
@@ -138,4 +138,212 @@ class Azpiatala
     
     
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set kodea
+     *
+     * @param string $kodea
+     *
+     * @return Azpiatala
+     */
+    public function setKodea($kodea)
+    {
+        $this->kodea = $kodea;
+
+        return $this;
+    }
+
+    /**
+     * Get kodea
+     *
+     * @return string
+     */
+    public function getKodea()
+    {
+        return $this->kodea;
+    }
+
+    /**
+     * Set izenburuaeu
+     *
+     * @param string $izenburuaeu
+     *
+     * @return Azpiatala
+     */
+    public function setIzenburuaeu($izenburuaeu)
+    {
+        $this->izenburuaeu = $izenburuaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get izenburuaeu
+     *
+     * @return string
+     */
+    public function getIzenburuaeu()
+    {
+        return $this->izenburuaeu;
+    }
+
+    /**
+     * Set izenburuaes
+     *
+     * @param string $izenburuaes
+     *
+     * @return Azpiatala
+     */
+    public function setIzenburuaes($izenburuaes)
+    {
+        $this->izenburuaes = $izenburuaes;
+
+        return $this;
+    }
+
+    /**
+     * Get izenburuaes
+     *
+     * @return string
+     */
+    public function getIzenburuaes()
+    {
+        return $this->izenburuaes;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return Azpiatala
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
+    }
+
+    /**
+     * Add kontzeptuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak
+     *
+     * @return Azpiatala
+     */
+    public function addKontzeptuak(\Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak)
+    {
+        $this->kontzeptuak[] = $kontzeptuak;
+
+        return $this;
+    }
+
+    /**
+     * Remove kontzeptuak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak
+     */
+    public function removeKontzeptuak(\Zerbikat\BackendBundle\Entity\Kontzeptua $kontzeptuak)
+    {
+        $this->kontzeptuak->removeElement($kontzeptuak);
+    }
+
+    /**
+     * Get kontzeptuak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getKontzeptuak()
+    {
+        return $this->kontzeptuak;
+    }
+
+    /**
+     * Add parrafoak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak
+     *
+     * @return Azpiatala
+     */
+    public function addParrafoak(\Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak)
+    {
+        $this->parrafoak[] = $parrafoak;
+
+        return $this;
+    }
+
+    /**
+     * Remove parrafoak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak
+     */
+    public function removeParrafoak(\Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa $parrafoak)
+    {
+        $this->parrafoak->removeElement($parrafoak);
+    }
+
+    /**
+     * Get parrafoak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParrafoak()
+    {
+        return $this->parrafoak;
+    }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     *
+     * @return Azpiatala
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
+    }
 }
