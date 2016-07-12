@@ -178,16 +178,32 @@
                             {% set aurkitua=1 %}
                         {% endif %}
                         {% if app.request.locale == 'eu'%}
-                            {% if k.esteka %}
-                                <li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>
+                            {% if kanal.telematikoa %}
+                                {% if fitxa.zerbitzua %}
+                                    <li><a href="{{ fitxa.zerbitzua.erroaeu}}{{fitxa.udala.kodea}}{{ fitxa.parametroa }}" >
+                                                {{ kanal.izenaeu }}
+                                            </a></li>
+                                {% endif %}
                             {% else %}
-                                <li>{{ kanal.izenaeu }}</li>
+                                {% if k.esteka %}
+                                    <li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>
+                                {% else %}
+                                    <li>{{ kanal.izenaeu }}</li>
+                                {% endif %}
                             {% endif %}
                         {% else %}
-                            {% if k.esteka %}
-                                <li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>
+                            {% if kanal.telematikoa %}
+                                {% if fitxa.zerbitzua %}
+                                    <li><a href="{{ fitxa.zerbitzua.erroaes}}{{fitxa.udala.kodea}}{{ fitxa.parametroa }}" >
+                                            {{ kanal.izenaes }}
+                                        </a></li>
+                                {% endif %}
                             {% else %}
-                                <li>{{ kanal.izenaes }}</li>
+                                {% if k.esteka %}
+                                    <li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>
+                                {% else %}
+                                    <li>{{ kanal.izenaes }}</li>
+                                {% endif %}
                             {% endif %}
                         {% endif %}
                     {% endfor %}
