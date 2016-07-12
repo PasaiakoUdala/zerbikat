@@ -45,6 +45,22 @@ class Zerbitzua
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="erroaeu", type="string", length=255, nullable=true)
+     */
+    private $erroaeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="erroaes", type="string", length=255, nullable=true)
+     */
+    private $erroaes;
+
+
+
+    /**
      *      ERLAZIOAK
      */
 
@@ -191,5 +207,53 @@ class Zerbitzua
     public function getEspedientekudeaketa()
     {
         return $this->espedientekudeaketa;
+    }
+
+    /**
+     * Set erroaeu
+     *
+     * @param string $erroaeu
+     *
+     * @return Zerbitzua
+     */
+    public function setErroaeu($erroaeu)
+    {
+        $this->erroaeu = $erroaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get erroaeu
+     *
+     * @return string
+     */
+    public function getErroaeu()
+    {
+        return $this->erroaeu;
+    }
+
+    /**
+     * Set erroaes
+     *
+     * @param string $erroaes
+     *
+     * @return Zerbitzua
+     */
+    public function setErroaes($erroaes)
+    {
+        $this->erroaes = $erroaes;
+
+        return $this;
+    }
+
+    /**
+     * Get erroaes
+     *
+     * @return string
+     */
+    public function getErroaes()
+    {
+        return $this->erroaes;
     }
 }

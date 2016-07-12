@@ -18,7 +18,9 @@ class ZerbitzuaType extends AbstractType
             ->add('kodea')
             ->add('zerbitzuaeu')
             ->add('zerbitzuaes')
-            ->add('espedientekudeaketa')
+            ->add('erroaeu')
+            ->add('erroaes')
+//            ->add('espedientekudeaketa')
         ;
     }
     

@@ -45,6 +45,22 @@ class Zerbitzua
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="erroaeu", type="string", length=255, nullable=true)
+     */
+    private $erroaeu;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="erroaes", type="string", length=255, nullable=true)
+     */
+    private $erroaes;
+
+
+
+    /**
      *      ERLAZIOAK
      */
 

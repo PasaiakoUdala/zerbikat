@@ -216,11 +216,9 @@
                         {% endif %}
                         {% if kanal.telematikoa %}
                             {% if fitxa.zerbitzua %}
-                                {% if ((fitxa.zerbitzua.kodea==00) or (fitxa.zerbitzua.kodea==02) or (fitxa.zerbitzua.kodea==03) or (fitxa.zerbitzua.kodea==04) or (fitxa.zerbitzua.kodea==07))%}
-                                     <li><a href="https://uzt.gipuzkoa.eus/home.do?De=EU{{ fitxa.udala.kodea }}{{ fitxa.zerbitzua.kodea }}" >
-                                             {{ kanal.izenaeu }}
-                                        </a></li>
-                                {% endif %}
+                                <li><a href="{{ fitxa.zerbitzua.erroaeu}}{{fitxa.udala.kodea}}{{ fitxa.parametroa }}" >
+                                        {{ kanal.izenaeu }}
+                                    </a></li>
                             {% endif %}
                         {% else %}
                             {% if k.esteka %}
@@ -255,11 +253,9 @@
                             {% endif %}
                             {% if kanal.telematikoa %}
                                 {% if fitxa.zerbitzua %}
-                                    {% if ((fitxa.zerbitzua.kodea==00) or (fitxa.zerbitzua.kodea==02) or (fitxa.zerbitzua.kodea==03) or (fitxa.zerbitzua.kodea==04) or (fitxa.zerbitzua.kodea==07))%}
-                                        <li><a href="https://uzt.gipuzkoa.eus/home.do?De=CA{{ fitxa.udala.kodea }}{{ fitxa.zerbitzua.kodea }}" >
+                                        <li><a href="{{ fitxa.zerbitzua.erroaes}}{{fitxa.udala.kodea}}{{ fitxa.parametroa }}" >
                                             {{ kanal.izenaes }}
                                         </a></li>
-                                    {% endif %}
                                 {% endif %}
                             {% else %}
                                 {% if k.esteka %}
