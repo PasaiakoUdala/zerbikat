@@ -117,21 +117,27 @@ class SecurityController extends Controller
     private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)
     {
         /* fitxategiko kodea */
-        $fitxategia = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r") or die("Unable to open file!");
-        $lerro=fgets($fitxategia);
-
-        /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
-        if ($lerro==$urlOsoa)
+//        $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r") or die("Unable to open file!");
+        if (file_exists ($this->container->getParameter('izfe_login_path').'/'.$fitxategia))
         {
-            $userManager = $this->container->get( 'fos_user.user_manager' );
-            $user = $userManager->findUserByUsername( $NA );
+            $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r");
+            $lerro = fgets($fitx);
 
-            $token = new UsernamePasswordToken( $user, null, 'main', $user->getRoles() );
-            $this->get( 'security.token_storage' )->setToken( $token );
-            $this->get( 'session' )->set( '_security_main', serialize( $token ) );
-            return 1;
-        }
-        return 0;
+            /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
+            if ($lerro == $urlOsoa)
+            {
+                $userManager = $this->container->get('fos_user.user_manager');
+                $user = $userManager->findUserByUsername($NA);
+
+                $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+                $this->get('security.token_storage')->setToken($token);
+                $this->get('session')->set('_security_main', serialize($token));
+
+                unlink($this->container->getParameter('izfe_login_path') . '/' . $fitxategia);
+                return 1;
+            }
+            return 0;
+        } return 0;
     }
     
 

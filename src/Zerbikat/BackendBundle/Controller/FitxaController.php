@@ -245,6 +245,7 @@ class FitxaController extends Controller
             $api=$this->container->getParameter('zzoo_aplikazioaren_API_url');
 //            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
             $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+
             $fitxaKostua = (string)$proba->getBody();
             $array = json_decode($fitxaKostua, true);
             $kostuZerrenda[] = $array;
