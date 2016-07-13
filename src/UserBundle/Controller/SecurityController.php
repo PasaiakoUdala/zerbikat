@@ -118,6 +118,7 @@ class SecurityController extends Controller
     {
         /* fitxategiko kodea */
 //        $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r") or die("Unable to open file!");
+        /* fitxategia ez bada existitzen login orrira berbideratu */
         if (file_exists ($this->container->getParameter('izfe_login_path').'/'.$fitxategia))
         {
             $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r");
@@ -133,6 +134,7 @@ class SecurityController extends Controller
                 $this->get('security.token_storage')->setToken($token);
                 $this->get('session')->set('_security_main', serialize($token));
 
+                /* login-a egin ondoren fitxategia ezabatu */
                 unlink($this->container->getParameter('izfe_login_path') . '/' . $fitxategia);
                 return 1;
             }
