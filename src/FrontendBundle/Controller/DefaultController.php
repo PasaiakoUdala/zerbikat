@@ -100,7 +100,10 @@ class DefaultController extends Controller
         foreach ($fitxa->getKostuak() as $kostu)
         {
             $client = new GuzzleHttp\Client();
-            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $api=$this->container->getParameter('zzoo_aplikazioaren_API_url');
+//            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+
             $fitxaKostua = (string)$proba->getBody();
             $array = json_decode($fitxaKostua, true);
             $kostuZerrenda[] = $array;
@@ -150,7 +153,10 @@ class DefaultController extends Controller
         foreach ($fitxa->getKostuak() as $kostu)
         {
             $client = new GuzzleHttp\Client();
-            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $api=$this->container->getParameter('zzoo_aplikazioaren_API_url');
+//            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+
             $fitxaKostua = (string)$proba->getBody();
             $array = json_decode($fitxaKostua, true);
             $kostuZerrenda[] = $array;
@@ -215,7 +221,11 @@ class DefaultController extends Controller
         foreach ($fitxa->getKostuak() as $kostu)
         {
             $client = new GuzzleHttp\Client();
-            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+
+            $api=$this->container->getParameter('zzoo_aplikazioaren_API_url');
+//            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
+            $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+
             $fitxaKostua = (string)$proba->getBody();
             $array = json_decode($fitxaKostua, true);
             $kostuZerrenda[] = $array;
