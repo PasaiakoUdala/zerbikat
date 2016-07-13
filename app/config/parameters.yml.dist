@@ -20,3 +20,6 @@ parameters:
 
     # IZFE-ko login url-a, izfetik kanpo bazaude hutsik utzi
     izfe_url_login:
+
+    #
+    zzoo_aplikazioaren_API_url: "zzoo aplikazioaren api-rako url-a"

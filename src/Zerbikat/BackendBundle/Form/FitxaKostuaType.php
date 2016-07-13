@@ -22,8 +22,14 @@ class FitxaKostuaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        global $kernel;
+//        dump($kernel->getContainer()->getParameter('zzoo_aplikazioaren_API_url'));
+        $api=$kernel->getContainer()->getParameter('zzoo_aplikazioaren_API_url');
+
+
         $client = new GuzzleHttp\Client();
-        $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalak.json' );
+//        $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalak.json' );
+        $proba = $client->request( 'GET', $api.'/azpiatalak.json' );
         $valftp = (string)$proba->getBody();
         $array = json_decode($valftp, true);
 
@@ -37,13 +43,6 @@ class FitxaKostuaType extends AbstractType
             ->add('udala')
             ->add('fitxa')
             ->add('kostua', ChoiceType::class, array(
-//                'choice_list' => new \Zerbikat\BackendBundle\Utils\ApiIrakurgailua(),
-//                'choices' => array(
-//                    'taula1' => '1',
-//                    'taula2' => '2',
-//                    'taula3'   => '3',
-//                    'taula4' => '4'
-//                )
                 'choices' => $resp
                 )
 
