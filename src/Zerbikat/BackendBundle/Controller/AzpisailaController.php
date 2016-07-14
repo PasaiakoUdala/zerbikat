@@ -32,7 +32,11 @@ class AzpisailaController extends Controller
         if ($auth_checker->isGranted('ROLE_KUDEAKETA'))
         {
             $em = $this->getDoctrine()->getManager();
-            $azpisailas = $em->getRepository('BackendBundle:Azpisaila')->findAll();
+//            $azpisailas = $em->getRepository('BackendBundle:Azpisaila')->findAll();
+
+            $azpisailas = $em->getRepository('BackendBundle:Azpisaila')
+                ->findBy( array(), array('kodea'=>'ASC') );
+
 
             $adapter = new ArrayAdapter($azpisailas);
             $pagerfanta = new Pagerfanta($adapter);

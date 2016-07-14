@@ -31,7 +31,9 @@ class Besteak3Controller extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
-            $besteak3s = $em->getRepository('BackendBundle:Besteak3')->findAll();
+//            $besteak3s = $em->getRepository('BackendBundle:Besteak3')->findAll();
+            $besteak3s = $em->getRepository('BackendBundle:Besteak3')
+                ->findBy( array(), array('kodea'=>'ASC') );
 
             $adapter = new ArrayAdapter($besteak3s);
             $pagerfanta = new Pagerfanta($adapter);

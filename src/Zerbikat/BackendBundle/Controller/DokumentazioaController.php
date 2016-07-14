@@ -31,7 +31,11 @@ class DokumentazioaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
-            $dokumentazioas = $em->getRepository('BackendBundle:Dokumentazioa')->findAll();
+//            $dokumentazioas = $em->getRepository('BackendBundle:Dokumentazioa')->findAll();
+            $dokumentazioas = $em->getRepository('BackendBundle:Dokumentazioa')
+                ->findBy( array(), array('kodea'=>'ASC') );
+
+
 
             $adapter = new ArrayAdapter($dokumentazioas);
             $pagerfanta = new Pagerfanta($adapter);

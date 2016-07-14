@@ -32,7 +32,11 @@ class AraudiaController extends Controller
         if ($auth_checker->isGranted('ROLE_KUDEAKETA'))
         {
             $em = $this->getDoctrine()->getManager();
-            $araudias = $em->getRepository('BackendBundle:Araudia')->findAll();
+//            $araudias = $em->getRepository('BackendBundle:Araudia')->findAll();
+            $araudias = $em->getRepository('BackendBundle:Araudia')
+                ->findBy( array(), array('kodea'=>'ASC') );
+
+
 
             $adapter = new ArrayAdapter($araudias);
             $pagerfanta = new Pagerfanta($adapter);

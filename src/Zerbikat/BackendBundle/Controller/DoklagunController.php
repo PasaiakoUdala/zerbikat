@@ -32,7 +32,9 @@ class DoklagunController extends Controller
         if ($auth_checker->isGranted('ROLE_KUDEAKETA'))
         {
             $em = $this->getDoctrine()->getManager();
-            $doklaguns = $em->getRepository('BackendBundle:Doklagun')->findAll();
+//            $doklaguns = $em->getRepository('BackendBundle:Doklagun')->findAll();
+            $doklaguns = $em->getRepository('BackendBundle:Doklagun')
+                ->findBy( array(), array('kodea'=>'ASC') );
 
             $adapter = new ArrayAdapter($doklaguns);
             $pagerfanta = new Pagerfanta($adapter);

@@ -31,7 +31,9 @@ class DokumentumotaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
-            $dokumentumotas = $em->getRepository('BackendBundle:Dokumentumota')->findAll();
+//            $dokumentumotas = $em->getRepository('BackendBundle:Dokumentumota')->findAll();
+            $dokumentumotas = $em->getRepository('BackendBundle:Dokumentumota')
+                ->findBy( array(), array('kodea'=>'ASC') );
 
             $adapter = new ArrayAdapter($dokumentumotas);
             $pagerfanta = new Pagerfanta($adapter);            

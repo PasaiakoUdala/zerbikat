@@ -31,7 +31,9 @@ class KanalaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
-            $kanalas = $em->getRepository('BackendBundle:Kanala')->findAll();
+//            $kanalas = $em->getRepository('BackendBundle:Kanala')->findAll();
+            $kanalas = $em->getRepository('BackendBundle:Kanala')
+                ->findBy( array(), array('kanalmota'=>'ASC') );
 
             $adapter = new ArrayAdapter($kanalas);
             $pagerfanta = new Pagerfanta($adapter);

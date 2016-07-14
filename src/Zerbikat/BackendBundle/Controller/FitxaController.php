@@ -47,7 +47,22 @@ class FitxaController extends Controller
         if ($auth_checker->isGranted('ROLE_USER'))
         {
             $em = $this->getDoctrine()->getManager();
-            $fitxas = $em->getRepository('BackendBundle:Fitxa')->findAll();
+//            $fitxas = $em->getRepository('BackendBundle:Fitxa')->findAll();
+//            $fitxas = $em->getRepository('BackendBundle:Fitxa')
+//                ->findBy( array(), array('azpisaila'=>'ASC') );
+
+
+            $query = $em->createQuery('SELECT f 
+              FROM BackendBundle:Fitxa f
+              LEFT JOIN f.azpisaila a
+              ORDER BY a.saila ASC, f.azpisaila ASC
+        ');
+            $fitxas = $query->getResult();
+
+
+
+            
+            
 
             $adapter = new ArrayAdapter($fitxas);
             $pagerfanta = new Pagerfanta($adapter);

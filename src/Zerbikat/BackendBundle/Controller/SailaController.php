@@ -31,7 +31,9 @@ class SailaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
-            $sailas = $em->getRepository('BackendBundle:Saila')->findAll();
+//            $sailas = $em->getRepository('BackendBundle:Saila')->findAll();
+            $sailas = $em->getRepository('BackendBundle:Saila')
+                ->findBy( array(), array('kodea'=>'ASC') );
 
             $adapter = new ArrayAdapter($sailas);
             $pagerfanta = new Pagerfanta($adapter);

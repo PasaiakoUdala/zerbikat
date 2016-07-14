@@ -33,6 +33,9 @@ class AraumotaController extends Controller
         {
             $em = $this->getDoctrine()->getManager();
             $araumotas = $em->getRepository('BackendBundle:Araumota')->findAll();
+            $araumotas = $em->getRepository('BackendBundle:Araumota')
+                ->findBy( array(), array('kodea'=>'ASC') );
+
 
             $adapter = new ArrayAdapter($araumotas);
             $pagerfanta = new Pagerfanta($adapter);

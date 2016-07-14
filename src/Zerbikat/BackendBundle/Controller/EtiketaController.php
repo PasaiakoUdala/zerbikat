@@ -31,7 +31,9 @@ class EtiketaController extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
-            $etiketas = $em->getRepository('BackendBundle:Etiketa')->findAll();
+//            $etiketas = $em->getRepository('BackendBundle:Etiketa')->findAll();
+            $etiketas = $em->getRepository('BackendBundle:Etiketa')
+                ->findBy( array(), array('etiketaeu'=>'ASC') );
 
             $adapter = new ArrayAdapter($etiketas);
             $pagerfanta = new Pagerfanta($adapter);
