@@ -20,11 +20,22 @@
     {{ form_start(edit_form) }}
     <div class="row">
         <div class="col-sm-2">
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
             <div class="form-group">
                 <label class="control-label">Kodea:</label>
                 {{ form_errors(edit_form.kodea) }}
-                {{ form_widget(edit_form.kodea, {'attr': {'class': 'c-checkbox'}}) }}
+                {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
             </div>
+
+            {% else %}
+            <div class="form-group">
+                <label class="control-label">Kodea:</label>
+                {{ form_errors(edit_form.kodea) }}
+                {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control','readonly': 'true'}}) }}
+            </div>
+            {% endif %}
+
+
         </div>
         <div class="col-sm-2">
             <div class="form-group">
@@ -109,5 +120,19 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="form-group">
+                {#<label class="control-label">Logoa:</label>#}
+                {{ form_errors(edit_form.zergaor) }}
+                {{ form_widget(edit_form.zergaor, {'attr': {'class': 'c-checkbox'}}) }}
+                Zerga ordenantzen aplikazioa erabiltzen du?
+            </div>
+        </div>
+    </div>
+
+
+    {#<div class="hidden">#}
     {{ form_end(edit_form) }}
+    {#</div>#}
 {% endblock %}
