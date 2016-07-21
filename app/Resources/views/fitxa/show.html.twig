@@ -227,14 +227,16 @@
                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                 {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
                                 {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br />{% endif %}
-                                {% if kanal.telefonoa %}{{ kanal.telefonoa }}{% endif %}
+                                {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br />{% endif %}
+                                {% if kanal.fax %}Faxa: {{ kanal.fax }}<br />{% endif %}
                                 </li>
                             {% else %}
                                 <li>{% if kanal.izenaeu %}{{ kanal.izenaeu }}<br />{% endif %}
                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                 {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
                                 {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br />{% endif %}
-                                {% if kanal.telefonoa %}{{ kanal.telefonoa }}{% endif %}
+                                {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br />{% endif %}
+                                {% if kanal.fax %}Faxa: {{ kanal.fax }}<br />{% endif %}
                                 </li>
                             {% endif %}
                         {% endif %}
@@ -275,13 +277,16 @@
                                     {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                     {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
                                     {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br />{% endif %}
-                                    {% if kanal.telefonoa %}{{ kanal.telefonoa }}{% endif %}</li>
+                                    {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br />>{% endif %}
+                                    {% if kanal.fax %}Fax: {{ kanal.fax }}<br />{% endif %}
+                                    </li>
                                 {% else %}
                                     <li>{% if kanal.izenaes %}{{ kanal.izenaes }}<br />{% endif %}
                                     {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                     {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
                                     {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br />{% endif %}
-                                    {% if kanal.telefonoa %}{{ kanal.telefonoa }}{% endif %}
+                                    {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br />>{% endif %}
+                                    {% if kanal.fax %}Fax: {{ kanal.fax }}<br />{% endif %}
                                     </li>
                                 {% endif %}
                             {% endif %}
