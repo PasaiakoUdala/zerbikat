@@ -89,18 +89,18 @@
                             {% if app.request.locale == 'eu'%}
                                 {% if dokumentua.estekaeu %}
                                     <a href="{{ dokumentua.estekaeu }}">
-                                        {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaeu }}
+                                        {{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
                                     </a>
                                 {% else %}
-                                    {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaeu }}
+                                    {{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
                                 {% endif %}
                             {% else %}
                                 {% if dokumentua.estekaes %}
                                     <a href="{{ dokumentua.estekaes }}">
-                                        {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaes }}
+                                        {{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
                                     </a>
                                 {% else %}
-                                    {{ dokumentua.kodea }}-{{ dokumentua.deskribapenaes }}
+                                    {{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
                                 {% endif %}
                             {% endif %}
                         </li>
@@ -137,18 +137,18 @@
                         {% if app.request.locale == 'eu'%}
                                 {% if doklagun.estekaeu %}
                                     <a href="{{ doklagun.estekaeu }}">
-                                        {{ doklagun.kodea }}-{{ doklagun.deskribapenaeu }}
+                                        {{ doklagun.kodea }} {{ doklagun.deskribapenaeu }}
                                     </a>
                                 {% else %}
-                                    {{ doklagun.kodea }}-{{ doklagun.deskribapenaeu }}
+                                    {{ doklagun.kodea }} {{ doklagun.deskribapenaeu }}
                                 {% endif %}
                         {% else %}
                             {% if doklagun.estekaes %}
                                 <a href="{{ doklagun.estekaes }}">
-                                    {{ doklagun.kodea }}-{{ doklagun.deskribapenaes }}
+                                    {{ doklagun.kodea }} {{ doklagun.deskribapenaes }}
                                 </a>
                             {% else %}
-                                {{ doklagun.kodea }}-{{ doklagun.deskribapenaes }}
+                                {{ doklagun.kodea }} {{ doklagun.deskribapenaes }}
                             {% endif %}
                         {% endif %}
                         </li>
@@ -187,7 +187,14 @@
                             {% else %}
                                 {% if k.esteka %}
                                     {#<li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>#}
-                                    <li>{% if kanal.izenaeu %}<a href="{{ kanal.estekaeu }}" target="_blank">{{ kanal.izenaeu }}</a><br />{% endif %}
+                                    <li>{% if kanal.izenaeu %}
+                                            {#<a href="{{ kanal.estekaeu }}" target="_blank">{{ kanal.izenaeu }}</a><br />#}
+                                            {% if '@' in kanal.estekaeu %}
+                                                <a href='mailto:{{ kanal.estekaeu }}'>{{ kanal.izenaeu }}</a><br />
+                                            {% else %}
+                                                <a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a><br />
+                                            {% endif %}
+                                        {% endif %}
                                         {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                         {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
                                         {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br />{% endif %}
@@ -215,7 +222,14 @@
                             {% else %}
                                 {% if k.esteka %}
                                     {#<li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>#}
-                                    <li>{% if kanal.izenaes %}<a href="{{ kanal.estekaes }}" target="_blank">{{ kanal.izenaes }}</a><br /> {% endif %}
+                                    <li>{% if kanal.izenaes %}
+                                            {#<a href="{{ kanal.estekaes }}" target="_blank">{{ kanal.izenaes }}</a><br /> #}
+                                            {% if '@' in kanal.estekaes %}
+                                                <a href='mailto:{{ kanal.estekaes }}'>{{ kanal.izenaes }}</a><br />
+                                            {% else %}
+                                                <a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a><br />
+                                            {% endif %}
+                                        {% endif %}
                                         {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                         {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
                                         {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br />{% endif %}
