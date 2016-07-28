@@ -1,5 +1,6 @@
 backend_homepage:
     path:     /
+#    defaults: { _controller: BackendBundle:Fitxa:index, page: 1 }
     defaults: { _controller: BackendBundle:Default:index }
 
 backend_errorea:

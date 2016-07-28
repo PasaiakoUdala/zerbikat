@@ -25,7 +25,12 @@ class DefaultController extends Controller
 //            'eremu' => $eremu,
 //            'label' => $label
 //        ));
-        return $this->render('BackendBundle:Default:index.html.twig');
+//        return $this->render('BackendBundle:Default:index.html.twig');
+//        return $this->render('fitxa/index.html.twig');
+
+          return $this->render('BackendBundle:Default:index.html.twig');
+//        return $this->redirectToRoute('backend_homepage');
+//        return $this->redirectToRoute('backend_');
 
     }
 
