@@ -32,7 +32,7 @@ class SecurityController extends Controller
         $miurl = $query_str['host'].'/'.$query_str['path'];
         $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ), PHP_URL_QUERY );
 
-        $urlOsoa= $request->getSession()->get( '_security.main.target_path' )."\n";
+        $urlOsoa= $request->getSession()->get( '_security.main.target_path' );
 
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
             parse_str( $query_str, $query_params );
@@ -43,6 +43,7 @@ class SecurityController extends Controller
                 $udala=$query_params["AYUN"];
                 $hizkuntza=$query_params["IDIOMA"];
                 $fitxategia=$query_params["ficheroAuten"];
+
 
                 if ($this->izfelogin ($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)==1)
                 {
@@ -123,6 +124,9 @@ class SecurityController extends Controller
         {
             $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r");
             $lerro = fgets($fitx);
+
+//            dump ("URL-a: ".$urlOsoa);
+//            dump ("Fitxategia: ".$lerro);
 
             /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
             if ($lerro == $urlOsoa)
