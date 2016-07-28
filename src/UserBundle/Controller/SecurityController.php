@@ -135,7 +135,7 @@ class SecurityController extends Controller
                 $this->get('session')->set('_security_main', serialize($token));
 
                 /* login-a egin ondoren fitxategia ezabatu */
-                unlink($this->container->getParameter('izfe_login_path') . '/' . $fitxategia);
+//                unlink($this->container->getParameter('izfe_login_path') . '/' . $fitxategia);
                 return 1;
             }
             return 0;

@@ -59,11 +59,6 @@ class FitxaController extends Controller
         ');
             $fitxas = $query->getResult();
 
-
-
-            
-            
-
             $adapter = new ArrayAdapter($fitxas);
             $pagerfanta = new Pagerfanta($adapter);
 
