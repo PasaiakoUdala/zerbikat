@@ -3,6 +3,8 @@
 namespace Zerbikat\BackendBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
@@ -27,19 +29,21 @@ class UserType extends AbstractType
             ->add('azpisaila')
             ->add('enabled')
             ->add('email')
-            ->add('roles')
-            ->add('password')
-//            ->add('roles', CollectionType::class, array(
-//                'entry_type'   => ChoiceType::class,
-////                'multiple'=>'multiple',
-//                'entry_options'  => array(
-//                    'choices'  => array(
-//                        'ROLE_USER' => 'a:0:{}',
-//                        'ROLE_KUDEAKETA' => 'a:1:{i:0;s:14:"ROLE_KUDEAKETA";}',
-//                        'ROLE_ADMIN'     => 'a:1:{i:0;s:10:"ROLE_ADMIN";}',
-//                        'ROLE_SUPER_ADMIN'    => 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}'
-//            ),
-//        )))
+//            ->add('roles')
+//            ->add('password')
+            ->add('roles',  ChoiceType::class, array(
+                'multiple' => true,
+                'choices'  => array(
+                    'Admin' => 'ROLE_ADMIN',
+                    'Kudeaketa' => 'ROLE_KUDEAKETA',
+                    'Erabiltzailea' => 'ROLE_USER'
+                ),
+            ))
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options'  => array('label' => 'Pasahitza'),
+                'second_options' => array('label' => 'Pasahitza Errepikatu'),
+            ))
         ;
     }
     

@@ -209,11 +209,15 @@ class SecurityController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             if ($form->isSubmitted() && $form->isValid()) {
-//                dump($user);
+                if (( $user->getPlainPassword() != "" ) || ($user->getPlainPassword()!=null )) {
+                    $password = $this->get('security.password_encoder')
+                        ->encodePassword($user, $user->getPlainPassword());
+                    $user->setPassword($password);
+                }
                 $em->persist($user);
                 $em->flush();
 
-//                return $this->redirectToRoute('fitxa_show', array('id' => $fitxa->getId()));
+
                 return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
             } else
             {

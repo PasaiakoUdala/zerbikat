@@ -48,20 +48,20 @@
                 {{ form_widget(form.username, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="form-group">
                 {{ form_label(form.email, 'Email-a: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(form.email) }}
                 {{ form_widget(form.email, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                {{ form_label(form.password, 'Pasahitza: ', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(form.password) }}
-                {{ form_widget(form.password, {'attr': {'class': 'form-group'}}) }}
-            </div>
-        </div>
+        {#<div class="col-sm-2">#}
+            {#<div class="form-group">#}
+                {#{{ form_label(form.password, 'Pasahitza: ', { 'label_attr': {'class': 'control-label'} }) }}#}
+                {#{{ form_errors(form.password) }}#}
+                {#{{ form_widget(form.password, {'attr': {'class': 'form-group'}}) }}#}
+            {#</div>#}
+        {#</div>#}
         <div class="col-sm-2">
             <div class="form-group">
                 {{ form_label(form.azpisaila, 'Azpi-saila: ', { 'label_attr': {'class': 'control-label'} }) }}
@@ -69,6 +69,26 @@
                 {{ form_widget(form.azpisaila, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        {% for passwordField in form.password %}
+            <div class="col-sm-2">
+                <div class="form-field">
+                    {{ form_label(passwordField, null, { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(passwordField) }}
+                    {{ form_widget(passwordField, {'attr': {'class': 'form-group'}}) }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col-sm-2">
+            <div class="form-group">
+                {{ form_label(form.roles, 'Baimenak: ', { 'label_attr': {'class': 'control-label'} }) }}
+                {{ form_errors(form.roles) }}
+                {{ form_widget(form.roles, {'attr': {'class': 'form-group'}}) }}
+            </div>
+        </div>
+
     </div>
 
 
