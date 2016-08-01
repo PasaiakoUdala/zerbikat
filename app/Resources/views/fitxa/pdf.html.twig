@@ -97,8 +97,7 @@
                         {% for dokumentua in fitxa.dokumentazioak %}
                             <li>
                                 {% if dokumentua.estekaeu %}
-                                    <a href="{{ dokumentua.estekaeu }}">
-                                        {{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
+                                    <a href="{{ dokumentua.estekaeu }}">{{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
                                     </a>
                                 {% else %}
                                     {{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
@@ -115,8 +114,7 @@
                     {% for dokumentua in fitxa.dokumentazioak %}
                         <li>
                             {% if dokumentua.estekaes %}
-                                <a href="{{ dokumentua.estekaes }}">
-                                    {{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
+                                <a href="{{ dokumentua.estekaes }}">{{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
                                 </a>
                             {% else %}
                                 {{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
@@ -529,8 +527,7 @@
                             {#<li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>#}
                             <li>
                                 {% if araua.araudia.estekaeu %}
-                                    <a href="{{ araua.araudia.estekaeu }}">
-                                        {{ araua.araudia.arauaeu }} </a> - {{ araua.atalaeu }}
+                                    <a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }} </a> - {{ araua.atalaeu }}
                                 {% else %}
                                     {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
                                 {% endif %}
@@ -548,8 +545,7 @@
                         {#<li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>#}
                         <li>
                             {% if araua.araudia.estekaes %}
-                                <a href="{{ araua.araudia.estekaes }}">
-                                    {{ araua.araudia.arauaes }}</a> - {{ araua.atalaes }}
+                                <a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> - {{ araua.atalaes }}
                             {% else %}
                                 {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
                             {% endif %}

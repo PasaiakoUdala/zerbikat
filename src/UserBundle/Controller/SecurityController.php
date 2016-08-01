@@ -29,7 +29,7 @@ class SecurityController extends Controller
          * Baldin eta parametroa badu bai
          ***/
         $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ) );
-        $miurl = $query_str['host'].'/'.$query_str['path'];
+//        $miurl = $query_str['host'].'/'.$query_str['path'];
         $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ), PHP_URL_QUERY );
 
         $urlOsoa= $request->getSession()->get( '_security.main.target_path' );
@@ -209,11 +209,6 @@ class SecurityController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             if ($form->isSubmitted() && $form->isValid()) {
-                if (( $user->getPlainPassword() != "" ) || ($user->getPlainPassword()!=null )) {
-                    $password = $this->get('security.password_encoder')
-                        ->encodePassword($user, $user->getPlainPassword());
-                    $user->setPassword($password);
-                }
                 $em->persist($user);
                 $em->flush();
 
@@ -272,8 +267,14 @@ class SecurityController extends Controller
             $editForm->handleRequest($request);
 //
             if ($editForm->isSubmitted() && $editForm->isValid()) {
+                if (( $user->getPlainPassword() != "" ) || ($user->getPlainPassword()!=null )) {
+                    $password = $this->get('security.password_encoder')
+                        ->encodePassword($user, $user->getPlainPassword());
+                    $user->setPassword($password);
+                }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
+
                 $em->flush();
 
                 return $this->redirectToRoute('user_edit', array('id' => $user->getId()));

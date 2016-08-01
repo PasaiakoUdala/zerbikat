@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="eu" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="messages.fitxak">
+                <source>messages.fitxak</source>
+                <target>Fitxak</target>
+            </trans-unit>
+            <trans-unit id="messages.fitxaberria">
+                <source>messages.fitxaberria</source>
+                <target>Fitxa berria</target>
+            </trans-unit>
+            <trans-unit id="messages.udala">
+                <source>messages.udala</source>
+                <target>Udala</target>
+            </trans-unit>
+            <trans-unit id="messages.kodea">
+                <source>messages.kodea</source>
+                <target>Kodea</target>
+            </trans-unit>
+            <trans-unit id="messages.deskribapena">
+                <source>messages.deskribapena</source>
+                <target>Deskribapena</target>
+            </trans-unit>
+            <trans-unit id="messages.saila">
+                <source>messages.saila</source>
+                <target>Saila</target>
+            </trans-unit>
+            <trans-unit id="messages.zerrendara">
+                <source>messages.zerrendara</source>
+                <target>Zerrendara itzuli</target>
+            </trans-unit>
+            <trans-unit id="messages.aldatu">
+                <source>messages.aldatu</source>
+                <target>Aldatu</target>
+            </trans-unit>
+            <trans-unit id="messages.pdf">
+                <source>messages.pdf</source>
+                <target>Pdf</target>
+            </trans-unit>
+            <trans-unit id="messages.barne">
+                <source>messages.barne</source>
+                <target>Barne erabilera</target>
+            </trans-unit>
+            <trans-unit id="messages.updated">
+                <source>messages.updated</source>
+                <target>Azken eguneraketa</target>
+            </trans-unit>
+            <trans-unit id="messages.gorde">
+                <source>messages.gorde</source>
+                <target>Gorde</target>
+            </trans-unit>
+            <trans-unit id="messages.fitxaikusi">
+                <source>messages.fitxaikusi</source>
+                <target>Fitxa ikusi</target>
+            </trans-unit>
+            <trans-unit id="messages.gehitukostu">
+                <source>messages.gehitukostu</source>
+                <target>Gehitu kostu taula</target>
+            </trans-unit>
+            <trans-unit id="messages.gehituaraudia">
+                <source>messages.gehituaraudia</source>
+                <target>Gehitu araudia</target>
+            </trans-unit>
+            <trans-unit id="messages.araudia">
+                <source>messages.araudia</source>
+                <target>Araudia</target>
+            </trans-unit>
+            <trans-unit id="messages.atala">
+                <source>messages.atala</source>
+                <target>Atala</target>
+            </trans-unit>
+            <trans-unit id="messages.prozedura">
+                <source>messages.prozedura</source>
+                <target>Prozedura</target>
+            </trans-unit>
+            <trans-unit id="messages.ordena">
+                <source>messages.ordena</source>
+                <target>Ordena</target>
+            </trans-unit>
+            <trans-unit id="messages.gehituprozedura">
+                <source>messages.gehituprozedura</source>
+                <target>Gehitu prozedura</target>
+            </trans-unit>
+            <trans-unit id="messages.zerbitzua">
+                <source>messages.zerbitzua</source>
+                <target>Zerbitzua</target>
+            </trans-unit>
+            <trans-unit id="messages.parametroa">
+                <source>messages.parametroa</source>
+                <target>Parametroa</target>
+            </trans-unit>
+            <trans-unit id="messages.kontsultak">
+                <source>messages.kontsultak</source>
+                <target>Kontsulta kopurua</target>
+            </trans-unit>
+            <trans-unit id="messages.publikoa">
+                <source>messages.publikoa</source>
+                <target>Publikoa da?</target>
+            </trans-unit>
+            <trans-unit id="messages.hitzarmenean">
+                <source>messages.hitzarmenean</source>
+                <target>Hitzarmenean?</target>
+            </trans-unit>
+            <trans-unit id="messages.created">
+                <source>messages.created</source>
+                <target>Noiz sortua</target>
+            </trans-unit>
+
+            <trans-unit id="messages.eu">
+                <source>messages.eu</source>
+                <target>eu</target>
+            </trans-unit>
+            <trans-unit id="messages.es">
+                <source>messages.es</source>
+                <target>es</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

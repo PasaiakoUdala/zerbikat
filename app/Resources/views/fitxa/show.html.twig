@@ -4,13 +4,13 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Fitxak</a>
+                <a class="navbar-brand">{{ 'messages.fitxak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('fitxa_index') }}"  class="fa fa-undo"> Zerrendara itzuli</a></li>
-                    <li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="fa fa-pencil"> Aldatu</a></li>
-                    <li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" class="fa fa-file-pdf-o"> Pdf (Barne erabilera)</a></li>
+                    <li><a href="{{ path('fitxa_index') }}"  class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
+                    <li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="fa fa-pencil"> {{ 'messages.aldatu'|trans }}</a></li>
+                    <li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" class="fa fa-file-pdf-o"> {{ 'messages.pdf'|trans }} ({{ 'messages.barne'|trans }})</a></li>
                 </ul>
             </div>
         </div>
@@ -23,7 +23,7 @@
     <table class="table table-bordered">
         <tr>
             <td colspan="3" class="text-right">
-                {% if fitxa.updatedAt %}Azken eguneraketa: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}
+                {% if fitxa.updatedAt %}{{ 'messages.updated'|trans }}: {{ fitxa.updatedAt|date('Y-m-d H:i:s') }}{% endif %}
             </td>
         </tr>
         <tr><th class="col-md-2 text-center">
@@ -107,8 +107,7 @@
                     {% for dokumentua in fitxa.dokumentazioak %}
                         <li>
                             {% if dokumentua.estekaeu %}
-                                <a href="{{ dokumentua.estekaeu }}">
-                                    {{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
+                                <a href="{{ dokumentua.estekaeu }}">{{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
                                 </a>
                             {% else %}
                                 {{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}

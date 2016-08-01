@@ -5,11 +5,11 @@
         <nav class="navbar navbar-default navbar-lower navbar-fixed" data-spy="affix" data-offset-top="5">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand"> Fitxak</a>
+                    <a class="navbar-brand"> {{ 'messages.fitxak'|trans }}</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse navbar-right">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ path('fitxa_new') }}" class="fa fa-plus"> Fitxa berria</a></li>
+                        <li><a href="{{ path('fitxa_new') }}" class="fa fa-plus"> {{ 'messages.fitxaberria'|trans }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -23,10 +23,10 @@
     <table class="table">
         <thead>
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-                <th>Kodea</th>
-                <th>Deskribapena</th>
-                <th>Saila</th>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.kodea'|trans }}</th>
+                <th>{{ 'messages.deskribapena'|trans }}</th>
+                <th>{{ 'messages.saila'|trans }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -44,30 +44,14 @@
                     {% endif %}
                 </td>
                 <td NOWRAP class="text-right"><ul class="list-inline">
-
                     <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" ><i class="fa fa-search"></i></a></li>
                     <li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" ><i class="fa fa-file-pdf-o"></i></a></li>
-
-                    {#{% if is_granted('ROLE_ADMIN') %}#}
-                        {#{{ form_start(deleteforms[fitxa.id]) }}#}
-                        {#<input type="submit" value="Delete" class="fa fa-trash text-danger">#}
-                        {#{{ form_end(deleteforms[fitxa.id]) }}#}
-                    {#{% endif %}#}
-
                     {% if is_granted('ROLE_ADMIN') %}
-                        {#<li>{{ form_start(deleteforms[fitxa.id],{'attr': {'id': fitxa.id}}) }}#}
-                            {#<a href="#" onclick="document.getElementById({{ fitxa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                        {#{{ form_end(deleteforms[fitxa.id]) }}</li>#}
-
-
                         <li>{{ form_start(deleteforms[fitxa.id],{'attr': {'id': fitxa.id}}) }}
                             <a href="#" onclick="ezabatu({{ fitxa.id }});" ><i class="fa fa-trash text-danger"></i></a>
                             {{ form_end(deleteforms[fitxa.id]) }}</li>
-
                     {% endif %}
-
                     </ul></td>
-
             </tr>
         {% endfor %}
         </tbody>

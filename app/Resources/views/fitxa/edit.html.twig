@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Fitxak</a>
+                <a class="navbar-brand">{{ 'messages.fitxak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="fa fa-search"> Fitxa ikusi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="fa fa-search"> {{ 'messages.fitxaikusi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -259,7 +259,7 @@
                     {% endfor %}
                     </ul>
                     <br />
-                    <a href="#" id="add-kostua" class="col-sm-10 text-right">Gehitu kostu taula</a>
+                    <a href="#" id="add-kostua" class="col-sm-10 text-right">{{ 'messages.gehitukostu'|trans }}</a>
                 {% else %}
                     <div class="form-group">
                         {{ form_errors(edit_form.azpiatalak) }}
@@ -361,9 +361,9 @@
                 <ul class="list-unstyled" id="araudia-fields-list" data-prototype="{% filter escape %}
                 {% include 'fitxaaraudia/prototype_new.html.twig' with {'form': edit_form.araudiak.vars.prototype,'fitxa':fitxa} %}{% endfilter %}">
                     <li class="burua">
-                        <div class="col-sm-7"><b>Araudia</b></div>
-                        <div class="col-sm-2"><b>Atala (eu)</b></div>
-                        <div class="col-sm-2"><b>Atala (es)</b></div>
+                        <div class="col-sm-7"><b>{{ 'messages.araudia'|trans }}</b></div>
+                        <div class="col-sm-2"><b>{{ 'messages.atala'|trans }} ({{ 'messages.eu'|trans }})</b></div>
+                        <div class="col-sm-2"><b>{{ 'messages.atala'|trans }} ({{ 'messages.es'|trans }})</b></div>
                     </li>
                     {% for araudia in edit_form.araudiak %}
                         <li>
@@ -375,7 +375,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-            <a href="#" id="add-araudia" class="col-sm-12 text-right">Gehitu araudia</a>
+            <a href="#" id="add-araudia" class="col-sm-12 text-right">{{ 'messages.gehituaraudia'|trans }}</a>
             </div>
         </div>
         {% endif %}
@@ -414,8 +414,8 @@
                 <ul class="list-unstyled" id="prozedura-fields-list" data-prototype="{% filter escape %}
                 {% include 'fitxaprozedura/prototype_new.html.twig' with {'form': edit_form.prozedurak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
                     <li class="burua">
-                        <div class="col-sm-9"><b>Prozedura</b></div>
-                        <div class="col-sm-2"><b>Ordena</b></div>
+                        <div class="col-sm-9"><b>{{ 'messages.prozedura'|trans }}</b></div>
+                        <div class="col-sm-2"><b>{{ 'messages.ordena'|trans }}</b></div>
                     </li>
                     {% for prozedura in edit_form.prozedurak %}
                     <li>
@@ -427,7 +427,7 @@
                     {% endfor %}
                 </ul>
             <br />
-            <a href="#" id="add-prozedura" class="col-sm-12 text-right">Gehitu prozedura</a>
+            <a href="#" id="add-prozedura" class="col-sm-12 text-right">{{ 'messages.gehituprozedura'|trans }}</a>
             </div>
         </div>
         {% endif %}
@@ -744,14 +744,16 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.zerbitzua, 'Zerbitzua', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.zerbitzua'|trans }}</b>
+                {#{{ form_label(edit_form.zerbitzua, 'Zerbitzua', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.zerbitzua) }}
                 {{ form_widget(edit_form.zerbitzua, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div class="form-group">
-                {{ form_label(edit_form.parametroa, 'Parametroa', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.parametroa'|trans }}</b>
+                {#{{ form_label(edit_form.parametroa, 'Parametroa', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.parametroa) }}
                 {{ form_widget(edit_form.parametroa, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -780,7 +782,8 @@
             {% if is_granted('ROLE_SUPER_ADMIN') %}
             <div class="col-sm-2">
                 <div class="form-group">
-                    {{ form_label(edit_form.udala, 'Udala', { 'label_attr': {'class': 'control-label'} }) }}
+                    <b>{{ 'messages.udala'|trans }}</b>
+                    {#{{ form_label(edit_form.udala, 'Udala', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_errors(edit_form.udala) }}
                     {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
                 </div>
@@ -790,19 +793,22 @@
             {% if is_granted('ROLE_ADMIN') %}
             <div class="col-sm-9">
                 <div class="form-group col-sm-4" >
-                {{ form_label(edit_form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}
-                {{ form_errors(edit_form.kontsultak) }}
-                {{ form_widget(edit_form.kontsultak, {'attr': {'class': 'form-control'}}) }}
+                    <b>{{ 'messages.kontsultak'|trans }}</b>
+                    {#{{ form_label(edit_form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    {{ form_errors(edit_form.kontsultak) }}
+                    {{ form_widget(edit_form.kontsultak, {'attr': {'class': 'form-control'}}) }}
                 </div>
                 <div class="form-group col-sm-4">
-                {{ form_errors(edit_form.publikoa) }}
-                {{ form_widget(edit_form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}
-                {{ form_label(edit_form.publikoa, 'Publikoa da?', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.publikoa) }}
+                    {{ form_widget(edit_form.publikoa, {'attr': {'class': 'c-checkbox'}}) }}
+                    {#{{ form_label(edit_form.publikoa, 'Publikoa da?', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    <b>{{ 'messages.publikoa'|trans }}</b>
                 </div>
                 <div class="form-group col-sm-4">
-                {{ form_errors(edit_form.hitzarmena) }}
-                {{ form_widget(edit_form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}
-                {{ form_label(edit_form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}
+                    {{ form_errors(edit_form.hitzarmena) }}
+                    {{ form_widget(edit_form.hitzarmena, {'attr': {'class': 'c-checkbox'}}) }}
+                    {#{{ form_label(edit_form.hitzarmena, 'Hitzarmenean?', { 'label_attr': {'class': 'control-label'} }) }}#}
+                    <b>{{ 'messages.hitzarmenean'|trans }}</b>
                 </div>
             </div>
             {% endif %}
@@ -812,12 +818,14 @@
     {% if is_granted('ROLE_SUPER_ADMIN') %}
     <div class="row">
                 <div class="form-group col-sm-4">
-                    {{ form_label(edit_form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}
+                    <b>{{ 'messages.created'|trans }}</b>
+                    {#{{ form_label(edit_form.createdAt, 'Noiz sortua', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_errors(edit_form.createdAt) }}
                     {{ form_widget(edit_form.createdAt, {'attr': {'class': 'form-control'}}) }}
                 </div>
                 <div class="form-group col-sm-4">
-                    {{ form_label(edit_form.updatedAt, 'Azken aldaketa', { 'label_attr': {'class': 'control-label'} }) }}
+                    <b>{{ 'messages.updated'|trans }}</b>
+                    {#{{ form_label(edit_form.updatedAt, 'Azken aldaketa', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_errors(edit_form.updatedAt) }}
                     {{ form_widget(edit_form.updatedAt, {'attr': {'class': 'form-control'}}) }}
                 </div>
