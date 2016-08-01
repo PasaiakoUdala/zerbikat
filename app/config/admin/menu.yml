@@ -1,6 +1,0 @@
-easy_admin:
-    design:
-      menu:
-        - label: 'KUDEAKETA'
-          children:
-            - { label: 'Erabiltzaileak', icon: 'file-new', entity: 'User', default: true }

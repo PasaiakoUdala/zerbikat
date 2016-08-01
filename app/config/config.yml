@@ -3,7 +3,6 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@BackendBundle/Resources/config/services.yml" }
-    - { resource: admin/ }
     - { resource: "@FrontendBundle/Resources/config/services.yml" }
     - { resource: "@ApiBundle/Resources/config/services.yml" }
     - { resource: "@UserBundle/Resources/config/services.yml" }
@@ -76,17 +75,6 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-easy_admin:
-    formats:
-      date:     'Y/m/d'
-      time:     'H:i'
-      datetime: 'Y/m/d H:i:s'
-#    design:
-#      brand_color: 'Red'
-    entities:
-      - Zerbikat\BackendBundle\Entity\User
-
-
 ivory_ck_editor:
     input_sync: true
     default_config: simple_config
@@ -98,8 +86,6 @@ ivory_ck_editor:
             forcePasteAsPlainText: true;
 
 nelmio_api_doc: ~
-
-
 
 
 fos_rest:

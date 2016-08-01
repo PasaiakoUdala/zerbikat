@@ -1,6 +1,0 @@
-easy_admin:
-    site_name: 'ZERBIKAT'
-    design:
-        form_theme:   'vertical'
-#        form_theme:   'horizontal'
-        color_scheme: 'dark'

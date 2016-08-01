@@ -16,7 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Zerbikat\BackendBundle\BackendBundle(),
-            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
+//            new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new FrontendBundle\FrontendBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
