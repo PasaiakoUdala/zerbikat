@@ -4,11 +4,11 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Isiltasun-Administratiboak</a>
+                <a class="navbar-brand">{{ 'messages.isiltasunadminak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('isiltasunadministratiboa_new') }}" class="fa fa-plus"> Sarrera berria</a></li>
+                    <li><a href="{{ path('isiltasunadministratiboa_new') }}" class="fa fa-plus"> {{ 'messages.berria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -18,8 +18,8 @@
     <table class="table">
         <thead>
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-                <th>Isiltasun administratiboaren izaera</th>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.isiltasunadmin'|trans }}</th>
                 <th></th>
             </tr>
         </thead>

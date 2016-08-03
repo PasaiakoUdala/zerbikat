@@ -5,11 +5,11 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Eraikinak</a>
+                <a class="navbar-brand">{{ 'messages.eraikinak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('eraikina_new') }}" class="fa fa-plus"> Eraikin berria</a></li>
+                    <li><a href="{{ path('eraikina_new') }}" class="fa fa-plus"> {{ 'messages.eraikinberria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -19,9 +19,9 @@
     <table class="table">
         <thead>
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-                <th>Izena</th>
-                <th>Koordenadak</th>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.izena'|trans }}</th>
+                <th>{{ 'messages.koordenadak'|trans }}</th>
                 <th></th>
             </tr>
         </thead>

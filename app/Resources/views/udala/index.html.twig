@@ -4,11 +4,11 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Udalak</a>
+                <a class="navbar-brand">{{ 'messages.udalak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('udala_new') }}" class="fa fa-plus"> Udal berria</a></li>
+                    <li><a href="{{ path('udala_new') }}" class="fa fa-plus"> {{ 'messages.udalberria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -18,9 +18,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Kodea</th>
-                <th>Ifk</th>
-                <th>Udala</th>
+                <th>{{ 'messages.kodea'|trans }}</th>
+                <th>{{ 'messages.ifk'|trans }}</th>
+                <th>{{ 'messages.udala'|trans }}</th>
                 <th></th>
                 <th></th>
             </tr>

@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Kostu Taulak</a>
+                <a class="navbar-brand">{{ 'messages.kostutaulak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('azpiatala_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
-                    <li><a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}" class="fa fa-pencil"> Aldatu</a></li>
+                    <li><a href="{{ path('azpiatala_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
+                    <li><a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}" class="fa fa-pencil"> {{ 'messages.aldatu'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -50,17 +50,4 @@
     </table>
     </div>
 </div>
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('azpiatala_index') }}">Back to the list</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#<a href="{{ path('azpiatala_edit', { 'id': azpiatala.id }) }}">Edit</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#{{ form_start(delete_form) }}#}
-                {#<input type="submit" value="Delete">#}
-            {#{{ form_end(delete_form) }}#}
-        {#</li>#}
-    {#</ul>#}
 {% endblock %}

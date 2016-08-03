@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Prozedurak</a>
+                <a class="navbar-brand">{{ 'messages.prozedurak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('prozedura_index') }}" class="fa fa-undo"> Utzi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('prozedura_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -22,7 +22,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                {{ form_label(form.prozeduraeu, 'Prozedura (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.prozedura'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(form.prozeduraeu, 'Prozedura (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.prozeduraeu) }}
                 {{ form_widget(form.prozeduraeu, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -31,7 +32,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="form-group">
-                {{ form_label(form.prozeduraes, 'Prozedura (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.prozedura'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(form.prozeduraes, 'Prozedura (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.prozeduraes) }}
                 {{ form_widget(form.prozeduraes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -45,7 +47,8 @@
         {% endif %}
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

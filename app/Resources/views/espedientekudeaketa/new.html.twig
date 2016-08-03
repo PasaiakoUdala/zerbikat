@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Espediente kudeaketa</a>
+                <a class="navbar-brand">{{ 'messages.espedientekudeaketa'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('espedientekudeaketa_index') }}" class="fa fa-undo"> Utzi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('espedientekudeaketa_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -20,14 +20,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.izenaeu, 'Izena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.izena'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(form.izenaeu, 'Izena (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.izenaeu) }}
                 {{ form_widget(form.izenaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.izenaes, 'Izena (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.izena'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(form.izenaes, 'Izena (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.izenaes) }}
                 {{ form_widget(form.izenaes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -37,14 +39,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.urleu, 'URL (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.esteka'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(form.urleu, 'URL (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.urleu) }}
                 {{ form_widget(form.urleu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.urles, 'URL (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.esteka'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(form.urles, 'URL (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.urles) }}
                 {{ form_widget(form.urles, {'attr': {'class': 'form-control'}}) }}
             </div>

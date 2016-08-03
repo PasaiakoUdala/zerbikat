@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Baldintzak</a>
+                <a class="navbar-brand">{{ 'messages.baldintzak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('baldintza_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('baldintza_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -22,14 +22,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.baldintzaeu, 'Baldintza (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.baldintza'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(edit_form.baldintzaeu, 'Baldintza (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.baldintzaeu) }}
                 {{ form_widget(edit_form.baldintzaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.baldintzaes, 'Baldintza (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.baldintza'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(edit_form.baldintzaes, 'Baldintza (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.baldintzaes) }}
                 {{ form_widget(edit_form.baldintzaes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -42,7 +44,8 @@
     {% endif %}
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

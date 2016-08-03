@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Udalak</a>
+                <a class="navbar-brand">{{ 'messages.udalak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('udala_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('udala_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -22,14 +22,16 @@
         <div class="col-sm-2">
             {% if is_granted('ROLE_SUPER_ADMIN') %}
             <div class="form-group">
-                <label class="control-label">Kodea:</label>
+                <b>{{ 'messages.kodea'|trans }}</b>
+                {#<label class="control-label">Kodea:</label>#}
                 {{ form_errors(edit_form.kodea) }}
                 {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
             </div>
 
             {% else %}
             <div class="form-group">
-                <label class="control-label">Kodea:</label>
+                {#<label class="control-label">Kodea:</label>#}
+                <b>{{ 'messages.kodea'|trans }}</b>
                 {{ form_errors(edit_form.kodea) }}
                 {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control','readonly': 'true'}}) }}
             </div>
@@ -39,14 +41,16 @@
         </div>
         <div class="col-sm-2">
             <div class="form-group">
-                <label class="control-label">IKF/CIF:</label>
+                <b>{{ 'messages.ifk'|trans }}</b>
+                {#<label class="control-label">IKF/CIF:</label>#}
                 {{ form_errors(edit_form.ifk) }}
                 {{ form_widget(edit_form.ifk, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <label class="control-label">Orrikatzeko lerro kopurua:</label>
+                <b>{{ 'messages.orrikatzekop'|trans }}</b>
+                {#<label class="control-label">Orrikatzeko lerro kopurua:</label>#}
                 {{ form_errors(edit_form.orrikatzea) }}
                 {{ form_widget(edit_form.orrikatzea, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -54,7 +58,8 @@
 
         <div class="col-sm-5">
             <div class="form-group">
-                <label class="control-label">Espediente kudeaketa:</label>
+                <b>{{ 'messages.espedientekudeaketa'|trans }}</b>
+                {#<label class="control-label">Espediente kudeaketa:</label>#}
                 {{ form_errors(edit_form.espedientekudeaketa) }}
                 {{ form_widget(edit_form.espedientekudeaketa, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -64,14 +69,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izena (eu):</label>
+                <b>{{ 'messages.izena'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#<label class="control-label">Izena (eu):</label>#}
                 {{ form_errors(edit_form.izenaeu) }}
                 {{ form_widget(edit_form.izenaeu, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izena (es):</label>
+                <b>{{ 'messages.izena'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#<label class="control-label">Izena (es):</label>#}
                 {{ form_errors(edit_form.izenaes) }}
                 {{ form_widget(edit_form.izenaes, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -80,14 +87,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izendapena (eu):</label>
+                <b>{{ 'messages.izendapena'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#<label class="control-label">Izendapena (eu):</label>#}
                 {{ form_errors(edit_form.izendapenaeu) }}
                 {{ form_widget(edit_form.izendapenaeu, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izendapena (es):</label>
+                <b>{{ 'messages.izendapena'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#<label class="control-label">Izendapena (es):</label>#}
                 {{ form_errors(edit_form.izendapenaes) }}
                 {{ form_widget(edit_form.izendapenaes, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -97,14 +106,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">LOPD txantilla (eu):</label>
+                <b>{{ 'messages.lopdtxantilla'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#<label class="control-label">LOPD txantilla (eu):</label>#}
                 {{ form_errors(edit_form.lopdeu) }}
                 {{ form_widget(edit_form.lopdeu, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">LOPD txantilla (es):</label>
+                <b>{{ 'messages.lopdtxantilla'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#<label class="control-label">LOPD txantilla (es):</label>#}
                 {{ form_errors(edit_form.lopdes) }}
                 {{ form_widget(edit_form.lopdes, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -113,7 +124,8 @@
     <div class="row">
         <div class="col-sm-10">
             <div class="form-group">
-                <label class="control-label">Logoa:</label>
+                <b>{{ 'messages.logoa'|trans }} </b>
+                {#<label class="control-label">Logoa:</label>#}
                 {{ form_errors(edit_form.logoa) }}
                 {{ form_widget(edit_form.logoa, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -126,7 +138,8 @@
                 {#<label class="control-label">Logoa:</label>#}
                 {{ form_errors(edit_form.zergaor) }}
                 {{ form_widget(edit_form.zergaor, {'attr': {'class': 'c-checkbox'}}) }}
-                Zerga ordenantzen aplikazioa erabiltzen du?
+                {{ 'messages.zergaorapp'|trans }}
+                {#Zerga ordenantzen aplikazioa erabiltzen du?#}
             </div>
         </div>
     </div>

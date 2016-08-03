@@ -4,13 +4,13 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Kostu Taulak</a>
+                <a class="navbar-brand">{{ 'messages.kostutaulak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('azpiatala_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
-                    <li><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}" class="fa fa-search"> Taula ikusi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('azpiatala_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
+                    <li><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}" class="fa fa-search"> {{ 'messages.taulaikusi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -27,7 +27,8 @@
     {% endif %}
     <div class="col-sm-6">
         <div class="form-group">
-            {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+            <b>{{ 'messages.udala'|trans }}</b>
+            {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
             {{ form_errors(edit_form.udala) }}
             {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
         </div>
@@ -38,7 +39,8 @@
         <tr>
             <td colspan="12" >
                 <div class="col-sm-2">
-                    {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                    <b>{{ 'messages.kodea'|trans }}</b>
+                    {#{{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                     {{ form_errors(edit_form.kodea) }}
                     {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
                 </div>
@@ -46,12 +48,14 @@
         </tr>
         <tr>
             <td colspan="5" class="col-sm-6">
-                {{ form_label(edit_form.izenburuaeu, 'Izenburua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.izenburua'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(edit_form.izenburuaeu, 'Izenburua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.izenburuaeu) }}
                 {{ form_widget(edit_form.izenburuaeu, {'attr': {'class': 'form-control'}}) }}
             </td>
             <td colspan="5" class="col-sm-6">
-                {{ form_label(edit_form.izenburuaes, 'Izenburua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.izenburua'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(edit_form.izenburuaes, 'Izenburua (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.izenburuaes) }}
                 {{ form_widget(edit_form.izenburuaes, {'attr': {'class': 'form-control'}}) }}
             </td>
@@ -62,7 +66,7 @@
 
     <table class="table table-bordered" id="parrafoa-fields-list" data-prototype="{% filter escape %}
     {% include 'azpiatalaparrafoa/prototype_new.html.twig' with {'form': edit_form.parrafoak.vars.prototype,'azpiatala':azpiatala} %}{% endfilter %}">
-            <tr class="burua"><th colspan="1">Ordena:</th><th colspan="5">Testua (eu)</th><th colspan="5">Testua (es)</th><th colspan="1"></th></tr>
+            <tr class="burua"><th colspan="1">{{ 'messages.ordena'|trans }}:</th><th colspan="5">{{ 'messages.testua'|trans }} ({{ 'messages.eu'|trans }})</th><th colspan="5">{{ 'messages.testua'|trans }} ({{ 'messages.es'|trans }})</th><th colspan="1"></th></tr>
         {% for parrafoa in edit_form.parrafoak %}
             <tr>
                 <td colspan="1" class="col-sm-1">
@@ -89,7 +93,7 @@
             </tr>
         {% endfor %}
         <tr class="burua">
-            <td colspan="12" class="text-right col-sm-12"><a href="#" id="add-parrafoa" class="col-sm-12">Parrafoa gehitu</a></td>
+            <td colspan="12" class="text-right col-sm-12"><a href="#" id="add-parrafoa" class="col-sm-12">{{ 'messages.parrafoagehitu'|trans }}</a></td>
         </tr>
     </table>
 
@@ -97,7 +101,7 @@
     {#data-prototype="{{ form_widget(edit_form.kontzeptuak.vars.prototype)|e }}">#}
     <table class="table table-bordered" id="kontzeptua-fields-list" data-prototype="{% filter escape %}
     {% include 'kontzeptua/prototype_new.html.twig' with {'form': edit_form.kontzeptuak.vars.prototype,'azpiatala':azpiatala} %}{% endfilter %}">
-        <tr class="burua"><th colspan="1">Kodea:</th><th colspan="4">Testua (eu)</th><th colspan="1">Kopurua:<br/>Unitatea</th><th colspan="4">Testua (es)</th><th colspan="1">Mota<br>Baldintza</th></tr>
+        <tr class="burua"><th colspan="1">{{ 'messages.kodea'|trans }}:</th><th colspan="4">{{ 'messages.testua'|trans }} ({{ 'messages.eu'|trans }})</th><th colspan="1">{{ 'messages.kopurua'|trans }}<br/>{{ 'messages.unitatea'|trans }}</th><th colspan="4">{{ 'messages.testua'|trans }} ({{ 'messages.es'|trans }})</th><th colspan="1">{{ 'messages.mota'|trans }}<br>{{ 'messages.baldintza'|trans }}</th></tr>
             {% for kontzeptua in edit_form.kontzeptuak %}
                 <tr>
                     <td colspan="1" class="col-sm-1">
@@ -120,7 +124,7 @@
                 </tr>
             {% endfor %}
         <tr class="burua">
-            <td colspan="12" class="text-right col-sm-12"><a href="#" id="add-kontzeptua" class="col-sm-12">Kontzeptua gehitu</a></td>
+            <td colspan="12" class="text-right col-sm-12"><a href="#" id="add-kontzeptua" class="col-sm-12">{{ 'messages.kontzeptuagehitu'|trans }}</a></td>
         </tr>
         </table>
     </div>

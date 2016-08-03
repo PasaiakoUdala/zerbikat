@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Dokumentu-motak</a>
+                <a class="navbar-brand">{{ 'messages.dokumentumotak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('dokumentumota_index') }}" class="fa fa-undo"> Utzi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('dokumentumota_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -20,7 +20,8 @@
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">
-                {{ form_label(form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.kodea'|trans }}</b>
+                {#{{ form_label(form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.kodea) }}
                 {{ form_widget(form.kodea, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -30,7 +31,8 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.motaeu, 'Dokumentu-mota (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.mota'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(form.motaeu, 'Dokumentu-mota (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.motaeu) }}
                 {{ form_widget(form.motaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -38,7 +40,8 @@
 
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.motaes, 'Dokumentu-mota (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.mota'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(form.motaes, 'Dokumentu-mota (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.motaes) }}
                 {{ form_widget(form.motaes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -52,7 +55,8 @@
     {% endif %}
         <div class="col-sm-6">
             <div>
-                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

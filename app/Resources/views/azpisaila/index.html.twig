@@ -4,11 +4,11 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Azpi-sailak</a>
+                <a class="navbar-brand">{{ 'messages.azpisailak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('azpisaila_new') }}" class="fa fa-plus"> Azpi-saila berria</a></li>
+                    <li><a href="{{ path('azpisaila_new') }}" class="fa fa-plus"> {{ 'messages.azpisailberria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -20,12 +20,12 @@
     <table class="table">
         <thead>
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-                <th>Kodea</th>
-                <th>Azpisaila</th>
-                <th>Arduraduna</th>
-                <th>Kontaktua</th>
-                <th>Helbidea</th>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.kodea'|trans }}</th>
+                <th>{{ 'messages.azpisaila'|trans }}</th>
+                <th>{{ 'messages.arduraduna'|trans }}</th>
+                <th>{{ 'messages.kontaktua'|trans }}</th>
+                <th>{{ 'messages.helbidea'|trans }}</th>
             </tr>
         </thead>
         <tbody>

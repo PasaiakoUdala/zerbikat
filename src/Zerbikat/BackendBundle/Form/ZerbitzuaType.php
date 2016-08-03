@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class ZerbitzuaType extends AbstractType
 {
     /**
@@ -15,11 +17,26 @@ class ZerbitzuaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('kodea')
-            ->add('zerbitzuaeu')
-            ->add('zerbitzuaes')
-            ->add('erroaeu')
-            ->add('erroaes')
+            ->add('kodea',TextType::class, array(
+                'label' => 'messages.kodea',
+                'translation_domain' => 'messages',
+            ))
+            ->add('zerbitzuaeu',TextType::class, array(
+                'label' => 'messages.zerbitzua',
+                'translation_domain' => 'messages',
+            ))
+            ->add('zerbitzuaes',TextType::class, array(
+                'label' => 'messages.zerbitzua',
+                'translation_domain' => 'messages',
+            ))
+            ->add('erroaeu',TextType::class, array(
+                'label' => 'messages.erroa',
+                'translation_domain' => 'messages',
+            ))
+            ->add('erroaes',TextType::class, array(
+                'label' => 'messages.erroa',
+                'translation_domain' => 'messages',
+            ))
 //            ->add('espedientekudeaketa')
         ;
     }

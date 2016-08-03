@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Isiltasun-Administratiboak</a>
+                <a class="navbar-brand">{{ 'messages.isiltasunadminak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('isiltasunadministratiboa_index') }}" class="fa fa-undo"> Utzi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('isiltasunadministratiboa_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -21,14 +21,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.isiltasuneu, 'Isiltasun Administratiboa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.isiltasunadmin'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(form.isiltasuneu, 'Isiltasun Administratiboa (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.isiltasuneu) }}
                 {{ form_widget(form.isiltasuneu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.isiltasunes, 'Isiltasun Administratiboa (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.isiltasunadmin'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(form.isiltasunes, 'Isiltasun Administratiboa (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.isiltasunes) }}
                 {{ form_widget(form.isiltasunes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -42,7 +44,8 @@
     {% endif %}
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Kanal-motak</a>
+                <a class="navbar-brand">{{ 'messages.kanalmotak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('kanalmota_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('kanalmota_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -20,21 +20,24 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="form-group">
-                {{ form_label(edit_form.esteka, 'Esteka behar du?: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.estekabehar'|trans }}</b>
+                {#{{ form_label(edit_form.esteka, 'Esteka behar du?: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.esteka) }}
                 {{ form_widget(edit_form.esteka, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
             <div class="form-group">
-                {{ form_label(edit_form.motaeu, 'Kanal-mota (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.kanalmota'|trans }} (<b>{{ 'messages.eu'|trans }}</b>)</b>
+                {#{{ form_label(edit_form.motaeu, 'Kanal-mota (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.motaeu) }}
                 {{ form_widget(edit_form.motaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
             <div class="form-group">
-                {{ form_label(edit_form.motaes, 'Kanal-mota (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.kanalmota'|trans }} (<b>{{ 'messages.es'|trans }}</b>)</b>
+                {#{{ form_label(edit_form.motaes, 'Kanal-mota (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.motaes) }}
                 {{ form_widget(edit_form.motaes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -48,7 +51,8 @@
     {% endif %}
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

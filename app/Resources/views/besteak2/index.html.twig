@@ -19,9 +19,9 @@
     <table class="table">
         <thead>
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-                <th>Kodea</th>
-                <th>Izenburuaeu</th>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.kodea'|trans }}</th>
+                <th>{{ 'messages.izenburua'|trans }}</th>
                 <th></th>
             </tr>
         </thead>

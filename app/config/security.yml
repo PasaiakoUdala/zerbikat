@@ -38,15 +38,18 @@ security:
                 csrf_token_generator: security.csrf.token_manager
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
-                default_target_path: /fitxa/
+#                default_target_path: /{_locale}/fitxa/
+                check_path: /login_check
+                default_target_path: fitxa_index
                 always_use_default_target_path: true
             logout:
                 path:   /logout
-                target: /fitxa/
+#                target: /fitxa/
+                target: /login
             anonymous:    true
 
     access_control:
-        - { path: ^/login/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/fitxa/, role: ROLE_USER }
         - { path: ^/araudia, role: ROLE_USER }

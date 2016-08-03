@@ -4,11 +4,11 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Kanalak</a>
+                <a class="navbar-brand">{{ 'messages.kanalak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('kanala_new') }}" class="fa fa-plus"> Kanal berria</a></li>
+                    <li><a href="{{ path('kanala_new') }}" class="fa fa-plus"> {{ 'messages.kanalberria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -19,11 +19,11 @@
     <table class="table">
         <thead>
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-                <th>Kanal-mota</th>
-                <th>Izena</th>
-                <th>Deskribapena</th>
-                <th>Telematikoa da?</th>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.kanalmota'|trans }}</th>
+                <th>{{ 'messages.izena'|trans }}</th>
+                <th>{{ 'messages.deskribapena'|trans }}</th>
+                <th>{{ 'messages.kanaltelematikoa'|trans }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -34,7 +34,8 @@
                 <td>{{ kanala.kanalmota }}</td>
                 <td>{{ kanala.izenaeu }}</td>
                 <td>{{ kanala.deskribapenaeu }}</td>
-                <td>{% if kanala.telematikoa %}Bai{% else %}Ez{% endif %}</td>
+                <td>{% if kanala.telematikoa %}
+                        {{ 'messages.bai'|trans }}{% else %}{{ 'messages.ez'|trans }}{% endif %}</td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                             <li><a href="{{ path('kanala_edit', { 'id': kanala.id }) }}" class="fa fa-pencil"></a></li>

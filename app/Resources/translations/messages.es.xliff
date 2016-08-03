@@ -2,7 +2,642 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="es" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="messages.fitxak">
+                <source>messages.fitxak</source>
+                <target>Fichas</target>
+            </trans-unit>
+            <trans-unit id="messages.fitxaberria">
+                <source>messages.fitxaberria</source>
+                <target>Nueva ficha</target>
+            </trans-unit>
+            <trans-unit id="messages.udala">
+                <source>messages.udala</source>
+                <target>Ayuntamiento</target>
+            </trans-unit>
+            <trans-unit id="messages.kodea">
+                <source>messages.kodea</source>
+                <target>Código</target>
+            </trans-unit>
+            <trans-unit id="messages.deskribapena">
+                <source>messages.deskribapena</source>
+                <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="messages.saila">
+                <source>messages.saila</source>
+                <target>Departamento</target>
+            </trans-unit>
+            <trans-unit id="messages.zerrendara">
+                <source>messages.zerrendara</source>
+                <target>Volver al listado</target>
+            </trans-unit>
+            <trans-unit id="messages.aldatu">
+                <source>messages.aldatu</source>
+                <target>Modificar</target>
+            </trans-unit>
+            <trans-unit id="messages.pdf">
+                <source>messages.pdf</source>
+                <target>Pdf</target>
+            </trans-unit>
+            <trans-unit id="messages.barne">
+                <source>messages.barne</source>
+                <target>Uso interno</target>
+            </trans-unit>
+            <trans-unit id="messages.updated">
+                <source>messages.updated</source>
+                <target>Ultima modificación</target>
+            </trans-unit>
+            <trans-unit id="messages.gorde">
+                <source>messages.gorde</source>
+                <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="messages.fitxaikusi">
+                <source>messages.fitxaikusi</source>
+                <target>Ver ficha</target>
+            </trans-unit>
+            <trans-unit id="messages.gehitukostu">
+                <source>messages.gehitukostu</source>
+                <target>Añadir tabla de costes</target>
+            </trans-unit>
+            <trans-unit id="messages.gehituaraudia">
+                <source>messages.gehituaraudia</source>
+                <target>Añadir normativa</target>
+            </trans-unit>
+            <trans-unit id="messages.araudia">
+                <source>messages.araudia</source>
+                <target>Normativa</target>
+            </trans-unit>
+            <trans-unit id="messages.atala">
+                <source>messages.atala</source>
+                <target>Sección</target>
+            </trans-unit>
+            <trans-unit id="messages.prozedura">
+                <source>messages.prozedura</source>
+                <target>Procedimiento</target>
+            </trans-unit>
+            <trans-unit id="messages.ordena">
+                <source>messages.ordena</source>
+                <target>Orden</target>
+            </trans-unit>
+            <trans-unit id="messages.gehituprozedura">
+                <source>messages.gehituprozedura</source>
+                <target>Añadir procedimiento</target>
+            </trans-unit>
+            <trans-unit id="messages.zerbitzua">
+                <source>messages.zerbitzua</source>
+                <target>Servicio</target>
+            </trans-unit>
+            <trans-unit id="messages.parametroa">
+                <source>messages.parametroa</source>
+                <target>Parametro</target>
+            </trans-unit>
+            <trans-unit id="messages.kontsultak">
+                <source>messages.kontsultak</source>
+                <target>Numero de consultas</target>
+            </trans-unit>
+            <trans-unit id="messages.publikoa">
+                <source>messages.publikoa</source>
+                <target>¿Es público?</target>
+            </trans-unit>
+            <trans-unit id="messages.hitzarmenean">
+                <source>messages.hitzarmenean</source>
+                <target>¿está en el acuerdo?</target>
+            </trans-unit>
+            <trans-unit id="messages.created">
+                <source>messages.created</source>
+                <target>Fecha de creación</target>
+            </trans-unit>
 
+            <trans-unit id="messages.taulanagusiak">
+                <source>messages.taulanagusiak</source>
+                <target>Tablas principales</target>
+            </trans-unit>
+            <trans-unit id="messages.agiriak">
+                <source>messages.agiriak</source>
+                <target>Documentos</target>
+            </trans-unit>
+            <trans-unit id="messages.sailak">
+                <source>messages.sailak</source>
+                <target>Departamentos</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisailak">
+                <source>messages.azpisailak</source>
+                <target>Sub-departamentos</target>
+            </trans-unit>
+
+
+            <trans-unit id="messages.datuenbabesa">
+                <source>messages.datuenbabesa</source>
+                <target>Protección de datos</target>
+            </trans-unit>
+            <trans-unit id="messages.prozedurak">
+                <source>messages.prozedurak</source>
+                <target>Procedimientos</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalak">
+                <source>messages.kanalak</source>
+                <target>Canales</target>
+            </trans-unit>
+            <trans-unit id="messages.ebazleak">
+                <source>messages.ebazleak</source>
+                <target>Ebazleak</target>
+            </trans-unit>
+            <trans-unit id="messages.doklagun">
+                <source>messages.doklagun</source>
+                <target>Documentación auxiliar</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak1">
+                <source>messages.besteak1</source>
+                <target>Otros1</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak2">
+                <source>messages.besteak2</source>
+                <target>Otros2</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak3">
+                <source>messages.besteak3</source>
+                <target>Otros3</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeskatu">
+                <source>messages.norkeskatu</source>
+                <target>Quién lo puede solicitar</target>
+            </trans-unit>
+            <trans-unit id="messages.sailkapena">
+                <source>messages.sailkapena</source>
+                <target>Clasificación</target>
+            </trans-unit>
+            <trans-unit id="messages.etiketak">
+                <source>messages.etiketak</source>
+                <target>Etiquetas</target>
+            </trans-unit>
+            <trans-unit id="messages.familiak">
+                <source>messages.familiak</source>
+                <target>Familias</target>
+            </trans-unit>
+            <trans-unit id="messages.taulalagun">
+                <source>messages.taulalagun</source>
+                <target>Tablas auxiliares</target>
+            </trans-unit>
+            <trans-unit id="messages.arruntak">
+                <source>messages.arruntak</source>
+                <target>Plazos habituales</target>
+            </trans-unit>
+            <trans-unit id="messages.aurreikusi">
+                <source>messages.aurreikusi</source>
+                <target>Plazos estimados</target>
+            </trans-unit>
+            <trans-unit id="messages.isiltasunadmin">
+                <source>messages.isiltasunadmin</source>
+                <target>Carácter del silencio administrativo</target>
+            </trans-unit>
+            <trans-unit id="messages.araumotak">
+                <source>messages.araumotak</source>
+                <target>Tipos de normativa</target>
+            </trans-unit>
+            <trans-unit id="messages.dokumentumotak">
+                <source>messages.dokumentumotak</source>
+                <target>Tipos de documento</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalmotak">
+                <source>messages.kanalmotak</source>
+                <target>Tipos de canal</target>
+            </trans-unit>
+            <trans-unit id="messages.kaleizendegia">
+                <source>messages.kaleizendegia</source>
+                <target>Callejero</target>
+            </trans-unit>
+            <trans-unit id="messages.barrutiak">
+                <source>messages.barrutiak</source>
+                <target>Distritos</target>
+            </trans-unit>
+            <trans-unit id="messages.kaleak">
+                <source>messages.kaleak</source>
+                <target>Calles</target>
+            </trans-unit>
+            <trans-unit id="messages.eraikinak">
+                <source>messages.eraikinak</source>
+                <target>Edificios</target>
+            </trans-unit>
+            <trans-unit id="messages.zergaordenantzak">
+                <source>messages.zergaordenantzak</source>
+                <target>Ordenanzas Fiscales</target>
+            </trans-unit>
+            <trans-unit id="messages.kostutaulak">
+                <source>messages.kostutaulak</source>
+                <target>Tablas de costes</target>
+            </trans-unit>
+            <trans-unit id="messages.baldintzak">
+                <source>messages.baldintzak</source>
+                <target>Condiciones</target>
+            </trans-unit>
+            <trans-unit id="messages.kontzeptumotak">
+                <source>messages.kontzeptumotak</source>
+                <target>Tipos de conceptos</target>
+            </trans-unit>
+            <trans-unit id="messages.erabiltzaileak">
+                <source>messages.erabiltzaileak</source>
+                <target>Usuarios</target>
+            </trans-unit>
+            <trans-unit id="messages.eremuak">
+                <source>messages.eremuak</source>
+                <target>Campos</target>
+            </trans-unit>
+            <trans-unit id="messages.espedientekudeaketa">
+                <source>messages.espedientekudeaketa</source>
+                <target>Gestión de expedientes</target>
+            </trans-unit>
+            <trans-unit id="messages.araudiak">
+                <source>messages.araudiak</source>
+                <target>Normativas</target>
+            </trans-unit>
+            <trans-unit id="messages.arauberria">
+                <source>messages.arauberria</source>
+                <target>Nueva normativa</target>
+            </trans-unit>
+            <trans-unit id="messages.araua">
+                <source>messages.araua</source>
+                <target>Norma</target>
+            </trans-unit>
+            <trans-unit id="messages.araumota">
+                <source>messages.araumota</source>
+                <target>Tipo de norma</target>
+            </trans-unit>
+            <trans-unit id="messages.esteka">
+                <source>messages.esteka</source>
+                <target>Enlace</target>
+            </trans-unit>
+            <trans-unit id="messages.utzi">
+                <source>messages.utzi</source>
+                <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="messages.araumotaberria">
+                <source>messages.araumotaberria</source>
+                <target>Nuevo tipo de norma</target>
+            </trans-unit>
+            <trans-unit id="messages.mota">
+                <source>messages.mota</source>
+                <target>Tipo</target>
+            </trans-unit>
+            <trans-unit id="messages.epeberria">
+                <source>messages.epeberria</source>
+                <target>Nuevo plazo</target>
+            </trans-unit>
+            <trans-unit id="messages.epea">
+                <source>messages.epea</source>
+                <target>Plazo</target>
+            </trans-unit>
+            <trans-unit id="messages.kostutaulaberria">
+                <source>messages.kostutaulaberria</source>
+                <target>Nueva tabla de costes</target>
+            </trans-unit>
+            <trans-unit id="messages.izenburua">
+                <source>messages.izenburua</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="messages.taulaikusi">
+                <source>messages.taulaikusi</source>
+                <target>Ver tabla</target>
+            </trans-unit>
+            <trans-unit id="messages.testua">
+                <source>messages.testua</source>
+                <target>Texto</target>
+            </trans-unit>
+            <trans-unit id="messages.kopurua">
+                <source>messages.kopurua</source>
+                <target>Cantidad</target>
+            </trans-unit>
+            <trans-unit id="messages.unitatea">
+                <source>messages.unitatea</source>
+                <target>Unidad</target>
+            </trans-unit>
+            <trans-unit id="messages.baldintza">
+                <source>messages.baldintza</source>
+                <target>Condición</target>
+            </trans-unit>
+            <trans-unit id="messages.parrafoagehitu">
+                <source>messages.parrafoagehitu</source>
+                <target>Añadir parrafo</target>
+            </trans-unit>
+            <trans-unit id="messages.kontzeptuagehitu">
+                <source>messages.kontzeptuagehitu</source>
+                <target>Añadir concepto</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisailberria">
+                <source>messages.azpisailberria</source>
+                <target>Nuevo sub-departamento</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisaila">
+                <source>messages.azpisaila</source>
+                <target>Sub-departamento</target>
+            </trans-unit>
+            <trans-unit id="messages.arduraduna">
+                <source>messages.arduraduna</source>
+                <target>Responsable</target>
+            </trans-unit>
+            <trans-unit id="messages.kontaktua">
+                <source>messages.kontaktua</source>
+                <target>Contacto</target>
+            </trans-unit>
+            <trans-unit id="messages.helbidea">
+                <source>messages.helbidea</source>
+                <target>Dirección</target>
+            </trans-unit>
+            <trans-unit id="messages.hizkia">
+                <source>messages.hizkia</source>
+                <target>Letra</target>
+            </trans-unit>
+            <trans-unit id="messages.haz">
+                <source>messages.haz</source>
+                <target>SAC</target>
+            </trans-unit>
+            <trans-unit id="messages.barrutia">
+                <source>messages.barrutia</source>
+                <target>Distrito</target>
+            </trans-unit>
+            <trans-unit id="messages.kalea">
+                <source>messages.kalea</source>
+                <target>Calle</target>
+            </trans-unit>
+            <trans-unit id="messages.kalezbkia">
+                <source>messages.kalezbkia</source>
+                <target>Número</target>
+            </trans-unit>
+            <trans-unit id="messages.eraikina">
+                <source>messages.eraikina</source>
+                <target>Edificio</target>
+            </trans-unit>
+            <trans-unit id="messages.email">
+                <source>messages.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="messages.telefonoa">
+                <source>messages.telefonoa</source>
+                <target>Teléfono</target>
+            </trans-unit>
+            <trans-unit id="messages.fax">
+                <source>messages.fax</source>
+                <target>Fax</target>
+            </trans-unit>
+            <trans-unit id="messages.ordutegia">
+                <source>messages.ordutegia</source>
+                <target>Horario</target>
+            </trans-unit>
+            <trans-unit id="messages.baldintzaberria">
+                <source>messages.baldintzaberria</source>
+                <target>Nueva condición</target>
+            </trans-unit>
+            <trans-unit id="messages.barrutiberria">
+                <source>messages.barrutiberria</source>
+                <target>Nuevo distrito</target>
+            </trans-unit>
+            <trans-unit id="messages.berria">
+                <source>messages.berria</source>
+                <target>Nuevo elemento</target>
+            </trans-unit>
+            <trans-unit id="messages.maila">
+                <source>messages.maila</source>
+                <target>Nivel</target>
+            </trans-unit>
+            <trans-unit id="messages.izena">
+                <source>messages.izena</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="messages.xedea">
+                <source>messages.xedea</source>
+                <target>Objetivo</target>
+            </trans-unit>
+            <trans-unit id="messages.lagapenak">
+                <source>messages.lagapenak</source>
+                <target>Cesiones</target>
+            </trans-unit>
+            <trans-unit id="messages.agiriberria">
+                <source>messages.agiriberria</source>
+                <target>Nuevo documento</target>
+            </trans-unit>
+            <trans-unit id="messages.dokumentumota">
+                <source>messages.dokumentumota</source>
+                <target>Tipo de documento</target>
+            </trans-unit>
+            <trans-unit id="messages.eraikinberria">
+                <source>messages.eraikinberria</source>
+                <target>Nuevo edificio</target>
+            </trans-unit>
+            <trans-unit id="messages.koordenadak">
+                <source>messages.koordenadak</source>
+                <target>Coordenadas</target>
+            </trans-unit>
+            <trans-unit id="messages.longitudea">
+                <source>messages.longitudea</source>
+                <target>Longitud</target>
+            </trans-unit>
+            <trans-unit id="messages.latitudea">
+                <source>messages.latitudea</source>
+                <target>Latitud</target>
+            </trans-unit>
+            <trans-unit id="messages.etiketaberria">
+                <source>messages.etiketaberria</source>
+                <target>Nueva etiqueta</target>
+            </trans-unit>
+            <trans-unit id="messages.etiketa">
+                <source>messages.etiketa</source>
+                <target>Etiqueta</target>
+            </trans-unit>
+            <trans-unit id="messages.familia">
+                <source>messages.familia</source>
+                <target>Familia</target>
+            </trans-unit>
+            <trans-unit id="messages.familiaberria">
+                <source>messages.familiaberria</source>
+                <target>Nueva familia</target>
+            </trans-unit>
+            <trans-unit id="messages.erabiltzaileberria">
+                <source>messages.erabiltzaileberria</source>
+                <target>Nuevo usuario</target>
+            </trans-unit>
+            <trans-unit id="messages.erabiltzailea">
+                <source>messages.erabiltzailea</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="messages.NA">
+                <source>messages.NA</source>
+                <target>DNI</target>
+            </trans-unit>
+            <trans-unit id="messages.baimenak">
+                <source>messages.baimenak</source>
+                <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="messages.aktibo">
+                <source>messages.aktibo</source>
+                <target>¿Usuario activo?</target>
+            </trans-unit>
+            <trans-unit id="messages.pasahitza">
+                <source>messages.pasahitza</source>
+                <target>Contraseña</target>
+            </trans-unit>
+            <trans-unit id="messages.pasahitzaerrepikatu">
+                <source>messages.pasahitzaerrepikatu</source>
+                <target>Repetir contraseña</target>
+            </trans-unit>
+            <trans-unit id="messages.isiltasunadminak">
+                <source>messages.isiltasunadminak</source>
+                <target>Silencio administrativo</target>
+            </trans-unit>
+            <trans-unit id="messages.kaleberria">
+                <source>messages.kaleberria</source>
+                <target>Nueva calle</target>
+            </trans-unit>
+
+            <trans-unit id="messages.kanalberria">
+                <source>messages.kanalberria</source>
+                <target>Nuevo canal</target>
+            </trans-unit>
+            <trans-unit id="messages.kanala">
+                <source>messages.kanala</source>
+                <target>Canal</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalmota">
+                <source>messages.kanalmota</source>
+                <target>Tipo de canal</target>
+            </trans-unit>
+            <trans-unit id="messages.kanaltelematikoa">
+                <source>messages.kanaltelematikoa</source>
+                <target>¿Es telemático?</target>
+            </trans-unit>
+            <trans-unit id="messages.postakodea">
+                <source>messages.postakodea</source>
+                <target>Código postal</target>
+            </trans-unit>
+            <trans-unit id="messages.motaberria">
+                <source>messages.motaberria</source>
+                <target>Nuevo tipo</target>
+            </trans-unit>
+            <trans-unit id="messages.estekabehar">
+                <source>messages.estekabehar</source>
+                <target>¿Tiene enlace?</target>
+            </trans-unit>
+
+            <trans-unit id="messages.ebazleberria">
+                <source>messages.ebazleberria</source>
+                <target>Nuevo </target>
+            </trans-unit>
+            <trans-unit id="messages.nork">
+                <source>messages.nork</source>
+                <target>Quién</target>
+            </trans-unit>
+            <trans-unit id="messages.prozeduraberria">
+                <source>messages.prozeduraberria</source>
+                <target>Nuevo procedimiento</target>
+            </trans-unit>
+            <trans-unit id="messages.sailberria">
+                <source>messages.sailberria</source>
+                <target>Nuevo departamento</target>
+            </trans-unit>
+            <trans-unit id="messages.udalak">
+                <source>messages.udalak</source>
+                <target>Ayuntamientos</target>
+            </trans-unit>
+            <trans-unit id="messages.udalberria">
+                <source>messages.udalberria</source>
+                <target>Nuevo Ayuntamiento</target>
+            </trans-unit>
+            <trans-unit id="messages.ifk">
+                <source>messages.ifk</source>
+                <target>CIF</target>
+            </trans-unit>
+            <trans-unit id="messages.orrikatzekop">
+                <source>messages.orrikatzekop</source>
+                <target>Número de filas para la paginación</target>
+            </trans-unit>
+            <trans-unit id="messages.izendapena">
+                <source>messages.izendapena</source>
+                <target>Denominación</target>
+            </trans-unit>
+            <trans-unit id="messages.lopdtxantilla">
+                <source>messages.lopdtxantilla</source>
+                <target>Plantilla para LOPD</target>
+            </trans-unit>
+            <trans-unit id="messages.logoa">
+                <source>messages.logoa</source>
+                <target>Logo</target>
+            </trans-unit>
+            <trans-unit id="messages.zergaorapp">
+                <source>messages.zergaorapp</source>
+                <target>Usa la aplicación de Ordenanzas Fiscales?</target>
+            </trans-unit>
+            <trans-unit id="messages.zerbitzuberria">
+                <source>messages.zerbitzuberria</source>
+                <target>Nuevo servicio</target>
+            </trans-unit>
+            <trans-unit id="messages.erroa">
+                <source>messages.erroa</source>
+                <target>Raiz del servicio</target>
+            </trans-unit>
+
+
+
+
+
+
+
+
+            <trans-unit id="messages.eremuberria">
+                <source>messages.eremuberria</source>
+                <target>Nuevo campo</target>
+            </trans-unit>
+            <trans-unit id="messages.helburua">
+                <source>messages.helburua</source>
+                <target>Objetivo</target>
+            </trans-unit>
+            <trans-unit id="messages.helburuaetiketa">
+                <source>messages.helburuaetiketa</source>
+                <target>Etiqueta objetivo</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeska">
+                <source>messages.norkeska</source>
+                <target>Quien solicita</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeskalabel">
+                <source>messages.norkeskalabel</source>
+                <target>Etiqueta quien puede solicitarlo</target>
+            </trans-unit>
+
+
+
+
+
+
+
+
+
+
+            <trans-unit id="messages.bai">
+                <source>messages.bai</source>
+                <target>Si</target>
+            </trans-unit>
+            <trans-unit id="messages.ez">
+                <source>messages.ez</source>
+                <target>No</target>
+            </trans-unit>
+
+            <trans-unit id="messages.emaitzarikez">
+                <source>messages.emaitzarikez</source>
+                <target>No se ha encontrado ningún resultado</target>
+            </trans-unit>
+            <trans-unit id="messages.eu">
+                <source>messages.eu</source>
+                <target>eu</target>
+            </trans-unit>
+            <trans-unit id="messages.es">
+                <source>messages.es</source>
+                <target>es</target>
+            </trans-unit>
+            <trans-unit id="messages.txt">
+                <source>messages.txt</source>
+                <target>txt</target>
+            </trans-unit>
+            <trans-unit id="messages.table">
+                <source>messages.table</source>
+                <target>tabla</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

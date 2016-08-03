@@ -4,11 +4,11 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Zerbitzuak</a>
+                <a class="navbar-brand">{{ 'messages.zerbitzua'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('zerbitzua_new') }}" class="fa fa-plus"> Zerbitzu berria</a></li>
+                    <li><a href="{{ path('zerbitzua_new') }}" class="fa fa-plus"> {{ 'messages.zerbitzuberria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -18,9 +18,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Kodea</th>
+                <th>{{ 'messages.kodea'|trans }}</th>
                 {#<th>Espediente kudeaketa</th>#}
-                <th>Zerbitzuaeu</th>
+                <th>{{ 'messages.zerbitzua'|trans }}</th>
                 <th></th>
             </tr>
         </thead>

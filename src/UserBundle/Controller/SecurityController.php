@@ -28,29 +28,32 @@ class SecurityController extends Controller
          * IZFE-rako login da ?
          * Baldin eta parametroa badu bai
          ***/
-        $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ) );
+//        $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ) );
 //        $miurl = $query_str['host'].'/'.$query_str['path'];
-        $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ), PHP_URL_QUERY );
+//        $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ), PHP_URL_QUERY );
+        $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
 
-        $urlOsoa= $request->getSession()->get( '_security.main.target_path' );
+//        dump($request->getUri());
+//        dump($request->getSession()->get( '_security.main.target_path' ));
+//        $urlOsoa= $request->getSession()->get( '_security.main.target_path' );
+        $urlOsoa=$request->getUri();
 
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
+            dump('2');
             parse_str( $query_str, $query_params );
             /* GET kodea*/
             if ( $query_str != null )
             {
                 $NA=$query_params["DNI"];
                 $udala=$query_params["AYUN"];
-                $hizkuntza=$query_params["IDIOMA"];
+                $hizkuntza=strtolower($query_params["IDIOMA"]);
                 $fitxategia=$query_params["ficheroAuten"];
-
 
                 if ($this->izfelogin ($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)==1)
                 {
-                        return $this->redirectToRoute( 'fitxa_index' );
+                        return $this->redirectToRoute( 'fitxa_index', array('_locale'=> $hizkuntza ));
                 }else
                 {
-//                        dump("else");
                         $lastUsername = null;
                         $csrfToken = $this->get( 'security.csrf.token_manager' )->getToken( 'authenticate' )->getValue();
                         $error = null;

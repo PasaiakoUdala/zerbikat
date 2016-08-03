@@ -5,13 +5,13 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Erabiltzaileak</a>
+                <a class="navbar-brand">{{ 'messages.erabiltzaileak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="{{ path('user_new') }}" class="fa fa-plus">
-                            Erabiltzaile berria</a>
+                            {{ 'messages.erabiltzaileberria'|trans }}</a>
                     </li>
                 </ul>
             </div>
@@ -27,9 +27,9 @@
     <thead>
     <tr>
         {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-        <th>Erabiltzailea (NA)</th>
-        <th>Emaila</th>
-        <th>Baimenak</th>
+        <th>{{ 'messages.erabiltzailea'|trans }} ({{ 'messages.NA'|trans }})</th>
+        <th>{{ 'messages.email'|trans }}</th>
+        <th>{{ 'messages.baimenak'|trans }}</th>
         <th></th>
     </tr>
     </thead>

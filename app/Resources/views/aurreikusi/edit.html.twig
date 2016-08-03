@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Aurreikusitako epeak</a>
+                <a class="navbar-brand">{{ 'messages.aurreikusi'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('aurreikusi_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('aurreikusi_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -21,7 +21,8 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.epeaeu, 'Epea (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.epea'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(edit_form.epeaeu, 'Epea (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.epeaeu) }}
                 {{ form_widget(edit_form.epeaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -29,7 +30,8 @@
 
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.epeaes, 'Epea (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.epea'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(edit_form.epeaes, 'Epea (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.epeaes) }}
                 {{ form_widget(edit_form.epeaes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -43,7 +45,8 @@
     {% endif %}
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.epea'|trans }}</b>
+                {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Udalak</a>
+                <a class="navbar-brand">{{ 'messages.udalak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('udala_index') }}" class="fa fa-undo"> Utzi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('udala_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -20,28 +20,32 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="form-group">
-                <label class="control-label">Kodea:</label>
+                <b>{{ 'messages.kodea'|trans }}</b>
+                {#<label class="control-label">Kodea:</label>#}
                 {{ form_errors(form.kodea) }}
                 {{ form_widget(form.kodea, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div class="form-group">
-                <label class="control-label">IKF/CIF:</label>
+                <b>{{ 'messages.ifk'|trans }}</b>
+                {#<label class="control-label">IKF/CIF:</label>#}
                 {{ form_errors(form.ifk) }}
                 {{ form_widget(form.ifk, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <label class="control-label">Orrikatzeko lerro kopurua:</label>
+                <b>{{ 'messages.orrikatzekop'|trans }}</b>
+                {#<label class="control-label">Orrikatzeko lerro kopurua:</label>#}
                 {{ form_errors(form.orrikatzea) }}
                 {{ form_widget(form.orrikatzea, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-5">
             <div class="form-group">
-                <label class="control-label">Espediente kudeaketa:</label>
+                <b>{{ 'messages.espedientekudeaketa'|trans }}</b>
+                {#<label class="control-label">Espediente kudeaketa:</label>#}
                 {{ form_errors(form.espedientekudeaketa) }}
                 {{ form_widget(form.espedientekudeaketa, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -51,14 +55,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izena (eu):</label>
+                <b>{{ 'messages.izena'|trans }} (<b>{{ 'messages.eu'|trans }}</b>)</b>
+                {#<label class="control-label">Izena (eu):</label>#}
                 {{ form_errors(form.izenaeu) }}
                 {{ form_widget(form.izenaeu, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izena (es):</label>
+                <b>{{ 'messages.izena'|trans }} (<b>{{ 'messages.es'|trans }}</b>)</b>
+                {#<label class="control-label">Izena (es):</label>#}
                 {{ form_errors(form.izenaes) }}
                 {{ form_widget(form.izenaes, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -67,14 +73,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izendapena (eu):</label>
+                <b>{{ 'messages.izendapena'|trans }} (<b>{{ 'messages.eu'|trans }}</b>)</b>
+                {#<label class="control-label">Izendapena (eu):</label>#}
                 {{ form_errors(form.izendapenaeu) }}
                 {{ form_widget(form.izendapenaeu, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">Izendapena (es):</label>
+                <b>{{ 'messages.izendapena'|trans }} (<b>{{ 'messages.es'|trans }}</b>)</b>
+                {#<label class="control-label">Izendapena (es):</label>#}
                 {{ form_errors(form.izendapenaes) }}
                 {{ form_widget(form.izendapenaes, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -84,14 +92,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">LOPD txantilla (eu):</label>
+                <b>{{ 'messages.lopdtxantilla'|trans }} (<b>{{ 'messages.eu'|trans }}</b>)</b>
+                {#<label class="control-label">LOPD txantilla (eu):</label>#}
                 {{ form_errors(form.lopdeu) }}
                 {{ form_widget(form.lopdeu, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                <label class="control-label">LOPD txantilla (es):</label>
+                <b>{{ 'messages.lopdtxantilla'|trans }} (<b>{{ 'messages.es'|trans }}</b>)</b>
+                {#<label class="control-label">LOPD txantilla (es):</label>#}
                 {{ form_errors(form.lopdes) }}
                 {{ form_widget(form.lopdes, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
@@ -100,12 +110,26 @@
     <div class="row">
         <div class="col-sm-10">
             <div class="form-group">
-                <label class="control-label">Logoa:</label>
+                <b>{{ 'messages.logoa'|trans }} </b>
+                {#<label class="control-label">Logoa:</label>#}
                 {{ form_errors(form.logoa) }}
                 {{ form_widget(form.logoa, {'attr': {'class': 'c-checkbox'}}) }}
             </div>
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="form-group">
+                {{ form_errors(form.zergaor) }}
+                {{ form_widget(form.zergaor, {'attr': {'class': 'c-checkbox'}}) }}
+                {{ 'messages.zergaorapp'|trans }}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="hidden">
     {{ form_end(form) }}
+    </div>
 {% endblock %}

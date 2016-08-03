@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Araudiak</a>
+                <a class="navbar-brand">{{ 'messages.araudiak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('araudia_index') }}" class="fa fa-undo"> Zerrendara itzuli</a></li>
+                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('araudia_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -23,14 +23,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.kodea'|trans }}</b>
+                {#{{ form_label(edit_form.kodea, 'Kodea: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.kodea) }}
                 {{ form_widget(edit_form.kodea, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.araumota, 'Arau-mota: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.araumota'|trans }}</b>
+                {#{{ form_label(edit_form.araumota, 'Arau-mota: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.araumota) }}
                 {{ form_widget(edit_form.araumota, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -40,14 +42,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.arauaeu, 'Araua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.araua'|trans }} ({{ 'messages.eu'|trans }})</b>
+                {#{{ form_label(edit_form.arauaeu, 'Araua (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.arauaeu) }}
                 {{ form_widget(edit_form.arauaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.arauaes, 'Araua (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.araua'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(edit_form.arauaes, 'Araua (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.arauaes) }}
                 {{ form_widget(edit_form.arauaes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -57,7 +61,8 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.estekaeu, 'Esteka (eu): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.esteka'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(edit_form.estekaeu, 'Esteka (eu): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.estekaeu) }}
                 {{ form_widget(edit_form.estekaeu, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -65,7 +70,8 @@
 
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.estekaes, 'Esteka (es): ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.esteka'|trans }} ({{ 'messages.es'|trans }})</b>
+                {#{{ form_label(edit_form.estekaes, 'Esteka (es): ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.estekaes) }}
                 {{ form_widget(edit_form.estekaes, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -79,7 +85,8 @@
     {% endif %}
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(edit_form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(edit_form.udala) }}
                 {{ form_widget(edit_form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

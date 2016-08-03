@@ -4,12 +4,12 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Kaleak</a>
+                <a class="navbar-brand">{{ 'messages.kaleak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('kalea_index') }}" class="fa fa-undo"> Utzi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('kalea_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -20,14 +20,16 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.barrutia, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.barrutia'|trans }}</b>
+                {#{{ form_label(form.barrutia, 'Barrutia: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.barrutia) }}
                 {{ form_widget(form.barrutia, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.izena, 'Kale izena: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.izena'|trans }}</b>
+                {#{{ form_label(form.izena, 'Kale izena: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.izena) }}
                 {{ form_widget(form.izena, {'attr': {'class': 'form-control'}}) }}
             </div>
@@ -48,7 +50,8 @@
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-control'}}) }}
             </div>

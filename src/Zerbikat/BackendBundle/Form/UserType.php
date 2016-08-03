@@ -41,8 +41,14 @@ class UserType extends AbstractType
             ))
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Pasahitza'),
-                'second_options' => array('label' => 'Pasahitza Errepikatu'),
+                'first_options'  => array(
+                    'label' => 'messages.pasahitza',
+                    'translation_domain' => 'messages',
+                ),
+                'second_options' => array(
+                    'label' => 'messages.pasahitzaerrepikatu',
+                    'translation_domain' => 'messages',
+                ),
             ))
         ;
     }

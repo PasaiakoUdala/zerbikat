@@ -106,7 +106,512 @@
                 <source>messages.created</source>
                 <target>Noiz sortua</target>
             </trans-unit>
+            <trans-unit id="messages.taulanagusiak">
+                <source>messages.taulanagusiak</source>
+                <target>Taula nagusiak</target>
+            </trans-unit>
+            <trans-unit id="messages.agiriak">
+                <source>messages.agiriak</source>
+                <target>Agiriak</target>
+            </trans-unit>
+            <trans-unit id="messages.sailak">
+                <source>messages.sailak</source>
+                <target>Sailak</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisailak">
+                <source>messages.azpisailak</source>
+                <target>Azpisailak</target>
+            </trans-unit>
+            <trans-unit id="messages.datuenbabesa">
+                <source>messages.datuenbabesa</source>
+                <target>Datuen babesa</target>
+            </trans-unit>
+            <trans-unit id="messages.prozedurak">
+                <source>messages.prozedurak</source>
+                <target>Prozedurak</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalak">
+                <source>messages.kanalak</source>
+                <target>Kanalak</target>
+            </trans-unit>
+            <trans-unit id="messages.ebazleak">
+                <source>messages.ebazleak</source>
+                <target>Ebazleak</target>
+            </trans-unit>
+            <trans-unit id="messages.doklagun">
+                <source>messages.doklagun</source>
+                <target>Dokumentazio lagungarria</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak1">
+                <source>messages.besteak1</source>
+                <target>Besteak1</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak2">
+                <source>messages.besteak2</source>
+                <target>Besteak2</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak3">
+                <source>messages.besteak3</source>
+                <target>Besteak3</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeskatu">
+                <source>messages.norkeskatu</source>
+                <target>Nork eska dezake</target>
+            </trans-unit>
+            <trans-unit id="messages.sailkapena">
+                <source>messages.sailkapena</source>
+                <target>Sailkapena</target>
+            </trans-unit>
+            <trans-unit id="messages.etiketak">
+                <source>messages.etiketak</source>
+                <target>Etiketak</target>
+            </trans-unit>
+            <trans-unit id="messages.familiak">
+                <source>messages.familiak</source>
+                <target>Familiak</target>
+            </trans-unit>
+            <trans-unit id="messages.taulalagun">
+                <source>messages.taulalagun</source>
+                <target>Taula laguntzaileak</target>
+            </trans-unit>
+            <trans-unit id="messages.arruntak">
+                <source>messages.arruntak</source>
+                <target>Epe arruntak</target>
+            </trans-unit>
+            <trans-unit id="messages.aurreikusi">
+                <source>messages.aurreikusi</source>
+                <target>Aurreikusitako epeak</target>
+            </trans-unit>
+            <trans-unit id="messages.isiltasunadmin">
+                <source>messages.isiltasunadmin</source>
+                <target>Isiltasun administratiboaren izaerak</target>
+            </trans-unit>
+            <trans-unit id="messages.araumotak">
+                <source>messages.araumotak</source>
+                <target>Arau-motak</target>
+            </trans-unit>
+            <trans-unit id="messages.dokumentumotak">
+                <source>messages.dokumentumotak</source>
+                <target>Dokumentu-motak</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalmotak">
+                <source>messages.kanalmotak</source>
+                <target>Kanal-motak</target>
+            </trans-unit>
+            <trans-unit id="messages.kaleizendegia">
+                <source>messages.kaleizendegia</source>
+                <target>Kale izendegia</target>
+            </trans-unit>
+            <trans-unit id="messages.barrutiak">
+                <source>messages.barrutiak</source>
+                <target>Barrutiak</target>
+            </trans-unit>
+            <trans-unit id="messages.kaleak">
+                <source>messages.kaleak</source>
+                <target>Kaleak</target>
+            </trans-unit>
+            <trans-unit id="messages.eraikinak">
+                <source>messages.eraikinak</source>
+                <target>Eraikinak</target>
+            </trans-unit>
+            <trans-unit id="messages.zergaordenantzak">
+                <source>messages.zergaordenantzak</source>
+                <target>Zerga Ordenantzak</target>
+            </trans-unit>
+            <trans-unit id="messages.kostutaulak">
+                <source>messages.kostutaulak</source>
+                <target>Kostu-taulak</target>
+            </trans-unit>
+            <trans-unit id="messages.baldintzak">
+                <source>messages.baldintzak</source>
+                <target>Baldintzak</target>
+            </trans-unit>
+            <trans-unit id="messages.kontzeptumotak">
+                <source>messages.kontzeptumotak</source>
+                <target>Kontzeptu-motak</target>
+            </trans-unit>
+            <trans-unit id="messages.erabiltzaileak">
+                <source>messages.erabiltzaileak</source>
+                <target>Erabiltzaileak</target>
+            </trans-unit>
+            <trans-unit id="messages.eremuak">
+                <source>messages.eremuak</source>
+                <target>Eremuak</target>
+            </trans-unit>
+            <trans-unit id="messages.espedientekudeaketa">
+                <source>messages.espedientekudeaketa</source>
+                <target>Espediente kudeaketa</target>
+            </trans-unit>
+            <trans-unit id="messages.araudiak">
+                <source>messages.araudiak</source>
+                <target>Araudiak</target>
+            </trans-unit>
+            <trans-unit id="messages.arauberria">
+                <source>messages.arauberria</source>
+                <target>Arau berria</target>
+            </trans-unit>
+            <trans-unit id="messages.araua">
+                <source>messages.araua</source>
+                <target>Araua</target>
+            </trans-unit>
+            <trans-unit id="messages.araumota">
+                <source>messages.araumota</source>
+                <target>Arau-mota</target>
+            </trans-unit>
+            <trans-unit id="messages.esteka">
+                <source>messages.esteka</source>
+                <target>Esteka</target>
+            </trans-unit>
+            <trans-unit id="messages.utzi">
+                <source>messages.utzi</source>
+                <target>Utzi</target>
+            </trans-unit>
+            <trans-unit id="messages.araumotaberria">
+                <source>messages.araumotaberria</source>
+                <target>Arau-mota berria</target>
+            </trans-unit>
+            <trans-unit id="messages.mota">
+                <source>messages.mota</source>
+                <target>Mota</target>
+            </trans-unit>
+            <trans-unit id="messages.epeberria">
+                <source>messages.epeberria</source>
+                <target>Epe berria</target>
+            </trans-unit>
+            <trans-unit id="messages.epea">
+                <source>messages.epea</source>
+                <target>Epea</target>
+            </trans-unit>
+            <trans-unit id="messages.kostutaulaberria">
+                <source>messages.kostutaulaberria</source>
+                <target>Kostu-taula berria</target>
+            </trans-unit>
+            <trans-unit id="messages.izenburua">
+                <source>messages.izenburua</source>
+                <target>Izenburua</target>
+            </trans-unit>
+            <trans-unit id="messages.taulaikusi">
+                <source>messages.taulaikusi</source>
+                <target>Taula ikusi</target>
+            </trans-unit>
+            <trans-unit id="messages.testua">
+                <source>messages.testua</source>
+                <target>Testua</target>
+            </trans-unit>
+            <trans-unit id="messages.kopurua">
+                <source>messages.kopurua</source>
+                <target>Kopurua</target>
+            </trans-unit>
+            <trans-unit id="messages.unitatea">
+                <source>messages.unitatea</source>
+                <target>Unitatea</target>
+            </trans-unit>
+            <trans-unit id="messages.baldintza">
+                <source>messages.baldintza</source>
+                <target>Baldintza</target>
+            </trans-unit>
+            <trans-unit id="messages.parrafoagehitu">
+                <source>messages.parrafoagehitu</source>
+                <target>Parrafoa gehitu</target>
+            </trans-unit>
+            <trans-unit id="messages.kontzeptuagehitu">
+                <source>messages.kontzeptuagehitu</source>
+                <target>Kontzeptua gehitu</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisailberria">
+                <source>messages.azpisailberria</source>
+                <target>Azpisail berria</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisaila">
+                <source>messages.azpisaila</source>
+                <target>Azpisaila</target>
+            </trans-unit>
+            <trans-unit id="messages.arduraduna">
+                <source>messages.arduraduna</source>
+                <target>Arduraduna</target>
+            </trans-unit>
+            <trans-unit id="messages.kontaktua">
+                <source>messages.kontaktua</source>
+                <target>Kontaktua</target>
+            </trans-unit>
+            <trans-unit id="messages.helbidea">
+                <source>messages.helbidea</source>
+                <target>Helbidea</target>
+            </trans-unit>
+            <trans-unit id="messages.hizkia">
+                <source>messages.hizkia</source>
+                <target>Hizkia</target>
+            </trans-unit>
+            <trans-unit id="messages.haz">
+                <source>messages.haz</source>
+                <target>HAZ</target>
+            </trans-unit>
+            <trans-unit id="messages.barrutia">
+                <source>messages.barrutia</source>
+                <target>Barrutia</target>
+            </trans-unit>
+            <trans-unit id="messages.kalea">
+                <source>messages.kalea</source>
+                <target>Kalea</target>
+            </trans-unit>
+            <trans-unit id="messages.kalezbkia">
+                <source>messages.kalezbkia</source>
+                <target>Kale Zenbakia</target>
+            </trans-unit>
+            <trans-unit id="messages.eraikina">
+                <source>messages.eraikina</source>
+                <target>Eraikina</target>
+            </trans-unit>
+            <trans-unit id="messages.email">
+                <source>messages.email</source>
+                <target>Email-a</target>
+            </trans-unit>
+            <trans-unit id="messages.telefonoa">
+                <source>messages.telefonoa</source>
+                <target>Telefonoa</target>
+            </trans-unit>
+            <trans-unit id="messages.fax">
+                <source>messages.fax</source>
+                <target>Fax-a</target>
+            </trans-unit>
+            <trans-unit id="messages.ordutegia">
+                <source>messages.ordutegia</source>
+                <target>Ordutegia</target>
+            </trans-unit>
+            <trans-unit id="messages.baldintzaberria">
+                <source>messages.baldintzaberria</source>
+                <target>Baldintza berria</target>
+            </trans-unit>
+            <trans-unit id="messages.barrutiberria">
+                <source>messages.barrutiberria</source>
+                <target>Barruti berria</target>
+            </trans-unit>
+            <trans-unit id="messages.berria">
+                <source>messages.berria</source>
+                <target>Sarrera berria</target>
+            </trans-unit>
+            <trans-unit id="messages.maila">
+                <source>messages.maila</source>
+                <target>Maila</target>
+            </trans-unit>
+            <trans-unit id="messages.izena">
+                <source>messages.izena</source>
+                <target>Izena</target>
+            </trans-unit>
+            <trans-unit id="messages.xedea">
+                <source>messages.xedea</source>
+                <target>Xedea</target>
+            </trans-unit>
+            <trans-unit id="messages.lagapenak">
+                <source>messages.lagapenak</source>
+                <target>Lagapenak</target>
+            </trans-unit>
+            <trans-unit id="messages.agiriberria">
+                <source>messages.agiriberria</source>
+                <target>Agiri berria</target>
+            </trans-unit>
+            <trans-unit id="messages.dokumentumota">
+                <source>messages.dokumentumota</source>
+                <target>Dokumentu-mota</target>
+            </trans-unit>
+            <trans-unit id="messages.eraikinberria">
+                <source>messages.eraikinberria</source>
+                <target>Eraikin berria</target>
+            </trans-unit>
+            <trans-unit id="messages.koordenadak">
+                <source>messages.koordenadak</source>
+                <target>Koordenadak</target>
+            </trans-unit>
+            <trans-unit id="messages.longitudea">
+                <source>messages.longitudea</source>
+                <target>Longitudea</target>
+            </trans-unit>
+            <trans-unit id="messages.latitudea">
+                <source>messages.latitudea</source>
+                <target>Latitudea</target>
+            </trans-unit>
+            <trans-unit id="messages.etiketaberria">
+                <source>messages.etiketaberria</source>
+                <target>Etiketa berria</target>
+            </trans-unit>
+            <trans-unit id="messages.etiketa">
+                <source>messages.etiketa</source>
+                <target>Etiketa</target>
+            </trans-unit>
+            <trans-unit id="messages.familia">
+                <source>messages.familia</source>
+                <target>Familia</target>
+            </trans-unit>
+            <trans-unit id="messages.familiaberria">
+                <source>messages.familiaberria</source>
+                <target>Familia berria</target>
+            </trans-unit>
+            <trans-unit id="messages.erabiltzaileberria">
+                <source>messages.erabiltzaileberria</source>
+                <target>Erabiltzaile berria</target>
+            </trans-unit>
+            <trans-unit id="messages.erabiltzailea">
+                <source>messages.erabiltzailea</source>
+                <target>Erabiltzailea</target>
+            </trans-unit>
+            <trans-unit id="messages.NA">
+                <source>messages.NA</source>
+                <target>NA</target>
+            </trans-unit>
+            <trans-unit id="messages.baimenak">
+                <source>messages.baimenak</source>
+                <target>ROL-ak</target>
+            </trans-unit>
+            <trans-unit id="messages.aktibo">
+                <source>messages.aktibo</source>
+                <target>Aktibo dago?</target>
+            </trans-unit>
+            <trans-unit id="messages.pasahitza">
+                <source>messages.pasahitza</source>
+                <target>Pasahitza</target>
+            </trans-unit>
+            <trans-unit id="messages.pasahitzaerrepikatu">
+                <source>messages.pasahitzaerrepikatu</source>
+                <target>Pasahitza errepikatu</target>
+            </trans-unit>
+            <trans-unit id="messages.isiltasunadminak">
+                <source>messages.isiltasunadminak</source>
+                <target>Isiltasun administratiboak</target>
+            </trans-unit>
+            <trans-unit id="messages.kaleberria">
+                <source>messages.kaleberria</source>
+                <target>Kale berria</target>
+            </trans-unit>
 
+
+            <trans-unit id="messages.kanalberria">
+                <source>messages.kanalberria</source>
+                <target>Kanal berria</target>
+            </trans-unit>
+            <trans-unit id="messages.kanala">
+                <source>messages.kanala</source>
+                <target>Kanala</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalmota">
+                <source>messages.kanalmota</source>
+                <target>Kanal-mota</target>
+            </trans-unit>
+            <trans-unit id="messages.kanaltelematikoa">
+                <source>messages.kanaltelematikoa</source>
+                <target>Telematikoa da?</target>
+            </trans-unit>
+            <trans-unit id="messages.postakodea">
+                <source>messages.postakodea</source>
+                <target>Posta kodea</target>
+            </trans-unit>
+            <trans-unit id="messages.motaberria">
+                <source>messages.motaberria</source>
+                <target>Mota berria</target>
+            </trans-unit>
+            <trans-unit id="messages.estekabehar">
+                <source>messages.estekabehar</source>
+                <target>Esteka dauka?</target>
+            </trans-unit>
+            <trans-unit id="messages.ebazleberria">
+                <source>messages.ebazleberria</source>
+                <target>Ebazle berria</target>
+            </trans-unit>
+            <trans-unit id="messages.nork">
+                <source>messages.nork</source>
+                <target>Nork</target>
+            </trans-unit>
+            <trans-unit id="messages.prozeduraberria">
+                <source>messages.prozeduraberria</source>
+                <target>Prozedura berria</target>
+            </trans-unit>
+            <trans-unit id="messages.sailberria">
+                <source>messages.sailberria</source>
+                <target>Sail berria</target>
+            </trans-unit>
+            <trans-unit id="messages.udalak">
+                <source>messages.udalak</source>
+                <target>Udalak</target>
+            </trans-unit>
+            <trans-unit id="messages.udalberria">
+                <source>messages.udalberria</source>
+                <target>Udal berria</target>
+            </trans-unit>
+            <trans-unit id="messages.ifk">
+                <source>messages.ifk</source>
+                <target>IFK</target>
+            </trans-unit>
+            <trans-unit id="messages.orrikatzekop">
+                <source>messages.orrikatzekop</source>
+                <target>Orrikatzeko lerro kopurua</target>
+            </trans-unit>
+            <trans-unit id="messages.izendapena">
+                <source>messages.izendapena</source>
+                <target>Izendapena</target>
+            </trans-unit>
+            <trans-unit id="messages.lopdtxantilla">
+                <source>messages.lopdtxantilla</source>
+                <target>LOPD txantilloia</target>
+            </trans-unit>
+            <trans-unit id="messages.logoa">
+                <source>messages.logoa</source>
+                <target>Logoa</target>
+            </trans-unit>
+            <trans-unit id="messages.zergaorapp">
+                <source>messages.zergaorapp</source>
+                <target>Zerga ordenantzen aplikazioa erabiltzen du?</target>
+            </trans-unit>
+            <trans-unit id="messages.zerbitzuberria">
+                <source>messages.zerbitzuberria</source>
+                <target>Zerbitzu berria</target>
+            </trans-unit>
+            <trans-unit id="messages.erroa">
+                <source>messages.erroa</source>
+                <target>Zerbitzuaren erroa</target>
+            </trans-unit>
+
+
+
+
+
+
+            <trans-unit id="messages.eremuberria">
+                <source>messages.eremuberria</source>
+                <target>Eremu berria</target>
+            </trans-unit>
+            <trans-unit id="messages.helburua">
+                <source>messages.helburua</source>
+                <target>Helburua</target>
+            </trans-unit>
+            <trans-unit id="messages.helburuaetiketa">
+                <source>messages.helburuaetiketa</source>
+                <target>Helburua etiketa</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeska">
+                <source>messages.norkeska</source>
+                <target>Nork eskatu</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeskalabel">
+                <source>messages.norkeskalabel</source>
+                <target>Nork eska dezake etiketa</target>
+            </trans-unit>
+
+
+
+
+
+
+            <trans-unit id="messages.bai">
+                <source>messages.bai</source>
+                <target>Bai</target>
+            </trans-unit>
+            <trans-unit id="messages.ez">
+                <source>messages.ez</source>
+                <target>Ez</target>
+            </trans-unit>
+            <trans-unit id="messages.emaitzarikez">
+                <source>messages.emaitzarikez</source>
+                <target>Ez da emaitzarik topatu</target>
+            </trans-unit>
             <trans-unit id="messages.eu">
                 <source>messages.eu</source>
                 <target>eu</target>
@@ -115,6 +620,15 @@
                 <source>messages.es</source>
                 <target>es</target>
             </trans-unit>
+            <trans-unit id="messages.txt">
+                <source>messages.txt</source>
+                <target>txt</target>
+            </trans-unit>
+            <trans-unit id="messages.table">
+                <source>messages.table</source>
+                <target>taula</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

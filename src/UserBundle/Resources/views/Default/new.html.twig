@@ -5,7 +5,7 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Erabiltzaileak</a>
+                <a class="navbar-brand">{{ 'messages.erabiltzaileak'|trans }}</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
@@ -13,8 +13,8 @@
                         {#<a href="{{ path('araudia_new') }}" class="fa fa-plus">#}
                             {#Erabiltzaile berria</a>#}
                     {#</li>#}
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> Gorde</a></li>
-                    <li><a href="{{ path('users_index') }}" class="fa fa-undo"> Utzi</a></li>
+                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+                    <li><a href="{{ path('users_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
 
                 </ul>
             </div>
@@ -33,14 +33,16 @@
     {% endif %}
         <div class="col-sm-1">
             <div class="form-group">
-                {{ form_label(form.enabled, 'Aktibo? ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.aktibo'|trans }}</b>
+                {#{{ form_label(form.enabled, 'Aktibo? ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.enabled) }}
                 {{ form_widget(form.enabled, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
         <div class="col-sm-2">
             <div class="form-group">
-                {{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.udala'|trans }}</b>
+                {#{{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-group'}}) }}
             </div>
@@ -50,14 +52,16 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="form-group">
-                {{ form_label(form.username, 'NA / DNI: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.NA'|trans }}</b>
+                {#{{ form_label(form.username, 'NA / DNI: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.username) }}
                 {{ form_widget(form.username, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
         <div class="col-sm-4">
             <div class="form-group">
-                {{ form_label(form.email, 'Email-a: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.email'|trans }}</b>
+                {#{{ form_label(form.email, 'Email-a: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.email) }}
                 {{ form_widget(form.email, {'attr': {'class': 'form-group'}}) }}
             </div>
@@ -71,7 +75,8 @@
         {#</div>#}
         <div class="col-sm-2">
             <div class="form-group">
-                {{ form_label(form.azpisaila, 'Azpi-saila: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.azpisaila'|trans }}</b>
+                {#{{ form_label(form.azpisaila, 'Azpi-saila: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.azpisaila) }}
                 {{ form_widget(form.azpisaila, {'attr': {'class': 'form-group'}}) }}
             </div>
@@ -90,7 +95,8 @@
         {% endfor %}
         <div class="col-sm-2">
             <div class="form-group">
-                {{ form_label(form.roles, 'Baimenak: ', { 'label_attr': {'class': 'control-label'} }) }}
+                <b>{{ 'messages.baimenak'|trans }}</b>
+                {#{{ form_label(form.roles, 'Baimenak: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.roles) }}
                 {{ form_widget(form.roles, {'attr': {'class': 'form-group'}}) }}
             </div>

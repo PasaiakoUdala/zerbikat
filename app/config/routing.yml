@@ -5,164 +5,204 @@ backend_fitxa_prozedura:
 user:
     resource: "@UserBundle/Controller/"
     type:     annotation
-    prefix:   /
+#    prefix:   /
+    prefix:   /{_locale}/
 
 backend_zerbitzua:
     resource: "@BackendBundle/Controller/ZerbitzuaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_udala:
     resource: "@BackendBundle/Controller/UdalaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_saila:
     resource: "@BackendBundle/Controller/SailaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_prozedura:
     resource: "@BackendBundle/Controller/ProzeduraController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_ordenantzaparrafoa:
     resource: "@BackendBundle/Controller/OrdenantzaparrafoaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_ordenantza:
     resource: "@BackendBundle/Controller/OrdenantzaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_norkeskatu:
     resource: "@BackendBundle/Controller/NorkeskatuController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_norkebatzi:
     resource: "@BackendBundle/Controller/NorkebatziController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_kontzeptumota:
     resource: "@BackendBundle/Controller/KontzeptumotaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_kontzeptua:
     resource: "@BackendBundle/Controller/KontzeptuaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_kanalmota:
     resource: "@BackendBundle/Controller/KanalmotaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_kanala:
     resource: "@BackendBundle/Controller/KanalaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_kalea:
     resource: "@BackendBundle/Controller/KaleaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_isiltasun_administratiboa:
     resource: "@BackendBundle/Controller/IsiltasunAdministratiboaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_familia:
     resource: "@BackendBundle/Controller/FamiliaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_etiketa:
     resource: "@BackendBundle/Controller/EtiketaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_espedientekudeaketa:
     resource: "@BackendBundle/Controller/EspedientekudeaketaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_eremuak:
     resource: "@BackendBundle/Controller/EremuakController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_eraikina:
     resource: "@BackendBundle/Controller/EraikinaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_dokumentumota:
     resource: "@BackendBundle/Controller/DokumentumotaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_dokumentazioa:
     resource: "@BackendBundle/Controller/DokumentazioaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_doklagun:
     resource: "@BackendBundle/Controller/DoklagunController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_datuenbabesa:
     resource: "@BackendBundle/Controller/DatuenbabesaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_besteak3:
     resource: "@BackendBundle/Controller/Besteak3Controller.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_besteak2:
     resource: "@BackendBundle/Controller/Besteak2Controller.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_besteak1:
     resource: "@BackendBundle/Controller/Besteak1Controller.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_barrutia:
     resource: "@BackendBundle/Controller/BarrutiaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_baldintza:
     resource: "@BackendBundle/Controller/BaldintzaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_azpisaila:
     resource: "@BackendBundle/Controller/AzpisailaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_azpiatalaparrafoa:
     resource: "@BackendBundle/Controller/AzpiatalaparrafoaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_azpiatala:
     resource: "@BackendBundle/Controller/AzpiatalaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_aurreikusi:
     resource: "@BackendBundle/Controller/AurreikusiController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_atalaparrafoa:
     resource: "@BackendBundle/Controller/AtalaparrafoaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_atala:
     resource: "@BackendBundle/Controller/AtalaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_arrunta:
     resource: "@BackendBundle/Controller/ArruntaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
-backend_arrunta:
-    resource: "@BackendBundle/Controller/ArruntaController.php"
-    type:     annotation
+#backend_arrunta:
+#    resource: "@BackendBundle/Controller/ArruntaController.php"
+#    type:     annotation
 
 backend_araumota:
     resource: "@BackendBundle/Controller/AraumotaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 backend_araudia:
     resource: "@BackendBundle/Controller/AraudiaController.php"
     type:     annotation
+    prefix:   /{_locale}/
 
 
 backend_fitxa:
     resource: "@BackendBundle/Controller/FitxaController.php"
     type:     annotation
+    prefix:   /{_locale}/
+
 
 frontend:
     resource: "@FrontendBundle/Controller/"
@@ -172,13 +212,6 @@ frontend:
 backend:
     resource: "@BackendBundle/Resources/config/routing.yml"
     prefix:   /
-
-easy_admin_bundle:
-#    resource: "@EasyAdminBundle/Controller/"
-    resource: "@BackendBundle/Controller/AdminController.php"
-    type:     annotation
-    prefix:   /admin/
-#    prefix:   /admin/{udala}
 
 api:
     type:     rest
