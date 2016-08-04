@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
             new UserBundle\UserBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

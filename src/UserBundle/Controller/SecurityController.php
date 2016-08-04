@@ -39,7 +39,7 @@ class SecurityController extends Controller
         $urlOsoa=$request->getUri();
 
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
-            dump('2');
+//            dump('2');
             parse_str( $query_str, $query_params );
             /* GET kodea*/
             if ( $query_str != null )

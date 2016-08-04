@@ -30,7 +30,11 @@
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ doklagun.udala }}</td>{% endif %}
                 <td>{{ doklagun.kodea }}</td>
-                <td>{{ doklagun.deskribapenaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ doklagun.deskribapenaes }}
+                    {% else %}{{ doklagun.deskribapenaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('doklagun_edit', { 'id': doklagun.id }) }}" class="fa fa-pencil"></a></li>
@@ -39,7 +43,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ doklagun.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[doklagun.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[doklagun.id],{'attr': {'id': doklagun.id}}) }}
-                                <a href="#" onclick="ezabatu({{ doklagun.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ doklagun.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[doklagun.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -55,7 +59,7 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'doklagun_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 
@@ -63,9 +67,10 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.doklagunlabeleu }}{% endif %} EZABATU. Ziur zaude?");
+            {#var r = confirm("{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.doklagunlabeleu }}{% endif %} EZABATU. Ziur zaude?");#}
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

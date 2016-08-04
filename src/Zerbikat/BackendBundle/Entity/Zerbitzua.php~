@@ -208,4 +208,52 @@ class Zerbitzua
     {
         return $this->espedientekudeaketa;
     }
+
+    /**
+     * Set erroaeu
+     *
+     * @param string $erroaeu
+     *
+     * @return Zerbitzua
+     */
+    public function setErroaeu($erroaeu)
+    {
+        $this->erroaeu = $erroaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get erroaeu
+     *
+     * @return string
+     */
+    public function getErroaeu()
+    {
+        return $this->erroaeu;
+    }
+
+    /**
+     * Set erroaes
+     *
+     * @param string $erroaes
+     *
+     * @return Zerbitzua
+     */
+    public function setErroaes($erroaes)
+    {
+        $this->erroaes = $erroaes;
+
+        return $this;
+    }
+
+    /**
+     * Get erroaes
+     *
+     * @return string
+     */
+    public function getErroaes()
+    {
+        return $this->erroaes;
+    }
 }

@@ -31,9 +31,21 @@
         {% for kanala in kanalas %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ kanala.udala }}</td>{% endif %}
-                <td>{{ kanala.kanalmota }}</td>
-                <td>{{ kanala.izenaeu }}</td>
-                <td>{{ kanala.deskribapenaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ kanala.kanalmota.motaes }}
+                    {% else %}{{ kanala.kanalmota.motaeu }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ kanala.izenaes }}
+                    {% else %}{{ kanala.izenaeu }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ kanala.deskribapenaes }}
+                    {% else %}{{ kanala.deskribapenaeu }}
+                    {% endif %}
+                </td>
                 <td>{% if kanala.telematikoa %}
                         {{ 'messages.bai'|trans }}{% else %}{{ 'messages.ez'|trans }}{% endif %}</td>
                 <td NOWRAP class="text-right">
@@ -44,7 +56,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ kanala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[kanala.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[kanala.id],{'attr': {'id': kanala.id}}) }}
-                                <a href="#" onclick="ezabatu({{ kanala.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ kanala.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[kanala.id]) }}</li>
                         {% endif %}
 
@@ -61,16 +73,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'kanala_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Kanala EZABATU. Ziur zaude?");
+//            var r = confirm("Kanala EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

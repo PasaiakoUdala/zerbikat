@@ -4,11 +4,17 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak2labeleu }}{% endif %}</a>
+                {#<a class="navbar-brand">{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak2labeleu }}{% endif %}</a>#}
+                {% if app.user.udala.eremuak %}
+                    {% if app.request.locale == 'es'%}{{ app.user.udala.eremuak.besteak2labeles }}
+                    {% else %}{{ app.user.udala.eremuak.besteak2labeleu }}
+                    {% endif %}
+                {% endif %}
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('besteak2_new') }}" class="fa fa-plus">{% if app.user.udala.eremuak %} {{ app.user.udala.eremuak.besteak2labeleu }}{% else %}Sarrera{% endif %} berria</a></li>
+                    {#<li><a href="{{ path('besteak2_new') }}" class="fa fa-plus">{% if app.user.udala.eremuak %} {{ app.user.udala.eremuak.besteak2labeleu }}{% else %}Sarrera{% endif %} berria</a></li>#}
+                    <li><a href="{{ path('besteak2_new') }}" class="fa fa-plus"> {{ 'messages.berria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -39,7 +45,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ besteak2.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[besteak2.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[besteak2.id],{'attr': {'id': besteak2.id}}) }}
-                                <a href="#" onclick="ezabatu({{ besteak2.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ besteak2.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[besteak2.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -54,7 +60,7 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'besteak2_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
@@ -63,7 +69,8 @@
     <script type="text/javascript">
         function ezabatu (id)
         {
-            var r = confirm("Besteak2 EZABATU. Ziur zaude?");
+//            var r = confirm("Besteak2 EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

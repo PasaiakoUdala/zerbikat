@@ -32,7 +32,11 @@
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ araumotum.udala }}</td>{% endif %}
                 <td>{{ araumotum.kodea }}</td>
-                <td>{{ araumotum.motaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ araumotum.motaes }}
+                    {% else %}{{ araumotum.motaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('araumota_edit', { 'id': araumotum.id }) }}" class="fa fa-pencil"></a></li>
@@ -41,7 +45,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ araumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[araumotum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[araumotum.id],{'attr': {'id': araumotum.id}}) }}
-                                <a href="#" onclick="ezabatu({{ araumotum.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ araumotum.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[araumotum.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -56,16 +60,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'araumota_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Arau-mota EZABATU. Ziur zaude?");
+//            var r = confirm("Arau-mota EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

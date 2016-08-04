@@ -22,8 +22,6 @@
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
                 <th>{{ 'messages.epea'|trans }}</th>
-                {#<th>Epeaes</th>#}
-                {#<th>Id</th>#}
                 <th></th>
             </tr>
         </thead>
@@ -31,19 +29,19 @@
         {% for aurreikusi in aurreikusis %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ aurreikusi.udala }}</td>{% endif %}
-                <td>{{ aurreikusi.epeaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ aurreikusi.epeaes }}
+                    {% else %}{{ aurreikusi.epeaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('aurreikusi_edit', { 'id': aurreikusi.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[aurreikusi.id],{'attr': {'id': aurreikusi.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ aurreikusi.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[aurreikusi.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[aurreikusi.id],{'attr': {'id': aurreikusi.id}}) }}
-                                <a href="#" onclick="ezabatu({{ aurreikusi.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ aurreikusi.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[aurreikusi.id]) }}</li>
                         {% endif %}
-
                     </ul>
                 </td>
             </tr>
@@ -57,16 +55,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'aurreikusi_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Epea EZABATU. Ziur zaude?");
+//            var r = confirm("Epea EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

@@ -33,16 +33,24 @@
                 {#<td><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">{{ azpiatala.kodea }}</a></td>#}
                 <td>{{ azpiatala.kodea }}</td>
 
-                <td>{{ azpiatala.izenburuaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ azpiatala.izenburuaes }}
+                    {% else %}{{ azpiatala.izenburuaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li>
                             <a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}" class="fa fa-search"></a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[azpiatala.id],{'attr': {'id': azpiatala.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ azpiatala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[azpiatala.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[azpiatala.id],{'attr': {'id': azpiatala.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ azpiatala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ azpiatala.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[azpiatala.id]) }}</li>
+
                         {% endif %}
                     </ul>
                 </td>
@@ -50,4 +58,32 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="text-center">
+        {% if azpiatalas is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'azpiatala_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id,mezua)
+        {
+//            var r = confirm("Araua EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

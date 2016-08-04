@@ -35,7 +35,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ eremuak.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[eremuak.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[eremuak.id],{'attr': {'id': eremuak.id}}) }}
-                                <a href="#" onclick="ezabatu({{ eremuak.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ eremuak.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[eremuak.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -51,16 +51,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'eremuak_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Eremuak EZABATU. Ziur zaude?");
+//            var r = confirm("Eremuak EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

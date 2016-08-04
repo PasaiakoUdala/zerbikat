@@ -28,7 +28,11 @@
         {% for prozedura in prozeduras %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ prozedura.udala }}</td>{% endif %}
-                <td>{{ prozedura.prozeduraeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ prozedura.prozeduraes }}
+                    {% else %}{{ prozedura.prozeduraeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                             <li><a href="{{ path('prozedura_edit', { 'id': prozedura.id }) }}" class="fa fa-pencil"></a></li>
@@ -37,7 +41,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ prozedura.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[prozedura.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[prozedura.id],{'attr': {'id': prozedura.id}}) }}
-                                <a href="#" onclick="ezabatu({{ prozedura.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ prozedura.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[prozedura.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -52,16 +56,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'prozedura_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Prozedura EZABATU. Ziur zaude?");
+//            var r = confirm("Prozedura EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

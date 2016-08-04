@@ -27,16 +27,17 @@
         {% for isiltasunAdministratiboa in isiltasunAdministratiboas %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ isiltasunAdministratiboa.udala }}</td>{% endif %}
-                <td>{{ isiltasunAdministratiboa.isiltasuneu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ isiltasunAdministratiboa.isiltasunes }}
+                    {% else %}{{ isiltasunAdministratiboa.isiltasuneu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                             <li><a href="{{ path('isiltasunadministratiboa_edit', { 'id': isiltasunAdministratiboa.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[isiltasunAdministratiboa.id],{'attr': {'id': isiltasunAdministratiboa.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ isiltasunAdministratiboa.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[isiltasunAdministratiboa.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[isiltasunAdministratiboa.id],{'attr': {'id': isiltasunAdministratiboa.id}}) }}
-                                <a href="#" onclick="ezabatu({{ isiltasunAdministratiboa.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ isiltasunAdministratiboa.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[isiltasunAdministratiboa.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -51,7 +52,7 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'isiltasunadministratiboa_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 
@@ -59,9 +60,10 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Isiltasun administratiboaren izaera EZABATU. Ziur zaude?");
+//            var r = confirm("Isiltasun administratiboaren izaera EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

@@ -29,20 +29,51 @@
         {% for baldintza in baldintzas %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ baldintza.udala }}</td>{% endif %}
-                <td>{{ baldintza.baldintzaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ baldintza.baldintzaes }}
+                    {% else %}{{ baldintza.baldintzaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('baldintza_edit', { 'id': baldintza.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
                             <li>{{ form_start(deleteforms[baldintza.id],{'attr': {'id': baldintza.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ baldintza.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ baldintza.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[baldintza.id]) }}</li>
                         {% endif %}
-
                     </ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+    <div class="text-center">
+        {% if baldintzas is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'baldintza_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id,mezua)
+        {
+//            var r = confirm("Araua EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

@@ -608,6 +608,10 @@
                 <source>messages.ez</source>
                 <target>Ez</target>
             </trans-unit>
+            <trans-unit id="messages.ziurzaude">
+                <source>messages.ziurzaude</source>
+                <target>EZABATU. Ziur zaude?</target>
+            </trans-unit>
             <trans-unit id="messages.emaitzarikez">
                 <source>messages.emaitzarikez</source>
                 <target>Ez da emaitzarik topatu</target>

@@ -31,7 +31,8 @@
         "whiteoctober/tcpdf-bundle": "^1.0",
         "bmatzner/fontawesome-bundle": "^4.6",
         "guzzlehttp/guzzle": "^6.2",
-        "white-october/pagerfanta-bundle": "^1.0"
+        "white-october/pagerfanta-bundle": "^1.0",
+        "stof/doctrine-extensions-bundle": "^1.2"
 
     },
     "require-dev": {

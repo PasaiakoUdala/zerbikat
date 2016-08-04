@@ -30,8 +30,16 @@
             <tr>
                 <td>{{ udala.kodea }}</td>
                 <td>{{ udala.ifk }}</td>
-                <td>{{ udala.izenaeu }}</td>
-                <td>{{ udala.izendapenaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ udala.izenaes }}
+                    {% else %}{{ udala.izenaeu }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ udala.izendapenaes }}
+                    {% else %}{{ udala.izendapenaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                             <li><a href="{{ path('udala_show', { 'id': udala.id }) }}" class="fa fa-search"></a></li>
@@ -40,7 +48,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ udala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[udala.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[udala.id],{'attr': {'id': udala.id}}) }}
-                                <a href="#" onclick="ezabatu({{ udala.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ udala.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[udala.id]) }}</li>
                         {% endif %}
 
@@ -56,16 +64,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'udala_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Udala EZABATU. Ziur zaude? Ekintza honek udalaren erregistro guztiak ezabatuko ditu!!");
+//            var r = confirm("Udala EZABATU. Ziur zaude? Ekintza honek udalaren erregistro guztiak ezabatuko ditu!!");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

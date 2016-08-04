@@ -16,7 +16,6 @@
 {% endblock %}
 
 {% block body %}
-    {#<h1>Azpi-sailak</h1>#}
     <table class="table">
         <thead>
             <tr>
@@ -34,7 +33,11 @@
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ azpisaila.udala }}</td>{% endif %}
                 {#<td><a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}">{{ azpisaila.kodea }}</a></td>#}
                 <td>{{ azpisaila.kodea }}</td>
-                <td>{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaes }}
+                    {% else %}{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaeu }}
+                    {% endif %}
+                </td>
                 <td>{{ azpisaila.arduraduna }}</td>
                 <td>{% if azpisaila.email %}{{ azpisaila.email }}<br/>{% endif %}
                     {% if azpisaila.telefonoa %}{{ azpisaila.telefonoa }}<br/>{% endif %}
@@ -47,11 +50,8 @@
                     <ul class="list-inline">
                         <li><a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[azpisaila.id],{'attr': {'id': azpisaila.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ azpisaila.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[azpisaila.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[azpisaila.id],{'attr': {'id': azpisaila.id}}) }}
-                                <a href="#" onclick="ezabatu({{ azpisaila.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ azpisaila.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[azpisaila.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -67,16 +67,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'azpisaila_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Azpi-saila EZABATU. Ziur zaude?");
+//            var r = confirm("Azpi-saila EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

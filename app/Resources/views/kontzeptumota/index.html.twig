@@ -27,13 +27,20 @@
         {% for kontzeptumotum in kontzeptumotas %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ kontzeptumotum.udala }}</td>{% endif %}
-                <td>{{ kontzeptumotum.motaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ kontzeptumotum.motaes }}
+                    {% else %}{{ kontzeptumotum.motaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                             <li><a href="{{ path('kontzeptumota_edit', { 'id': kontzeptumotum.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
+                            {#<li>{{ form_start(deleteforms[kontzeptumotum.id],{'attr': {'id': kontzeptumotum.id}}) }}#}
+                                {#<a href="#" onclick="document.getElementById({{ kontzeptumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
+                                {#{{ form_end(deleteforms[kontzeptumotum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[kontzeptumotum.id],{'attr': {'id': kontzeptumotum.id}}) }}
-                                <a href="#" onclick="document.getElementById({{ kontzeptumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ kontzeptumotum.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[kontzeptumotum.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -42,4 +49,34 @@
         {% endfor %}
         </tbody>
     </table>
+
+
+    <div class="text-center">
+        {% if kontzeptumotas is not empty %}
+            {% if pager.haveToPaginate %}
+                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'kontzeptumota_index_paginated'}) }}
+            {% endif %}
+        {% else %}
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function ezabatu (id,mezua)
+        {
+//            var r = confirm("Araua EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            }else
+            {
+            }
+        };
+    </script>
 {% endblock %}

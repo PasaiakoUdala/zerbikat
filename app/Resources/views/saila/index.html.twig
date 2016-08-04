@@ -30,7 +30,11 @@
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ saila.udala }}</td>{% endif %}
                 <td>{{ saila.kodea }}</td>
-                <td>{{ saila.sailaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ saila.sailaes }}
+                    {% else %}{{ saila.sailaeu }}
+                    {% endif %}
+                </td>
                 <td>{{ saila.arduraduna }}</td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
@@ -40,7 +44,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ saila.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[saila.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[saila.id],{'attr': {'id': saila.id}}) }}
-                                <a href="#" onclick="ezabatu({{ saila.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ saila.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[saila.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -55,16 +59,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'saila_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Saila EZABATU. Ziur zaude?");
+//            var r = confirm("Saila EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

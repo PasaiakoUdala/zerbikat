@@ -30,7 +30,12 @@
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ dokumentumotum.udala }}</td>{% endif %}
                 <td>{{ dokumentumotum.kodea }}</td>
-                <td>{{ dokumentumotum.motaeu }}</td>
+                <td>
+
+                    {% if app.request.locale == 'es'%}{{ dokumentumotum.motaes }}
+                    {% else %}{{ dokumentumotum.motaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}" class="fa fa-pencil"></a></li>
@@ -39,7 +44,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ dokumentumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[dokumentumotum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[dokumentumotum.id],{'attr': {'id': dokumentumotum.id}}) }}
-                                <a href="#" onclick="ezabatu({{ dokumentumotum.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ dokumentumotum.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[dokumentumotum.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -55,16 +60,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'dokumentumota_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Dokumentu-mota EZABATU. Ziur zaude?");
+//            var r = confirm("Dokumentu-mota EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

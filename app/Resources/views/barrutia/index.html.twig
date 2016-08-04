@@ -33,11 +33,8 @@
                     <ul class="list-inline">
                         <li><a href="{{ path('barrutia_edit', { 'id': barrutium.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[barrutium.id],{'attr': {'id': barrutium.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ barrutium.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[barrutium.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[barrutium.id],{'attr': {'id': barrutium.id}}) }}
-                                <a href="#" onclick="ezabatu({{ barrutium.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ barrutium.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[barrutium.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -53,16 +50,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'barrutia_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Barrutia EZABATU. Ziur zaude? Ekintza honek barrutiaren kale eta eraikin guztiak ezabatuko ditu!!");
+//            var r = confirm("Barrutia EZABATU. Ziur zaude? Ekintza honek barrutiaren kale eta eraikin guztiak ezabatuko ditu!!");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

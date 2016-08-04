@@ -55,7 +55,7 @@
                     {#{% endif %}#}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li>{{ form_start(deleteforms[user.id],{'attr': {'id': user.id}}) }}
-                            <a href="#" onclick="ezabatu({{ user.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                            <a href="#" onclick="ezabatu({{ user.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                             {{ form_end(deleteforms[user.id]) }}</li>
                     {% endif %}
                 </ul>
@@ -73,7 +73,7 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'users_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
@@ -82,9 +82,10 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Erabiltzailea EZABATU. Ziur zaude?");
+//            var r = confirm("Erabiltzailea EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

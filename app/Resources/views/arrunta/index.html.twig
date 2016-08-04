@@ -27,18 +27,19 @@
         {% for arruntum in arruntas %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ arruntum.udala }}</td>{% endif %}
-                <td>{{ arruntum.epeaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ arruntum.epeaes }}
+                    {% else %}{{ arruntum.epeaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li>
                             <a href="{{ path('arrunta_edit', { 'id': arruntum.id }) }}"  class="fa fa-pencil"></a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[arruntum.id],{'attr': {'id': arruntum.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ arruntum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[arruntum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[arruntum.id],{'attr': {'id': arruntum.id}}) }}
-                                <a href="#" onclick="ezabatu({{ arruntum.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ arruntum.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[arruntum.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -54,16 +55,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'arrunta_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Epea EZABATU. Ziur zaude?");
+//            var r = confirm("Epea EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

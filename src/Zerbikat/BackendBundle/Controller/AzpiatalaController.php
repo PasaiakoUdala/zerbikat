@@ -9,6 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Zerbikat\BackendBundle\Entity\Azpiatala;
 use Zerbikat\BackendBundle\Form\AzpiatalaType;
 
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -21,10 +25,11 @@ class AzpiatalaController extends Controller
     /**
      * Lists all Azpiatala entities.
      *
-     * @Route("/", name="azpiatala_index")
+     * @Route("/", defaults={"page" = 1}, name="azpiatala_index")
+     * @Route("/page{page}", name="azpiatala_index_paginated")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_ADMIN')) {
@@ -33,15 +38,39 @@ class AzpiatalaController extends Controller
             $azpiatalas = $em->getRepository('BackendBundle:Azpiatala')
                 ->findBy( array(), array('kodea'=>'ASC') );
 
+            $adapter = new ArrayAdapter($azpiatalas);
+            $pagerfanta = new Pagerfanta($adapter);
+
 
             $deleteForms = array();
             foreach ($azpiatalas as $azpiatala) {
                 $deleteForms[$azpiatala->getId()] = $this->createDeleteForm($azpiatala)->createView();
             }
-            
+
+
+            try {
+                    $entities = $pagerfanta
+                    // Le nombre maximum d'éléments par page
+//                    ->setMaxPerPage(20)
+                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
+                    // Notre position actuelle (numéro de page)
+                    ->setCurrentPage($page)
+                    // On récupère nos entités via Pagerfanta,
+                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
+                    ->getCurrentPageResults()
+                ;
+            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
+                throw $this->createNotFoundException("Orria ez da existitzen");
+            }
+
+
+
+
             return $this->render('azpiatala/index.html.twig', array(
-                'azpiatalas' => $azpiatalas,
-                'deleteforms' => $deleteForms
+//                'azpiatalas' => $azpiatalas,
+                'azpiatalas' => $entities,
+                'deleteforms' => $deleteForms,
+                'pager' => $pagerfanta,
             ));
         }else
         {

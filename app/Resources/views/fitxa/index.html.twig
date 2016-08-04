@@ -35,12 +35,22 @@
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ fitxa.udala }}</td>{% endif %}
                 <td>{{ fitxa.espedientekodea }}</td>
-                <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">{{ fitxa.deskribapenaeu }}<br>
-                {{ fitxa.deskribapenaes }}</a></td>
+                <td><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}">
+                        {% if app.request.locale == 'es'%}{{ fitxa.deskribapenaes }}
+                        {% else %}{{ fitxa.deskribapenaeu }}
+                        {% endif %}
+                </a></td>
                 <td>
                     {% if fitxa.azpisaila %}
-                    {% if fitxa.azpisaila.saila %}{{ fitxa.azpisaila.saila }}{% endif %}
-                        <br>{{ fitxa.azpisaila.azpisailaeu }}
+                        {% if fitxa.azpisaila.saila %}
+                            {% if app.request.locale == 'es'%}{{ fitxa.azpisaila.saila.sailaes }}
+                            {% else %}{{ fitxa.azpisaila.saila.sailaeu }}
+                            {% endif %}
+
+                        {% endif %}
+                        {% if app.request.locale == 'es'%}<br>{{ fitxa.azpisaila.azpisailaes }}
+                        {% else %}<br>{{ fitxa.azpisaila.azpisailaeu }}
+                        {% endif %}
                     {% endif %}
                 </td>
                 <td NOWRAP class="text-right"><ul class="list-inline">
@@ -48,7 +58,7 @@
                     <li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" ><i class="fa fa-file-pdf-o"></i></a></li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li>{{ form_start(deleteforms[fitxa.id],{'attr': {'id': fitxa.id}}) }}
-                            <a href="#" onclick="ezabatu({{ fitxa.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                            <a href="#" onclick="ezabatu({{ fitxa.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                             {{ form_end(deleteforms[fitxa.id]) }}</li>
                     {% endif %}
                     </ul></td>
@@ -64,16 +74,17 @@
             {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'fitxa_index_paginated'}) }}
         {% endif %}
     {% else %}
-        <p>Ez da emaitzarik topatu</p>
+        <p>{{ 'messages.emaitzarikez'|trans }}</p>
     {% endif %}
 </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-    function ezabatu (id)
+    function ezabatu (id,mezua)
     {
-        var r = confirm("Fitxa EZABATU. Ziur zaude?");
+//        var r = confirm("Fitxa EZABATU. Ziur zaude?");
+        var r = confirm(mezua);
         if (r == true)
         {
             document.getElementById(id).submit()

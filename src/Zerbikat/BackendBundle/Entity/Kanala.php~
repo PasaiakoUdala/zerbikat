@@ -178,7 +178,7 @@ class Kanala
 
     public function __toString()
     {
-        return $this->getIzenaeu();
+        return $this->getIzenaeu().''.$this->getDeskribapenaeu();
     }
 
 

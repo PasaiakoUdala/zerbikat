@@ -34,7 +34,11 @@
                 {#<td><a href="{{ path('araudia_show', { 'id': araudium.id }) }}">{{ araudium.kodea }}</a></td>#}
                 {#<td><a href="{{ path('araudia_edit', { 'id': araudium.id }) }}">{{ araudium.kodea }}</a></td>#}
                 <td>{{ araudium.kodea }}</td>
-                <td>{{ araudium.arauaeu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ araudium.arauaes }}
+                    {% else %} {{ araudium.arauaeu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('araudia_edit', { 'id': araudium.id }) }}" class="fa fa-pencil"></a></li>
@@ -43,7 +47,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ araudium.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[araudium.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[araudium.id],{'attr': {'id': araudium.id}}) }}
-                                <a href="#" onclick="ezabatu({{ araudium.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ araudium.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[araudium.id]) }}</li>
 
                         {% endif %}
@@ -60,16 +64,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'araudia_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Araua EZABATU. Ziur zaude?");
+//            var r = confirm("Araua EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

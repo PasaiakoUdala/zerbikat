@@ -4,11 +4,17 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak3labeleu }}{% endif %}</a>
+                {#<a class="navbar-brand">{% if app.user.udala.eremuak %}{{ app.user.udala.eremuak.besteak3labeleu }}{% endif %}</a>#}
+                {% if app.user.udala.eremuak %}
+                    {% if app.request.locale == 'es'%}{{ app.user.udala.eremuak.besteak3labeles }}
+                    {% else %}{{ app.user.udala.eremuak.besteak3labeleu }}
+                    {% endif %}
+                {% endif %}
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('besteak3_new') }}" class="fa fa-plus">{% if app.user.udala.eremuak %} {{ app.user.udala.eremuak.besteak3labeleu }}{% else %}Sarrera{% endif %} berria</a></li>
+                    {#<li><a href="{{ path('besteak3_new') }}" class="fa fa-plus">{% if app.user.udala.eremuak %} {{ app.user.udala.eremuak.besteak3labeleu }}{% else %}Sarrera{% endif %} berria</a></li>#}
+                    <li><a href="{{ path('besteak3_new') }}" class="fa fa-plus"> {{ 'messages.berria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -21,9 +27,9 @@
     <table class="table">
         <thead>
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-                <th>Kodea</th>
-                <th>Izenburuaeu</th>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.kodea'|trans }}</th>
+                <th>{{ 'messages.izenburua'|trans }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -41,7 +47,7 @@
                             {#<a href="#" onclick="document.getElementById({{ besteak3.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                             {#{{ form_end(deleteforms[besteak3.id]) }}</li>#}
                         <li>{{ form_start(deleteforms[besteak3.id],{'attr': {'id': besteak3.id}}) }}
-                            <a href="#" onclick="ezabatu({{ besteak3.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                            <a href="#" onclick="ezabatu({{ besteak3.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                             {{ form_end(deleteforms[besteak3.id]) }}</li>
                     {% endif %}
                     </ul>
@@ -57,16 +63,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'besteak3_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Besteak3 EZABATU. Ziur zaude?");
+//            var r = confirm("Besteak3 EZABATU. Ziur zaude?");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()

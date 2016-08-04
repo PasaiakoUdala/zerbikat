@@ -139,7 +139,7 @@
             </trans-unit>
             <trans-unit id="messages.ebazleak">
                 <source>messages.ebazleak</source>
-                <target>Ebazleak</target>
+                <target>Organos de resolución</target>
             </trans-unit>
             <trans-unit id="messages.doklagun">
                 <source>messages.doklagun</source>
@@ -517,7 +517,7 @@
 
             <trans-unit id="messages.ebazleberria">
                 <source>messages.ebazleberria</source>
-                <target>Nuevo </target>
+                <target>Nuevo órgano</target>
             </trans-unit>
             <trans-unit id="messages.nork">
                 <source>messages.nork</source>
@@ -617,7 +617,10 @@
                 <source>messages.ez</source>
                 <target>No</target>
             </trans-unit>
-
+            <trans-unit id="messages.ziurzaude">
+                <source>messages.ziurzaude</source>
+                <target>ELIMINAR. ¿Estas seguro/a?</target>
+            </trans-unit>
             <trans-unit id="messages.emaitzarikez">
                 <source>messages.emaitzarikez</source>
                 <target>No se ha encontrado ningún resultado</target>

@@ -27,8 +27,16 @@
         <tbody>
         {% for espedientekudeaketum in espedientekudeaketas %}
             <tr>
-                <td>{{ espedientekudeaketum.izenaeu }}</td>
-                <td>{{ espedientekudeaketum.urleu }}</td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ espedientekudeaketum.izenaes }}
+                    {% else %}{{ espedientekudeaketum.izenaeu }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if app.request.locale == 'es'%}{{ espedientekudeaketum.urles }}
+                    {% else %}{{ espedientekudeaketum.urleu }}
+                    {% endif %}
+                </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                             <li><a href="{{ path('espedientekudeaketa_edit', { 'id': espedientekudeaketum.id }) }}" class="fa fa-pencil"></a></li>
@@ -37,7 +45,7 @@
                                 {#<a href="#" onclick="document.getElementById({{ espedientekudeaketum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
                                 {#{{ form_end(deleteforms[espedientekudeaketum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[espedientekudeaketum.id],{'attr': {'id': espedientekudeaketum.id}}) }}
-                                <a href="#" onclick="ezabatu({{ espedientekudeaketum.id }});" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ espedientekudeaketum.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[espedientekudeaketum.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -53,16 +61,17 @@
                 {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'espedientekudeaketa_index_paginated'}) }}
             {% endif %}
         {% else %}
-            <p>Ez da emaitzarik topatu</p>
+            <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id)
+        function ezabatu (id,mezua)
         {
-            var r = confirm("Espediente-kudeaketa EZABATU. Ziur zaude? Ekintza honek espediente-kudeaketaren zerbitzu guztiak ezabatuko ditu!!");
+//            var r = confirm("Espediente-kudeaketa EZABATU. Ziur zaude? Ekintza honek espediente-kudeaketaren zerbitzu guztiak ezabatuko ditu!!");
+            var r = confirm(mezua);
             if (r == true)
             {
                 document.getElementById(id).submit()
