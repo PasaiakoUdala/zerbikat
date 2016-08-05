@@ -49,8 +49,6 @@ Instalazioa amaitu ondoren datu basea, erabiltzailea, izena... datuak eskatuzko 
 
 php bin/console assets:install web --symlink
 
-php bin/console assetic:dump --env=prod --no-debug
-
 php bin/console cache:clear --env=prod --no-debug
 
 mkdir -p web/doc
