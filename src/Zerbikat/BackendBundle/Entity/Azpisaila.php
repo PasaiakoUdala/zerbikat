@@ -2,12 +2,9 @@
 
 namespace Zerbikat\BackendBundle\Entity;
 
-//use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
-use Gedmo\Translatable\Translatable;
-//use Gedmo\Locale;
-use Locale;
+
 
 /**
  * Azpisaila

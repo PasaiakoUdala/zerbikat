@@ -176,7 +176,7 @@
             </trans-unit>
             <trans-unit id="messages.arruntak">
                 <source>messages.arruntak</source>
-                <target>Epe arruntak</target>
+                <target>Gehienezko epeak</target>
             </trans-unit>
             <trans-unit id="messages.aurreikusi">
                 <source>messages.aurreikusi</source>
@@ -578,22 +578,312 @@
                 <source>messages.eremuberria</source>
                 <target>Eremu berria</target>
             </trans-unit>
-            <trans-unit id="messages.helburua">
-                <source>messages.helburua</source>
+            <trans-unit id="messages.oharraklabeleu">
+                <source>messages.oharraklabeleu</source>
+                <target>Oharrak etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.oharraklabeles">
+                <source>messages.oharraklabeles</source>
+                <target>Oharrak etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.helburualabeleu">
+                <source>messages.helburualabeleu</source>
+                <target>Helburua Etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.helburualabeles">
+                <source>messages.helburualabeles</source>
+                <target>Helburua Etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.ebazpensinplilabeleu">
+                <source>messages.ebazpensinplilabeleu</source>
+                <target>Ebazpen sinplifikatua etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.ebazpensinplilabeles">
+                <source>messages.ebazpensinplilabeles</source>
+                <target>Ebazpen sinplifikatua etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.arduraaitorpenalabeleu">
+                <source>messages.arduraaitorpenalabeleu</source>
+                <target>Ardura aitorpena etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.arduraaitorpenalabeles">
+                <source>messages.arduraaitorpenalabeles</source>
+                <target>Ardura aitorpena etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.aurreikusilabeleu">
+                <source>messages.aurreikusilabeleu</source>
+                <target>Aurreikusitako epea etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.aurreikusilabeles">
+                <source>messages.aurreikusilabeles</source>
+                <target>Aurreikusitako epea etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.arruntalabeleu">
+                <source>messages.arruntalabeleu</source>
+                <target>Gehienezko epea etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.arruntalabeles">
+                <source>messages.arruntalabeles</source>
+                <target>Gehienezko epea etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.isiltasunadminlabeleu">
+                <source>messages.isiltasunadminlabeleu</source>
+                <target>Administrazio isiltasunaren izaera etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.isiltasunadminlabeles">
+                <source>messages.isiltasunadminlabeles</source>
+                <target>Administrazio isiltasunaren izaera etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeskatulabeleu">
+                <source>messages.norkeskatulabeleu</source>
+                <target>Nork eska dezake etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.norkeskatulabeles">
+                <source>messages.norkeskatulabeles</source>
+                <target>Nork eska dezake etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.dokumentazioalabeleu">
+                <source>messages.dokumentazioalabeleu</source>
+                <target>Agiriak etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.dokumentazioalabeles">
+                <source>messages.dokumentazioalabeles</source>
+                <target>Agiriak etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.kostualabeleu">
+                <source>messages.kostualabeleu</source>
+                <target>Kostua etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.kostualabeles">
+                <source>messages.kostualabeles</source>
+                <target>Kostua etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.araudialabeleu">
+                <source>messages.araudialabeleu</source>
+                <target>Araudia etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.araudialabeles">
+                <source>messages.araudialabeles</source>
+                <target>Araudia etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.prozeduralabeleu">
+                <source>messages.prozeduralabeleu</source>
+                <target>Prozedurak etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.prozeduralabeles">
+                <source>messages.prozeduralabeles</source>
+                <target>Prozedurak etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.doklagunlabeleu">
+                <source>messages.doklagunlabeleu</source>
+                <target>Dok. lagun. etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.doklagunlabeles">
+                <source>messages.doklagunlabeles</source>
+                <target>Dok. lagun. etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.datuenbabesalabeleu">
+                <source>messages.datuenbabesalabeleu</source>
+                <target>Datuen-babesa etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.datuenbabesalabeles">
+                <source>messages.datuenbabesalabeles</source>
+                <target>Datuen-babesa etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisailalabeleu">
+                <source>messages.azpisailalabeleu</source>
+                <target>Udal azpisaila etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisailalabeles">
+                <source>messages.azpisailalabeles</source>
+                <target>Udal azpisaila etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.norkebatzilabeleu">
+                <source>messages.norkebatzilabeleu</source>
+                <target>Nork ebatzi etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.norkebatzilabeles">
+                <source>messages.norkebatzilabeles</source>
+                <target>Nork ebatzi etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak1labeleu">
+                <source>messages.besteak1labeleu</source>
+                <target>Besteak1 etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak1labeles">
+                <source>messages.besteak1labeles</source>
+                <target>Besteak1 etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak2labeleu">
+                <source>messages.besteak2labeleu</source>
+                <target>Besteak2 etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak2labeles">
+                <source>messages.besteak2labeles</source>
+                <target>Besteak2 etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak3labeleu">
+                <source>messages.besteak3labeleu</source>
+                <target>Besteak3 etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak3labeles">
+                <source>messages.besteak3labeles</source>
+                <target>Besteak3 etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalalabeleu">
+                <source>messages.kanalalabeleu</source>
+                <target>Kanala etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalalabeles">
+                <source>messages.kanalalabeles</source>
+                <target>Kanala etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.epealabeleu">
+                <source>messages.epealabeleu</source>
+                <target>Prozeduraren epea etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.epealabeles">
+                <source>messages.epealabeles</source>
+                <target>Prozeduraren epea etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.doanlabeleu">
+                <source>messages.doanlabeleu</source>
+                <target>Kostua hutsik dagoeneko etiketa (eu)</target>
+            </trans-unit>
+            <trans-unit id="messages.doanlabeles">
+                <source>messages.doanlabeles</source>
+                <target>Kostua hutsik dagoeneko etiketa (es)</target>
+            </trans-unit>
+            <trans-unit id="messages.oharraktext">
+                <source>messages.oharraktext</source>
+                <target>Oharrak (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.helburuatext">
+                <source>messages.helburuatext</source>
                 <target>Helburua</target>
             </trans-unit>
-            <trans-unit id="messages.helburuaetiketa">
-                <source>messages.helburuaetiketa</source>
-                <target>Helburua etiketa</target>
+            <trans-unit id="messages.norkeskatutext">
+                <source>messages.norkeskatutext</source>
+                <target>Nork eskatu (txt)</target>
             </trans-unit>
-            <trans-unit id="messages.norkeska">
-                <source>messages.norkeska</source>
-                <target>Nork eskatu</target>
+            <trans-unit id="messages.norkeskatutable">
+                <source>messages.norkeskatutable</source>
+                <target>Nork eskatu (taula)</target>
             </trans-unit>
-            <trans-unit id="messages.norkeskalabel">
-                <source>messages.norkeskalabel</source>
-                <target>Nork eska dezake etiketa</target>
+            <trans-unit id="messages.dokumentazioatext">
+                <source>messages.dokumentazioatext</source>
+                <target>Agiriak (txt)</target>
             </trans-unit>
+            <trans-unit id="messages.dokumentazioatable">
+                <source>messages.dokumentazioatable</source>
+                <target>Agiriak (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.doklaguntext">
+                <source>messages.doklaguntext</source>
+                <target>Dok. lagun. (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.doklaguntable">
+                <source>messages.doklaguntable</source>
+                <target>Dok. lagun. (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalatext">
+                <source>messages.kanalatext</source>
+                <target>Kanala (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.kanalatable">
+                <source>messages.kanalatable</source>
+                <target>Kanala (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.kostuatext">
+                <source>messages.kostuatext</source>
+                <target>Kostua (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.kostuatable">
+                <source>messages.kostuatable</source>
+                <target>Kostua (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.arrunta">
+                <source>messages.arrunta</source>
+                <target>Gehienezko epea</target>
+            </trans-unit>
+            <trans-unit id="messages.ebazpensinpli">
+                <source>messages.ebazpensinpli</source>
+                <target>Ebazpen sinplifikatua</target>
+            </trans-unit>
+            <trans-unit id="messages.arduraaitorpena">
+                <source>messages.arduraaitorpena</source>
+                <target>Ardura aitorpena</target>
+            </trans-unit>
+            <trans-unit id="messages.araudiatext">
+                <source>messages.araudiatext</source>
+                <target>Araudia (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.araudiatable">
+                <source>messages.araudiatable</source>
+                <target>Araudia (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.prozeduratext">
+                <source>messages.prozeduratext</source>
+                <target>Prozedurak (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.prozeduratable">
+                <source>messages.prozeduratable</source>
+                <target>Prozedurak (table)</target>
+            </trans-unit>
+            <trans-unit id="messages.norkebatzitext">
+                <source>messages.norkebatzitext</source>
+                <target>Nork ebatzi (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.norkebatzitable">
+                <source>messages.norkebatzitable</source>
+                <target>Nork ebatzi (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.azpisailatable">
+                <source>messages.azpisailatable</source>
+                <target>Udal saila (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.datuenbabesatext">
+                <source>messages.datuenbabesatext</source>
+                <target>Datuen-babesa (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.datuenbabesatable">
+                <source>messages.datuenbabesatable</source>
+                <target>Datuen-babesa (taula):</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak1text">
+                <source>messages.besteak1text</source>
+                <target>Besteak1 (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak1table">
+                <source>messages.besteak1table</source>
+                <target>Besteak1 (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak2text">
+                <source>messages.besteak2text</source>
+                <target>Besteak2 (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak2table">
+                <source>messages.besteak2table</source>
+                <target>Besteak2 (taula)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak3text">
+                <source>messages.besteak3text</source>
+                <target>Besteak3 (txt)</target>
+            </trans-unit>
+            <trans-unit id="messages.besteak3table">
+                <source>messages.besteak3table</source>
+                <target>Besteak3 (taula)</target>
+            </trans-unit>
+
+
+
+
+
+
+
+
+
+
 
 
 
