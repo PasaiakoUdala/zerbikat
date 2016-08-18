@@ -322,10 +322,11 @@ class EremuakType extends AbstractType
                 'label' => 'messages.doanlabeles',
                 'translation_domain' => 'messages',
             ))
-            ->add('udala',TextType::class, array(
-                'label'    => 'messages.udala',
-                'translation_domain' => 'messages',
-            ))
+//            ->add('udala',TextType::class, array(
+//                'label'    => 'messages.udala',
+//                'translation_domain' => 'messages',
+//            ))
+            ->add('udala')
         ;
     }
     
