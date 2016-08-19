@@ -54,5 +54,5 @@ security:
         - { path: ^/fitxa/, role: ROLE_USER }
 #        - { path: ^/araudia, role: ROLE_USER }
 #        - { path: ^/admin/, role: ROLE_KUDEAKETA }
-#        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/[0-9][0-9][0-9]/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_USER }
