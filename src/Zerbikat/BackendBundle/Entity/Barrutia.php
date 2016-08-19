@@ -3,12 +3,14 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 /**
  * Barrutia
  *
  * @ORM\Table(name="barrutia", uniqueConstraints={@ORM\UniqueConstraint(name="izena", columns={"izena"})})
  * @ORM\Entity
+ * @UdalaEgiaztatu(userFieldName="udala_id")
  */
 class Barrutia
 {
