@@ -77,8 +77,11 @@ class IzfeCommand extends ContainerAwareCommand
 
         $idBlokea=0;
         $idOrden=0;
+        $idElementua = 0;
         $sql = $sql . "TRUNCATE TABLE `UDAT203`;\n"; // Blokeak
         $sql = $sql . "TRUNCATE TABLE `UDAT206`;\n"; // Orriak - Blokeak
+        $sql = $sql . "TRUNCATE TABLE `UDAT202`;\n"; // Orriak - Blokeak
+
         foreach ($familiak as $f) {
             $idBlokea += 1;
             $idOrden +=1;
@@ -94,10 +97,9 @@ class IzfeCommand extends ContainerAwareCommand
             $A203TITEUSK = "'" . $f->getFamiliaeu() . "'";
             $A203FECALTA = date('Ymd');
 
-
+            // Blokeak
             $sql = $sql . "INSERT INTO UDAT203 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA)
-                VALUES($A203AYUNTA,$A203IDBLOQUE,$A203DENOMI,$A203TITCAST,$A203TITEUSK,$A203FECALTA);
-            ";
+                VALUES($A203AYUNTA,$A203IDBLOQUE,$A203DENOMI,$A203TITCAST,$A203TITEUSK,$A203FECALTA);\n";
 
             $output->writeln([
                 'Blokeak eta orriak erlazionatzen... ',
@@ -109,10 +111,34 @@ class IzfeCommand extends ContainerAwareCommand
             $A206IDBLOQUE = $idBlokea;
             $A206ORDEN = $idOrden;
             $A206VISUAL = 1;
+
+            // Orriak - Blokeak
             $sql = $sql . "INSERT INTO UDAT206 (A206AYUNTA,A206IDPAGINA,A206IDBLOQUE,A206ORDEN,A206VISUAL)
-                VALUES($A206AYUNTA,$A206IDPAGINA,$A206IDBLOQUE,$A206ORDEN,$A206VISUAL);
-            ";
+                VALUES($A206AYUNTA,$A206IDPAGINA,$A206IDBLOQUE,$A206ORDEN,$A206VISUAL);\n";
+
+
+            // elementuak
+            foreach ($f->getFitxak() as $fitxa) {
+                $output->writeln( $fitxa->getDeskribapenaeu() );
+
+                $idElementua += 1;
+
+                $A202AYUNTA = "'" . $udalKodea . "'";
+                $A202IDLINEA = $idElementua;
+                $A202DENOMI = "'Enlazea " . $fitxa->getDeskribapenaes() . "'";
+                $A202TEXCAST = "'" . $fitxa->getDeskribapenaes() . "'";
+                $A202TEXEUSK = "'" . $fitxa->getDeskribapenaeu() . "'";
+                $A202LINKEXT = "";
+                $A202SERVICIO = "'PROPIA'";
+                $A202FECALTA = "";
+                $A202FECBAJA = "";
+
+                $sql = $sql . "INSERT INTO UDAT202 (A202AYUNTA,A202IDLINEA,A202DENOMI,A202TEXCAST,A202TEXEUSK,A202SERVICIO)
+                    VALUES($A202AYUNTA,$A202IDLINEA,$A202DENOMI,$A202TEXCAST,$A202TEXEUSK,$A202SERVICIO);\n";
+            }
         }
+
+
 
 
         $idPagina +=1;
