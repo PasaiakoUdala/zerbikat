@@ -61,9 +61,9 @@ class IzfeCommand extends ContainerAwareCommand
         $A204FECALTA = date('Ymd');
         $A204TIPO = "'HOME'";
         $A204IDTIPO = "'USC'";
-        $sql = "TRUNCATE TABLE `UDAT204`;\n"; // Orriak
-        $sql = $sql . "INSERT INTO UDAT204 (A204AYUNTA,A204IDPAGINA,A204DENOMI,A204TITCAST,A204TITEUSK,A204PUBLICADA,A204FECALTA,A204TIPO,A204IDTIPO)
-            VALUES ($A204AYUNTA,$A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, $A204FECALTA, $A204TIPO, $A204IDTIPO);\n";
+        $sql = "DELETE FROM `UDAA20401` WHERE A204AYUNTA=$A204AYUNTA;\n"; // Orriak
+        $sql = $sql . "INSERT INTO UDAA20401 (A204AYUNTA,A204IDPAGINA,A204DENOMI,A204TITCAST,A204TITEUSK,A204PUBLICADA,A204FECALTA,A204TIPO,A204IDTIPO)
+            VALUES ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, $A204FECALTA, $A204TIPO, $A204IDTIPO);\n";
 
 
         // Blokeak
@@ -78,9 +78,11 @@ class IzfeCommand extends ContainerAwareCommand
         $idBlokea=0;
         $idOrden=0;
         $idElementua = 0;
-        $sql = $sql . "TRUNCATE TABLE `UDAT203`;\n"; // Blokeak
-        $sql = $sql . "TRUNCATE TABLE `UDAT206`;\n"; // Orriak - Blokeak
-        $sql = $sql . "TRUNCATE TABLE `UDAT202`;\n"; // Orriak - Blokeak
+        $sql = $sql . "DELETE FROM `UDAA20201`; WHERE=$A204AYUNTA;\n"; // Elementuak
+        $sql = $sql . "DELETE FROM `UDAT203`; WHERE=$A204AYUNTA;\n"; // Blokeak
+        $sql = $sql . "DELETE FROM `UDAA20501`; WHERE=$A204AYUNTA;\n"; // Blokeak - Elementuak
+        $sql = $sql . "DELETE FROM `UDAT206`; WHERE=$A204AYUNTA;\n"; // Orriak - Blokeak
+
 
         foreach ($familiak as $f) {
             $idBlokea += 1;
@@ -98,12 +100,11 @@ class IzfeCommand extends ContainerAwareCommand
             $A203FECALTA = date('Ymd');
 
             // Blokeak
-            $sql = $sql . "INSERT INTO UDAT203 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA)
-                VALUES($A203AYUNTA,$A203IDBLOQUE,$A203DENOMI,$A203TITCAST,$A203TITEUSK,$A203FECALTA);\n";
+            $sql = $sql . "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA)
+                VALUES($A203AYUNTA, $A203IDBLOQUE, $A203DENOMI, $A203TITCAST, $A203TITEUSK, $A203FECALTA);\n";
 
             $output->writeln([
                 'Blokeak eta orriak erlazionatzen... ',
-                ''
             ]);
 
             $A206AYUNTA = "'" . $udalKodea . "'";
@@ -113,14 +114,17 @@ class IzfeCommand extends ContainerAwareCommand
             $A206VISUAL = 1;
 
             // Orriak - Blokeak
-            $sql = $sql . "INSERT INTO UDAT206 (A206AYUNTA,A206IDPAGINA,A206IDBLOQUE,A206ORDEN,A206VISUAL)
-                VALUES($A206AYUNTA,$A206IDPAGINA,$A206IDBLOQUE,$A206ORDEN,$A206VISUAL);\n";
+            $sql = $sql . "INSERT INTO UDAA20601 (A206AYUNTA,A206IDPAGINA,A206IDBLOQUE,A206ORDEN,A206VISUAL)
+                VALUES($A206AYUNTA, $A206IDPAGINA, $A206IDBLOQUE, $A206ORDEN, $A206VISUAL);\n";
 
 
             // elementuak
+            $output->writeln( 'Blokeak eta elementuak erlaziontzen...' );
+            $nOrden = 0;
             foreach ($f->getFitxak() as $fitxa) {
-                $output->writeln( $fitxa->getDeskribapenaeu() );
+                $output->write( '.' );
 
+                $nOrden +=1;
                 $idElementua += 1;
 
                 $A202AYUNTA = "'" . $udalKodea . "'";
@@ -133,12 +137,23 @@ class IzfeCommand extends ContainerAwareCommand
                 $A202FECALTA = "";
                 $A202FECBAJA = "";
 
-                $sql = $sql . "INSERT INTO UDAT202 (A202AYUNTA,A202IDLINEA,A202DENOMI,A202TEXCAST,A202TEXEUSK,A202SERVICIO)
-                    VALUES($A202AYUNTA,$A202IDLINEA,$A202DENOMI,$A202TEXCAST,$A202TEXEUSK,$A202SERVICIO);\n";
+                $sql = $sql . "INSERT INTO UDAA20201 (A202AYUNTA,A202IDLINEA,A202DENOMI,A202TEXCAST,A202TEXEUSK,A202SERVICIO)
+                    VALUES($A202AYUNTA, $A202IDLINEA, $A202DENOMI, $A202TEXCAST, $A202TEXEUSK, $A202SERVICIO);\n";
+
+
+                // blokeak elementuak
+                $A205AYUNTA = "'" . $udalKodea . "'";
+                $sql = $sql . "INSERT INTO UDAA20501 (A205AYUNTA,A205IDBLOQUE,A205IDLINEA,A205ORDEN)
+                    VALUES($A205AYUNTA, $idBlokea, $idElementua, $nOrden);\n";
+
+
             }
+
+
+
         }
-
-
+        $output->writeln( '' );
+        $output->writeln( 'Amaituta.' );
 
 
         $idPagina +=1;

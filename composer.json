@@ -31,7 +31,8 @@
         "whiteoctober/tcpdf-bundle": "^1.0",
         "bmatzner/fontawesome-bundle": "^4.6",
         "guzzlehttp/guzzle": "^6.2",
-        "white-october/pagerfanta-bundle": "^1.0"
+        "white-october/pagerfanta-bundle": "^1.0",
+        "easycorp/easy-log-handler": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
