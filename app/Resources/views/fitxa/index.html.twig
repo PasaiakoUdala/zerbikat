@@ -1,4 +1,10 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/backend/css/datatables.min.css') }}" />
+{% endblock %}
+
 {% block menua %}
     {{ parent() }}
         {% if is_granted('ROLE_USER') %}
@@ -20,7 +26,7 @@
 {% block body %}
     {{ parent() }}
 
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -68,29 +74,60 @@
     </table>
 
 
-<div class="text-center">
-    {% if fitxas is not empty %}
-        {% if pager.haveToPaginate %}
-            {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'fitxa_index_paginated'}) }}
-        {% endif %}
-    {% else %}
-        <p>{{ 'messages.emaitzarikez'|trans }}</p>
-    {% endif %}
-</div>
+{#<div class="text-center">#}
+    {#{% if fitxas is not empty %}#}
+        {#{% if pager.haveToPaginate %}#}
+            {#{{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'fitxa_index_paginated'}) }}#}
+        {#{% endif %}#}
+    {#{% else %}#}
+        {#<p>{{ 'messages.emaitzarikez'|trans }}</p>#}
+    {#{% endif %}#}
+{#</div>#}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/backend/js/datatables.min.js') }}"></script>
+
     <script type="text/javascript">
-    function ezabatu (id,mezua)
-    {
-//        var r = confirm("Fitxa EZABATU. Ziur zaude?");
-        var r = confirm(mezua);
-        if (r == true)
+
+        $(document).ready( function () {
+            $('#taulazerrenda').DataTable({
+                "language":{
+                    "sProcessing":     "Prozesatzen...",
+                    "sLengthMenu":     "Erakutsi _MENU_ erregistro",
+                    "sZeroRecords":    "Ez da emaitzarik aurkitu",
+                    "sEmptyTable":     "Taula hontan ez dago inongo datu erabilgarririk",
+                    "sInfo":           "_START_ -etik _END_ -erako erregistroak erakusten, guztira _TOTAL_ erregistro",
+                    "sInfoEmpty":      "0tik 0rako erregistroak erakusten, guztira 0 erregistro",
+                    "sInfoFiltered":   "(guztira _MAX_ erregistro iragazten)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Aurkitu:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Abiarazten...",
+                    "oPaginate": {
+                        "sFirst":    "Lehena",
+                        "sLast":     "Azkena",
+                        "sNext":     "Hurrengoa",
+                        "sPrevious": "Aurrekoa"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Zutabea goranzko eran ordenatzeko aktibatu ",
+                        "sSortDescending": ": Zutabea beheranzko eran ordenatzeko aktibatu"
+                    }
+                }
+            });
+        } );
+
+        function ezabatu (id,mezua)
         {
-            document.getElementById(id).submit()
-        }else
-        {
-        }
-    };
+            var r = confirm(mezua);
+            if (r == true)
+            {
+                document.getElementById(id).submit()
+            } else {
+            }
+        };
     </script>
 {% endblock %}

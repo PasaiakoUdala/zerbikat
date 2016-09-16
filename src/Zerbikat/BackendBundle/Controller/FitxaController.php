@@ -59,8 +59,8 @@ class FitxaController extends Controller
         ');
             $fitxas = $query->getResult();
 
-            $adapter = new ArrayAdapter($fitxas);
-            $pagerfanta = new Pagerfanta($adapter);
+//            $adapter = new ArrayAdapter($fitxas);
+//            $pagerfanta = new Pagerfanta($adapter);
 
             $deleteForms = array();
             foreach ($fitxas as $fitxa) {
@@ -68,14 +68,14 @@ class FitxaController extends Controller
             }
 
             try {
-                $entities = $pagerfanta
+//                $entities = $pagerfanta
                     // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
+//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
                     // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
+//                    ->setCurrentPage($page)
                     // On récupère nos entités via Pagerfanta,
                     // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
+//                    ->getCurrentPageResults()
                 ;
             } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
                 throw $this->createNotFoundException("Orria ez da existitzen");
@@ -84,8 +84,8 @@ class FitxaController extends Controller
 //            'fitxas' => $fitxas,
             return $this->render('fitxa/index.html.twig', array(
                 'deleteforms' => $deleteForms,
-                'fitxas' => $entities,
-                'pager' => $pagerfanta,
+                'fitxas' => $fitxas
+//                'pager' => $pagerfanta,
             ));
         }
     }
