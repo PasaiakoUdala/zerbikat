@@ -2,11 +2,9 @@
 
 namespace Zerbikat\BackendBundle\Entity;
 
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
-use Gedmo\Translatable\Translatable;
-use Gedmo\Locale;
+
 
 /**
  * Azpisaila
@@ -153,17 +151,17 @@ class Azpisaila
 
 
 
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
-    }
+//    /**
+//     * @Gedmo\Locale
+//     * Used locale to override Translation listener`s locale
+//     * this is not a mapped field of entity metadata, just a simple property
+//     */
+//    private $locale;
+//
+//    public function setTranslatableLocale($locale)
+//    {
+//        $this->locale = $locale;
+//    }
 
 
 
@@ -178,15 +176,20 @@ class Azpisaila
     
     public function __toString()
     {
-        if ($this->locale=='eu')
-        {
-            return $this->getAzpisailaes();
-        }else
-            {
-                return $this->getAzpisailaes();
-            }
 
+//        dump( Locale::getDefault());
 
+//        dump($this->locale);
+
+//        if ($this->locale=='eu')
+//        {
+//            return $this->getAzpisailaeu();
+//        }else
+//            {
+//                return $this->getAzpisailaes();
+//            }
+
+        return $this->getAzpisailaeu();
 
     }
 

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * Fitxa
@@ -484,7 +485,6 @@ class Fitxa
      * @var prozedurak[]
      *
      * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa",cascade={"persist"} )
-     * @ORM\OrderBy({"ordena" = "ASC"})
      */
     private $prozedurak;
 
@@ -505,6 +505,7 @@ class Fitxa
      * @var araudiak[]
      * @Expose
      * @ORM\OneToMany(targetEntity="FitxaAraudia", mappedBy="fitxa",cascade={"persist"})
+
      */
     private $araudiak;
 
@@ -512,7 +513,7 @@ class Fitxa
 //     * @ORM\ManyToMany(targetEntity="Araudia")
 //     * @ORM\JoinTable(name="fitxa_araudia",
 //     *      joinColumns={@ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")},
-//     *      inverseJoinColumns={@ORM\JoinColumn(name="araudia_id", referencedColumnName="id", unique=true)}
+//     *      inverseJoinColumns={@ORM\JoinColumn(name="arºaudia_id", referencedColumnName="id", unique=true)}
 //     *      )
 //     * @Expose
 //     */

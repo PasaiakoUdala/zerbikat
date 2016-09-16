@@ -37,6 +37,8 @@ class FitxaAraudia
     private $id;
 
 
+
+
     /**
      *          ERLAZIOAK
      */
@@ -64,6 +66,7 @@ class FitxaAraudia
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Araudia",inversedBy="fitxak")
      * @ORM\JoinColumn(name="araudia_id", referencedColumnName="id",onDelete="CASCADE")
+     * @ORM\OrderBy({"kodea" = "ASC"})
      * 
      */
     private $araudia;
@@ -208,4 +211,5 @@ class FitxaAraudia
     {
         return $this->araudia;
     }
+
 }

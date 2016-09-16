@@ -958,11 +958,42 @@
                 // with a number that's unique to your emails
                 // end name attribute looks like name="contact[emails][2]"
                 newWidget = newWidget.replace(/__name__/g, araudiaCount);
+
+                var selectIzena = "#fitxa_araudiak_" + araudiaCount + "_araudia";
+
                 araudiaCount++;
 
                 // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);
                 newLi.appendTo(araudiaList);
+
+                // Ordenatzen
+
+                $(selectIzena).select2({
+                    theme: 'bootstrap',
+                    tags: true,º
+                    sortResults: function(results, container, query) {
+                        if (query.term) {
+                            // use the built in javascript sort function
+                            return results.sort();
+                        }
+                        return results;
+                    },
+                    width: 'resolve'
+                });
+//                var nireselect = $(selectIzena);
+//
+//                var my_options = $(selectIzena + " option");
+//                var selected = $(selectIzena).val();
+//
+//                my_options.sort(function(a,b) {
+//                    if (a.text > b.text) return 1;
+//                    if (a.text < b.text) return -1;
+//                    return 0
+//                })
+//
+//                $(selectIzena).empty().append( my_options );
+//                $(selectIzena).val(selected);
             });
             jQuery('#add-kostua').click(function(e) {
                 e.preventDefault();
