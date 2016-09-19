@@ -21,3 +21,7 @@ body{
     display: inline;
     margin-right: 20px;
 }
+
+.bigdrop {
+    width: 400px !important;
+}
