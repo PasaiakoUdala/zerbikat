@@ -12,6 +12,9 @@
                 <link href="{{ asset('bundles/backend/css/zerbikat.css') }}" rel="stylesheet">
                 <link href="{{ asset('bundles/backend/css/select2-bootstrap.min.css') }}" rel="stylesheet">
                 <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" />
+                <link rel="stylesheet" type="text/css" href="{{ asset('bundles/backend/css/datatables.min.css') }}" rel="stylesheet" />
+                <link rel="stylesheet" type="text/css" href="{{ asset('bundles/backend/css/jquery.dataTables.min.css') }}" rel="stylesheet" />
+                <link rel="stylesheet" type="text/css" href="{{ asset('bundles/backend/css/buttons.dataTables.min.css') }}" rel="stylesheet" />
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
@@ -174,6 +177,73 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="{{ asset('bundles/backend/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('bundles/backend/js/select2.full.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/backend/js/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/backend/js/dataTables.buttons.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/backend/js/jszip.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/backend/js/pdfmake.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/backend/js/pdfmake.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/backend/js/vfs_fonts.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/backend/js/buttons.html5.min.js') }}"></script>
+
+        <script type="text/javascript">
+
+                $(document).ready( function () {
+                        $('#taulazerrenda').DataTable({
+                                "language":{
+                                        "sProcessing":     "Prozesatzen...",
+                                        "sLengthMenu":     "Erakutsi _MENU_ erregistro",
+                                        "sZeroRecords":    "Ez da emaitzarik aurkitu",
+                                        "sEmptyTable":     "Taula hontan ez dago inongo datu erabilgarririk",
+                                        "sInfo":           "_START_ -etik _END_ -erako erregistroak erakusten, guztira _TOTAL_ erregistro",
+                                        "sInfoEmpty":      "0tik 0rako erregistroak erakusten, guztira 0 erregistro",
+                                        "sInfoFiltered":   "(guztira _MAX_ erregistro iragazten)",
+                                        "sInfoPostFix":    "",
+                                        "sSearch":         "Aurkitu:",
+                                        "sUrl":            "",
+                                        "sInfoThousands":  ",",
+                                        "sLoadingRecords": "Abiarazten...",
+                                        "oPaginate": {
+                                                "sFirst":    "Lehena",
+                                                "sLast":     "Azkena",
+                                                "sNext":     "Hurrengoa",
+                                                "sPrevious": "Aurrekoa"
+                                        },
+                                        "oAria": {
+                                                "sSortAscending":  ": Zutabea goranzko eran ordenatzeko aktibatu ",
+                                                "sSortDescending": ": Zutabea beheranzko eran ordenatzeko aktibatu"
+                                        },
+                                        buttons: {
+                                                pageLength: {
+                                                        _: "%d lerro erakutsi",
+                                                        '-1': "Lerro guztiak"
+                                                }
+                                        }
+                                },
+
+                                dom: 'Bfrtip',
+                                lengthMenu: [
+                                        [ 10, 25, 50, -1 ],
+                                        [ '10 lerro', '25 lerro', '50 lerro', 'Guztiak' ]
+                                ],
+                                buttons: [
+                                        'pageLength',
+                                        'excelHtml5',
+                                        'csvHtml5',
+                                        'pdfHtml5'
+                                ]
+                        });
+                } );
+
+                function ezabatu (id,mezua)
+                {
+                        var r = confirm(mezua);
+                        if (r == true)
+                        {
+                                document.getElementById(id).submit()
+                        } else {
+                        }
+                };
+        </script>
 {% endblock %}
 </body>
 </html>

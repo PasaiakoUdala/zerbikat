@@ -34,7 +34,9 @@
             $A204DENOMI = "'Home ".$denomi."'";
             $A204DENOMI = mb_strimwidth( $A204DENOMI, 0, 97, "..." );
             $A204TITCAST = "'Inicio ".$titcast."'";
+            $A204TITCAST = "'" . mb_strimwidth( $titcast, 0, 97, "..." ). "'";
             $A204TITEUSK = "'".$titeus." Hasiera'";
+            $A204TITEUSK = "'" . mb_strimwidth( $titcast, 0, 97, "..." ). "'";
             $A204PUBLICADA = $publicada;
             $A204FECALTA = date( 'Ymd' );
 
@@ -112,11 +114,14 @@
             $A202DENOMI = "'".$denomi."'";
             $A202DENOMI = mb_strimwidth( $A202DENOMI, 0, 97, "..." );
             $A202TEXCAST = "'".$titcast."'";
+            $A202TEXCAST = mb_strimwidth( $A202TEXCAST, 0, 495, "..." );
             $A202TEXEUSK = "'".$titeus."'";
+            $A202TEXEUSK = mb_strimwidth( $A202TEXEUSK, 0, 495, "..." );
             $A202SERVICIO = "'".$tipo."'";
-            $A202LINKEXT = $link;
             if ( $tipo == "PROPIA" ) {
                 $A202LINKEXT = "'".$link."'";
+            } else {
+                $A202LINKEXT = "''";
             }
             $A202FECALTA = date( 'Ymd' );
 
@@ -205,11 +210,11 @@
             $idElementua = 1;
             $A204AYUNTA = "'".$udalKodea."'";
 
-            $sql = "DELETE FROM `UDAA20401` WHERE A204AYUNTA=$A204AYUNTA;\n"; // Orriak
-            $sql = $sql."DELETE FROM `UDAA20201` WHERE A202AYUNTA=$A204AYUNTA;\n"; // Elementuak
-            $sql = $sql."DELETE FROM `UDAA20301` WHERE A203AYUNTA=$A204AYUNTA;\n"; // Blokeak
-            $sql = $sql."DELETE FROM `UDAA20501` WHERE A205AYUNTA=$A204AYUNTA;\n"; // Blokeak - Elementuak
-            $sql = $sql."DELETE FROM `UDAA20601` WHERE A206AYUNTA=$A204AYUNTA;\n"; // Orriak - Blokeak
+            $sql = "DELETE FROM UDAA20401 WHERE A204AYUNTA=$A204AYUNTA;\n"; // Orriak
+            $sql = $sql."DELETE FROM UDAA20201 WHERE A202AYUNTA=$A204AYUNTA;\n"; // Elementuak
+            $sql = $sql."DELETE FROM UDAA20301 WHERE A203AYUNTA=$A204AYUNTA;\n"; // Blokeak
+            $sql = $sql."DELETE FROM UDAA20501 WHERE A205AYUNTA=$A204AYUNTA;\n"; // Blokeak - Elementuak
+            $sql = $sql."DELETE FROM UDAA20601 WHERE A206AYUNTA=$A204AYUNTA;\n"; // Orriak - Blokeak
 
 
             $output->writeln( [$COUNT_FITXA.' aurkitu dira.', ''] );
@@ -248,7 +253,9 @@
             $query->setParameter( 'udala', $udalKodea );
             $familiak = $query->getResult();
 
-            // Home-a sortu
+            /*******************************************************************/
+            /**** Home-a sortu  ************************************************/
+            /*******************************************************************/
             $sql = $sql.$this->addOrria(
                     $A204AYUNTA,
                     $idPagina,
@@ -268,7 +275,11 @@
             $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPaginaHome, $idBlokeaHome, $idOrden );
             $idOrden += 1;
 
+            /*******************************************************************/
+            /**** Fitxak-a sortu  ************************************************/
+            /*******************************************************************/
             foreach ( $fitxak as $fitxa ) {
+                // Orria sortu fitxarentzat
                 $sql = $sql.$this->addOrria(
                         $A204AYUNTA,
                         $idPagina,
@@ -278,6 +289,7 @@
                         1,
                         "UXX"
                     );
+                // Esteka sortu Home-an
                 $sql = $sql.$this->addElementua(
                         $A204AYUNTA,
                         $idElementua,
@@ -291,83 +303,44 @@
                 $idOrdenElementua += 1;
                 $idElementua += 1;
 
+
+                /****** HASI HELBURUA *********************************************************************/
                 if ( $eremuak['helburuatext'] ) {
-                    $sql = $sql.$this->addBloque(
-                            $A204AYUNTA,
-                            $idBlokea,
-                            $labelak['helburualabeleu'],
-                            $labelak['helburualabeles']
-                        );
+                    $sql = $sql.$this->addBloque($A204AYUNTA,$idBlokea,$labelak['helburualabeleu'],$labelak['helburualabeles']);
                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-                    $sql = $sql.$this->addElementua(
-                            $A204AYUNTA,
-                            $idElementua,
-                            "Texto",
-                            $fitxa->getHelburuaeu(),
-                            $fitxa->getHelburuaes(),
-                            "PARRAFO"
-                        );
+                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto",$fitxa->getHelburuaeu(),$fitxa->getHelburuaes(),"PARRAFO");
                     $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
                     $idBlokea += 1;
                     $idOrden += 1;
                     $idOrdenElementua += 1;
                     $idElementua += 1;
                 }
+                /****** FIN HELBURUA *********************************************************************/
 
+                /****** HASI NORK ESKATU *********************************************************************/
                 if ( ($eremuak['norkeskatutext']) || ($eremuak['norkeskatutable']) ) {
-                    $sql = $sql.$this->addBloque(
-                            $A204AYUNTA,
-                            $idBlokea,
-                            $labelak['norkeskatulabeleu'],
-                            $labelak['norkeskatulabeles']
-                        );
+                    $sql = $sql.$this->addBloque($A204AYUNTA,$idBlokea,$labelak['norkeskatulabeleu'],$labelak['norkeskatulabeles']);
                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
                     if ( $eremuak['norkeskatutext'] ) {
-                        $sql = $sql.$this->addElementua(
-                                $A204AYUNTA,
-                                $idElementua,
-                                "Texto",
-                                $fitxa->getNorkeu(),
-                                $fitxa->getNorkes(),
-                                "PARRAFO"
-                            );
-                        $sql = $sql.$this->addElementuaBloque(
-                                $A204AYUNTA,
-                                $idBlokea,
-                                $idElementua,
-                                $idOrdenElementua
-                            );
+                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto",$fitxa->getNorkeu(),$fitxa->getNorkes(),"PARRAFO");
+                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                         $idElementua += 1;
                         $idOrdenElementua += 1;
                     } else {
                         if ( $eremuak["norkeskatutable"] ) {
                             foreach ( $fitxak->getNorkeskatuak() as $nork ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getNorkeu(),
-                                        $fitxa->getNorkes(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
+                                $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto",$fitxa->getNorkeu(),$fitxa->getNorkes(),"PARRAFO");
+                                $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                 $idElementua += 1;
                                 $idOrdenElementua += 1;
                             }
                         }
                     }
-
-
                     $idBlokea += 1;
                     $idOrden += 1;
-
                 }
+                /****** FIN NORK ESKATU *********************************************************************/
 
                 $idPagina += 1;
                 $progress->advance();

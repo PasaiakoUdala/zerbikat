@@ -18,7 +18,7 @@
 
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -59,11 +59,7 @@
     </table>
 
     <div class="text-center">
-        {% if araudias is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'araudia_index_paginated'}) }}
-            {% endif %}
-        {% else %}
+        {% if araudias is empty %}
             <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
