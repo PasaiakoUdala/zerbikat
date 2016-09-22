@@ -32,38 +32,17 @@ class AzpisailaController extends Controller
         if ($auth_checker->isGranted('ROLE_KUDEAKETA'))
         {
             $em = $this->getDoctrine()->getManager();
-//            $azpisailas = $em->getRepository('BackendBundle:Azpisaila')->findAll();
-
             $azpisailas = $em->getRepository('BackendBundle:Azpisaila')
                 ->findBy( array(), array('kodea'=>'ASC') );
-
-
-            $adapter = new ArrayAdapter($azpisailas);
-            $pagerfanta = new Pagerfanta($adapter);
 
             $deleteForms = array();
             foreach ($azpisailas as $azpisaila) {
                 $deleteForms[$azpisaila->getId()] = $this->createDeleteForm($azpisaila)->createView();
             }
 
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
-
             return $this->render('azpisaila/index.html.twig', array(
-                'azpisailas' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
+                'azpisailas' => $azpisailas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

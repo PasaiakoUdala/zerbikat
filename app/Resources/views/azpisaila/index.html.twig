@@ -8,7 +8,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('azpisaila_new') }}" class="fa fa-plus"> {{ 'messages.azpisailberria'|trans }}</a></li>
+                    <li><a href="{{ path('azpisaila_new') }}"
+                           class="fa fa-plus"> {{ 'messages.azpisailberria'|trans }}</a></li>
                 </ul>
             </div>
         </div>
@@ -16,25 +17,28 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
-            <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
-                <th>{{ 'messages.kodea'|trans }}</th>
-                <th>{{ 'messages.azpisaila'|trans }}</th>
-                <th>{{ 'messages.arduraduna'|trans }}</th>
-                <th>{{ 'messages.kontaktua'|trans }}</th>
-                <th>{{ 'messages.helbidea'|trans }}</th>
-            </tr>
+        <tr>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <th>{{ 'messages.udala'|trans }}</th>{% endif %}
+            <th>{{ 'messages.kodea'|trans }}</th>
+            <th>{{ 'messages.azpisaila'|trans }}</th>
+            <th>{{ 'messages.arduraduna'|trans }}</th>
+            <th>{{ 'messages.kontaktua'|trans }}</th>
+            <th>{{ 'messages.helbidea'|trans }}</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
         {% for azpisaila in azpisailas %}
             <tr>
-                {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ azpisaila.udala }}</td>{% endif %}
-                {#<td><a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}">{{ azpisaila.kodea }}</a></td>#}
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <td>{{ azpisaila.udala }}</td>{% endif %}
+
                 <td>{{ azpisaila.kodea }}</td>
                 <td>
-                    {% if app.request.locale == 'es'%}{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaes }}
+                    {% if app.request.locale == 'es' %}{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaes }}
                     {% else %}{{ azpisaila.hizkia }}-{{ azpisaila.azpisailaeu }}
                     {% endif %}
                 </td>
@@ -48,10 +52,12 @@
                 </td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
-                        <li><a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}" class="fa fa-pencil"></a></li>
+                        <li><a href="{{ path('azpisaila_edit', { 'id': azpisaila.id }) }}" class="fa fa-pencil"></a>
+                        </li>
                         {% if is_granted('ROLE_ADMIN') %}
                             <li>{{ form_start(deleteforms[azpisaila.id],{'attr': {'id': azpisaila.id}}) }}
-                                <a href="#" onclick="ezabatu({{ azpisaila.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
+                                <a href="#" onclick="ezabatu({{ azpisaila.id }},'{{ 'messages.ziurzaude'|trans }}');"><i
+                                            class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[azpisaila.id]) }}</li>
                         {% endif %}
                     </ul>
@@ -63,9 +69,7 @@
 
     <div class="text-center">
         {% if azpisailas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'azpisaila_index_paginated'}) }}
-            {% endif %}
+
         {% else %}
             <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
@@ -74,16 +78,13 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id,mezua)
-        {
-//            var r = confirm("Azpi-saila EZABATU. Ziur zaude?");
+        function ezabatu(id, mezua) {
             var r = confirm(mezua);
-            if (r == true)
-            {
+            if (r == true) {
                 document.getElementById(id).submit()
-            }else
-            {
+            } else {
             }
-        };
+        }
+        ;
     </script>
 {% endblock %}
