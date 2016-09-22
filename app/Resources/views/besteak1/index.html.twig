@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -62,9 +62,7 @@
 
     <div class="text-center">
         {% if besteak1s is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'besteak1_index_paginated'}) }}
-            {% endif %}
+
         {% else %}
             <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}

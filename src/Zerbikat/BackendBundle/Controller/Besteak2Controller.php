@@ -31,36 +31,18 @@ class Besteak2Controller extends Controller
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
-//            $besteak2s = $em->getRepository('BackendBundle:Besteak2')->findAll();
+
             $besteak2s = $em->getRepository('BackendBundle:Besteak2')
                 ->findBy( array(), array('kodea'=>'ASC') );
-            
-            $adapter = new ArrayAdapter($besteak2s);
-            $pagerfanta = new Pagerfanta($adapter);
 
             $deleteForms = array();
             foreach ($besteak2s as $besteak2) {
                 $deleteForms[$besteak2->getId()] = $this->createDeleteForm($besteak2)->createView();
             }
 
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
-
             return $this->render('besteak2/index.html.twig', array(
-                'besteak2s' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
+                'besteak2s' => $besteak2s,
+                'deleteforms' => $deleteForms
             ));
         }else
         {
