@@ -15,7 +15,7 @@
     </nav>
 {% endblock %}
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -36,9 +36,6 @@
                     <ul class="list-inline">
                             <li><a href="{{ path('norkeskatu_edit', { 'id': norkeskatu.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[norkeskatu.id],{'attr': {'id': norkeskatu.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ norkeskatu.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[norkeskatu.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[norkeskatu.id],{'attr': {'id': norkeskatu.id}}) }}
                                 <a href="#" onclick="ezabatu({{ norkeskatu.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[norkeskatu.id]) }}</li>
@@ -52,9 +49,6 @@
     </table>
     <div class="text-center">
         {% if norkeskatus is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'norkeskatu_index_paginated'}) }}
-            {% endif %}
         {% else %}
             <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
@@ -65,7 +59,7 @@
     <script type="text/javascript">
         function ezabatu (id,mezua)
         {
-//            var r = confirm("Eskatzailea EZABATU. Ziur zaude?");
+
             var r = confirm(mezua);
             if (r == true)
             {

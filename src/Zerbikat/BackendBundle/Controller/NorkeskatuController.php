@@ -33,32 +33,14 @@ class NorkeskatuController extends Controller
             $em = $this->getDoctrine()->getManager();
             $norkeskatus = $em->getRepository('BackendBundle:Norkeskatu')->findAll();
 
-            $adapter = new ArrayAdapter($norkeskatus);
-            $pagerfanta = new Pagerfanta($adapter);
-
             $deleteForms = array();
             foreach ($norkeskatus as $norkeskatu) {
                 $deleteForms[$norkeskatu->getId()] = $this->createDeleteForm($norkeskatu)->createView();
             }
 
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
-
             return $this->render('norkeskatu/index.html.twig', array(
-                'norkeskatus' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
+                'norkeskatus' => $norkeskatus,
+                'deleteforms' => $deleteForms
             ));
         }else
         {
