@@ -16,12 +16,12 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
                 <th>{{ 'messages.prozedura'|trans }}</th>
-                {#<th>Actions</th>#}
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -52,9 +52,7 @@
     </table>
     <div class="text-center">
         {% if prozeduras is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'prozedura_index_paginated'}) }}
-            {% endif %}
+
         {% else %}
             <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
