@@ -48,6 +48,7 @@
                 <ul class="list-inline">
                     {#<li><a href="{{ path('user_show',{ 'id': user.id } ,{ 'user': user }) }}" class="fa fa-search"></a></li>#}
                     <li><a href="{{ path('user_edit', { 'id': user.id }) }}" class="fa fa-pencil"></a></li>
+                    <li><a href="{{ path('user_edit_passwd', { 'id': user.id }) }}" class="fa fa-key" title="Pasahitza aldatu"></a></li>
                     {#{% if is_granted('ROLE_ADMIN') %}#}
                         {#<li>{{ form_start(deleteforms[user.id],{'attr': {'id': user.id}}) }}#}
                             {#<a href="#" onclick="ezabatu({{ user.id }});" ><i class="fa fa-trash text-danger"></i></a>#}

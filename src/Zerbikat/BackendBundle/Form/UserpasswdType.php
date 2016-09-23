@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
-class UserType extends AbstractType
+class UserpasswdType extends AbstractType
 //class UserType extends BaseType
 {
     /**
@@ -24,32 +24,17 @@ class UserType extends AbstractType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('username')
-            ->add('udala')
-            ->add('azpisaila')
-            ->add('enabled')
-            ->add('email')
-//            ->add('roles')
-//            ->add('password')
-            ->add('roles',  ChoiceType::class, array(
-                'multiple' => true,
-                'choices'  => array(
-                    'Admin' => 'ROLE_ADMIN',
-                    'Kudeaketa' => 'ROLE_KUDEAKETA',
-                    'Erabiltzailea' => 'ROLE_USER'
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options'  => array(
+                    'label' => 'messages.pasahitza',
+                    'translation_domain' => 'messages',
+                ),
+                'second_options' => array(
+                    'label' => 'messages.pasahitzaerrepikatu',
+                    'translation_domain' => 'messages',
                 ),
             ))
-//            ->add('password', RepeatedType::class, array(
-//                'type' => PasswordType::class,
-//                'first_options'  => array(
-//                    'label' => 'messages.pasahitza',
-//                    'translation_domain' => 'messages',
-//                ),
-//                'second_options' => array(
-//                    'label' => 'messages.pasahitzaerrepikatu',
-//                    'translation_domain' => 'messages',
-//                ),
-//            ))
         ;
     }
     

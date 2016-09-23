@@ -207,16 +207,13 @@ class SecurityController extends Controller
             $userManager = $this->container->get('fos_user.user_manager');
             $user = $userManager->createUser();
             $user->setEnabled( 1 );
-//            $user = new User();
+
             $user->setUdala($this->getUser()->getUdala());
 
             $form = $this->createForm('Zerbikat\BackendBundle\Form\UserType', $user);
             $form->handleRequest($request);
-//            $em = $this->getDoctrine()->getManager();
 
             if ($form->isSubmitted() && $form->isValid()) {
-//                $em->persist($user);
-//                $em->flush();
                 $user->setPlainPassword( $user->getPassword());
                 $userManager->updateUser($user, true);
 
@@ -269,23 +266,16 @@ class SecurityController extends Controller
             ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
         {
             $deleteForm = $this->createDeleteForm($user);
-            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\UserType', $user);
-//            $editForm = $this->createForm(new UserType('Zerbikat\BackendBundle\Form\UserType'), $user);
+            if ($auth_checker->isGranted('ROLE_SUPER_ADMIN')) {
+                $editForm = $this->createForm('Zerbikat\BackendBundle\Form\SuperuserType', $user);
+            } else {
+                $editForm = $this->createForm('Zerbikat\BackendBundle\Form\UserType', $user);
+            }
+
             $editForm->handleRequest($request);
-//
+
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $userManager = $this->container->get('fos_user.user_manager');
-
-                if (( $user->getPassword() != "" ) || ($user->getPassword()!=null )) {
-//                    $password = $this->get('security.password_encoder')
-//                        ->encodePassword($user, $user->getPlainPassword());
-                    $user->setPlainPassword( $user->getPassword());
-                    $user->setEnabled( 1 );
-//                    $user->setPassword($password);
-                }
-//                $em = $this->getDoctrine()->getManager();
-//                $em->persist($user);
-//                $em->flush();
                 $userManager->updateUser($user, true);
 
                 return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
@@ -298,7 +288,41 @@ class SecurityController extends Controller
             ));
         }else
         {
-//            return $this->redirectToRoute('fitxa_index');
+            return $this->redirectToRoute('backend_errorea');
+        }
+    }
+
+    /**
+     * Password Edit Action
+     *
+     * @Route("/user/{id}/passwd", name="user_edit_passwd")
+     * @Method({"GET", "POST"})
+     */
+    public function passwdAction(Request $request, User $user)
+    {
+        $auth_checker = $this->get('security.authorization_checker');
+        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($user->getUdala()==$this->getUser()->getUdala()))
+            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
+        {
+            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\UserpasswdType', $user);
+
+            $editForm->handleRequest($request);
+
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $userManager = $this->container->get('fos_user.user_manager');
+                $user->setPlainPassword( $user->getPassword());
+                $user->setEnabled( 1 );
+                $userManager->updateUser($user, true);
+
+                return $this->redirectToRoute('users_index');
+            }
+
+            return $this->render('UserBundle:Default:passwd.html.twig', array(
+                'user' => $user,
+                'form' => $editForm->createView()
+            ));
+        }else
+        {
             return $this->redirectToRoute('backend_errorea');
         }
     }

@@ -42,6 +42,20 @@ class User extends BaseUser
      */
     private $azpisaila;
 
+    /**
+     * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @var string
+     */
+    protected $password;
+
+
+
+
+
+
+
+
 
     /**
      *      FUNTZIOAK
@@ -103,4 +117,7 @@ class User extends BaseUser
     {
         return $this->azpisaila;
     }
+
+
+
 }

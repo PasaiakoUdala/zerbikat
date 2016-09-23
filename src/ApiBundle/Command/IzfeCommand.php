@@ -32,13 +32,14 @@
         {
             $A204IDPAGINA = $IdPagina;
             $A204DENOMI = "'Home ".$denomi."'";
-            $A204DENOMI = mb_strimwidth( $A204DENOMI, 0, 97, "..." );
+            $A204DENOMI = mb_strimwidth( $A204DENOMI, 0, 96). "'";
             $A204TITCAST = "'Inicio ".$titcast."'";
-            $A204TITCAST = "'" . mb_strimwidth( $titcast, 0, 97, "..." ). "'";
+            $A204TITCAST = "'" . mb_strimwidth( "Inicio ".$titcast, 0, 96, "..." ). "'";
             $A204TITEUSK = "'".$titeus." Hasiera'";
-            $A204TITEUSK = "'" . mb_strimwidth( $titcast, 0, 97, "..." ). "'";
+            $A204TITEUSK = "'" . mb_strimwidth( "Inicio ".$titcast, 0, 96, "..." ). "'";
             $A204PUBLICADA = $publicada;
-            $A204FECALTA = date( 'Ymd' );
+//            $A204FECALTA = date( 'Ymd' );
+            $A204FECALTA = null;
 
             switch ( $tipo ) {
                 case "USC":
@@ -72,7 +73,7 @@
 
             $A204IDTIPO = "'".$tipo."'";
             $sql = "INSERT INTO UDAA20401 (A204AYUNTA,A204IDPAGINA,A204DENOMI,A204TITCAST,A204TITEUSK,A204PUBLICADA,A204FECALTA,A204TIPO,A204IDTIPO)
-            VALUES ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, $A204FECALTA, $A204TIPO, $A204IDTIPO);\n";
+            VALUES ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, null, $A204TIPO, $A204IDTIPO);\n";
 
             return $sql;
         }
@@ -82,13 +83,14 @@
             $A203AYUNTA = $A204AYUNTA;
             $A203IDBLOQUE = $idBlokea;
             $A203DENOMI = "'".$idBlokea." Blokea'";
-            $A203DENOMI = mb_strimwidth( $A203DENOMI, 0, 97, "..." );
+            $A203DENOMI = mb_strimwidth( $A203DENOMI, 0, 96, "...'" );
             $A203TITCAST = "'".$tites."'";
             $A203TITEUSK = "'".$titeus."'";
-            $A203FECALTA = date( 'Ymd' );
+//            $A203FECALTA = date( 'Ymd' );
+            $A203FECALTA = null;
 
             $sql = "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA)
-            VALUES($A203AYUNTA, $A203IDBLOQUE, $A203DENOMI, $A203TITCAST, $A203TITEUSK, $A203FECALTA);\n";
+            VALUES($A203AYUNTA, $A203IDBLOQUE, $A203DENOMI, $A203TITCAST, $A203TITEUSK, null);\n";
 
             return $sql;
         }
@@ -112,21 +114,22 @@
             $A202AYUNTA = $A204AYUNTA;
             $A202IDLINEA = $idElementua;
             $A202DENOMI = "'".$denomi."'";
-            $A202DENOMI = mb_strimwidth( $A202DENOMI, 0, 97, "..." );
+            $A202DENOMI = mb_strimwidth( $A202DENOMI, 0, 96, "...'" );
             $A202TEXCAST = "'".$titcast."'";
-            $A202TEXCAST = mb_strimwidth( $A202TEXCAST, 0, 495, "..." );
+            $A202TEXCAST = mb_strimwidth( $A202TEXCAST, 0, 495, "...'" );
             $A202TEXEUSK = "'".$titeus."'";
-            $A202TEXEUSK = mb_strimwidth( $A202TEXEUSK, 0, 495, "..." );
+            $A202TEXEUSK = mb_strimwidth( $A202TEXEUSK, 0, 495, "...'" );
             $A202SERVICIO = "'".$tipo."'";
             if ( $tipo == "PROPIA" ) {
                 $A202LINKEXT = "'".$link."'";
             } else {
                 $A202LINKEXT = "''";
             }
-            $A202FECALTA = date( 'Ymd' );
+//            $A202FECALTA = date( 'Ymd' );
+            $A202FECALTA = null;
 
             $sql = "INSERT INTO UDAA20201 (A202AYUNTA, A202IDLINEA, A202DENOMI, A202TEXCAST, A202TEXEUSK, A202LINKEXT, A202SERVICIO,A202FECALTA)
-                               VALUES($A202AYUNTA, $A202IDLINEA, $A202DENOMI, $A202TEXCAST, $A202TEXEUSK, $A202LINKEXT, $A202SERVICIO, $A202FECALTA);\n";
+                               VALUES($A202AYUNTA, $A202IDLINEA, $A202DENOMI, $A202TEXCAST, $A202TEXEUSK, $A202LINKEXT, $A202SERVICIO, null);\n";
 
             return $sql;
         }
@@ -154,6 +157,8 @@
                     'kodea' => $udalKodea,
                 )
             );
+
+
 
             $output->writeln(
                 [
