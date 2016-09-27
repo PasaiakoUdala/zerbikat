@@ -1113,6 +1113,61 @@
                 }
                 /****** FIN PROZEDURA *********************************************************************/
 
+                /****** HASI NORK EBATZI ******************************************************************/
+                if ( ($eremuak['norkebatzitext']) || ($eremuak['norkebatzitable']) ) {
+                    $sql = $sql.$this->addBloque(
+                            $A204AYUNTA,
+                            $idBlokea,
+                            $labelak['norkebatzilabeles'],
+                            $labelak['norkebatzilabeleu']
+                        );
+                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                    if ( $eremuak["norkebatzitable"] && $fitxa->getNorkebatzi()) {
+
+                            $sql = $sql.$this->addElementua(
+                                    $A204AYUNTA,
+                                    $idElementua,
+                                    "Texto",
+                                    $fitxa->getNorkebatzi()->getNorkes(),
+                                    $fitxa->getNorkebatzi()->getNorkeu(),
+                                    "PARRAFO"
+                                );
+                            $sql = $sql.$this->addElementuaBloque(
+                                    $A204AYUNTA,
+                                    $idBlokea,
+                                    $idElementua,
+                                    $idOrdenElementua
+                                );
+                            $idElementua += 1;
+                            $idOrdenElementua += 1;
+
+
+                    }
+                    if ( $eremuak['norkebatzitext'] ) {
+                        $sql = $sql.$this->addElementua(
+                                $A204AYUNTA,
+                                $idElementua,
+                                "Texto",
+                                $fitxa->getNorkonartues(),
+                                $fitxa->getNorkonartueu(),
+                                "PARRAFO"
+                            );
+                        $sql = $sql.$this->addElementuaBloque(
+                                $A204AYUNTA,
+                                $idBlokea,
+                                $idElementua,
+                                $idOrdenElementua
+                            );
+                        $idElementua += 1;
+                        $idOrdenElementua += 1;
+                    }
+
+
+                    $idBlokea += 1;
+                    $idOrden += 1;
+                }
+                /****** FIN NORK EBATZI *******************************************************************/
 
 
                 $idPagina += 1;
