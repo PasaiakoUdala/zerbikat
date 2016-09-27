@@ -1050,6 +1050,70 @@
                 }
                 /****** FIN ARAUDIA *********************************************************************/
 
+                /****** HASI PROZEDURA *********************************************************************/
+                if ( ($eremuak['prozeduratext']) || ($eremuak['prozeduratable']) ) {
+                    $sql = $sql.$this->addBloque(
+                            $A204AYUNTA,
+                            $idBlokea,
+                            $labelak['prozeduralabeles'],
+                            $labelak['prozeduralabeleu']
+                        );
+                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                    if ( $eremuak['prozeduratext'] ) {
+                        $sql = $sql.$this->addElementua(
+                                $A204AYUNTA,
+                                $idElementua,
+                                "Texto",
+                                $fitxa->getProzeduraes(),
+                                $fitxa->getProzeduraeu(),
+                                "PARRAFO"
+                            );
+                        $sql = $sql.$this->addElementuaBloque(
+                                $A204AYUNTA,
+                                $idBlokea,
+                                $idElementua,
+                                $idOrdenElementua
+                            );
+                        $idElementua += 1;
+                        $idOrdenElementua += 1;
+                    }
+                    if ( $eremuak["prozeduratable"] ) {
+
+                        if ( $fitxa->getProzedurak() ) {
+                            $doctextes = "<ul>";
+                            $doctexteu = "<ul>";
+                            foreach ( $fitxa->getProzedurak() as $prozedura ) {
+                                $doctextes = $doctextes."<li>".$prozedura->getProzeduraes()."</li>";
+                                $doctexteu = $doctexteu."<li>".$prozedura->getProzeduraeu()."</li>";
+                            }
+                            $doctextes = $doctextes."</ul>";
+                            $doctexteu = $doctexteu."</ul>";
+                            $sql = $sql.$this->addElementua(
+                                    $A204AYUNTA,
+                                    $idElementua,
+                                    "Texto",
+                                    $doctextes,
+                                    $doctexteu,
+                                    "PARRAFO"
+                                );
+                            $sql = $sql.$this->addElementuaBloque(
+                                    $A204AYUNTA,
+                                    $idBlokea,
+                                    $idElementua,
+                                    $idOrdenElementua
+                                );
+                            $idElementua += 1;
+                            $idOrdenElementua += 1;
+                        }
+
+                    }
+                    $idBlokea += 1;
+                    $idOrden += 1;
+                }
+                /****** FIN PROZEDURA *********************************************************************/
+
+
 
                 $idPagina += 1;
 //                $progress->advance();
