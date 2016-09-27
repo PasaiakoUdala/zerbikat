@@ -237,8 +237,8 @@
 
             $output->writeln( [$COUNT_FITXA.' aurkitu dira.', ''] );
 
-//            $progress = new ProgressBar( $output, $COUNT_FITXA );
-//            $progress->start();
+            $progress = new ProgressBar( $output, $COUNT_FITXA );
+            $progress->start();
 
             $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
@@ -1510,7 +1510,55 @@
                 }
                 /****** FIN BESTEAK3 *********************************************************************/
 
+                /****** HASI DATUENBABESA *********************************************************************/
+                if ( ($eremuak['datuenbabesatext']) || ($eremuak['datuenbabesatable']) ) {
+                    $sql = $sql.$this->addBloque(
+                            $A204AYUNTA,
+                            $idBlokea,
+                            $labelak['datuenbabesalabeles'],
+                            $labelak['datuenbabesalabeleu']
+                        );
+                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+
+                    if ( $eremuak["datuenbabesatable"] && $fitxa->getDatuenbabesa() ) {
+
+                        $textes = $fitxa->getUdala()->getLopdes();
+                        $textes = str_replace('$$$fitxa.datuenbabesa.izenaes$$$', $fitxa->getDatuenbabesa()->getIzenaes(),$textes);
+                        $textes = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$textes);
+                        $textes = str_replace('$$$fitxa.datuenbabesa.xedeaes$$$', $fitxa->getDatuenbabesa()->getXedeaes(),$textes);
+                        $textes = str_replace('$$$fitxa.datuenbabesa.lagapenakes$$$', $fitxa->getDatuenbabesa()->getLagapenakes(),$textes);
+
+                        $texteu = $fitxa->getUdala()->getLopdeu();
+                        $texteu = str_replace('$$$fitxa.datuenbabesa.izenaeu$$$', $fitxa->getDatuenbabesa()->getIzenaeu(),$texteu);
+                        $texteu = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$texteu);
+                        $texteu = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$', $fitxa->getDatuenbabesa()->getXedeaeu(),$texteu);
+                        $texteu = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$', $fitxa->getDatuenbabesa()->getLagapenakeu(),$texteu);
+
+                    }
+
+                    if ( $eremuak['datuenbabesatext'] ) {
+                        $sql = $sql.$this->addElementua(
+                                $A204AYUNTA,
+                                $idElementua,
+                                "Texto",
+                                $textes,
+                                $texteu,
+                                "PARRAFO"
+                            );
+                        $sql = $sql.$this->addElementuaBloque(
+                                $A204AYUNTA,
+                                $idBlokea,
+                                $idElementua,
+                                $idOrdenElementua
+                            );
+                        $idElementua += 1;
+                        $idOrdenElementua += 1;
+                    }
+                    $idBlokea += 1;
+                    $idOrden += 1;
+                }
+                /****** FIN BESTEAK3 *********************************************************************/
 
 
 
@@ -1518,7 +1566,7 @@
 
 
                 $idPagina += 1;
-//                $progress->advance();
+                $progress->advance();
             }
 
 
@@ -1530,6 +1578,6 @@
                 echo "An error occurred while creating your directory at ".$e->getPath();
             }
 
-//            $progress->finish();
+            $progress->finish();
         }
     }
