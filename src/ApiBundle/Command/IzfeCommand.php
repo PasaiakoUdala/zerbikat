@@ -467,7 +467,7 @@
                             $doctextes = "<ul>";
                             $doctexteu = "<ul>";
                             foreach ( $fitxa->getDokumentazioak() as $doc ) {
-                                $doctextes = $doctextes."<li>aaaaaaaaaaaaaaaaaaa";
+                                $doctextes = $doctextes."<li>";
                                 $doctexteu = $doctexteu."<li>";
 
                                 if ( $doc->getEstekaeu() ) {
@@ -482,6 +482,8 @@
                                 $doctextes = $doctextes."</li>";
                                 $doctexteu = $doctexteu."</li>";
                             }
+                            $doctextes = $doctextes."</ul>";
+                            $doctexteu = $doctexteu."</ul>";
                             $sql = $sql.$this->addElementua(
                                     $A204AYUNTA,
                                     $idElementua,
@@ -975,6 +977,78 @@
                 }
                 /****** FIN EBAZPENA*********************************************************************/
 
+                /****** HASI ARAUDIA *********************************************************************/
+                if ( ($eremuak['araudiatext']) || ($eremuak['araudiatable']) ) {
+                    $sql = $sql.$this->addBloque(
+                            $A204AYUNTA,
+                            $idBlokea,
+                            $labelak['araudialabeles'],
+                            $labelak['araudialabeleu']
+                        );
+                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                    if ( $eremuak['araudiatext'] ) {
+                        $sql = $sql.$this->addElementua(
+                                $A204AYUNTA,
+                                $idElementua,
+                                "Texto",
+                                $fitxa->getAraudiaes(),
+                                $fitxa->getAraudiaeu(),
+                                "PARRAFO"
+                            );
+                        $sql = $sql.$this->addElementuaBloque(
+                                $A204AYUNTA,
+                                $idBlokea,
+                                $idElementua,
+                                $idOrdenElementua
+                            );
+                        $idElementua += 1;
+                        $idOrdenElementua += 1;
+                    }
+                    if ( $eremuak["araudiatable"] ) {
+
+                            if ( $fitxa->getAraudiak() ) {
+                                $doctextes = "<ul>";
+                                $doctexteu = "<ul>";
+                                foreach ( $fitxa->getAraudiak() as $araua ) {
+                                    $doctextes = $doctextes."<li>";
+                                    $doctexteu = $doctexteu."<li>";
+
+                                    if ( $araua->getAraudia()->getEstekaeu() ) {
+                                        $doctextes = "<a href='".$araua->getAraudia()->getEstekaes()." target='_blank'>".$araua->getAraudia()->getArauaes()."</a>";
+                                        $doctexteu = "<a href='".$araua->getAraudia()->getEstekaeu()." target='_blank'>".$araua->getAraudia()->getArauaeu()."</a>";
+                                    } else {
+                                        $doctextes = $araua->getAraudia()->getArauaes();
+                                        $doctexteu = $araua->getAraudia()->getArauaeu();
+                                    }
+                                    $doctextes = $doctextes."</li>";
+                                    $doctexteu = $doctexteu."</li>";
+                                }
+                                $doctextes = $doctextes."</ul>";
+                                $doctexteu = $doctexteu."</ul>";
+                                $sql = $sql.$this->addElementua(
+                                        $A204AYUNTA,
+                                        $idElementua,
+                                        "Texto",
+                                        $doctextes,
+                                        $doctexteu,
+                                        "PARRAFO"
+                                    );
+                                $sql = $sql.$this->addElementuaBloque(
+                                        $A204AYUNTA,
+                                        $idBlokea,
+                                        $idElementua,
+                                        $idOrdenElementua
+                                    );
+                                $idElementua += 1;
+                                $idOrdenElementua += 1;
+                            }
+
+                    }
+                    $idBlokea += 1;
+                    $idOrden += 1;
+                }
+                /****** FIN ARAUDIA *********************************************************************/
 
 
                 $idPagina += 1;
