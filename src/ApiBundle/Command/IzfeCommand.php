@@ -32,27 +32,27 @@
 
         function addOrria ( $A204AYUNTA, $IdPagina, $denomi, $titcast, $titeus, $publicada, $tipo )
         {
-            $denomi = addslashes( $denomi );
-            $titcast = addslashes( $titcast );
-            $titeus = addslashes( $titeus );
+            $denomi = str_replace( '"', '\'', $denomi );
+            $titcast = str_replace( '"', '\'', $titcast );
+            $titeus = str_replace( '"', '\'', $titeus );
 
             $A204IDPAGINA = $IdPagina;
-            $A204DENOMI = "'Home ".$denomi."'";
-            $A204DENOMI = "'".mb_strimwidth( $denomi, 0, 96 )."'";
-            $A204TITCAST = "'Inicio ".$titcast."'";
-            $A204TITCAST = "'".mb_strimwidth( "Inicio ".$titcast, 0, 96, "..." )."'";
-            $A204TITEUSK = "'".$titeus." Hasiera'";
-            $A204TITEUSK = "'".mb_strimwidth( "Inicio ".$titcast, 0, 96, "..." )."'";
+            $A204DENOMI = '"Home '.$denomi.'"';
+            $A204DENOMI = '"'.mb_strimwidth( $denomi, 0, 96 ).'"';
+            $A204TITCAST = '"Inicio '.$titcast.'"';
+            $A204TITCAST = '"'.mb_strimwidth( 'Inicio '.$titcast, 0, 96, "..." ).'"';
+            $A204TITEUSK = '"'.$titeus.' Hasiera"';
+            $A204TITEUSK = '"'.mb_strimwidth( 'Inicio '.$titcast, 0, 96, "..." ).'"';
             $A204PUBLICADA = $publicada;
 //            $A204FECALTA = date( 'Ymd' );
             $A204FECALTA = null;
 
             switch ( $tipo ) {
                 case "USC":
-                    $A204TIPO = "'HOME'";
+                    $A204TIPO = '"HOME"';
                     break;
                 case "UXX":
-                    $A204TIPO = "'PROPIA'";
+                    $A204TIPO = '"PROPIA"';
                     break;
                 default:
                     $servicios = array (
@@ -71,9 +71,9 @@
                     );
 
                     if ( in_array( $tipo, $servicios ) ) {
-                        $A204TIPO = "'SERVICIO'";
+                        $A204TIPO = '"SERVICIO"';
                     } else {
-                        $A204TIPO = "'EXPEDIENTE'";
+                        $A204TIPO = '"EXPEDIENTE"';
                     }
             }
 
@@ -86,12 +86,15 @@
 
         function addBloque ( $A204AYUNTA, $idBlokea, $titeus, $tites )
         {
+            $titeus = str_replace( '"', '\'', $titeus );
+            $tites = str_replace( '"', '\'', $tites );
+
             $A203AYUNTA = $A204AYUNTA;
             $A203IDBLOQUE = $idBlokea;
-            $A203DENOMI = "'".$idBlokea." Blokea'";
+            $A203DENOMI = '"'.$idBlokea.' Blokea"';
             $A203DENOMI = mb_strimwidth( $A203DENOMI, 0, 96, "...'" );
-            $A203TITCAST = "'".$tites."'";
-            $A203TITEUSK = "'".$titeus."'";
+            $A203TITCAST = '"'.$tites.'"';
+            $A203TITEUSK = '"'.$titeus.'"';
 //            $A203FECALTA = date( 'Ymd' );
             $A203FECALTA = null;
 
@@ -117,23 +120,23 @@
 
         function addElementua ( $A204AYUNTA, $idElementua, $denomi, $titcast, $titeus, $tipo, $link = '' )
         {
-            $denomi = addslashes( $denomi );
-            $titcast = addslashes( $titcast );
-            $titeus = addslashes( $titeus );
+            $denomi = str_replace( '"', '\'', $denomi );
+            $titcast = str_replace( '"', '\'', $titcast );
+            $titeus = str_replace( '"', '\'', $titeus );
 
             $A202AYUNTA = $A204AYUNTA;
             $A202IDLINEA = $idElementua;
-            $A202DENOMI = "'".$denomi."'";
-            $A202DENOMI = mb_strimwidth( $A202DENOMI, 0, 96, "...'" );
-            $A202TEXCAST = "'".$titcast."'";
-            $A202TEXCAST = mb_strimwidth( $A202TEXCAST, 0, 495, "...'" );
-            $A202TEXEUSK = "'".$titeus."'";
-            $A202TEXEUSK = mb_strimwidth( $A202TEXEUSK, 0, 495, "...'" );
-            $A202SERVICIO = "'".$tipo."'";
+            $A202DENOMI = '"'.$denomi.'"';
+            $A202DENOMI = '"'.mb_strimwidth( $denomi, 0, 96, "..." ).'"';
+            $A202TEXCAST = '"'.$titcast.'"';
+            $A202TEXCAST = '"'.mb_strimwidth( $titcast, 0, 495, "..." ).'"';
+            $A202TEXEUSK = '"'.$titeus.'"';
+            $A202TEXEUSK = '"'.mb_strimwidth( $titeus, 0, 495, "..." ).'"';
+            $A202SERVICIO = '"'.$tipo.'"';
             if ( $tipo == "PROPIA" ) {
-                $A202LINKEXT = "'".$link."'";
+                $A202LINKEXT = '"'.$link.'"';
             } else {
-                $A202LINKEXT = "''";
+                $A202LINKEXT = '""';
             }
 //            $A202FECALTA = date( 'Ymd' );
             $A202FECALTA = null;
@@ -222,7 +225,8 @@
             $idOrden = 1;
             $idOrdenElementua = 1;
             $idElementua = 1;
-            $A204AYUNTA = "'".$udalKodea."'";
+            $A204AYUNTA = '"'.$udalKodea.'"';
+            $mapa = array();
 
             $sql = "DELETE FROM UDAA20401 WHERE A204AYUNTA=$A204AYUNTA;\n"; // Orriak
             $sql = $sql."DELETE FROM UDAA20201 WHERE A202AYUNTA=$A204AYUNTA;\n"; // Elementuak
@@ -282,13 +286,15 @@
                 );
             $idPaginaHome = $idPagina;
             $idPagina += 1;
-
-            $sql = $sql.$this->addBloque( $A204AYUNTA, $idBlokea, "Froga", "Prueba" );
-            $idBlokeaHome = $idBlokea;
-            $idBlokea += 1;
-
-            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPaginaHome, $idBlokeaHome, $idOrden );
-            $idOrden += 1;
+//
+//            FROGA BLOQUE BAT ESTEKA DENAK
+//
+//            $sql = $sql.$this->addBloque( $A204AYUNTA, $idBlokea, "Froga", "Prueba" );
+//            $idBlokeaHome = $idBlokea;
+//            $idBlokea += 1;
+//
+//            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPaginaHome, $idBlokeaHome, $idOrden );
+//            $idOrden += 1;
 
             /*******************************************************************/
             /**** Fin home-a sortu  ********************************************/
@@ -298,24 +304,15 @@
             /*******************************************************************/
             /**** Home-an familiak sortu  **************************************/
             /*******************************************************************/
-            $sql = $sql.$this->addOrria(
-                    $A204AYUNTA,
-                    $idPagina,
-                    "Home ".$udala->getIzenaeu(),
-                    "Inicio ".$udala->getIzenaes(),
-                    $udala->getIzenaeu()." Hasiera",
-                    1,
-                    "USC"
-                );
-            $idPaginaHome = $idPagina;
-            $idPagina += 1;
+            foreach ( $familiak as $familia ) {
+                $sql = $sql.$this->addBloque($A204AYUNTA,$idBlokea,$familia->getFamiliaes(),$familia->getFamiliaeu());
+                $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPaginaHome, $idBlokea, $idOrden );
 
-            $sql = $sql.$this->addBloque( $A204AYUNTA, $idBlokea, "Froga", "Prueba" );
-            $idBlokeaHome = $idBlokea;
-            $idBlokea += 1;
+                $mapa[$familia->getId()] = $idBlokea;
 
-            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPaginaHome, $idBlokeaHome, $idOrden );
-            $idOrden += 1;
+                $idBlokea+=1;
+                $idOrden+=1;
+            }
 
             /*******************************************************************/
             /**** Fin home-an familiak sortu  **********************************/
@@ -351,6 +348,8 @@
                         1,
                         "UXX"
                     );
+
+
                 // Esteka sortu Home-an
                 $sql = $sql.$this->addElementua(
                         $A204AYUNTA,
@@ -361,9 +360,16 @@
                         "PROPIA",
                         $idPagina
                     );
-                $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokeaHome, $idElementua, $idOrdenElementua );
-                $idOrdenElementua += 1;
-                $idElementua += 1;
+//                Hay soilik bloque bat eta esteka guztiak froga gurenako
+//                $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokeaHome, $idElementua, $idOrdenElementua );
+
+                //familia bat baina gehiagotan egon daiteke
+                foreach ($fitxa->getFamiliak() as $famili) {
+                    $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $mapa[$famili->getId()], $idElementua, $idOrdenElementua );
+                    $idOrdenElementua += 1;
+                    $idElementua += 1;
+                }
+
 
 
                 /****** HASI HELBURUA *********************************************************************/
@@ -904,6 +910,71 @@
                     $idOrden += 1;
                 }
                 /****** FIN KOSTUA *********************************************************************/
+
+                /****** HASI EBAZPENA *********************************************************************/
+                if ( $eremuak['ebazpensinpli'] || ($eremuak['arduraaitorpena']) || ($eremuak['aurreikusi']) || ($eremuak['arrunta']) || ($eremuak['isiltasunadmin'])) {
+                    $sql = $sql.$this->addBloque(
+                            $A204AYUNTA,
+                            $idBlokea,
+                            $labelak['epealabeles'],
+                            $labelak['epealabeleu']
+                        );
+                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                    $textes="";
+                    $texteu = "";
+
+                    if  ($eremuak["aurreikusi"]) {
+                        if ($fitxa->getAurreikusi()) {
+                            $textes = $labelak["aurreikusilabeles"].": ".$fitxa->getAurreikusi()."\n";
+                            $texteu = $labelak["aurreikusilabeleu"].": ".$fitxa->getAurreikusi()."\n";
+                        }
+                    }
+
+                    if  ($eremuak["arrunta"]) {
+                        if ($fitxa->getArrunta()) {
+                            $textes = $textes.$labelak["arruntalabeles"].": ".$fitxa->getArrunta()."\n";
+                            $texteu = $texteu.$labelak["arruntalabeleu"].": ".$fitxa->getArrunta()."\n";
+                        }
+                    }
+
+                    if  ($eremuak["ebazpensinpli"]) {
+                        if ($fitxa->getEbazpensinpli()) {
+                            $textes = $textes.$labelak["ebazpensinplilabeles"].": ".$fitxa->getEbazpensinpli()."\n";
+                            $texteu = $texteu.$labelak["ebazpensinplilabeleu"].": ".$fitxa->getEbazpensinpli()."\n";
+                        }
+                    }
+
+                    if  ($eremuak["arduraaitorpena"]) {
+                        if ($fitxa->getArduraaitorpena()) {
+                            $textes = $textes.$labelak["arduraaitorpenalabeles"].": ".$fitxa->getArduraaitorpena()."\n";
+                            $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": ".$fitxa->getArduraaitorpena()."\n";
+                        }
+                    }
+
+                    if  ($eremuak["isiltasunadmin"]) {
+                        if ($fitxa->getIsiltasunadmin()) {
+                            $textes = $textes.$labelak["isiltasunadminlabeles"].": ".$fitxa->getIsiltasunadmin()."\n";
+                            $texteu = $texteu.$labelak["isiltasunadminlabeleu"].": ".$fitxa->getIsiltasunadmin()."\n";
+                        }
+                    }
+
+                    $sql = $sql.$this->addElementua(
+                            $A204AYUNTA,
+                            $idElementua,
+                            "Texto",
+                            $textes,
+                            $texteu,
+                            "PARRAFO"
+                        );
+                    $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
+                    $idBlokea += 1;
+                    $idOrden += 1;
+                    $idOrdenElementua += 1;
+                    $idElementua += 1;
+                }
+                /****** FIN EBAZPENA*********************************************************************/
+
 
 
                 $idPagina += 1;
