@@ -32,27 +32,27 @@
 
         function addOrria ( $A204AYUNTA, $IdPagina, $denomi, $titcast, $titeus, $publicada, $tipo )
         {
-            $denomi = str_replace( '"', '\'', $denomi );
-            $titcast = str_replace( '"', '\'', $titcast );
-            $titeus = str_replace( '"', '\'', $titeus );
+            $denomi = str_replace( '\'', '\"', $denomi );
+            $titcast = str_replace( '\'', '\"', $titcast );
+            $titeus = str_replace( '\'', '\"', $titeus );
 
             $A204IDPAGINA = $IdPagina;
-            $A204DENOMI = '"Home '.$denomi.'"';
-            $A204DENOMI = '"'.mb_strimwidth( $denomi, 0, 96 ).'"';
-            $A204TITCAST = '"Inicio '.$titcast.'"';
-            $A204TITCAST = '"'.mb_strimwidth( 'Inicio '.$titcast, 0, 96, "..." ).'"';
-            $A204TITEUSK = '"'.$titeus.' Hasiera"';
-            $A204TITEUSK = '"'.mb_strimwidth( 'Inicio '.$titcast, 0, 96, "..." ).'"';
+            $A204DENOMI = "'Home ".$denomi."'";
+            $A204DENOMI = "'".mb_strimwidth( $denomi, 0, 96 )."'";
+            $A204TITCAST = "'".$titcast."'";
+            $A204TITCAST = "'".mb_strimwidth( $titcast, 0, 96, "..." )."'";
+            $A204TITEUSK = "'".$titeus."'";
+            $A204TITEUSK = "'".mb_strimwidth( $titeus, 0, 96, "..." )."'";
             $A204PUBLICADA = $publicada;
 //            $A204FECALTA = date( 'Ymd' );
             $A204FECALTA = null;
 
             switch ( $tipo ) {
                 case "USC":
-                    $A204TIPO = '"HOME"';
+                    $A204TIPO = "'HOME'";
                     break;
                 case "UXX":
-                    $A204TIPO = '"PROPIA"';
+                    $A204TIPO = "'PROPIA'";
                     break;
                 default:
                     $servicios = array (
@@ -71,9 +71,9 @@
                     );
 
                     if ( in_array( $tipo, $servicios ) ) {
-                        $A204TIPO = '"SERVICIO"';
+                        $A204TIPO = "'SERVICIO'";
                     } else {
-                        $A204TIPO = '"EXPEDIENTE"';
+                        $A204TIPO = "'EXPEDIENTE'";
                     }
             }
 
@@ -84,17 +84,19 @@
             return $sql;
         }
 
-        function addBloque ( $A204AYUNTA, $idBlokea, $titeus, $tites )
+        function addBloque ( $A204AYUNTA, $idBlokea, $tites, $titeus )
         {
-            $titeus = str_replace( '"', '\'', $titeus );
-            $tites = str_replace( '"', '\'', $tites );
+            $tites = str_replace( '\'', '\"', $tites );
+            $titeus = str_replace( '\'', '\"', $titeus );
 
             $A203AYUNTA = $A204AYUNTA;
             $A203IDBLOQUE = $idBlokea;
-            $A203DENOMI = '"'.$idBlokea.' Blokea"';
-            $A203DENOMI = mb_strimwidth( $A203DENOMI, 0, 96, "...'" );
-            $A203TITCAST = '"'.$tites.'"';
-            $A203TITEUSK = '"'.$titeus.'"';
+            $A203DENOMI = "'".$idBlokea." Blokea'";
+//            $A203DENOMI =  "'".mb_strimwidth( $A203DENOMI, 0, 96, "..." )."'";
+            $A203TITCAST = "'".$tites."'";
+            $A203TITCAST = "'".mb_strimwidth( $tites, 0, 96, "..." )."'";
+            $A203TITEUSK = "'".$titeus."'";
+            $A203TITEUSK = "'".mb_strimwidth( $titeus, 0, 96, "..." )."'";
 //            $A203FECALTA = date( 'Ymd' );
             $A203FECALTA = null;
 
@@ -110,7 +112,7 @@
             $A206IDPAGINA = $idPagina;
             $A206IDBLOQUE = $idBlokea;
             $A206ORDEN = $idOrden;
-            $A206VISUAL = 1;
+            $A206VISUAL = 0;
 
             $sql = "INSERT INTO UDAA20601 (A206AYUNTA,A206IDPAGINA,A206IDBLOQUE,A206ORDEN,A206VISUAL) 
                 VALUES($A206AYUNTA, $A206IDPAGINA, $A206IDBLOQUE, $A206ORDEN, $A206VISUAL);\n";
@@ -120,23 +122,23 @@
 
         function addElementua ( $A204AYUNTA, $idElementua, $denomi, $titcast, $titeus, $tipo, $link = '' )
         {
-            $denomi = str_replace( '"', '\'', $denomi );
-            $titcast = str_replace( '"', '\'', $titcast );
-            $titeus = str_replace( '"', '\'', $titeus );
+            $denomi = str_replace( '\'', '\"', $denomi );
+            $titcast = str_replace( '\'', '\"', $titcast );
+            $titeus = str_replace( '\'', '\"', $titeus );
 
             $A202AYUNTA = $A204AYUNTA;
             $A202IDLINEA = $idElementua;
-            $A202DENOMI = '"'.$denomi.'"';
-            $A202DENOMI = '"'.mb_strimwidth( $denomi, 0, 96, "..." ).'"';
-            $A202TEXCAST = '"'.$titcast.'"';
-            $A202TEXCAST = '"'.mb_strimwidth( $titcast, 0, 495, "..." ).'"';
-            $A202TEXEUSK = '"'.$titeus.'"';
-            $A202TEXEUSK = '"'.mb_strimwidth( $titeus, 0, 495, "..." ).'"';
-            $A202SERVICIO = '"'.$tipo.'"';
+            $A202DENOMI = "'".$denomi."'";
+            $A202DENOMI = "'".mb_strimwidth( $denomi, 0, 96, "..." )."'";
+            $A202TEXCAST = "'".$titcast."'";
+            $A202TEXCAST = "'".mb_strimwidth( $titcast, 0, 495, "..." )."'";
+            $A202TEXEUSK = "'".$titeus."'";
+            $A202TEXEUSK = "'".mb_strimwidth( $titeus, 0, 495, "..." )."'";
+            $A202SERVICIO = "'".$tipo."'";
             if ( $tipo == "PROPIA" ) {
-                $A202LINKEXT = '"'.$link.'"';
+                $A202LINKEXT = "'".$link."'";
             } else {
-                $A202LINKEXT = '""';
+                $A202LINKEXT = "''";
             }
 //            $A202FECALTA = date( 'Ymd' );
             $A202FECALTA = null;
@@ -225,7 +227,7 @@
             $idOrden = 1;
             $idOrdenElementua = 1;
             $idElementua = 1;
-            $A204AYUNTA = '"'.$udalKodea.'"';
+            $A204AYUNTA = "'".$udalKodea."'";
             $mapa = array ();
 
             $sql = "DELETE FROM UDAA20401 WHERE A204AYUNTA=$A204AYUNTA;\n"; // Orriak
@@ -278,11 +280,11 @@
             $sql = $sql.$this->addOrria(
                     $A204AYUNTA,
                     $idPagina,
-                    "Home ".$udala->getIzenaeu(),
-                    "Inicio ".$udala->getIzenaes(),
-                    $udala->getIzenaeu()." Hasiera",
+                    'Home '.$udala->getIzenaeu(),
+                    $udala->getIzenaes(),
+                    $udala->getIzenaeu(),
                     1,
-                    "USC"
+                    'USC'
                 );
             $idPaginaHome = $idPagina;
             $idPagina += 1;
@@ -358,8 +360,8 @@
                         $A204AYUNTA,
                         $idElementua,
                         $fitxa->getEspedientekodea(),
-                        $fitxa->getEspedientekodea(),
-                        $fitxa->getEspedientekodea(),
+                        $fitxa->getDeskribapenaeu(),
+                        $fitxa->getDeskribapenaeu(),
                         "PROPIA",
                         $idPagina
                     );
@@ -647,14 +649,12 @@
                                         }
                                     } else {
                                         if ( $k->getEsteka() ) {
+                                            $textes = $textes."<li>LOLOLOLO</li>";
+                                            $texteu = $texteu."<li>LOLOLOLO</li>";
                                             $textes = $textes."<li>";
                                             $texteu = $texteu."<li>";
                                             if ( $kanala->getIzenaes() ) {
-                                                if ( (strpos( $kanala->getEstekaes(), "@" ) === true) and (strpos(
-                                                            $kanala->getEstekaeu(),
-                                                            "maps"
-                                                        ) == false)
-                                                ) {
+                                                if ( (strpos( $kanala->getEstekaes(), "@" ) === true) and (strpos($kanala->getEstekaes(),"maps") == false)) {
                                                     $textes = $textes."<a href='mailto:".$kanala->getEstekaes(
                                                         )."'>".$kanala->getIzenaes()."</a><br />";
                                                     $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu(
@@ -667,16 +667,16 @@
                                                 }
                                             }
                                             if ( $kanala->getKalea() ) {
-                                                $textes = $textes.$kanala->getKalea();
-                                                $texteu = $texteu.$kanala->getKalea();
+                                                $textes = $textes.$kanala->getKalea(). " ";
+                                                $texteu = $texteu.$kanala->getKalea(). " ";
                                             }
                                             if ( $kanala->getKalezbkia() ) {
-                                                $textes = $textes.$kanala->getKalezbkia();
-                                                $texteu = $texteu.$kanala->getKalezbkia();
+                                                $textes = $textes.$kanala->getKalezbkia(). " ";
+                                                $texteu = $texteu.$kanala->getKalezbkia(). " ";
                                             }
                                             if ( $kanala->getPostakodea() ) {
-                                                $textes = $textes.$kanala->getPostakodea();
-                                                $texteu = $texteu.$kanala->getPostakodea();
+                                                $textes = $textes.$kanala->getPostakodea(). " ";
+                                                $texteu = $texteu.$kanala->getPostakodea(). " ";
                                             }
                                             if ( $kanala->getUdala() ) {
                                                 $textes = $textes.$kanala->getUdala()."<br/>";
@@ -704,16 +704,16 @@
                                                 $texteu = $texteu.$kanala->getIzenaes()."<br/>";
                                             }
                                             if ( $kanala->getKalea() ) {
-                                                $textes = $textes.$kanala->getKalea();
-                                                $texteu = $texteu.$kanala->getKalea();
+                                                $textes = $textes.$kanala->getKalea(). " ";
+                                                $texteu = $texteu.$kanala->getKalea(). " ";
                                             }
                                             if ( $kanala->getKalezbkia() ) {
-                                                $textes = $textes.$kanala->getKalezbkia();
-                                                $texteu = $texteu.$kanala->getKalezbkia();
+                                                $textes = $textes.$kanala->getKalezbkia(). " ";
+                                                $texteu = $texteu.$kanala->getKalezbkia(). " ";
                                             }
                                             if ( $kanala->getPostakodea() ) {
-                                                $textes = $textes.$kanala->getPostakodea();
-                                                $texteu = $texteu.$kanala->getPostakodea();
+                                                $textes = $textes.$kanala->getPostakodea(). " ";
+                                                $texteu = $texteu.$kanala->getPostakodea(). " ";
                                             }
                                             if ( $kanala->getUdala() ) {
                                                 $textes = $textes.$kanala->getUdala()."<br/>";
