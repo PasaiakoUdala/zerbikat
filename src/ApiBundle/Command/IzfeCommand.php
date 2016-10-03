@@ -230,9 +230,9 @@
             $A204AYUNTA = "'".$udalKodea."'";
             $mapa = array ();
 
-            $sql = "DELETE FROM UDAA20401 WHERE A204AYUNTA=$A204AYUNTA;\n"; // Orriak
-            $sql = $sql."DELETE FROM UDAA20201 WHERE A202AYUNTA=$A204AYUNTA;\n"; // Elementuak
-            $sql = $sql."DELETE FROM UDAA20301 WHERE A203AYUNTA=$A204AYUNTA;\n"; // Blokeak
+            $sql = "DELETE FROM UDAA20401 WHERE A204CAPLI='Z' AND A204AYUNTA=$A204AYUNTA;\n"; // Orriak
+            $sql = $sql."DELETE FROM UDAA20201 WHERE A202CAPLI='Z' AND A202AYUNTA=$A204AYUNTA;\n"; // Elementuak
+            $sql = $sql."DELETE FROM UDAA20301 WHERE A203CAPLI='Z' AND A203AYUNTA=$A204AYUNTA;\n"; // Blokeak
             $sql = $sql."DELETE FROM UDAA20501 WHERE A205AYUNTA=$A204AYUNTA;\n"; // Blokeak - Elementuak
             $sql = $sql."DELETE FROM UDAA20601 WHERE A206AYUNTA=$A204AYUNTA;\n"; // Orriak - Blokeak
 
