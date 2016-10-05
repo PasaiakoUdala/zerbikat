@@ -210,7 +210,7 @@ class SecurityController extends Controller
 
             $user->setUdala($this->getUser()->getUdala());
 
-            $form = $this->createForm('Zerbikat\BackendBundle\Form\UserType', $user);
+            $form = $this->createForm('Zerbikat\BackendBundle\Form\UsernewwithpasswordType', $user);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {

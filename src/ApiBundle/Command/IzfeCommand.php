@@ -38,13 +38,9 @@
 
             $A204IDPAGINA = $IdPagina;
             $A204DENOMI = "'Home ".$denomi."'";
-            $A204DENOMI = "'".mb_strimwidth( $denomi, 0, 96 )."'";
             $A204TITCAST = "'".$titcast."'";
-            $A204TITCAST = "'".mb_strimwidth( $titcast, 0, 96, "..." )."'";
             $A204TITEUSK = "'".$titeus."'";
-            $A204TITEUSK = "'".mb_strimwidth( $titeus, 0, 96, "..." )."'";
             $A204PUBLICADA = $publicada;
-//            $A204FECALTA = date( 'Ymd' );
             $A204FECALTA = null;
 
             switch ( $tipo ) {
@@ -78,8 +74,8 @@
             }
 
             $A204IDTIPO = "'".$tipo."'";
-            $sql = "INSERT INTO UDAA20401 (A204AYUNTA,A204IDPAGINA,A204DENOMI,A204TITCAST,A204TITEUSK,A204PUBLICADA,A204FECALTA,A204TIPO,A204IDTIPO)
-            VALUES ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, null, $A204TIPO, $A204IDTIPO);\n";
+            $sql = "INSERT INTO UDAA20401 (A204AYUNTA,A204IDPAGINA,A204DENOMI,A204TITCAST,A204TITEUSK,A204PUBLICADA,A204FECALTA,A204TIPO,A204IDTIPO,A204CAPLI)
+            VALUES ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, null, $A204TIPO, $A204IDTIPO, 'Z');\n";
 
             return $sql;
         }
@@ -92,16 +88,12 @@
             $A203AYUNTA = $A204AYUNTA;
             $A203IDBLOQUE = $idBlokea;
             $A203DENOMI = "'".$idBlokea." Blokea'";
-//            $A203DENOMI =  "'".mb_strimwidth( $A203DENOMI, 0, 96, "..." )."'";
             $A203TITCAST = "'".$tites."'";
-            $A203TITCAST = "'".mb_strimwidth( $tites, 0, 96, "..." )."'";
             $A203TITEUSK = "'".$titeus."'";
-            $A203TITEUSK = "'".mb_strimwidth( $titeus, 0, 96, "..." )."'";
-//            $A203FECALTA = date( 'Ymd' );
             $A203FECALTA = null;
 
-            $sql = "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA)
-            VALUES($A203AYUNTA, $A203IDBLOQUE, $A203DENOMI, $A203TITCAST, $A203TITEUSK, null);\n";
+            $sql = "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA,A203CAPLI)
+                                    VALUES($A203AYUNTA, $A203IDBLOQUE, $A203DENOMI, $A203TITCAST, $A203TITEUSK, null, 'Z');\n";
 
             return $sql;
         }
@@ -129,11 +121,8 @@
             $A202AYUNTA = $A204AYUNTA;
             $A202IDLINEA = $idElementua;
             $A202DENOMI = "'".$denomi."'";
-            $A202DENOMI = "'".mb_strimwidth( $denomi, 0, 96, "..." )."'";
             $A202TEXCAST = "'".$titcast."'";
-            $A202TEXCAST = "'".mb_strimwidth( $titcast, 0, 495, "..." )."'";
             $A202TEXEUSK = "'".$titeus."'";
-            $A202TEXEUSK = "'".mb_strimwidth( $titeus, 0, 495, "..." )."'";
             $A202SERVICIO = "'".$tipo."'";
             if ( $tipo == "PROPIA" ) {
                 $A202LINKEXT = "'".$link."'";
@@ -143,8 +132,8 @@
 //            $A202FECALTA = date( 'Ymd' );
             $A202FECALTA = null;
 
-            $sql = "INSERT INTO UDAA20201 (A202AYUNTA, A202IDLINEA, A202DENOMI, A202TEXCAST, A202TEXEUSK, A202LINKEXT, A202SERVICIO,A202FECALTA)
-                               VALUES($A202AYUNTA, $A202IDLINEA, $A202DENOMI, $A202TEXCAST, $A202TEXEUSK, $A202LINKEXT, $A202SERVICIO, null);\n";
+            $sql = "INSERT INTO UDAA20201 (A202AYUNTA, A202IDLINEA, A202DENOMI, A202TEXCAST, A202TEXEUSK, A202LINKEXT, A202SERVICIO,A202FECALTA, A202CAPLI)
+                                   VALUES($A202AYUNTA, $A202IDLINEA, $A202DENOMI, $A202TEXCAST, $A202TEXEUSK, $A202LINKEXT, $A202SERVICIO, null, 'Z');\n";
 
             return $sql;
         }
@@ -186,14 +175,21 @@
                 ]
             );
 
-            // Fitxa bat sortzen
-            $fitxak = $em->getRepository( 'BackendBundle:Fitxa' )->findAll(
-                array (
-                    'publikoa' => 1,
-                    'udala_id' => $udala->getId(),
-                )
-            );
-
+//            $fitxak = $em->getRepository( 'BackendBundle:Fitxa' )->findBy(
+//                array (
+//                    array('publikoa' => 1),
+//                    array('udala_id' => $udala->getId())
+//                )
+//            );
+            $query = $em->createQuery(
+                '
+                    SELECT f
+                    FROM BackendBundle:Fitxa f
+                    WHERE f.publikoa=1 AND f.udala = :udalaid
+                    ORDER BY f.id ASC
+                '
+            )->setParameter( 'udalaid', $udala->getId() );
+            $fitxak = $query->getResult();
 
             $helper = $this->getHelper( 'question' );
             $question = new ChoiceQuestion(
@@ -222,11 +218,11 @@
 
             /** CONFIGURAZIOA */
             $COUNT_FITXA = count( $fitxak );
-            $idPagina = 1;
-            $idBlokea = 1;
+            $idPagina = 9000;
+            $idBlokea = 9000;
             $idOrden = 1;
             $idOrdenElementua = 1;
-            $idElementua = 1;
+            $idElementua = 9000;
             $A204AYUNTA = "'".$udalKodea."'";
             $mapa = array ();
 
@@ -320,7 +316,6 @@
                 $idBlokea += 1;
                 $idOrden += 1;
             }
-
             /*******************************************************************/
             /**** Fin home-an familiak sortu  **********************************/
             /*******************************************************************/
@@ -370,6 +365,7 @@
 
                 //familia bat baina gehiagotan egon daiteke
                 foreach ( $fitxa->getFamiliak() as $famili ) {
+
                     $sql = $sql.$this->addElementuaBloque(
                             $A204AYUNTA,
                             $mapa[$famili->getId()],
@@ -649,8 +645,6 @@
                                         }
                                     } else {
                                         if ( $k->getEsteka() ) {
-                                            $textes = $textes."<li>LOLOLOLO</li>";
-                                            $texteu = $texteu."<li>LOLOLOLO</li>";
                                             $textes = $textes."<li>";
                                             $texteu = $texteu."<li>";
                                             if ( $kanala->getIzenaes() ) {
