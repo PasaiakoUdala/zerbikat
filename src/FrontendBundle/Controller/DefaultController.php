@@ -31,9 +31,6 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-//        $fitxas = $em->getRepository('BackendBundle:Fitxa')->findAll();
-
-//        WHERE f.udala = :udala
         $query = $em->createQuery('
           SELECT f FROM BackendBundle:Fitxa f LEFT JOIN BackendBundle:Udala u  WITH f.udala=u.id
             WHERE u.kodea = :udala
@@ -50,9 +47,6 @@ class DefaultController extends Controller
         $query->setParameter('udala', $udala);
         $familiak = $query->getResult();
 
-//        dump($familiak);
-
-//        return $this->render('FrontendBundle:Default:index.html.twig', array(
         return $this->render('frontend\index.html.twig', array(
             'fitxak' => $fitxak,
             'familiak' => $familiak,
