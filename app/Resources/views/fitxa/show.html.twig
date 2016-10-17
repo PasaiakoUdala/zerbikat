@@ -525,10 +525,10 @@
                         <li>
                         {% if araua.araudia.estekaeu %}
                             <a href="{{ araua.araudia.estekaeu }}" target="_blank">
-                                {{ araua.araudia.arauaeu }} </a>
+                                {{ araua.araudia.arauaeu }} </a> {{ araua.atalaeu }}
                             {#{{ araua.atalaeu }}#}
                         {% else %}
-                            {{ araua.araudia.arauaeu }}
+                            {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
                             {#- {{ araua.atalaeu }}#}
                         {% endif %}
                         </li>
@@ -551,10 +551,10 @@
                         <li>
                             {% if araua.araudia.estekaes %}
                                 <a href="{{ araua.araudia.estekaes }}" target="_blank">
-                                    {{ araua.araudia.arauaes }}</a>
+                                    {{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
                                 {#{{ araua.atalaes }}#}
                             {% else %}
-                                {{ araua.araudia.arauaes }}
+                                {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
                                 {#- {{ araua.atalaes }}#}
                             {% endif %}
                         </li>
