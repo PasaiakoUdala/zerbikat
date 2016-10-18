@@ -277,15 +277,6 @@
                 );
             $idPaginaHome = $idPagina;
             $idPagina += 1;
-//
-//            FROGA BLOQUE BAT ESTEKA DENAK
-//
-//            $sql = $sql.$this->addBloque( $A204AYUNTA, $idBlokea, "Froga", "Prueba" );
-//            $idBlokeaHome = $idBlokea;
-//            $idBlokea += 1;
-//
-//            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPaginaHome, $idBlokeaHome, $idOrden );
-//            $idOrden += 1;
 
             /*******************************************************************/
             /**** Fin home-a sortu  ********************************************/
@@ -994,12 +985,12 @@
 
                                 if ( $araua->getAraudia()->getEstekaeu() ) {
                                     $doctextes = "<a href='".$araua->getAraudia()->getEstekaes(
-                                        )."' target='_blank'>".$araua->getAraudia()->getArauaes()."</a>";
+                                        )."' target='_blank'>".$araua->getAraudia()->getArauaes()."</a> " . $araua->getAtalaes();
                                     $doctexteu = "<a href='".$araua->getAraudia()->getEstekaeu(
-                                        )."' target='_blank'>".$araua->getAraudia()->getArauaeu()."</a>";
+                                        )."' target='_blank'>".$araua->getAraudia()->getArauaeu()."</a> " . $araua->getAtalaeu();
                                 } else {
-                                    $doctextes = $araua->getAraudia()->getArauaes();
-                                    $doctexteu = $araua->getAraudia()->getArauaeu();
+                                    $doctextes = $araua->getAraudia()->getArauaes() . " - " . $araua->getAtalaes();
+                                    $doctexteu = $araua->getAraudia()->getArauaeu() . " - " . $araua->getAtalaeu();
                                 }
                                 $doctextes = $doctextes."</li>";
                                 $doctexteu = $doctexteu."</li>";
