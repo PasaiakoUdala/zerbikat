@@ -460,13 +460,13 @@
                                 $doctexteu = $doctexteu."<li>";
 
                                 if ( $doc->getEstekaeu() ) {
-                                    $doctextes = "<a href='".$doc->getEstekaes()."' target='_blank'>".$doc->getKodea(
+                                    $doctextes = $doctextes . "<a href='".$doc->getEstekaes()."' target='_blank'>".$doc->getKodea(
                                         )." ".$doc->getDeskribapenaes()."</a>";
-                                    $doctexteu = "<a href='".$doc->getEstekaeu()."' target='_blank'>".$doc->getKodea(
+                                    $doctexteu = $doctexteu . "<a href='".$doc->getEstekaeu()."' target='_blank'>".$doc->getKodea(
                                         )." ".$doc->getDeskribapenaeu()."</a>";
                                 } else {
-                                    $doctextes = $doc->getKodea()." ".$doc->getDeskribapenaes();
-                                    $doctexteu = $doc->getKodea()." ".$doc->getDeskribapenaeu();
+                                    $doctextes = $doctextes . $doc->getKodea()." ".$doc->getDeskribapenaes();
+                                    $doctexteu = $doctextes . $doc->getKodea()." ".$doc->getDeskribapenaeu();
                                 }
                                 $doctextes = $doctextes."</li>";
                                 $doctexteu = $doctexteu."</li>";
@@ -817,6 +817,7 @@
                                 }
                                 $textes = $textes."</table>";
                                 $texteu = $texteu."</table>";
+                                $kont += 1;
                             }
                         }
 
@@ -858,7 +859,7 @@
                         $idOrdenElementua += 1;
                     }
 
-                    if ( (($fitxa->getKostuaes()) && ($kont == 0)) || (($fitxa->getKostuaeu()) && ($kont == 0)) ) {
+                    if ( (($fitxa->getKostuaes()== null) && ($kont == 0)) || (($fitxa->getKostuaeu() == null) && ($kont == 0)) ) {
                         $sql = $sql.$this->addElementua(
                                 $A204AYUNTA,
                                 $idElementua,
@@ -984,13 +985,13 @@
                                 $doctexteu = $doctexteu."<li>";
 
                                 if ( $araua->getAraudia()->getEstekaeu() ) {
-                                    $doctextes = "<a href='".$araua->getAraudia()->getEstekaes(
+                                    $doctextes = $doctextes."<a href='".$araua->getAraudia()->getEstekaes(
                                         )."' target='_blank'>".$araua->getAraudia()->getArauaes()."</a> " . $araua->getAtalaes();
-                                    $doctexteu = "<a href='".$araua->getAraudia()->getEstekaeu(
+                                    $doctexteu = $doctexteu."<a href='".$araua->getAraudia()->getEstekaeu(
                                         )."' target='_blank'>".$araua->getAraudia()->getArauaeu()."</a> " . $araua->getAtalaeu();
                                 } else {
-                                    $doctextes = $araua->getAraudia()->getArauaes() . " - " . $araua->getAtalaes();
-                                    $doctexteu = $araua->getAraudia()->getArauaeu() . " - " . $araua->getAtalaeu();
+                                    $doctextes = $doctextes.$araua->getAraudia()->getArauaes() . " - " . $araua->getAtalaes();
+                                    $doctexteu = $doctexteu.$araua->getAraudia()->getArauaeu() . " - " . $araua->getAtalaeu();
                                 }
                                 $doctextes = $doctextes."</li>";
                                 $doctexteu = $doctexteu."</li>";
