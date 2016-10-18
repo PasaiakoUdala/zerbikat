@@ -29,7 +29,7 @@
                 ->addArgument( 'udalKodea', InputArgument::REQUIRED, 'Udal kodea, adibidez pasaiarentzat 064.' );
         }
 
-
+        // UDAA20401
         function addOrria ( $A204AYUNTA, $IdPagina, $denomi, $titcast, $titeus, $publicada, $tipo )
         {
             $denomi =   str_replace( '\'', '"', $denomi );
@@ -80,6 +80,7 @@
             return $sql;
         }
 
+        // UDAA20301
         function addBloque ( $A204AYUNTA, $idBlokea, $tites, $titeus )
         {
             $tites =    str_replace( '\'', '"', $tites );
@@ -98,6 +99,7 @@
             return $sql;
         }
 
+        // UDAA20601
         function addOrriaBloque ( $A204AYUNTA, $idPagina, $idBlokea, $idOrden )
         {
             $A206AYUNTA = $A204AYUNTA;
@@ -112,6 +114,7 @@
             return $sql;
         }
 
+        // UDAA20201
         function addElementua ( $A204AYUNTA, $idElementua, $denomi, $titcast, $titeus, $tipo, $link = '' )
         {
             $denomi =   str_replace( '\'', '"', $denomi );
@@ -138,6 +141,7 @@
             return $sql;
         }
 
+        // UDAA20501
         function addElementuaBloque ( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua )
         {
             $sql = "INSERT INTO UDAA20501 (A205AYUNTA,A205IDBLOQUE,A205IDLINEA,A205ORDEN)
@@ -180,7 +184,7 @@
                     SELECT f
                     FROM BackendBundle:Fitxa f
                     WHERE f.publikoa=1 AND f.udala = :udalaid
-                    ORDER BY f.id ASC
+                    ORDER BY f.espedientekodea ASC
                 '
             )->setParameter( 'udalaid', $udala->getId() );
             $fitxak = $query->getResult();
@@ -327,8 +331,8 @@
                         $A204AYUNTA,
                         $idPagina,
                         $fitxa->getEspedientekodea(),
-                        $fitxa->getDeskribapenaes(),
-                        $fitxa->getDeskribapenaeu(),
+                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
+                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
                         1,
                         "UXX"
                     );
@@ -339,13 +343,11 @@
                         $A204AYUNTA,
                         $idElementua,
                         $fitxa->getEspedientekodea(),
-                        $fitxa->getDeskribapenaes(),
-                        $fitxa->getDeskribapenaeu(),
+                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
+                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
                         "PROPIA",
                         $idPagina
                     );
-//                Hay soilik bloque bat eta esteka guztiak froga gurenako
-//                $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokeaHome, $idElementua, $idOrdenElementua );
 
                 //familia bat baina gehiagotan egon daiteke
                 foreach ( $fitxa->getFamiliak() as $famili ) {
