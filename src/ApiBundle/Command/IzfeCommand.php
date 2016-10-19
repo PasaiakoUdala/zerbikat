@@ -316,14 +316,14 @@
 
                 $kostuZerrenda = array ();
                 foreach ( $fitxa->getKostuak() as $kostu ) {
-                    $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
-                    if ( (strlen( $api ) > 0) && ($kostu->getKostua()) ) {
-                        $client = new GuzzleHttp\Client();
-                        $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
-                        $fitxaKostua = (string)$proba->getBody();
-                        $array = json_decode( $fitxaKostua, true );
-                        $kostuZerrenda[] = $array;
-                    }
+//                    $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
+//                    if ( (strlen( $api ) > 0) && ($kostu->getKostua()) ) {
+//                        $client = new GuzzleHttp\Client();
+//                        $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+//                        $fitxaKostua = (string)$proba->getBody();
+//                        $array = json_decode( $fitxaKostua, true );
+//                        $kostuZerrenda[] = $array;
+//                    }
                 }
 
                 // Orria sortu fitxarentzat
@@ -358,10 +358,9 @@
                             $idElementua,
                             $idOrdenElementua
                         );
-                    $idOrdenElementua += 1;
-                    $idElementua += 1;
                 }
-
+                $idOrdenElementua += 1;
+                $idElementua += 1;
 
                 /****** HASI HELBURUA *********************************************************************/
                 if ( $eremuak['helburuatext'] ) {
