@@ -1,203 +1,191 @@
 <?php
 
-namespace Zerbikat\BackendBundle\Controller;
+    namespace Zerbikat\BackendBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Zerbikat\BackendBundle\Entity\Familia;
-use Zerbikat\BackendBundle\Form\FamiliaType;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\ArrayAdapter;
+    use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    use Zerbikat\BackendBundle\Entity\Familia;
+    use Zerbikat\BackendBundle\Form\FamiliaType;
+    use Pagerfanta\Adapter\DoctrineORMAdapter;
+    use Pagerfanta\Pagerfanta;
+    use Pagerfanta\Adapter\ArrayAdapter;
 
-/**
- * Familia controller.
- *
- * @Route("/familia")
- */
-class FamiliaController extends Controller
-{
     /**
-     * Lists all Familia entities.
+     * Familia controller.
      *
-     * @Route("/", defaults={"page" = 1}, name="familia_index")
-     * @Route("/page{page}", name="familia_index_paginated")
-     * @Method("GET")
+     * @Route("/familia")
      */
-    public function indexAction($page)
+    class FamiliaController extends Controller
     {
-        $auth_checker = $this->get('security.authorization_checker');
-        if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
-            $em = $this->getDoctrine()->getManager();
-            $familias = $em->getRepository('BackendBundle:Familia')->findAll();
 
-            $adapter = new ArrayAdapter($familias);
-            $pagerfanta = new Pagerfanta($adapter);
-
-            $deleteForms = array();
-            foreach ($familias as $familia) {
-                $deleteForms[$familia->getId()] = $this->createDeleteForm($familia)->createView();
-            }
-
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
-
-            return $this->render('familia/index.html.twig', array(
-                'familias' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
-            ));
-        }else
+        /**
+         * Lists all Familia entities.
+         *
+         * @Route("/", defaults={"page" = 1}, name="familia_index")
+         * @Route("/page{page}", name="familia_index_paginated")
+         * @Method("GET")
+         */
+        public function indexAction ( $page )
         {
-            return $this->redirectToRoute('backend_errorea');
+            $auth_checker = $this->get( 'security.authorization_checker' );
+            if ( $auth_checker->isGranted( 'ROLE_KUDEAKETA' ) ) {
+                $em = $this->getDoctrine()->getManager();
+                $familias = $em->getRepository( 'BackendBundle:Familia' )->findAll();
+                $deleteForms = array ();
+                foreach ( $familias as $familia ) {
+                    $deleteForms[$familia->getId()] = $this->createDeleteForm( $familia )->createView();
+                }
+
+                return $this->render(
+                    'familia/index.html.twig',
+                    array (
+                        'familias'    => $familias,
+                        'deleteforms' => $deleteForms
+                    )
+                );
+            } else {
+                return $this->redirectToRoute( 'backend_errorea' );
+            }
         }
-    }
 
-    /**
-     * Creates a new Familia entity.
-     *
-     * @Route("/new", name="familia_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $auth_checker = $this->get('security.authorization_checker');
-        if ($auth_checker->isGranted('ROLE_ADMIN'))
+        /**
+         * Creates a new Familia entity.
+         *
+         * @Route("/new", name="familia_new")
+         * @Method({"GET", "POST"})
+         */
+        public function newAction ( Request $request )
         {
-            $familium = new Familia();
-            $form = $this->createForm('Zerbikat\BackendBundle\Form\FamiliaType', $familium);
-            $form->handleRequest($request);
+            $auth_checker = $this->get( 'security.authorization_checker' );
+            if ( $auth_checker->isGranted( 'ROLE_ADMIN' ) ) {
+                $familium = new Familia();
+                $form = $this->createForm( 'Zerbikat\BackendBundle\Form\FamiliaType', $familium );
+                $form->handleRequest( $request );
 
 //            $form->getData()->setUdala($this->getUser()->getUdala());
 //            $form->setData($form->getData());
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($familium);
-                $em->flush();
+                if ( $form->isSubmitted() && $form->isValid() ) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist( $familium );
+                    $em->flush();
 
 //                return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
-                return $this->redirectToRoute('familia_index');
-            } else
-            {
-                $form->getData()->setUdala($this->getUser()->getUdala());
-                $form->setData($form->getData());
-            }
+                    return $this->redirectToRoute( 'familia_index' );
+                } else {
+                    $form->getData()->setUdala( $this->getUser()->getUdala() );
+                    $form->setData( $form->getData() );
+                }
 
-            return $this->render('familia/new.html.twig', array(
-                'familium' => $familium,
-                'form' => $form->createView(),
-            ));
-        }else
+                return $this->render(
+                    'familia/new.html.twig',
+                    array (
+                        'familium' => $familium,
+                        'form'     => $form->createView(),
+                    )
+                );
+            } else {
+                return $this->redirectToRoute( 'backend_errorea' );
+            }
+        }
+
+        /**
+         * Finds and displays a Familia entity.
+         *
+         * @Route("/{id}", name="familia_show")
+         * @Method("GET")
+         */
+        public function showAction ( Familia $familium )
         {
-            return $this->redirectToRoute('backend_errorea');
+            $deleteForm = $this->createDeleteForm( $familium );
+
+            return $this->render(
+                'familia/show.html.twig',
+                array (
+                    'familium'    => $familium,
+                    'delete_form' => $deleteForm->createView(),
+                )
+            );
+        }
+
+        /**
+         * Displays a form to edit an existing Familia entity.
+         *
+         * @Route("/{id}/edit", name="familia_edit")
+         * @Method({"GET", "POST"})
+         */
+        public function editAction ( Request $request, Familia $familium )
+        {
+            $auth_checker = $this->get( 'security.authorization_checker' );
+            if ( (($auth_checker->isGranted( 'ROLE_ADMIN' )) && ($familium->getUdala() == $this->getUser()->getUdala()))
+                || ($auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ))
+            ) {
+                $deleteForm = $this->createDeleteForm( $familium );
+                $editForm = $this->createForm( 'Zerbikat\BackendBundle\Form\FamiliaType', $familium );
+                $editForm->handleRequest( $request );
+
+                if ( $editForm->isSubmitted() && $editForm->isValid() ) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist( $familium );
+                    $em->flush();
+
+                    return $this->redirectToRoute( 'familia_edit', array ('id' => $familium->getId()) );
+                }
+
+                return $this->render(
+                    'familia/edit.html.twig',
+                    array (
+                        'familium'    => $familium,
+                        'edit_form'   => $editForm->createView(),
+                        'delete_form' => $deleteForm->createView(),
+                    )
+                );
+            } else {
+                return $this->redirectToRoute( 'backend_errorea' );
+            }
+        }
+
+        /**
+         * Deletes a Familia entity.
+         *
+         * @Route("/{id}", name="familia_delete")
+         * @Method("DELETE")
+         */
+        public function deleteAction ( Request $request, Familia $familium )
+        {
+            $auth_checker = $this->get( 'security.authorization_checker' );
+            if ( (($auth_checker->isGranted( 'ROLE_ADMIN' )) && ($familium->getUdala() == $this->getUser()->getUdala()))
+                || ($auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ))
+            ) {
+                $form = $this->createDeleteForm( $familium );
+                $form->handleRequest( $request );
+                if ( $form->isSubmitted() && $form->isValid() ) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->remove( $familium );
+                    $em->flush();
+                }
+
+                return $this->redirectToRoute( 'familia_index' );
+            } else {
+                //baimenik ez
+                return $this->redirectToRoute( 'backend_errorea' );
+            }
+        }
+
+        /**
+         * Creates a form to delete a Familia entity.
+         *
+         * @param Familia $familium The Familia entity
+         *
+         * @return \Symfony\Component\Form\Form The form
+         */
+        private function createDeleteForm ( Familia $familium )
+        {
+            return $this->createFormBuilder()
+                ->setAction( $this->generateUrl( 'familia_delete', array ('id' => $familium->getId()) ) )
+                ->setMethod( 'DELETE' )
+                ->getForm();
         }
     }
-
-    /**
-     * Finds and displays a Familia entity.
-     *
-     * @Route("/{id}", name="familia_show")
-     * @Method("GET")
-     */
-    public function showAction(Familia $familium)
-    {
-        $deleteForm = $this->createDeleteForm($familium);
-
-        return $this->render('familia/show.html.twig', array(
-            'familium' => $familium,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing Familia entity.
-     *
-     * @Route("/{id}/edit", name="familia_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Familia $familium)
-    {
-        $auth_checker = $this->get('security.authorization_checker');
-        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($familium->getUdala()==$this->getUser()->getUdala()))
-            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
-        {
-            $deleteForm = $this->createDeleteForm($familium);
-            $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FamiliaType', $familium);
-            $editForm->handleRequest($request);
-
-            if ($editForm->isSubmitted() && $editForm->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($familium);
-                $em->flush();
-
-                return $this->redirectToRoute('familia_edit', array('id' => $familium->getId()));
-            }
-
-            return $this->render('familia/edit.html.twig', array(
-                'familium' => $familium,
-                'edit_form' => $editForm->createView(),
-                'delete_form' => $deleteForm->createView(),
-            ));
-        }else
-        {
-            return $this->redirectToRoute('backend_errorea');
-        }
-    }
-
-    /**
-     * Deletes a Familia entity.
-     *
-     * @Route("/{id}", name="familia_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Familia $familium)
-    {
-        $auth_checker = $this->get('security.authorization_checker');
-        if((($auth_checker->isGranted('ROLE_ADMIN')) && ($familium->getUdala()==$this->getUser()->getUdala()))
-            ||($auth_checker->isGranted('ROLE_SUPER_ADMIN')))
-        {
-            $form = $this->createDeleteForm($familium);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $em->remove($familium);
-                $em->flush();
-            }
-            return $this->redirectToRoute('familia_index');
-        }else
-        {
-            //baimenik ez
-            return $this->redirectToRoute('backend_errorea');
-        }            
-    }
-
-    /**
-     * Creates a form to delete a Familia entity.
-     *
-     * @param Familia $familium The Familia entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Familia $familium)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('familia_delete', array('id' => $familium->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-}

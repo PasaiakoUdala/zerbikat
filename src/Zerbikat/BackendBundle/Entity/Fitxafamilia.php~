@@ -1,0 +1,68 @@
+<?php
+
+namespace Zerbikat\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Fitxafamilia
+ *
+ * @ORM\Table(name="fitxa_familia")
+ * @ORM\Entity(repositoryClass="Zerbikat\BackendBundle\Repository\FitxafamiliaRepository")
+ */
+class Fitxafamilia
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ordena", type="integer", nullable=true)
+     */
+    private $ordena;
+
+    /**
+     * ERLAZIOAK
+     */
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Familia", inversedBy="fitxafamilia")
+     * @ORM\JoinColumn(name="familia_id", referencedColumnName="id", nullable=false)
+     */
+    protected $familia;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa", inversedBy="fitxafamilia")
+     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id", nullable=false)
+     */
+    protected $fitxa;
+
+    /**
+     * ERLAZIOAK FIN
+     */
+
+
+    public function __toString ()
+    {
+        return "";
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct ()
+    {
+
+    }
+
+
+
+
+}

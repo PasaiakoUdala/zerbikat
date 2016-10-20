@@ -8,6 +8,7 @@
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
     use Zerbikat\BackendBundle\Entity\Fitxa;
+    use Zerbikat\BackendBundle\Entity\Fitxafamilia;
     use Zerbikat\BackendBundle\Form\FitxaType;
     use Symfony\Component\HttpFoundation\Response;
     use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -61,7 +62,7 @@
                     'fitxa/index.html.twig',
                     array (
                         'deleteforms' => $deleteForms,
-                        'fitxas'      => $fitxas
+                        'fitxas'      => $fitxas,
                     )
                 );
             }
@@ -278,7 +279,6 @@
             $pdf->Output( $filename.".pdf", 'I' ); // This will output the PDF as a response directly
         }
 
-
         /**
          * Displays a form to edit an existing Fitxa entity.
          *
@@ -363,22 +363,23 @@
                 $query->setParameter( 'udala', $fitxa->getUdala() );
                 $labelak = $query->getSingleResult();
 
-                //        }
-//            if ($fitxa->getUdala()==$this->getUser()->getUdala()) {
+                $fitxafamilium = new Fitxafamilia();
+                $fitxafamilium->setFitxa( $fitxa );
+                $form = $this->createForm('Zerbikat\BackendBundle\Form\FitxafamiliaType', $fitxafamilium, [
+                    'action' => $this->generateUrl('fitxafamilia_newfromfitxa')
+                ]);
+
                 return $this->render(
                     'fitxa/edit.html.twig',
                     array (
                         'fitxa'       => $fitxa,
                         'edit_form'   => $editForm->createView(),
                         'delete_form' => $deleteForm->createView(),
+                        'formfitxafamilia' => $form->createView(),
                         'eremuak'     => $eremuak,
                         'labelak'     => $labelak,
                     )
                 );
-//            } else
-//            {
-//                return $this->redirectToRoute('fitxa_index');
-//            }
             } else {
                 return $this->redirectToRoute( 'backend_errorea' );
             }

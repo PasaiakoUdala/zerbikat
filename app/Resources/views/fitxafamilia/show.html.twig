@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fitxafamilia</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fitxafamilium.id }}</td>
+            </tr>
+            <tr>
+                <th>Ordena</th>
+                <td>{{ fitxafamilium.ordena }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fitxafamilia_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fitxafamilia_edit', { 'id': fitxafamilium.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,3 +1,8 @@
+backend_fitxafamilia:
+    resource: "@BackendBundle/Controller/FitxafamiliaController.php"
+    type:     annotation
+    prefix:   /{_locale}/
+
 backend_fitxa_prozedura:
     resource: "@BackendBundle/Controller/FitxaProzeduraController.php"
     type:     annotation
@@ -202,7 +207,6 @@ backend_fitxa:
     resource: "@BackendBundle/Controller/FitxaController.php"
     type:     annotation
     prefix:   /{_locale}/
-
 
 frontend:
     resource: "@FrontendBundle/Controller/"

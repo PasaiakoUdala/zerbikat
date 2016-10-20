@@ -1,109 +1,120 @@
 <?php
 
-namespace Zerbikat\BackendBundle\Entity;
+    namespace Zerbikat\BackendBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
-use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
+    use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+    use JMS\Serializer\Annotation\ExclusionPolicy;
+    use JMS\Serializer\Annotation\Expose;
+    use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
-/**
- * Familia
- *
- * @ORM\Table(name="familia")
- * @ORM\Entity
- * @ExclusionPolicy("all")
- * @UdalaEgiaztatu(userFieldName="udala_id")
- */
-class Familia
-{
     /**
-     * @var integer
-     * @Expose
+     * Familia
      *
-     * @ORM\Column(name="id", type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Table(name="familia")
+     * @ORM\Entity
+     * @ExclusionPolicy("all")
+     * @UdalaEgiaztatu(userFieldName="udala_id")
      */
-    private $id;
-
-    /**
-     *
-     * @var string
-     * @Expose
-     *
-     * @ORM\Column(name="familiaeu", type="string", length=255, nullable=true)
-     */
-    private $familiaeu;
-
-
-    /**
-     * @var string
-     * @Expose
-     *
-     * @ORM\Column(name="familiaes", type="string", length=255, nullable=true)
-     */
-    private $familiaes;
-
-    /**
-     * @var string
-     * @Expose
-     *
-     * @ORM\Column(name="deskribapenaeu", type="string", length=255, nullable=true)
-     */
-    private $deskribapenaeu;
-
-    /**
-     * @var string
-     * @Expose
-     *
-     * @ORM\Column(name="deskribapenaes", type="string", length=255, nullable=true)
-     */
-    private $deskribapenaes;
-
-
-
-    /**
-     * 
-     *      ERLAZIOAK
-     * 
-     */
-
-    /**
-     * @var udala
-     * @ORM\ManyToOne(targetEntity="Udala")
-     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
-     *
-     */
-    private $udala;
-
-    /**
-     * @var fitxak[]
-     *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="familiak")
-     */
-    private $fitxak;
-
-
-    /**
-     *      FUNTZIOAK
-     */
-
-    /**
-     * @return string
-     */
-
-    public function __toString()
+    class Familia
     {
-        return $this->getFamiliaeu();
-    }
+
+        /**
+         * @var integer
+         * @Expose
+         *
+         * @ORM\Column(name="id", type="bigint")
+         * @ORM\Id
+         * @ORM\GeneratedValue(strategy="IDENTITY")
+         */
+        private $id;
+
+        /**
+         *
+         * @var string
+         * @Expose
+         *
+         * @ORM\Column(name="familiaeu", type="string", length=255, nullable=true)
+         */
+        private $familiaeu;
+
+
+        /**
+         * @var string
+         * @Expose
+         *
+         * @ORM\Column(name="familiaes", type="string", length=255, nullable=true)
+         */
+        private $familiaes;
+
+        /**
+         * @var string
+         * @Expose
+         *
+         * @ORM\Column(name="deskribapenaeu", type="string", length=255, nullable=true)
+         */
+        private $deskribapenaeu;
+
+        /**
+         * @var string
+         * @Expose
+         *
+         * @ORM\Column(name="deskribapenaes", type="string", length=255, nullable=true)
+         */
+        private $deskribapenaes;
+
+
+        /**
+         *
+         *      ERLAZIOAK
+         *
+         */
+
+        /**
+         * @var udala
+         * @ORM\ManyToOne(targetEntity="Udala")
+         * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
+         *
+         */
+        private $udala;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="familia")
+         */
+        private $fitxafamilia;
+
+
+        /**
+         *      FUNTZIOAK
+         */
+
+        /**
+         * @return string
+         */
+
+        public function __toString ()
+        {
+            return $this->getFamiliaeu();
+        }
+
+        /**
+         * Constructor
+         */
+        public function __construct ()
+        {
+            $this->fitxafamilia = new ArrayCollection();
+        }
+
+
 
     /**
-     * Constructor
+     * Get id
+     *
+     * @return integer
      */
-    public function __construct()
+    public function getId()
     {
-        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->id;
     }
 
     /**
@@ -203,16 +214,6 @@ class Familia
     }
 
     /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
@@ -237,36 +238,36 @@ class Familia
     }
 
     /**
-     * Add fitxak
+     * Add fitxafamilium
      *
-     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     * @param \Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium
      *
      * @return Familia
      */
-    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    public function addFitxafamilium(\Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium)
     {
-        $this->fitxak[] = $fitxak;
+        $this->fitxafamilia[] = $fitxafamilium;
 
         return $this;
     }
 
     /**
-     * Remove fitxak
+     * Remove fitxafamilium
      *
-     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     * @param \Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium
      */
-    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    public function removeFitxafamilium(\Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium)
     {
-        $this->fitxak->removeElement($fitxak);
+        $this->fitxafamilia->removeElement($fitxafamilium);
     }
 
     /**
-     * Get fitxak
+     * Get fitxafamilia
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getFitxak()
+    public function getFitxafamilia()
     {
-        return $this->fitxak;
+        return $this->fitxafamilia;
     }
 }

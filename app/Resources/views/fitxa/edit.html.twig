@@ -699,14 +699,29 @@
                 <h2>FAMILIAS</h2>
             </div>
         </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div class="form-group">
-                {{ form_errors(edit_form.familiak) }}
-                {{ form_widget(edit_form.familiak, {'attr': {'class': 'form-control select2'}}) }}
-            </div>
-        </div>
+        <table class="table table-bordered">
+            <thead>
+                <th>Familia</th>
+                <th>Ordena</th>
+                <th></th>
+            </thead>
+            <tbody>
+            {% for f in fitxa.fitxafamilia %}
+                <tr>
+                    <td>{{ f.familia }}</td>
+                    <td>{{ f.ordena }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalFitxaFamilia">
+            + Familia
+        </button>
+
     </div>
+
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
@@ -895,6 +910,32 @@
     <div class="hidden">
         {{ form_end(edit_form) }}
     </div>
+
+
+
+    <div class="modal fade" id="modalFitxaFamilia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Matxura zehaztu</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(formfitxafamilia) }}
+                    {{ form_widget(formfitxafamilia.familia , {'attr': {'class': 'form-control'}}) }}
+                    {{ form_widget(formfitxafamilia.ordena , {'attr': {'class': 'form-control'}}) }}
+                    <div style="display: none;">
+                        {{ form_end(formfitxafamilia)  }}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
+                    <button type="button" onclick="document.forms['{{ formfitxafamilia.vars.name }}'].submit()" class="btn btn-primary">Gorde</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 {% endblock %}
 
 {% block javascripts %}
@@ -917,6 +958,11 @@
                 });
 
             };
+
+//            $('#fitxafamilia_familia').select2({
+//                theme: 'bootstrap',
+//                sorter: customSorter
+//            });
 
             $('#fitxa_etiketak').select2({
                 theme: 'bootstrap',

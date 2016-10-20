@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fitxafamilia list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ordena</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fitxafamilium in fitxafamilias %}
+            <tr>
+                <td><a href="{{ path('fitxafamilia_show', { 'id': fitxafamilium.id }) }}">{{ fitxafamilium.id }}</a></td>
+                <td>{{ fitxafamilium.ordena }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fitxafamilia_show', { 'id': fitxafamilium.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fitxafamilia_edit', { 'id': fitxafamilium.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fitxafamilia_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

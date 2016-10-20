@@ -36,15 +36,6 @@ class FitxaAraudia
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ordena", type="string", nullable=true)
-     */
-    private $ordena;
-
-
-
 
 
 
@@ -220,4 +211,5 @@ class FitxaAraudia
     {
         return $this->araudia;
     }
+
 }
