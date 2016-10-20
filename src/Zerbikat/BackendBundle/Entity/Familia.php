@@ -83,6 +83,16 @@
          */
         private $fitxafamilia;
 
+        /**
+         * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Familia", inversedBy="children")
+         */
+        private $parent;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Familia", mappedBy="parent")
+         */
+        private $children;
+
 
         /**
          *      FUNTZIOAK
@@ -269,5 +279,63 @@
     public function getFitxafamilia()
     {
         return $this->fitxafamilia;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Familia $parent
+     *
+     * @return Familia
+     */
+    public function setParent(\Zerbikat\BackendBundle\Entity\Familia $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Familia
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Add child
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Familia $child
+     *
+     * @return Familia
+     */
+    public function addChild(\Zerbikat\BackendBundle\Entity\Familia $child)
+    {
+        $this->children[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove child
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Familia $child
+     */
+    public function removeChild(\Zerbikat\BackendBundle\Entity\Familia $child)
+    {
+        $this->children->removeElement($child);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren()
+    {
+        return $this->children;
     }
 }

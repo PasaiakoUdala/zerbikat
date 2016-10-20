@@ -7,6 +7,7 @@
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    use Zerbikat\BackendBundle\Entity\Familia;
     use Zerbikat\BackendBundle\Entity\Fitxa;
     use Zerbikat\BackendBundle\Entity\Fitxafamilia;
     use Zerbikat\BackendBundle\Form\FitxaType;
@@ -369,6 +370,13 @@
                     'action' => $this->generateUrl('fitxafamilia_newfromfitxa')
                 ]);
 
+                $familiak = $em->getRepository( 'BackendBundle:Familia' )->findBy(
+                    array(
+                        'udala'=>$fitxa->getUdala(),
+                        'parent'=>null
+                    )
+                );
+
                 return $this->render(
                     'fitxa/edit.html.twig',
                     array (
@@ -378,6 +386,7 @@
                         'formfitxafamilia' => $form->createView(),
                         'eremuak'     => $eremuak,
                         'labelak'     => $labelak,
+                        'familiak'    => $familiak,
                     )
                 );
             } else {

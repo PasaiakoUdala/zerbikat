@@ -918,13 +918,39 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Matxura zehaztu</h4>
+                    <h4 class="modal-title">Aukeratu Familia / Azpifamilia eta ordena</h4>
                 </div>
                 <div class="modal-body">
                     {{ form_start(formfitxafamilia) }}
-                    {{ form_widget(formfitxafamilia.familia , {'attr': {'class': 'form-control'}}) }}
-                    {{ form_widget(formfitxafamilia.ordena , {'attr': {'class': 'form-control'}}) }}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="cmbFamilia">Familia</label>
+                            <select id="cmbFamilia" multiple class="form-control" size="9">
+                                {% for fa in familiak %}
+                                    <option value="{{ fa.id }}">{{ fa.familiaeu }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                            <label for="cmbAzpifamilia">Azpifamilia</label>
+                            <select id="cmbAzpifamilia" multiple class="form-control" size="09">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            {{ form_label(formfitxafamilia.ordena, 'Ordena', { 'label_attr': {'class': 'control-label'} }) }}
+                            {{ form_widget(formfitxafamilia.ordena , {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+
+                    <div class="row">&nbsp;</div>
+
                     <div style="display: none;">
+                        {{ form_widget(formfitxafamilia.familia , {'attr': {'class': 'form-control'}}) }}
                         {{ form_end(formfitxafamilia)  }}
                     </div>
 
@@ -958,11 +984,6 @@
                 });
 
             };
-
-//            $('#fitxafamilia_familia').select2({
-//                theme: 'bootstrap',
-//                sorter: customSorter
-//            });
 
             $('#fitxa_etiketak').select2({
                 theme: 'bootstrap',
@@ -1055,6 +1076,12 @@
                     $('#cmbParametros').empty();
                 }
             });
+
+
+            $('#cmbFamilia').change(function(){
+                var aukera = $(this).val();
+
+            })
 
             $('.btnSeleccionar').click(function () {
                 var resul = "";

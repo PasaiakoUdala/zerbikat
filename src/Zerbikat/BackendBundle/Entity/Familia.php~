@@ -83,6 +83,16 @@
          */
         private $fitxafamilia;
 
+        /**
+         * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Familia", inversedBy="children")
+         */
+        private $parent;
+
+        /**
+         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Familia", mappedBy="parent")
+         */
+        private $children;
+
 
         /**
          *      FUNTZIOAK
@@ -106,4 +116,168 @@
         }
 
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set familiaeu
+     *
+     * @param string $familiaeu
+     *
+     * @return Familia
+     */
+    public function setFamiliaeu($familiaeu)
+    {
+        $this->familiaeu = $familiaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get familiaeu
+     *
+     * @return string
+     */
+    public function getFamiliaeu()
+    {
+        return $this->familiaeu;
+    }
+
+    /**
+     * Set familiaes
+     *
+     * @param string $familiaes
+     *
+     * @return Familia
+     */
+    public function setFamiliaes($familiaes)
+    {
+        $this->familiaes = $familiaes;
+
+        return $this;
+    }
+
+    /**
+     * Get familiaes
+     *
+     * @return string
+     */
+    public function getFamiliaes()
+    {
+        return $this->familiaes;
+    }
+
+    /**
+     * Set deskribapenaeu
+     *
+     * @param string $deskribapenaeu
+     *
+     * @return Familia
+     */
+    public function setDeskribapenaeu($deskribapenaeu)
+    {
+        $this->deskribapenaeu = $deskribapenaeu;
+
+        return $this;
+    }
+
+    /**
+     * Get deskribapenaeu
+     *
+     * @return string
+     */
+    public function getDeskribapenaeu()
+    {
+        return $this->deskribapenaeu;
+    }
+
+    /**
+     * Set deskribapenaes
+     *
+     * @param string $deskribapenaes
+     *
+     * @return Familia
+     */
+    public function setDeskribapenaes($deskribapenaes)
+    {
+        $this->deskribapenaes = $deskribapenaes;
+
+        return $this;
+    }
+
+    /**
+     * Get deskribapenaes
+     *
+     * @return string
+     */
+    public function getDeskribapenaes()
+    {
+        return $this->deskribapenaes;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return Familia
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
+    }
+
+    /**
+     * Add fitxafamilium
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium
+     *
+     * @return Familia
+     */
+    public function addFitxafamilium(\Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium)
+    {
+        $this->fitxafamilia[] = $fitxafamilium;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxafamilium
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium
+     */
+    public function removeFitxafamilium(\Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium)
+    {
+        $this->fitxafamilia->removeElement($fitxafamilium);
+    }
+
+    /**
+     * Get fitxafamilia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxafamilia()
+    {
+        return $this->fitxafamilia;
+    }
 }

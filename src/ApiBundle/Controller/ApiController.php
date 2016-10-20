@@ -72,6 +72,39 @@ class ApiController extends FOSRestController
     }// "get_familiak"            [GET] /familiak/{udala}
 
     /**
+     * Familia baten azpifamiliak zerrenda.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Familia baten azpifamiliak zerrenda.",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @return array data
+     *
+     * @Annotations\View()
+     */
+    public function getAzpifamiliakAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('
+          SELECT f
+            FROM BackendBundle:Familia f              
+            WHERE f.parent = :id
+        ');
+        $query->setParameter('id', $id);
+        $azpifamiliak = $query->getResult();
+
+        $view = View::create();
+        $view->setData($azpifamiliak);
+        return $view;
+
+    }// "get_azpifamiliak"            [GET] /azpifamiliak/{id}
+
+    /**
      * Familia baten fitxa guztien zerrenda.
      *
      * @ApiDoc(
