@@ -29,8 +29,6 @@ class UserType extends AbstractType
             ->add('azpisaila')
             ->add('enabled')
             ->add('email')
-//            ->add('roles')
-//            ->add('password')
             ->add('roles',  ChoiceType::class, array(
                 'multiple' => true,
                 'choices'  => array(
@@ -39,17 +37,6 @@ class UserType extends AbstractType
                     'Erabiltzailea' => 'ROLE_USER'
                 ),
             ))
-//            ->add('password', RepeatedType::class, array(
-//                'type' => PasswordType::class,
-//                'first_options'  => array(
-//                    'label' => 'messages.pasahitza',
-//                    'translation_domain' => 'messages',
-//                ),
-//                'second_options' => array(
-//                    'label' => 'messages.pasahitzaerrepikatu',
-//                    'translation_domain' => 'messages',
-//                ),
-//            ))
         ;
     }
     

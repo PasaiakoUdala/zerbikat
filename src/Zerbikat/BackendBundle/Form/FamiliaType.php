@@ -21,6 +21,7 @@ class FamiliaType extends AbstractType
             ->add('deskribapenaes')
             ->add('udala')
             ->add('parent')
+            ->add('ordena')
         ;
     }
     

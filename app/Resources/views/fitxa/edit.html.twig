@@ -699,27 +699,33 @@
                 <h2>FAMILIAS</h2>
             </div>
         </div>
-        <table class="table table-bordered">
-            <thead>
-                <th>Familia</th>
-                <th>Ordena</th>
-                <th></th>
-            </thead>
-            <tbody>
-            {% for f in fitxa.fitxafamilia %}
-                <tr>
-                    <td>{{ f.familia }}</td>
-                    <td>{{ f.ordena }}</td>
-                    <td></td>
-                </tr>
-            {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6">
+            <table class="table table-bordered">
+                <thead>
+                    <th>Familia</th>
+                    <th>Ordena</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                {% for f in fitxa.fitxafamilia %}
+                    <tr>
+                        <td>{{ f.familia }}</td>
+                        <td>{{ f.ordena }}</td>
+                        <td>{{ f.id }}</td>
+                    </tr>
+                {% endfor %}
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2"></div>
+     </div>
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalFitxaFamilia">
             + Familia
         </button>
-
     </div>
 
     {% endif %}
@@ -948,10 +954,10 @@
                     </div>
 
                     <div class="row">&nbsp;</div>
-
-                    <div style="display: none;">
-                        {{ form_widget(formfitxafamilia.familia , {'attr': {'class': 'form-control'}}) }}
-                        {{ form_end(formfitxafamilia)  }}
+                    <div class="row">
+                        <div style="display: none;">
+                            <div class="row">{{ form_end(formfitxafamilia) }}</div>
+                        </div>
                     </div>
 
                 </div>
@@ -985,6 +991,7 @@
 
             };
 
+            $('#fitxafamilia_familia').select2();
             $('#fitxa_etiketak').select2({
                 theme: 'bootstrap',
                 tags: true,
@@ -1079,9 +1086,35 @@
 
 
             $('#cmbFamilia').change(function(){
+
+                $('#cmbAzpifamilia').empty();
+
                 var aukera = $(this).val();
 
-            })
+                $("#fitxafamilia_familia").val(aukera).trigger("change");
+                var url = Routing.generate('get_azpifamiliak', {id: aukera});
+
+                $.getJSON(url, function(result){
+                    $.each(result, function(i, field){
+                        $("#cmbAzpifamilia").append($("<option></option>").attr("value",field.id).text(field.familiaeu));
+                    });
+                });
+            });
+
+            $('#cmbAzpifamilia').change(function(){
+                var aukera = $(this).val();
+                $("#fitxafamilia_familia").val(aukera).trigger("change");
+
+                // ordena sugeritu
+                if ( $('#fitxafamilia_ordena').val() ) {
+                    // baldin badauka, ezer ez
+                    return;
+                } else {
+
+                }
+
+            });
+
 
             $('.btnSeleccionar').click(function () {
                 var resul = "";
@@ -1098,6 +1131,7 @@
 
         });
     </script>
+
     <script type="text/javascript">
         // Zenbat prozedura gehitu diren gorde
         var prozeduraCount = '{{ edit_form.prozedurak|length }}';
@@ -1248,4 +1282,5 @@
             });
         }
     </script>
+
 {% endblock %}

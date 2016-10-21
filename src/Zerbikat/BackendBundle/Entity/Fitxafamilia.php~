@@ -50,6 +50,14 @@ class Fitxafamilia
     protected $fitxa;
 
     /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
+     *
+     */
+    private $udala;
+
+    /**
      * ERLAZIOAK FIN
      */
 

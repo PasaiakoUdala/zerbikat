@@ -19,18 +19,23 @@
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
+                <th>{{ 'messages.ordena' |trans }}</th>
                 <th>{{ 'messages.familia'|trans }}</th>
                 <th>{{ 'messages.deskribapena'|trans }}</th>
+                <th>{{ 'messages.azpifamiliak'|trans }}</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
         {% for familium in familias %}
             <tr>
+                <td>{{ familium.ordena }}</td>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ familium.udala }}</td>{% endif %}
                 <td>
-                    {% if app.request.locale == 'es'%}{{ familium.familiaes }}
-                    {% else %}{{ familium.familiaeu }}
+                    {% if app.request.locale == 'es'%}
+                        {{ familium.familiaes }}
+                    {% else %}
+                        {{ familium.familiaeu }}
                     {% endif %}
                 </td>
                 <td>
@@ -38,6 +43,7 @@
                     {% else %}{{ familium.deskribapenaeu }}
                     {% endif %}
                 </td>
+                <td><span class="label label-primary">{{ familium.children | length }}</span></td>
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('familia_edit', { 'id': familium.id }) }}" class="fa fa-pencil"></a></li>

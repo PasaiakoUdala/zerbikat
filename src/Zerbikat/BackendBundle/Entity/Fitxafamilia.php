@@ -50,6 +50,14 @@ class Fitxafamilia
     protected $fitxa;
 
     /**
+     * @var udala
+     * @ORM\ManyToOne(targetEntity="Udala")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
+     *
+     */
+    private $udala;
+
+    /**
      * ERLAZIOAK FIN
      */
 
@@ -151,5 +159,29 @@ class Fitxafamilia
     public function getFitxa()
     {
         return $this->fitxa;
+    }
+
+    /**
+     * Set udala
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     *
+     * @return Fitxafamilia
+     */
+    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    {
+        $this->udala = $udala;
+
+        return $this;
+    }
+
+    /**
+     * Get udala
+     *
+     * @return \Zerbikat\BackendBundle\Entity\Udala
+     */
+    public function getUdala()
+    {
+        return $this->udala;
     }
 }

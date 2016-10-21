@@ -366,6 +366,7 @@
 
                 $fitxafamilium = new Fitxafamilia();
                 $fitxafamilium->setFitxa( $fitxa );
+                $fitxafamilium->setUdala( $this->getUser()->getUdala() );
                 $form = $this->createForm(
                     'Zerbikat\BackendBundle\Form\FitxafamiliaType',
                     $fitxafamilium,
@@ -378,7 +379,8 @@
                     array (
                         'udala'  => $fitxa->getUdala(),
                         'parent' => null,
-                    )
+                    ),
+                    array('ordena'=>'ASC')
                 );
 
                 return $this->render(

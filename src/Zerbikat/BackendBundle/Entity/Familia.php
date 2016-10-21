@@ -63,6 +63,14 @@
          */
         private $deskribapenaes;
 
+        /**
+         * @var int
+         * @Expose
+         *
+         * @ORM\Column(name="ordena", type="integer", nullable=true)
+         */
+        private $ordena;
+
 
         /**
          *
@@ -337,5 +345,29 @@
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * Set ordena
+     *
+     * @param integer $ordena
+     *
+     * @return Familia
+     */
+    public function setOrdena($ordena)
+    {
+        $this->ordena = $ordena;
+
+        return $this;
+    }
+
+    /**
+     * Get ordena
+     *
+     * @return integer
+     */
+    public function getOrdena()
+    {
+        return $this->ordena;
     }
 }

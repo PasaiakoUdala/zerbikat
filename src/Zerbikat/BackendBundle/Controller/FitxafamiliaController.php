@@ -36,17 +36,19 @@ class FitxafamiliaController extends Controller
     /**
      * Creates a new Fitxafamilia entity.
      *
-     * @Route("/new", name="fitxafamilia_newfromfitxa")
+     * @Route("/newfromfitxa", name="fitxafamilia_newfromfitxa")
      * @Method({"GET", "POST"})
      */
     public function newfromfitxaAction(Request $request)
     {
         $fitxafamilium = new Fitxafamilia();
+        $fitxafamilium->setUdala( $this->getUser()->getUdala() );
         $form = $this->createForm('Zerbikat\BackendBundle\Form\FitxafamiliaType', $fitxafamilium);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($fitxafamilium);
             $em->flush();
 
@@ -68,6 +70,7 @@ class FitxafamiliaController extends Controller
     public function newAction(Request $request)
     {
         $fitxafamilium = new Fitxafamilia();
+        $fitxafamilium->setUdala( $this->getUser()->getUdala() );
         $form = $this->createForm('Zerbikat\BackendBundle\Form\FitxafamiliaType', $fitxafamilium);
         $form->handleRequest($request);
 

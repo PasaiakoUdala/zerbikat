@@ -32,7 +32,10 @@
             $auth_checker = $this->get( 'security.authorization_checker' );
             if ( $auth_checker->isGranted( 'ROLE_KUDEAKETA' ) ) {
                 $em = $this->getDoctrine()->getManager();
-                $familias = $em->getRepository( 'BackendBundle:Familia' )->findAll();
+                $familias = $em->getRepository( 'BackendBundle:Familia' )->findBy(
+                    array ('parent' => null),
+                    array ('ordena' => 'ASC')
+                );
                 $deleteForms = array ();
                 foreach ( $familias as $familia ) {
                     $deleteForms[$familia->getId()] = $this->createDeleteForm( $familia )->createView();
@@ -42,7 +45,7 @@
                     'familia/index.html.twig',
                     array (
                         'familias'    => $familias,
-                        'deleteforms' => $deleteForms
+                        'deleteforms' => $deleteForms,
                     )
                 );
             } else {
@@ -64,15 +67,11 @@
                 $form = $this->createForm( 'Zerbikat\BackendBundle\Form\FamiliaType', $familium );
                 $form->handleRequest( $request );
 
-//            $form->getData()->setUdala($this->getUser()->getUdala());
-//            $form->setData($form->getData());
-
                 if ( $form->isSubmitted() && $form->isValid() ) {
                     $em = $this->getDoctrine()->getManager();
                     $em->persist( $familium );
                     $em->flush();
 
-//                return $this->redirectToRoute('familia_show', array('id' => $familium->getId()));
                     return $this->redirectToRoute( 'familia_index' );
                 } else {
                     $form->getData()->setUdala( $this->getUser()->getUdala() );
@@ -134,12 +133,20 @@
                     return $this->redirectToRoute( 'familia_edit', array ('id' => $familium->getId()) );
                 }
 
+                $em = $this->getDoctrine()->getManager();
+                $azpifamiliak = $em->getRepository( 'BackendBundle:Familia' )->findBy(
+                    array (
+                        'parent' => $familium->getId(),
+                    )
+                );
+
                 return $this->render(
                     'familia/edit.html.twig',
                     array (
-                        'familium'    => $familium,
-                        'edit_form'   => $editForm->createView(),
-                        'delete_form' => $deleteForm->createView(),
+                        'familium'     => $familium,
+                        'edit_form'    => $editForm->createView(),
+                        'delete_form'  => $deleteForm->createView(),
+                        'azpifamiliak' => $azpifamiliak,
                     )
                 );
             } else {

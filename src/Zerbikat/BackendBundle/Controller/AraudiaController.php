@@ -34,28 +34,10 @@ class AraudiaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $araudias = $em->getRepository('BackendBundle:Araudia')->findBy( array(), array('kodea'=>'ASC') );
 
-            $adapter = new ArrayAdapter($araudias);
-            $pagerfanta = new Pagerfanta($adapter);
-
             $deleteForms = array();
             foreach ($araudias as $araudia) {
                 $deleteForms[$araudia->getId()] = $this->createDeleteForm($araudia)->createView();
             }
-//            try {
-//                $entities = $pagerfanta
-//                    // Le nombre maximum d'éléments par page
-////                    ->setMaxPerPage(20)
-//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-//                    // Notre position actuelle (numéro de page)
-//                    ->setCurrentPage($page)
-//                    // On récupère nos entités via Pagerfanta,
-//                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-//                    ->getCurrentPageResults()
-//                ;
-//            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-//                throw $this->createNotFoundException("Orria ez da existitzen");
-//            }
-
 
             return $this->render('araudia/index.html.twig', array(
                 'araudias' => $araudias,
@@ -83,15 +65,11 @@ class AraudiaController extends Controller
             $form = $this->createForm('Zerbikat\BackendBundle\Form\AraudiaType', $araudium);
             $form->handleRequest($request);
 
-//            $form->getData()->setUdala($this->getUser()->getUdala());
-//            $form->setData($form->getData());
-
             if ($form->isSubmitted() && $form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($araudium);
                 $em->flush();
 
-//                return $this->redirectToRoute('araudia_show', array('id' => $araudium->getId()));
                 return $this->redirectToRoute('araudia_index');
             }else
             {

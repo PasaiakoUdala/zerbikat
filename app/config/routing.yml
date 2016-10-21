@@ -1,3 +1,6 @@
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 backend_fitxafamilia:
     resource: "@BackendBundle/Controller/FitxafamiliaController.php"
     type:     annotation
