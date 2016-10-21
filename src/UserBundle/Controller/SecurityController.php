@@ -1,6 +1,7 @@
 <?php
 namespace UserBundle\Controller;
 //use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
+use Pagerfanta\Exception\NotValidCurrentPageException;
 use Zerbikat\BackendBundle\Entity\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,24 +23,18 @@ use Zerbikat\BackendBundle\Form\UserType;
 
 class SecurityController extends Controller
 {
+
     public function loginAction ( Request $request )
     {
         /***
          * IZFE-rako login da ?
          * Baldin eta parametroa badu bai
          ***/
-//        $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ) );
-//        $miurl = $query_str['host'].'/'.$query_str['path'];
-//        $query_str = parse_url( $request->getSession()->get( '_security.main.target_path' ), PHP_URL_QUERY );
         $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
 
-//        dump($request->getUri());
-//        dump($request->getSession()->get( '_security.main.target_path' ));
-//        $urlOsoa= $request->getSession()->get( '_security.main.target_path' );
         $urlOsoa=$request->getUri();
 
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
-//            dump('2');
             parse_str( $query_str, $query_params );
             /* GET kodea*/
             if ( $query_str != null )
@@ -51,20 +46,20 @@ class SecurityController extends Controller
 
                 if ($this->izfelogin ($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)==1)
                 {
-                        return $this->redirectToRoute( 'fitxa_index', array('_locale'=> $hizkuntza ));
-                }else
+                    return $this->redirectToRoute( 'fitxa_index', array('_locale'=> $hizkuntza ));
+                }
+                else
                 {
-                        $lastUsername = null;
-                        $csrfToken = $this->get( 'security.csrf.token_manager' )->getToken( 'authenticate' )->getValue();
-                        $error = null;
-                        return $this->renderLogin(
-                            array (
-                                'last_username' => $lastUsername,
-                                'error'         => $error,
-                                'csrf_token'    => $csrfToken,
-                            )
-                        );
-//                        return $this->render( 'FOSUserBundle:Security:login.html.twig', $data );
+                    $lastUsername = null;
+                    $csrfToken = $this->get( 'security.csrf.token_manager' )->getToken( 'authenticate' )->getValue();
+                    $error = null;
+                    return $this->renderLogin(
+                        array (
+                            'last_username' => $lastUsername,
+                            'error'         => $error,
+                            'csrf_token'    => $csrfToken,
+                        )
+                    );
                 }
             }
         }
@@ -112,24 +107,19 @@ class SecurityController extends Controller
             );
         }
     }
+
     protected function renderLogin ( array $data )
     {
         return $this->render( 'FOSUserBundle:Security:login.html.twig', $data );
     }
 
-
     private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)
     {
         /* fitxategiko kodea */
-//        $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r") or die("Unable to open file!");
-        /* fitxategia ez bada existitzen login orrira berbideratu */
         if (file_exists ($this->container->getParameter('izfe_login_path').'/'.$fitxategia))
         {
             $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r");
             $lerro = fgets($fitx);
-
-//            dump ("URL-a: ".$urlOsoa);
-//            dump ("Fitxategia: ".$lerro);
 
             /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
             if ($lerro == $urlOsoa)
@@ -142,17 +132,12 @@ class SecurityController extends Controller
                 $this->get('session')->set('_security_main', serialize($token));
 
                 /* login-a egin ondoren fitxategia ezabatu */
-//                unlink($this->container->getParameter('izfe_login_path') . '/' . $fitxategia);
                 return 1;
             }
             return 0;
         } return 0;
     }
-    
 
-    
-
-    
     /**
      * Lists all USERS .
      *
@@ -164,33 +149,16 @@ class SecurityController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
-
-        $adapter = new ArrayAdapter($users);
-        $pagerfanta = new Pagerfanta($adapter);
-
         $deleteForms = array();
         foreach ($users as $user) {
             $deleteForms[$user->getId()] = $this->createDeleteForm($user)->createView();
         }
-        try {
-            $entities = $pagerfanta
-                ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                ->setCurrentPage($page)
-                ->getCurrentPageResults()
-            ;
-        } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-            throw $this->createNotFoundException("Orria ez da existitzen");
-        }
 
         return $this->render('UserBundle:Default:users.html.twig', array(
-//                'users' =>   $users,
-                'users' => $entities,
-                'pager' => $pagerfanta,
+                'users' =>   $users,
                 'deleteforms'=> $deleteForms,
             ));
     }
-
-
 
     /**
      * Creates a new User entity.
@@ -232,7 +200,6 @@ class SecurityController extends Controller
         }
     }
 
-
     /**
      * Finds and displays a User entity.
      *
@@ -249,12 +216,8 @@ class SecurityController extends Controller
         ));
     }
 
-
-
-
-
     /**
-     * Displays a form to edit an existing User entity.
+     * User Edit.
      *
      * @Route("/user/{id}/edit", name="user_edit")
      * @Method({"GET", "POST"})
@@ -293,7 +256,7 @@ class SecurityController extends Controller
     }
 
     /**
-     * Password Edit Action
+     * Password Edit Password Action
      *
      * @Route("/user/{id}/passwd", name="user_edit_passwd")
      * @Method({"GET", "POST"})
@@ -327,8 +290,6 @@ class SecurityController extends Controller
         }
     }
 
-
-
     /**
      * Deletes a User entity.
      *
@@ -358,9 +319,6 @@ class SecurityController extends Controller
             return $this->redirectToRoute('backend_errorea');
         }
     }
-
-
-
 
     /**
      * Creates a form to delete a User entity.

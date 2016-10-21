@@ -366,27 +366,31 @@
 
                 $fitxafamilium = new Fitxafamilia();
                 $fitxafamilium->setFitxa( $fitxa );
-                $form = $this->createForm('Zerbikat\BackendBundle\Form\FitxafamiliaType', $fitxafamilium, [
-                    'action' => $this->generateUrl('fitxafamilia_newfromfitxa')
-                ]);
+                $form = $this->createForm(
+                    'Zerbikat\BackendBundle\Form\FitxafamiliaType',
+                    $fitxafamilium,
+                    [
+                        'action' => $this->generateUrl( 'fitxafamilia_newfromfitxa' ),
+                    ]
+                );
 
                 $familiak = $em->getRepository( 'BackendBundle:Familia' )->findBy(
-                    array(
-                        'udala'=>$fitxa->getUdala(),
-                        'parent'=>null
+                    array (
+                        'udala'  => $fitxa->getUdala(),
+                        'parent' => null,
                     )
                 );
 
                 return $this->render(
                     'fitxa/edit.html.twig',
                     array (
-                        'fitxa'       => $fitxa,
-                        'edit_form'   => $editForm->createView(),
-                        'delete_form' => $deleteForm->createView(),
+                        'fitxa'            => $fitxa,
+                        'edit_form'        => $editForm->createView(),
+                        'delete_form'      => $deleteForm->createView(),
                         'formfitxafamilia' => $form->createView(),
-                        'eremuak'     => $eremuak,
-                        'labelak'     => $labelak,
-                        'familiak'    => $familiak,
+                        'eremuak'          => $eremuak,
+                        'labelak'          => $labelak,
+                        'familiak'         => $familiak,
                     )
                 );
             } else {

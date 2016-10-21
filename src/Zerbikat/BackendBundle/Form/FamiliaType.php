@@ -20,7 +20,7 @@ class FamiliaType extends AbstractType
             ->add('deskribapenaeu')
             ->add('deskribapenaes')
             ->add('udala')
-//            ->add('fitxak')
+            ->add('parent')
         ;
     }
     
