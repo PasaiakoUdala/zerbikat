@@ -714,7 +714,7 @@
                     <tr>
                         <td>{{ f.familia }}</td>
                         <td>{{ f.ordena }}</td>
-                        <td>{{ f.id }}</td>
+                        <td><a class="btn btn-ordena btn-info" data-id="{{ f.id }}" href="javascript:void(0);"><i class="fa fa-pencil" aria-hidden="true"> Aldatu</i></a></td>
                     </tr>
                 {% endfor %}
 
@@ -938,7 +938,6 @@
                             </select>
                         </div>
                         <div class="col-sm-6">
-                            <div class="form-group">
                             <label for="cmbAzpifamilia">Azpifamilia</label>
                             <select id="cmbAzpifamilia" multiple class="form-control" size="09">
                             </select>
@@ -968,6 +967,17 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+
+    <div class="modal fade" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div id="modalOrdenabody" class="modal-content">
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
 {% endblock %}
 
 {% block javascripts %}
@@ -1127,6 +1137,19 @@
 
                 $('#fitxa_parametroa').val(resul);
                 $('#myModal').modal('toggle');
+            });
+
+            $('.btn-ordena').click(function() {
+                var miid = $(this).data('id');
+                console.log("miid:" + miid);
+
+                var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu',id: miid});
+                console.log(url);
+
+                $('#modalOrdenabody').load(url, function() {
+                    $('#modalOrdena').modal();
+                });
+
             });
 
         });

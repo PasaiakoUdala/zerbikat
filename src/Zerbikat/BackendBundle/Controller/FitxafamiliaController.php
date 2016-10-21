@@ -115,7 +115,11 @@ class FitxafamiliaController extends Controller
     public function editAction(Request $request, Fitxafamilia $fitxafamilium)
     {
         $deleteForm = $this->createDeleteForm($fitxafamilium);
-        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FitxafamiliaType', $fitxafamilium);
+        $editForm = $this->createForm('Zerbikat\BackendBundle\Form\FitxafamiliaType', $fitxafamilium, [
+            'action' => $this->generateUrl('fitxafamilia_edit', array('id'=>$fitxafamilium->getFitxa()->getId())),
+            'method' => "POST"
+        ]);
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -123,7 +127,7 @@ class FitxafamiliaController extends Controller
             $em->persist($fitxafamilium);
             $em->flush();
 
-            return $this->redirectToRoute('fitxafamilia_edit', array('id' => $fitxafamilium->getId()));
+            return $this->redirectToRoute('fitxa_edit', array('id' => $fitxafamilium->getFitxa()->getId()));
         }
 
         return $this->render('fitxafamilia/edit.html.twig', array(
