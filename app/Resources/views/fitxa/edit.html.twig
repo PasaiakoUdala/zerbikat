@@ -15,7 +15,28 @@
         </div>
     </nav>
 {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .loading {
+            position: fixed;
+            z-index:    1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba( 255, 255, 255, .8 ) url({{ asset('bundles/backend/img/page-loader.gif') }}) 50% 50% no-repeat !important;
+        }
+        body.loading {
+            overflow: hidden;
+        }
+        body.loading .modal {
+            display: block;
+        }
+    </style>
+{% endblock %}
 {% block body %}
+    <div id="nireloader" class=""></div>
     {{ form_start(edit_form) }}
     <div class="row">
         <div class="col-md-2 text-center">
@@ -705,7 +726,7 @@
         <div class="col-sm-6">
             <table class="table table-bordered">
                 <thead>
-                    <th>Familia</th>
+                    <th id="gehituFamilia" >Familia</th>
                     <th>Ordena</th>
                     <th></th>
                 </thead>
@@ -927,6 +948,7 @@
                     <h4 class="modal-title">Aukeratu Familia / Azpifamilia eta ordena</h4>
                 </div>
                 <div class="modal-body">
+                    <div id="nireloader2" class=""></div>
                     {{ form_start(formfitxafamilia) }}
                     <div class="row">
                         <div class="col-sm-6">
@@ -984,6 +1006,7 @@
     {{ parent() }}
 
     <script type="text/javascript">
+
         $(function () {
 
             var customSorter = function(data) {
@@ -1096,7 +1119,7 @@
 
 
             $('#cmbFamilia').change(function(){
-
+                $('#nireloader2').addClass('loading');
                 $('#cmbAzpifamilia').empty();
 
                 var aukera = $(this).val();
@@ -1104,11 +1127,17 @@
                 $("#fitxafamilia_familia").val(aukera).trigger("change");
                 var url = Routing.generate('get_azpifamiliak', {id: aukera});
 
-                $.getJSON(url, function(result){
+                var jqxhr = $.getJSON(url, function(result){
                     $.each(result, function(i, field){
                         $("#cmbAzpifamilia").append($("<option></option>").attr("value",field.id).text(field.familiaeu));
                     });
                 });
+
+                jqxhr.complete(function() {
+                    console.log( "finito" );
+                    $('#nireloader2').removeClass('loading');
+                });
+
             });
 
             $('#cmbAzpifamilia').change(function(){
@@ -1140,16 +1169,19 @@
             });
 
             $('.btn-ordena').click(function() {
+
+                $('#nireloader').addClass('loading');
                 var miid = $(this).data('id');
-                console.log("miid:" + miid);
 
                 var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu',id: miid});
-                console.log(url);
 
                 $('#modalOrdenabody').load(url, function() {
                     $('#modalOrdena').modal();
                 });
 
+                $('#modalOrdena').on('shown.bs.modal', function (e) {
+                    $('#nireloader').removeClass('loading');
+                });
             });
 
         });

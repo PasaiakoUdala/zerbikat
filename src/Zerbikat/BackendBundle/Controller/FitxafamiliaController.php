@@ -52,7 +52,7 @@ class FitxafamiliaController extends Controller
             $em->persist($fitxafamilium);
             $em->flush();
 
-            return $this->redirectToRoute('fitxa_edit', array('id' => $fitxafamilium->getFitxa()->getId()));
+            return $this->redirect($this->generateUrl('fitxa_edit', array('id' => $fitxafamilium->getFitxa()->getId())) . '#gehituFamilia');
         }
 
         return $this->render('fitxafamilia/new.html.twig', array(
@@ -127,7 +127,7 @@ class FitxafamiliaController extends Controller
             $em->persist($fitxafamilium);
             $em->flush();
 
-            return $this->redirectToRoute('fitxa_edit', array('id' => $fitxafamilium->getFitxa()->getId()));
+            return $this->redirect($this->generateUrl('fitxa_edit', array('id' => $fitxafamilium->getFitxa()->getId())) . '#gehituFamilia');
         }
 
         return $this->render('fitxafamilia/edit.html.twig', array(
