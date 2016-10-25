@@ -72,10 +72,10 @@
                 '
             SELECT MAX(f.ordena) as ordena
             FROM BackendBundle:Fitxafamilia f              
-            WHERE f.fitxa = :fitxa_id AND f.familia = :familia_id  
+            WHERE f.familia = :familia_id  
             '
             );
-            $query->setParameter( 'fitxa_id', $fitxa_id );
+//            $query->setParameter( 'fitxa_id', $fitxa_id );
             $query->setParameter( 'familia_id', $familia_id );
 
             $resp = $query->getSingleResult();

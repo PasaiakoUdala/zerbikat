@@ -1150,9 +1150,14 @@
                     familia_id: aukera
                 });
 
+
+
                 $('#cmbAzpifamilia').empty();
 
                 var jqxhr2 = $.getJSON(urlOrdena, function (result) {
+
+                    console.log(urlOrdena);
+                    console.log(result);
                     if (result.ordena === null) {
                         $('#saveButton').show();
                         var miorden = 1;
