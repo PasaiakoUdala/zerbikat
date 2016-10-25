@@ -12,12 +12,6 @@ use GuzzleHttp;
 class DefaultController extends Controller
 {
 
-//    public function indexAction()
-//    {
-//        return $this->render('FrontendBundle:Default:index.html.twig');
-//    }
-
-
     /**
      * @Route("/{udala}/{_locale}/", name="frontend_fitxa_index",
      *         requirements={
@@ -26,23 +20,27 @@ class DefaultController extends Controller
      *     }
      * )
      */
-
     public function indexAction($udala)
     {
         $em = $this->getDoctrine()->getManager();
 
         $query = $em->createQuery('
-          SELECT f FROM BackendBundle:Fitxa f LEFT JOIN BackendBundle:Udala u  WITH f.udala=u.id
+          SELECT f 
+            FROM BackendBundle:Fitxa f 
+              LEFT JOIN BackendBundle:Udala u  WITH f.udala=u.id
             WHERE u.kodea = :udala
             ORDER BY f.kontsultak DESC 
         ');
         $query->setParameter('udala', $udala);
         $fitxak = $query->getResult();
 
+        dump( $fitxak );
 
         $query = $em->createQuery('
-          SELECT f FROM BackendBundle:Familia f LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
-            WHERE u.kodea = :udala
+          SELECT f 
+            FROM BackendBundle:Familia f 
+              LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
+            WHERE u.kodea = :udala AND f.parent is NULL 
         ');
         $query->setParameter('udala', $udala);
         $familiak = $query->getResult();
@@ -122,8 +120,6 @@ class DefaultController extends Controller
      */
     public function pdfAction(Fitxa $fitxa,$udala)
     {
-//        $deleteForm = $this->createDeleteForm($fitxa);
-
         $em = $this->getDoctrine()->getManager();
         $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();
 
@@ -190,7 +186,6 @@ class DefaultController extends Controller
      */
     public function pdfelebiAction(Fitxa $fitxa,$udala)
     {
-//        $deleteForm = $this->createDeleteForm($fitxa);
 
         $em = $this->getDoctrine()->getManager();
         $kanalmotak=$em->getRepository('BackendBundle:Kanalmota')->findAll();

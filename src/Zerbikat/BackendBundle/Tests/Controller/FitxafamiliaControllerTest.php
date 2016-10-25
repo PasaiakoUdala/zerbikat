@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FitxafamiliaControllerTest extends WebTestCase
 {
-    /*
+
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
@@ -14,7 +14,7 @@ class FitxafamiliaControllerTest extends WebTestCase
 
         // Create a new entry in the database
         $crawler = $client->request('GET', '/fitxafamilia/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /fitxafamilia/");
+        $this->assertEquals(201, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /fitxafamilia/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
@@ -51,5 +51,5 @@ class FitxafamiliaControllerTest extends WebTestCase
         $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
     }
 
-    */
+
 }
