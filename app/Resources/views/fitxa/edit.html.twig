@@ -714,6 +714,7 @@
                         {{ form_widget(edit_form.datuenbabesa, {'attr': {'class': 'form-control'}}) }}
                     </div>
                 </div>
+                <div class="col-sm-2"></div>
             {% endif %}
         </div>
     {% endif %}
@@ -749,7 +750,8 @@
                                 <a class="btn-ordena" data-id="{{ f.id }}" href="javascript:void(0);"><i
                                             class="fa fa-pencil" aria-hidden="true"></i></a>
                                 &nbsp;
-                                <a class="btnOrdenaEzabatu" data-id="{{ f.id }}" href="javascript:void(0);"><i class="fa fa-trash text-danger"></i></a>
+                                <a class="btnOrdenaEzabatu" data-id="{{ f.id }}" href="javascript:void(0);"><i
+                                            class="fa fa-trash text-danger"></i></a>
 
                             </td>
                         </tr>
@@ -763,7 +765,6 @@
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalFitxaFamilia">
             + Familia
         </button>
-        </div>
 
     {% endif %}
 
@@ -1010,7 +1011,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
 
     <div class="modal fade" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog">
@@ -1262,7 +1262,7 @@
                         }
                     },
                     callback: function (result) {
-                        if (result === true){
+                        if (result === true) {
                             var miid = $(that).data('id');
                             console.log("miid =>" + miid);
                             var url = Routing.generate('fitxafamilia_delete', {_locale: 'eu', id: miid});
@@ -1271,11 +1271,11 @@
                             $.ajax({
                                 url: url,
                                 type: 'delete',
-                                success: function(result) {
+                                success: function (result) {
                                     console.log('Delete');
                                     $(that).closest("tr").remove();
                                 },
-                                error: function(e){
+                                error: function (e) {
                                     console.log(e.responseText);
                                 }
                             });
