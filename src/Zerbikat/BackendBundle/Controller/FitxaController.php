@@ -392,7 +392,7 @@
                         'formfitxafamilia' => $form->createView(),
                         'eremuak'          => $eremuak,
                         'labelak'          => $labelak,
-                        'familiak'         => $familiak,
+                        'familiak'         => $familiak
                     )
                 );
             } else {
@@ -449,5 +449,12 @@
                 ->getForm();
         }
 
+        private function createfamiliaDeleteForm ( Familia $familia )
+        {
+            return $this->createFormBuilder()
+                ->setAction( $this->generateUrl( 'familia_delete', array ('id' => $familia->getId()) ) )
+                ->setMethod( 'DELETE' )
+                ->getForm();
+        }
 
     }

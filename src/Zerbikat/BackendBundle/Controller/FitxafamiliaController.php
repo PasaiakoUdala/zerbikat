@@ -244,6 +244,12 @@
          */
         public function deleteAction ( Request $request, Fitxafamilia $fitxafamilium )
         {
+            if($request->isXmlHttpRequest()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove( $fitxafamilium );
+                $em->flush();
+                return New JsonResponse(array('result' => 'ok'));
+            }
             $form = $this->createDeleteForm( $fitxafamilium );
             $form->handleRequest( $request );
 
