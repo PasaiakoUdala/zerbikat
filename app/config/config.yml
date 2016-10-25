@@ -124,4 +124,4 @@ fos_user:
     user_class: Zerbikat\BackendBundle\Entity\User
 
 fos_js_routing:
-    routes_to_expose: [ get_familiak, get_azpifamiliak, get_fitxa, fitxafamilia_edit ]
+    routes_to_expose: [ get_familiak, get_azpifamiliak, get_fitxa, fitxafamilia_edit, api_fitxafamiliahasorden, api_fitxafamilianextorden ]

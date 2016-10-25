@@ -15,3 +15,9 @@ services:
             - "@annotation_reader"
         tags:
             - { name: kernel.event_listener, event: kernel.request }
+
+    easycorp.easylog.handler:
+            class: EasyCorp\EasyLog\EasyLogHandler
+            public: false
+            arguments:
+                - '%kernel.logs_dir%/%kernel.environment%.log'

@@ -733,7 +733,7 @@
                 <tbody>
                 {% for f in fitxa.fitxafamilia %}
                     <tr>
-                        <td>{{ f.familia }}</td>
+                        <td >{{ f.familia }}</td>
                         <td>{{ f.ordena }}</td>
                         <td><a class="btn btn-ordena btn-info" data-id="{{ f.id }}" href="javascript:void(0);"><i class="fa fa-pencil" aria-hidden="true"> Aldatu</i></a></td>
                     </tr>
@@ -971,7 +971,9 @@
                             {{ form_label(formfitxafamilia.ordena, 'Ordena', { 'label_attr': {'class': 'control-label'} }) }}
                             {{ form_widget(formfitxafamilia.ordena , {'attr': {'class': 'form-control'}}) }}
                         </div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <p id="badago" class="bg-danger" style="display: none;"><br> Zehaztua dagoeneko.</p>
+                        </div>
                     </div>
 
                     <div class="row">&nbsp;</div>
@@ -984,7 +986,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
-                    <button type="button" onclick="document.forms['{{ formfitxafamilia.vars.name }}'].submit()" class="btn btn-primary">Gorde</button>
+                    <button id="saveButton" type="button" onclick="document.forms['{{ formfitxafamilia.vars.name }}'].submit()" class="btn btn-primary">Gorde</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -999,7 +1001,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
+    <input id="fitxa_id" type="hidden" value="{{ fitxa.id }}">
 {% endblock %}
 
 {% block javascripts %}
@@ -1120,9 +1122,28 @@
 
             $('#cmbFamilia').change(function(){
                 $('#nireloader2').addClass('loading');
+                $('#badago').hide();
+                var aukera = $(this).val();
+                var fitxaid = $('#fitxa_id').val();
+                var urlOrdena = Routing.generate('api_fitxafamilianextorden', {_locale: 'eu', fitxa_id: fitxaid,  familia_id: aukera});
+
                 $('#cmbAzpifamilia').empty();
 
-                var aukera = $(this).val();
+                var jqxhr2 = $.getJSON(urlOrdena, function(result){
+                    if ( result.ordena === null  ) {
+                        $('#saveButton').show();
+                        var miorden = 1;
+                    } else if ( result.ordena === -1) {
+                        $('#saveButton').hide();
+                        $('#badago').toggle();
+                    }else {
+                        $('#saveButton').show();
+                        var miorden = parseInt(result.ordena)+1;
+                    }
+
+                    $('#fitxafamilia_ordena').val(miorden);
+                });
+
 
                 $("#fitxafamilia_familia").val(aukera).trigger("change");
                 var url = Routing.generate('get_azpifamiliak', {id: aukera});
@@ -1141,16 +1162,32 @@
             });
 
             $('#cmbAzpifamilia').change(function(){
+                $('#nireloader2').addClass('loading');
+                $('#badago').hide();
+
                 var aukera = $(this).val();
+                var fitxaid = $('#fitxa_id').val();
+                var urlOrdena = Routing.generate('api_fitxafamilianextorden', {_locale: 'eu', fitxa_id: fitxaid,  familia_id: aukera});
+                var jqxhr2 = $.getJSON(urlOrdena, function(result){
+                    if ( result.ordena === null  ) {
+                        $('#saveButton').show();
+                        var miorden = 1;
+                    } else if ( result.ordena === -1) {
+                        $('#saveButton').hide();
+                        $('#badago').toggle();
+                    }else {
+                        $('#saveButton').show();
+                        var miorden = parseInt(result.ordena)+1;
+                    }
+
+                    $('#fitxafamilia_ordena').val(miorden);
+                });
+
                 $("#fitxafamilia_familia").val(aukera).trigger("change");
 
-                // ordena sugeritu
-                if ( $('#fitxafamilia_ordena').val() ) {
-                    // baldin badauka, ezer ez
-                    return;
-                } else {
-
-                }
+                jqxhr2.complete(function() {
+                    $('#nireloader2').removeClass('loading');
+                })
 
             });
 
