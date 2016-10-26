@@ -1242,7 +1242,7 @@
                 $('#nireloader').addClass('loading');
                 var miid = $(this).data('id');
 
-                //  var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu', id: miid});
+                  var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu', id: miid});
 
                 $('#modalOrdenabody').load(url, function () {
                     $('#modalOrdena').modal();

@@ -6,8 +6,12 @@
             <div class="navbar-header">
                 <a class="navbar-brand"></a>
                 <ul class="nav navbar-nav">
-                    <li class="list-inline"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">ES</a></li>
-                    <li class="list-inline"><a href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'eu'}))}}">EU</a></li>
+                    <li class="list-inline"><a
+                                href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">ES</a>
+                    </li>
+                    <li class="list-inline"><a
+                                href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'eu'})) }}">EU</a>
+                    </li>
                 </ul>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
@@ -18,72 +22,75 @@
 {% endblock %}
 
 {% block body %}
-    <br />
+    <br/>
     {{ parent() }}
     {% for familia in familiak %}
-            <div class="list-group col-sm-6">
-                <a class="list-group-item active" style="cursor: pointer;" onclick="erakutsiEzkutatu('fam{{familia.id}}')">
+        <div class="list-group col-sm-6">
+            <a class="list-group-item active" style="cursor: pointer;"
+               onclick="erakutsiEzkutatu('fam{{ familia.id }}')">
                 <div class="list-group-item-wrapper">
                     <h4 class="list-group-item-heading active">
-                        {% if app.request.locale == 'eu'%}{{ familia.familiaeu }}{% else %} {{ familia.familiaes }}{% endif %}
+                        {% if app.request.locale == 'eu' %}{{ familia.familiaeu }}{% else %} {{ familia.familiaes }}{% endif %}
                     </h4>
                     <p class="list-group-item-text">
-                        {% if app.request.locale == 'eu'%}{{ familia.deskribapenaeu }}{% else %} {{ familia.deskribapenaes }}{% endif %}
+                        {% if app.request.locale == 'eu' %}{{ familia.deskribapenaeu }}{% else %} {{ familia.deskribapenaes }}{% endif %}
                     </p>
-                </div></a>
-                <div id='fam{{ familia.id }}' style='display: none;'>
-                    {% for fitxafamilia  in  familia.fitxafamilia %}
-                        <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}" class="list-group-item">
-                            {% if app.request.locale == 'eu'%}{{ fitxafamilia.fitxa.deskribapenaeu }}{% else %} {{ fitxafamilia.fitxa.deskribapenaes }}{% endif %}
-                        </a>
-                    {% endfor %}
-
-                    {% for c in familia.children %}
-                        <a href="#" class="list-group-item list-group-item-warning">
-                            {% if app.request.locale == 'eu'%}{{ c.familiaeu }}{% else %} {{ c.familiaes }}{% endif %}
-                            {% for fitxafamilia in c.fitxafamilia %}
-                                {#{{ dump(fitxafamilia.fitxa) }}#}
-                                    {#{{ dump("2") }}#}
-                                    <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}" class="list-group-item">
-                                        {% if app.request.locale == 'eu'%}{{ fitxafamilia.fitxa.deskribapenaeu }}{% else %} {{ fitxafamilia.fitxa.deskribapenaes }}{% endif %}
-                                    </a>
-
-                            {% endfor %}
-
-                        </a>
-                    {% endfor %}
                 </div>
+            </a>
+            <div id='fam{{ familia.id }}' style='display: none;'>
+                {% for fitxafamilia  in  familia.fitxafamilia %}
+                    <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}"
+                       class="list-group-item">
+                        {% if app.request.locale == 'eu' %}{{ fitxafamilia.fitxa.deskribapenaeu }}{% else %} {{ fitxafamilia.fitxa.deskribapenaes }}{% endif %}
+                    </a>
+                {% endfor %}
+
+                {% for c in familia.children %}
+                    <a href="#" class="list-group-item list-group-item-success">
+                        {% if app.request.locale == 'eu' %}{{ c.familiaeu }}{% else %} {{ c.familiaes }}{% endif %}
+                        {% for fitxafamilia in c.fitxafamilia %}
+                            <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}"
+                               class="list-group-item">
+                                {% if app.request.locale == 'eu' %}{{ fitxafamilia.fitxa.deskribapenaeu }}{% else %} {{ fitxafamilia.fitxa.deskribapenaes }}{% endif %}
+                            </a>
+
+                        {% endfor %}
+
+                    </a>
+                {% endfor %}
             </div>
+        </div>
     {% endfor %}
 
     <div class="list-group col-sm-12">
         <a class="list-group-item" style="cursor: pointer;" onclick="erakutsiEzkutatu('gehien')">
-        {#<div class="list-group-item active">#}
-        <div class="list-group-item-wrapper ">
-            <h4 class="list-group-item-heading active">
-                {% if app.request.locale == 'eu'%}GEHIEN KONTSULTATUTAKOAK
-                {% else %} MÁS CONSULTADOS
-                {% endif %}
-            </h4>
-            <p class="list-group-item-text">
-                {% if app.request.locale == 'eu'%}Gehien kontsultatuko tramiteak
-                {% else %} Tramites más consultados
-                {% endif %}
-            </p>
-        </div></a>
+            {#<div class="list-group-item active">#}
+            <div class="list-group-item-wrapper ">
+                <h4 class="list-group-item-heading active">
+                    {% if app.request.locale == 'eu' %}GEHIEN KONTSULTATUTAKOAK
+                    {% else %} MÁS CONSULTADOS
+                    {% endif %}
+                </h4>
+                <p class="list-group-item-text">
+                    {% if app.request.locale == 'eu' %}Gehien kontsultatuko tramiteak
+                    {% else %} Tramites más consultados
+                    {% endif %}
+                </p>
+            </div>
+        </a>
 
         {#{% for fitxa in fitxak %}#}
-            {#<a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="list-group-item">{{ fitxa.deskribapenaeu }}</a>#}
+        {#<a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}" class="list-group-item">{{ fitxa.deskribapenaeu }}</a>#}
         {#{% endfor %}#}
 
         <div id='gehien' style='display: none;'>
-        {% set kont=0 %}
-        {% for fitxa in fitxak if kont < 10 %}
-            <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxa.id }) }}" class="list-group-item">
-                {% if app.request.locale == 'eu'%}{{ fitxa.deskribapenaeu }}{% else %} {{ fitxa.deskribapenaes }}{% endif %}
-            </a>
-            {% set kont=kont+1 %}
-        {% endfor %}
+            {% set kont=0 %}
+            {% for fitxa in fitxak if kont < 10 %}
+                <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxa.id }) }}" class="list-group-item">
+                    {% if app.request.locale == 'eu' %}{{ fitxa.deskribapenaeu }}{% else %} {{ fitxa.deskribapenaes }}{% endif %}
+                </a>
+                {% set kont=kont+1 %}
+            {% endfor %}
         </div>
     </div>
 
@@ -92,28 +99,23 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function erakutsiEzkutatu($id)
-        {
-            if (document.getElementById($id).style.display == 'none')
-            {
+        function erakutsiEzkutatu($id) {
+            if (document.getElementById($id).style.display == 'none') {
                 document.getElementById($id).style.display = 'block';
             }
-            else if (document.getElementById($id).style.display == 'block')
-            {
+            else if (document.getElementById($id).style.display == 'block') {
                 document.getElementById($id).style.display = 'none';
             }
         }
 
-        function tamaina()
-        {
+        function tamaina() {
             var temp = 0;
             $('.list-group .list-group-item-wrapper').each(function (index) {
-                if($(this).outerHeight() > temp)
-                {
+                if ($(this).outerHeight() > temp) {
                     temp = $(this).outerHeight();
                 }
             });
-            $('.list-group .list-group-item-wrapper').css('min-height',temp);
+            $('.list-group .list-group-item-wrapper').css('min-height', temp);
         }
     </script>
 {% endblock %}

@@ -35,11 +35,11 @@ class DefaultController extends Controller
         $fitxak = $query->getResult();
 
         $query = $em->createQuery('
-          SELECT f 
-            FROM BackendBundle:Familia f 
+          SELECT f, COALESCE (f.ordena,0) as HIDDEN ezkutuan            
+            FROM BackendBundle:Familia f
               LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
             WHERE u.kodea = :udala AND f.parent is NULL 
-            ORDER BY f.ordena ASC NULLS LAST 
+            ORDER BY ezkutuan DESC
         ');
         $query->setParameter('udala', $udala);
         $familiak = $query->getResult();
