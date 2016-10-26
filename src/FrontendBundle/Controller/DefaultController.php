@@ -34,13 +34,12 @@ class DefaultController extends Controller
         $query->setParameter('udala', $udala);
         $fitxak = $query->getResult();
 
-        dump( $fitxak );
-
         $query = $em->createQuery('
           SELECT f 
             FROM BackendBundle:Familia f 
               LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
             WHERE u.kodea = :udala AND f.parent is NULL 
+            ORDER BY f.ordena ASC NULLS LAST 
         ');
         $query->setParameter('udala', $udala);
         $familiak = $query->getResult();

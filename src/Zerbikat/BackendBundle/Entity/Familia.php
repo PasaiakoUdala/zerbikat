@@ -69,7 +69,7 @@
          *
          * @ORM\Column(name="ordena", type="integer", nullable=true)
          */
-        private $ordena;
+        private $ordena=0;
 
 
         /**************************************************************************************************************
