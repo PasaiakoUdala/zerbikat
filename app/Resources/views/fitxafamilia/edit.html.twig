@@ -3,7 +3,7 @@
     <h4 class="modal-title">Familia / Azpifamilia ordena</h4>
 </div>
 <div class="modal-body">
-    {{ form_start(edit_form) }}
+
 
     <div class="row">
         <div class="col-sm-12">
@@ -21,12 +21,12 @@
         </div>
     </div>
 
-    <div style="display: none;">
-        {{ form_end(edit_form) }}
     </div>
-
-</div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
-    <button type="button" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="btn btn-primary">Gorde</button>
+    <button type="submit" class="btn btn-primary">Gorde</button>
+</div>
+</div>
+<div style="display: none;">
+    {{ form_end(edit_form) }}
 </div>

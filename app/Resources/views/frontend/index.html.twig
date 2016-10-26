@@ -48,10 +48,10 @@
                 {% for c in familia.children %}
                     <a href="#" class="list-group-item list-group-item-success">
                         {% if app.request.locale == 'eu' %}{{ c.familiaeu }}{% else %} {{ c.familiaes }}{% endif %}
-                        {% for fitxafamilia in c.fitxafamilia %}
-                            <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}"
+                        {% for fitx in c.fitxafamilia %}
+                            <a data-orden="{{ fitx.ordena }}" href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitx.fitxa.id }) }}"
                                class="list-group-item">
-                                {% if app.request.locale == 'eu' %}{{ fitxafamilia.fitxa.deskribapenaeu }}{% else %} {{ fitxafamilia.fitxa.deskribapenaes }}{% endif %}
+                                {% if app.request.locale == 'eu' %}{{ fitx.fitxa.deskribapenaeu }}{% else %} {{ fitx.fitxa.deskribapenaes }}{% endif %}
                             </a>
 
                         {% endfor %}

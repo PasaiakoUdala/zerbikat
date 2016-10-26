@@ -4,7 +4,8 @@
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">{{ 'messages.fitxak'|trans }}</a>
+                <p class="navbar-brand">{{ 'messages.fitxak'|trans }}</p>
+                <p class="navbar-text"> {{ fitxa }}</p>
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
@@ -1013,10 +1014,12 @@
     </div><!-- /.modal -->
 
     <div class="modal fade" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    {#<div class=" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
         <div class="modal-dialog">
-            <div id="modalOrdenabody" class="modal-content">
+            <form id="frmfitxafamilia"  name="frmfitxafamilia" method="post" action="" role="form">
+                <div id="modalOrdenabody" class="modal-content">
 
-            </div><!-- /.modal-content -->
+                </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
@@ -1096,19 +1099,16 @@
                 tags: true,
                 sorter: customSorter
             });
-
             $('#fitxa_norkeskatuak').select2({
                 theme: 'bootstrap',
                 tags: true,
                 sorter: customSorter
             });
-
             $('#fitxa_dokumentazioak').select2({
                 theme: 'bootstrap',
                 tags: true,
                 sorter: customSorter
             });
-
             $('.nireselect2').select2({
                 theme: 'bootstrap',
                 sorter: customSorter
@@ -1137,7 +1137,6 @@
                     $('#cmbParametros').empty();
                 }
             });
-
 
             $('#cmbFamilia').change(function () {
                 $('#nireloader2').addClass('loading');
@@ -1223,7 +1222,6 @@
 
             });
 
-
             $('.btnSeleccionar').click(function () {
                 var resul = "";
                 var nireParametroak = $('#cmbParametros option').size();
@@ -1245,6 +1243,7 @@
                   var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu', id: miid});
 
                 $('#modalOrdenabody').load(url, function () {
+                    $("#frmfitxafamilia").attr("action", url);
                     $('#modalOrdena').modal();
                 });
 
