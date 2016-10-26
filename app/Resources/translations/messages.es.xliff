@@ -929,6 +929,10 @@
                 <source>messages.table</source>
                 <target>tabla</target>
             </trans-unit>
+            <trans-unit id="messages.azpifamiliak">
+                <source>messages.azpifamiliak</source>
+                <target>Subfamilias</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
