@@ -4,6 +4,7 @@
 
     use Doctrine\Common\Collections\ArrayCollection;
     use Doctrine\ORM\Mapping as ORM;
+    use Doctrine\ORM\Mapping\OrderBy;
     use JMS\Serializer\Annotation\ExclusionPolicy;
     use JMS\Serializer\Annotation\Expose;
     use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
@@ -88,6 +89,7 @@
 
         /**
          * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="familia")
+         * @OrderBy({"ordena" = "ASC"})
          */
         private $fitxafamilia;
 

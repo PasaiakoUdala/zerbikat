@@ -3,6 +3,7 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OrderBy;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
@@ -42,6 +43,7 @@ class Fitxafamilia
     /**
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Familia", inversedBy="fitxafamilia")
      * @ORM\JoinColumn(name="familia_id", referencedColumnName="id", nullable=false)
+     * @OrderBy({"ordena" = "ASC"})
      */
     protected $familia;
 
