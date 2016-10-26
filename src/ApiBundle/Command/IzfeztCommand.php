@@ -15,7 +15,7 @@
     use GuzzleHttp;
     use Doctrine\Common\Collections\ArrayCollection;
 
-    class IzfeCommand extends ContainerAwareCommand
+    class IzfeztCommand extends ContainerAwareCommand
     {
 
         /**
@@ -24,9 +24,10 @@
         protected function configure ()
         {
             $this
-                ->setName( 'api:izfe' )
-                ->setDescription( 'Zerbitzu telematikoen fitxategia sortu' )
-                ->addArgument( 'udalKodea', InputArgument::REQUIRED, 'Udal kodea, adibidez pasaiarentzat 064.' );
+                ->setName( 'api:izfezt' )
+                ->setDescription( 'Zerbitzu telematikoen fitxategia sortu. Familia <-> Azpifamilia erabiliz' )
+                ->addArgument( 'udalKodea', InputArgument::REQUIRED, 'Udal kodea, adibidez pasaiarentzat 064.' )
+                ->addArgument( 'debug', InputArgument::OPTIONAL, 'Informazio areagotua bistaratu.' );
         }
 
         // UDAA20401
@@ -156,6 +157,8 @@
         protected function execute ( InputInterface $input, OutputInterface $output )
         {
             $udalKodea = $input->getArgument( 'udalKodea' );
+            $debug = $input->getArgument( 'debug' );
+
             $filename = "web/doc/$udalKodea/izfesql.sql";
 
             $em = $this->getContainer()->get( 'doctrine' )->getManager();
@@ -165,7 +168,6 @@
                     'kodea' => $udalKodea,
                 )
             );
-
 
             $output->writeln(
                 [
@@ -233,8 +235,11 @@
 
             $output->writeln( [$COUNT_FITXA.' aurkitu dira.', ''] );
 
-            $progress = new ProgressBar( $output, $COUNT_FITXA );
-            $progress->start();
+            if (!$debug) {
+                $progress = new ProgressBar( $output, $COUNT_FITXA );
+                $progress->start();
+            }
+
 
             $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
@@ -260,8 +265,10 @@
 
             $query = $em->createQuery(
                 '
-                  SELECT f FROM BackendBundle:Familia f LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
-                    WHERE u.kodea = :udala
+                  SELECT f 
+                    FROM BackendBundle:Familia f 
+                      LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id                      
+                  WHERE u.kodea = :udala AND f.parent IS NULL 
                 '
             );
             $query->setParameter( 'udala', $udalKodea );
@@ -308,11 +315,59 @@
             /**** Fin home-an familiak sortu  **********************************/
             /*******************************************************************/
 
+            foreach ( $familiak as $familia ) {
+                if ($debug) {
+                    echo "\n";
+                    echo "\n";
+                    echo "\n";
+                    echo $familia."\n";
+                    echo "-----------------------------------------------\n";
+                }
+                foreach ($familia->getFitxafamilia() as $fitxafamilia) {
+                    if ($debug) {
+                        echo "|__" . $fitxafamilia->getFitxa() . "\n";
+                    }
+                    $f = $fitxafamilia->getFitxa();
+                    //  $this->addFicha( $f );
+                }
 
+                foreach ($familia->getChildren() as $c) {
+                    if ($debug) {
+                        echo "     \n";
+                        echo "   |" .$c."|\n";
+                        echo "   ---------------------------------------------\n";
+                    }
+                    foreach ($c->getFitxafamilia() as $fitx) {
+                        if ($debug) {
+                            echo "      |__".$fitx->getFitxa()->getDeskribapenaeu()."\n";
+                        }
+                    }
+
+                }
+            }
+
+
+
+            // Fitxategia sortu
+            $fs = new Filesystem();
+            try {
+                $fs->dumpFile( $filename, $sql );
+            } catch ( IOExceptionInterface $e ) {
+                echo "An error occurred while creating your directory at ".$e->getPath();
+            }
+
+            if (!$debug ) {
+                $progress->finish();
+            }
+
+        }
+
+
+        function addFicha($fitxa){
             /*******************************************************************/
             /**** Fitxak-a sortu  ************************************************/
             /*******************************************************************/
-            foreach ( $fitxak as $fitxa ) {
+
 
                 $kostuZerrenda = array ();
                 foreach ( $fitxa->getKostuak() as $kostu ) {
@@ -1215,40 +1270,6 @@
 
                 /****** HASI JARRAIBIDEAK ******************************************************************/
 
-//
-//                  EZ!!!
-//
-//                $sql = $sql.$this->addBloque(
-//                        $A204AYUNTA,
-//                        $idBlokea,
-//                        "INSTRUCCIONES (uso interno)",
-//                        "JARRAIBIDEAK (barne erabilera)"
-//                    );
-//                $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-//
-//                $sql = $sql.$this->addElementua(
-//                        $A204AYUNTA,
-//                        $idElementua,
-//                        "Texto",
-//                        $fitxa->getJarraibideakes(),
-//                        $fitxa->getJarraibideakes(),
-//                        "PARRAFO"
-//                    );
-//                $sql = $sql.$this->addElementuaBloque(
-//                        $A204AYUNTA,
-//                        $idBlokea,
-//                        $idElementua,
-//                        $idOrdenElementua
-//                    );
-//                $idElementua += 1;
-//                $idOrdenElementua += 1;
-//
-//                $idBlokea += 1;
-//                $idOrden += 1;
-
-                /****** FIN JARRAIBIDEAK *******************************************************************/
-
-
                 /****** HASI BESTEAK1 *********************************************************************/
                 if ( ($eremuak['besteak1text']) || ($eremuak['besteak1table']) ) {
                     $sql = $sql.$this->addBloque(
@@ -1531,19 +1552,9 @@
                 /****** FIN DATUENBABESA *********************************************************************/
 
 
-                $idPagina += 1;
-                $progress->advance();
-            }
+//                $idPagina += 1;
+//                $progress->advance();
 
 
-            // Fitxategia sortu
-            $fs = new Filesystem();
-            try {
-                $fs->dumpFile( $filename, $sql );
-            } catch ( IOExceptionInterface $e ) {
-                echo "An error occurred while creating your directory at ".$e->getPath();
-            }
-
-            $progress->finish();
         }
     }
