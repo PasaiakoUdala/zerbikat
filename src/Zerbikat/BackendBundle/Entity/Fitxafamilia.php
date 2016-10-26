@@ -10,7 +10,7 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 /**
  * Fitxafamilia
  *
- * @ORM\Table(name="fitxa_familia")
+ * @ORM\Table(name="fitxa_familia_erlazioak")
  * @ORM\Entity(repositoryClass="Zerbikat\BackendBundle\Repository\FitxafamiliaRepository")
  * @ExclusionPolicy("all")
  * @UdalaEgiaztatu(userFieldName="udala_id")

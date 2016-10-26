@@ -32,11 +32,33 @@
                     </p>
                 </div></a>
                 <div id='fam{{ familia.id }}' style='display: none;'>
-                    {#{% for fitxa in familia.fitxak %}#}
-                        {#<a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxa.id }) }}" class="list-group-item">#}
-                            {#{% if app.request.locale == 'eu'%}{{ fitxa.deskribapenaeu }}{% else %} {{ fitxa.deskribapenaes }}{% endif %}#}
-                        {#</a>#}
-                    {#{% endfor %}#}
+                    {% for fitxafamilia  in  familia.fitxafamilia %}
+                        <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}" class="list-group-item">
+                            {% if app.request.locale == 'eu'%}{{ fitxafamilia.fitxa.deskribapenaeu }}{% else %} {{ fitxafamilia.fitxa.deskribapenaes }}{% endif %}
+                        </a>
+                    {% endfor %}
+
+                    {% for c in familia.children %}
+                        <a href="#" class="list-group-item list-group-item-warning">
+                            {% if app.request.locale == 'eu'%}{{ c.familiaeu }}{% else %} {{ c.familiaes }}{% endif %}
+                            {% for fitxafamilia in c.fitxafamilia %}
+                                {#{{ dump(fitxafamilia.fitxa) }}#}
+                                    {#{{ dump("2") }}#}
+                                    <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}" class="list-group-item">
+                                        {% if app.request.locale == 'eu'%}{{ fitxafamilia.fitxa.deskribapenaeu }}{% else %} {{ fitxafamilia.fitxa.deskribapenaes }}{% endif %}
+                                    </a>
+
+                            {% endfor %}
+
+                        </a>
+
+                    {% endfor %}
+
+
+
+
+
+
                 </div>
             </div>
     {% endfor %}
