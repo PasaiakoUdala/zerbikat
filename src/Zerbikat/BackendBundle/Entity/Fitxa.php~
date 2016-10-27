@@ -476,6 +476,7 @@
         /**
          * @Expose
          * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="fitxa")
+         * @OrderBy({"ordena" = "ASC"})
          */
         private $fitxafamilia;
 

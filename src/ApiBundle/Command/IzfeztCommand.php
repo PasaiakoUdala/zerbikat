@@ -225,6 +225,7 @@
             $idElementua = 9000;
             $A204AYUNTA = "'".$udalKodea."'";
             $mapa = array ();
+            $sortutakoFitxak = array();
 
             $sql = "DELETE FROM UDAA20401 WHERE A204CAPLI='Z' AND A204AYUNTA=$A204AYUNTA;\n"; // Orriak
             $sql = $sql."DELETE FROM UDAA20201 WHERE A202CAPLI='Z' AND A202AYUNTA=$A204AYUNTA;\n"; // Elementuak
@@ -329,6 +330,8 @@
                         echo "|__" . $fitxafamilia->getFitxa() . "\n";
                     }
                     $fitxa = $fitxafamilia->getFitxa();
+                    $mapa[$familia->getId()] = $idBlokea;
+                    $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $fitxa->getId();
 
                     /**************************************************************************************************/
                     /**** Fitxak-a sortu   ****************************************************************************/

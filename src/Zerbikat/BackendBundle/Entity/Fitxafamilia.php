@@ -42,7 +42,7 @@ class Fitxafamilia
 
     /**
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Familia", inversedBy="fitxafamilia")
-     * @ORM\JoinColumn(name="familia_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="familia_id", referencedColumnName="id", nullable=false, onDelete="cascade")
      * @OrderBy({"ordena" = "ASC"})
      */
     protected $familia;
