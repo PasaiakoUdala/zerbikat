@@ -500,7 +500,7 @@
             </trans-unit>
             <trans-unit id="messages.kanaltelematikoa">
                 <source>messages.kanaltelematikoa</source>
-                <target>¿Es telemático?</target>
+                <target>¿Tiene que coger la raiz IZFE/Muniges?</target>
             </trans-unit>
             <trans-unit id="messages.postakodea">
                 <source>messages.postakodea</source>

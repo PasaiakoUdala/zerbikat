@@ -498,7 +498,7 @@
             </trans-unit>
             <trans-unit id="messages.kanaltelematikoa">
                 <source>messages.kanaltelematikoa</source>
-                <target>Telematikoa da?</target>
+                <target>Izfe/Muniges erroa hartu behar du?</target>
             </trans-unit>
             <trans-unit id="messages.postakodea">
                 <source>messages.postakodea</source>
