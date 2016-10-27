@@ -369,7 +369,7 @@
                                 "PROPIA",
                                 $idPagina
                             );
-
+                        $idElementua+=1;
                         /****** HASI HELBURUA *********************************************************************/
                         if ( $eremuak['helburuatext'] ) {
                             $sql = $sql.$this->addBloque(
