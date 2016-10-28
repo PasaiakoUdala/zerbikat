@@ -3,12 +3,79 @@
     {{ parent() }}
     <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
         <div class="container">
-            <div class="navbar-header">
-                <p class="navbar-brand">{{ 'messages.fitxak'|trans }}</p>
-                <p class="navbar-text"> {{ fitxa }}</p>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse navbar-right">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ 'messages.fitxak'|trans }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {% if (eremuak["helburuatext"]==1) %}
+                                <li><a href="#helburua">Helburua</a></li>
+                            {% endif %}
+                            {% if ((eremuak["norkeskatutext"]==1) or (eremuak["norkeskatutable"]==1))%}
+                                <li><a href="#norkeskatu">Nork eska dezake?</a></li>
+                            {% endif %}
+                            {% if ((eremuak["dokumentazioatext"]==1) or (eremuak["dokumentazioatable"]==1))%}
+                                <li><a href="#dokumentazioa">Dokumentazioa</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["doklaguntext"]==1) or (eremuak["doklaguntable"]==1))%}
+                                <li><a href="#dokumentuLaguntzaileak">Dokumentazio Laguntzailea</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["kanalatext"]==1) or (eremuak["kanalatable"]==1))%}
+                                <li><a href="#kanala">Kanala</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["kostuatext"]==1) or (eremuak["kostuatable"]==1))%}
+                                <li><a href="#kostua">Kostua</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["ebazpensinpli"]==1) or (eremuak["arduraaitorpena"]==1) or (eremuak["aurreikusi"]==1) or (eremuak["arrunta"]==1) or (eremuak["isiltasunadmin"]==1))%}
+                                <li><a href="#epeak">Epeak</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["araudiatext"]==1) or (eremuak["araudiatable"]==1))%}
+                                <li><a href="#araudia">Araudia</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["prozeduratext"]==1) or (eremuak["prozeduratable"]==1))%}
+                                <li><a href="#prozedurak">Prozedurak</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["norkebatzitext"]==1) or (eremuak["norkebatzitable"]==1))%}
+                                <li><a href="#norkebatzi">nork onartu behar du?</a></li>
+                            {% endif %}
+
+                            <li><a href="#azpisaila">Azpisaila</a></li>
+
+                            {% if ((eremuak["oharraktext"]==1))%}
+                                <li><a href="#oharrak">Oharrak</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["besteak1text"]==1) or (eremuak["besteak1table"]==1))%}
+                                <li><a href="#besteak1">Besteak1</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["besteak2text"]==1) or (eremuak["besteak2table"]==1))%}
+                                <li><a href="#besteak2">Besteak2</a></li>
+                            {% endif %}
+
+                            {% if ((eremuak["besteak3text"]==1) or (eremuak["besteak3table"]==1))%}
+                                <li><a href="#besteak3">Besteak3</a></li>
+                            {% endif %}
+
+                        </ul>
+                    </li>
+                    <li><a href="#">{% if app.request.getLocale()=="eu" %}
+                                {{ fitxa.espedientekodea }}{{ fitxa.deskribapenaeu|length > 100 ? fitxa.deskribapenaeu|slice(0, 100) ~ '...' : fitxa.deskribapenaeu  }}
+                            {% else %}
+                                {{ fitxa.espedientekodea }}{{ fitxa.deskribapenaes|length > 100 ? fitxa.deskribapenaes|slice(0, 100) ~ '...' : fitxa.deskribapenaes  }}
+                            {% endif %}</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
                     <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()"
                            class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
                     <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}"
@@ -38,6 +105,7 @@
         body.loading .modal {
             display: block;
         }
+
     </style>
 {% endblock %}
 {% block body %}
@@ -73,7 +141,7 @@
     </div>
 
     {% if eremuak.helburuatext %}
-        <div class="row">
+        <div class="row" id="helburua">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.helburualabeleu }}</h2>
@@ -96,7 +164,7 @@
     {% endif %}
 
     {% if (eremuak.norkeskatutext or eremuak.norkeskatutable) %}
-        <div class="row">
+        <div class="row" id="norkeskatu">
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>{{ labelak.norkeskatulabeleu }}</h2>
@@ -135,7 +203,7 @@
     {% endif %}
 
     {% if (eremuak.dokumentazioatext or eremuak.dokumentazioatable) %}
-        <div class="row">
+        <div class="row" id="dokumentazioa">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.dokumentazioalabeleu }}</h2>
@@ -171,7 +239,7 @@
     {% endif %}
 
     {% if (eremuak.doklaguntext or eremuak.doklaguntable) %}
-        <div class="row">
+        <div class="row" id="dokumentuLaguntzaileak">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.doklagunlabeleu }}</h2>
@@ -207,7 +275,7 @@
     {% endif %}
 
     {% if (eremuak.kanalatext or eremuak.kanalatable) %}
-        <div class="row">
+        <div class="row" id="kanala">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.kanalalabeleu }}</h2>
@@ -242,9 +310,8 @@
         </div>
     {% endif %}
 
-
     {% if (eremuak.kostuatext or eremuak.kostuatable) %}
-        <div class="row">
+        <div class="row" id="kostua">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.kostualabeleu }}</h2>
@@ -297,9 +364,8 @@
         </div>
     {% endif %}
 
-
     {% if (eremuak.ebazpensinpli or eremuak.arduraaitorpena or eremuak.aurreikusi or eremuak.arrunta or eremuak.isiltasunadmin) %}
-        <div class="row">
+        <div class="row" id="epeak">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.epealabeleu }}</h2>
@@ -359,7 +425,7 @@
     {% endif %}
 
     {% if (eremuak.araudiatext or eremuak.araudiatable) %}
-        <div class="row">
+        <div class="row" id="araudia">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.araudialabeleu }}</h2>
@@ -418,9 +484,8 @@
         </div>
     {% endif %}
 
-
     {% if (eremuak.prozeduratext or eremuak.prozeduratable) %}
-        <div class="row">
+        <div class="row" id="prozedurak">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.prozeduralabeleu }}</h2>
@@ -507,7 +572,7 @@
         </div>
     {% endif %}
 
-    <div class="row">
+    <div class="row" id="azpisaila">
         <div class="col-sm-6">
             <div class="page-header">
                 <h2>{{ labelak.azpisailalabeleu }}</h2>
@@ -528,7 +593,7 @@
     </div>
 
     {% if eremuak.oharraktext %}
-        <div class="row">
+        <div class="row" id="oharrak">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.oharraklabeleu }}</h2>
@@ -574,7 +639,7 @@
 
 
     {% if (eremuak.besteak1text or eremuak.besteak1table) %}
-        <div class="row">
+        <div class="row" id="besteak1">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.besteak1labeleu }}</h2>
@@ -612,7 +677,7 @@
 
 
     {% if (eremuak.besteak2text or eremuak.besteak2table) %}
-        <div class="row">
+        <div class="row" id="besteak2">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.besteak2labeleu }}</h2>
@@ -648,7 +713,7 @@
     {% endif %}
 
     {% if (eremuak.besteak3text or eremuak.besteak3table) %}
-        <div class="row">
+        <div class="row" id="besteak3">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>{{ labelak.besteak3labeleu }}</h2>
@@ -792,92 +857,92 @@
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="row">
-        {#{% else %}#}
-        {#<div class="row hidden">#}
-        {#{% endif %}#}
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>ESPEDIENTE KUDEAKETA</h2>
-            </div>
+    <div class="row">
+    {#{% else %}#}
+    {#<div class="row hidden">#}
+    {#{% endif %}#}
+    <div class="col-sm-6">
+        <div class="page-header">
+            <h2>ESPEDIENTE KUDEAKETA</h2>
         </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>GESTIÓN DE EXPEDIENTES</h2>
-            </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="page-header">
+            <h2>GESTIÓN DE EXPEDIENTES</h2>
         </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-7">
-            <div class="form-group">
-                <b>{{ 'messages.zerbitzua'|trans }}</b>
-                {#{{ form_label(edit_form.zerbitzua, 'Zerbitzua', { 'label_attr': {'class': 'control-label'} }) }}#}
-                {{ form_errors(edit_form.zerbitzua) }}
-                {{ form_widget(edit_form.zerbitzua, {'attr': {'class': 'form-control'}}) }}
-            </div>
+    </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-7">
+        <div class="form-group">
+            <b>{{ 'messages.zerbitzua'|trans }}</b>
+            {#{{ form_label(edit_form.zerbitzua, 'Zerbitzua', { 'label_attr': {'class': 'control-label'} }) }}#}
+            {{ form_errors(edit_form.zerbitzua) }}
+            {{ form_widget(edit_form.zerbitzua, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                <b>{{ 'messages.parametroa'|trans }}</b>
-                {#{{ form_label(edit_form.parametroa, 'Parametroa', { 'label_attr': {'class': 'control-label'} }) }}#}
-                {{ form_errors(edit_form.parametroa) }}
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <b>{{ 'messages.parametroa'|trans }}</b>
+            {#{{ form_label(edit_form.parametroa, 'Parametroa', { 'label_attr': {'class': 'control-label'} }) }}#}
+            {{ form_errors(edit_form.parametroa) }}
 
-                {{ form_widget(edit_form.parametroa, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(edit_form.parametroa, {'attr': {'class': 'form-control'}}) }}
 
 
-            </div>
         </div>
-        <div class="col-sm-1">
-            <b>&nbsp;</b>
-            <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
-                Seleccionar
-            </button>
+    </div>
+    <div class="col-sm-1">
+        <b>&nbsp;</b>
+        <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+            Seleccionar
+        </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Espediente Kudeaketa</h4>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Espediente Kudeaketa</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cmbServiciosDisponibles">Servicios Disponibles</label>
+                                    <select id="cmbServiciosDisponibles" multiple class="form-control" size="9">
+                                        <option value="00">00-Configuración</option>
+                                        <option value="01">01-Registro</option>
+                                        <option value="02">02-Multas</option>
+                                        <option value="03">03-Detalle de Recibos SEPA</option>
+                                        <option value="04">04-Tasas / Impuestos</option>
+                                        <option value="05">05-P.M.H.</option>
+                                        <option value="06">06-Consulta de Expedientes</option>
+                                        <option value="07">07-Verificación de Documentos</option>
+                                        <option value="08">08-Gestión de Expedientes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cmbParametros">Parametros</label>
+                                    <select id="cmbParametros" multiple class="form-control" size="09">
+                                    </select>
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="cmbServiciosDisponibles">Servicios Disponibles</label>
-                                        <select id="cmbServiciosDisponibles" multiple class="form-control" size="9">
-                                            <option value="00">00-Configuración</option>
-                                            <option value="01">01-Registro</option>
-                                            <option value="02">02-Multas</option>
-                                            <option value="03">03-Detalle de Recibos SEPA</option>
-                                            <option value="04">04-Tasas / Impuestos</option>
-                                            <option value="05">05-P.M.H.</option>
-                                            <option value="06">06-Consulta de Expedientes</option>
-                                            <option value="07">07-Verificación de Documentos</option>
-                                            <option value="08">08-Gestión de Expedientes</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="cmbParametros">Parametros</label>
-                                        <select id="cmbParametros" multiple class="form-control" size="09">
-                                        </select>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
-                                <button type="button" class="btn btn-primary btnSeleccionar">Seleccionar</button>
-                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
+                            <button type="button" class="btn btn-primary btnSeleccionar">Seleccionar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     {% endif %}
 
 
@@ -1014,9 +1079,9 @@
     </div><!-- /.modal -->
 
     <div class="modal fade" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    {#<div class=" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
+        {#<div class=" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
         <div class="modal-dialog">
-            <form id="frmfitxafamilia"  name="frmfitxafamilia" method="post" action="" role="form">
+            <form id="frmfitxafamilia" name="frmfitxafamilia" method="post" action="" role="form">
                 <div id="modalOrdenabody" class="modal-content">
 
                 </div><!-- /.modal-content -->
@@ -1024,6 +1089,7 @@
     </div><!-- /.modal -->
 
     <input id="fitxa_id" type="hidden" value="{{ fitxa.id }}">
+
 {% endblock %}
 
 {% block javascripts %}
@@ -1031,7 +1097,12 @@
 
     <script type="text/javascript">
 
+
         $(function () {
+            var shiftWindow = function() { scrollBy(0, -75) };
+            if (location.hash) shiftWindow();
+            window.addEventListener("hashchange", shiftWindow);
+
 
             var customSorter = function (data) {
 
@@ -1150,7 +1221,6 @@
                 });
 
 
-
                 $('#cmbAzpifamilia').empty();
 
                 var jqxhr2 = $.getJSON(urlOrdena, function (result) {
@@ -1240,7 +1310,7 @@
                 $('#nireloader').addClass('loading');
                 var miid = $(this).data('id');
 
-                  var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu', id: miid});
+                var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu', id: miid});
 
                 $('#modalOrdenabody').load(url, function () {
                     $("#frmfitxafamilia").attr("action", url);
