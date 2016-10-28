@@ -85,7 +85,7 @@ class Dokumentazioa
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="dokumentazioak")
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="dokumentazioak", cascade="persist"))
      */
     private $fitxak;
 

@@ -75,7 +75,7 @@ class Doklagun
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="doklagunak")
+     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="doklagunak", cascade="persist"))
      */
     private $fitxak;
 

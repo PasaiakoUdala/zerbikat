@@ -55,7 +55,7 @@ class Norkeskatu
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="norkeskatuak")
+     * @ORM\ManyToMany(targetEntity="Fitxa",mappedBy="norkeskatuak", cascade="persist"))
      */
     private $fitxak;
 
