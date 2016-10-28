@@ -33,8 +33,7 @@
             $auth_checker = $this->get( 'security.authorization_checker' );
             if ( $auth_checker->isGranted( 'ROLE_KUDEAKETA' ) ) {
                 $em = $this->getDoctrine()->getManager();
-                $familias = $em->getRepository( 'BackendBundle:Familia' )->findBy(
-                    array ('parent' => null),
+                $familias = $em->getRepository( 'BackendBundle:Familia' )->findBy(array(),
                     array ('ordena' => 'ASC')
                 );
                 $deleteForms = array ();

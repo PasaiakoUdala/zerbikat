@@ -27,8 +27,8 @@
             </tr>
         </thead>
         <tbody>
-        {% for familium in familias %}
-            <tr>
+        {% for familium in familias if familium.parent==null %}
+            <tr class="info">
                 <td>{{ familium.ordena }}</td>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ familium.udala }}</td>{% endif %}
                 <td>
@@ -47,7 +47,7 @@
                 <td NOWRAP class="text-right">
                     <ul class="list-inline">
                         <li><a href="{{ path('familia_edit', { 'id': familium.id }) }}" class="fa fa-pencil"></a></li>
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_ADMIN') and familium.children | length == 0%}
                             <li>{{ form_start(deleteforms[familium.id],{'attr': {'id': familium.id}}) }}
                                 <a href="#" onclick="ezabatu({{ familium.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[familium.id]) }}</li>
@@ -55,6 +55,39 @@
                     </ul>
                 </td>
             </tr>
+
+            {% for c in familium.children %}
+                <tr>
+                    <td>{{ c.ordena }}</td>
+                    {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ c.udala }}</td>{% endif %}
+                    <td>
+                        {% if app.request.locale == 'es'%}
+                            {{ "  |__" ~ c.familiaes }}
+                        {% else %}
+                            {{ "  |__" ~ c.familiaeu }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if app.request.locale == 'es'%}
+                            {{ c.deskribapenaes }}
+                        {% else %}
+                            {{ c.deskribapenaeu }}
+                        {% endif %}
+                    </td>
+                    <td><span class="label label-primary">{{ c.children | length }}</span></td>
+                    <td NOWRAP class="text-right">
+                        <ul class="list-inline">
+                            <li><a href="{{ path('familia_edit', { 'id': c.id }) }}" class="fa fa-pencil"></a></li>
+                            {% if is_granted('ROLE_ADMIN') and c.children | length == 0%}
+                                <li>{{ form_start(deleteforms[c.id],{'attr': {'id': c.id}}) }}
+                                    <a href="#" onclick="ezabatu({{ c.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
+                                    {{ form_end(deleteforms[c.id]) }}</li>
+                            {% endif %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+
         {% endfor %}
         </tbody>
     </table>
