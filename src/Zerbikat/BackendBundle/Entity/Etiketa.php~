@@ -56,7 +56,7 @@ class Etiketa
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="etiketak")
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="etiketak", cascade="persist"))
      */
     private $fitxak;
     

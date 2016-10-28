@@ -111,8 +111,13 @@ class Kanala
      * @ORM\Column(name="telematikoa", type="boolean", nullable=true)
      */
     private $telematikoa;
-       
-    
+
+    /**
+     * @var erakutsi
+     *
+     * @ORM\Column(name="erakutsi", type="boolean", nullable=true)
+     */
+    private $erakutsi;
     
     
     /**
@@ -664,5 +669,29 @@ class Kanala
     public function getTelematikoa()
     {
         return $this->telematikoa;
+    }
+
+    /**
+     * Set erakutsi
+     *
+     * @param boolean $erakutsi
+     *
+     * @return Kanala
+     */
+    public function setErakutsi($erakutsi)
+    {
+        $this->erakutsi = $erakutsi;
+
+        return $this;
+    }
+
+    /**
+     * Get erakutsi
+     *
+     * @return boolean
+     */
+    public function getErakutsi()
+    {
+        return $this->erakutsi;
     }
 }

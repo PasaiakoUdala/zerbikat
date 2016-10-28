@@ -331,1227 +331,15 @@
                     }
                     $fitxa = $fitxafamilia->getFitxa();
                     $mapa[$familia->getId()] = $idBlokea;
-                    $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $fitxa->getId();
+
 
                     /**************************************************************************************************/
                     /**** Fitxak-a sortu   ****************************************************************************/
                     /**** addFitxa()       ****************************************************************************/
                     /**************************************************************************************************/
                     if ( 1 == 1 ){ // Folding egiteko addFitxa bezala refaktorizatu beharko zen
-                        $kostuZerrenda = array ();
-                        foreach ( $fitxa->getKostuak() as $kostu ) {
-                            $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
-                            if ( (strlen( $api ) > 0) && ($kostu->getKostua()) ) {
-                                $client = new GuzzleHttp\Client();
-                                $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
-                                $fitxaKostua = (string)$proba->getBody();
-                                $array = json_decode( $fitxaKostua, true );
-                                $kostuZerrenda[] = $array;
-                            }
-                        }
 
-                        // Orria sortu fitxarentzat
-                        $sql = $sql.$this->addOrria(
-                                $A204AYUNTA,
-                                $idPagina,
-                                $fitxa->getEspedientekodea(),
-                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
-                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
-                                1,
-                                "UXX"
-                            );
-
-
-                        // Esteka sortu Home-an
-                        $sql = $sql.$this->addElementua(
-                                $A204AYUNTA,
-                                $idElementua,
-                                $fitxa->getEspedientekodea(),
-                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
-                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
-                                "PROPIA",
-                                $idPagina
-                            );
-                        $idElementua+=1;
-                        /****** HASI HELBURUA *********************************************************************/
-                        if ( $eremuak['helburuatext'] ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['helburualabeles'],
-                                    $labelak['helburualabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-                            $sql = $sql.$this->addElementua(
-                                    $A204AYUNTA,
-                                    $idElementua,
-                                    "Texto",
-                                    $fitxa->getHelburuaes(),
-                                    $fitxa->getHelburuaeu(),
-                                    "PARRAFO"
-                                );
-                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                            $idOrdenElementua += 1;
-                            $idElementua += 1;
-                        }
-                        /****** FIN HELBURUA *********************************************************************/
-
-                        /****** HASI NORK ESKATU *********************************************************************/
-                        if ( ($eremuak['norkeskatutext']) || ($eremuak['norkeskatutable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['norkeskatulabeles'],
-                                    $labelak['norkeskatulabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak['norkeskatutext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getNorkes(),
-                                        $fitxa->getNorkeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            if ( $eremuak["norkeskatutable"] ) {
-                                if ( $fitxa->getNorkeskatuak() ) {
-                                    foreach ( $fitxa->getNorkeskatuak() as $nork ) {
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $nork->getNorkes(),
-                                                $nork->getNorkeu(),
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
-                                    }
-                                }
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN NORK ESKATU *********************************************************************/
-
-                        /****** HASI DOKUMENTAZIOA *********************************************************************/
-                        if ( ($eremuak['dokumentazioatext']) || ($eremuak['dokumentazioatable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['dokumentazioalabeles'],
-                                    $labelak['dokumentazioalabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak["dokumentazioatable"] ) {
-                                if ( $fitxa->getDokumentazioak() ) {
-                                    $doctextes = "<ul>";
-                                    $doctexteu = "<ul>";
-                                    foreach ( $fitxa->getDokumentazioak() as $doc ) {
-                                        $doctextes = $doctextes."<li>";
-                                        $doctexteu = $doctexteu."<li>";
-
-                                        if ( $doc->getEstekaeu() ) {
-                                            $doctextes = $doctextes . "<a href='".$doc->getEstekaes()."' target='_blank'>".$doc->getKodea(
-                                                )." ".$doc->getDeskribapenaes()."</a>";
-                                            $doctexteu = $doctexteu . "<a href='".$doc->getEstekaeu()."' target='_blank'>".$doc->getKodea(
-                                                )." ".$doc->getDeskribapenaeu()."</a>";
-                                        } else {
-                                            $doctextes = $doctextes . $doc->getKodea()." ".$doc->getDeskribapenaes();
-                                            $doctexteu = $doctextes . $doc->getKodea()." ".$doc->getDeskribapenaeu();
-                                        }
-                                        $doctextes = $doctextes."</li>";
-                                        $doctexteu = $doctexteu."</li>";
-                                    }
-                                    $doctextes = $doctextes."</ul>";
-                                    $doctexteu = $doctexteu."</ul>";
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $doctextes,
-                                            $doctexteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-                            }
-                            if ( $eremuak['dokumentazioatext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getDokumentazioaes(),
-                                        $fitxa->getDokumentazioaeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN DOKUMENTAZIOA *********************************************************************/
-
-                        /****** HASI DOKUMENTAZIO LAGUNGARRIA *********************************************************************/
-                        if ( ($eremuak['doklaguntext']) || ($eremuak['doklaguntable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['dokumentazioalabeles'],
-                                    $labelak['dokumentazioalabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak['doklaguntext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getDoklagunes(),
-                                        $fitxa->getDoklaguneu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-
-                            if ( $eremuak["doklaguntable"] ) {
-                                if ( $fitxa->doklagunak() ) {
-                                    $doctextes = "<ul>";
-                                    $doctexteu = "<ul>";
-                                    foreach ( $fitxa->doklagunak() as $doc ) {
-                                        $doctextes = $doctextes."<li>";
-                                        $doctexteu = $doctexteu."<li>";
-
-                                        if ( $doc->getEstekaeu() ) {
-                                            $doctextes = "<a href='".$doc->getEstekaes()."' target='_blank'>".$doc->getKodea(
-                                                )." ".$doc->getDeskribapenaes()."</a>";
-                                            $doctexteu = "<a href='".$doc->getEstekaeu()."' target='_blank'>".$doc->getKodea(
-                                                )." ".$doc->getDeskribapenaeu()."</a>";
-                                        } else {
-                                            $doctextes = $doc->getKodea()." ".$doc->getDeskribapenaes();
-                                            $doctexteu = $doc->getKodea()." ".$doc->getDeskribapenaeu();
-                                        }
-                                        $doctextes = $doctextes."</li>";
-                                        $doctexteu = $doctexteu."</li>";
-                                    }
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $doctextes,
-                                            $doctexteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-                            }
-
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN DOKUMENTAZIO LAGUNGARRIA *********************************************************************/
-
-                        /****** HASI KANALA *********************************************************************/
-                        if ( ($eremuak['kanalatext']) || ($eremuak['kanalatable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['kanalalabeles'],
-                                    $labelak['kanalalabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak["kanalatable"] ) {
-
-                                foreach ( $kanalmotak as $k ) {
-                                    $aurkitua = 0;
-                                    $textes = "<ul>";
-                                    $texteu = "<ul>";
-
-
-                                    foreach ( $fitxa->getKanalak() as $kanala ) {
-                                        if ( $kanala->getKanalmota() == $k ) {
-                                            if ( $aurkitua == 0 ) {
-                                                if ( $k->getIkonoa() ) {
-                                                    $textes = $textes."<i class='fa ".$k->getIkonoa(
-                                                        )." aria-hidden='true'></i>";
-                                                    $texteu = $texteu."<i class='fa ".$k->getIkonoa(
-                                                        )." aria-hidden='true'></i>";
-                                                }
-                                                $textes = $textes."<b>".$k->getMotaes().":</b>";
-                                                $texteu = $texteu."<b>".$k->getMotaeu().":</b>";
-                                                $aurkitua = 1;
-                                            }
-                                            if ( $kanala->getTelematikoa() ) {
-                                                if ( $fitxa->getZerbitzua() ) {
-                                                    $textes = $textes."<li><a href='".$fitxa->getZerbitzua()->getErroaes(
-                                                        ).$fitxa->getUdala()->getKodea().$fitxa->getParametroa(
-                                                        )."' target='_blank'>".$kanala->getIzenaes()."</a></li>";
-                                                    $texteu = $texteu."<li><a href='".$fitxa->getZerbitzua()->getErroaeu(
-                                                        ).$fitxa->getUdala()->getKodea().$fitxa->getParametroa(
-                                                        )."' target='_blank'>".$kanala->getIzenaeu()."</a></li>";
-                                                }
-                                            } else {
-                                                if ( $k->getEsteka() ) {
-                                                    $textes = $textes."<li>";
-                                                    $texteu = $texteu."<li>";
-                                                    if ( $kanala->getIzenaes() ) {
-                                                        if ( (strpos( $kanala->getEstekaes(), "@" ) === true) and (strpos($kanala->getEstekaes(),"maps") == false)) {
-                                                            $textes = $textes."<a href='mailto:".$kanala->getEstekaes(
-                                                                )."'>".$kanala->getIzenaes()."</a><br />";
-                                                            $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu(
-                                                                )."'>".$kanala->getIzenaeu()."</a><br />";
-                                                        } else {
-                                                            $textes = $textes."<a href='".$kanala->getEstekaes(
-                                                                )."' target='_blank'>".$kanala->getIzenaes()."</a><br />";
-                                                            $texteu = $texteu."<a href='".$kanala->getEstekaeu(
-                                                                )."' target='_blank'>".$kanala->getIzenaeu()."</a><br />";
-                                                        }
-                                                    }
-                                                    if ( $kanala->getKalea() ) {
-                                                        $textes = $textes.$kanala->getKalea(). " ";
-                                                        $texteu = $texteu.$kanala->getKalea(). " ";
-                                                    }
-                                                    if ( $kanala->getKalezbkia() ) {
-                                                        $textes = $textes.$kanala->getKalezbkia(). " ";
-                                                        $texteu = $texteu.$kanala->getKalezbkia(). " ";
-                                                    }
-                                                    if ( $kanala->getPostakodea() ) {
-                                                        $textes = $textes.$kanala->getPostakodea(). " ";
-                                                        $texteu = $texteu.$kanala->getPostakodea(). " ";
-                                                    }
-                                                    if ( $kanala->getUdala() ) {
-                                                        $textes = $textes.$kanala->getUdala()."<br/>";
-                                                        $texteu = $texteu.$kanala->getUdala()."<br/>";
-                                                    }
-                                                    if ( $kanala->getOrdutegia() ) {
-                                                        $textes = $textes.$kanala->getOrdutegia()."<br/>";
-                                                        $texteu = $texteu.$kanala->getOrdutegia()."<br/>";
-                                                    }
-                                                    if ( $kanala->getTelefonoa() ) {
-                                                        $textes = $textes.$kanala->getTelefonoa()."<br/>";
-                                                        $texteu = $texteu.$kanala->getTelefonoa()."<br/>";
-                                                    }
-                                                    if ( $kanala->getFax() ) {
-                                                        $textes = $textes.$kanala->getFax()."<br/>";
-                                                        $texteu = $texteu.$kanala->getFax()."<br/>";
-                                                    }
-                                                    $textes = $textes."</li>";
-                                                    $texteu = $texteu."</li>";
-                                                } else { // if ($k->getEsteka())
-                                                    $textes = $textes."<li>";
-                                                    $texteu = $texteu."<li>";
-                                                    if ( $kanala->getIzenaes() ) {
-                                                        $textes = $textes.$kanala->getIzenaes()."<br/>";
-                                                        $texteu = $texteu.$kanala->getIzenaes()."<br/>";
-                                                    }
-                                                    if ( $kanala->getKalea() ) {
-                                                        $textes = $textes.$kanala->getKalea(). " ";
-                                                        $texteu = $texteu.$kanala->getKalea(). " ";
-                                                    }
-                                                    if ( $kanala->getKalezbkia() ) {
-                                                        $textes = $textes.$kanala->getKalezbkia(). " ";
-                                                        $texteu = $texteu.$kanala->getKalezbkia(). " ";
-                                                    }
-                                                    if ( $kanala->getPostakodea() ) {
-                                                        $textes = $textes.$kanala->getPostakodea(). " ";
-                                                        $texteu = $texteu.$kanala->getPostakodea(). " ";
-                                                    }
-                                                    if ( $kanala->getUdala() ) {
-                                                        $textes = $textes.$kanala->getUdala()."<br/>";
-                                                        $texteu = $texteu.$kanala->getUdala()."<br/>";
-                                                    }
-                                                    if ( $kanala->getOrdutegia() ) {
-                                                        $textes = $textes.$kanala->getOrdutegia()."<br/>";
-                                                        $texteu = $texteu.$kanala->getOrdutegia()."<br/>";
-                                                    }
-                                                    if ( $kanala->getTelefonoa() ) {
-                                                        $textes = $textes.$kanala->getTelefonoa()."<br/>";
-                                                        $texteu = $texteu.$kanala->getTelefonoa()."<br/>";
-                                                    }
-                                                    if ( $kanala->getFax() ) {
-                                                        $textes = $textes.$kanala->getFax()."<br/>";
-                                                        $texteu = $texteu.$kanala->getFax()."<br/>";
-                                                    }
-                                                    $textes = $textes."</li>";
-                                                    $texteu = $texteu."</li>";
-                                                }
-                                            }
-                                        }
-                                    }
-                                    $textes = $textes."</ul>";
-                                    $texteu = $texteu."</ul>";
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $textes,
-                                            $texteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-                            }
-                            if ( $eremuak['kanalatext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getKanalaes(),
-                                        $fitxa->getKanalaeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN DOKUMENTAZIOA *********************************************************************/
-
-                        /****** HASI KOSTUA *********************************************************************/
-                        if ( ($eremuak['kostuatext']) || ($eremuak['kostuatable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['kostualabeles'],
-                                    $labelak['kostualabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            $kont = 0;
-                            $textes = "";
-                            $texteu = "";
-
-                            if ( $eremuak["kostuatable"] ) {
-                                if ( $fitxa->getUdala()->getZergaor() ) {
-                                    foreach ( $kostuZerrenda as $kostutaula ) {
-                                        $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
-                                        $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
-
-                                        foreach ( $kostutaula["parrafoak"] as $parrafo ) {
-                                            $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
-                                            $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
-                                        }
-                                        foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
-                                            $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
-                                            $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
-                                        }
-                                        $textes = $textes."</table>";
-                                        $texteu = $texteu."</table>";
-                                        $kont += 1;
-                                    }
-                                } else {
-                                    foreach ( $fitxa->getAzpiatalak() as $azpiatal ) {
-                                        $textes = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaes()."</a></th></tr>";
-                                        $texteu = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaeu()."</a></th></tr>";
-
-                                        foreach ( $azpiatal->getParrafoak() as $parrafo ) {
-                                            $textes = $textes."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
-                                            $texteu = $texteu."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
-                                        }
-
-                                        foreach ( $azpiatal->getKontzeptiak() as $kontzeptu ) {
-                                            $textes = $textes."<tr><td>".$kontzeptu->getKontzeptuaes();
-                                            if ( $kontzeptu->getBaldintza() ) {
-                                                $textes = $textes.$kontzeptu->getBaldintza->getBaldintzaes();
-                                            }
-                                            $textes = $textes."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
-                                                )."</td></tr>";
-
-                                            $texteu = $texteu."<tr><td>".$kontzeptu->getKontzeptuaeu();
-                                            if ( $kontzeptu->getBaldintza() ) {
-                                                $texteu = $texteu.$kontzeptu->getBaldintza->getBaldintzaeu();
-                                            }
-                                            $texteu = $texteu."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
-                                                )."</td></tr>";
-                                        }
-                                        $textes = $textes."</table>";
-                                        $texteu = $texteu."</table>";
-                                        $kont += 1;
-                                    }
-                                }
-
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $textes,
-                                        $texteu,
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-
-
-                            }
-                            if ( $eremuak['kostuatext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getKostuaes(),
-                                        $fitxa->getKostuaeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-
-                            if ( (($fitxa->getKostuaes()== null) && ($kont == 0)) || (($fitxa->getKostuaeu() == null) && ($kont == 0)) ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $labelak["doanlabeles"],
-                                        $labelak["doanlabeleu"],
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN KOSTUA *********************************************************************/
-
-                        /****** HASI EBAZPENA *********************************************************************/
-                        if ( $eremuak['ebazpensinpli'] || ($eremuak['arduraaitorpena']) || ($eremuak['aurreikusi']) || ($eremuak['arrunta']) || ($eremuak['isiltasunadmin']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['epealabeles'],
-                                    $labelak['epealabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            $textes = "";
-                            $texteu = "";
-
-                            if ( $eremuak["aurreikusi"] ) {
-                                if ( $fitxa->getAurreikusi() ) {
-                                    $textes = $labelak["aurreikusilabeles"].": ".$fitxa->getAurreikusi()."\n";
-                                    $texteu = $labelak["aurreikusilabeleu"].": ".$fitxa->getAurreikusi()."\n";
-                                }
-                            }
-
-                            if ( $eremuak["arrunta"] ) {
-                                if ( $fitxa->getArrunta() ) {
-                                    $textes = $textes.$labelak["arruntalabeles"].": ".$fitxa->getArrunta()."\n";
-                                    $texteu = $texteu.$labelak["arruntalabeleu"].": ".$fitxa->getArrunta()."\n";
-                                }
-                            }
-
-                            if ( $eremuak["ebazpensinpli"] ) {
-                                if ( $fitxa->getEbazpensinpli() ) {
-                                    $textes = $textes.$labelak["ebazpensinplilabeles"].": ".$fitxa->getEbazpensinpli()."\n";
-                                    $texteu = $texteu.$labelak["ebazpensinplilabeleu"].": ".$fitxa->getEbazpensinpli()."\n";
-                                }
-                            }
-
-                            if ( $eremuak["arduraaitorpena"] ) {
-                                if ( $fitxa->getArduraaitorpena() ) {
-                                    $textes = $textes.$labelak["arduraaitorpenalabeles"].": ".$fitxa->getArduraaitorpena()."\n";
-                                    $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": ".$fitxa->getArduraaitorpena()."\n";
-                                }
-                            }
-
-                            if ( $eremuak["isiltasunadmin"] ) {
-                                if ( $fitxa->getIsiltasunadmin() ) {
-                                    $textes = $textes.$labelak["isiltasunadminlabeles"].": ".$fitxa->getIsiltasunadmin()."\n";
-                                    $texteu = $texteu.$labelak["isiltasunadminlabeleu"].": ".$fitxa->getIsiltasunadmin()."\n";
-                                }
-                            }
-
-                            $sql = $sql.$this->addElementua(
-                                    $A204AYUNTA,
-                                    $idElementua,
-                                    "Texto",
-                                    $textes,
-                                    $texteu,
-                                    "PARRAFO"
-                                );
-                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                            $idOrdenElementua += 1;
-                            $idElementua += 1;
-                        }
-                        /****** FIN EBAZPENA*********************************************************************/
-
-                        /****** HASI ARAUDIA *********************************************************************/
-                        if ( ($eremuak['araudiatext']) || ($eremuak['araudiatable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['araudialabeles'],
-                                    $labelak['araudialabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak['araudiatext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getAraudiaes(),
-                                        $fitxa->getAraudiaeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            if ( $eremuak["araudiatable"] ) {
-
-                                if ( $fitxa->getAraudiak() ) {
-                                    $doctextes = "<ul>";
-                                    $doctexteu = "<ul>";
-                                    foreach ( $fitxa->getAraudiak() as $araua ) {
-                                        $doctextes = $doctextes."<li>";
-                                        $doctexteu = $doctexteu."<li>";
-
-                                        if ( $araua->getAraudia()->getEstekaeu() ) {
-                                            $doctextes = $doctextes."<a href='".$araua->getAraudia()->getEstekaes(
-                                                )."' target='_blank'>".$araua->getAraudia()->getArauaes()."</a> " . $araua->getAtalaes();
-                                            $doctexteu = $doctexteu."<a href='".$araua->getAraudia()->getEstekaeu(
-                                                )."' target='_blank'>".$araua->getAraudia()->getArauaeu()."</a> " . $araua->getAtalaeu();
-                                        } else {
-                                            $doctextes = $doctextes.$araua->getAraudia()->getArauaes() . " - " . $araua->getAtalaes();
-                                            $doctexteu = $doctexteu.$araua->getAraudia()->getArauaeu() . " - " . $araua->getAtalaeu();
-                                        }
-                                        $doctextes = $doctextes."</li>";
-                                        $doctexteu = $doctexteu."</li>";
-                                    }
-                                    $doctextes = $doctextes."</ul>";
-                                    $doctexteu = $doctexteu."</ul>";
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $doctextes,
-                                            $doctexteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN ARAUDIA *********************************************************************/
-
-                        /****** HASI PROZEDURA *********************************************************************/
-                        if ( ($eremuak['prozeduratext']) || ($eremuak['prozeduratable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['prozeduralabeles'],
-                                    $labelak['prozeduralabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak['prozeduratext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getProzeduraes(),
-                                        $fitxa->getProzeduraeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            if ( $eremuak["prozeduratable"] ) {
-
-                                if ( $fitxa->getProzedurak() ) {
-                                    $doctextes = "<ul>";
-                                    $doctexteu = "<ul>";
-                                    foreach ( $fitxa->getProzedurak() as $prozedura ) {
-                                        $doctextes = $doctextes."<li>".$prozedura->getProzeduraes()."</li>";
-                                        $doctexteu = $doctexteu."<li>".$prozedura->getProzeduraeu()."</li>";
-                                    }
-                                    $doctextes = $doctextes."</ul>";
-                                    $doctexteu = $doctexteu."</ul>";
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $doctextes,
-                                            $doctexteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN PROZEDURA *********************************************************************/
-
-                        /****** HASI NORK EBATZI ******************************************************************/
-                        if ( ($eremuak['norkebatzitext']) || ($eremuak['norkebatzitable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['norkebatzilabeles'],
-                                    $labelak['norkebatzilabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak["norkebatzitable"] && $fitxa->getNorkebatzi() ) {
-
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getNorkebatzi()->getNorkes(),
-                                        $fitxa->getNorkebatzi()->getNorkeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-
-
-                            }
-                            if ( $eremuak['norkebatzitext'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getNorkonartues(),
-                                        $fitxa->getNorkonartueu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-
-
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN NORK EBATZI *******************************************************************/
-
-                        /****** HASI AZPISAILA ******************************************************************/
-                        if ( ($eremuak['azpisailatable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['azpisailalabeles'],
-                                    $labelak['azpisailalabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $fitxa->getAzpisaila() ) {
-
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getAzpisaila()->getSaila()->getSailaes()." - ".$fitxa->getAzpisaila(
-                                        )->getAzpisailaes(),
-                                        $fitxa->getAzpisaila()->getSaila()->getSailaeu()." - ".$fitxa->getAzpisaila(
-                                        )->getAzpisailaeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-
-
-                            }
-
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN AZPISAILA *******************************************************************/
-
-                        /****** HASI OHARRAK ******************************************************************/
-                        if ( ($eremuak['oharraktext']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['oharraklabeles'],
-                                    $labelak['oharraklabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            $sql = $sql.$this->addElementua(
-                                    $A204AYUNTA,
-                                    $idElementua,
-                                    "Texto",
-                                    $fitxa->getOharrakes(),
-                                    $fitxa->getOharrakeu(),
-                                    "PARRAFO"
-                                );
-                            $sql = $sql.$this->addElementuaBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $idElementua,
-                                    $idOrdenElementua
-                                );
-                            $idElementua += 1;
-                            $idOrdenElementua += 1;
-
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN OHARRAK *******************************************************************/
-
-                        /****** HASI JARRAIBIDEAK ******************************************************************/
-
-                        /****** HASI BESTEAK1 *********************************************************************/
-                        if ( ($eremuak['besteak1text']) || ($eremuak['besteak1table']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['besteak1labeles'],
-                                    $labelak['besteak1labeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak['besteak1text'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getBesteak1es(),
-                                        $fitxa->getBesteak1eu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            if ( $eremuak["besteak1table"] ) {
-
-                                if ( $fitxa->getBesteak1ak() ) {
-                                    $doctextes = "<ul>";
-                                    $doctexteu = "<ul>";
-                                    foreach ( $fitxa->getBesteak1ak() as $bes ) {
-                                        $doctextes = $doctextes."<li>";
-                                        $doctexteu = $doctexteu."<li>";
-                                        if ($bes->getEstekaes()) {
-                                            $doctextes = $doctextes."<a href='".$bes->getEstekaes()."'>".$bes->getIzenburuaes()."</a>";
-                                        } else {
-                                            $doctextes = $doctextes.$bes->getIzenburuaes();
-                                        }
-                                        if ($bes->getEstekaeu()) {
-                                            $doctexteu = $doctexteu."<a href='".$bes->getEstekaeu()."'>".$bes->getIzenburuaeu()."</a>";
-                                        } else {
-                                            $doctexteu = $doctexteu.$bes->getIzenburuaeu();
-                                        }
-                                        $doctextes = $doctextes."</li>";
-                                        $doctexteu = $doctexteu."</li>";
-                                    }
-                                    $doctextes = $doctextes."</ul>";
-                                    $doctexteu = $doctexteu."</ul>";
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $doctextes,
-                                            $doctexteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN BESTEAK1 *********************************************************************/
-
-                        /****** HASI BESTEAK2 *********************************************************************/
-                        if ( ($eremuak['besteak2text']) || ($eremuak['besteak2table']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['besteak2labeles'],
-                                    $labelak['besteak2labeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak['besteak2text'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getBesteak2es(),
-                                        $fitxa->getBesteak2eu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            if ( $eremuak["besteak2table"] ) {
-
-                                if ( $fitxa->getBesteak2ak() ) {
-                                    $doctextes = "<ul>";
-                                    $doctexteu = "<ul>";
-                                    foreach ( $fitxa->getBesteak2ak() as $bes ) {
-                                        $doctextes = $doctextes."<li>";
-                                        $doctexteu = $doctexteu."<li>";
-                                        if ($bes->getEstekaes()) {
-                                            $doctextes = $doctextes."<a href='".$bes->getEstekaes()."'>".$bes->getIzenburuaes()."</a>";
-                                        } else {
-                                            $doctextes = $doctextes.$bes->getIzenburuaes();
-                                        }
-                                        if ($bes->getEstekaeu()) {
-                                            $doctexteu = $doctexteu."<a href='".$bes->getEstekaeu()."'>".$bes->getIzenburuaeu()."</a>";
-                                        } else {
-                                            $doctexteu = $doctexteu.$bes->getIzenburuaeu();
-                                        }
-                                        $doctextes = $doctextes."</li>";
-                                        $doctexteu = $doctexteu."</li>";
-                                    }
-                                    $doctextes = $doctextes."</ul>";
-                                    $doctexteu = $doctexteu."</ul>";
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $doctextes,
-                                            $doctexteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN BESTEAK2 *********************************************************************/
-
-                        /****** HASI BESTEAK3 *********************************************************************/
-                        if ( ($eremuak['besteak3text']) || ($eremuak['besteak3table']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['besteak3labeles'],
-                                    $labelak['besteak3labeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-                            if ( $eremuak['besteak3text'] ) {
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getBesteak3es(),
-                                        $fitxa->getBesteak3eu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
-                            }
-                            if ( $eremuak["besteak3table"] ) {
-
-                                if ( $fitxa->getBesteak3ak() ) {
-                                    $doctextes = "<ul>";
-                                    $doctexteu = "<ul>";
-                                    foreach ( $fitxa->getBesteak3ak() as $bes ) {
-                                        $doctextes = $doctextes."<li>";
-                                        $doctexteu = $doctexteu."<li>";
-                                        if ($bes->getEstekaes()) {
-                                            $doctextes = $doctextes."<a href='".$bes->getEstekaes()."'>".$bes->getIzenburuaes()."</a>";
-                                        } else {
-                                            $doctextes = $doctextes.$bes->getIzenburuaes();
-                                        }
-                                        if ($bes->getEstekaeu()) {
-                                            $doctexteu = $doctexteu."<a href='".$bes->getEstekaeu()."'>".$bes->getIzenburuaeu()."</a>";
-                                        } else {
-                                            $doctexteu = $doctexteu.$bes->getIzenburuaeu();
-                                        }
-                                        $doctextes = $doctextes."</li>";
-                                        $doctexteu = $doctexteu."</li>";
-                                    }
-                                    $doctextes = $doctextes."</ul>";
-                                    $doctexteu = $doctexteu."</ul>";
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $doctextes,
-                                            $doctexteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                }
-
-                            }
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN BESTEAK3 *********************************************************************/
-
-                        /****** HASI DATUENBABESA *********************************************************************/
-                        if ( ($eremuak['datuenbabesatext']) || ($eremuak['datuenbabesatable']) ) {
-                            $sql = $sql.$this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak['datuenbabesalabeles'],
-                                    $labelak['datuenbabesalabeleu']
-                                );
-                            $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
-
-                            if ( $eremuak["datuenbabesatable"] && $fitxa->getDatuenbabesa() ) {
-
-                                $textes = $fitxa->getUdala()->getLopdes();
-
-                                $textes = str_replace('$$$fitxa.datuenbabesa.izenaes$$$', $fitxa->getDatuenbabesa()->getIzenaes(),$textes);
-                                $textes = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$textes);
-                                $textes = str_replace('$$$fitxa.datuenbabesa.xedeaes$$$', $fitxa->getDatuenbabesa()->getXedeaes(),$textes);
-                                $textes = str_replace('$$$fitxa.datuenbabesa.lagapenakes$$$', $fitxa->getDatuenbabesa()->getLagapenakes(),$textes);
-
-                                $texteu = $fitxa->getUdala()->getLopdeu();
-                                $texteu = str_replace('$$$fitxa.datuenbabesa.izenaeu$$$', $fitxa->getDatuenbabesa()->getIzenaeu(),$texteu);
-                                $texteu = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$texteu);
-                                $texteu = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$', $fitxa->getDatuenbabesa()->getXedeaeu(),$texteu);
-                                $texteu = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$', $fitxa->getDatuenbabesa()->getLagapenakeu(),$texteu);
-
-                            }
-
-
-                            if ( $eremuak['datuenbabesatext'] ) {
-                                $textes = $textes.$fitxa->getDatuenbabesaes();
-                                $texteu = $texteu.$fitxa->getDatuenbabesaeu();
-                            }
-
-                            $sql = $sql.$this->addElementua(
-                                    $A204AYUNTA,
-                                    $idElementua,
-                                    "Texto",
-                                    $textes,
-                                    $texteu,
-                                    "PARRAFO"
-                                );
-                            $sql = $sql.$this->addElementuaBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $idElementua,
-                                    $idOrdenElementua
-                                );
-                            $idElementua += 1;
-                            $idOrdenElementua += 1;
-
-                            $idBlokea += 1;
-                            $idOrden += 1;
-                        }
-                        /****** FIN DATUENBABESA *********************************************************************/
-
-
-                        $idPagina += 1;
-                        if (!$debug) {
-                            $progress->advance();
-                        }
-
-
-                    }
-                    /**************************************************************************************************/
-                    /**** FIN              ****************************************************************************/
-                    /**** addFitxa()       ****************************************************************************/
-                    /**************************************************************************************************/
-                }
-
-                foreach ($familia->getChildren() as $c) {
-                    if ($debug) {
-                        echo "     \n";
-                        echo "   |" .$c."|\n";
-                        echo "   ---------------------------------------------\n";
-                    }
-                    foreach ($c->getFitxafamilia() as $fitx) {
-                        if ($debug) {
-                            echo "      |__".$fitx->getFitxa()->getDeskribapenaeu()."\n";
-                        }
-                        /* Azpifamilia gehitu parrafo elementu gisa bloquean */
-                        $sql = $sql.$this->addElementua(
-                                $A204AYUNTA,
-                                $idElementua,
-                                "Texto",
-                                $c->getFamiliaes(),
-                                $c->getFamiliaeu(),
-                                "PARRAFO"
-                            );
-                        $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $familiarenBloquea, $idElementua, $idOrdenElementua );
-
-                        $idOrden += 1;
-                        $idOrdenElementua += 1;
-                        $idElementua += 1;
-
-                        $fitxa = $fitx->getFitxa();
-                        /**************************************************************************************************/
-                        /**** Fitxak-a sortu   ****************************************************************************/
-                        /**** addFitxa()       ****************************************************************************/
-                        /**************************************************************************************************/
-                        if ( 1 == 1 ){ // Folding egiteko addFitxa bezala refaktorizatu beharko zen
+                        if (!in_array($fitxa->getEspedientekodea(),$sortutakoFitxak)) { // Begiratu ea aldez aurretik sortu dugun...
                             $kostuZerrenda = array ();
                             foreach ( $fitxa->getKostuak() as $kostu ) {
                                 $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
@@ -1575,18 +363,9 @@
                                     "UXX"
                                 );
 
+                            $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $idPagina;
 
-                            // Esteka sortu Home-an
-                            $sql = $sql.$this->addElementua(
-                                    $A204AYUNTA,
-                                    $idElementua,
-                                    $fitxa->getEspedientekodea(),
-                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
-                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
-                                    "PROPIA",
-                                    $idPagina
-                                );
-
+                            /* FITXAREN ERAMUAK GEHITU */
                             /****** HASI HELBURUA *********************************************************************/
                             if ( $eremuak['helburuatext'] ) {
                                 $sql = $sql.$this->addBloque(
@@ -2438,8 +1217,6 @@
                             }
                             /****** FIN OHARRAK *******************************************************************/
 
-                            /****** HASI JARRAIBIDEAK ******************************************************************/
-
                             /****** HASI BESTEAK1 *********************************************************************/
                             if ( ($eremuak['besteak1text']) || ($eremuak['besteak1table']) ) {
                                 $sql = $sql.$this->addBloque(
@@ -2721,16 +1498,1253 @@
                             }
                             /****** FIN DATUENBABESA *********************************************************************/
 
+                        }
+
+                        // Esteka sortu Home-an
+                        $sql = $sql.$this->addElementua(
+                                $A204AYUNTA,
+                                $idElementua,
+                                $fitxa->getEspedientekodea(),
+                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
+                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
+                                "PROPIA",
+                                $sortutakoFitxak[ $fitxa->getEspedientekodea() ]
+                            );
+                        $idElementua+=1;
+
+
+                        $idPagina += 1;
+                        if (!$debug) {
+                            $progress->advance();
+                        }
+
+
+                    }
+                    /**************************************************************************************************/
+                    /**** FIN              ****************************************************************************/
+                    /**** addFitxa()       ****************************************************************************/
+                    /**************************************************************************************************/
+                }
+
+                foreach ($familia->getChildren() as $c) {
+                    if ($debug) {
+                        echo "     \n";
+                        echo "   |" .$c."|\n";
+                        echo "   ---------------------------------------------\n";
+                    }
+                    foreach ($c->getFitxafamilia() as $fitx) {
+                        if ($debug) {
+                            echo "      |__".$fitx->getFitxa()->getDeskribapenaeu()."\n";
+                        }
+                        /* Azpifamilia gehitu parrafo elementu gisa bloquean */
+                        $sql = $sql.$this->addElementua(
+                                $A204AYUNTA,
+                                $idElementua,
+                                "Texto",
+                                $c->getFamiliaes(),
+                                $c->getFamiliaeu(),
+                                "PARRAFO"
+                            );
+                        $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $familiarenBloquea, $idElementua, $idOrdenElementua );
+
+                        $idOrden += 1;
+                        $idOrdenElementua += 1;
+                        $idElementua += 1;
+
+                        $fitxa = $fitx->getFitxa();
+
+                        /**************************************************************************************************/
+                        /**** Fitxak-a sortu   ****************************************************************************/
+                        /**** addFitxa()       ****************************************************************************/
+                        /**************************************************************************************************/
+                        if ( 1 == 1 ){ // Folding egiteko addFitxa bezala refaktorizatu beharko zen
+
+                            if (!in_array($fitxa->getEspedientekodea(),$sortutakoFitxak)) { // Begiratu ea aldez aurretik sortu dugun...
+                                $kostuZerrenda = array ();
+                                foreach ( $fitxa->getKostuak() as $kostu ) {
+                                    $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
+                                    if ( (strlen( $api ) > 0) && ($kostu->getKostua()) ) {
+                                        $client = new GuzzleHttp\Client();
+                                        $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+                                        $fitxaKostua = (string)$proba->getBody();
+                                        $array = json_decode( $fitxaKostua, true );
+                                        $kostuZerrenda[] = $array;
+                                    }
+                                }
+
+                                // Orria sortu fitxarentzat
+                                $sql = $sql.$this->addOrria(
+                                        $A204AYUNTA,
+                                        $idPagina,
+                                        $fitxa->getEspedientekodea(),
+                                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
+                                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
+                                        1,
+                                        "UXX"
+                                    );
+
+                                $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $idPagina;
+
+                                /* FITXAREN ERAMUAK GEHITU */
+                                /****** HASI HELBURUA *********************************************************************/
+                                if ( $eremuak['helburuatext'] ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['helburualabeles'],
+                                            $labelak['helburualabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            $fitxa->getHelburuaes(),
+                                            $fitxa->getHelburuaeu(),
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                    $idOrdenElementua += 1;
+                                    $idElementua += 1;
+                                }
+                                /****** FIN HELBURUA *********************************************************************/
+
+                                /****** HASI NORK ESKATU *********************************************************************/
+                                if ( ($eremuak['norkeskatutext']) || ($eremuak['norkeskatutable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['norkeskatulabeles'],
+                                            $labelak['norkeskatulabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak['norkeskatutext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getNorkes(),
+                                                $fitxa->getNorkeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    if ( $eremuak["norkeskatutable"] ) {
+                                        if ( $fitxa->getNorkeskatuak() ) {
+                                            foreach ( $fitxa->getNorkeskatuak() as $nork ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $nork->getNorkes(),
+                                                        $nork->getNorkeu(),
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
+                                        }
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN NORK ESKATU *********************************************************************/
+
+                                /****** HASI DOKUMENTAZIOA *********************************************************************/
+                                if ( ($eremuak['dokumentazioatext']) || ($eremuak['dokumentazioatable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['dokumentazioalabeles'],
+                                            $labelak['dokumentazioalabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak["dokumentazioatable"] ) {
+                                        if ( $fitxa->getDokumentazioak() ) {
+                                            $doctextes = "<ul>";
+                                            $doctexteu = "<ul>";
+                                            foreach ( $fitxa->getDokumentazioak() as $doc ) {
+                                                $doctextes = $doctextes."<li>";
+                                                $doctexteu = $doctexteu."<li>";
+
+                                                if ( $doc->getEstekaeu() ) {
+                                                    $doctextes = $doctextes . "<a href='".$doc->getEstekaes()."' target='_blank'>".$doc->getKodea(
+                                                        )." ".$doc->getDeskribapenaes()."</a>";
+                                                    $doctexteu = $doctexteu . "<a href='".$doc->getEstekaeu()."' target='_blank'>".$doc->getKodea(
+                                                        )." ".$doc->getDeskribapenaeu()."</a>";
+                                                } else {
+                                                    $doctextes = $doctextes . $doc->getKodea()." ".$doc->getDeskribapenaes();
+                                                    $doctexteu = $doctextes . $doc->getKodea()." ".$doc->getDeskribapenaeu();
+                                                }
+                                                $doctextes = $doctextes."</li>";
+                                                $doctexteu = $doctexteu."</li>";
+                                            }
+                                            $doctextes = $doctextes."</ul>";
+                                            $doctexteu = $doctexteu."</ul>";
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+                                    }
+                                    if ( $eremuak['dokumentazioatext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getDokumentazioaes(),
+                                                $fitxa->getDokumentazioaeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN DOKUMENTAZIOA *********************************************************************/
+
+                                /****** HASI DOKUMENTAZIO LAGUNGARRIA *********************************************************************/
+                                if ( ($eremuak['doklaguntext']) || ($eremuak['doklaguntable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['dokumentazioalabeles'],
+                                            $labelak['dokumentazioalabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak['doklaguntext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getDoklagunes(),
+                                                $fitxa->getDoklaguneu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+
+                                    if ( $eremuak["doklaguntable"] ) {
+                                        if ( $fitxa->doklagunak() ) {
+                                            $doctextes = "<ul>";
+                                            $doctexteu = "<ul>";
+                                            foreach ( $fitxa->doklagunak() as $doc ) {
+                                                $doctextes = $doctextes."<li>";
+                                                $doctexteu = $doctexteu."<li>";
+
+                                                if ( $doc->getEstekaeu() ) {
+                                                    $doctextes = "<a href='".$doc->getEstekaes()."' target='_blank'>".$doc->getKodea(
+                                                        )." ".$doc->getDeskribapenaes()."</a>";
+                                                    $doctexteu = "<a href='".$doc->getEstekaeu()."' target='_blank'>".$doc->getKodea(
+                                                        )." ".$doc->getDeskribapenaeu()."</a>";
+                                                } else {
+                                                    $doctextes = $doc->getKodea()." ".$doc->getDeskribapenaes();
+                                                    $doctexteu = $doc->getKodea()." ".$doc->getDeskribapenaeu();
+                                                }
+                                                $doctextes = $doctextes."</li>";
+                                                $doctexteu = $doctexteu."</li>";
+                                            }
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+                                    }
+
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN DOKUMENTAZIO LAGUNGARRIA *********************************************************************/
+
+                                /****** HASI KANALA *********************************************************************/
+                                if ( ($eremuak['kanalatext']) || ($eremuak['kanalatable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['kanalalabeles'],
+                                            $labelak['kanalalabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak["kanalatable"] ) {
+
+                                        foreach ( $kanalmotak as $k ) {
+                                            $aurkitua = 0;
+                                            $textes = "<ul>";
+                                            $texteu = "<ul>";
+
+
+                                            foreach ( $fitxa->getKanalak() as $kanala ) {
+                                                if ( $kanala->getKanalmota() == $k ) {
+                                                    if ( $aurkitua == 0 ) {
+                                                        if ( $k->getIkonoa() ) {
+                                                            $textes = $textes."<i class='fa ".$k->getIkonoa(
+                                                                )." aria-hidden='true'></i>";
+                                                            $texteu = $texteu."<i class='fa ".$k->getIkonoa(
+                                                                )." aria-hidden='true'></i>";
+                                                        }
+                                                        $textes = $textes."<b>".$k->getMotaes().":</b>";
+                                                        $texteu = $texteu."<b>".$k->getMotaeu().":</b>";
+                                                        $aurkitua = 1;
+                                                    }
+                                                    if ( $kanala->getTelematikoa() ) {
+                                                        if ( $fitxa->getZerbitzua() ) {
+                                                            $textes = $textes."<li><a href='".$fitxa->getZerbitzua()->getErroaes(
+                                                                ).$fitxa->getUdala()->getKodea().$fitxa->getParametroa(
+                                                                )."' target='_blank'>".$kanala->getIzenaes()."</a></li>";
+                                                            $texteu = $texteu."<li><a href='".$fitxa->getZerbitzua()->getErroaeu(
+                                                                ).$fitxa->getUdala()->getKodea().$fitxa->getParametroa(
+                                                                )."' target='_blank'>".$kanala->getIzenaeu()."</a></li>";
+                                                        }
+                                                    } else {
+                                                        if ( $k->getEsteka() ) {
+                                                            $textes = $textes."<li>";
+                                                            $texteu = $texteu."<li>";
+                                                            if ( $kanala->getIzenaes() ) {
+                                                                if ( (strpos( $kanala->getEstekaes(), "@" ) === true) and (strpos($kanala->getEstekaes(),"maps") == false)) {
+                                                                    $textes = $textes."<a href='mailto:".$kanala->getEstekaes(
+                                                                        )."'>".$kanala->getIzenaes()."</a><br />";
+                                                                    $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu(
+                                                                        )."'>".$kanala->getIzenaeu()."</a><br />";
+                                                                } else {
+                                                                    $textes = $textes."<a href='".$kanala->getEstekaes(
+                                                                        )."' target='_blank'>".$kanala->getIzenaes()."</a><br />";
+                                                                    $texteu = $texteu."<a href='".$kanala->getEstekaeu(
+                                                                        )."' target='_blank'>".$kanala->getIzenaeu()."</a><br />";
+                                                                }
+                                                            }
+                                                            if ( $kanala->getKalea() ) {
+                                                                $textes = $textes.$kanala->getKalea(). " ";
+                                                                $texteu = $texteu.$kanala->getKalea(). " ";
+                                                            }
+                                                            if ( $kanala->getKalezbkia() ) {
+                                                                $textes = $textes.$kanala->getKalezbkia(). " ";
+                                                                $texteu = $texteu.$kanala->getKalezbkia(). " ";
+                                                            }
+                                                            if ( $kanala->getPostakodea() ) {
+                                                                $textes = $textes.$kanala->getPostakodea(). " ";
+                                                                $texteu = $texteu.$kanala->getPostakodea(). " ";
+                                                            }
+                                                            if ( $kanala->getUdala() ) {
+                                                                $textes = $textes.$kanala->getUdala()."<br/>";
+                                                                $texteu = $texteu.$kanala->getUdala()."<br/>";
+                                                            }
+                                                            if ( $kanala->getOrdutegia() ) {
+                                                                $textes = $textes.$kanala->getOrdutegia()."<br/>";
+                                                                $texteu = $texteu.$kanala->getOrdutegia()."<br/>";
+                                                            }
+                                                            if ( $kanala->getTelefonoa() ) {
+                                                                $textes = $textes.$kanala->getTelefonoa()."<br/>";
+                                                                $texteu = $texteu.$kanala->getTelefonoa()."<br/>";
+                                                            }
+                                                            if ( $kanala->getFax() ) {
+                                                                $textes = $textes.$kanala->getFax()."<br/>";
+                                                                $texteu = $texteu.$kanala->getFax()."<br/>";
+                                                            }
+                                                            $textes = $textes."</li>";
+                                                            $texteu = $texteu."</li>";
+                                                        } else { // if ($k->getEsteka())
+                                                            $textes = $textes."<li>";
+                                                            $texteu = $texteu."<li>";
+                                                            if ( $kanala->getIzenaes() ) {
+                                                                $textes = $textes.$kanala->getIzenaes()."<br/>";
+                                                                $texteu = $texteu.$kanala->getIzenaes()."<br/>";
+                                                            }
+                                                            if ( $kanala->getKalea() ) {
+                                                                $textes = $textes.$kanala->getKalea(). " ";
+                                                                $texteu = $texteu.$kanala->getKalea(). " ";
+                                                            }
+                                                            if ( $kanala->getKalezbkia() ) {
+                                                                $textes = $textes.$kanala->getKalezbkia(). " ";
+                                                                $texteu = $texteu.$kanala->getKalezbkia(). " ";
+                                                            }
+                                                            if ( $kanala->getPostakodea() ) {
+                                                                $textes = $textes.$kanala->getPostakodea(). " ";
+                                                                $texteu = $texteu.$kanala->getPostakodea(). " ";
+                                                            }
+                                                            if ( $kanala->getUdala() ) {
+                                                                $textes = $textes.$kanala->getUdala()."<br/>";
+                                                                $texteu = $texteu.$kanala->getUdala()."<br/>";
+                                                            }
+                                                            if ( $kanala->getOrdutegia() ) {
+                                                                $textes = $textes.$kanala->getOrdutegia()."<br/>";
+                                                                $texteu = $texteu.$kanala->getOrdutegia()."<br/>";
+                                                            }
+                                                            if ( $kanala->getTelefonoa() ) {
+                                                                $textes = $textes.$kanala->getTelefonoa()."<br/>";
+                                                                $texteu = $texteu.$kanala->getTelefonoa()."<br/>";
+                                                            }
+                                                            if ( $kanala->getFax() ) {
+                                                                $textes = $textes.$kanala->getFax()."<br/>";
+                                                                $texteu = $texteu.$kanala->getFax()."<br/>";
+                                                            }
+                                                            $textes = $textes."</li>";
+                                                            $texteu = $texteu."</li>";
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            $textes = $textes."</ul>";
+                                            $texteu = $texteu."</ul>";
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $textes,
+                                                    $texteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+                                    }
+                                    if ( $eremuak['kanalatext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getKanalaes(),
+                                                $fitxa->getKanalaeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN DOKUMENTAZIOA *********************************************************************/
+
+                                /****** HASI KOSTUA *********************************************************************/
+                                if ( ($eremuak['kostuatext']) || ($eremuak['kostuatable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['kostualabeles'],
+                                            $labelak['kostualabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    $kont = 0;
+                                    $textes = "";
+                                    $texteu = "";
+
+                                    if ( $eremuak["kostuatable"] ) {
+                                        if ( $fitxa->getUdala()->getZergaor() ) {
+                                            foreach ( $kostuZerrenda as $kostutaula ) {
+                                                $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
+                                                $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
+
+                                                foreach ( $kostutaula["parrafoak"] as $parrafo ) {
+                                                    $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
+                                                    $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
+                                                }
+                                                foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
+                                                    $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
+                                                    $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
+                                                }
+                                                $textes = $textes."</table>";
+                                                $texteu = $texteu."</table>";
+                                                $kont += 1;
+                                            }
+                                        } else {
+                                            foreach ( $fitxa->getAzpiatalak() as $azpiatal ) {
+                                                $textes = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaes()."</a></th></tr>";
+                                                $texteu = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaeu()."</a></th></tr>";
+
+                                                foreach ( $azpiatal->getParrafoak() as $parrafo ) {
+                                                    $textes = $textes."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
+                                                    $texteu = $texteu."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
+                                                }
+
+                                                foreach ( $azpiatal->getKontzeptiak() as $kontzeptu ) {
+                                                    $textes = $textes."<tr><td>".$kontzeptu->getKontzeptuaes();
+                                                    if ( $kontzeptu->getBaldintza() ) {
+                                                        $textes = $textes.$kontzeptu->getBaldintza->getBaldintzaes();
+                                                    }
+                                                    $textes = $textes."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
+                                                        )."</td></tr>";
+
+                                                    $texteu = $texteu."<tr><td>".$kontzeptu->getKontzeptuaeu();
+                                                    if ( $kontzeptu->getBaldintza() ) {
+                                                        $texteu = $texteu.$kontzeptu->getBaldintza->getBaldintzaeu();
+                                                    }
+                                                    $texteu = $texteu."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
+                                                        )."</td></tr>";
+                                                }
+                                                $textes = $textes."</table>";
+                                                $texteu = $texteu."</table>";
+                                                $kont += 1;
+                                            }
+                                        }
+
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $textes,
+                                                $texteu,
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+
+
+                                    }
+                                    if ( $eremuak['kostuatext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getKostuaes(),
+                                                $fitxa->getKostuaeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+
+                                    if ( (($fitxa->getKostuaes()== null) && ($kont == 0)) || (($fitxa->getKostuaeu() == null) && ($kont == 0)) ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $labelak["doanlabeles"],
+                                                $labelak["doanlabeleu"],
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN KOSTUA *********************************************************************/
+
+                                /****** HASI EBAZPENA *********************************************************************/
+                                if ( $eremuak['ebazpensinpli'] || ($eremuak['arduraaitorpena']) || ($eremuak['aurreikusi']) || ($eremuak['arrunta']) || ($eremuak['isiltasunadmin']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['epealabeles'],
+                                            $labelak['epealabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    $textes = "";
+                                    $texteu = "";
+
+                                    if ( $eremuak["aurreikusi"] ) {
+                                        if ( $fitxa->getAurreikusi() ) {
+                                            $textes = $labelak["aurreikusilabeles"].": ".$fitxa->getAurreikusi()."\n";
+                                            $texteu = $labelak["aurreikusilabeleu"].": ".$fitxa->getAurreikusi()."\n";
+                                        }
+                                    }
+
+                                    if ( $eremuak["arrunta"] ) {
+                                        if ( $fitxa->getArrunta() ) {
+                                            $textes = $textes.$labelak["arruntalabeles"].": ".$fitxa->getArrunta()."\n";
+                                            $texteu = $texteu.$labelak["arruntalabeleu"].": ".$fitxa->getArrunta()."\n";
+                                        }
+                                    }
+
+                                    if ( $eremuak["ebazpensinpli"] ) {
+                                        if ( $fitxa->getEbazpensinpli() ) {
+                                            $textes = $textes.$labelak["ebazpensinplilabeles"].": ".$fitxa->getEbazpensinpli()."\n";
+                                            $texteu = $texteu.$labelak["ebazpensinplilabeleu"].": ".$fitxa->getEbazpensinpli()."\n";
+                                        }
+                                    }
+
+                                    if ( $eremuak["arduraaitorpena"] ) {
+                                        if ( $fitxa->getArduraaitorpena() ) {
+                                            $textes = $textes.$labelak["arduraaitorpenalabeles"].": ".$fitxa->getArduraaitorpena()."\n";
+                                            $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": ".$fitxa->getArduraaitorpena()."\n";
+                                        }
+                                    }
+
+                                    if ( $eremuak["isiltasunadmin"] ) {
+                                        if ( $fitxa->getIsiltasunadmin() ) {
+                                            $textes = $textes.$labelak["isiltasunadminlabeles"].": ".$fitxa->getIsiltasunadmin()."\n";
+                                            $texteu = $texteu.$labelak["isiltasunadminlabeleu"].": ".$fitxa->getIsiltasunadmin()."\n";
+                                        }
+                                    }
+
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            $textes,
+                                            $texteu,
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                    $idOrdenElementua += 1;
+                                    $idElementua += 1;
+                                }
+                                /****** FIN EBAZPENA*********************************************************************/
+
+                                /****** HASI ARAUDIA *********************************************************************/
+                                if ( ($eremuak['araudiatext']) || ($eremuak['araudiatable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['araudialabeles'],
+                                            $labelak['araudialabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak['araudiatext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getAraudiaes(),
+                                                $fitxa->getAraudiaeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    if ( $eremuak["araudiatable"] ) {
+
+                                        if ( $fitxa->getAraudiak() ) {
+                                            $doctextes = "<ul>";
+                                            $doctexteu = "<ul>";
+                                            foreach ( $fitxa->getAraudiak() as $araua ) {
+                                                $doctextes = $doctextes."<li>";
+                                                $doctexteu = $doctexteu."<li>";
+
+                                                if ( $araua->getAraudia()->getEstekaeu() ) {
+                                                    $doctextes = $doctextes."<a href='".$araua->getAraudia()->getEstekaes(
+                                                        )."' target='_blank'>".$araua->getAraudia()->getArauaes()."</a> " . $araua->getAtalaes();
+                                                    $doctexteu = $doctexteu."<a href='".$araua->getAraudia()->getEstekaeu(
+                                                        )."' target='_blank'>".$araua->getAraudia()->getArauaeu()."</a> " . $araua->getAtalaeu();
+                                                } else {
+                                                    $doctextes = $doctextes.$araua->getAraudia()->getArauaes() . " - " . $araua->getAtalaes();
+                                                    $doctexteu = $doctexteu.$araua->getAraudia()->getArauaeu() . " - " . $araua->getAtalaeu();
+                                                }
+                                                $doctextes = $doctextes."</li>";
+                                                $doctexteu = $doctexteu."</li>";
+                                            }
+                                            $doctextes = $doctextes."</ul>";
+                                            $doctexteu = $doctexteu."</ul>";
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN ARAUDIA *********************************************************************/
+
+                                /****** HASI PROZEDURA *********************************************************************/
+                                if ( ($eremuak['prozeduratext']) || ($eremuak['prozeduratable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['prozeduralabeles'],
+                                            $labelak['prozeduralabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak['prozeduratext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getProzeduraes(),
+                                                $fitxa->getProzeduraeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    if ( $eremuak["prozeduratable"] ) {
+
+                                        if ( $fitxa->getProzedurak() ) {
+                                            $doctextes = "<ul>";
+                                            $doctexteu = "<ul>";
+                                            foreach ( $fitxa->getProzedurak() as $prozedura ) {
+                                                $doctextes = $doctextes."<li>".$prozedura->getProzeduraes()."</li>";
+                                                $doctexteu = $doctexteu."<li>".$prozedura->getProzeduraeu()."</li>";
+                                            }
+                                            $doctextes = $doctextes."</ul>";
+                                            $doctexteu = $doctexteu."</ul>";
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN PROZEDURA *********************************************************************/
+
+                                /****** HASI NORK EBATZI ******************************************************************/
+                                if ( ($eremuak['norkebatzitext']) || ($eremuak['norkebatzitable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['norkebatzilabeles'],
+                                            $labelak['norkebatzilabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak["norkebatzitable"] && $fitxa->getNorkebatzi() ) {
+
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getNorkebatzi()->getNorkes(),
+                                                $fitxa->getNorkebatzi()->getNorkeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+
+
+                                    }
+                                    if ( $eremuak['norkebatzitext'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getNorkonartues(),
+                                                $fitxa->getNorkonartueu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+
+
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN NORK EBATZI *******************************************************************/
+
+                                /****** HASI AZPISAILA ******************************************************************/
+                                if ( ($eremuak['azpisailatable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['azpisailalabeles'],
+                                            $labelak['azpisailalabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $fitxa->getAzpisaila() ) {
+
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getAzpisaila()->getSaila()->getSailaes()." - ".$fitxa->getAzpisaila(
+                                                )->getAzpisailaes(),
+                                                $fitxa->getAzpisaila()->getSaila()->getSailaeu()." - ".$fitxa->getAzpisaila(
+                                                )->getAzpisailaeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+
+
+                                    }
+
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN AZPISAILA *******************************************************************/
+
+                                /****** HASI OHARRAK ******************************************************************/
+                                if ( ($eremuak['oharraktext']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['oharraklabeles'],
+                                            $labelak['oharraklabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            $fitxa->getOharrakes(),
+                                            $fitxa->getOharrakeu(),
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $idElementua,
+                                            $idOrdenElementua
+                                        );
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN OHARRAK *******************************************************************/
+
+                                /****** HASI BESTEAK1 *********************************************************************/
+                                if ( ($eremuak['besteak1text']) || ($eremuak['besteak1table']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['besteak1labeles'],
+                                            $labelak['besteak1labeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak['besteak1text'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getBesteak1es(),
+                                                $fitxa->getBesteak1eu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    if ( $eremuak["besteak1table"] ) {
+
+                                        if ( $fitxa->getBesteak1ak() ) {
+                                            $doctextes = "<ul>";
+                                            $doctexteu = "<ul>";
+                                            foreach ( $fitxa->getBesteak1ak() as $bes ) {
+                                                $doctextes = $doctextes."<li>";
+                                                $doctexteu = $doctexteu."<li>";
+                                                if ($bes->getEstekaes()) {
+                                                    $doctextes = $doctextes."<a href='".$bes->getEstekaes()."'>".$bes->getIzenburuaes()."</a>";
+                                                } else {
+                                                    $doctextes = $doctextes.$bes->getIzenburuaes();
+                                                }
+                                                if ($bes->getEstekaeu()) {
+                                                    $doctexteu = $doctexteu."<a href='".$bes->getEstekaeu()."'>".$bes->getIzenburuaeu()."</a>";
+                                                } else {
+                                                    $doctexteu = $doctexteu.$bes->getIzenburuaeu();
+                                                }
+                                                $doctextes = $doctextes."</li>";
+                                                $doctexteu = $doctexteu."</li>";
+                                            }
+                                            $doctextes = $doctextes."</ul>";
+                                            $doctexteu = $doctexteu."</ul>";
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN BESTEAK1 *********************************************************************/
+
+                                /****** HASI BESTEAK2 *********************************************************************/
+                                if ( ($eremuak['besteak2text']) || ($eremuak['besteak2table']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['besteak2labeles'],
+                                            $labelak['besteak2labeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak['besteak2text'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getBesteak2es(),
+                                                $fitxa->getBesteak2eu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    if ( $eremuak["besteak2table"] ) {
+
+                                        if ( $fitxa->getBesteak2ak() ) {
+                                            $doctextes = "<ul>";
+                                            $doctexteu = "<ul>";
+                                            foreach ( $fitxa->getBesteak2ak() as $bes ) {
+                                                $doctextes = $doctextes."<li>";
+                                                $doctexteu = $doctexteu."<li>";
+                                                if ($bes->getEstekaes()) {
+                                                    $doctextes = $doctextes."<a href='".$bes->getEstekaes()."'>".$bes->getIzenburuaes()."</a>";
+                                                } else {
+                                                    $doctextes = $doctextes.$bes->getIzenburuaes();
+                                                }
+                                                if ($bes->getEstekaeu()) {
+                                                    $doctexteu = $doctexteu."<a href='".$bes->getEstekaeu()."'>".$bes->getIzenburuaeu()."</a>";
+                                                } else {
+                                                    $doctexteu = $doctexteu.$bes->getIzenburuaeu();
+                                                }
+                                                $doctextes = $doctextes."</li>";
+                                                $doctexteu = $doctexteu."</li>";
+                                            }
+                                            $doctextes = $doctextes."</ul>";
+                                            $doctexteu = $doctexteu."</ul>";
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN BESTEAK2 *********************************************************************/
+
+                                /****** HASI BESTEAK3 *********************************************************************/
+                                if ( ($eremuak['besteak3text']) || ($eremuak['besteak3table']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['besteak3labeles'],
+                                            $labelak['besteak3labeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+                                    if ( $eremuak['besteak3text'] ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getBesteak3es(),
+                                                $fitxa->getBesteak3eu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
+                                    if ( $eremuak["besteak3table"] ) {
+
+                                        if ( $fitxa->getBesteak3ak() ) {
+                                            $doctextes = "<ul>";
+                                            $doctexteu = "<ul>";
+                                            foreach ( $fitxa->getBesteak3ak() as $bes ) {
+                                                $doctextes = $doctextes."<li>";
+                                                $doctexteu = $doctexteu."<li>";
+                                                if ($bes->getEstekaes()) {
+                                                    $doctextes = $doctextes."<a href='".$bes->getEstekaes()."'>".$bes->getIzenburuaes()."</a>";
+                                                } else {
+                                                    $doctextes = $doctextes.$bes->getIzenburuaes();
+                                                }
+                                                if ($bes->getEstekaeu()) {
+                                                    $doctexteu = $doctexteu."<a href='".$bes->getEstekaeu()."'>".$bes->getIzenburuaeu()."</a>";
+                                                } else {
+                                                    $doctexteu = $doctexteu.$bes->getIzenburuaeu();
+                                                }
+                                                $doctextes = $doctextes."</li>";
+                                                $doctexteu = $doctexteu."</li>";
+                                            }
+                                            $doctextes = $doctextes."</ul>";
+                                            $doctexteu = $doctexteu."</ul>";
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+
+                                    }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN BESTEAK3 *********************************************************************/
+
+                                /****** HASI DATUENBABESA *********************************************************************/
+                                if ( ($eremuak['datuenbabesatext']) || ($eremuak['datuenbabesatable']) ) {
+                                    $sql = $sql.$this->addBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $labelak['datuenbabesalabeles'],
+                                            $labelak['datuenbabesalabeleu']
+                                        );
+                                    $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
+
+
+                                    if ( $eremuak["datuenbabesatable"] && $fitxa->getDatuenbabesa() ) {
+
+                                        $textes = $fitxa->getUdala()->getLopdes();
+
+                                        $textes = str_replace('$$$fitxa.datuenbabesa.izenaes$$$', $fitxa->getDatuenbabesa()->getIzenaes(),$textes);
+                                        $textes = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$textes);
+                                        $textes = str_replace('$$$fitxa.datuenbabesa.xedeaes$$$', $fitxa->getDatuenbabesa()->getXedeaes(),$textes);
+                                        $textes = str_replace('$$$fitxa.datuenbabesa.lagapenakes$$$', $fitxa->getDatuenbabesa()->getLagapenakes(),$textes);
+
+                                        $texteu = $fitxa->getUdala()->getLopdeu();
+                                        $texteu = str_replace('$$$fitxa.datuenbabesa.izenaeu$$$', $fitxa->getDatuenbabesa()->getIzenaeu(),$texteu);
+                                        $texteu = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$texteu);
+                                        $texteu = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$', $fitxa->getDatuenbabesa()->getXedeaeu(),$texteu);
+                                        $texteu = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$', $fitxa->getDatuenbabesa()->getLagapenakeu(),$texteu);
+
+                                    }
+
+
+                                    if ( $eremuak['datuenbabesatext'] ) {
+                                        $textes = $textes.$fitxa->getDatuenbabesaes();
+                                        $texteu = $texteu.$fitxa->getDatuenbabesaeu();
+                                    }
+
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            $textes,
+                                            $texteu,
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $idElementua,
+                                            $idOrdenElementua
+                                        );
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
+                                /****** FIN DATUENBABESA *********************************************************************/
+
+                            }
+
+                            // Esteka sortu Home-an
+                            $sql = $sql.$this->addElementua(
+                                    $A204AYUNTA,
+                                    $idElementua,
+                                    $fitxa->getEspedientekodea(),
+                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
+                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
+                                    "PROPIA",
+                                    $sortutakoFitxak[ $fitxa->getEspedientekodea() ]
+                                );
+                            $idElementua+=1;
+
 
                             $idPagina += 1;
                             if (!$debug) {
                                 $progress->advance();
                             }
+
+
                         }
                         /**************************************************************************************************/
                         /**** FIN              ****************************************************************************/
                         /**** addFitxa()       ****************************************************************************/
                         /**************************************************************************************************/
+
                     }
 
                 }

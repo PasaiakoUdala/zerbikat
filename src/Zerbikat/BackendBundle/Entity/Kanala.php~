@@ -111,8 +111,13 @@ class Kanala
      * @ORM\Column(name="telematikoa", type="boolean", nullable=true)
      */
     private $telematikoa;
-       
-    
+
+    /**
+     * @var erakutsi
+     *
+     * @ORM\Column(name="erakutsi", type="boolean", nullable=true)
+     */
+    private $erakutsi;
     
     
     /**
@@ -165,7 +170,7 @@ class Kanala
     /**
      * @var fitxak[]
      *
-     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="kanalak", cascade={"remove", "persist"})
+     * @ORM\ManyToMany(targetEntity="Fitxa", mappedBy="kanalak", cascade="persist")
      */
     private $fitxak;
     
