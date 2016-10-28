@@ -611,7 +611,7 @@
 
 
                                         foreach ( $fitxa->getKanalak() as $kanala ) {
-                                            if ( $kanala->getKanalmota() == $k ) {
+                                            if (( $kanala->getKanalmota() == $k ) &&  ($kanala->getErakutsi()==1)){
                                                 if ( $aurkitua == 0 ) {
                                                     if ( $k->getIkonoa() ) {
                                                         $textes = $textes."<i class='fa ".$k->getIkonoa(
@@ -1831,7 +1831,7 @@
 
 
                                             foreach ( $fitxa->getKanalak() as $kanala ) {
-                                                if ( $kanala->getKanalmota() == $k ) {
+                                                if (( $kanala->getKanalmota() == $k ) &&  ($kanala->getErakutsi()==1)){
                                                     if ( $aurkitua == 0 ) {
                                                         if ( $k->getIkonoa() ) {
                                                             $textes = $textes."<i class='fa ".$k->getIkonoa(
@@ -2744,7 +2744,6 @@
                         /**** FIN              ****************************************************************************/
                         /**** addFitxa()       ****************************************************************************/
                         /**************************************************************************************************/
-
                     }
 
                 }
