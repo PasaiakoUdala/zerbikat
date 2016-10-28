@@ -66,12 +66,20 @@
                                 <li><a href="#besteak3">Besteak3</a></li>
                             {% endif %}
 
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#familia">Familiak</a></li>
+                                <li><a href="#etiketak">Etiketak</a></li>
+                                <li><a href="#espedienteKudeaketa">Espediente Kudeaketa</a></li>
+                                <li><a href="#admin">Admin</a></li>
+
+                            {% endif %}
                         </ul>
                     </li>
                     <li><a href="#">{% if app.request.getLocale()=="eu" %}
-                                {{ fitxa.espedientekodea }}{{ fitxa.deskribapenaeu|length > 100 ? fitxa.deskribapenaeu|slice(0, 100) ~ '...' : fitxa.deskribapenaeu  }}
+                                {{ fitxa.espedientekodea }} - {{ fitxa.deskribapenaeu|length > 100 ? fitxa.deskribapenaeu|slice(0, 100) ~ '...' : fitxa.deskribapenaeu  }}
                             {% else %}
-                                {{ fitxa.espedientekodea }}{{ fitxa.deskribapenaes|length > 100 ? fitxa.deskribapenaes|slice(0, 100) ~ '...' : fitxa.deskribapenaes  }}
+                                {{ fitxa.espedientekodea }} - {{ fitxa.deskribapenaes|length > 100 ? fitxa.deskribapenaes|slice(0, 100) ~ '...' : fitxa.deskribapenaes  }}
                             {% endif %}</a></li>
                 </ul>
 
@@ -786,7 +794,7 @@
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="row">
+        <div class="row" id="familia">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>FAMILIAK</h2>
@@ -835,7 +843,7 @@
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="row">
+        <div class="row" id="etiketak">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>ETIKETAK</h2>
@@ -857,7 +865,7 @@
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="row">
+    <div class="row" id="espedienteKudeaketa">
     {#{% else %}#}
     {#<div class="row hidden">#}
     {#{% endif %}#}
@@ -947,7 +955,7 @@
 
 
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="row">
+        <div class="row" id="admin">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>ADMIN</h2>
