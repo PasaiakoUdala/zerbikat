@@ -162,6 +162,13 @@
          */
         public function deleteAction ( Request $request, Familia $familium )
         {
+            if($request->isXmlHttpRequest()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove( $familium );
+                $em->flush();
+                return New JsonResponse(array('result' => 'ok'));
+            }
+
             $auth_checker = $this->get( 'security.authorization_checker' );
             if ( (($auth_checker->isGranted( 'ROLE_ADMIN' )) && ($familium->getUdala() == $this->getUser()->getUdala()))
                 || ($auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ))
