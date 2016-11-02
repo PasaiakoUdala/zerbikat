@@ -225,6 +225,7 @@
             $idElementua = 9000;
             $A204AYUNTA = "'".$udalKodea."'";
             $mapa = array ();
+            $sortutakoAzpifamiliak = array();
             $sortutakoFitxak = array();
 
             $sql = "DELETE FROM UDAA20401 WHERE A204CAPLI='Z' AND A204AYUNTA=$A204AYUNTA;\n"; // Orriak
@@ -357,8 +358,8 @@
                                     $A204AYUNTA,
                                     $idPagina,
                                     $fitxa->getEspedientekodea(),
-                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
-                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
+                                    $fitxa->getDeskribapenaes(),
+                                    $fitxa->getDeskribapenaeu(),
                                     1,
                                     "UXX"
                                 );
@@ -1536,20 +1537,25 @@
                         if ($debug) {
                             echo "      |__".$fitx->getFitxa()->getDeskribapenaeu()."\n";
                         }
-                        /* Azpifamilia gehitu parrafo elementu gisa bloquean */
-                        $sql = $sql.$this->addElementua(
-                                $A204AYUNTA,
-                                $idElementua,
-                                "Texto",
-                                $c->getFamiliaes(),
-                                $c->getFamiliaeu(),
-                                "PARRAFO"
-                            );
-                        $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $familiarenBloquea, $idElementua, $idOrdenElementua );
 
-                        $idOrden += 1;
-                        $idOrdenElementua += 1;
-                        $idElementua += 1;
+                        if (!in_array($c->getId(),$sortutakoAzpifamiliak)) {
+                            /* Azpifamilia gehitu parrafo elementu gisa bloquean */
+                            $sql = $sql.$this->addElementua(
+                                    $A204AYUNTA,
+                                    $idElementua,
+                                    "Texto",
+                                    "<br/><span class='bold' style='font-style:normal !important'>".$c->getFamiliaes()."</span>",
+                                    "<br/><span class='bold' style='font-style:normal !important'>".$c->getFamiliaeu()."</span>",
+                                    "PARRAFO"
+                                );
+                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $familiarenBloquea, $idElementua, $idOrdenElementua );
+
+                            array_push( $sortutakoAzpifamiliak, $c->getId() );
+
+                            $idOrden += 1;
+                            $idOrdenElementua += 1;
+                            $idElementua += 1;
+                        }
 
                         $fitxa = $fitx->getFitxa();
 
@@ -1577,8 +1583,8 @@
                                         $A204AYUNTA,
                                         $idPagina,
                                         $fitxa->getEspedientekodea(),
-                                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
-                                        $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
+                                        $fitxa->getDeskribapenaes(),
+                                        $fitxa->getDeskribapenaeu(),
                                         1,
                                         "UXX"
                                     );
@@ -2730,8 +2736,10 @@
                                     "PROPIA",
                                     $sortutakoFitxak[ $fitxa->getEspedientekodea() ]
                                 );
-                            $idElementua+=1;
 
+                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $familiarenBloquea, $idElementua, $idOrdenElementua );
+
+                            $idElementua+=1;
 
                             $idPagina += 1;
                             if (!$debug) {
