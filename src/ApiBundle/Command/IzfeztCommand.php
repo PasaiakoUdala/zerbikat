@@ -1573,8 +1573,20 @@
                                     $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
                                     if ( (strlen( $api ) > 0) && ($kostu->getKostua()) ) {
                                         $client = new GuzzleHttp\Client();
+                                        if ($debug) {
+                                            echo "\n";
+                                            echo "=======================================================\n";
+                                            echo "== OJO!! Accediendo a la siguiente ruta:\n";
+                                            echo "== ".$api.'/azpiatalas/'.$kostu->getKostua().'.json'."\n";
+
+                                        }
                                         $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
                                         $fitxaKostua = (string)$proba->getBody();
+                                        if ($debug) {
+                                            echo "== Resultado string de: ".strlen ($fitxaKostua)." carácteres \n";
+                                            echo "=======================================================\n";
+                                            echo "\n";
+                                        }
                                         $array = json_decode( $fitxaKostua, true );
                                         $kostuZerrenda[] = $array;
                                     }
