@@ -271,6 +271,7 @@
                     FROM BackendBundle:Familia f 
                       LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id                      
                   WHERE u.kodea = :udala AND f.parent IS NULL 
+                  ORDER BY f.ordena ASC
                 '
             );
             $query->setParameter( 'udala', $udalKodea );
@@ -1506,11 +1507,12 @@
                                 $A204AYUNTA,
                                 $idElementua,
                                 $fitxa->getEspedientekodea(),
-                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
-                                $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
+                                $fitxa->getDeskribapenaes(),
+                                $fitxa->getDeskribapenaeu(),
                                 "PROPIA",
                                 $sortutakoFitxak[ $fitxa->getEspedientekodea() ]
                             );
+                        $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $mapa[$familia->getId()], $idElementua, $idOrdenElementua );
                         $idElementua+=1;
 
 
@@ -1548,7 +1550,7 @@
                                     "<br/><span class='bold' style='font-style:normal !important'>".$c->getFamiliaeu()."</span>",
                                     "PARRAFO"
                                 );
-                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $familiarenBloquea, $idElementua, $idOrdenElementua );
+                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $mapa[$familia->getId()], $idElementua, $idOrdenElementua );
 
                             array_push( $sortutakoAzpifamiliak, $c->getId() );
 
@@ -2731,13 +2733,13 @@
                                     $A204AYUNTA,
                                     $idElementua,
                                     $fitxa->getEspedientekodea(),
-                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaes(),
-                                    $fitxa->getEspedientekodea() . " - ".$fitxa->getDeskribapenaeu(),
+                                    $fitxa->getDeskribapenaes(),
+                                    $fitxa->getDeskribapenaeu(),
                                     "PROPIA",
                                     $sortutakoFitxak[ $fitxa->getEspedientekodea() ]
                                 );
 
-                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $familiarenBloquea, $idElementua, $idOrdenElementua );
+                            $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $mapa[$familia->getId()], $idElementua, $idOrdenElementua );
 
                             $idElementua+=1;
 
