@@ -33,12 +33,13 @@
             $auth_checker = $this->get( 'security.authorization_checker' );
             if ( $auth_checker->isGranted( 'ROLE_KUDEAKETA' ) ) {
                 $em = $this->getDoctrine()->getManager();
-                $familias = $em->getRepository( 'BackendBundle:Familia' )->findBy(array(),
-                    array ('ordena' => 'ASC')
+                $familias = $em->getRepository( 'BackendBundle:Familia' )->findBy(
+                    array (),
+                    array ( 'ordena' => 'ASC' )
                 );
                 $deleteForms = array ();
                 foreach ( $familias as $familia ) {
-                    $deleteForms[$familia->getId()] = $this->createDeleteForm( $familia )->createView();
+                    $deleteForms[ $familia->getId() ] = $this->createDeleteForm( $familia )->createView();
                 }
 
                 return $this->render(
@@ -130,7 +131,7 @@
                     $em->persist( $familium );
                     $em->flush();
 
-                    return $this->redirectToRoute( 'familia_edit', array ('id' => $familium->getId()) );
+                    return $this->redirectToRoute( 'familia_edit', array ( 'id' => $familium->getId() ) );
                 }
 
                 $em = $this->getDoctrine()->getManager();
@@ -162,11 +163,12 @@
          */
         public function deleteAction ( Request $request, Familia $familium )
         {
-            if($request->isXmlHttpRequest()) {
+            if ( $request->isXmlHttpRequest() ) {
                 $em = $this->getDoctrine()->getManager();
                 $em->remove( $familium );
                 $em->flush();
-                return New JsonResponse(array('result' => 'ok'));
+
+                return New JsonResponse( array ( 'result' => 'ok' ) );
             }
 
             $auth_checker = $this->get( 'security.authorization_checker' );
@@ -198,7 +200,7 @@
         private function createDeleteForm ( Familia $familium )
         {
             return $this->createFormBuilder()
-                ->setAction( $this->generateUrl( 'familia_delete', array ('id' => $familium->getId()) ) )
+                ->setAction( $this->generateUrl( 'familia_delete', array ( 'id' => $familium->getId() ) ) )
                 ->setMethod( 'DELETE' )
                 ->getForm();
         }
