@@ -670,4 +670,28 @@ class Kanala
     {
         return $this->telematikoa;
     }
+
+    /**
+     * Set erakutsi
+     *
+     * @param boolean $erakutsi
+     *
+     * @return Kanala
+     */
+    public function setErakutsi($erakutsi)
+    {
+        $this->erakutsi = $erakutsi;
+
+        return $this;
+    }
+
+    /**
+     * Get erakutsi
+     *
+     * @return boolean
+     */
+    public function getErakutsi()
+    {
+        return $this->erakutsi;
+    }
 }
