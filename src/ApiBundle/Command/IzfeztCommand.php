@@ -381,8 +381,8 @@
                                         $A204AYUNTA,
                                         $idElementua,
                                         "Texto",
-                                        $fitxa->getHelburuaes(),
-                                        $fitxa->getHelburuaeu(),
+                                        $fitxa->getHelburuaes()."<span id='kodea' style='display:none;'>".$fitxa->getEspedientekodea()."</span>",
+                                        $fitxa->getHelburuaeu()."<span id='kodea' style='display:none;'>".$fitxa->getEspedientekodea()."</span>",
                                         "PARRAFO"
                                     );
                                 $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
