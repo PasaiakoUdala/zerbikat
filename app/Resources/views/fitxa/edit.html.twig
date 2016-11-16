@@ -84,7 +84,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" onclick="document.forms['{{ edit_form.vars.name }}'].submit()"
+                    <li><a href="javascript:void(0);" onclick="document.forms['{{ edit_form.vars.name }}'].submit()"
                            class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
                     <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}"
                            class="fa fa-search"> {{ 'messages.fitxaikusi'|trans }}</a></li>
