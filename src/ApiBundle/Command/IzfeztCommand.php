@@ -82,10 +82,12 @@
         }
 
         // UDAA20301
-        function addBloque ( $A204AYUNTA, $idBlokea, $tites, $titeus )
+        function addBloque ( $A204AYUNTA, $idBlokea, $tites, $titeus, $subtites='', $subtiteus='' )
         {
             $tites =    str_replace( '\'', '"', $tites );
             $titeus =   str_replace( '\'', '"', $titeus );
+            $subtites =   str_replace( '\'', '"', $subtites );
+            $subtiteus =   str_replace( '\'', '"', $subtiteus );
 
             $A203AYUNTA = $A204AYUNTA;
             $A203IDBLOQUE = $idBlokea;
@@ -94,8 +96,8 @@
             $A203TITEUSK = "'".$titeus."'";
             $A203FECALTA = null;
 
-            $sql = "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA,A203CAPLI)
-                                    VALUES($A203AYUNTA, $A203IDBLOQUE, $A203DENOMI, $A203TITCAST, $A203TITEUSK, null, 'Z');\n";
+            $sql = "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA,A203CAPLI,A203SUBTITCAST,A203SUBTITEUSK)
+                                    VALUES($A203AYUNTA, $A203IDBLOQUE, $A203DENOMI, $A203TITCAST, $A203TITEUSK, null, 'Z', $subtites, $subtiteus);\n";
 
             return $sql;
         }
@@ -231,8 +233,8 @@
             $sql = "DELETE FROM UDAA20401 WHERE A204CAPLI='Z' AND A204AYUNTA=$A204AYUNTA;\n"; // Orriak
             $sql = $sql."DELETE FROM UDAA20201 WHERE A202CAPLI='Z' AND A202AYUNTA=$A204AYUNTA;\n"; // Elementuak
             $sql = $sql."DELETE FROM UDAA20301 WHERE A203CAPLI='Z' AND A203AYUNTA=$A204AYUNTA;\n"; // Blokeak
-            $sql = $sql."DELETE FROM UDAA20501 WHERE A205AYUNTA=$A204AYUNTA;\n"; // Blokeak - Elementuak
-            $sql = $sql."DELETE FROM UDAA20601 WHERE A206AYUNTA=$A204AYUNTA;\n"; // Orriak - Blokeak
+            $sql = $sql."DELETE FROM UDAA20501 WHERE A205AYUNTA=$A204AYUNTA AND A205IDBLOQUE >= 9000 AND A205IDLINEA >=9000;\n"; // Blokeak - Elementuak
+            $sql = $sql."DELETE FROM UDAA20601 WHERE A206AYUNTA=$A204AYUNTA AND A206IDPAGINA >=9000 AND A206IDBLOQUE >=9000;\n"; // Orriak - Blokeak
 
 
             $output->writeln( [$COUNT_FITXA.' aurkitu dira.', ''] );
@@ -300,12 +302,16 @@
             /*******************************************************************/
             /**** Home-an familiak sortu  **************************************/
             /*******************************************************************/
+            /** @var  $familia \Zerbikat\BackendBundle\Entity\Familia */
             foreach ( $familiak as $familia ) {
+
                 $sql = $sql.$this->addBloque(
                         $A204AYUNTA,
                         $idBlokea,
                         $familia->getFamiliaes(),
-                        $familia->getFamiliaeu()
+                        $familia->getFamiliaeu(),
+                        $familia->getDeskribapenaes(),
+                        $familia->getDeskribapenaeu()
                     );
                 $familiarenBloquea = $idBlokea;
                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPaginaHome, $idBlokea, $idOrden );
@@ -786,8 +792,10 @@
                                                 $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
                                             }
                                             foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
-                                                $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
-                                                $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
+                                                if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
+                                                    $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                    $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                }
                                             }
                                             $textes = $textes."</table>";
                                             $texteu = $texteu."</table>";
@@ -2033,8 +2041,10 @@
                                                     $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
                                                 }
                                                 foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
-                                                    $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
-                                                    $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu"]."</td><td NOWRAP>".$kontzeptu["kopurua"]." ".$kontzeptu["unitatea"]."</td></tr>";
+                                                    if ( array_key_exists("kopurua_prod", $kontzeptu)) {
+                                                        $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                        $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                    }
                                                 }
                                                 $textes = $textes."</table>";
                                                 $texteu = $texteu."</table>";

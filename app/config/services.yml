@@ -21,3 +21,8 @@ services:
             public: false
             arguments:
                 - '%kernel.logs_dir%/%kernel.environment%.log'
+
+    twig.extension.sortbyfield:
+        class: Snilius\Twig\SortByFieldExtension
+        tags:
+            - { name: twig.extension }
