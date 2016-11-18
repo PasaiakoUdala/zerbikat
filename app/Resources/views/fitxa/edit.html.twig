@@ -13,56 +13,56 @@
                             {% if (eremuak["helburuatext"]==1) %}
                                 <li><a href="#helburua">Helburua</a></li>
                             {% endif %}
-                            {% if ((eremuak["norkeskatutext"]==1) or (eremuak["norkeskatutable"]==1))%}
+                            {% if ((eremuak["norkeskatutext"]==1) or (eremuak["norkeskatutable"]==1)) %}
                                 <li><a href="#norkeskatu">Nork eska dezake?</a></li>
                             {% endif %}
-                            {% if ((eremuak["dokumentazioatext"]==1) or (eremuak["dokumentazioatable"]==1))%}
+                            {% if ((eremuak["dokumentazioatext"]==1) or (eremuak["dokumentazioatable"]==1)) %}
                                 <li><a href="#dokumentazioa">Dokumentazioa</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["doklaguntext"]==1) or (eremuak["doklaguntable"]==1))%}
+                            {% if ((eremuak["doklaguntext"]==1) or (eremuak["doklaguntable"]==1)) %}
                                 <li><a href="#dokumentuLaguntzaileak">Dokumentazio Laguntzailea</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["kanalatext"]==1) or (eremuak["kanalatable"]==1))%}
+                            {% if ((eremuak["kanalatext"]==1) or (eremuak["kanalatable"]==1)) %}
                                 <li><a href="#kanala">Kanala</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["kostuatext"]==1) or (eremuak["kostuatable"]==1))%}
+                            {% if ((eremuak["kostuatext"]==1) or (eremuak["kostuatable"]==1)) %}
                                 <li><a href="#kostua">Kostua</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["ebazpensinpli"]==1) or (eremuak["arduraaitorpena"]==1) or (eremuak["aurreikusi"]==1) or (eremuak["arrunta"]==1) or (eremuak["isiltasunadmin"]==1))%}
+                            {% if ((eremuak["ebazpensinpli"]==1) or (eremuak["arduraaitorpena"]==1) or (eremuak["aurreikusi"]==1) or (eremuak["arrunta"]==1) or (eremuak["isiltasunadmin"]==1)) %}
                                 <li><a href="#epeak">Epeak</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["araudiatext"]==1) or (eremuak["araudiatable"]==1))%}
+                            {% if ((eremuak["araudiatext"]==1) or (eremuak["araudiatable"]==1)) %}
                                 <li><a href="#araudia">Araudia</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["prozeduratext"]==1) or (eremuak["prozeduratable"]==1))%}
+                            {% if ((eremuak["prozeduratext"]==1) or (eremuak["prozeduratable"]==1)) %}
                                 <li><a href="#prozedurak">Prozedurak</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["norkebatzitext"]==1) or (eremuak["norkebatzitable"]==1))%}
+                            {% if ((eremuak["norkebatzitext"]==1) or (eremuak["norkebatzitable"]==1)) %}
                                 <li><a href="#norkebatzi">nork onartu behar du?</a></li>
                             {% endif %}
 
                             <li><a href="#azpisaila">Azpisaila</a></li>
 
-                            {% if ((eremuak["oharraktext"]==1))%}
+                            {% if ((eremuak["oharraktext"]==1)) %}
                                 <li><a href="#oharrak">Oharrak</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["besteak1text"]==1) or (eremuak["besteak1table"]==1))%}
+                            {% if ((eremuak["besteak1text"]==1) or (eremuak["besteak1table"]==1)) %}
                                 <li><a href="#besteak1">Besteak1</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["besteak2text"]==1) or (eremuak["besteak2table"]==1))%}
+                            {% if ((eremuak["besteak2text"]==1) or (eremuak["besteak2table"]==1)) %}
                                 <li><a href="#besteak2">Besteak2</a></li>
                             {% endif %}
 
-                            {% if ((eremuak["besteak3text"]==1) or (eremuak["besteak3table"]==1))%}
+                            {% if ((eremuak["besteak3text"]==1) or (eremuak["besteak3table"]==1)) %}
                                 <li><a href="#besteak3">Besteak3</a></li>
                             {% endif %}
 
@@ -77,9 +77,9 @@
                         </ul>
                     </li>
                     <li><a href="#">{% if app.request.getLocale()=="eu" %}
-                                {{ fitxa.espedientekodea }} - {{ fitxa.deskribapenaeu|length > 100 ? fitxa.deskribapenaeu|slice(0, 100) ~ '...' : fitxa.deskribapenaeu  }}
+                                {{ fitxa.espedientekodea }} - {{ fitxa.deskribapenaeu|length > 100 ? fitxa.deskribapenaeu|slice(0, 100) ~ '...' : fitxa.deskribapenaeu }}
                             {% else %}
-                                {{ fitxa.espedientekodea }} - {{ fitxa.deskribapenaes|length > 100 ? fitxa.deskribapenaes|slice(0, 100) ~ '...' : fitxa.deskribapenaes  }}
+                                {{ fitxa.espedientekodea }} - {{ fitxa.deskribapenaes|length > 100 ? fitxa.deskribapenaes|slice(0, 100) ~ '...' : fitxa.deskribapenaes }}
                             {% endif %}</a></li>
                 </ul>
 
@@ -342,25 +342,19 @@
                     </div>
                 {% endif %}
             </div>
+        </div>
             {% if eremuak.kostuatable %}
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10">
+                <div class="row">
                     {% if fitxa.udala.zergaor %}
-                        <ul class="list-unstyled" id="kostua-fields-list" data-prototype="{% filter escape %}
-                        {% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
-                            {#<li class="burua">#}
-                            {#<div class="col-sm-11"><b>Kostu-taula</b></div>#}
-                            {#</li>#}
+                        <ul class="list-unstyled" id="kostua-fields-list" data-prototype="{% filter escape %}{% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
                             {% for kostua in edit_form.kostuak %}
                                 <li>
-                                    <div class="col-sm-2 hidden">{{ form_widget(kostua.udala) }}</div>
-                                    <div class="col-sm-4 hidden">{{ form_widget(kostua.fitxa) }}</div>
+                                    <div class="col-sm-2 ">{{ form_widget(kostua.udala) }}</div>
+                                    <div class="col-sm-4 ">{{ form_widget(kostua.fitxa) }}</div>
                                     <div class="col-sm-11">{{ form_widget(kostua.kostua) }}</div>
                                 </li>
                             {% endfor %}
                         </ul>
-                        <br/>
-                        <a href="#" id="add-kostua" class="col-sm-10 text-right">{{ 'messages.gehitukostu'|trans }}</a>
                     {% else %}
                         <div class="form-group">
                             {{ form_errors(edit_form.azpiatalak) }}
@@ -368,8 +362,14 @@
                         </div>
                     {% endif %}
                 </div>
+
+                    <button type="button" id="add-kostua" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#">
+                        {{ 'messages.gehitukostu'|trans }}
+                    </button>
+
+
             {% endif %}
-        </div>
+
     {% endif %}
 
     {% if (eremuak.ebazpensinpli or eremuak.arduraaitorpena or eremuak.aurreikusi or eremuak.arrunta or eremuak.isiltasunadmin) %}
@@ -644,8 +644,6 @@
         </div>
     </div>
 
-
-
     {% if (eremuak.besteak1text or eremuak.besteak1table) %}
         <div class="row" id="besteak1">
             <div class="col-sm-6">
@@ -681,8 +679,6 @@
             {% endif %}
         </div>
     {% endif %}
-
-
 
     {% if (eremuak.besteak2text or eremuak.besteak2table) %}
         <div class="row" id="besteak2">
@@ -1096,6 +1092,16 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <div class="modal fade" id="modalSelectOrdenantza" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        {#<div class=" id="modalOrdena" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
+        <div class="modal-dialog">
+            <form id="frmSelOrdenantza" name="frmfitxafamilia" method="post" action="" role="form">
+                <div id="modalOrdenantzabody" class="modal-content">
+
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <input id="fitxa_id" type="hidden" value="{{ fitxa.id }}">
 
 {% endblock %}
@@ -1107,7 +1113,9 @@
 
 
         $(function () {
-            var shiftWindow = function() { scrollBy(0, -75) };
+            var shiftWindow = function () {
+                scrollBy(0, -75)
+            };
             if (location.hash) shiftWindow();
             window.addEventListener("hashchange", shiftWindow);
 
@@ -1466,20 +1474,16 @@
             });
             jQuery('#add-kostua').click(function (e) {
                 e.preventDefault();
-//                alert ("sartu da!!");
                 var kostuaList = jQuery('#kostua-fields-list');
-
-                // grab the prototype template
                 var newWidget = kostuaList.attr('data-prototype');
-                // replace the "__name__" used in the id and name of the prototype
-                // with a number that's unique to your emails
-                // end name attribute looks like name="contact[emails][2]"
                 newWidget = newWidget.replace(/__name__/g, kostuaCount);
                 kostuaCount++;
-
-                // create a new list element and add it to the list
                 var newLi = jQuery('<li></li>').html(newWidget);
                 newLi.appendTo(kostuaList);
+
+                
+
+
             });
         })
 
