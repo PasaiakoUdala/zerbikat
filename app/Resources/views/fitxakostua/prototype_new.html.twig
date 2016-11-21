@@ -1,18 +1,16 @@
 {% block body %}
-    <div class="row">
-        <div class="col-sm-2 ">
-            {#{{ form_label(form.udala) }}#}
+    <div class="row nirerow__name__">
+        <div class="col-sm-2" style="visibility: hidden;">
             {{ form_widget(form.udala, {'value' : udal.id|number_format }, {'attr': {'class': 'form-control'}} ) }}
         </div>
-        <div class="col-sm-5 ">
-            {#{{ form_label(form.fitxa) }}#}
-            {#{{ form_widget(form.fitxa, {'attr': {'class': 'form-control'}}) }}#}
-            {{ form_widget(form.fitxa, {'value' : fitxa.id|number_format }, {'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="col-sm-11">
+        <div class="col-sm-8 burua">
             {#{{ form_label(form.kostua, {'attr': {'class': 'hidden'}}) }}#}
             {{ form_widget(form.kostua, {'attr': {'class': 'form-control'}}) }}
         </div>
+        <div class="col-sm-1" style="visibility: hidden;">
+            {{ form_widget(form.fitxa, {'value' : fitxa.id|number_format }, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
     </div>
 
 {% endblock %}

@@ -23,12 +23,10 @@ class FitxaKostuaType extends AbstractType
     {
 
         global $kernel;
-//        dump($kernel->getContainer()->getParameter('zzoo_aplikazioaren_API_url'));
         $api=$kernel->getContainer()->getParameter('zzoo_aplikazioaren_API_url');
 
 
         $client = new GuzzleHttp\Client();
-//        $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalak.json' );
         $proba = $client->request( 'GET', $api.'/azpiatalak.json' );
         $valftp = (string)$proba->getBody();
         $array = json_decode($valftp, true);
@@ -36,7 +34,8 @@ class FitxaKostuaType extends AbstractType
         $resp=array();
         foreach ($array as $a)
         {
-            $resp[$a['izenburuaeu']] = $a['id'];
+            $izena = $a[ 'kodea' ]." - ".$a[ 'izenburuaeu' ];
+            $resp[$izena] = $a['id'];
         }
 
         $builder

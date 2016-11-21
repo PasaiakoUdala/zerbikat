@@ -40,6 +40,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+            zzoo_aplikazioaren_API_url: '%zzoo_aplikazioaren_API_url%'
 
 # Doctrine Configuration
 doctrine:
@@ -125,3 +127,4 @@ fos_user:
 
 fos_js_routing:
     routes_to_expose: [ get_familiak, get_azpifamiliak, get_fitxa, fitxafamilia_edit, api_fitxafamiliahasorden, api_fitxafamilianextorden, fitxafamilia_delete, familia_delete ]
+
