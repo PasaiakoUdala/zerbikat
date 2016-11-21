@@ -347,11 +347,14 @@
                 <div class="row">
                     {% if fitxa.udala.zergaor %}
                         <ul class="list-unstyled" id="kostua-fields-list" data-prototype="{% filter escape %}{% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
+                            <li class="burua"></li>
                             {% for kostua in edit_form.kostuak %}
                                 <li>
-                                    <div class="col-sm-2" style="visibility: hidden;">{{ form_widget(kostua.udala) }}</div>
-                                    <div class="col-sm-8 burua">{{ form_widget(kostua.kostua) }}</div>
-                                    <div class="col-sm-1" style="visibility: hidden;">{{ form_widget(kostua.fitxa) }}</div>
+
+                                        <div class="col-sm-2" style="visibility: hidden;">{{ form_widget(kostua.udala) }}</div>
+                                        <div class="col-sm-1" style="visibility: hidden;">{{ form_widget(kostua.fitxa) }}</div>
+                                        <div class="col-sm-8">{{ form_widget(kostua.kostua) }}</div>
+
                                 </li>
                             {% endfor %}
                         </ul>
@@ -1101,7 +1104,7 @@
                     <h4 class="modal-title">Aukeratu kotzeptua</h4>
                 </div>
                 <div class="modal-body">
-                    <div id="nireloader2" class=""></div>
+                    <div id="nireloader3" class=""></div>
                     <div class="row"></div>
                     <div class="row">
                         <div class="col-md-12 form-group" >
@@ -1173,13 +1176,15 @@
             });
 
             jqxhr.complete(function () {
-                $("#cmbOrdenantza").select2();
+                $("#cmbOrdenantza").select2({
+                    minimumResultsForSearch: Infinity
+                });
             });
 
 
             $('#cmbOrdenantza').on('change', function () {
 
-                $('#nireloader2').addClass('loading');
+                $('#nireloader3').addClass('loading');
                 var ordenantzaid = $(this).val();
                 var url = param + "/ordenantzas/" + ordenantzaid + ".json";
 
@@ -1218,14 +1223,17 @@
                 });
 
                 jqxhr.complete(function () {
-                    $("#cmbAtala").select2();
+                    $("#cmbAtala").select2({
+                        minimumResultsForSearch: Infinity
+                    });
+                    $('#nireloader3').removeClass('loading');
                 });
 
             });
 
             $('#cmbAtala').on('change', function () {
 
-                $('#nireloader2').addClass('loading');
+                $('#nireloader3').addClass('loading');
                 var atalaid = $(this).val();
                 var url = param + "/atalas/" + atalaid + ".json";
 
@@ -1266,7 +1274,10 @@
                 });
 
                 jqxhr.complete(function () {
-                    $("#cmbKontzeptua").select2();
+                    $("#cmbKontzeptua").select2({
+                        minimumResultsForSearch: Infinity
+                    });
+                    $('#nireloader3').removeClass('loading');
                 });
 
             });
