@@ -10,7 +10,7 @@ Zerbitzuen katalogoa kudeatzeko aplikazioa.
     ctype needs to be enabled
     Your php.ini needs to have the date.timezone setting
 
-   Optional 
+   Optional
 
     You need to have the PHP-XML module installed
     You need to have at least version 2.6.21 of libxml
