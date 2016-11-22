@@ -25,9 +25,11 @@ class FitxaKostuaType extends AbstractType
         global $kernel;
         $api=$kernel->getContainer()->getParameter('zzoo_aplikazioaren_API_url');
 
+        $udala = $options['udala'];
+
 
         $client = new GuzzleHttp\Client();
-        $proba = $client->request( 'GET', $api.'/azpiatalak.json' );
+        $proba = $client->request( 'GET', $api.'/azpiatalaks/'.$udala.'.json' );
         $valftp = (string)$proba->getBody();
         $array = json_decode($valftp, true);
 
@@ -55,7 +57,8 @@ class FitxaKostuaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Zerbikat\BackendBundle\Entity\FitxaKostua'
+            'data_class' => 'Zerbikat\BackendBundle\Entity\FitxaKostua',
+            'udala' => null
         ));
     }
 }

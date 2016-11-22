@@ -293,7 +293,8 @@
                 || ($auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ))
             ) {
                 $deleteForm = $this->createDeleteForm( $fitxa );
-                $editForm = $this->createForm( 'Zerbikat\BackendBundle\Form\FitxaType', $fitxa );
+
+                $editForm = $this->createForm( 'Zerbikat\BackendBundle\Form\FitxaType', $fitxa,array('user' => $this->getUser()) );
 
                 // Create an ArrayCollection of the current Kostuak objects in the database
                 $originalKostuak = new ArrayCollection();

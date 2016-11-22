@@ -20,6 +20,8 @@
          */
         public function buildForm ( FormBuilderInterface $builder, array $options )
         {
+            $user = $options['user'];
+
             $builder
                 ->add( 'espedientekodea' )
                 ->add( 'deskribapenaeu' )
@@ -369,6 +371,7 @@
                     CollectionType::class,
                     array (
                         'entry_type'   => FitxaKostuaType::class,
+                        'entry_options'  => array('udala' => $user->getUdala()->getKodea()),
                         'allow_add'    => true,
                         'allow_delete' => true,
                         'by_reference' => false,
@@ -396,6 +399,7 @@
             $resolver->setDefaults(
                 array (
                     'data_class' => 'Zerbikat\BackendBundle\Entity\Fitxa',
+                    'user' => null
                 )
             );
         }
