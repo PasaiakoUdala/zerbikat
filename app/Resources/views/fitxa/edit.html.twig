@@ -1095,7 +1095,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal fade" id="modalSelectOrdenantza" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal fade" id="modalSelectOrdenantza" role="dialog" aria-labelledby="gridSystemModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1105,25 +1105,44 @@
                 </div>
                 <div class="modal-body">
                     <div id="nireloader3" class=""></div>
-                    <div class="row"></div>
+                    <div class="row">
+                        <p></p>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 form-group" >
-                            <label for="cmbOrdenantza">Ordenantza</label>
-                            <select name="cmbOrdenantza" id="cmbOrdenantza" style="width:100%"></select>
+                            <p>
+                                <label for="cmbOrdenantza">Ordenantza</label>
+                            </p>
+                            <p>
+                                <select name="cmbOrdenantza" id="cmbOrdenantza" style="width:100%"></select>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group" >
+                            <p>
+                                <label for="cmbAtala">Atala</label>
+                            </p>
+                            <p>
+                                <select name="cmbAtala" id="cmbAtala" style="width:100%"></select>
+                            </p>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" >
-                            <label for="cmbAtala">Atala</label>
-                            <select name="cmbAtala" id="cmbAtala" style="width:100%"></select>
-                        </div>
-
+                        <p></p>
                     </div>
                     <div class="row">
                         <div class="col-md-12 form-group" >
-                            <label for="cmbKontzeptua">Kontzeptua</label>
-                            <select name="cmbKontzeptua" id="cmbKontzeptua" style="width:100%"></select>
+                            <p>
+                                <label for="cmbKontzeptua">Kontzeptua</label>
+                            </p>
+                            <p>
+                                <select name="cmbKontzeptua" id="cmbKontzeptua" style="width:100%"></select>
+                            </p>
                         </div>
 
                     </div>
@@ -1177,7 +1196,7 @@
 
             jqxhr.complete(function () {
                 $("#cmbOrdenantza").select2({
-                    minimumResultsForSearch: Infinity
+                    theme: 'bootstrap',
                 });
             });
 
@@ -1189,12 +1208,12 @@
                 var url = param + "/ordenantzas/" + ordenantzaid + ".json";
 
                 var jqxhr = $.getJSON(url, function (result) {
+                    $("#cmbAtala").empty();
                     if (locale === "es") {
                         $("#cmbAtala").append($("<option></option>").attr("value", -1).text("Selecciona"));
                     } else{
                         $("#cmbAtala").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                     }
-                    $("#cmbAtala").empty();
 
                     if (result.length === 0) {
                         return;
@@ -1224,7 +1243,7 @@
 
                 jqxhr.complete(function () {
                     $("#cmbAtala").select2({
-                        minimumResultsForSearch: Infinity
+                        theme: 'bootstrap',
                     });
                     $('#nireloader3').removeClass('loading');
                 });
@@ -1238,12 +1257,12 @@
                 var url = param + "/atalas/" + atalaid + ".json";
 
                 var jqxhr = $.getJSON(url, function (result2) {
+                    $("#cmbKontzeptua").empty();
                     if (locale === "es") {
                         $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Selecciona"));
                     } else{
                         $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                     }
-                    $("#cmbKontzeptua").empty();
 
                     if (result2.length === 0) {
                         return;
@@ -1275,7 +1294,7 @@
 
                 jqxhr.complete(function () {
                     $("#cmbKontzeptua").select2({
-                        minimumResultsForSearch: Infinity
+                        theme: 'bootstrap',
                     });
                     $('#nireloader3').removeClass('loading');
                 });
@@ -1664,10 +1683,16 @@
             });
             jQuery('#add-kostua').click(function (e) {
                 e.preventDefault();
-
+                var locale ="{{ app.request.getLocale() }}";
                 $('#cmbOrdenantza').val(-1).trigger("change");
                 $('#cmbAtala').empty();
-                $('#cmbKontzeptua').empty();
+                $("#cmbKontzeptua").empty();
+                if (locale === "es") {
+                    $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Selecciona"));
+                } else{
+                    $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Aukeratu"));
+                }
+
 
                 var kostuaList = jQuery('#kostua-fields-list');
                 var newWidget = kostuaList.attr('data-prototype');
