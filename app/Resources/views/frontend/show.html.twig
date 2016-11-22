@@ -221,7 +221,7 @@
                 {% for k in kanalmotak %}
                     {% set aurkitua=0 %}
                     <ul>
-                    {% for kanal in fitxa.kanalak if kanal.kanalmota == k %}
+                    {% for kanal in fitxa.kanalak if kanal.kanalmota == k and kanal.erakutsi == 1 %}
                         {% if aurkitua==0%}
                             {% if k.ikonoa %}<i class="fa {{ k.ikonoa }}" aria-hidden="true"></i>{% endif %}
                             {% if app.request.locale == 'eu'%}<b>{{ k.motaeu }}:</b>
