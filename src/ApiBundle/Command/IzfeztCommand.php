@@ -785,22 +785,24 @@
                                 if ( $eremuak["kostuatable"] ) {
                                     if ( $fitxa->getUdala()->getZergaor() ) {
                                         foreach ( $kostuZerrenda as $kostutaula ) {
-                                            $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
-                                            $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
+                                            if ($kostutaula!==null){
+                                                $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
+                                                $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
 
-                                            foreach ( $kostutaula["parrafoak"] as $parrafo ) {
-                                                $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
-                                                $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
-                                            }
-                                            foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
-                                                if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
-                                                    $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
-                                                    $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                foreach ( $kostutaula["parrafoak"] as $parrafo ) {
+                                                    $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
+                                                    $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
                                                 }
+                                                foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
+                                                    if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
+                                                        $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                        $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                    }
+                                                }
+                                                $textes = $textes."</table>";
+                                                $texteu = $texteu."</table>";
+                                                $kont += 1;
                                             }
-                                            $textes = $textes."</table>";
-                                            $texteu = $texteu."</table>";
-                                            $kont += 1;
                                         }
                                     } else {
                                         foreach ( $fitxa->getAzpiatalak() as $azpiatal ) {
@@ -2034,22 +2036,24 @@
                                     if ( $eremuak["kostuatable"] ) {
                                         if ( $fitxa->getUdala()->getZergaor() ) {
                                             foreach ( $kostuZerrenda as $kostutaula ) {
-                                                $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
-                                                $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
+                                                if ($kostutaula!==null){
+                                                    $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
+                                                    $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
 
-                                                foreach ( $kostutaula["parrafoak"] as $parrafo ) {
-                                                    $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
-                                                    $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
-                                                }
-                                                foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
-                                                    if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
-                                                        $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
-                                                        $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                    foreach ( $kostutaula["parrafoak"] as $parrafo ) {
+                                                        $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
+                                                        $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
                                                     }
+                                                    foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
+                                                        if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
+                                                            $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                            $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                        }
+                                                    }
+                                                    $textes = $textes."</table>";
+                                                    $texteu = $texteu."</table>";
+                                                    $kont += 1;
                                                 }
-                                                $textes = $textes."</table>";
-                                                $texteu = $texteu."</table>";
-                                                $kont += 1;
                                             }
                                         } else {
                                             foreach ( $fitxa->getAzpiatalak() as $azpiatal ) {
