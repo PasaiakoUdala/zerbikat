@@ -92,17 +92,41 @@
                 {% if is_granted('ROLE_KUDEAKETA') %}
                     <ul class="nav navbar-nav">
                         <li><a href="{{ path('fitxa_index') }}">{{ 'messages.fitxak'|trans }}</a></li>
+                        {#Taula Laguntzaileak#}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaNagusiak')"
-                               ;>{{ 'messages.taulanagusiak'|trans }}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menua');">{{ 'messages.taulalagun'|trans }}<span class="caret"></span></a>
+                            <ul class="dropdown-menu" id="menua">
+                                <li class="dropdown-header">{{ 'messages.taulalagun'|trans }}</li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{ path('arrunta_index') }}">{{ 'messages.arruntak'|trans }}</a></li>
+                                <li><a href="{{ path('aurreikusi_index') }}">{{ 'messages.aurreikusi'|trans }}</a></li>
+                                <li><a href="{{ path('isiltasunadministratiboa_index') }}">{{ 'messages.isiltasunadmin'|trans }}</a></li>
+                                <li><a href="{{ path('araumota_index') }}">{{ 'messages.araumotak'|trans }}</a></li>
+                                <li><a href="{{ path('dokumentumota_index') }}">{{ 'messages.dokumentumotak'|trans }}</a></li>
+                                <li><a href="{{ path('kanalmota_index') }}">{{ 'messages.kanalmotak'|trans }}</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">{{ 'messages.kaleizendegia'|trans }}</li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{ path('barrutia_index') }}">{{ 'messages.barrutiak'|trans }}</a></li>
+                                <li><a href="{{ path('kalea_index') }}">{{ 'messages.kaleak'|trans }}</a></li>
+                                <li><a href="{{ path('eraikina_index') }}">{{ 'messages.eraikinak'|trans }}</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li class="dropdown-header">{{ 'messages.zergaordenantzak'|trans }}</li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{ path('azpiatala_index') }}">{{ 'messages.kostutaulak'|trans }}</a></li>
+                                <li><a href="{{ path('baldintza_index') }}">{{ 'messages.baldintzak'|trans }}</a></li>
+                                <li><a href="{{ path('kontzeptumota_index') }}">{{ 'messages.kontzeptumotak'|trans }}</a></li>
+                            </ul>
+                        </li>
+                        {#Taula Nagusiak#}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaNagusiak');">{{ 'messages.taulanagusiak'|trans }}<span class="caret"></span></a>
                             <ul class="dropdown-menu" id="menuaNagusiak">
                                 <li><a href="{{ path('araudia_index') }}">{{ 'messages.araudia'|trans }}</a></li>
                                 <li><a href="{{ path('dokumentazioa_index') }}">{{ 'messages.agiriak'|trans }}</a></li>
                                 <li><a href="{{ path('saila_index') }}">{{ 'messages.sailak'|trans }}</a></li>
                                 <li><a href="{{ path('azpisaila_index') }}">{{ 'messages.azpisailak'|trans }}</a></li>
-                                <li><a href="{{ path('datuenbabesa_index') }}">{{ 'messages.datuenbabesa'|trans }}</a>
-                                </li>
+                                <li><a href="{{ path('datuenbabesa_index') }}">{{ 'messages.datuenbabesa'|trans }}</a></li>
                                 <li><a href="{{ path('prozedura_index') }}">{{ 'messages.prozedurak'|trans }}</a></li>
                                 <li><a href="{{ path('kanala_index') }}">{{ 'messages.kanalak'|trans }}</a></li>
                                 <li><a href="{{ path('norkebatzi_index') }}">{{ 'messages.ebazleak'|trans }}</a></li>
@@ -113,55 +137,15 @@
                                 <li><a href="{{ path('norkeskatu_index') }}">{{ 'messages.norkeskatu'|trans }}</a></li>
                             </ul>
                         </li>
+                        {#Sailkapena#}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaSailkapena')"
-                               ;>{{ 'messages.sailkapena'|trans }}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaSailkapena');">{{ 'messages.sailkapena'|trans }}<span class="caret"></span></a>
                             <ul class="dropdown-menu" id="menuaSailkapena">
                                 <li><a href="{{ path('etiketa_index') }}">{{ 'messages.etiketak'|trans }}</a></li>
                                 <li><a href="{{ path('familia_index') }}">{{ 'messages.familiak'|trans }}</a></li>
                             </ul>
                         </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menua')"
-                               ;>{{ 'messages.taulalagun'|trans }}
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu" id="menua">
-                                {#<li role="separator" class="divider"></li>#}
-                                <li class="dropdown-header">{{ 'messages.taulalagun'|trans }}</li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{ path('arrunta_index') }}">{{ 'messages.arruntak'|trans }}</a></li>
-                                <li><a href="{{ path('aurreikusi_index') }}">{{ 'messages.aurreikusi'|trans }}</a></li>
-                                <li>
-                                    <a href="{{ path('isiltasunadministratiboa_index') }}">{{ 'messages.isiltasunadmin'|trans }}</a>
-                                </li>
-                                <li><a href="{{ path('araumota_index') }}">{{ 'messages.araumotak'|trans }}</a></li>
-                                <li>
-                                    <a href="{{ path('dokumentumota_index') }}">{{ 'messages.dokumentumotak'|trans }}</a>
-                                </li>
-                                <li><a href="{{ path('kanalmota_index') }}">{{ 'messages.kanalmotak'|trans }}</a></li>
-
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">{{ 'messages.kaleizendegia'|trans }}</li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{{ path('barrutia_index') }}">{{ 'messages.barrutiak'|trans }}</a></li>
-                                <li><a href="{{ path('kalea_index') }}">{{ 'messages.kaleak'|trans }}</a></li>
-                                <li><a href="{{ path('eraikina_index') }}">{{ 'messages.eraikinak'|trans }}</a></li>
-
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">{{ 'messages.zergaordenantzak'|trans }}</li>
-                                <li role="separator" class="divider"></li>
-                                {#<li><a href="{{ path('ordenantza_index') }}" >Ordenantzak</a></li>#}
-                                {#<li><a href="{{ path('atala_index') }}" >Atalak</a></li>#}
-                                <li><a href="{{ path('azpiatala_index') }}">{{ 'messages.kostutaulak'|trans }}</a></li>
-                                <li><a href="{{ path('baldintza_index') }}">{{ 'messages.baldintzak'|trans }}</a></li>
-                                <li>
-                                    <a href="{{ path('kontzeptumota_index') }}">{{ 'messages.kontzeptumotak'|trans }}</a>
-                                </li>
-                            </ul>
-                        </li>
+                        {#Admin#}
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
