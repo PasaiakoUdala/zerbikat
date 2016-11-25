@@ -90,10 +90,10 @@
             $subtiteus =   str_replace( '\'', '"', $subtiteus );
 
             if (strlen($subtites) === 0 ) {
-                $subtites = '';
+                $subtites = "''";
             }
             if (strlen($subtiteus) === 0 ) {
-                $subtiteus = '';
+                $subtiteus = "''";
             }
             $A203AYUNTA = $A204AYUNTA;
             $A203IDBLOQUE = $idBlokea;
