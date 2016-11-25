@@ -957,7 +957,7 @@
 
 
     {% if is_granted('ROLE_ADMIN') %}
-        <div class="row" id="admin">
+        <div class="row hidden" id="admin">
             <div class="col-sm-6">
                 <div class="page-header">
                     <h2>ADMIN</h2>
@@ -985,7 +985,7 @@
             {% endif %}
 
             {% if is_granted('ROLE_ADMIN') %}
-                <div class="col-sm-9">
+                <div class="col-sm-9 hidden">
                     <div class="form-group col-sm-4">
                         <b>{{ 'messages.kontsultak'|trans }}</b>
                         {#{{ form_label(edit_form.kontsultak, 'Kontsulta kopurua:', { 'label_attr': {'class': 'control-label'} }) }}#}

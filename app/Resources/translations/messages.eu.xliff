@@ -192,7 +192,7 @@
             </trans-unit>
             <trans-unit id="messages.dokumentumotak">
                 <source>messages.dokumentumotak</source>
-                <target>Dokumentu-motak</target>
+                <target>Agiri-motak</target>
             </trans-unit>
             <trans-unit id="messages.kanalmotak">
                 <source>messages.kanalmotak</source>
