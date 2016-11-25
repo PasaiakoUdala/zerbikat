@@ -14,6 +14,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/.idea/
+/.idea/*
 .idea/workspace.xml
 /web/doc/
+/.idea/Zerbikat.iml

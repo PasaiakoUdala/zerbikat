@@ -89,6 +89,12 @@
             $subtites =   str_replace( '\'', '"', $subtites );
             $subtiteus =   str_replace( '\'', '"', $subtiteus );
 
+            if (strlen($subtites) === 0 ) {
+                $subtites = '';
+            }
+            if (strlen($subtiteus) === 0 ) {
+                $subtiteus = '';
+            }
             $A203AYUNTA = $A204AYUNTA;
             $A203IDBLOQUE = $idBlokea;
             $A203DENOMI = "'".$idBlokea." Blokea'";
