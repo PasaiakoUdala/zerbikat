@@ -30,8 +30,47 @@
                 ->addArgument( 'debug', InputArgument::OPTIONAL, 'Informazio areagotua bistaratu.' );
         }
 
+        function zerbikatParametroa($param) {
+            if (!$param) return;
+            switch ($param) {
+                case "0101":
+                    return "URA";
+                    break;
+                case "02":
+                    return "UML";
+                    break;
+                case "03":
+                    return "URM";
+                    break;
+                case "04":
+                    return "UPF";
+                    break;
+                case "05":
+                    return "UPM-PM";
+                    break;
+                case "0501":
+                    return "UPM-PV";
+                    break;
+                case "0502":
+                    return "UPM-HE";
+                    break;
+                case "0503":
+                    return "UPM-CE";
+                    break;
+                case "06":
+                    return "UEX";
+                    break;
+                case "07":
+                    return "UVD";
+                    break;
+                default:
+                    return $param;
+                    break;
+            }
+        }
+
         // UDAA20401
-        function addOrria ( $A204AYUNTA, $IdPagina, $denomi, $titcast, $titeus, $publicada, $tipo )
+        function addOrria( $A204AYUNTA, $IdPagina, $denomi, $titcast, $titeus, $publicada, $tipo )
         {
             $denomi =   str_replace( '\'', '"', $denomi );
             $titcast =  str_replace( '\'', '"', $titcast );
@@ -44,6 +83,9 @@
             $A204PUBLICADA = $publicada;
             $A204FECALTA = null;
 
+            // Itzuplena egin, zerbikat-etik 0101 etortzen da, hori itzuli behar da IZFE-ko parametroetara
+            $tipo = $this->zerbikatParametroa( $tipo );
+
             switch ( $tipo ) {
                 case "USC":
                     $A204TIPO = "'HOME'";
@@ -52,6 +94,8 @@
                     $A204TIPO = "'PROPIA'";
                     break;
                 default:
+
+
                     $servicios = array (
                         "UML",
                         "UPF",
@@ -375,7 +419,7 @@
                                     $fitxa->getDeskribapenaes(),
                                     $fitxa->getDeskribapenaeu(),
                                     1,
-                                    "UXX"
+                                    $fitxa->getParametroa()
                                 );
 
                             $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $idPagina;
@@ -792,17 +836,25 @@
                                     if ( $fitxa->getUdala()->getZergaor() ) {
                                         foreach ( $kostuZerrenda as $kostutaula ) {
                                             if ($kostutaula!==null){
-                                                $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
-                                                $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
+                                                $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaes_prod"]."</th></tr>";
+                                                $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaeu_prod"]."</th></tr>";
 
                                                 foreach ( $kostutaula["parrafoak"] as $parrafo ) {
-                                                    $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
-                                                    $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
+                                                    if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
+                                                        $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes_prod"]."</td></tr>";
+                                                        $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu_prod"]."</td></tr>";
+                                                    }
                                                 }
                                                 foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
                                                     if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
                                                         $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
                                                         $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                    }
+                                                }
+                                                foreach ( $kostutaula["parrafoakondoren"] as $parrafo ) {
+                                                    if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
+                                                        $textes = $textes."<tr><td colspan='2'>".$parrafo[ "testuaes_prod" ]."</td></tr>";
+                                                        $texteu = $texteu."<tr><td colspan='2'>".$parrafo[ "testuaeu_prod" ]."</td></tr>";
                                                     }
                                                 }
                                                 $textes = $textes."</table>";
@@ -1626,7 +1678,7 @@
                                         $fitxa->getDeskribapenaes(),
                                         $fitxa->getDeskribapenaeu(),
                                         1,
-                                        "UXX"
+                                        $fitxa->getParametroa()
                                     );
 
                                 $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $idPagina;
@@ -2043,17 +2095,25 @@
                                         if ( $fitxa->getUdala()->getZergaor() ) {
                                             foreach ( $kostuZerrenda as $kostutaula ) {
                                                 if ($kostutaula!==null){
-                                                    $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaes"]."</th></tr>";
-                                                    $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea"] . " - " . $kostutaula["izenburuaeu"]."</th></tr>";
+                                                    $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaes_prod"]."</th></tr>";
+                                                    $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaeu_prod"]."</th></tr>";
 
                                                     foreach ( $kostutaula["parrafoak"] as $parrafo ) {
-                                                        $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes"]."</td></tr>";
-                                                        $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu"]."</td></tr>";
+                                                        if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
+                                                            $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes_prod"]."</td></tr>";
+                                                            $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu_prod"]."</td></tr>";
+                                                        }
                                                     }
                                                     foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
                                                         if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
                                                             $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
                                                             $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
+                                                        }
+                                                    }
+                                                    foreach ( $kostutaula["parrafoakondoren"] as $parrafo ) {
+                                                        if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
+                                                            $textes = $textes."<tr><td colspan='2'>".$parrafo[ "testuaes_prod" ]."</td></tr>";
+                                                            $texteu = $texteu."<tr><td colspan='2'>".$parrafo[ "testuaeu_prod" ]."</td></tr>";
                                                         }
                                                     }
                                                     $textes = $textes."</table>";

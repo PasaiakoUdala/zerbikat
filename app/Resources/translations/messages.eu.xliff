@@ -136,11 +136,11 @@
             </trans-unit>
             <trans-unit id="messages.ebazleak">
                 <source>messages.ebazleak</source>
-                <target>Ebazleak</target>
+                <target>Organo ebazlea</target>
             </trans-unit>
             <trans-unit id="messages.doklagun">
                 <source>messages.doklagun</source>
-                <target>Dokumentazio lagungarria</target>
+                <target>Agiri lagungarriak</target>
             </trans-unit>
             <trans-unit id="messages.besteak1">
                 <source>messages.besteak1</source>
