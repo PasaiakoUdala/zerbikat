@@ -926,6 +926,11 @@
                 <source>messages.azpifamiliak</source>
                 <target>Azpifamiliak</target>
             </trans-unit>
+
+            <trans-unit id="messages.menu.admin">
+                <source>messages.menu.admin</source>
+                <target>Konfigurazioa</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

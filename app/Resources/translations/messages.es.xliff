@@ -933,6 +933,11 @@
                 <source>messages.azpifamiliak</source>
                 <target>Subfamilias</target>
             </trans-unit>
+
+            <trans-unit id="messages.menu.admin">
+                <source>messages.menu.admin</source>
+                <target>Configuración</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
