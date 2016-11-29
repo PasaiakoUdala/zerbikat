@@ -2,6 +2,7 @@
 
 namespace Zerbikat\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
@@ -105,9 +106,9 @@ class Azpiatala
      */
     public function __construct()
     {
-        $this->kontzeptuak = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->parrafoak = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->fitxak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->kontzeptuak = new ArrayCollection();
+        $this->parrafoak = new ArrayCollection();
+        $this->fitxak = new ArrayCollection();
     }
 
     public function addKontzeptua(Kontzeptua $kontzeptua)

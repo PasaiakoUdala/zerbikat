@@ -88,6 +88,8 @@
         private $udala;
 
         /**
+         * @var fitxafamilia[]
+         *
          * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="familia")
          * @ORM\OrderBy({"ordena" = "ASC"})
          */
@@ -100,6 +102,7 @@
 
         /**
          * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Familia", mappedBy="parent")
+         * @ORM\OrderBy({"ordena" = "ASC"})
          */
         private $children;
 

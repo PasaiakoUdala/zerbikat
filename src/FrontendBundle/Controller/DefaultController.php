@@ -26,33 +26,46 @@
 
             $query = $em->createQuery(
                 '
-          SELECT f 
-            FROM BackendBundle:Fitxa f 
-              LEFT JOIN BackendBundle:Udala u  WITH f.udala=u.id
-            WHERE u.kodea = :udala
-            ORDER BY f.kontsultak DESC 
-        '
+                SELECT f 
+                  FROM BackendBundle:Fitxa f 
+                  LEFT JOIN BackendBundle:Udala u  WITH f.udala=u.id
+                WHERE u.kodea = :udala
+                ORDER BY f.kontsultak DESC 
+                '
             );
             $query->setParameter( 'udala', $udala );
             $fitxak = $query->getResult();
 
             $query = $em->createQuery(
                 '
-          SELECT f, COALESCE (f.ordena,0) as HIDDEN ezkutuan            
-            FROM BackendBundle:Familia f
-              LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
-            WHERE u.kodea = :udala AND f.parent is NULL 
-            ORDER BY ezkutuan DESC
-        '
+                SELECT f, COALESCE (f.ordena,0) as HIDDEN ezkutuan            
+                  FROM BackendBundle:Familia f
+                  LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
+                WHERE u.kodea = :udala AND f.parent is NULL 
+                ORDER BY ezkutuan DESC
+                '
             );
             $query->setParameter( 'udala', $udala );
             $familiak = $query->getResult();
+
+            $query = $em->createQuery(
+                '
+                SELECT s            
+                  FROM BackendBundle:Saila s
+                  LEFT JOIN BackendBundle:Udala u WITH s.udala=u.id
+                WHERE u.kodea = :udala
+                ORDER BY s.kodea DESC
+                '
+            );
+            $query->setParameter( 'udala', $udala );
+            $sailak = $query->getResult();
 
             return $this->render(
                 'frontend\index.html.twig',
                 array (
                     'fitxak'   => $fitxak,
                     'familiak' => $familiak,
+                    'sailak'   => $sailak,
                     'udala'    => $udala,
                 )
             );

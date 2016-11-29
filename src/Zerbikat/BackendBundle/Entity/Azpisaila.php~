@@ -2,6 +2,7 @@
 
 namespace Zerbikat\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
@@ -148,7 +149,12 @@ class Azpisaila
      */
     private $barrutia;
 
-
+    /**
+     * @var fitxak[]
+     *
+     * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa", mappedBy="azpisaila")
+     */
+    private $fitxak;
 
 
 //    /**
@@ -176,21 +182,12 @@ class Azpisaila
     
     public function __toString()
     {
-
-//        dump( Locale::getDefault());
-
-//        dump($this->locale);
-
-//        if ($this->locale=='eu')
-//        {
-//            return $this->getAzpisailaeu();
-//        }else
-//            {
-//                return $this->getAzpisailaes();
-//            }
-
         return $this->getAzpisailaeu();
+    }
 
+    public function __construct()
+    {
+        $this->fitxak = new ArrayCollection();
     }
 
 

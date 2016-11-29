@@ -120,6 +120,7 @@ class SecurityController extends Controller
         {
             $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r");
             $lerro = fgets($fitx);
+            fclose( $fitx );
 
             /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
             if ($lerro == $urlOsoa)
