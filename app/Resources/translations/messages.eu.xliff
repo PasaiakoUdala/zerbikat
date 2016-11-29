@@ -204,7 +204,7 @@
             </trans-unit>
             <trans-unit id="messages.barrutiak">
                 <source>messages.barrutiak</source>
-                <target>Barrutiak</target>
+                <target>Barrutiak - Auzoak</target>
             </trans-unit>
             <trans-unit id="messages.kaleak">
                 <source>messages.kaleak</source>
@@ -348,7 +348,7 @@
             </trans-unit>
             <trans-unit id="messages.barrutia">
                 <source>messages.barrutia</source>
-                <target>Barrutia</target>
+                <target>Barrutia - Auzoa</target>
             </trans-unit>
             <trans-unit id="messages.kalea">
                 <source>messages.kalea</source>
