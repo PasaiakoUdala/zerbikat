@@ -42,7 +42,7 @@
                   FROM BackendBundle:Familia f
                   LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
                 WHERE u.kodea = :udala AND f.parent is NULL 
-                ORDER BY ezkutuan DESC
+                ORDER BY ezkutuan ASC
                 '
             );
             $query->setParameter( 'udala', $udala );
