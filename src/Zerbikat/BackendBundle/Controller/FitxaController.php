@@ -80,7 +80,7 @@
             $auth_checker = $this->get( 'security.authorization_checker' );
             if ( $auth_checker->isGranted( 'ROLE_USER' ) ) {
                 $fitxa = new Fitxa();
-                $form = $this->createForm( 'Zerbikat\BackendBundle\Form\FitxaType', $fitxa );
+                $form = $this->createForm( 'Zerbikat\BackendBundle\Form\FitxaType', $fitxa , array('user' => $this->getUser()));
                 $form->handleRequest( $request );
 
                 $em = $this->getDoctrine()->getManager();

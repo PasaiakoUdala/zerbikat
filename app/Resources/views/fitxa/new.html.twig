@@ -763,29 +763,29 @@
                 </div>
         </div>
 
-    {% if is_granted('ROLE_KUDEAKETA') %}
-        <div class="row">
-    {% else %}
-        <div class="row hidden">
-    {% endif %}
-            <div class="col-sm-6">
-                <div class="page-header">
-                    <h2>FAMILIAK</h2>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="page-header">
-                    <h2>FAMILIAS</h2>
-                </div>
-            </div>
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8">
-                <div>
-                    {{ form_errors(form.familiak) }}
-                    {{ form_widget(form.familiak, {'attr': {'class': 'form-control select2'}}) }}
-                </div>
-            </div>
-        </div>
+    {#{% if is_granted('ROLE_KUDEAKETA') %}#}
+        {#<div class="row">#}
+    {#{% else %}#}
+        {#<div class="row hidden">#}
+    {#{% endif %}#}
+            {#<div class="col-sm-6">#}
+                {#<div class="page-header">#}
+                    {#<h2>FAMILIAK</h2>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="col-sm-6">#}
+                {#<div class="page-header">#}
+                    {#<h2>FAMILIAS</h2>#}
+                {#</div>#}
+            {#</div>#}
+            {#<div class="col-sm-2"></div>#}
+            {#<div class="col-sm-8">#}
+                {#<div>#}
+                    {#{{ form_errors(form.familiak) }}#}
+                    {#{{ form_widget(form.familiak, {'attr': {'class': 'form-control select2'}}) }}#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
 
     {% if is_granted('ROLE_ADMIN') %}
     <div class="row">
