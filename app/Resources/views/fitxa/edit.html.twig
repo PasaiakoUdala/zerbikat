@@ -1159,7 +1159,9 @@
 
 
     <input id="fitxa_id" type="hidden" value="{{ fitxa.id }}">
+    <input id="udala_id" type="hidden" value="{{ udala }}">
     <input id="url_api_zzoo" type="hidden" value="{{ zzoo_aplikazioaren_API_url }}">
+
 {% endblock %}
 
 {% block javascripts %}
@@ -1173,7 +1175,8 @@
              * Goazen konboak kargatzera
              */
             var param = "{{ zzoo_aplikazioaren_API_url }}";
-            var url = param + "/ordenantzak";
+            var udalaid = $('#udala_id').val()
+            var url = param + "/ordenantzak/"+udalaid+".json";
             var locale ="{{ app.request.getLocale() }}";
 
             var jqxhr = $.getJSON(url, function (result) {
@@ -1202,7 +1205,7 @@
 
                 $('#nireloader3').addClass('loading');
                 var ordenantzaid = $(this).val();
-                var url = param + "/ordenantzas/" + ordenantzaid + ".json";
+                var url = param + "/tributuak/" + ordenantzaid + ".json";
 
                 var jqxhr = $.getJSON(url, function (result) {
                     $("#cmbAtala").empty();
@@ -1215,7 +1218,7 @@
                     if (result.length === 0) {
                         return;
                     }
-                    var atalak = result[0].atalak;
+                    var atalak = result;
 
                     $.each(atalak, function (i, field) {
                         if (locale === "es") {
@@ -1251,7 +1254,7 @@
 
                 $('#nireloader3').addClass('loading');
                 var atalaid = $(this).val();
-                var url = param + "/atalas/" + atalaid + ".json";
+                var url = param + "/zergak/" + atalaid + ".json";
 
                 var jqxhr = $.getJSON(url, function (result2) {
                     $("#cmbKontzeptua").empty();
@@ -1265,7 +1268,7 @@
                         return;
                     }
 
-                    var azpiatalak = result2[0].azpiatalak;
+                    var azpiatalak = result2;
 
                     $.each(azpiatalak, function (i, field2) {
 

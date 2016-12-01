@@ -61,9 +61,6 @@
                 $form = $this->createForm( 'Zerbikat\BackendBundle\Form\OrdenantzaType', $ordenantza );
                 $form->handleRequest( $request );
 
-//            $form->getData()->setUdala($this->getUser()->getUdala());
-//            $form->setData($form->getData());
-
                 if ( $form->isSubmitted() && $form->isValid() ) {
                     $ordenantza->setCreatedAt( new \DateTime() );
                     $ordenantza->setUpdatedAt( new \DateTime() );
@@ -71,7 +68,6 @@
                     $em->persist( $ordenantza );
                     $em->flush();
 
-//                return $this->redirectToRoute('ordenantza_show', array('id' => $ordenantza->getId()));
                     return $this->redirectToRoute( 'ordenantza_index' );
                 } else {
                     $form->getData()->setUdala( $this->getUser()->getUdala() );

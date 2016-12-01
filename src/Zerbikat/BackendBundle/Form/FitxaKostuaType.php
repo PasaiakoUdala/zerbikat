@@ -29,14 +29,15 @@ class FitxaKostuaType extends AbstractType
 
 
         $client = new GuzzleHttp\Client();
-        $proba = $client->request( 'GET', $api.'/azpiatalaks/'.$udala.'.json' );
+        $url = $api.'/udalzergak/'.$udala.'.json';
+        $proba = $client->request( 'GET', $url );
         $valftp = (string)$proba->getBody();
         $array = json_decode($valftp, true);
 
         $resp=array();
         foreach ($array as $a)
         {
-            $izena = $a[ 'kodea' ]." - ".$a[ 'izenburuaeu' ];
+            $izena = $a[ 'kodea_prod' ]." - ".$a[ 'izenburuaeu_prod' ];
             $resp[$izena] = $a['id'];
         }
 

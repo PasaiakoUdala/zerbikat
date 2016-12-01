@@ -369,6 +369,7 @@
                     'fitxa/edit.html.twig',
                     array (
                         'fitxa'            => $fitxa,
+                        'udala'             => $this->getUser()->getUdala()->getId(),
                         'edit_form'        => $editForm->createView(),
                         'delete_form'      => $deleteForm->createView(),
                         'formfitxafamilia' => $form->createView(),
