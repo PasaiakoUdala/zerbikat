@@ -31,7 +31,7 @@
         }
 
         function zerbikatParametroa($param) {
-            if (!$param) return;
+            if (!$param) return null;
             switch ($param) {
                 case "0101":
                     return "URA";
@@ -63,6 +63,21 @@
                 case "07":
                     return "UVD";
                     break;
+                case "08":
+                    return "EXPEDIENTE";
+                    break;
+                case "0800":
+                    return "EXPEDIENTE";
+                    break;
+                case "0801":
+                    return "EXPEDIENTE";
+                    break;
+                case "0802":
+                    return "EXPEDIENTE";
+                    break;
+                case "0803":
+                    return "EXPEDIENTE";
+                    break;
                 default:
                     return $param;
                     break;
@@ -82,20 +97,28 @@
             $A204TITEUSK = "'".$titeus."'";
             $A204PUBLICADA = $publicada;
             $A204FECALTA = null;
+            $A204IDTIPO = "''";
 
             // Itzuplena egin, zerbikat-etik 0101 etortzen da, hori itzuli behar da IZFE-ko parametroetara
             $tipo = $this->zerbikatParametroa( $tipo );
 
             switch ( $tipo ) {
+                case null:
+                    $A204TIPO = "'PROPIA'";
+                    break;
+
                 case "USC":
                     $A204TIPO = "'HOME'";
                     break;
+
                 case "UXX":
                     $A204TIPO = "'PROPIA'";
                     break;
+
+                case "EXPEDIENTE":
+                    $A204TIPO = "'EXPEDIENTE'";
+                    $A204IDTIPO = "'". $tipo ."'";
                 default:
-
-
                     $servicios = array (
                         "UML",
                         "UPF",
@@ -113,12 +136,13 @@
 
                     if ( in_array( $tipo, $servicios ) ) {
                         $A204TIPO = "'SERVICIO'";
+                        $A204IDTIPO = "'". $tipo ."'";
                     } else {
-                        $A204TIPO = "'EXPEDIENTE'";
+                        $A204TIPO = "'PROPIA'";
+                        $A204IDTIPO = "'". $tipo ."'";
                     }
             }
 
-            $A204IDTIPO = "'".$tipo."'";
             $sql = "INSERT INTO UDAA20401 (A204AYUNTA,A204IDPAGINA,A204DENOMI,A204TITCAST,A204TITEUSK,A204PUBLICADA,A204FECALTA,A204TIPO,A204IDTIPO,A204CAPLI)
             VALUES ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, null, $A204TIPO, $A204IDTIPO, 'Z');\n";
 
@@ -168,7 +192,7 @@
         }
 
         // UDAA20201
-        function addElementua ( $A204AYUNTA, $idElementua, $denomi, $titcast, $titeus, $tipo, $link = '' )
+        function addElementua ( $A204AYUNTA, $idElementua, $denomi, $titcast, $titeus, $servicio, $linkext = '' )
         {
             $denomi =   str_replace( '\'', '"', $denomi );
             $titcast =  str_replace( '\'', '"', $titcast );
@@ -179,14 +203,61 @@
             $A202DENOMI = "'".$denomi."'";
             $A202TEXCAST = "'".$titcast."'";
             $A202TEXEUSK = "'".$titeus."'";
-            $A202SERVICIO = "'".$tipo."'";
-            if ( $tipo == "PROPIA" ) {
-                $A202LINKEXT = "'".$link."'";
-            } else {
-                $A202LINKEXT = "''";
-            }
-//            $A202FECALTA = date( 'Ymd' );
             $A202FECALTA = null;
+            $A202LINKEXT = "''";
+
+//            $A202SERVICIO = "'".$servicio."'";
+//            if ( $servicio == "PROPIA" ) {
+//                $A202LINKEXT = "'".$linkext."'";
+//            } else {
+//                $A202LINKEXT = "''";
+//            }
+
+            // Itzuplena egin, zerbikat-etik 0101 etortzen da, hori itzuli behar da IZFE-ko parametroetara
+            $tipo = $this->zerbikatParametroa( $servicio );
+
+            switch ( $tipo ) {
+                case null:
+                    $A202SERVICIO = "'PROPIA'";
+                    break;
+
+                case "PARRAFO":
+                    $A202SERVICIO = "'PROPIA'";
+                    break;
+
+                case "USC":
+                    $A202SERVICIO = "'HOME'";
+                    break;
+
+                case "UXX":
+                    $A202SERVICIO = "'PROPIA'";
+                    break;
+
+                default:
+                    $servicios = array (
+                        "UML",
+                        "UPF",
+                        "URM",
+                        "UEX",
+                        "UPM-PM",
+                        "UPM-PV",
+                        "UPM-CE",
+                        "UPM-HE",
+                        "URG",
+                        "URA",
+                        "URB",
+                        "UVD",
+                    );
+
+                    if ( in_array( $tipo, $servicios ) ) {
+                        $A202SERVICIO = "'SERVICIO'";
+                        $A202LINKEXT = "'". $tipo ."'";
+                    } else {
+                        $A202SERVICIO = "'EXPEDIENTE'";
+                        $A202LINKEXT = "'". $tipo ."'";
+                    }
+            }
+
 
             $sql = "INSERT INTO UDAA20201 (A202AYUNTA, A202IDLINEA, A202DENOMI, A202TEXCAST, A202TEXEUSK, A202LINKEXT, A202SERVICIO,A202FECALTA, A202CAPLI)
                                    VALUES($A202AYUNTA, $A202IDLINEA, $A202DENOMI, $A202TEXCAST, $A202TEXEUSK, $A202LINKEXT, $A202SERVICIO, null, 'Z');\n";
@@ -404,7 +475,7 @@
                                 $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
                                 if ( (strlen( $api ) > 0) && ($kostu->getKostua()) ) {
                                     $client = new GuzzleHttp\Client();
-                                    $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+                                    $proba = $client->request( 'GET', $api.'/zerga/'.$kostu->getKostua().'.json' );
                                     $fitxaKostua = (string)$proba->getBody();
                                     $array = json_decode( $fitxaKostua, true );
                                     $kostuZerrenda[] = $array;
@@ -849,12 +920,6 @@
                                                     if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
                                                         $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
                                                         $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
-                                                    }
-                                                }
-                                                foreach ( $kostutaula["parrafoakondoren"] as $parrafo ) {
-                                                    if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
-                                                        $textes = $textes."<tr><td colspan='2'>".$parrafo[ "testuaes_prod" ]."</td></tr>";
-                                                        $texteu = $texteu."<tr><td colspan='2'>".$parrafo[ "testuaeu_prod" ]."</td></tr>";
                                                     }
                                                 }
                                                 $textes = $textes."</table>";
@@ -1599,7 +1664,7 @@
                                 'Link-'.$fitxa->getEspedientekodea(),
                                 $fitxa->getDeskribapenaes(),
                                 $fitxa->getDeskribapenaeu(),
-                                "PROPIA",
+                                $fitxa->getParametroa(),
                                 $sortutakoFitxak[ $fitxa->getEspedientekodea() ]
                             );
                         $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $mapa[$familia->getId()], $idElementua, $idOrdenElementua );
@@ -1663,7 +1728,7 @@
                                     $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
                                     if ( (strlen( $api ) > 0) && ($kostu->getKostua()) ) {
                                         $client = new GuzzleHttp\Client();
-                                        $proba = $client->request( 'GET', $api.'/azpiatalas/'.$kostu->getKostua().'.json' );
+                                        $proba = $client->request( 'GET', $api.'/zerga/'.$kostu->getKostua().'.json' );
                                         $fitxaKostua = (string)$proba->getBody();
                                         $array = json_decode( $fitxaKostua, true );
                                         $kostuZerrenda[] = $array;
@@ -2108,12 +2173,6 @@
                                                         if ( array_key_exists ("kopurua_prod",$kontzeptu) ) {
                                                             $textes = $textes."<tr><td>".$kontzeptu["kontzeptuaes_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
                                                             $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
-                                                        }
-                                                    }
-                                                    foreach ( $kostutaula["parrafoakondoren"] as $parrafo ) {
-                                                        if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
-                                                            $textes = $textes."<tr><td colspan='2'>".$parrafo[ "testuaes_prod" ]."</td></tr>";
-                                                            $texteu = $texteu."<tr><td colspan='2'>".$parrafo[ "testuaeu_prod" ]."</td></tr>";
                                                         }
                                                     }
                                                     $textes = $textes."</table>";
@@ -2858,7 +2917,7 @@
                                     'Link-'.$fitxa->getEspedientekodea(),
                                     $fitxa->getDeskribapenaes(),
                                     $fitxa->getDeskribapenaeu(),
-                                    "PROPIA",
+                                    $fitxa->getParametroa(),
                                     $sortutakoFitxak[ $fitxa->getEspedientekodea() ]
                                 );
                             $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $mapa[$familia->getId()], $idElementua, $idOrdenElementua );
