@@ -9,11 +9,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    {#<li>#}
-                        {#<a href="{{ path('araudia_new') }}" class="fa fa-plus">#}
-                            {#Erabiltzaile berria</a>#}
-                    {#</li>#}
-                    <li><a href="#" onclick="document.forms['{{ form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
+
+                    <li><a href="#" class="btnGorde fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
                     <li><a href="{{ path('users_index') }}" class="fa fa-undo"> {{ 'messages.utzi'|trans }}</a></li>
 
                 </ul>
@@ -24,7 +21,8 @@
 
 
 {% block body %}
-    {{ form_start(form) }}
+
+    {{ form_start(form, {'attr': {'id': 'user_add_form'}}) }}
 
     {% if is_granted('ROLE_SUPER_ADMIN') %}
     <div class="row">
@@ -34,7 +32,6 @@
         <div class="col-sm-1">
             <div class="form-group">
                 <b>{{ 'messages.aktibo'|trans }}</b>
-                {#{{ form_label(form.enabled, 'Aktibo? ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.enabled) }}
                 {{ form_widget(form.enabled, {'attr': {'class': 'form-group'}}) }}
             </div>
@@ -42,7 +39,6 @@
         <div class="col-sm-2">
             <div class="form-group">
                 <b>{{ 'messages.udala'|trans }}</b>
-                {#{{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.udala) }}
                 {{ form_widget(form.udala, {'attr': {'class': 'form-group'}}) }}
             </div>
@@ -53,7 +49,6 @@
         <div class="col-sm-2">
             <div class="form-group">
                 <b>{{ 'messages.NA'|trans }}</b>
-                {#{{ form_label(form.username, 'NA / DNI: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.username) }}
                 {{ form_widget(form.username, {'attr': {'class': 'form-group'}}) }}
             </div>
@@ -61,22 +56,14 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <b>{{ 'messages.email'|trans }}</b>
-                {#{{ form_label(form.email, 'Email-a: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.email) }}
                 {{ form_widget(form.email, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
-        {#<div class="col-sm-2">#}
-            {#<div class="form-group">#}
-                {#{{ form_label(form.password, 'Pasahitza: ', { 'label_attr': {'class': 'control-label'} }) }}#}
-                {#{{ form_errors(form.password) }}#}
-                {#{{ form_widget(form.password, {'attr': {'class': 'form-group'}}) }}#}
-            {#</div>#}
-        {#</div>#}
+
         <div class="col-sm-2">
             <div class="form-group">
                 <b>{{ 'messages.azpisaila'|trans }}</b>
-                {#{{ form_label(form.azpisaila, 'Azpi-saila: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.azpisaila) }}
                 {{ form_widget(form.azpisaila, {'attr': {'class': 'form-group'}}) }}
             </div>
@@ -96,34 +83,37 @@
         <div class="col-sm-2">
             <div class="form-group">
                 <b>{{ 'messages.baimenak'|trans }}</b>
-                {#{{ form_label(form.roles, 'Baimenak: ', { 'label_attr': {'class': 'control-label'} }) }}#}
                 {{ form_errors(form.roles) }}
                 {{ form_widget(form.roles, {'attr': {'class': 'form-group'}}) }}
             </div>
         </div>
     </div>
 
-
-
-
 <div class="hidden">
     {{ form_end(form) }}
 </div>
+
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
 
-{#{% block javascripts %}#}
-    {#{{ parent() }}#}
-    {#<script type="text/javascript">#}
-        {#function ezabatu (id)#}
-        {#{#}
-            {#var r = confirm("Erabiltzailea EZABATU. Ziur zaude?");#}
-            {#if (r == true)#}
-            {#{#}
-                {#document.getElementById(id).submit()#}
-            {#}else#}
-            {#{#}
-            {#}#}
-        {#};#}
-    {#</script>#}
-{#{% endblock %}#}
+    <script language="JavaScript">
+        $(document).ready(function () {
+
+            $('.btnGorde').on('click', function(){
+                var miform = $('#user_add_form');
+                var resp = $(miform)[0].checkValidity();
+
+                if ( resp === true ) {
+                    $(miform).submit();
+                } else {
+                    alert("{{ 'message.form.allData' | trans }}");
+                }
+
+            });
+
+
+        });
+    </script>
+{% endblock %}

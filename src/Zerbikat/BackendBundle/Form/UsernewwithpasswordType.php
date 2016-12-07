@@ -3,6 +3,7 @@
 namespace Zerbikat\BackendBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +29,9 @@ class UsernewwithpasswordType extends AbstractType
             ->add('udala')
             ->add('azpisaila')
             ->add('enabled')
-            ->add('email')
+            ->add('email', EmailType::class, array(
+                'required' => true
+            ))
 //            ->add('roles')
 //            ->add('password')
             ->add('roles',  ChoiceType::class, array(

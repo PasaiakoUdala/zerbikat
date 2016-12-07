@@ -11,3 +11,4 @@ messages.erabiltzaileberria: __messages.erabiltzaileberria
 messages.erabiltzailea: __messages.erabiltzailea
 messages.ziurzaude: __messages.ziurzaude
 messages.emaitzarikez: __messages.emaitzarikez
+message.form.allData: 'Todos los campos son necesarios'
