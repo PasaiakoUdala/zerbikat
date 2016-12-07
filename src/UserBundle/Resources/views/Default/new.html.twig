@@ -95,25 +95,3 @@
 
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-
-    <script language="JavaScript">
-        $(document).ready(function () {
-
-            $('.btnGorde').on('click', function(){
-                var miform = $('#user_add_form');
-                var resp = $(miform)[0].checkValidity();
-
-                if ( resp === true ) {
-                    $(miform).submit();
-                } else {
-                    alert("{{ 'message.form.allData' | trans }}");
-                }
-
-            });
-
-
-        });
-    </script>
-{% endblock %}
