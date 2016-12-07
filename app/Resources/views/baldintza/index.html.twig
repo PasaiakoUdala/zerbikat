@@ -17,7 +17,7 @@
 
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -49,16 +49,6 @@
         </tbody>
     </table>
 
-    <div class="text-center">
-        {% if baldintzas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'baldintza_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
-
 {% endblock %}
 
 {% block javascripts %}
@@ -66,7 +56,6 @@
     <script type="text/javascript">
         function ezabatu (id,mezua)
         {
-//            var r = confirm("Araua EZABATU. Ziur zaude?");
             var r = confirm(mezua);
             if (r == true)
             {

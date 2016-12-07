@@ -46,22 +46,13 @@
         {% endfor %}
         </tbody>
     </table>
-    <div class="text-center">
-        {% if norkebatzis is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'norkebatzi_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
         function ezabatu (id,mezua)
         {
-//            var r = confirm("Ebazlea EZABATU. Ziur zaude?");
             var r = confirm(mezua);
             if (r == true)
             {

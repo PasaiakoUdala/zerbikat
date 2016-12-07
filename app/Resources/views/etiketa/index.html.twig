@@ -15,8 +15,7 @@
     </nav>
 {% endblock %}
 {% block body %}
-    {#<h1>Etiketak</h1>#}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -37,9 +36,6 @@
                     <ul class="list-inline">
                         <li><a href="{{ path('etiketa_edit', { 'id': etiketum.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[etiketum.id],{'attr': {'id': etiketum.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ etiketum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[etiketum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[etiketum.id],{'attr': {'id': etiketum.id}}) }}
                                 <a href="#" onclick="ezabatu({{ etiketum.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[etiketum.id]) }}</li>
@@ -51,22 +47,12 @@
         </tbody>
     </table>
 
-    <div class="text-center">
-        {% if etiketas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'etiketa_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
         function ezabatu (id,mezua)
         {
-//            var r = confirm("Etiketa EZABATU. Ziur zaude?");
             var r = confirm(mezua);
             if (r == true)
             {

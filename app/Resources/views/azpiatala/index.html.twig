@@ -17,7 +17,7 @@
 
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -30,7 +30,6 @@
         {% for azpiatala in azpiatalas %}
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ azpiatala.udala }}</td>{% endif %}
-                {#<td><a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}">{{ azpiatala.kodea }}</a></td>#}
                 <td>{{ azpiatala.kodea }}</td>
 
                 <td>
@@ -44,9 +43,6 @@
                             <a href="{{ path('azpiatala_show', { 'id': azpiatala.id }) }}" class="fa fa-search"></a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[azpiatala.id],{'attr': {'id': azpiatala.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ azpiatala.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[azpiatala.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[azpiatala.id],{'attr': {'id': azpiatala.id}}) }}
                                 <a href="#" onclick="ezabatu({{ azpiatala.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[azpiatala.id]) }}</li>
@@ -59,15 +55,6 @@
         </tbody>
     </table>
 
-    <div class="text-center">
-        {% if azpiatalas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'azpiatala_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
 {% endblock %}
 
 
@@ -76,7 +63,6 @@
     <script type="text/javascript">
         function ezabatu (id,mezua)
         {
-//            var r = confirm("Araua EZABATU. Ziur zaude?");
             var r = confirm(mezua);
             if (r == true)
             {

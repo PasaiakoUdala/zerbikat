@@ -16,13 +16,13 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
                 <th>{{ 'messages.kodea'|trans }}</th>
                 <th>{{ 'messages.mota'|trans }}</th>
-                {#<th>Actions</th>#}
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -40,9 +40,6 @@
                     <ul class="list-inline">
                         <li><a href="{{ path('dokumentumota_edit', { 'id': dokumentumotum.id }) }}" class="fa fa-pencil"></a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                            {#<li>{{ form_start(deleteforms[dokumentumotum.id],{'attr': {'id': dokumentumotum.id}}) }}#}
-                                {#<a href="#" onclick="document.getElementById({{ dokumentumotum.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                                {#{{ form_end(deleteforms[dokumentumotum.id]) }}</li>#}
                             <li>{{ form_start(deleteforms[dokumentumotum.id],{'attr': {'id': dokumentumotum.id}}) }}
                                 <a href="#" onclick="ezabatu({{ dokumentumotum.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                                 {{ form_end(deleteforms[dokumentumotum.id]) }}</li>
@@ -54,15 +51,6 @@
         </tbody>
     </table>
 
-    <div class="text-center">
-        {% if dokumentumotas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'dokumentumota_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -44,22 +44,13 @@
         </tbody>
     </table>
 
-    <div class="text-center">
-        {% if barrutias is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'barrutia_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
         function ezabatu (id,mezua)
         {
-//            var r = confirm("Barrutia EZABATU. Ziur zaude? Ekintza honek barrutiaren kale eta eraikin guztiak ezabatuko ditu!!");
             var r = confirm(mezua);
             if (r == true)
             {

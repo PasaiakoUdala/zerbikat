@@ -16,7 +16,7 @@
     </nav>
 {% endblock %}
 {% block body %}
-    <table class="table">
+    <table class="table" id="taulazerrenda">
         <thead>
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
@@ -35,9 +35,6 @@
                     <ul class="list-inline">
                             <li><a href="{{ path('eraikina_edit', { 'id': eraikina.id }) }}" class="fa fa-pencil"></a></li>
                     {% if is_granted('ROLE_ADMIN') %}
-                        {#<li>{{ form_start(deleteforms[eraikina.id],{'attr': {'id': eraikina.id}}) }}#}
-                            {#<a href="#" onclick="document.getElementById({{ eraikina.id }}).submit();" ><i class="fa fa-trash text-danger"></i></a>#}
-                            {#{{ form_end(deleteforms[eraikina.id]) }}</li>#}
                         <li>{{ form_start(deleteforms[eraikina.id],{'attr': {'id': eraikina.id}}) }}
                             <a href="#" onclick="ezabatu({{ eraikina.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
                             {{ form_end(deleteforms[eraikina.id]) }}</li>
@@ -48,22 +45,12 @@
         {% endfor %}
         </tbody>
     </table>
-    <div class="text-center">
-        {% if eraikinas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'eraikina_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
         function ezabatu (id,mezua)
         {
-//            var r = confirm("Eraikina EZABATU. Ziur zaude?");
             var r = confirm(mezua);
             if (r == true)
             {
