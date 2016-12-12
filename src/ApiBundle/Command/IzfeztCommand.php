@@ -168,6 +168,8 @@
             $A203DENOMI = "'".$idBlokea." Blokea'";
             $A203TITCAST = "'".$tites."'";
             $A203TITEUSK = "'".$titeus."'";
+            $subtites = "'".$subtites."'";
+            $subtiteus = "'".$subtiteus."'";
             $A203FECALTA = null;
 
             $sql = "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA,A203CAPLI,A203SUBTITCAST,A203SUBTITEUSK)
