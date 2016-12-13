@@ -1220,8 +1220,8 @@
                                         $doctextes = "<ul>";
                                         $doctexteu = "<ul>";
                                         foreach ( $fitxa->getProzedurak() as $prozedura ) {
-                                            $doctextes = $doctextes."<li>".$prozedura->getProzeduraes()."</li>";
-                                            $doctexteu = $doctexteu."<li>".$prozedura->getProzeduraeu()."</li>";
+                                            $doctextes = $doctextes."<li>".$prozedura->getProzedura()->getProzeduraes()."</li>";
+                                            $doctexteu = $doctexteu."<li>".$prozedura->getProzedura()->getProzeduraeu()."</li>";
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
@@ -2473,8 +2473,8 @@
                                             $doctextes = "<ul>";
                                             $doctexteu = "<ul>";
                                             foreach ( $fitxa->getProzedurak() as $prozedura ) {
-                                                $doctextes = $doctextes."<li>".$prozedura->getProzeduraes()."</li>";
-                                                $doctexteu = $doctexteu."<li>".$prozedura->getProzeduraeu()."</li>";
+                                                $doctextes = $doctextes."<li>".$prozedura->getProzedura()->getProzeduraes()."</li>";
+                                                $doctexteu = $doctexteu."<li>".$prozedura->getProzedura()->getProzeduraeu()."</li>";
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
