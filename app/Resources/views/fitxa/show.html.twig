@@ -573,11 +573,11 @@
                 <h3>{{ labelak.prozeduralabeleu }}</h3>
             </div>
             <div>
+
                 {% if eremuak.prozeduratext %}{{ fitxa.prozeduraeu |raw}}{% endif %}
                 {% if eremuak.prozeduratable %}
                 <ul>
-                    {% for prozedura in fitxa.prozedurak %}
-                        {#<li>{{ prozedura.prozedura.prozeduraeu }}</li>#}
+                    {% for prozedura in fitxa.prozedurak if fitxa.prozedurak %}
                         <li>{{ prozedura.prozedura.prozeduraeu }}</li>
                     {% endfor %}
                 </ul>
@@ -592,8 +592,7 @@
                 {% if eremuak.prozeduratext %}{{ fitxa.prozeduraes |raw}}{% endif %}
                 {% if eremuak.prozeduratable %}
                 <ul>
-                    {% for prozedura in fitxa.prozedurak %}
-                        {#<li>{{ prozedura.prozedura.prozeduraes }}</li>#}
+                    {% for prozedura in fitxa.prozedurak if fitxa.prozedurak%}
                         <li>{{ prozedura.prozedura.prozeduraes }}</li>
                     {% endfor %}
                 </ul>
