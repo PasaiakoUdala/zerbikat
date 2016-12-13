@@ -2,58 +2,47 @@
 
 namespace Zerbikat\BackendBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+
+use Symfony\Component\BrowserKit\Client;
+use Symfony\Component\HttpFoundation\Response;
 
 
-class FitxaControllerTest extends WebTestCase
+class FitxaControllerTest extends AbstractControllerTest
 {
-    private $client = null;
-
-    public function setUp()
+    public function testIndexAction()
     {
-        $this->client = static::createClient();
-    }
-
-    public function testSecuredHello()
-    {
-        $this->logIn();
-
         $crawler = $this->client->request('GET', '/eu/fitxa/');
 
+        $this->assertEquals(Response::HTTP_OK,$this->client->getResponse()->getStatusCode());
         $this->assertTrue($this->client->getResponse()->isSuccessful());
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Fitxak")')->count());
+        $link = $crawler
+            ->filter('a:contains(" Fitxa berria")') // find all buttons with the text "Add"
+            ->eq(0) // select the first button in the list
+            ->link() // and click it
+        ;
+        $crawler = $this->client->click($link);
 
 
+        // NEW
+        $this->assertEquals(Response::HTTP_OK,$this->client->getResponse()->getStatusCode());
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("KODEA")')->count());
 
-        $link = $crawler->filter('a:contains("Fitxa berria")')->eq(1)->link();
+        $form = $crawler->filter('form[name=fitxanew]')->form();
+        $form[ 'fitxanew[espedientekodea]' ] = "test Fitxa";
+        $form[ 'fitxanew[deskribapenaeu]' ] = "test Fitxa deskribapenaeu";
+        $form[ 'fitxanew[deskribapenaes]' ] = "test Fitxa deskribapenaes";
+        $link = $crawler
+            ->filter('a:contains(" Gorde")') // find all buttons with the text "Add"
+            ->eq(0) // select the first button in the list
+            ->link() // and click it
+        ;
 
-        $crawler = $client->click($link);
+        $crawler = $this->client->submit($form);
+        $this->assertTrue($this->client->getResponse()->isRedirect());
+        $this->assertTrue($this->client->getResponse()->isSuccessful(), 'response status is 2xx');
 
-
-//        $client = static::createClient();
-//        $crawler = $this->client->request('GET', '/eu/fitxa/new');
-//        $crawler = $client->click($crawler->selectLink('Fitxa berria')->link());
-//
-//        $link = $this->client->selectLink(' Fitxa berria')->link();
-//        $crawler = $client->click($link);
-//
-//        $form = $crawler->selectButton('validate')->form();
-//        $crawler = $client->submit($form, array('name' => 'Fabien'));
-    }
-
-    private function logIn()
-    {
-        $session = $this->client->getContainer()->get('session');
-
-        // the firewall context (defaults to the firewall name)
-        $firewall = 'main';
-        $token = new UsernamePasswordToken('pasaia', null, $firewall, array('ROLE_ADMIN'));
-        $session->set('_security_'.$firewall, serialize($token));
-        $session->save();
-
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+//        $this->assertContains('Your data has been saved!', $response->getContent());
     }
 }
