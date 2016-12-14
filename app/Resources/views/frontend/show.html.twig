@@ -334,9 +334,9 @@
                                 <tr>
                                     <th colspan="2" class="text-center">
                                         {% if app.request.locale == 'eu'%}
-                                            {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaeu'] }}
+                                            {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaeu_prod'] }}
                                         {% else %}
-                                            {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaes'] }}
+                                            {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaes_prod'] }}
                                         {% endif %}
                                     </th>
                                 </tr>
@@ -355,13 +355,13 @@
                                     <tr>
                                         <td>
                                             {% if app.request.locale == 'eu'%}
-                                                {{ kontzeptu['kontzeptuaeu'] }}
+                                                {{ kontzeptu['kontzeptuaeu_prod'] }}
                                             {% else %}
-                                                {{ kontzeptu['kontzeptuaes'] }}
+                                                {{ kontzeptu['kontzeptuaes_prod'] }}
                                             {% endif %}
                                         </td>
                                         <td NOWRAP>
-                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                            {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -374,9 +374,9 @@
                                 <tr>
                                     <th colspan=2>
                                         {% if app.request.locale == 'eu'%}
-                                            {{ azpiatal.kodea }}-{{  azpiatal.izenburuaeu }}
+                                            {{ azpiatal.kodea_prod }}-{{  azpiatal.izenburuaeu_prod }}
                                         {% else %}
-                                            {{ azpiatal.kodea }}-{{  azpiatal.izenburuaes }}
+                                            {{ azpiatal.kodea_prod }}-{{  azpiatal.izenburuaes_prod }}
                                         {% endif %}
                                     </th>
                                 </tr>
@@ -395,7 +395,7 @@
                                 {% for kontzeptu in azpiatal.kontzeptuak %}
                                     <tr>
                                         <td>
-                                            {% if app.request.locale == 'eu'%}{{ kontzeptu.kontzeptuaeu }}
+                                            {% if app.request.locale == 'eu'%}{{ kontzeptu.kontzeptuaeu_prod }}
                                                 {% if kontzeptu.baldintza %}
                                                     ({{ kontzeptu.baldintza.baldintzaeu }})
                                                 {% endif %}
@@ -405,7 +405,7 @@
                                                 {% endif %}
                                             {% endif %}
                                         </td>
-                                        <td>{{ kontzeptu.kopurua }} {{ kontzeptu.unitatea }}</td>
+                                        <td>{{ kontzeptu.kopurua_prod }} {{ kontzeptu.unitatea_prod }}</td>
 
                                     </tr>
                                 {% endfor %}
