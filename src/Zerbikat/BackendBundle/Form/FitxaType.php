@@ -21,7 +21,7 @@
         public function buildForm ( FormBuilderInterface $builder, array $options )
         {
             $user = $options['user'];
-
+            $api_url = $options[ 'api_url' ];
 
             $builder
                 ->add( 'espedientekodea' )
@@ -372,23 +372,13 @@
                     CollectionType::class,
                     array (
                         'entry_type'   => FitxaKostuaType::class,
-                        'entry_options'  => array('udala' => $user->getUdala()->getId()),
+                        'entry_options'  => array('udala' => $user->getUdala()->getId(),'api_url' => $api_url),
                         'allow_add'    => true,
                         'allow_delete' => true,
                         'by_reference' => false,
                     )
                 )
 
-//                ->add(
-//                    'fitxafamilia',
-//                    CollectionType::class,
-//                    array (
-//                        'entry_type'   => FitxafamiliaType::class,
-//                        'allow_add'    => true,
-//                        'allow_delete' => true,
-//                        'by_reference' => false,
-//                    )
-//                )
             ;
         }
 
@@ -400,7 +390,8 @@
             $resolver->setDefaults(
                 array (
                     'data_class' => 'Zerbikat\BackendBundle\Entity\Fitxa',
-                    'user' => null
+                    'user' => null,
+                    'api_url' => null
                 )
             );
         }

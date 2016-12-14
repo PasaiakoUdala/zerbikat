@@ -275,7 +275,9 @@
             ) {
                 $deleteForm = $this->createDeleteForm( $fitxa );
 
-                $editForm = $this->createForm( 'Zerbikat\BackendBundle\Form\FitxaType', $fitxa,array('user' => $this->getUser()) );
+                $api_url = $this->getParameter('zzoo_aplikazioaren_API_url');
+
+                $editForm = $this->createForm( 'Zerbikat\BackendBundle\Form\FitxaType', $fitxa,array('user' => $this->getUser(), 'api_url'=>$api_url) );
 
                 // Create an ArrayCollection of the current Kostuak objects in the database
                 $originalKostuak = new ArrayCollection();

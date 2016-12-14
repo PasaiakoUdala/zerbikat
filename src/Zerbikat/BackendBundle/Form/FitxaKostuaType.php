@@ -22,10 +22,9 @@ class FitxaKostuaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        global $kernel;
-        $api=$kernel->getContainer()->getParameter('zzoo_aplikazioaren_API_url');
 
         $udala = $options['udala'];
+        $api = $options[ 'api_url' ];
 
 
         $client = new GuzzleHttp\Client();
@@ -34,11 +33,14 @@ class FitxaKostuaType extends AbstractType
         $valftp = (string)$proba->getBody();
         $array = json_decode($valftp, true);
 
+        dump( $array );
         $resp=array();
         foreach ($array as $a)
         {
-            $izena = $a[ 'kodea_prod' ]." - ".$a[ 'izenburuaeu_prod' ];
-            $resp[$izena] = $a['id'];
+            if ( (array_key_exists("kodea_prod", $a)) && (array_key_exists("izenburuaeu_prod", $a)) ) {
+                $izena = $a[ 'kodea_prod' ]." - ".$a[ 'izenburuaeu_prod' ];
+                $resp[$izena] = $a['id'];
+            }
         }
 
         $builder
@@ -59,7 +61,8 @@ class FitxaKostuaType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Zerbikat\BackendBundle\Entity\FitxaKostua',
-            'udala' => null
+            'udala' => null,
+            'api_url' => null
         ));
     }
 }
