@@ -37,8 +37,10 @@ class FitxaKostuaType extends AbstractType
         $resp=array();
         foreach ($array as $a)
         {
-            $izena = $a[ 'kodea_prod' ]." - ".$a[ 'izenburuaeu_prod' ];
-            $resp[$izena] = $a['id'];
+            if ( (array_key_exists("kodea_prod", $a)) && (array_key_exists("izenburuaeu_prod", $a)) ) {
+                $izena = $a[ 'kodea_prod' ]." - ".$a[ 'izenburuaeu_prod' ];
+                $resp[$izena] = $a['id'];
+            }
         }
 
         $builder
