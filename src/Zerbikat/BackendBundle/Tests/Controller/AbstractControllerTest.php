@@ -24,6 +24,7 @@ abstract class AbstractControllerTest extends WebTestCase
      */
     protected function createAuthorizedClient()
     {
+
         $client = static::createClient();
         $container = $client->getContainer();
 
