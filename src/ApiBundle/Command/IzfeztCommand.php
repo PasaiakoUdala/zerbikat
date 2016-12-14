@@ -109,6 +109,7 @@
 
                 case "USC":
                     $A204TIPO = "'HOME'";
+                    $A204IDTIPO = "'USC'";
                     break;
 
                 case "UXX":
