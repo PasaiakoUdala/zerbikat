@@ -96,11 +96,16 @@ class FitxaControllerTest extends AbstractControllerTest
             ->link() // and click it
         ;
 
+        $nireurl = $link->getUri();
         $crawler = $this->client->click($link);
+        // EDIT
+        $this->assertEquals(Response::HTTP_OK,$this->client->getResponse()->getStatusCode());
         $this->assertTrue($this->client->getResponse()->isSuccessful());
-//        $this->assertEquals('Zerbikat\BackendBundle\Controller\FitxaController::editAction', $this->client->getRequest()->attributes->get('_controller'));
-        $form = $crawler->filter('form[name=fitxanew]')->form();
-        $form[ 'fitxanew[espedientekodea]' ] = "test Fitxa0";
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("KODEA")')->count());
+        $this->assertEquals('Zerbikat\BackendBundle\Controller\FitxaController::editAction', $this->client->getRequest()->attributes->get('_controller'));
+
+        $form = $crawler->filter('form[name=fitxa]')->form();
+        $form[ 'fitxa[deskribapenaeu]' ] = "test-ALDATUA";
         $link = $crawler
             ->filter('a:contains(" Gorde")') // find all buttons with the text "Add"
             ->eq(0) // select the first button in the list
@@ -108,5 +113,14 @@ class FitxaControllerTest extends AbstractControllerTest
         ;
 
         $crawler = $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("test-ALDATUA")')->count());
+        $link = $crawler
+            ->filter('a:contains(" Fitxa ikusi")') // find all buttons with the text "Add"
+            ->eq(0) // select the first button in the list
+            ->link() // and click it
+        ;
+        $crawler = $this->client->click($link);
+
     }
 }

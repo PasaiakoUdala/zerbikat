@@ -1,7 +1,9 @@
 ZERBItzuen KATalogoa
 ========================
 
-Zerbitzuen katalogoa kudeatzeko aplikazioa.
+Zerbitzuen katalogoa kudeatzeko aplikazioa. 
+
+Aplikazioaren eskuliburua doc karpeta barruan dago.
 
 ####Requirements
 
