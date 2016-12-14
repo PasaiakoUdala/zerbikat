@@ -214,57 +214,55 @@
             $A202FECALTA = null;
             $A202LINKEXT = "''";
 
-//            $A202SERVICIO = "'".$servicio."'";
-//            if ( $servicio == "PROPIA" ) {
-//                $A202LINKEXT = "'".$linkext."'";
-//            } else {
-//                $A202LINKEXT = "''";
-//            }
+            if ($denomi !== "Texto"){
+                // Itzuplena egin, zerbikat-etik 0101 etortzen da, hori itzuli behar da IZFE-ko parametroetara
+                $tipo = $this->zerbikatParametroa( $servicio );
 
-            // Itzuplena egin, zerbikat-etik 0101 etortzen da, hori itzuli behar da IZFE-ko parametroetara
-            $tipo = $this->zerbikatParametroa( $servicio );
+                switch ( $tipo ) {
+                    case null:
+                        $A202SERVICIO = "'PROPIA'";
+                        break;
 
-            switch ( $tipo ) {
-                case null:
-                    $A202SERVICIO = "'PROPIA'";
-                    break;
+                    case "PARRAFO":
+                        $A202SERVICIO = "'PROPIA'";
+                        break;
 
-                case "PARRAFO":
-                    $A202SERVICIO = "'PROPIA'";
-                    break;
+                    case "USC":
+                        $A202SERVICIO = "'HOME'";
+                        break;
 
-                case "USC":
-                    $A202SERVICIO = "'HOME'";
-                    break;
+                    case "UXX":
+                        $A202SERVICIO = "'PROPIA'";
+                        break;
 
-                case "UXX":
-                    $A202SERVICIO = "'PROPIA'";
-                    break;
+                    default:
+                        $servicios = array (
+                            "UML",
+                            "UPF",
+                            "URM",
+                            "UEX",
+                            "UPM-PM",
+                            "UPM-PV",
+                            "UPM-CE",
+                            "UPM-HE",
+                            "URG",
+                            "URA",
+                            "URB",
+                            "UVD",
+                        );
 
-                default:
-                    $servicios = array (
-                        "UML",
-                        "UPF",
-                        "URM",
-                        "UEX",
-                        "UPM-PM",
-                        "UPM-PV",
-                        "UPM-CE",
-                        "UPM-HE",
-                        "URG",
-                        "URA",
-                        "URB",
-                        "UVD",
-                    );
-
-                    if ( in_array( $tipo, $servicios ) ) {
-                        $A202SERVICIO = "'SERVICIO'";
-                        $A202LINKEXT = "'". $tipo ."'";
-                    } else {
-                        $A202SERVICIO = "'EXPEDIENTE'";
-                        $A202LINKEXT = "'". $tipo ."'";
-                    }
+                        if ( in_array( $tipo, $servicios ) ) {
+                            $A202SERVICIO = "'SERVICIO'";
+                            $A202LINKEXT = "'". $tipo ."'";
+                        } else {
+                            $A202SERVICIO = "'EXPEDIENTE'";
+                            $A202LINKEXT = "'". $tipo ."'";
+                        }
+                }
+            } else {
+                $A202SERVICIO = "'PARRAFO'";
             }
+
 
 
             $sql = "INSERT INTO UDAA20201 (A202AYUNTA, A202IDLINEA, A202DENOMI, A202TEXCAST, A202TEXEUSK, A202LINKEXT, A202SERVICIO,A202FECALTA, A202CAPLI)
