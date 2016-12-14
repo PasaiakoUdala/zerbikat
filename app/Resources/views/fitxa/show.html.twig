@@ -329,21 +329,21 @@
                                         {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaeu_prod'] }}
                                     </th>
                                 </tr>
-                                        {% for parrafo in kostutaula['parrafoak'] %}
-                                            <tr>
-                                                <td colspan="2">
-                                                {{ parrafo['testuaeu']| raw }}
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                        {% for kontzeptu in kostutaula['kontzeptuak'] %}
-                                            <tr>
-                                                <td>{{ kontzeptu['kontzeptuaeu_prod'] }}</td>
-                                                <td NOWRAP>
-                                                    {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
+                                    {% for parrafo in kostutaula['parrafoak'] %}
+                                        <tr>
+                                            <td colspan="2">
+                                            {{ parrafo['testuaeu']| raw }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                        <tr>
+                                            <td>{{ kontzeptu['kontzeptuaeu_prod'] }}</td>
+                                            <td NOWRAP>
+                                                {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                             </table>
                             {% set kont=kont+1 %}
                         {% endfor %}
@@ -421,9 +421,7 @@
                             <table  class="table table-bordered">
                                 <tr>
                                     <th colspan=2>
-                                        <a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">
-                                            {{ azpiatal.kodea }}-{{  azpiatal.izenburuaes }}
-                                        </a>
+                                        {{ azpiatal.kodea }}-{{  azpiatal.izenburuaes }}
                                     </th>
                                 </tr>
                                 {% for parrafo in azpiatal.parrafoak %}

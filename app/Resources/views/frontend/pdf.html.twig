@@ -324,10 +324,8 @@
                         {% for azpiatal in fitxa.azpiatalak %}
                             <br /><table  border="1" width="90%" cellpadding="6">
                                 <tr>
-                                    <th colspan="12"><b>
-                                        {#<a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/{{ azpiatal.id }}' target="_blank">#}
-                                            {{ azpiatal.kodea }}-{{  azpiatal.izenburuaeu }}
-                                        {#</a>#}</b>
+                                    <th colspan="12">
+                                        <b>{{ azpiatal.kodea }}-{{  azpiatal.izenburuaeu }}</b>
                                     </th>
                                 </tr>
                                 {% for parrafo in azpiatal.parrafoak %}
