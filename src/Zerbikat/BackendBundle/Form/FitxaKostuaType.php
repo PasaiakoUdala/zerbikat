@@ -33,7 +33,6 @@ class FitxaKostuaType extends AbstractType
         $valftp = (string)$proba->getBody();
         $array = json_decode($valftp, true);
 
-        dump( $array );
         $resp=array();
         foreach ($array as $a)
         {
