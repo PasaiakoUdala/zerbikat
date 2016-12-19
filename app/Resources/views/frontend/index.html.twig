@@ -74,7 +74,7 @@
 
                 {% for familia in familiak %}
                     <div class="list-group col-sm-6">
-                        <a class="list-group-item active" style="cursor: pointer;" onclick="erakutsiEzkutatu('fam{{ familia.id }}')">
+                        <a class="list-group-item active" style="cursor: pointer;" onclick="erakutsiEzkutatu('fam-{{ familia.id }}')">
                             <div class="list-group-item-wrapper">
                                 <h4 class="list-group-item-heading active">
                                     {% if app.request.locale == 'eu' %}{{ familia.familiaeu }}{% else %} {{ familia.familiaes }}{% endif %}
@@ -84,7 +84,7 @@
                                 </p>
                             </div>
                         </a>
-                        <div id='fam{{ familia.id }}' style='display: none;'>
+                        <div id='fam-{{ familia.id }}' style='display: none;'>
                             {% for fitxafamilia  in  familia.fitxafamilia %}
                                 <a href="{{ path('frontend_fitxa_show', { 'udala': udala,'id': fitxafamilia.fitxa.id }) }}"
                                    class="list-group-item">
@@ -120,6 +120,7 @@
     {{ parent() }}
     <script type="text/javascript">
         function erakutsiEzkutatu($id) {
+
             if (document.getElementById($id).style.display == 'none') {
                 document.getElementById($id).style.display = 'block';
             }
