@@ -49,7 +49,7 @@ class Fitxafamilia
 
     /**
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Fitxa", inversedBy="fitxafamilia")
-     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id", nullable=false, onDelete="SET NULL")
      */
     protected $fitxa;
 

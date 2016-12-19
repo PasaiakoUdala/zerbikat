@@ -475,7 +475,7 @@
 
         /**
          * @Expose
-         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="fitxa")
+         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="fitxa", cascade={"remove"}, orphanRemoval=true)
          * @OrderBy({"ordena" = "ASC"})
          */
         private $fitxafamilia;

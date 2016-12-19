@@ -586,4 +586,38 @@ class Azpisaila
     {
         return $this->arduradunahaz;
     }
+
+    /**
+     * Add fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     *
+     * @return Azpisaila
+     */
+    public function addFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak[] = $fitxak;
+
+        return $this;
+    }
+
+    /**
+     * Remove fitxak
+     *
+     * @param \Zerbikat\BackendBundle\Entity\Fitxa $fitxak
+     */
+    public function removeFitxak(\Zerbikat\BackendBundle\Entity\Fitxa $fitxak)
+    {
+        $this->fitxak->removeElement($fitxak);
+    }
+
+    /**
+     * Get fitxak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFitxak()
+    {
+        return $this->fitxak;
+    }
 }
