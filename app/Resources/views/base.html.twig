@@ -94,7 +94,7 @@
                         {#Admin#}
                         {% if is_granted('ROLE_ADMIN') %}
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaAdmin');">{{ "messages.menu.admin" | trans }}<span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ "messages.menu.admin" | trans }}<span class="caret"></span></a>
                                 <ul class="dropdown-menu" id="menuaAdmin">
                                     <li><a href="{{ path('udala_index') }}">{{ 'messages.udala'|trans }}</a></li>
                                     <li><a href="{{ path('users_index') }}">{{ 'messages.erabiltzaileak'|trans }}</a>
@@ -110,7 +110,7 @@
                         {% endif %}
                         {#Taula Laguntzaileak#}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menua');">{{ 'messages.taulalagun'|trans }}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'messages.taulalagun'|trans }}<span class="caret"></span></a>
                             <ul class="dropdown-menu" id="menua">
                                 <li class="dropdown-header">{{ 'messages.taulalagun'|trans }}</li>
                                 <li role="separator" class="divider"></li>
@@ -136,7 +136,7 @@
                         </li>
                         {#Taula Nagusiak#}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaNagusiak');">{{ 'messages.taulanagusiak'|trans }}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'messages.taulanagusiak'|trans }}<span class="caret"></span></a>
                             <ul class="dropdown-menu" id="menuaNagusiak">
                                 <li><a href="{{ path('norkeskatu_index') }}">{{ 'messages.norkeskatu'|trans }}</a></li>
                                 <li><a href="{{ path('dokumentazioa_index') }}">{{ 'messages.agiriak'|trans }}</a></li>
@@ -157,7 +157,7 @@
                         <li><a href="{{ path('fitxa_index') }}">{{ 'messages.fitxak'|trans }}</a></li>
                         {#Sailkapena#}
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="erakutsiEzkutatu('menuaSailkapena');">{{ 'messages.sailkapena'|trans }}<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'messages.sailkapena'|trans }}<span class="caret"></span></a>
                             <ul class="dropdown-menu" id="menuaSailkapena">
                                 <li><a href="{{ path('etiketa_index') }}">{{ 'messages.etiketak'|trans }}</a></li>
                                 <li><a href="{{ path('familia_index') }}">{{ 'messages.familiak'|trans }}</a></li>
