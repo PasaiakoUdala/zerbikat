@@ -22,4 +22,4 @@ parameters:
     izfe_login_path:
 
     #
-    #zzoo_aplikazioaren_API_url: "zzoo aplikazioaren api-rako url-a"
+    zzoo_aplikazioaren_API_url: "zzoo aplikazioaren api-rako url-a"
