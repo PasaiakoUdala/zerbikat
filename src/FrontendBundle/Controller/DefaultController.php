@@ -171,7 +171,6 @@
             foreach ( $fitxa->getKostuak() as $kostu ) {
                 $client = new GuzzleHttp\Client();
                 $api = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
-//            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
                 $proba = $client->request( 'GET', $api.'/zerga/'.$kostu->getKostua().'.json' );
 
                 $fitxaKostua = (string)$proba->getBody();
@@ -200,12 +199,10 @@
                 false
             );
             $pdf->SetAuthor( $udala );
-//        $pdf->SetTitle(('Our Code World Title'));
             $pdf->SetTitle( ($fitxa->getDeskribapenaeu()) );
             $pdf->SetSubject( $fitxa->getDeskribapenaes() );
             $pdf->setFontSubsetting( true );
             $pdf->SetFont( 'helvetica', '', 11, '', true );
-            //$pdf->SetMargins(20,20,40, true);
             $pdf->AddPage();
 
             $filename = $fitxa->getEspedientekodea().".".$fitxa->getDeskribapenaeu();
