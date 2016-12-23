@@ -1224,16 +1224,16 @@
                     $.each(atalak, function (i, field) {
                         if (locale === "es") {
                             var txt ="";
-                            if ( field.izenburuaes_prod.length > 200 ) {
-                                txt = field.izenburuaes_prod.substr(0, 200);
+                            if ( field.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200 ) {
+                                txt = field.izenburuaes_prod.replace('<br>','').replace('</br>','').substr(0, 200);
                             } else {
                                 txt = field.izenburuaes_prod;
                             }
                             $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
                         } else {
                             var txt ="";
-                            if ( field.izenburuaes_prod.length > 200 ) {
-                                txt = field.izenburuaeu_prod.substr(0, 200);
+                            if ( field.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200 ) {
+                                txt = field.izenburuaeu_prod.replace('<br>','').replace('</br>','').substr(0, 200);
                             } else {
                                 txt = field.izenburuaeu_prod;
                             }
@@ -1253,16 +1253,16 @@
 
                             if (locale === "es") {
                                 var txt = "";
-                                if (azpi.izenburuaes_prod.length > 200) {
-                                    txt = azpi.izenburuaes_prod.substr(0, 200);
+                                if (azpi.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200) {
+                                    txt = azpi.izenburuaes_prod.replace('<br>','').replace('</br>','').substr(0, 200);
                                 } else {
                                     txt = azpi.izenburuaes_prod;
                                 }
                                 $("#cmbKontzeptua").append($("<option></option>").attr("value", azpi.id).text(txt));
                             } else {
                                 var txt = "";
-                                if (azpi.izenburuaeu_prod.length > 200) {
-                                    txt = azpi.izenburuaeu_prod.substr(0, 200);
+                                if (azpi.izenburuaeu_prod.replace('<br>','').replace('</br>','').length > 200) {
+                                    txt = azpi.izenburuaeu_prod.replace('<br>','').replace('</br>','').substr(0, 200);
                                 } else {
                                     txt = azpi.izenburuaeu_prod;
                                 }
@@ -1310,16 +1310,16 @@
 
                         if (locale === "es") {
                             var txt ="";
-                            if ( field2.izenburuaes_prod.length > 200 ) {
-                                txt = field2.izenburuaes_prod.substr(0, 200);
+                            if ( field2.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200 ) {
+                                txt = field2.izenburuaes_prod.replace('<br>','').replace('</br>','').substr(0, 200);
                             } else {
                                 txt = field2.izenburuaes_prod;
                             }
                             $("#cmbKontzeptua").append($("<option></option>").attr("value", field2.id).text(txt));
                         } else {
                             var txt ="";
-                            if ( field2.izenburuaeu_prod.length > 200 ) {
-                                txt = field2.izenburuaeu_prod.substr(0, 200);
+                            if ( field2.izenburuaeu_prod.replace('<br>','').replace('</br>','').length > 200 ) {
+                                txt = field2.izenburuaeu_prod.replace('<br>','').replace('</br>','').substr(0, 200);
                             } else {
                                 txt = field2.izenburuaeu_prod;
                             }
