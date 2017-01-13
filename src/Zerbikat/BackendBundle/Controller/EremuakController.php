@@ -76,11 +76,6 @@ class EremuakController extends Controller
 
             $eremuak=$this->getUser()->getUdala()->getEremuak();
 
-//            dump($this->getUser());
-//            dump($udala);
-//            dump($eremuid);
-
-//            return $this->redirectToRoute('eremuak_edit', array('id' => $this->getUser()->getUdala()->getEremuak()->getId()));
             return $this->redirectToRoute('eremuak_edit', array('id' => $eremuid['id']));
         }else
         {

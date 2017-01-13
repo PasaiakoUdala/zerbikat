@@ -939,21 +939,21 @@
                                             $texteu = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaeu()."</a></th></tr>";
 
                                             foreach ( $azpiatal->getParrafoak() as $parrafo ) {
-                                                $textes = $textes."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
-                                                $texteu = $texteu."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
+                                                $textes = $textes."<tr><td colspan='2'>".$parrafo->getTestuaes()."</td></tr>";
+                                                $texteu = $texteu."<tr><td colspan='2'>".$parrafo->getTestuaeu()."</td></tr>";
                                             }
 
-                                            foreach ( $azpiatal->getKontzeptiak() as $kontzeptu ) {
+                                            foreach ( $azpiatal->getKontzeptuak() as $kontzeptu ) {
                                                 $textes = $textes."<tr><td>".$kontzeptu->getKontzeptuaes();
                                                 if ( $kontzeptu->getBaldintza() ) {
-                                                    $textes = $textes.$kontzeptu->getBaldintza->getBaldintzaes();
+                                                    $textes = $textes.$kontzeptu->getBaldintza()->getBaldintzaes();
                                                 }
                                                 $textes = $textes."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
                                                     )."</td></tr>";
 
                                                 $texteu = $texteu."<tr><td>".$kontzeptu->getKontzeptuaeu();
                                                 if ( $kontzeptu->getBaldintza() ) {
-                                                    $texteu = $texteu.$kontzeptu->getBaldintza->getBaldintzaeu();
+                                                    $texteu = $texteu.$kontzeptu->getBaldintza()->getBaldintzaeu();
                                                 }
                                                 $texteu = $texteu."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
                                                     )."</td></tr>";
@@ -2192,21 +2192,21 @@
                                                 $texteu = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaeu()."</a></th></tr>";
 
                                                 foreach ( $azpiatal->getParrafoak() as $parrafo ) {
-                                                    $textes = $textes."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
-                                                    $texteu = $texteu."<tr><td colspan='2'>".$parrafo->getTestua()."</td></tr>";
+                                                    $textes = $textes."<tr><td colspan='2'>".$parrafo->getTestuaes()."</td></tr>";
+                                                    $texteu = $texteu."<tr><td colspan='2'>".$parrafo->getTestuaeu()."</td></tr>";
                                                 }
 
-                                                foreach ( $azpiatal->getKontzeptiak() as $kontzeptu ) {
+                                                foreach ( $azpiatal->getKontzeptuak() as $kontzeptu ) {
                                                     $textes = $textes."<tr><td>".$kontzeptu->getKontzeptuaes();
                                                     if ( $kontzeptu->getBaldintza() ) {
-                                                        $textes = $textes.$kontzeptu->getBaldintza->getBaldintzaes();
+                                                        $textes = $textes.$kontzeptu->getBaldintza()->getBaldintzaes();
                                                     }
                                                     $textes = $textes."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
                                                         )."</td></tr>";
 
                                                     $texteu = $texteu."<tr><td>".$kontzeptu->getKontzeptuaeu();
                                                     if ( $kontzeptu->getBaldintza() ) {
-                                                        $texteu = $texteu.$kontzeptu->getBaldintza->getBaldintzaeu();
+                                                        $texteu = $texteu.$kontzeptu->getBaldintza()->getBaldintzaeu();
                                                     }
                                                     $texteu = $texteu."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
                                                         )."</td></tr>";
