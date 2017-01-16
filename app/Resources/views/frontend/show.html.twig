@@ -334,37 +334,47 @@
                                 <tr>
                                     <th colspan="2" class="text-center">
                                         {% if app.request.locale == 'eu'%}
-                                            {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaeu_prod'] }}
+                                            {% if ((kontzeptu['kodea_prod'] is defined) and (kontzeptu['izenburuaeu_prod'] is defined)) %}
+                                                {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaeu_prod'] }}
+                                            {% endif %}
                                         {% else %}
-                                            {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaes_prod'] }}
+                                            {% if ((kontzeptu['kodea_prod'] is defined) and (kontzeptu['izenburuaes_prod'] is defined)) %}
+                                                {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaes_prod'] }}
+                                            {% endif %}
                                         {% endif %}
                                     </th>
                                 </tr>
-                                {% for parrafo in kostutaula['parrafoak'] %}
-                                    <tr>
-                                        <td colspan="2">
-                                            {% if app.request.locale == 'eu'%}
-                                                {{ parrafo['testuaeu']| raw }}
-                                            {% else %}
-                                                {{ parrafo['testuaes']| raw }}
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                {% for kontzeptu in kostutaula['kontzeptuak'] %}
-                                    <tr>
-                                        <td>
-                                            {% if app.request.locale == 'eu'%}
-                                                {{ kontzeptu['kontzeptuaeu_prod'] }}
-                                            {% else %}
-                                                {{ kontzeptu['kontzeptuaes_prod'] }}
-                                            {% endif %}
-                                        </td>
-                                        <td NOWRAP>
-                                            {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
+                                {% if kostutaula['parrafoak'] is defined %}
+                                    {% for parrafo in kostutaula['parrafoak']  %}
+                                        <tr>
+                                            <td colspan="2">
+                                                {% if app.request.locale == 'eu'%}
+                                                    {{ parrafo['testuaeu']| raw }}
+                                                {% else %}
+                                                    {{ parrafo['testuaes']| raw }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if kostutaula['kontzeptuak'] is defined %}
+                                    {% for kontzeptu in kostutaula['kontzeptuak'] %}
+                                        <tr>
+                                            <td>
+                                                {% if app.request.locale == 'eu'%}
+                                                    {{ kontzeptu['kontzeptuaeu_prod'] }}
+                                                {% else %}
+                                                    {{ kontzeptu['kontzeptuaes_prod'] }}
+                                                {% endif %}
+                                            </td>
+                                            <td NOWRAP>
+                                                {% if ((kontzeptu['kopurua_prod'] is defined) and (kontzeptu['unitatea_prod'] is defined)) %}
+                                                    {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
                             </table>
                             {% set kont=kont+1 %}
                         {% endfor %}
