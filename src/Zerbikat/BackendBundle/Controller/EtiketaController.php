@@ -46,7 +46,7 @@ class EtiketaController extends Controller
             try {
                 $entities = $pagerfanta
                     // Le nombre maximum d'éléments par page
-                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
+//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
                     // Notre position actuelle (numéro de page)
                     ->setCurrentPage($page)
                     // On récupère nos entités via Pagerfanta,

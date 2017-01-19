@@ -186,12 +186,8 @@ class SecurityController extends Controller
                 $user->setPlainPassword( $user->getPassword());
                 $userManager->updateUser($user, true);
 
-                return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
-            } else
-            {
-//                dump($form->isValid());
-//                $form->getData()->setUdala($this->getUser()->getUdala());
-//                $form->setData($form->getData());
+//                return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+                return $this->redirectToRoute('users_index');
             }
 
             return $this->render('UserBundle:Default:new.html.twig', array(
