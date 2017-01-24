@@ -1,6 +1,8 @@
-#!/usr/bin/python
+import os
+import datetime
+import MySQLdb
 
-con = MySQLdb.connect(host='SERVER', user='DBUSER', passwd='DBPASSWD', db='DATABASE')
+con = MySQLdb.connect(host='DBSERVER', user='DBUSER', passwd='DBPASSWD', db='DB')
 cur = con.cursor()
 
 cur.execute("SHOW TABLES")
@@ -11,26 +13,33 @@ for table in cur.fetchall():
 
 for table in tables:
     if table != "fos_user" and table != 'udala':
-
         # Begiratu ea udala_id eremua existitzen den
         cur.execute("SHOW columns from `" + str(table) + "` where field='udala_id' \n")
         badu = cur.rowcount
 
         if badu == 1:
+            data += "-- BADU!! \n \n \n"
             data += "DELETE FROM `" + str(table) + "` WHERE udala_id=64; \n"
             cur.execute("SELECT * FROM `" + str(table) + "` WHERE udala_id=64;")
         else:
+            data += "-- EZ DU !! \n \n"
             data += "DELETE FROM `" + str(table) + "`; \n"
             cur.execute("SELECT * FROM `" + str(table) + "`;")
-
         for row in cur.fetchall():
             data += "INSERT INTO `" + str(table) + "` VALUES("
             first = True
             for field in row:
                 if not first:
                     data += ', '
-                data += '"' + str(field).replace("\"", "\'") + '"'
-                first = False
+                if (type(field) is long) or (type(field) is int) or (type(field) is float):
+                    data += str(field)
+                    first = False
+                elif field is None:
+                    data += str('NULL')
+                    first = False
+                else:
+                    data += '"' + str(field).replace("\"", "\'") + '"'
+                    first = False
 
 
             data += ");\n"
