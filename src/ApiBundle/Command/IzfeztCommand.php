@@ -771,7 +771,8 @@
                                                         $textes = $textes."<li>";
                                                         $texteu = $texteu."<li>";
                                                         if ( $kanala->getIzenaes() ) {
-                                                            if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+//                                                            if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+                                                            if ((preg_match('/@/',$kanala->getEstekaes())) && (!preg_match('/maps/',$kanala->getEstekaes())) ){
                                                                 $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes()."</a><br />";
                                                                 $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu()."</a><br />";
                                                             } else {
@@ -2024,7 +2025,8 @@
                                                             $textes = $textes."<li>";
                                                             $texteu = $texteu."<li>";
                                                             if ( $kanala->getIzenaes() ) {
-                                                                if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+//                                                                if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+                                                                if ((preg_match('/@/',$kanala->getEstekaes())) && (!preg_match('/maps/',$kanala->getEstekaes())) ){
                                                                     $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes()."</a><br />";
                                                                     $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu()."</a><br />";
                                                                 } else {

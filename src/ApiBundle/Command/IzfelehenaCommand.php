@@ -100,6 +100,13 @@
             $A203DENOMI = "'".$idBlokea." Blokea'";
             $A203TITCAST = "'".$tites."'";
             $A203TITEUSK = "'".$titeus."'";
+            if ($subtites !== "''" ) {
+                $subtites = "'".$subtites."'";
+            }
+            if ($subtiteus !== "''" ) {
+                $subtiteus = "'".$subtiteus."'";
+            }
+
             $A203FECALTA = null;
 
             $sql = "INSERT INTO UDAA20301 (A203AYUNTA,A203IDBLOQUE,A203DENOMI,A203TITCAST,A203TITEUSK,A203FECALTA,A203CAPLI,A203SUBTITCAST,A203SUBTITEUSK)
@@ -650,7 +657,8 @@
                                                         $textes = $textes."<li>";
                                                         $texteu = $texteu."<li>";
                                                         if ( $kanala->getIzenaes() ) {
-                                                            if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+//                                                            if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+                                                            if ((preg_match('/@/',$kanala->getEstekaes())) && (!preg_match('/maps/',$kanala->getEstekaes())) ){
                                                                 $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes()."</a><br />";
                                                                 $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu()."</a><br />";
                                                             } else {
@@ -1901,7 +1909,8 @@
                                                             $textes = $textes."<li>";
                                                             $texteu = $texteu."<li>";
                                                             if ( $kanala->getIzenaes() ) {
-                                                                if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+//                                                                if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
+                                                                if ((preg_match('/@/',$kanala->getEstekaes())) && (!preg_match('/maps/',$kanala->getEstekaes())) ){
                                                                     $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes()."</a><br />";
                                                                     $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu()."</a><br />";
                                                                 } else {
