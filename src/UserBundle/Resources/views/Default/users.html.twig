@@ -2,7 +2,7 @@
 
 {% block menua %}
     {{ parent() }}
-    <nav class="navbar navbar-default navbar-lower" data-spy="affix" data-offset-top="5">
+    <nav class="navbar navbar-default navbar-lower " data-spy="affix" data-offset-top="5">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand">{{ 'messages.erabiltzaileak'|trans }}</a>
@@ -21,53 +21,55 @@
 
 
 {% block body %}
-
-
-<table class="table" id="taulazerrenda">
-    <thead>
-    <tr>
-        {% if is_granted('ROLE_SUPER_ADMIN') %}<th>Udala</th>{% endif %}
-        <th>{{ 'messages.erabiltzailea'|trans }} ({{ 'messages.NA'|trans }})</th>
-        <th>{{ 'messages.email'|trans }}</th>
-        <th>{{ 'messages.baimenak'|trans }}</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for user in users %}
+    <table class="table" id="taulazerrenda">
+        <thead>
         <tr>
-            {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ user.udala }}</td>{% endif %}
-            <td>{{ user.username|e }}</td>
-            <td>{{ user.email |e }}</td>
-            <td>{% for rola in user.roles %}
-                    {{ rola }}<br />
-                {% endfor %}
-            </td>
-
-            <td NOWRAP class="text-right">
-                <ul class="list-inline">
-                    <li><a href="{{ path('user_edit', { 'id': user.id }) }}" class="fa fa-pencil"></a></li>
-                    <li><a href="{{ path('user_edit_passwd', { 'id': user.id }) }}" class="fa fa-key" title="Pasahitza aldatu"></a></li>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li>{{ form_start(deleteforms[user.id],{'attr': {'id': user.id}}) }}
-                            <a href="#" onclick="ezabatu({{ user.id }},'{{ 'messages.ziurzaude'|trans }}');" ><i class="fa fa-trash text-danger"></i></a>
-                            {{ form_end(deleteforms[user.id]) }}</li>
-                    {% endif %}
-                </ul>
-            </td>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <th>Udala</th>
+            {% endif %}
+            <th>{{ 'messages.erabiltzailea'|trans }} ({{ 'messages.NA'|trans }})</th>
+            <th>{{ 'messages.email'|trans }}</th>
+            <th>{{ 'messages.baimenak'|trans }}</th>
+            <th></th>
         </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <td>{{ user.udala }}</td>
+                {% endif %}
+                    <td>{{ user.username|e }}</td>
+                    <td>{{ user.email |e }}</td>
+                    <td>{% for rola in user.roles %}
+                        {{ rola }}<br/>
+                        {% endfor %}
+                    </td>
 
-    {% endfor %}
-    </tbody>
-</table>
+                    <td NOWRAP class="text-right">
+                        <ul class="list-inline">
+                            <li><a href="{{ path('user_edit', { 'id': user.id }) }}" class="fa fa-pencil"></a></li>
+                            <li><a href="{{ path('user_edit_passwd', { 'id': user.id }) }}" class="fa fa-key"
+                                   title="Pasahitza aldatu"></a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li>{{ form_start(deleteforms[user.id],{'attr': {'id': user.id}}) }}
+                                    <a href="#" onclick="ezabatu({{ user.id }},'{{ 'messages.ziurzaude'|trans }}');"><i
+                                                class="fa fa-trash text-danger"></i></a>
+                                    {{ form_end(deleteforms[user.id]) }}</li>
+                            {% endif %}
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <li><a href="{{ path('fitxa_index', { _switch_user: user.username }) }}"><i class="fa fa-user-o" aria-hidden="true" title="Inpertsonalizatu"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 
     <div class="text-center">
-        {% if users is not empty %}
-            {#{% if pager.haveToPaginate %}#}
-                {#{{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'users_index_paginated'}) }}#}
-            {#{% endif %}#}
-        {% else %}
+        {% if users is empty %}
             <p>{{ 'messages.emaitzarikez'|trans }}</p>
         {% endif %}
     </div>
@@ -77,16 +79,13 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        function ezabatu (id,mezua)
-        {
-//            var r = confirm("Erabiltzailea EZABATU. Ziur zaude?");
+        function ezabatu(id, mezua) {
             var r = confirm(mezua);
-            if (r == true)
-            {
+            if (r == true) {
                 document.getElementById(id).submit()
-            }else
-            {
+            } else {
             }
-        };
+        }
+        ;
     </script>
 {% endblock %}

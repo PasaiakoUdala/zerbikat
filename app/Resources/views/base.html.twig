@@ -75,7 +75,7 @@
 
 {% block menua %}
     {#{% if is_granted('ROLE_KUDEAKETA') %}#}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top {% if is_granted('ROLE_PREVIOUS_ADMIN') %} inpersonalizatua {% endif %}">
         {#<nav class="navbar navbar-inverse">#}
         <div class="container">
             <div class="navbar-header">
@@ -173,6 +173,9 @@
                         <li class="list-inline"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">ES</a></li>
                         <li class="list-inline"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'eu'})) }}">EU</a></li>
                     {% endblock %}
+                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                        <li class="list-inline"><a href="{{ path('users_index', {'_switch_user': '_exit'}) }}">Modu arruntera itzuli</a></li>
+                    {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
