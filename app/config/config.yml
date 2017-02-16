@@ -36,6 +36,7 @@ framework:
     http_method_override: true
     assets: ~
 
+
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"

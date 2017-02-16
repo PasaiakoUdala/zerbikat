@@ -221,10 +221,12 @@
                 switch ( $tipo ) {
                     case null:
                         $A202SERVICIO = "'PROPIA'";
+                        $A202LINKEXT = "'". $linkext ."'";
                         break;
 
                     case "PARRAFO":
                         $A202SERVICIO = "'PROPIA'";
+                        $A202LINKEXT = "'". $linkext ."'";
                         break;
 
                     case "USC":
@@ -233,6 +235,7 @@
 
                     case "UXX":
                         $A202SERVICIO = "'PROPIA'";
+                        $A202LINKEXT = "'". $linkext ."'";
                         break;
 
                     default:
@@ -246,12 +249,15 @@
                             "UPM-CE",
                             "UPM-HE",
                             "URG",
-                            "URA",
+                            //"URA",
                             "URB",
                             "UVD",
                         );
 
-                        if ( in_array( $tipo, $servicios ) ) {
+                        if ( $tipo == "URA") {
+                            $A202SERVICIO = "'FITXAZERBIKAT'";
+                            $A202LINKEXT = "'". $tipo.$linkext ."'";
+                        }elseif ( in_array( $tipo, $servicios ) ) {
                             $A202SERVICIO = "'SERVICIO'";
                             $A202LINKEXT = "'". $tipo ."'";
                         } else {
