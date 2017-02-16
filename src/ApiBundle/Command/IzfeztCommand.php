@@ -130,12 +130,15 @@
                         "UPM-CE",
                         "UPM-HE",
                         "URG",
-                        "URA",
+                        //"URA",
                         "URB",
                         "UVD",
                     );
 
-                    if ( in_array( $tipo, $servicios ) ) {
+                    if ( $tipo == "URA") {
+                        $A204TIPO = "'FITXAZERBIKAT'";
+                        $A204IDTIPO = "'". $tipo.$IdPagina."'";
+                    }elseif( in_array( $tipo, $servicios ) ) {
                         $A204TIPO = "'SERVICIO'";
                         $A204IDTIPO = "'". $tipo ."'";
                     } else {
@@ -801,8 +804,8 @@
                                                             $texteu = $texteu.$kanala->getPostakodea(). " ";
                                                         }
                                                         if ( $kanala->getUdala() ) {
-                                                            $textes = $textes.$kanala->getUdala()."<br/>";
-                                                            $texteu = $texteu.$kanala->getUdala()."<br/>";
+                                                            $textes = $textes.$kanala->getUdala()->getIzenaes()."<br/>";
+                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu()."<br/>";
                                                         }
                                                         if ( $kanala->getOrdutegia() ) {
                                                             $textes = $textes.$kanala->getOrdutegia()."<br/>";
@@ -838,8 +841,8 @@
                                                             $texteu = $texteu.$kanala->getPostakodea(). " ";
                                                         }
                                                         if ( $kanala->getUdala() ) {
-                                                            $textes = $textes.$kanala->getUdala()."<br/>";
-                                                            $texteu = $texteu.$kanala->getUdala()."<br/>";
+                                                            $textes = $textes.$kanala->getUdala()->getIzenaes()."<br/>";
+                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu()."<br/>";
                                                         }
                                                         if ( $kanala->getOrdutegia() ) {
                                                             $textes = $textes.$kanala->getOrdutegia()."<br/>";
@@ -1102,8 +1105,8 @@
                                     }
                                 }
 
-                                $textes = "</ul>";
-                                $texteu = "</ul>";
+                                $textes = $textes."</ul>";
+                                $texteu = $texteu."</ul>";
 
 
                                 $sql = $sql.$this->addElementua(
@@ -2055,8 +2058,8 @@
                                                                 $texteu = $texteu.$kanala->getPostakodea(). " ";
                                                             }
                                                             if ( $kanala->getUdala() ) {
-                                                                $textes = $textes.$kanala->getUdala()."<br/>";
-                                                                $texteu = $texteu.$kanala->getUdala()."<br/>";
+                                                                $textes = $textes.$kanala->getUdala()->getIzenaes()."<br/>";
+                                                                $texteu = $texteu.$kanala->getUdala()->getIzenaeu()."<br/>";
                                                             }
                                                             if ( $kanala->getOrdutegia() ) {
                                                                 $textes = $textes.$kanala->getOrdutegia()."<br/>";
@@ -2092,8 +2095,8 @@
                                                                 $texteu = $texteu.$kanala->getPostakodea(). " ";
                                                             }
                                                             if ( $kanala->getUdala() ) {
-                                                                $textes = $textes.$kanala->getUdala()."<br/>";
-                                                                $texteu = $texteu.$kanala->getUdala()."<br/>";
+                                                                $textes = $textes.$kanala->getUdala()->getIzenaes()."<br/>";
+                                                                $texteu = $texteu.$kanala->getUdala()->getIzenaeu()."<br/>";
                                                             }
                                                             if ( $kanala->getOrdutegia() ) {
                                                                 $textes = $textes.$kanala->getOrdutegia()."<br/>";
@@ -2356,8 +2359,8 @@
                                         }
                                     }
 
-                                    $textes = "</ul>";
-                                    $texteu = "</ul>";
+                                    $textes = $textes."</ul>";
+                                    $texteu = $texteu."</ul>";
 
 
                                     $sql = $sql.$this->addElementua(
