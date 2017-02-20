@@ -641,22 +641,25 @@
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $doctextes,
-                                                $doctexteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
+
+                                        if ($badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
                                 }
                                 if ( $eremuak['dokumentazioatext'] ) {
@@ -741,24 +744,27 @@
                                             }
                                             $doctextes = $doctextes."</li>";
                                             $doctexteu = $doctexteu."</li>";
+                                            $badu = 1;
                                         }
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $doctextes,
-                                                $doctexteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
-                                        $badu = 1;
+
+                                        if ($badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
                                 }
                                 if ($badu == 0 ){
@@ -902,22 +908,24 @@
                                         }
                                         $textes = $textes."</ul>";
                                         $texteu = $texteu."</ul>";
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $textes,
-                                                $texteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
+                                        if ($badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $textes,
+                                                    $texteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
                                 }
                                 if ( $eremuak['kanalatext'] ) {
@@ -1024,23 +1032,24 @@
                                         }
                                     }
 
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $textes,
-                                            $texteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-
+                                    if ( $badu == 1 ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $textes,
+                                                $texteu,
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                    }
                                 }
                                 if ( $eremuak['kostuatext'] ) {
                                     $sql = $sql.$this->addElementua(
@@ -1107,6 +1116,7 @@
                                 $textes = "<ul>";
                                 $texteu = "<ul>";
 
+                                $badu = 0;
                                 if ( $eremuak["aurreikusi"] ) {
                                     if ( $fitxa->getAurreikusi() ) {
                                         $textes=$textes."<li>";
@@ -1115,6 +1125,7 @@
                                         $texteu = $texteu.$labelak["aurreikusilabeleu"].": ".$fitxa->getAurreikusi()."\n";
                                         $textes=$textes."</li>";
                                         $texteu=$texteu."</li>";
+                                        $badu = 1;
                                     }
 
                                 }
@@ -1127,6 +1138,7 @@
                                         $texteu = $texteu.$labelak["arruntalabeleu"].": ".$fitxa->getArrunta()."\n";
                                         $textes=$textes."</li>";
                                         $texteu=$texteu."</li>";
+                                        $badu = 1;
                                     }
                                 }
 
@@ -1138,6 +1150,7 @@
                                         $texteu = $texteu.$labelak["ebazpensinplilabeleu"].": ".$fitxa->getEbazpensinpli()."<br/>"."\n";
                                         $textes=$textes."</li>";
                                         $texteu=$texteu."</li>";
+                                        $badu = 1;
                                     }
                                 }
 
@@ -1149,6 +1162,7 @@
                                         $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": ".$fitxa->getArduraaitorpena()."<br/>"."\n";
                                         $textes=$textes."</li>";
                                         $texteu=$texteu."</li>";
+                                        $badu = 1;
                                     }
                                 }
 
@@ -1160,27 +1174,28 @@
                                         $texteu = $texteu.$labelak["isiltasunadminlabeleu"].": ".$fitxa->getIsiltasunadmin()."<br/>"."\n";
                                         $textes=$textes."</li>";
                                         $texteu=$texteu."</li>";
+                                        $badu = 1;
                                     }
                                 }
 
                                 $textes = $textes."</ul>";
                                 $texteu = $texteu."</ul>";
 
-
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $textes,
-                                        $texteu,
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
-                                $idBlokea += 1;
-                                $idOrden += 1;
-                                $idOrdenElementua += 1;
-                                $idElementua += 1;
-
+                                if ( $badu == 1 ) {
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            $textes,
+                                            $texteu,
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                    $idOrdenElementua += 1;
+                                    $idElementua += 1;
+                                }
                             }
                             /****** FIN EBAZPENA*********************************************************************/
 
@@ -1238,22 +1253,25 @@
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $doctextes,
-                                                $doctexteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
+
+                                        if ( $badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
 
                                 }
@@ -1312,24 +1330,26 @@
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $doctextes,
-                                                $doctexteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
-                                    }
 
+                                        if ( $badu == 1) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
+                                    }
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
@@ -1465,25 +1485,27 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $fitxa->getOharrakes(),
-                                        $fitxa->getOharrakeu(),
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
+                                if ((strlen($fitxa->getOharrakes()) > 0 ) && (strlen($fitxa->getOharrakeu()) > 0 )) {
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            $fitxa->getOharrakes(),
+                                            $fitxa->getOharrakeu(),
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $idElementua,
+                                            $idOrdenElementua
+                                        );
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
 
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
                             }
                             /****** FIN OHARRAK *******************************************************************/
 
@@ -1541,23 +1563,25 @@
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $doctextes,
-                                                $doctexteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
 
+                                        if ( $badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
                                 }
                                 if ($badu == 0 ){
@@ -1627,23 +1651,25 @@
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $doctextes,
-                                                $doctexteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
 
+                                        if ( $badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
 
                                 }
@@ -1714,23 +1740,25 @@
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $doctextes,
-                                                $doctexteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
 
+                                        if ( $badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $doctextes,
+                                                    $doctexteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
                                 }
                                 if ($badu == 0 ){
@@ -1771,33 +1799,37 @@
                                     $texteu = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$texteu);
                                     $texteu = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$', $fitxa->getDatuenbabesa()->getXedeaeu(),$texteu);
                                     $texteu = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$', $fitxa->getDatuenbabesa()->getLagapenakeu(),$texteu);
+                                    $badu = 1;
                                 }
 
 
                                 if ( $eremuak['datuenbabesatext'] ) {
                                     $textes = $textes.$fitxa->getDatuenbabesaes();
                                     $texteu = $texteu.$fitxa->getDatuenbabesaeu();
+                                    $badu = 1;
                                 }
 
-                                $sql = $sql.$this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        "Texto",
-                                        $textes,
-                                        $texteu,
-                                        "PARRAFO"
-                                    );
-                                $sql = $sql.$this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                $idElementua += 1;
-                                $idOrdenElementua += 1;
+                                if ( $badu == 1) {
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            $textes,
+                                            $texteu,
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $idElementua,
+                                            $idOrdenElementua
+                                        );
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
 
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
+                                }
                             }
                             /****** FIN DATUENBABESA *********************************************************************/
 
@@ -2021,22 +2053,25 @@
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $doctextes,
-                                                    $doctexteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
+
+                                            if ($badu == 1 ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $doctextes,
+                                                        $doctexteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
                                         }
                                     }
                                     if ( $eremuak['dokumentazioatext'] ) {
@@ -2121,24 +2156,27 @@
                                                 }
                                                 $doctextes = $doctextes."</li>";
                                                 $doctexteu = $doctexteu."</li>";
+                                                $badu = 1;
                                             }
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $doctextes,
-                                                    $doctexteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
-                                            $badu = 1;
+
+                                            if ($badu == 1 ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $doctextes,
+                                                        $doctexteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
                                         }
                                     }
                                     if ($badu == 0 ){
@@ -2282,22 +2320,24 @@
                                             }
                                             $textes = $textes."</ul>";
                                             $texteu = $texteu."</ul>";
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $textes,
-                                                    $texteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
+                                            if ($badu == 1 ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $textes,
+                                                        $texteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
                                         }
                                     }
                                     if ( $eremuak['kanalatext'] ) {
@@ -2404,23 +2444,24 @@
                                             }
                                         }
 
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $textes,
-                                                $texteu,
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
-
+                                        if ( $badu == 1 ) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $textes,
+                                                    $texteu,
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                        }
                                     }
                                     if ( $eremuak['kostuatext'] ) {
                                         $sql = $sql.$this->addElementua(
@@ -2487,6 +2528,7 @@
                                     $textes = "<ul>";
                                     $texteu = "<ul>";
 
+                                    $badu = 0;
                                     if ( $eremuak["aurreikusi"] ) {
                                         if ( $fitxa->getAurreikusi() ) {
                                             $textes=$textes."<li>";
@@ -2495,6 +2537,7 @@
                                             $texteu = $texteu.$labelak["aurreikusilabeleu"].": ".$fitxa->getAurreikusi()."\n";
                                             $textes=$textes."</li>";
                                             $texteu=$texteu."</li>";
+                                            $badu = 1;
                                         }
 
                                     }
@@ -2507,6 +2550,7 @@
                                             $texteu = $texteu.$labelak["arruntalabeleu"].": ".$fitxa->getArrunta()."\n";
                                             $textes=$textes."</li>";
                                             $texteu=$texteu."</li>";
+                                            $badu = 1;
                                         }
                                     }
 
@@ -2518,6 +2562,7 @@
                                             $texteu = $texteu.$labelak["ebazpensinplilabeleu"].": ".$fitxa->getEbazpensinpli()."<br/>"."\n";
                                             $textes=$textes."</li>";
                                             $texteu=$texteu."</li>";
+                                            $badu = 1;
                                         }
                                     }
 
@@ -2529,6 +2574,7 @@
                                             $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": ".$fitxa->getArduraaitorpena()."<br/>"."\n";
                                             $textes=$textes."</li>";
                                             $texteu=$texteu."</li>";
+                                            $badu = 1;
                                         }
                                     }
 
@@ -2540,27 +2586,28 @@
                                             $texteu = $texteu.$labelak["isiltasunadminlabeleu"].": ".$fitxa->getIsiltasunadmin()."<br/>"."\n";
                                             $textes=$textes."</li>";
                                             $texteu=$texteu."</li>";
+                                            $badu = 1;
                                         }
                                     }
 
                                     $textes = $textes."</ul>";
                                     $texteu = $texteu."</ul>";
 
-
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $textes,
-                                            $texteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
-                                    $idBlokea += 1;
-                                    $idOrden += 1;
-                                    $idOrdenElementua += 1;
-                                    $idElementua += 1;
-
+                                    if ( $badu == 1 ) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $textes,
+                                                $texteu,
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
+                                        $idBlokea += 1;
+                                        $idOrden += 1;
+                                        $idOrdenElementua += 1;
+                                        $idElementua += 1;
+                                    }
                                 }
                                 /****** FIN EBAZPENA*********************************************************************/
 
@@ -2618,22 +2665,25 @@
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $doctextes,
-                                                    $doctexteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
+
+                                            if ( $badu == 1 ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $doctextes,
+                                                        $doctexteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
                                         }
 
                                     }
@@ -2692,24 +2742,26 @@
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $doctextes,
-                                                    $doctexteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
-                                        }
 
+                                            if ( $badu == 1) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $doctextes,
+                                                        $doctexteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
+                                        }
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
@@ -2845,25 +2897,27 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $fitxa->getOharrakes(),
-                                            $fitxa->getOharrakeu(),
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
+                                    if ((strlen($fitxa->getOharrakes()) > 0 ) && (strlen($fitxa->getOharrakeu()) > 0 )) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getOharrakes(),
+                                                $fitxa->getOharrakeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
 
-                                    $idBlokea += 1;
-                                    $idOrden += 1;
+                                        $idBlokea += 1;
+                                        $idOrden += 1;
+                                    }
                                 }
                                 /****** FIN OHARRAK *******************************************************************/
 
@@ -2921,23 +2975,25 @@
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $doctextes,
-                                                    $doctexteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
 
+                                            if ( $badu == 1 ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $doctextes,
+                                                        $doctexteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
                                         }
                                     }
                                     if ($badu == 0 ){
@@ -3007,23 +3063,25 @@
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $doctextes,
-                                                    $doctexteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
 
+                                            if ( $badu == 1 ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $doctextes,
+                                                        $doctexteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
                                         }
 
                                     }
@@ -3094,23 +3152,25 @@
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
-                                            $sql = $sql.$this->addElementua(
-                                                    $A204AYUNTA,
-                                                    $idElementua,
-                                                    "Texto",
-                                                    $doctextes,
-                                                    $doctexteu,
-                                                    "PARRAFO"
-                                                );
-                                            $sql = $sql.$this->addElementuaBloque(
-                                                    $A204AYUNTA,
-                                                    $idBlokea,
-                                                    $idElementua,
-                                                    $idOrdenElementua
-                                                );
-                                            $idElementua += 1;
-                                            $idOrdenElementua += 1;
 
+                                            if ( $badu == 1 ) {
+                                                $sql = $sql.$this->addElementua(
+                                                        $A204AYUNTA,
+                                                        $idElementua,
+                                                        "Texto",
+                                                        $doctextes,
+                                                        $doctexteu,
+                                                        "PARRAFO"
+                                                    );
+                                                $sql = $sql.$this->addElementuaBloque(
+                                                        $A204AYUNTA,
+                                                        $idBlokea,
+                                                        $idElementua,
+                                                        $idOrdenElementua
+                                                    );
+                                                $idElementua += 1;
+                                                $idOrdenElementua += 1;
+                                            }
                                         }
                                     }
                                     if ($badu == 0 ){
@@ -3151,33 +3211,37 @@
                                         $texteu = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$texteu);
                                         $texteu = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$', $fitxa->getDatuenbabesa()->getXedeaeu(),$texteu);
                                         $texteu = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$', $fitxa->getDatuenbabesa()->getLagapenakeu(),$texteu);
+                                        $badu = 1;
                                     }
 
 
                                     if ( $eremuak['datuenbabesatext'] ) {
                                         $textes = $textes.$fitxa->getDatuenbabesaes();
                                         $texteu = $texteu.$fitxa->getDatuenbabesaeu();
+                                        $badu = 1;
                                     }
 
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $textes,
-                                            $texteu,
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
+                                    if ( $badu == 1) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $textes,
+                                                $texteu,
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
 
-                                    $idBlokea += 1;
-                                    $idOrden += 1;
+                                        $idBlokea += 1;
+                                        $idOrden += 1;
+                                    }
                                 }
                                 /****** FIN DATUENBABESA *********************************************************************/
 
