@@ -206,8 +206,12 @@
         function addElementua ( $A204AYUNTA, $idElementua, $denomi, $titcast, $titeus, $servicio, $linkext = '' )
         {
             $denomi =   str_replace( '\'', '"', $denomi );
-            $titcast =  str_replace( '\'', '"', $titcast );
+            $titcast =  str_replace( '&nbsp;', ' ', $titcast );
+            $titcast =  str_replace( '&nbsp', ' ', $titcast );
             $titeus =   str_replace( '\'', '"', $titeus );
+            $titcast =  str_replace( '\'', '"', $titcast );
+            $titeus =   str_replace( '&nbsp;', ' ', $titeus );
+            $titeus =   str_replace( '&nbsp', ' ', $titeus );
 
             $A202AYUNTA = $A204AYUNTA;
             $A202IDLINEA = $idElementua;
@@ -546,7 +550,9 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak['norkeskatutext'] ) {
+
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
                                             $idElementua,
@@ -561,6 +567,7 @@
                                             $idElementua,
                                             $idOrdenElementua
                                         );
+                                    $badu = 1;
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
                                 }
@@ -583,8 +590,17 @@
                                                 );
                                             $idElementua += 1;
                                             $idOrdenElementua += 1;
+                                            $badu = 1;
                                         }
                                     }
+                                }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
                                 }
                                 $idBlokea += 1;
                                 $idOrden += 1;
@@ -601,6 +617,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak["dokumentazioatable"] ) {
                                     if ( $fitxa->getDokumentazioak() ) {
                                         $doctextes = "<ul>";
@@ -620,6 +637,7 @@
                                             }
                                             $doctextes = $doctextes."</li>";
                                             $doctexteu = $doctexteu."</li>";
+                                            $badu = 1;
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
@@ -658,6 +676,15 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
+                                }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
                                 }
                                 $idBlokea += 1;
                                 $idOrden += 1;
@@ -674,6 +701,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak['doklaguntext'] ) {
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
@@ -691,6 +719,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu=1;
                                 }
 
                                 if ( $eremuak["doklaguntable"] ) {
@@ -729,9 +758,17 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
                                 }
-
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
+                                }
                                 $idBlokea += 1;
                                 $idOrden += 1;
                             }
@@ -747,6 +784,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak["kanalatable"] ) {
 
                                     foreach ( $kanalmotak as $k ) {
@@ -780,7 +818,6 @@
                                                         $textes = $textes."<li>";
                                                         $texteu = $texteu."<li>";
                                                         if ( $kanala->getIzenaes() ) {
-//                                                            if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
                                                             if ((preg_match('/@/',$kanala->getEstekaes())) && (!preg_match('/maps/',$kanala->getEstekaes())) ){
                                                                 $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes()."</a><br />";
                                                                 $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu()."</a><br />";
@@ -860,6 +897,7 @@
                                                         $texteu = $texteu."</li>";
                                                     }
                                                 }
+                                                $badu = 1;
                                             }
                                         }
                                         $textes = $textes."</ul>";
@@ -899,6 +937,15 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
+                                }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
                                 }
                                 $idBlokea += 1;
                                 $idOrden += 1;
@@ -918,6 +965,7 @@
                                 $kont = 0;
                                 $textes = "";
                                 $texteu = "";
+                                $badu = 0;
 
                                 if ( $eremuak["kostuatable"] ) {
                                     if ( $fitxa->getUdala()->getZergaor() ) {
@@ -941,6 +989,7 @@
                                                 $textes = $textes."</table>";
                                                 $texteu = $texteu."</table>";
                                                 $kont += 1;
+                                                $badu = 1;
                                             }
                                         }
                                     } else {
@@ -971,6 +1020,7 @@
                                             $textes = $textes."</table>";
                                             $texteu = $texteu."</table>";
                                             $kont += 1;
+                                            $badu = 1;
                                         }
                                     }
 
@@ -991,7 +1041,6 @@
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
 
-
                                 }
                                 if ( $eremuak['kostuatext'] ) {
                                     $sql = $sql.$this->addElementua(
@@ -1010,6 +1059,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
                                 }
 
                                 if ( (($fitxa->getKostuaes()== null) && ($kont == 0)) || (($fitxa->getKostuaeu() == null) && ($kont == 0)) ) {
@@ -1029,8 +1079,16 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
                                 }
-
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
+                                }
                                 $idBlokea += 1;
                                 $idOrden += 1;
                             }
@@ -1122,6 +1180,7 @@
                                 $idOrden += 1;
                                 $idOrdenElementua += 1;
                                 $idElementua += 1;
+
                             }
                             /****** FIN EBAZPENA*********************************************************************/
 
@@ -1135,6 +1194,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak['araudiatext'] ) {
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
@@ -1152,6 +1212,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
                                 }
                                 if ( $eremuak["araudiatable"] ) {
 
@@ -1173,6 +1234,7 @@
                                             }
                                             $doctextes = $doctextes."</li>";
                                             $doctexteu = $doctexteu."</li>";
+                                            $badu = 1;
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
@@ -1195,6 +1257,14 @@
                                     }
 
                                 }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
+                                }
                                 $idBlokea += 1;
                                 $idOrden += 1;
                             }
@@ -1210,6 +1280,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak['prozeduratext'] ) {
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
@@ -1227,6 +1298,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
                                 }
                                 if ( $eremuak["prozeduratable"] ) {
 
@@ -1236,6 +1308,7 @@
                                         foreach ( $fitxa->getProzedurak() as $prozedura ) {
                                             $doctextes = $doctextes."<li>".$prozedura->getProzedura()->getProzeduraes()."</li>";
                                             $doctexteu = $doctexteu."<li>".$prozedura->getProzedura()->getProzeduraeu()."</li>";
+                                            $badu = 1;
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
@@ -1258,6 +1331,14 @@
                                     }
 
                                 }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
+                                }
                                 $idBlokea += 1;
                                 $idOrden += 1;
                             }
@@ -1273,6 +1354,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu =0;
                                 if ( $eremuak["norkebatzitable"] && $fitxa->getNorkebatzi() ) {
 
                                     $sql = $sql.$this->addElementua(
@@ -1291,7 +1373,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
-
+                                    $badu = 1;
 
                                 }
                                 if ( $eremuak['norkebatzitext'] ) {
@@ -1311,8 +1393,16 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu =1 ;
                                 }
-
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
+                                }
 
                                 $idBlokea += 1;
                                 $idOrden += 1;
@@ -1329,6 +1419,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $fitxa->getAzpisaila() ) {
 
                                     $sql = $sql.$this->addElementua(
@@ -1349,10 +1440,16 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
-
-
+                                    $badu = 1;
                                 }
-
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
+                                }
                                 $idBlokea += 1;
                                 $idOrden += 1;
                             }
@@ -1400,6 +1497,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak['besteak1text'] ) {
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
@@ -1417,6 +1515,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
                                 }
                                 if ( $eremuak["besteak1table"] ) {
 
@@ -1438,6 +1537,7 @@
                                             }
                                             $doctextes = $doctextes."</li>";
                                             $doctexteu = $doctexteu."</li>";
+                                            $badu = 1;
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
@@ -1457,8 +1557,16 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
-                                    }
 
+                                    }
+                                }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
                                 }
                                 $idBlokea += 1;
                                 $idOrden += 1;
@@ -1475,6 +1583,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak['besteak2text'] ) {
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
@@ -1492,6 +1601,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
                                 }
                                 if ( $eremuak["besteak2table"] ) {
 
@@ -1513,6 +1623,7 @@
                                             }
                                             $doctextes = $doctextes."</li>";
                                             $doctexteu = $doctexteu."</li>";
+                                            $badu = 1;
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
@@ -1532,8 +1643,17 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+
                                     }
 
+                                }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
                                 }
                                 $idBlokea += 1;
                                 $idOrden += 1;
@@ -1550,6 +1670,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                $badu = 0;
                                 if ( $eremuak['besteak3text'] ) {
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
@@ -1567,6 +1688,7 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
+                                    $badu = 1;
                                 }
                                 if ( $eremuak["besteak3table"] ) {
 
@@ -1588,6 +1710,7 @@
                                             }
                                             $doctextes = $doctextes."</li>";
                                             $doctexteu = $doctexteu."</li>";
+                                            $badu = 1;
                                         }
                                         $doctextes = $doctextes."</ul>";
                                         $doctexteu = $doctexteu."</ul>";
@@ -1607,8 +1730,16 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
-                                    }
 
+                                    }
+                                }
+                                if ($badu == 0 ){
+                                    // Ez dagokio
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+                                    $badu = 0;
                                 }
                                 $idBlokea += 1;
                                 $idOrden += 1;
@@ -1625,7 +1756,7 @@
                                     );
                                 $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
-
+                                $badu = 0;
                                 if ( $eremuak["datuenbabesatable"] && $fitxa->getDatuenbabesa() ) {
 
                                     $textes = $fitxa->getUdala()->getLopdes();
@@ -1640,7 +1771,6 @@
                                     $texteu = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$texteu);
                                     $texteu = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$', $fitxa->getDatuenbabesa()->getXedeaeu(),$texteu);
                                     $texteu = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$', $fitxa->getDatuenbabesa()->getLagapenakeu(),$texteu);
-
                                 }
 
 
@@ -1800,7 +1930,9 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak['norkeskatutext'] ) {
+
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
                                                 $idElementua,
@@ -1815,6 +1947,7 @@
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
+                                        $badu = 1;
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
                                     }
@@ -1837,8 +1970,17 @@
                                                     );
                                                 $idElementua += 1;
                                                 $idOrdenElementua += 1;
+                                                $badu = 1;
                                             }
                                         }
+                                    }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
                                     }
                                     $idBlokea += 1;
                                     $idOrden += 1;
@@ -1855,6 +1997,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak["dokumentazioatable"] ) {
                                         if ( $fitxa->getDokumentazioak() ) {
                                             $doctextes = "<ul>";
@@ -1874,6 +2017,7 @@
                                                 }
                                                 $doctextes = $doctextes."</li>";
                                                 $doctexteu = $doctexteu."</li>";
+                                                $badu = 1;
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
@@ -1912,6 +2056,15 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
+                                    }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
                                     }
                                     $idBlokea += 1;
                                     $idOrden += 1;
@@ -1928,6 +2081,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak['doklaguntext'] ) {
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
@@ -1945,6 +2099,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu=1;
                                     }
 
                                     if ( $eremuak["doklaguntable"] ) {
@@ -1983,9 +2138,17 @@
                                                 );
                                             $idElementua += 1;
                                             $idOrdenElementua += 1;
+                                            $badu = 1;
                                         }
                                     }
-
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
+                                    }
                                     $idBlokea += 1;
                                     $idOrden += 1;
                                 }
@@ -2001,6 +2164,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak["kanalatable"] ) {
 
                                         foreach ( $kanalmotak as $k ) {
@@ -2034,7 +2198,6 @@
                                                             $textes = $textes."<li>";
                                                             $texteu = $texteu."<li>";
                                                             if ( $kanala->getIzenaes() ) {
-//                                                                if ( (strpos( $kanala->getEstekaes(), "@" ) !== false) ) {
                                                                 if ((preg_match('/@/',$kanala->getEstekaes())) && (!preg_match('/maps/',$kanala->getEstekaes())) ){
                                                                     $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes()."</a><br />";
                                                                     $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu()."</a><br />";
@@ -2114,6 +2277,7 @@
                                                             $texteu = $texteu."</li>";
                                                         }
                                                     }
+                                                    $badu = 1;
                                                 }
                                             }
                                             $textes = $textes."</ul>";
@@ -2153,6 +2317,15 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
+                                    }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
                                     }
                                     $idBlokea += 1;
                                     $idOrden += 1;
@@ -2172,6 +2345,7 @@
                                     $kont = 0;
                                     $textes = "";
                                     $texteu = "";
+                                    $badu = 0;
 
                                     if ( $eremuak["kostuatable"] ) {
                                         if ( $fitxa->getUdala()->getZergaor() ) {
@@ -2195,6 +2369,7 @@
                                                     $textes = $textes."</table>";
                                                     $texteu = $texteu."</table>";
                                                     $kont += 1;
+                                                    $badu = 1;
                                                 }
                                             }
                                         } else {
@@ -2225,6 +2400,7 @@
                                                 $textes = $textes."</table>";
                                                 $texteu = $texteu."</table>";
                                                 $kont += 1;
+                                                $badu = 1;
                                             }
                                         }
 
@@ -2245,7 +2421,6 @@
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
 
-
                                     }
                                     if ( $eremuak['kostuatext'] ) {
                                         $sql = $sql.$this->addElementua(
@@ -2264,6 +2439,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
 
                                     if ( (($fitxa->getKostuaes()== null) && ($kont == 0)) || (($fitxa->getKostuaeu() == null) && ($kont == 0)) ) {
@@ -2283,8 +2459,16 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
-
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
+                                    }
                                     $idBlokea += 1;
                                     $idOrden += 1;
                                 }
@@ -2376,6 +2560,7 @@
                                     $idOrden += 1;
                                     $idOrdenElementua += 1;
                                     $idElementua += 1;
+
                                 }
                                 /****** FIN EBAZPENA*********************************************************************/
 
@@ -2389,6 +2574,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak['araudiatext'] ) {
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
@@ -2406,6 +2592,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
                                     if ( $eremuak["araudiatable"] ) {
 
@@ -2427,6 +2614,7 @@
                                                 }
                                                 $doctextes = $doctextes."</li>";
                                                 $doctexteu = $doctexteu."</li>";
+                                                $badu = 1;
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
@@ -2449,6 +2637,14 @@
                                         }
 
                                     }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
+                                    }
                                     $idBlokea += 1;
                                     $idOrden += 1;
                                 }
@@ -2464,6 +2660,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak['prozeduratext'] ) {
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
@@ -2481,6 +2678,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
                                     if ( $eremuak["prozeduratable"] ) {
 
@@ -2490,6 +2688,7 @@
                                             foreach ( $fitxa->getProzedurak() as $prozedura ) {
                                                 $doctextes = $doctextes."<li>".$prozedura->getProzedura()->getProzeduraes()."</li>";
                                                 $doctexteu = $doctexteu."<li>".$prozedura->getProzedura()->getProzeduraeu()."</li>";
+                                                $badu = 1;
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
@@ -2512,6 +2711,14 @@
                                         }
 
                                     }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
+                                    }
                                     $idBlokea += 1;
                                     $idOrden += 1;
                                 }
@@ -2527,6 +2734,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu =0;
                                     if ( $eremuak["norkebatzitable"] && $fitxa->getNorkebatzi() ) {
 
                                         $sql = $sql.$this->addElementua(
@@ -2545,7 +2753,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
-
+                                        $badu = 1;
 
                                     }
                                     if ( $eremuak['norkebatzitext'] ) {
@@ -2565,8 +2773,16 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu =1 ;
                                     }
-
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
+                                    }
 
                                     $idBlokea += 1;
                                     $idOrden += 1;
@@ -2583,6 +2799,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $fitxa->getAzpisaila() ) {
 
                                         $sql = $sql.$this->addElementua(
@@ -2603,10 +2820,16 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
-
-
+                                        $badu = 1;
                                     }
-
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
+                                    }
                                     $idBlokea += 1;
                                     $idOrden += 1;
                                 }
@@ -2654,6 +2877,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak['besteak1text'] ) {
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
@@ -2671,6 +2895,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
                                     if ( $eremuak["besteak1table"] ) {
 
@@ -2692,6 +2917,7 @@
                                                 }
                                                 $doctextes = $doctextes."</li>";
                                                 $doctexteu = $doctexteu."</li>";
+                                                $badu = 1;
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
@@ -2711,8 +2937,16 @@
                                                 );
                                             $idElementua += 1;
                                             $idOrdenElementua += 1;
-                                        }
 
+                                        }
+                                    }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
                                     }
                                     $idBlokea += 1;
                                     $idOrden += 1;
@@ -2729,6 +2963,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak['besteak2text'] ) {
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
@@ -2746,6 +2981,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
                                     if ( $eremuak["besteak2table"] ) {
 
@@ -2767,6 +3003,7 @@
                                                 }
                                                 $doctextes = $doctextes."</li>";
                                                 $doctexteu = $doctexteu."</li>";
+                                                $badu = 1;
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
@@ -2786,8 +3023,17 @@
                                                 );
                                             $idElementua += 1;
                                             $idOrdenElementua += 1;
+
                                         }
 
+                                    }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
                                     }
                                     $idBlokea += 1;
                                     $idOrden += 1;
@@ -2804,6 +3050,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
+                                    $badu = 0;
                                     if ( $eremuak['besteak3text'] ) {
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
@@ -2821,6 +3068,7 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
+                                        $badu = 1;
                                     }
                                     if ( $eremuak["besteak3table"] ) {
 
@@ -2842,6 +3090,7 @@
                                                 }
                                                 $doctextes = $doctextes."</li>";
                                                 $doctexteu = $doctexteu."</li>";
+                                                $badu = 1;
                                             }
                                             $doctextes = $doctextes."</ul>";
                                             $doctexteu = $doctexteu."</ul>";
@@ -2861,8 +3110,16 @@
                                                 );
                                             $idElementua += 1;
                                             $idOrdenElementua += 1;
-                                        }
 
+                                        }
+                                    }
+                                    if ($badu == 0 ){
+                                        // Ez dagokio
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 0;
                                     }
                                     $idBlokea += 1;
                                     $idOrden += 1;
@@ -2879,7 +3136,7 @@
                                         );
                                     $sql = $sql.$this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
-
+                                    $badu = 0;
                                     if ( $eremuak["datuenbabesatable"] && $fitxa->getDatuenbabesa() ) {
 
                                         $textes = $fitxa->getUdala()->getLopdes();
@@ -2894,7 +3151,6 @@
                                         $texteu = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(),$texteu);
                                         $texteu = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$', $fitxa->getDatuenbabesa()->getXedeaeu(),$texteu);
                                         $texteu = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$', $fitxa->getDatuenbabesa()->getLagapenakeu(),$texteu);
-
                                     }
 
 
