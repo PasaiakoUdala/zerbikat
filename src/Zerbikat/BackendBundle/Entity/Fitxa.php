@@ -251,14 +251,14 @@
         /**
          * @var jarraibideakeu
          *
-         * @ORM\Column(name="jarraibideakeu", type="text", length=65535, nullable=true)
+         * @ORM\Column(name="jarraibideakeu", type="text", nullable=true)
          */
         private $jarraibideakeu;
 
         /**
          * @var jarraibideakes
          *
-         * @ORM\Column(name="jarraibideakes", type="text", length=65535, nullable=true)
+         * @ORM\Column(name="jarraibideakes", type="text", nullable=true)
          */
         private $jarraibideakes;
 

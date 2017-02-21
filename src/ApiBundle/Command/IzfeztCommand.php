@@ -1829,6 +1829,26 @@
 
                                     $idBlokea += 1;
                                     $idOrden += 1;
+                                } else {
+                                    $sql = $sql.$this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            "Texto",
+                                            "No aplica",
+                                            "Ez dagokio",
+                                            "PARRAFO"
+                                        );
+                                    $sql = $sql.$this->addElementuaBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $idElementua,
+                                            $idOrdenElementua
+                                        );
+                                    $idElementua += 1;
+                                    $idOrdenElementua += 1;
+
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
                                 }
                             }
                             /****** FIN DATUENBABESA *********************************************************************/
@@ -3228,6 +3248,26 @@
                                                 "Texto",
                                                 $textes,
                                                 $texteu,
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+
+                                        $idBlokea += 1;
+                                        $idOrden += 1;
+                                    } else {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                "No aplica",
+                                                "Ez dagokio",
                                                 "PARRAFO"
                                             );
                                         $sql = $sql.$this->addElementuaBloque(
