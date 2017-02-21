@@ -1191,11 +1191,11 @@
                                             "PARRAFO"
                                         );
                                     $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
-                                    $idBlokea += 1;
-                                    $idOrden += 1;
                                     $idOrdenElementua += 1;
                                     $idElementua += 1;
                                 }
+                                $idBlokea += 1;
+                                $idOrden += 1;
                             }
                             /****** FIN EBAZPENA*********************************************************************/
 
@@ -1502,10 +1502,9 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
-
-                                    $idBlokea += 1;
-                                    $idOrden += 1;
                                 }
+                                $idBlokea += 1;
+                                $idOrden += 1;
                             }
                             /****** FIN OHARRAK *******************************************************************/
 
@@ -1826,9 +1825,6 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
-
-                                    $idBlokea += 1;
-                                    $idOrden += 1;
                                 } else {
                                     $sql = $sql.$this->addElementua(
                                             $A204AYUNTA,
@@ -1846,10 +1842,9 @@
                                         );
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
-
-                                    $idBlokea += 1;
-                                    $idOrden += 1;
                                 }
+                                $idBlokea += 1;
+                                $idOrden += 1;
                             }
                             /****** FIN DATUENBABESA *********************************************************************/
 
@@ -2623,11 +2618,11 @@
                                                 "PARRAFO"
                                             );
                                         $sql = $sql.$this->addElementuaBloque( $A204AYUNTA, $idBlokea, $idElementua, $idOrdenElementua );
-                                        $idBlokea += 1;
-                                        $idOrden += 1;
                                         $idOrdenElementua += 1;
                                         $idElementua += 1;
                                     }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
                                 }
                                 /****** FIN EBAZPENA*********************************************************************/
 
@@ -2934,10 +2929,9 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
-
-                                        $idBlokea += 1;
-                                        $idOrden += 1;
                                     }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
                                 }
                                 /****** FIN OHARRAK *******************************************************************/
 
@@ -3258,9 +3252,6 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
-
-                                        $idBlokea += 1;
-                                        $idOrden += 1;
                                     } else {
                                         $sql = $sql.$this->addElementua(
                                                 $A204AYUNTA,
@@ -3278,10 +3269,9 @@
                                             );
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
-
-                                        $idBlokea += 1;
-                                        $idOrden += 1;
                                     }
+                                    $idBlokea += 1;
+                                    $idOrden += 1;
                                 }
                                 /****** FIN DATUENBABESA *********************************************************************/
 
