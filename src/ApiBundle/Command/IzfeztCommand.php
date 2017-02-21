@@ -663,23 +663,25 @@
                                     }
                                 }
                                 if ( $eremuak['dokumentazioatext'] ) {
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $fitxa->getDokumentazioaes(),
-                                            $fitxa->getDokumentazioaeu(),
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                    $badu = 1;
+                                    if(($fitxa->getDokumentazioaes() !== null) || ($fitxa->getDokumentazioaeu() !== null)) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getDokumentazioaes(),
+                                                $fitxa->getDokumentazioaeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 1;
+                                    }
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
@@ -1211,23 +1213,25 @@
 
                                 $badu = 0;
                                 if ( $eremuak['araudiatext'] ) {
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $fitxa->getAraudiaes(),
-                                            $fitxa->getAraudiaeu(),
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                    $badu = 1;
+                                    if (($fitxa->getAraudiaes()!==null)||($fitxa->getAraudiaeu()!==null)) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getAraudiaes(),
+                                                $fitxa->getAraudiaeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 1;
+                                    }
                                 }
                                 if ( $eremuak["araudiatable"] ) {
 
@@ -1300,23 +1304,25 @@
 
                                 $badu = 0;
                                 if ( $eremuak['prozeduratext'] ) {
-                                    $sql = $sql.$this->addElementua(
-                                            $A204AYUNTA,
-                                            $idElementua,
-                                            "Texto",
-                                            $fitxa->getProzeduraes(),
-                                            $fitxa->getProzeduraeu(),
-                                            "PARRAFO"
-                                        );
-                                    $sql = $sql.$this->addElementuaBloque(
-                                            $A204AYUNTA,
-                                            $idBlokea,
-                                            $idElementua,
-                                            $idOrdenElementua
-                                        );
-                                    $idElementua += 1;
-                                    $idOrdenElementua += 1;
-                                    $badu = 1;
+                                    if (($fitxa->getProzeduraes()!==null)||($fitxa->getProzeduraeu()!==null)) {
+                                        $sql = $sql.$this->addElementua(
+                                                $A204AYUNTA,
+                                                $idElementua,
+                                                "Texto",
+                                                $fitxa->getProzeduraes(),
+                                                $fitxa->getProzeduraeu(),
+                                                "PARRAFO"
+                                            );
+                                        $sql = $sql.$this->addElementuaBloque(
+                                                $A204AYUNTA,
+                                                $idBlokea,
+                                                $idElementua,
+                                                $idOrdenElementua
+                                            );
+                                        $idElementua += 1;
+                                        $idOrdenElementua += 1;
+                                        $badu = 1;
+                                    }
                                 }
                                 if ( $eremuak["prozeduratable"] ) {
 
@@ -2090,23 +2096,25 @@
                                         }
                                     }
                                     if ( $eremuak['dokumentazioatext'] ) {
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $fitxa->getDokumentazioaes(),
-                                                $fitxa->getDokumentazioaeu(),
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
-                                        $badu = 1;
+                                        if(($fitxa->getDokumentazioaes() !== null) || ($fitxa->getDokumentazioaeu() !== null)) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $fitxa->getDokumentazioaes(),
+                                                    $fitxa->getDokumentazioaeu(),
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                            $badu = 1;
+                                        }
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
@@ -2638,23 +2646,25 @@
 
                                     $badu = 0;
                                     if ( $eremuak['araudiatext'] ) {
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $fitxa->getAraudiaes(),
-                                                $fitxa->getAraudiaeu(),
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
-                                        $badu = 1;
+                                        if (($fitxa->getAraudiaes()!==null)||($fitxa->getAraudiaeu()!==null)) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $fitxa->getAraudiaes(),
+                                                    $fitxa->getAraudiaeu(),
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                            $badu = 1;
+                                        }
                                     }
                                     if ( $eremuak["araudiatable"] ) {
 
@@ -2727,23 +2737,25 @@
 
                                     $badu = 0;
                                     if ( $eremuak['prozeduratext'] ) {
-                                        $sql = $sql.$this->addElementua(
-                                                $A204AYUNTA,
-                                                $idElementua,
-                                                "Texto",
-                                                $fitxa->getProzeduraes(),
-                                                $fitxa->getProzeduraeu(),
-                                                "PARRAFO"
-                                            );
-                                        $sql = $sql.$this->addElementuaBloque(
-                                                $A204AYUNTA,
-                                                $idBlokea,
-                                                $idElementua,
-                                                $idOrdenElementua
-                                            );
-                                        $idElementua += 1;
-                                        $idOrdenElementua += 1;
-                                        $badu = 1;
+                                        if (($fitxa->getProzeduraes()!==null)||($fitxa->getProzeduraeu()!==null)) {
+                                            $sql = $sql.$this->addElementua(
+                                                    $A204AYUNTA,
+                                                    $idElementua,
+                                                    "Texto",
+                                                    $fitxa->getProzeduraes(),
+                                                    $fitxa->getProzeduraeu(),
+                                                    "PARRAFO"
+                                                );
+                                            $sql = $sql.$this->addElementuaBloque(
+                                                    $A204AYUNTA,
+                                                    $idBlokea,
+                                                    $idElementua,
+                                                    $idOrdenElementua
+                                                );
+                                            $idElementua += 1;
+                                            $idOrdenElementua += 1;
+                                            $badu = 1;
+                                        }
                                     }
                                     if ( $eremuak["prozeduratable"] ) {
 
