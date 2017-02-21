@@ -596,7 +596,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -685,7 +685,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -771,7 +771,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -951,7 +951,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1094,7 +1094,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1281,7 +1281,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1359,7 +1359,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1423,7 +1423,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1470,7 +1470,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1591,7 +1591,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1680,7 +1680,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1768,7 +1768,7 @@
                                 }
                                 if ($badu == 0 ){
                                     // Ez dagokio
-                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                    $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                     $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                     $idElementua += 1;
                                     $idOrdenElementua += 1;
@@ -1836,7 +1836,7 @@
                                             $A204AYUNTA,
                                             $idElementua,
                                             "Texto",
-                                            "No aplica",
+                                            "No corresponde",
                                             "Ez dagokio",
                                             "PARRAFO"
                                         );
@@ -2029,7 +2029,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2118,7 +2118,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2204,7 +2204,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2384,7 +2384,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2527,7 +2527,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2714,7 +2714,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2792,7 +2792,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2856,7 +2856,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -2903,7 +2903,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -3024,7 +3024,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -3113,7 +3113,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -3201,7 +3201,7 @@
                                     }
                                     if ($badu == 0 ){
                                         // Ez dagokio
-                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No aplica","Ez dagokio","PARRAFO");
+                                        $sql = $sql.$this->addElementua($A204AYUNTA,$idElementua,"Texto","No corresponde","Ez dagokio","PARRAFO");
                                         $sql = $sql.$this->addElementuaBloque($A204AYUNTA,$idBlokea,$idElementua,$idOrdenElementua);
                                         $idElementua += 1;
                                         $idOrdenElementua += 1;
@@ -3269,7 +3269,7 @@
                                                 $A204AYUNTA,
                                                 $idElementua,
                                                 "Texto",
-                                                "No aplica",
+                                                "No corresponde",
                                                 "Ez dagokio",
                                                 "PARRAFO"
                                             );
