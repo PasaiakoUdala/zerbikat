@@ -948,3 +948,65 @@
   INFO [7153a07a] Finished in 0.213 seconds with exit status 0 (successful).
   INFO [661abee8] Running /usr/bin/env echo "Branch master (at 85dd3248fa6b02c19f31766e28255091b6ad1083) deployed as release 20170228080926 by iibarguren" >> /var/www/zerbikat/revisions.log as root@172.28.64.200
   INFO [661abee8] Finished in 0.006 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2017-03-08 08:45:29 +0100 cap staging deploy
+  INFO ---------------------------------------------------------------------------
+  INFO [8c1e320d] Running /usr/bin/env mkdir -p /tmp/zerbikat as root@172.28.64.200
+  INFO [8c1e320d] Finished in 0.151 seconds with exit status 0 (successful).
+  INFO Uploading /tmp/zerbikat/git-ssh-zerbikat-staging-iibarguren.sh 100.0%
+  INFO [8b66969d] Running /usr/bin/env chmod 700 /tmp/zerbikat/git-ssh-zerbikat-staging-iibarguren.sh as root@172.28.64.200
+  INFO [8b66969d] Finished in 0.006 seconds with exit status 0 (successful).
+  INFO [b15ab5c2] Running /usr/bin/env git ls-remote https://github.com/PasaiakoUdala/zerbikat.git HEAD as root@172.28.64.200
+  INFO [b15ab5c2] Finished in 0.593 seconds with exit status 0 (successful).
+  INFO [1d491ef8] Running /usr/bin/env mkdir -p /var/www/zerbikat/shared /var/www/zerbikat/releases as root@172.28.64.200
+  INFO [1d491ef8] Finished in 0.006 seconds with exit status 0 (successful).
+  INFO [34cea66b] Running /usr/bin/env mkdir -p /var/www/zerbikat/shared/var/logs /var/www/zerbikat/shared/var/cache /var/www/zerbikat/shared/var/sessions as root@172.28.64.200
+  INFO [34cea66b] Finished in 0.007 seconds with exit status 0 (successful).
+  INFO [2557c1ef] Running /usr/bin/env mkdir -p /var/www/zerbikat/shared/app/config as root@172.28.64.200
+  INFO [2557c1ef] Finished in 0.006 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /var/www/zerbikat/repo
+  INFO [a7580c99] Running /usr/bin/env git remote set-url origin https://github.com/PasaiakoUdala/zerbikat.git as root@172.28.64.200
+  INFO [a7580c99] Finished in 0.006 seconds with exit status 0 (successful).
+  INFO [afa65a93] Running /usr/bin/env git remote update --prune as root@172.28.64.200
+  INFO [afa65a93] Finished in 0.725 seconds with exit status 0 (successful).
+  INFO [84f59786] Running /usr/bin/env mkdir -p /var/www/zerbikat/releases/20170308074530 as root@172.28.64.200
+  INFO [84f59786] Finished in 0.005 seconds with exit status 0 (successful).
+  INFO [048460f4] Running /usr/bin/env git archive master | /usr/bin/env tar -x -f - -C /var/www/zerbikat/releases/20170308074530 as root@172.28.64.200
+  INFO [048460f4] Finished in 0.048 seconds with exit status 0 (successful).
+  INFO [738c1de1] Running /usr/bin/env echo "03484339746482341f3dc55e7bd33a6a5348e319" >> REVISION as root@172.28.64.200
+  INFO [738c1de1] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [aa130b08] Running /usr/bin/env mkdir -p /var/www/zerbikat/releases/20170308074530/app/config as root@172.28.64.200
+  INFO [aa130b08] Finished in 0.005 seconds with exit status 0 (successful).
+  INFO [9ee8f932] Running /usr/bin/env ln -s /var/www/zerbikat/shared/app/config/parameters.yml /var/www/zerbikat/releases/20170308074530/app/config/parameters.yml as root@172.28.64.200
+  INFO [9ee8f932] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [3b631259] Running /usr/bin/env mkdir -p /var/www/zerbikat/releases/20170308074530/var as root@172.28.64.200
+  INFO [3b631259] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [15df4d36] Running /usr/bin/env rm -rf /var/www/zerbikat/releases/20170308074530/var/logs as root@172.28.64.200
+  INFO [15df4d36] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [ea882bbe] Running /usr/bin/env ln -s /var/www/zerbikat/shared/var/logs /var/www/zerbikat/releases/20170308074530/var/logs as root@172.28.64.200
+  INFO [ea882bbe] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [91dfedc9] Running /usr/bin/env ln -s /var/www/zerbikat/shared/var/cache /var/www/zerbikat/releases/20170308074530/var/cache as root@172.28.64.200
+  INFO [91dfedc9] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [f1a9c382] Running /usr/bin/env rm -rf /var/www/zerbikat/releases/20170308074530/var/sessions as root@172.28.64.200
+  INFO [f1a9c382] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [b58cdcfc] Running /usr/bin/env ln -s /var/www/zerbikat/shared/var/sessions /var/www/zerbikat/releases/20170308074530/var/sessions as root@172.28.64.200
+  INFO [b58cdcfc] Finished in 0.004 seconds with exit status 0 (successful).
+  INFO [9510e13d] Running /usr/bin/env rm -rf /var/www/zerbikat/releases/20170308074530/var/cache as root@172.28.64.200
+  INFO [9510e13d] Finished in 0.005 seconds with exit status 0 (successful).
+  INFO [ac69d6e0] Running /usr/bin/env mkdir -pv var/cache as root@172.28.64.200
+  INFO [ac69d6e0] Finished in 0.005 seconds with exit status 0 (successful).
+  INFO [0aea5fc5] Running /usr/bin/env composer install --no-interaction --optimize-autoloader as root@172.28.64.200
+  INFO [0aea5fc5] Finished in 8.024 seconds with exit status 0 (successful).
+  INFO [a6b8a042] Running /usr/bin/env php /var/www/zerbikat/releases/20170308074530/bin/console cache:warmup  --no-debug as root@172.28.64.200
+  INFO [a6b8a042] Finished in 2.665 seconds with exit status 0 (successful).
+  INFO [54b9fb86] Running /usr/bin/env rm -f  as root@172.28.64.200
+  INFO [54b9fb86] Finished in 0.005 seconds with exit status 0 (successful).
+  INFO [bfc3f64b] Running /usr/bin/env ln -s /var/www/zerbikat/releases/20170308074530 /var/www/zerbikat/releases/current as root@172.28.64.200
+  INFO [bfc3f64b] Finished in 0.005 seconds with exit status 0 (successful).
+  INFO [c504670e] Running /usr/bin/env mv /var/www/zerbikat/releases/current /var/www/zerbikat as root@172.28.64.200
+  INFO [c504670e] Finished in 0.005 seconds with exit status 0 (successful).
+  INFO Keeping 3 of 4 deployed releases on 172.28.64.200
+  INFO [2432702f] Running /usr/bin/env rm -rf /var/www/zerbikat/releases/20170228080133 as root@172.28.64.200
+  INFO [2432702f] Finished in 0.219 seconds with exit status 0 (successful).
+  INFO [858a60d1] Running /usr/bin/env echo "Branch master (at 03484339746482341f3dc55e7bd33a6a5348e319) deployed as release 20170308074530 by iibarguren" >> /var/www/zerbikat/revisions.log as root@172.28.64.200
+  INFO [858a60d1] Finished in 0.006 seconds with exit status 0 (successful).
