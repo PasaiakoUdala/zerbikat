@@ -123,7 +123,7 @@
 
         public function __toString ()
         {
-            return $this->getFamiliaeu();
+            return (string) $this->getFamiliaeu();
         }
 
         /**
