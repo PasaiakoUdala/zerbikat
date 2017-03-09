@@ -504,7 +504,7 @@
 
         public function __toString ()
         {
-            return $this->getDeskribapenaeu();
+            return (string) $this->getDeskribapenaeu();
         }
 
 
