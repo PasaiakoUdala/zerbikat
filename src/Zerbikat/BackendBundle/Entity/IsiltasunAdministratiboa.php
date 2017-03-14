@@ -64,7 +64,7 @@ class IsiltasunAdministratiboa
 
     public function __toString()
     {
-        return $this->getIsiltasuneu();
+        return (string) $this->getIsiltasuneu();
     }
     /**
      * Constructor

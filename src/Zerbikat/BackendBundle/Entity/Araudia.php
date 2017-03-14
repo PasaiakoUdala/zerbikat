@@ -94,7 +94,7 @@ class Araudia
 
     public function __toString()
     {
-        return $this->getKodea()."-".$this->getArauaeu();
+        return (string) $this->getKodea()."-".$this->getArauaeu();
     }
 
 

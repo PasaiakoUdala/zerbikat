@@ -56,7 +56,7 @@ class Norkebatzi
      */
     public function __toString()
     {
-        return $this->getNorkeu();
+        return (string) $this->getNorkeu();
     }
 
     /**

@@ -61,7 +61,7 @@ class FitxaProzedura
      */
     public function __toString()
     {
-        return $this->getProzedura()->getProzeduraeu();
+        return (string) $this->getProzedura()->getProzeduraeu();
     }
 
 

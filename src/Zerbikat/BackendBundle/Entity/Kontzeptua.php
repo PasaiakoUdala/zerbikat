@@ -106,7 +106,7 @@ class Kontzeptua
      */
     public function __toString()
     {
-        return $this->getKodea() . " - " . $this->getKontzeptuaeu();
+        return (string) $this->getKodea() . " - " . $this->getKontzeptuaeu();
     }
 
 

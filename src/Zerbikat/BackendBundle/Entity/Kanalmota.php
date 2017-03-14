@@ -84,7 +84,7 @@ class Kanalmota
 
     public function __toString()
     {
-        return $this->getMotaeu();
+        return (string) $this->getMotaeu();
     }
 
     /**

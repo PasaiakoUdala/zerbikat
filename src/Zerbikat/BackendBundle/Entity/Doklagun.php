@@ -86,7 +86,7 @@ class Doklagun
      */
     public function __toString()
     {
-        return $this->getKodea()."-".$this->getDeskribapenaeu();
+        return (string) $this->getKodea()."-".$this->getDeskribapenaeu();
     }
 
 

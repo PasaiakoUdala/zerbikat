@@ -71,7 +71,7 @@ class Azpiatalaparrafoa
      */
     public function __toString()
     {
-        return $this->getTestuaeu();
+        return (string) $this->getTestuaeu();
     }
 
 

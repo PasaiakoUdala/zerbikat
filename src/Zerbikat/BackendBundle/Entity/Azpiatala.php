@@ -98,7 +98,7 @@ class Azpiatala
     public function __toString()
     {
         return
-            $this->getKodea()."-".$this->getIzenburuaeu();
+            (string) $this->getKodea()."-".$this->getIzenburuaeu();
     }
 
     /**

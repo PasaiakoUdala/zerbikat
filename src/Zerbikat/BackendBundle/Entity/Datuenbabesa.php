@@ -288,7 +288,7 @@ class Datuenbabesa
 
     public function __toString()
     {
-        return $this->getIzenaeu();
+        return (string) $this->getIzenaeu();
     }
 
     /**

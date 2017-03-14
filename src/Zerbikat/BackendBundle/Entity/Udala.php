@@ -134,7 +134,7 @@ class Udala
      */
     public function __toString()
     {
-        return $this->getKodea() . " - " . $this->getIzenaeu();
+        return (string) $this->getKodea() . " - " . $this->getIzenaeu();
     }
 
 

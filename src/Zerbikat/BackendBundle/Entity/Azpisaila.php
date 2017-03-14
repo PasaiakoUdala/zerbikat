@@ -182,7 +182,7 @@ class Azpisaila
     
     public function __toString()
     {
-        return $this->getAzpisailaeu();
+        return (string) $this->getAzpisailaeu();
     }
 
     public function __construct()

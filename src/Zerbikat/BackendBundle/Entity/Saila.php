@@ -78,7 +78,7 @@ class Saila
      */
     public function __toString()
     {
-        return $this->getSailaeu();
+        return (string) $this->getSailaeu();
     }
 
 

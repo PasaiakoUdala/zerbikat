@@ -56,7 +56,7 @@ class Arrunta
      */
     public function __toString()
     {
-        return $this->getEpeaeu();
+        return (string) $this->getEpeaeu();
     }
 
 

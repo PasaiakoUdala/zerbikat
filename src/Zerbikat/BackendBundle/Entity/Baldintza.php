@@ -55,7 +55,7 @@ class Baldintza
      */
     public function __toString()
     {
-        return $this->getBaldintzaeu();
+        return (string) $this->getBaldintzaeu();
     }
 
 

@@ -64,7 +64,7 @@ class Etiketa
 
     public function __toString()
     {
-        return $this->getEtiketaeu();
+        return (string) $this->getEtiketaeu();
     }
     
     

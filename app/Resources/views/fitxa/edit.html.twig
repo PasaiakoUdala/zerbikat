@@ -1225,6 +1225,7 @@
                     var atalak = result;
 
                     $.each(atalak, function (i, field) {
+                        if ( ('izenburuaes_prod' in field) || ('izenburuaes_prod' in field) )
                         if (locale === "es") {
                             var txt ="";
                             if ( field.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200 ) {

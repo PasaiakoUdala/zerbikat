@@ -56,7 +56,7 @@ class Barrutia
      */
     public function __toString()
     {
-        return $this->getIzena();
+        return (string) $this->getIzena();
     }
 
 

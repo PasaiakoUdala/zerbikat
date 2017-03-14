@@ -70,7 +70,7 @@ class Fitxafamilia
 
     public function __toString ()
     {
-        return "";
+        return (string) "";
     }
 
     /**
