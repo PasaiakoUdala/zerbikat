@@ -981,8 +981,8 @@
                                     if ( $fitxa->getUdala()->getZergaor() ) {
                                         foreach ( $kostuZerrenda as $kostutaula ) {
                                             if ($kostutaula!==null){
-                                                $textes = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaes_prod"]."</th></tr>";
-                                                $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaeu_prod"]."</th></tr>";
+                                                $textes =  $textes."<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaes_prod"]."</th></tr>";
+                                                $texteu = $texteu."<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaeu_prod"]."</th></tr>";
 
                                                 foreach ( $kostutaula["parrafoak"] as $parrafo ) {
                                                     if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
@@ -996,16 +996,17 @@
                                                         $texteu = $texteu."<tr><td>".$kontzeptu["kontzeptuaeu_prod"]."</td><td NOWRAP>".$kontzeptu["kopurua_prod"]." ".$kontzeptu["unitatea_prod"]."</td></tr>";
                                                     }
                                                 }
-                                                $textes = $textes."</table>";
-                                                $texteu = $texteu."</table>";
+                                                $textes = $textes."</table><br/>";
+                                                $texteu = $texteu."</table><br/>";
+
                                                 $kont += 1;
                                                 $badu = 1;
                                             }
                                         }
                                     } else {
                                         foreach ( $fitxa->getAzpiatalak() as $azpiatal ) {
-                                            $textes = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaes()."</a></th></tr>";
-                                            $texteu = "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaeu()."</a></th></tr>";
+                                            $textes = $textes."<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaes()."</a></th></tr>";
+                                            $texteu = $texteu."<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/".$azpiatal->getId()."' target='_blank'>".$azpiatal->getKodea()." - ".$azpiatal->getIzenburuaeu()."</a></th></tr>";
 
                                             foreach ( $azpiatal->getParrafoak() as $parrafo ) {
                                                 $textes = $textes."<tr><td colspan='2'>".$parrafo->getTestuaes()."</td></tr>";
@@ -1027,8 +1028,8 @@
                                                 $texteu = $texteu."</td><td>".$kontzeptu->getKopurua()." ".$kontzeptu->getUnitatea(
                                                     )."</td></tr>";
                                             }
-                                            $textes = $textes."</table>";
-                                            $texteu = $texteu."</table>";
+                                            $textes = $textes."</table><br/>";
+                                            $texteu = $texteu."</table><br/>";
                                             $kont += 1;
                                             $badu = 1;
                                         }
