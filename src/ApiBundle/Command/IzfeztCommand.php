@@ -78,6 +78,9 @@
                 case "0803":
                     return "EXPEDIENTE";
                     break;
+                case "09":
+                    return "URM";
+                    break;
                 default:
                     return $param;
                     break;
@@ -244,12 +247,16 @@
                         $A202SERVICIO = "'PROPIA'";
                         $A202LINKEXT = "'". $linkext ."'";
                         break;
+                    
+                    case "URM":
+                        $A202SERVICIO = "'SERVICIO'";
+                        $A202LINKEXT = "'". $tipo ."'";
+                        break;
 
                     default:
                         $servicios = array (
                             "UML",
                             "UPF",
-                            "URM",
                             "UEX",
                             "UPM-PM",
                             "UPM-PV",
