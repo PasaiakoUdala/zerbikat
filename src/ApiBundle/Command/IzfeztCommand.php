@@ -992,9 +992,9 @@
                                                 $texteu = $texteu."<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaeu_prod"]."</th></tr>";
 
                                                 foreach ( $kostutaula["parrafoak"] as $parrafo ) {
-                                                    if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
-                                                        $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes_prod"]."</td></tr>";
-                                                        $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu_prod"]."</td></tr>";
+                                                    if ( array_key_exists ("kontzeptuaes_prod",$kontzeptu) ) {
+                                                        $textes = $textes."<tr><td colspan='2'>".$parrafo["kontzeptuaes_prod"]."</td></tr>";
+                                                        $texteu = $texteu."<tr><td colspan='2'>".$parrafo["kontzeptuaeu_prod"]."</td></tr>";
                                                     }
                                                 }
                                                 foreach ( $kostutaula["kontzeptuak"] as $kontzeptu ) {
@@ -2426,7 +2426,7 @@
                                                     $texteu = "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>".$kostutaula["kodea_prod"] . " - " . $kostutaula["izenburuaeu_prod"]."</th></tr>";
 
                                                     foreach ( $kostutaula["parrafoak"] as $parrafo ) {
-                                                        if ( array_key_exists ("testuaes_prod",$kontzeptu) ) {
+                                                        if ( array_key_exists ("testuaes_prod", $parrafo) ) {
                                                             $textes = $textes."<tr><td colspan='2'>".$parrafo["testuaes_prod"]."</td></tr>";
                                                             $texteu = $texteu."<tr><td colspan='2'>".$parrafo["testuaeu_prod"]."</td></tr>";
                                                         }
