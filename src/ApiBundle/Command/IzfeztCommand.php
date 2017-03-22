@@ -40,7 +40,7 @@
                     return "UML";
                     break;
                 case "03":
-                    return "URM";
+                    return "URB";
                     break;
                 case "04":
                     return "UPF";
