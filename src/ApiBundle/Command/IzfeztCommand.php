@@ -1168,8 +1168,8 @@
                                     if ( $fitxa->getArduraaitorpena() ) {
                                         $textes=$textes."<li>";
                                         $texteu=$texteu."<li>";
-                                        $textes = $textes.$labelak["arduraaitorpenalabeles"].": ".$fitxa->getArduraaitorpena()."<br/>"."\n";
-                                        $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": ".$fitxa->getArduraaitorpena()."<br/>"."\n";
+                                        $textes = $textes.$labelak["arduraaitorpenalabeles"].": Si <br/>"."\n";
+                                        $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": Bai <br/>"."\n";
                                         $textes=$textes."</li>";
                                         $texteu=$texteu."</li>";
                                         $badu = 1;
@@ -2601,8 +2601,8 @@
                                         if ( $fitxa->getArduraaitorpena() ) {
                                             $textes=$textes."<li>";
                                             $texteu=$texteu."<li>";
-                                            $textes = $textes.$labelak["arduraaitorpenalabeles"].": ".$fitxa->getArduraaitorpena()."<br/>"."\n";
-                                            $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": ".$fitxa->getArduraaitorpena()."<br/>"."\n";
+                                            $textes = $textes.$labelak["arduraaitorpenalabeles"].": Si <br/>"."\n";
+                                            $texteu = $texteu.$labelak["arduraaitorpenalabeleu"].": Bai <br/>"."\n";
                                             $textes=$textes."</li>";
                                             $texteu=$texteu."</li>";
                                             $badu = 1;
