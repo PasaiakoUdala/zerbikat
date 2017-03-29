@@ -5,8 +5,8 @@ Zerbitzuen katalogoa kudeatzeko aplikazioa.
 
 Aplikazioaren eskuliburua doc karpeta barruan dago.
 
+Ikus demo bideo bat:
 [![Zerbikat aplikazioaren demo bideo bat](http://img.youtube.com/vi/AnE88hGdO7s/0.jpg)](http://www.youtube.com/watch?v=AnE88hGdO7s "Zerbikat aplikazioaren demo bideo bat")
-
 
 ####Requirements
 
