@@ -314,7 +314,7 @@
                                 <br /><br /><table  border="1" width="90%" cellpadding="6">
                                 <tr>
                                     <th colspan="12" class="text-center" style="font-size: small;">
-                                            <b>{{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaeu'] }}</b>
+                                            <b>{{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaeu_prod'] }}</b>
                                     </th>
                                 </tr>
                                 {% for parrafo in kostutaula['parrafoak'] %}
@@ -327,10 +327,10 @@
                                 {% for kontzeptu in kostutaula['kontzeptuak'] %}
                                     <tr>
                                         <td colspan="9" style="font-size: small;">
-                                                {{ kontzeptu['kontzeptuaeu'] }}
+                                                {{ kontzeptu['kontzeptuaeu_prod'] }}
                                         </td>
                                         <td NOWRAP colspan="3" style="font-size: small;">
-                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                            {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -383,7 +383,7 @@
                                 <br /><br /><table  border="1" width="90%" cellpadding="6">
                                 <tr>
                                     <th colspan="12" class="text-center" style="font-size: small;"><b>
-                                            {{ kostutaula['kodea'] }} - {{ kostutaula['izenburuaes'] }}
+                                            {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaes_prod'] }}
                                     </b></th>
                                 </tr>
                                 {% for parrafo in kostutaula['parrafoak'] %}
@@ -396,10 +396,10 @@
                                 {% for kontzeptu in kostutaula['kontzeptuak'] %}
                                     <tr>
                                         <td colspan="9"  style="font-size: small;">
-                                                {{ kontzeptu['kontzeptuaes'] }}
+                                                {{ kontzeptu['kontzeptuaes_prod'] }}
                                         </td>
                                         <td NOWRAP colspan="3" style="font-size: small;">
-                                            {{ kontzeptu['kopurua'] }} {{ kontzeptu['unitatea'] }}
+                                            {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
                                         </td>
                                     </tr>
                                 {% endfor %}
