@@ -4,6 +4,7 @@ namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 
 /**
@@ -11,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="norkeskatu")
  * @ORM\Entity
+ * @UdalaEgiaztatu(userFieldName="udala_id")
  */
 class Norkeskatu
 {
