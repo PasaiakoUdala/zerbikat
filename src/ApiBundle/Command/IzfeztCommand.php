@@ -33,6 +33,9 @@
         function zerbikatParametroa($param) {
             if (!$param) return null;
             switch ($param) {
+                case "01":
+                    return "URG";
+                    break;
                 case "0101":
                     return "URA";
                     break;
