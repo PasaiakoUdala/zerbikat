@@ -1,7 +1,3 @@
-{#{% extends 'base.html.twig' %}#}
-{#{% block menua %}#}
-{#{% endblock %}#}
-
 {% block body %}
     <table border="1"  cellpadding="4">
         <tr>
@@ -11,28 +7,28 @@
                 {% endif %}
             </td>
         </tr>
-        <tr><th colspan="2">
+        <tr><td colspan="2">
             <img src="{{ fitxa.udala.logoa }}" />
             <h6 style="text-align:center">{{ fitxa.udala.izendapenaeu }}</h6>
             <h6 style="text-align:center">{{ fitxa.udala.ifk }}</h6>
-        </th>
-        <th colspan="2"><h2>{{ fitxa.espedientekodea }}</h2></th>
-        <th colspan="8">
+        </td>
+        <td colspan="2"><h2>{{ fitxa.espedientekodea }}</h2></td>
+        <td colspan="8">
             <h4>{{ fitxa.deskribapenaeu }}</h4>
             <h5>{{ fitxa.deskribapenaes }}</h5>
-        </th>
+        </td>
         </tr>
     </table>
 
     {% if eremuak.helburuatext %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.helburualabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.helburualabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -48,12 +44,12 @@
     {% if (eremuak.norkeskatutext or eremuak.norkeskatutable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.norkeskatulabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.norkeskatulabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -83,12 +79,12 @@
     {% if (eremuak.dokumentazioatext or eremuak.dokumentazioatable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.dokumentazioalabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.dokumentazioalabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -132,12 +128,12 @@
     {% if (eremuak.doklaguntext or eremuak.doklaguntable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.doklagunlabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.doklagunlabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -180,16 +176,15 @@
     </table>
     {% endif %}
 
-
     {% if (eremuak.kanalatext or eremuak.kanalatable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.kanalalabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.kanalalabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -210,7 +205,7 @@
                                     {% endif %}
                                 {% else %}
                                     {% if k.esteka %}
-                                        {#<li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>#}
+                                        <li><a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a></li>
                                         <li>{% if kanal.izenaeu %}
                                                 {% if '@' in kanal.estekaeu and 'maps' not in kanal.estekaeu %}
                                                     <a href='mailto:{{ kanal.estekaeu }}'>{{ kanal.izenaeu }}</a><br />
@@ -225,7 +220,7 @@
                                             {% if kanal.fax %}Faxa: {{ kanal.fax }}<br />{% endif %}
                                         </li>
                                     {% else %}
-                                        {#<li>{{ kanal.izenaeu }}</li>#}
+                                        <li>{{ kanal.izenaeu }}</li>
                                         <li>{% if kanal.izenaeu %}{{ kanal.izenaeu }}<br />{% endif %}
                                             {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                             {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
@@ -259,9 +254,9 @@
                                 {% endif %}
                             {% else %}
                                 {% if k.esteka %}
-                                    {#<li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>#}
+                                    <li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>
                                     <li>{% if kanal.izenaes %}
-                                            {#<a href="{{ kanal.estekaes }}" target="_blank">{{ kanal.izenaes }}</a><br />#}
+                                            <a href="{{ kanal.estekaes }}" target="_blank">{{ kanal.izenaes }}</a><br />
                                             {% if '@' in kanal.estekaes and 'maps' not in kanal.estekaes %}
                                                 <a href='mailto:{{ kanal.estekaes }}'>{{ kanal.izenaes }}</a><br />
                                             {% else %}
@@ -276,7 +271,7 @@
                                     </li>
 
                                 {% else %}
-                                    {#<li>{{ kanal.izenaes }}</li>#}
+                                    <li>{{ kanal.izenaes }}</li>
                                     <li>{% if kanal.izenaes %}{{ kanal.izenaes }}<br />{% endif %}
                                         {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                         {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br />{% endif %}
@@ -299,12 +294,12 @@
     {% if (eremuak.kostuatext or eremuak.kostuatable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.kostualabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.kostualabeles }}</h4>
-            </th>
+            </td>
 
         </tr>
         <tr>
@@ -315,9 +310,9 @@
                         {% for kostutaula in kostuZerrenda %}
                             <table border="1" cellspacing="0" cellpadding="4" width="90%">
                                 <tr>
-                                    <th colspan="12" class="text-center">
+                                    <td colspan="12" class="text-center">
                                         {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaeu_prod'] }}
-                                    </th>
+                                    </td>
                                 </tr>
                                 {% for parrafo in kostutaula['parrafoak'] %}
                                     <tr>
@@ -341,10 +336,10 @@
                         {% for azpiatal in fitxa.azpiatalak %}
                             <table border="1" cellspacing="0" cellpadding="4" width="90%">
                                 <tr>
-                                    <th colspan="12" style="font-size: small;"><b>
+                                    <td colspan="12" style="font-size: small;"><b>
                                         {{ azpiatal.atala.ordenantza.kodea }}.{{ azpiatal.atala.kodea }}.{{ azpiatal.kodea }}-
                                         {{  azpiatal.izenburuaeu }}</b>
-                                    </th>
+                                    </td>
                                 </tr>
                                 {% for parrafo in azpiatal.parrafoak %}
                                     <tr>
@@ -378,21 +373,21 @@
                 {% set kont=0 %}
                 {% if eremuak.kostuatable %}
                     {% if fitxa.udala.zergaor %}
-                        {#{% for kostutaula in fitxa.kostuak %}#}
-                            {#<table border="1" cellspacing="0" cellpadding="4" width="90%">#}
-                                {#<tr>#}
-                                    {#<th colspan=2>#}
-                                        {#{{ kostutaula.kostua }}#}
-                                    {#</th>#}
-                                {#</tr>#}
-                            {#</table>#}
-                        {#{% endfor %}#}
+                        {% for kostutaula in fitxa.kostuak %}
+                            <table border="1" cellspacing="0" cellpadding="4" width="90%">
+                                <tr>
+                                    <td colspan=2>
+                                        {{ kostutaula.kostua }}
+                                    </td>
+                                </tr>
+                            </table>
+                        {% endfor %}
                         {% for kostutaula in kostuZerrenda %}
                             <table border="1" cellspacing="0" cellpadding="4" width="90%">
                                 <tr>
-                                    <th colspan="12" class="text-center">
+                                    <td colspan="12" class="text-center">
                                         {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaes_prod'] }}
-                                    </th>
+                                    </td>
                                 </tr>
                                 {% for parrafo in kostutaula['parrafoak'] %}
                                     <tr>
@@ -416,10 +411,10 @@
                         {% for azpiatal in fitxa.azpiatalak %}
                             <table border="1" cellspacing="0" cellpadding="4" width="90%">
                                 <tr>
-                                    <th colspan="12" style="font-size: small;"><b>
+                                    <td colspan="12" style="font-size: small;"><b>
                                             {{ azpiatal.atala.ordenantza.kodea }}.{{ azpiatal.atala.kodea }}.{{ azpiatal.kodea }}-
                                             {{  azpiatal.izenburuaes }}
-                                        </b></th>
+                                        </b></td>
                                 </tr>
                                 {% for parrafo in azpiatal.parrafoak %}
                                     <tr>
@@ -458,12 +453,12 @@
     {% if (eremuak.ebazpensinpli or eremuak.arduraaitorpena or eremuak.aurreikusi or eremuak.arrunta or eremuak.isiltasunadmin) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.epealabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.epealabeles }}</h4>
-            </th>
+            </td>
 
         </tr>
         <tr>
@@ -508,12 +503,12 @@
     {% if (eremuak.araudiatext or eremuak.araudiatable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.araudialabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.araudialabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -522,7 +517,7 @@
                 {% if eremuak.araudiatable %}
                     <ul>
                         {% for araua in fitxa.araudiak %}
-                            {#<li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>#}
+                            <li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>
                             <li>
                                 {% if araua.araudia.estekaeu %}
                                     <a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }} </a> - {{ araua.atalaeu }}
@@ -540,7 +535,7 @@
                 {% if eremuak.araudiatable %}
                 <ul>
                     {% for araua in fitxa.araudiak %}
-                        {#<li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>#}
+                        <li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>
                         <li>
                             {% if araua.araudia.estekaes %}
                                 <a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> - {{ araua.atalaes }}
@@ -559,12 +554,12 @@
     {% if (eremuak.prozeduratext or eremuak.prozeduratable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.prozeduralabeleu }}</h4>
-            </th>
-            <th class="page-header">
+            </td>
+            <td class="page-header">
                 <h4>{{ labelak.prozeduralabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -573,7 +568,7 @@
                     <ul>
                         {% for prozedura in fitxa.prozedurak %}
                             <li>{{ prozedura.prozedura.prozeduraeu }}</li>
-                            {#<li>{{ prozedura.prozeduraeu }}</li>#}
+                            <li>{{ prozedura.prozeduraeu }}</li>
                         {% endfor %}
                     </ul>
                 {% endif %}
@@ -584,7 +579,7 @@
                 <ul>
                     {% for prozedura in fitxa.prozedurak %}
                         <li>{{ prozedura.prozedura.prozeduraes }}</li>
-                        {#<li>{{ prozedura.prozeduraes }}</li>#}
+                        <li>{{ prozedura.prozeduraes }}</li>
                     {% endfor %}
                 </ul>
                 {%  endif %}
@@ -596,12 +591,12 @@
     {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.norkebatzilabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.norkebatzilabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -620,12 +615,12 @@
     {% if (eremuak.azpisailatable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.azpisailalabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.azpisailalabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -645,12 +640,12 @@
     {% if eremuak.oharraktext %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.oharraklabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.oharraklabeles }}</h4>
-            </th>
+            </td>
 
         </tr>
         <tr>
@@ -666,12 +661,12 @@
 
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>JARRAIBIDEAK (barne erabilera)</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>INSTRUCCIONES (uso interno)</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -683,17 +678,15 @@
         </tr>
     </table>
 
-
-
     {% if (eremuak.besteak1text or eremuak.besteak1table) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.besteak1labeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.besteak1labeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -735,12 +728,12 @@
     {% if (eremuak.besteak2text or eremuak.besteak2table) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.besteak2labeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.besteak2labeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -782,12 +775,12 @@
     {% if (eremuak.besteak3text or eremuak.besteak3table) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.besteak3labeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.besteak3labeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: small;">
@@ -829,12 +822,12 @@
     {% if (eremuak.datuenbabesatext or eremuak.datuenbabesatable) %}
     <table cellspacing="0" cellpadding="4">
         <tr>
-            <th>
+            <td>
                 <h4>{{ labelak.datuenbabesalabeleu }}</h4>
-            </th>
-            <th>
+            </td>
+            <td>
                 <h4>{{ labelak.datuenbabesalabeles }}</h4>
-            </th>
+            </td>
         </tr>
         <tr>
             <td style="font-size: xx-small;">
@@ -849,15 +842,16 @@
             </td>
             <td style="font-size: xx-small;" >
                 {% if eremuak.datuenbabesatable and fitxa.datuenbabesa %}
-                {{ fitxa.udala.lopdes|replace({ ('$$$fitxa.datuenbabesa.izenaes$$$'): fitxa.datuenbabesa.izenaes })
-                |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
-                |replace({ ('$$$fitxa.datuenbabesa.xedeaes$$$'): fitxa.datuenbabesa.xedeaes })
-                |replace({ ('$$$fitxa.datuenbabesa.lagapenakes$$$'): fitxa.datuenbabesa.lagapenakes })
-                |raw}}
+                    {{ fitxa.udala.lopdes|replace({ ('$$$fitxa.datuenbabesa.izenaes$$$'): fitxa.datuenbabesa.izenaes })
+                    |replace({ ('$$$fitxa.datuenbabesa.kodea$$$'): fitxa.datuenbabesa.kodea })
+                    |replace({ ('$$$fitxa.datuenbabesa.xedeaes$$$'): fitxa.datuenbabesa.xedeaes })
+                    |replace({ ('$$$fitxa.datuenbabesa.lagapenakes$$$'): fitxa.datuenbabesa.lagapenakes })
+                    |raw}}
                 {% endif %}
                 {% if eremuak.datuenbabesatext %}{{ fitxa.datuenbabesaeu |raw}}{% endif %}
             </td>
         </tr>
     </table>
     {% endif %}
+
 {% endblock %}

@@ -213,7 +213,8 @@
                 $kostuZerrenda[] = $array;
             }
 
-
+            // Debug only:
+            //return $this->render (
             $html = $this->render(
                 'fitxa/pdf.html.twig',
                 array (
