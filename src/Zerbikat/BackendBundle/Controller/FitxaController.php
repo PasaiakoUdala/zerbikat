@@ -214,8 +214,8 @@
             }
 
             // Debug only:
-            return $this->render (
-            //$html = $this->render(
+            //return $this->render (
+            $html = $this->render(
                 'fitxa/pdf.html.twig',
                 array (
                     'fitxa'         => $fitxa,
