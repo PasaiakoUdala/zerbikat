@@ -520,17 +520,14 @@
                     {% if eremuak.araudiatable %}
                         <ul>
                             {% for araua in fitxa.araudiak %}
-                                {#<li><a href="{{ araua.araudia.estekaeu }}">{{ araua.araudia.arauaeu }}</a> {{ araua.atalaeu }}</li>#}
-                                <li>
+                                {% if araua.araudia %}
                                     {% if araua.araudia.estekaeu %}
-                                        <a href="{{ araua.araudia.estekaeu }}" target="_blank">
-                                            {{ araua.araudia.arauaeu }} </a> {{ araua.atalaeu }}
-                                        {#{{ araua.atalaeu }}#}
+                                        <li><a href="{{ araua.araudia.estekaeu }}" target="_blank">{{ araua.araudia.arauaeu }}</a>
+                                        {{ araua.atalaeu }}</li>
                                     {% else %}
-                                        {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
-                                        {#- {{ araua.atalaeu }}#}
+                                        <li>{{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}</li>
                                     {% endif %}
-                                </li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}
@@ -546,17 +543,14 @@
                     {% if eremuak.araudiatable %}
                         <ul>
                             {% for araua in fitxa.araudiak %}
-                                {#<li><a href="{{ araua.araudia.estekaes }}">{{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}</li>#}
-                                <li>
+                                {% if araua.araudia %}
                                     {% if araua.araudia.estekaes %}
-                                        <a href="{{ araua.araudia.estekaes }}" target="_blank">
-                                            {{ araua.araudia.arauaes }}</a> {{ araua.atalaes }}
-                                        {#{{ araua.atalaes }}#}
-                                    {% else %}
-                                        {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
-                                        {#- {{ araua.atalaes }}#}
+                                        <li><a href="{{ araua.araudia.estekaes }}" target="_blank">{{ araua.araudia.arauaes }}</a>
+                                            {{ araua.atalaes }}</li>
+                                        {% else %}
+                                            <li>{{ araua.araudia.arauaes }} - {{ araua.atalaes }}</li>
+                                        {% endif %}
                                     {% endif %}
-                                </li>
                             {% endfor %}
                         </ul>
                     {% endif %}
