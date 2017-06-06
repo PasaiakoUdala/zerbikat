@@ -34,38 +34,14 @@ class BaldintzaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $baldintzas = $em->getRepository('BackendBundle:Baldintza')->findAll();
 
-            $adapter = new ArrayAdapter($baldintzas);
-            $pagerfanta = new Pagerfanta($adapter);
-
-
             $deleteForms = array();
             foreach ($baldintzas as $baldintza) {
                 $deleteForms[$baldintza->getId()] = $this->createDeleteForm($baldintza)->createView();
             }
 
-
-            try {
-                    $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-//                    ->setMaxPerPage(20)
-//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
-
-
-
             return $this->render('baldintza/index.html.twig', array(
-//                'baldintzas' => $baldintzas,
-                'baldintzas' => $entities,
+                'baldintzas' => $baldintzas,
                 'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
             ));
         }else
         {
