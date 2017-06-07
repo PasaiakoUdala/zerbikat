@@ -34,30 +34,14 @@ class EraikinaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $eraikinas = $em->getRepository('BackendBundle:Eraikina')->findAll();
 
-            $adapter = new ArrayAdapter($eraikinas);
-            $pagerfanta = new Pagerfanta($adapter);
-
             $deleteForms = array();
             foreach ($eraikinas as $eraikina) {
                 $deleteForms[$eraikina->getId()] = $this->createDeleteForm($eraikina)->createView();
             }
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
+
             return $this->render('eraikina/index.html.twig', array(
-                'eraikinas' => $entities,
+                'eraikinas' => $eraikinas,
                 'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
             ));
         }else
         {
@@ -127,6 +111,10 @@ class EraikinaController extends Controller
      *
      * @Route("/{id}/edit", name="eraikina_edit")
      * @Method({"GET", "POST"})
+     * @param Request  $request
+     * @param Eraikina $eraikina
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Eraikina $eraikina)
     {

@@ -8,7 +8,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Zerbikat\BackendBundle\Entity\Fitxa;
 
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
     /**
      * @Route("/{udala}/{_locale}/", name="frontend_fitxa_index",
@@ -18,7 +19,7 @@ class DefaultController extends Controller {
      *     }
      * )
      */
-    public function indexAction ($udala)
+    public function indexAction ( $udala )
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -31,7 +32,7 @@ class DefaultController extends Controller {
                 ORDER BY f.kontsultak DESC 
                 '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $fitxak = $query->getResult();
 
         $query = $em->createQuery(
@@ -43,7 +44,7 @@ class DefaultController extends Controller {
                 ORDER BY ezkutuan ASC
                 '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $familiak = $query->getResult();
 
         $query = $em->createQuery(
@@ -55,7 +56,7 @@ class DefaultController extends Controller {
                 ORDER BY s.kodea DESC
                 '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $sailak = $query->getResult();
 
         return $this->render(
@@ -81,10 +82,10 @@ class DefaultController extends Controller {
      * )
      * @Method("GET")
      */
-    public function showAction (Fitxa $fitxa, $udala)
+    public function showAction ( Fitxa $fitxa, $udala )
     {
         $em         = $this->getDoctrine()->getManager();
-        $kanalmotak = $em->getRepository('BackendBundle:Kanalmota')->findAll();
+        $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
 
         $query = $em->createQuery(
@@ -94,7 +95,7 @@ class DefaultController extends Controller {
                 WHERE u.kodea = :udala
                 '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         //$eremuak = $query->getResult();
         $eremuak = $query->getSingleResult();
 
@@ -105,18 +106,18 @@ class DefaultController extends Controller {
                 WHERE u.kodea = :udala
                 '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $labelak = $query->getSingleResult();
 
 
         $kostuZerrenda = array();
-        foreach ($fitxa->getKostuak() as $kostu) {
+        foreach ( $fitxa->getKostuak() as $kostu ) {
             $client = new GuzzleHttp\Client();
-            $api    = $this->container->getParameter('zzoo_aplikazioaren_API_url');
-            $proba  = $client->request('GET', $api.'/zerga/'.$kostu->getKostua().'.json');
+            $api    = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
+            $proba  = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
 
             $fitxaKostua     = (string)$proba->getBody();
-            $array           = json_decode($fitxaKostua, true);
+            $array           = json_decode( $fitxaKostua, true );
             $kostuZerrenda[] = $array;
         }
 
@@ -140,10 +141,10 @@ class DefaultController extends Controller {
      * @Route("/{udala}/{_locale}/pdf/{id}", name="frontend_fitxa_pdf")
      * @Method("GET")
      */
-    public function pdfAction (Fitxa $fitxa, $udala)
+    public function pdfAction ( Fitxa $fitxa, $udala )
     {
         $em         = $this->getDoctrine()->getManager();
-        $kanalmotak = $em->getRepository('BackendBundle:Kanalmota')->findAll();
+        $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
         $query = $em->createQuery(
             '
@@ -152,7 +153,7 @@ class DefaultController extends Controller {
             WHERE u.kodea = :udala
         '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery(
@@ -162,17 +163,17 @@ class DefaultController extends Controller {
             WHERE u.kodea = :udala
         '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $labelak = $query->getSingleResult();
 
         $kostuZerrenda = array();
-        foreach ($fitxa->getKostuak() as $kostu) {
+        foreach ( $fitxa->getKostuak() as $kostu ) {
             $client = new GuzzleHttp\Client();
-            $api    = $this->container->getParameter('zzoo_aplikazioaren_API_url');
-            $proba  = $client->request('GET', $api.'/zerga/'.$kostu->getKostua().'.json');
+            $api    = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
+            $proba  = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
 
             $fitxaKostua     = (string)$proba->getBody();
-            $array           = json_decode($fitxaKostua, true);
+            $array           = json_decode( $fitxaKostua, true );
             $kostuZerrenda[] = $array;
         }
 
@@ -188,7 +189,7 @@ class DefaultController extends Controller {
             )
         );
 
-        $pdf = $this->get("white_october.tcpdf")->create(
+        $pdf = $this->get( "white_october.tcpdf" )->create(
             'vertical',
             PDF_UNIT,
             PDF_PAGE_FORMAT,
@@ -196,14 +197,14 @@ class DefaultController extends Controller {
             'UTF-8',
             false
         );
-        $pdf->SetAuthor($udala);
-        $pdf->SetTitle(( $fitxa->getDeskribapenaeu() ));
-        $pdf->SetSubject($fitxa->getDeskribapenaes());
-        $pdf->setFontSubsetting(true);
-        $pdf->SetFont('helvetica', '', 11, '', true);
+        $pdf->SetAuthor( $udala );
+        $pdf->SetTitle( ( $fitxa->getDeskribapenaeu() ) );
+        $pdf->SetSubject( $fitxa->getDeskribapenaes() );
+        $pdf->setFontSubsetting( true );
+        $pdf->SetFont( 'helvetica', '', 11, '', true );
         $pdf->AddPage();
 
-        $filename = $fitxa->getEspedientekodea().".".$fitxa->getDeskribapenaeu();
+        $filename = $fitxa->getEspedientekodea() . "." . $fitxa->getDeskribapenaeu();
 
         $pdf->writeHTMLCell(
             $w = 0,
@@ -218,7 +219,7 @@ class DefaultController extends Controller {
             $align = '',
             $autopadding = true
         );
-        $pdf->Output($filename.".pdf", 'I'); // This will output the PDF as a response directly
+        $pdf->Output( $filename . ".pdf", 'I' ); // This will output the PDF as a response directly
     }
 
 
@@ -228,11 +229,11 @@ class DefaultController extends Controller {
      * @Route("/{udala}/{_locale}/pdfelebi/{id}", name="frontend_fitxa_pdfelebi")
      * @Method("GET")
      */
-    public function pdfelebiAction (Fitxa $fitxa, $udala)
+    public function pdfelebiAction ( Fitxa $fitxa, $udala )
     {
 
         $em         = $this->getDoctrine()->getManager();
-        $kanalmotak = $em->getRepository('BackendBundle:Kanalmota')->findAll();
+        $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
         $query = $em->createQuery(
             '
@@ -241,7 +242,7 @@ class DefaultController extends Controller {
             WHERE u.kodea = :udala
         '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery(
@@ -251,19 +252,19 @@ class DefaultController extends Controller {
             WHERE u.kodea = :udala
         '
         );
-        $query->setParameter('udala', $udala);
+        $query->setParameter( 'udala', $udala );
         $labelak = $query->getSingleResult();
 
         $kostuZerrenda = array();
-        foreach ($fitxa->getKostuak() as $kostu) {
+        foreach ( $fitxa->getKostuak() as $kostu ) {
             $client = new GuzzleHttp\Client();
 
-            $api = $this->container->getParameter('zzoo_aplikazioaren_API_url');
+            $api = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
 //            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
-            $proba = $client->request('GET', $api.'/zerga/'.$kostu->getKostua().'.json');
+            $proba = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
 
             $fitxaKostua     = (string)$proba->getBody();
-            $array           = json_decode($fitxaKostua, true);
+            $array           = json_decode( $fitxaKostua, true );
             $kostuZerrenda[] = $array;
         }
 
@@ -279,7 +280,7 @@ class DefaultController extends Controller {
             )
         );
 
-        $pdf = $this->get("white_october.tcpdf")->create(
+        $pdf = $this->get( "white_october.tcpdf" )->create(
             'vertical',
             PDF_UNIT,
             PDF_PAGE_FORMAT,
@@ -287,16 +288,16 @@ class DefaultController extends Controller {
             'UTF-8',
             false
         );
-        $pdf->SetAuthor($udala);
+        $pdf->SetAuthor( $udala );
 //        $pdf->SetTitle(('Our Code World Title'));
-        $pdf->SetTitle(( $fitxa->getDeskribapenaeu() ));
-        $pdf->SetSubject($fitxa->getDeskribapenaes());
-        $pdf->setFontSubsetting(true);
-        $pdf->SetFont('helvetica', '', 11, '', true);
+        $pdf->SetTitle( ( $fitxa->getDeskribapenaeu() ) );
+        $pdf->SetSubject( $fitxa->getDeskribapenaes() );
+        $pdf->setFontSubsetting( true );
+        $pdf->SetFont( 'helvetica', '', 11, '', true );
         //$pdf->SetMargins(20,20,40, true);
         $pdf->AddPage();
 
-        $filename = $fitxa->getEspedientekodea().".".$fitxa->getDeskribapenaeu();
+        $filename = $fitxa->getEspedientekodea() . "." . $fitxa->getDeskribapenaeu();
 
         $pdf->writeHTMLCell(
             $w = 0,
@@ -311,7 +312,7 @@ class DefaultController extends Controller {
             $align = '',
             $autopadding = true
         );
-        $pdf->Output($filename.".pdf", 'I'); // This will output the PDF as a response directly
+        $pdf->Output( $filename . ".pdf", 'I' ); // This will output the PDF as a response directly
     }
 
 

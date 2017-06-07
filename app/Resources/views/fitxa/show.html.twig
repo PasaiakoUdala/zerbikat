@@ -8,9 +8,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ path('fitxa_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a></li>
-                    <li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}" class="fa fa-pencil"> {{ 'messages.aldatu'|trans }}</a></li>
-                    <li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank" class="fa fa-file-pdf-o"> {{ 'messages.pdf'|trans }} ({{ 'messages.barne'|trans }})</a></li>
+                    <li><a href="{{ path('fitxa_index') }}" class="fa fa-undo"> {{ 'messages.zerrendara'|trans }}</a>
+                    </li>
+                    <li><a href="{{ path('fitxa_edit', { 'id': fitxa.id }) }}"
+                           class="fa fa-pencil"> {{ 'messages.aldatu'|trans }}</a></li>
+                    <li><a href="{{ path('fitxa_pdf', { 'id': fitxa.id }) }}" target="_blank"
+                           class="fa fa-file-pdf-o"> {{ 'messages.pdf'|trans }} ({{ 'messages.barne'|trans }})</a></li>
                 </ul>
             </div>
         </div>
@@ -108,7 +111,8 @@
                             {% for dokumentua in fitxa.dokumentazioak %}
                                 <li>
                                     {% if dokumentua.estekaeu %}
-                                        <a href="{{ dokumentua.estekaeu }}" target="_blank">{{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
+                                        <a href="{{ dokumentua.estekaeu }}"
+                                           target="_blank">{{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
                                         </a>
                                     {% else %}
                                         {{ dokumentua.kodea }} {{ dokumentua.deskribapenaeu }}
@@ -216,7 +220,9 @@
                                     {% endif %}
                                     {% if kanal.telematikoa %}
                                         {% if fitxa.zerbitzua %}
-                                            <li><a href="{{ fitxa.zerbitzua.erroaeu }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}" target="_blank">
+                                            <li>
+                                                <a href="{{ fitxa.zerbitzua.erroaeu }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}"
+                                                   target="_blank">
                                                     {{ kanal.izenaeu }}
                                                 </a></li>
                                         {% endif %}
@@ -224,21 +230,28 @@
                                         {% if k.esteka %}
                                             <li>{% if kanal.izenaeu %}
                                                     {% if '@' in kanal.estekaeu and 'maps' not in kanal.estekaeu %}
-                                                        <a href='mailto:{{ kanal.estekaeu }}'>{{ kanal.izenaeu }}</a><br/>
+                                                        <a href='mailto:{{ kanal.estekaeu }}'>{{ kanal.izenaeu }}</a>
+                                                        <br/>
                                                     {% else %}
-                                                        <a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a><br/>
+                                                        <a href='{{ kanal.estekaeu }}'
+                                                           target="_blank">{{ kanal.izenaeu }}</a><br/>
                                                     {% endif %}
                                                 {% endif %}
+                                                {% if kanal.eraikina %}{{ kanal.eraikina.izena }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %} {{ kanal.kalezbkia }}, {% endif %}
-                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br/>{% endif %}
+                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}
+                                                    <br/>{% endif %}
+
                                                 {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br/>{% endif %}
                                                 {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br/>{% endif %}
+
                                                 {% if kanal.fax %}Faxa: {{ kanal.fax }}<br/>{% endif %}
                                             </li>
                                         {% else %}
                                             <li>{% if kanal.izenaeu %}{{ kanal.izenaeu }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %} {{ kanal.kalezbkia }}, {% endif %}
-                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br/>{% endif %}
+                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}
+                                                    <br/>{% endif %}
                                                 {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br/>{% endif %}
                                                 {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br/>{% endif %}
                                                 {% if kanal.fax %}Faxa: {{ kanal.fax }}<br/>{% endif %}
@@ -272,7 +285,9 @@
                                     {% endif %}
                                     {% if kanal.telematikoa %}
                                         {% if fitxa.zerbitzua %}
-                                            <li><a href="{{ fitxa.zerbitzua.erroaes }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}" target="_blank">
+                                            <li>
+                                                <a href="{{ fitxa.zerbitzua.erroaes }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}"
+                                                   target="_blank">
                                                     {{ kanal.izenaes }}
                                                 </a></li>
                                         {% endif %}
@@ -280,14 +295,17 @@
                                         {% if k.esteka %}
                                             <li>{% if kanal.izenaes %}
                                                     {% if '@' in kanal.estekaes and 'maps' not in kanal.estekaes %}
-                                                        <a href='mailto:{{ kanal.estekaes }}'>{{ kanal.izenaes }}</a><br/>
+                                                        <a href='mailto:{{ kanal.estekaes }}'>{{ kanal.izenaes }}</a>
+                                                        <br/>
                                                     {% else %}
-                                                        <a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a><br/>
+                                                        <a href='{{ kanal.estekaes }}'
+                                                           target="_blank">{{ kanal.izenaes }}</a><br/>
                                                     {% endif %}
                                                 {% endif %}
-
+                                                {% if kanal.eraikina %}{{ kanal.eraikina.izena }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %} {{ kanal.kalezbkia }}, {% endif %}
-                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br/>{% endif %}
+                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}
+                                                    <br/>{% endif %}
                                                 {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br/>{% endif %}
                                                 {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br/>{% endif %}
                                                 {% if kanal.fax %}Fax: {{ kanal.fax }}<br/>{% endif %}
@@ -295,7 +313,8 @@
                                         {% else %}
                                             <li>{% if kanal.izenaes %}{{ kanal.izenaes }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %} {{ kanal.kalezbkia }}, {% endif %}
-                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}<br/>{% endif %}
+                                                {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}
+                                                    <br/>{% endif %}
                                                 {% if kanal.ordutegia %}Ordutegia: {{ kanal.ordutegia }}<br/>{% endif %}
                                                 {% if kanal.telefonoa %}{{ kanal.telefonoa }}<br/>{% endif %}
                                                 {% if kanal.fax %}Fax: {{ kanal.fax }}<br/>{% endif %}
@@ -327,7 +346,8 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th colspan="2" class="text-center">
-                                            {{ kostutaula['kodea_prod'] | raw }} - {{ kostutaula['izenburuaeu_prod'] | raw }}
+                                            {{ kostutaula['kodea_prod'] | raw }}
+                                            - {{ kostutaula['izenburuaeu_prod'] | raw }}
                                         </th>
                                     </tr>
                                     {% for parrafo in kostutaula['parrafoak'] %}
@@ -398,7 +418,8 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th colspan="2" class="text-center">
-                                            {{ kostutaula['kodea_prod'] | raw }} - {{ kostutaula['izenburuaes_prod'] | raw }}
+                                            {{ kostutaula['kodea_prod'] | raw }}
+                                            - {{ kostutaula['izenburuaes_prod'] | raw }}
                                         </th>
                                     </tr>
                                     {% for parrafo in kostutaula['parrafoak'] %}
@@ -489,7 +510,8 @@
                 </div>
                 <div>
                     {% if eremuak.aurreikusi %}
-                        {% if fitxa.aurreikusi %}{{ labelak.aurreikusilabeles }}: {{ fitxa.aurreikusi.epeaes }}<br>{% endif %}
+                        {% if fitxa.aurreikusi %}{{ labelak.aurreikusilabeles }}: {{ fitxa.aurreikusi.epeaes }}
+                            <br>{% endif %}
                     {% endif %}
                     {% if eremuak.arrunta %}
                         {% if fitxa.arrunta %}{{ labelak.arruntalabeles }}: {{ fitxa.arrunta.epeaes }}<br>{% endif %}
@@ -522,8 +544,9 @@
                             {% for araua in fitxa.araudiak %}
                                 {% if araua.araudia %}
                                     {% if araua.araudia.estekaeu %}
-                                        <li><a href="{{ araua.araudia.estekaeu }}" target="_blank">{{ araua.araudia.arauaeu }}</a>
-                                        {{ araua.atalaeu }}</li>
+                                        <li><a href="{{ araua.araudia.estekaeu }}"
+                                               target="_blank">{{ araua.araudia.arauaeu }}</a>
+                                            {{ araua.atalaeu }}</li>
                                     {% else %}
                                         <li>{{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}</li>
                                     {% endif %}
@@ -545,12 +568,13 @@
                             {% for araua in fitxa.araudiak %}
                                 {% if araua.araudia %}
                                     {% if araua.araudia.estekaes %}
-                                        <li><a href="{{ araua.araudia.estekaes }}" target="_blank">{{ araua.araudia.arauaes }}</a>
+                                        <li><a href="{{ araua.araudia.estekaes }}"
+                                               target="_blank">{{ araua.araudia.arauaes }}</a>
                                             {{ araua.atalaes }}</li>
-                                        {% else %}
-                                            <li>{{ araua.araudia.arauaes }} - {{ araua.atalaes }}</li>
-                                        {% endif %}
+                                    {% else %}
+                                        <li>{{ araua.araudia.arauaes }} - {{ araua.atalaes }}</li>
                                     {% endif %}
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}

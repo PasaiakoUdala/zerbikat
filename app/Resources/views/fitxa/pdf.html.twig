@@ -218,6 +218,7 @@
                                                            target="_blank">{{ kanal.izenaeu }}</a><br/>
                                                     {% endif %}
                                                 {% endif %}
+                                                {% if kanal.eraikina %}{{ kanal.eraikina.izena }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                                 {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}
                                                     <br/>{% endif %}
@@ -272,6 +273,7 @@
                                                            target="_blank">{{ kanal.izenaes }}</a><br/>
                                                     {% endif %}
                                                 {% endif %}
+                                                {% if kanal.eraikina %}{{ kanal.eraikina.izena }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                                 {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala }}
                                                     <br/>{% endif %}
