@@ -510,6 +510,7 @@
                     <h4>{{ labelak.araudialabeles }}</h4>
                 </th>
             </tr>
+            {% set kont=0 %}
             <tr>
                 <td style="font-size: small;">
                     {% if eremuak.araudiatext %}{{ fitxa.araudiaeu |raw}}{% endif %}
@@ -526,8 +527,12 @@
                                         {{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}
                                     {% endif %}
                                 </li>
+                                {% set kont=kont+1 %}
                             {% endfor %}
                         </ul>
+                    {% endif %}
+                    {% if (fitxa.araudiaeu is empty and kont==0) %}
+                        Ez dagokio
                     {% endif %}
                 </td>
                 <td style="font-size: small;">
@@ -545,8 +550,12 @@
                                         {{ araua.araudia.arauaes }} - {{ araua.atalaes }}
                                     {% endif %}
                                 </li>
+                                {% set kont=kont+1 %}
                             {% endfor %}
                         </ul>
+                    {% endif %}
+                    {% if (fitxa.araudiaes is empty and kont==0) %}
+                        No corresponde
                     {% endif %}
                 </td>
             </tr>

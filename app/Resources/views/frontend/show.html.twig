@@ -530,6 +530,7 @@
                             {% endif %}
                         </h3>
                     </div>
+                    {% set kont=0 %}
                     <div>
                         {% if eremuak.araudiatext %}
                             {% if app.request.locale == 'eu' %}{{ fitxa.araudiaeu |raw }}
@@ -559,8 +560,18 @@
                                             {% endif %}
                                         {% endif %}
                                     </li>
+                                    {% set kont=kont+1 %}
                                 {% endfor %}
                             </ul>
+                        {% endif %}
+                        {% if app.request.locale == 'eu' %}
+                            {% if (fitxa.araudiaeu is empty and kont==0) %}
+                                Ez dagokio
+                            {% endif %}
+                        {% else %}
+                            {% if (fitxa.araudiaes is empty and kont==0) %}
+                                No corresponde
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
@@ -683,7 +694,6 @@
                 </div>
             </div>
         </div>
-
 
         {% if (eremuak.besteak1text or eremuak.besteak1table) %}
             <div class="row">

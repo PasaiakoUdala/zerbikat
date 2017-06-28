@@ -428,6 +428,7 @@
                     {% else %}{{ labelak.araudialabeles }}
                     {% endif %}
         </span>
+            {% set kont=0 %}
             <span style="font-size: small;">
             {% if eremuak.araudiatext %}
                 {% if app.request.locale == 'eu' %}{{ fitxa.araudiaeu |raw }}
@@ -457,8 +458,18 @@
                             {% endif %}
                         {% endif %}
                     </li>
+                    {% set kont=kont+1 %}
                 {% endfor %}
             </ul>
+                {% endif %}
+                {% if app.request.locale == 'eu' %}
+                    {% if (fitxa.araudiaeu is empty and kont==0) %}
+                        Ez dagokio
+                    {% endif %}
+                {% else %}
+                    {% if (fitxa.araudiaes is empty and kont==0) %}
+                        No corresponde
+                    {% endif %}
                 {% endif %}
         </span>
         </div>

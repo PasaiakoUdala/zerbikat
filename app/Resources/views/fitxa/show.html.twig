@@ -536,10 +536,14 @@
                 <div class="page-header">
                     <h3>{{ labelak.araudialabeleu }}</h3>
                 </div>
-                <div>
-                    {% if eremuak.araudiatext %}{{ fitxa.araudiaeu |raw }}{% endif %}
-                    <br>
+                    {% set kont=0 %}
+                    {% if eremuak.araudiatext %}
+                        <div>
+                            {{ fitxa.araudiaeu |raw }}
+                        </div>
+                    {% endif %}
                     {% if eremuak.araudiatable %}
+                        <div>
                         <ul>
                             {% for araua in fitxa.araudiak %}
                                 {% if araua.araudia %}
@@ -551,19 +555,28 @@
                                         <li>{{ araua.araudia.arauaeu }} - {{ araua.atalaeu }}</li>
                                     {% endif %}
                                 {% endif %}
+                                {% set kont=kont+1 %}
                             {% endfor %}
                         </ul>
+                        </div>
                     {% endif %}
-                </div>
+                {% if (fitxa.araudiaeu is empty and kont==0) %}
+                    Ez dagokio
+                {% endif %}
             </div>
             <div class="col-sm-6">
                 <div class="page-header">
-                    <h3>{{ labelak.araudialabeles }}</h3>
+                    <div>
+                        <h3>{{ labelak.araudialabeles }}</h3>
+                    </div>
                 </div>
-                <div>
-                    {% if eremuak.araudiatext %}{{ fitxa.araudiaes |raw }}{% endif %}
-                    <br>
-                    {% if eremuak.araudiatable %}
+
+                {% if eremuak.araudiatext %}
+                    {{ fitxa.araudiaes |raw }}
+                {% endif %}
+
+                {% if eremuak.araudiatable %}
+                    <div>
                         <ul>
                             {% for araua in fitxa.araudiak %}
                                 {% if araua.araudia %}
@@ -575,10 +588,15 @@
                                         <li>{{ araua.araudia.arauaes }} - {{ araua.atalaes }}</li>
                                     {% endif %}
                                 {% endif %}
+                                {% set kont=kont+1 %}
                             {% endfor %}
                         </ul>
-                    {% endif %}
-                </div>
+                    </div>
+                {% endif %}
+
+                {% if (fitxa.araudiaes is empty and kont==0) %}
+                    No corresponde
+                {% endif %}
             </div>
         </div>
     {% endif %}
