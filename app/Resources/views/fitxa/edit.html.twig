@@ -586,25 +586,27 @@
         </div>
     {% endif %}
 
-    <div class="row" id="azpisaila">
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ labelak.azpisailalabeleu }}</h2>
+    {% if (eremuak.azpisailatable) %}
+        <div class="row" id="azpisaila">
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.azpisailalabeleu }}</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>{{ labelak.azpisailalabeles }}</h2>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    {{ form_errors(edit_form.azpisaila) }}
+                    {{ form_widget(edit_form.azpisaila, {'attr': {'class': 'form-control'}}) }}
+                </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="page-header">
-                <h2>{{ labelak.azpisailalabeles }}</h2>
-            </div>
-        </div>
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div class="form-group">
-                {{ form_errors(edit_form.azpisaila) }}
-                {{ form_widget(edit_form.azpisaila, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    </div>
+    {% endif %}
 
     {% if eremuak.oharraktext %}
         <div class="row" id="oharrak">
