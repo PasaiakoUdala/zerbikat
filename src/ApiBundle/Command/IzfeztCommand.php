@@ -921,8 +921,6 @@ class IzfeztCommand extends ContainerAwareCommand
                                                                 ) . "' target='_blank'>" . $kanala->getIzenaeu(
                                                                 ) . "</a><br />";
                                                         }
-                                                        $textes = $textes . "</li><li>";
-                                                        $texteu = $texteu . "</li><li>";
                                                     }
                                                     if ( $kanala->getEraikina()) {
                                                         $textes = $textes . $kanala->getEraikina()->getIzena() . "<br />";
@@ -2633,8 +2631,6 @@ class IzfeztCommand extends ContainerAwareCommand
                                                                     ) . "' target='_blank'>" . $kanala->getIzenaeu(
                                                                     ) . "</a><br />";
                                                             }
-                                                            $textes = $textes . "</li><li>";
-                                                            $texteu = $texteu . "</li><li>";
                                                         }
                                                         if ( $kanala->getEraikina()) {
                                                             $textes = $textes . $kanala->getEraikina()->getIzena() . "<br />";
