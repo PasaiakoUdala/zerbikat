@@ -599,7 +599,6 @@
             </div>
         {% endif %}
 
-
         {% if (eremuak.norkebatzitext or eremuak.norkebatzitable) %}
             <div class="row">
                 <div class="col-sm-12">
@@ -630,22 +629,24 @@
             </div>
         {% endif %}
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-header">
-                    <h3>
-                        {% if app.request.locale == 'eu' %}{{ labelak.azpisailalabeleu }}
-                        {% else %}{{ labelak.azpisailalabeles }}
+        {% if (eremuak.azpisailatable) %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <h3>
+                            {% if app.request.locale == 'eu' %}{{ labelak.azpisailalabeleu }}
+                            {% else %}{{ labelak.azpisailalabeles }}
+                            {% endif %}
+                        </h3>
+                    </div>
+                    <div>
+                        {% if app.request.locale == 'eu' %} {% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}{% endif %}
+                        {% else %}{% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}{% endif %}
                         {% endif %}
-                    </h3>
-                </div>
-                <div>
-                    {% if app.request.locale == 'eu' %} {% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaeu }} - {{ fitxa.azpisaila.azpisailaeu }}{% endif %}
-                    {% else %}{% if fitxa.azpisaila %}{{ fitxa.azpisaila.saila.sailaes }} - {{ fitxa.azpisaila.azpisailaes }}{% endif %}
-                    {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
 
         {% if eremuak.oharraktext %}
             <div class="row">
