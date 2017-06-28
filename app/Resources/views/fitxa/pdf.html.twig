@@ -227,7 +227,7 @@
                                                 {% if kanal.fax %}Faxa: {{ kanal.fax }}<br/>{% endif %}
                                             </li>
                                         {% else %}
-                                            <li>{{ kanal.izenaeu }}
+                                            <li>
                                                 {% if kanal.izenaeu %}{{ kanal.izenaeu }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                                 {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala.izenaeu }}
@@ -283,7 +283,7 @@
                                             </li>
 
                                         {% else %}
-                                            <li>{{ kanal.izenaes }}
+                                            <li>
                                                 {% if kanal.izenaes %}{{ kanal.izenaes }}<br/>{% endif %}
                                                 {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}{{ kanal.kalezbkia }}, {% endif %}
                                                 {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala.izenaeu }}
