@@ -372,7 +372,10 @@
                     CollectionType::class,
                     array (
                         'entry_type'   => FitxaKostuaType::class,
-                        'entry_options'  => array('udala' => $user->getUdala()->getId(),'api_url' => $api_url),
+                        'entry_options'  => array(
+                            'udala' => $user->getUdala()->getId(),
+                            'api_url' => $api_url
+                        ),
                         'allow_add'    => true,
                         'allow_delete' => true,
                         'by_reference' => false,

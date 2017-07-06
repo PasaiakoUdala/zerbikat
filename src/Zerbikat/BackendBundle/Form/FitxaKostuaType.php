@@ -25,7 +25,8 @@ class FitxaKostuaType extends AbstractType
 
         $udala = $options['udala'];
         $api = $options[ 'api_url' ];
-
+        // DEBUG
+        //$api = "http://zzoo.dev/app_dev.php/api";
 
         $client = new GuzzleHttp\Client();
         $url = $api.'/udalzergak/'.$udala.'.json';

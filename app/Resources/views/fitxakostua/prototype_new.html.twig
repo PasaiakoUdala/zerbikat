@@ -4,7 +4,7 @@
             {{ form_widget(form.udala, {'value' : udal.id|number_format }, {'attr': {'class': 'form-control'}} ) }}
         </div>
         <div class="col-sm-1" style="visibility: hidden;">
-            {{ form_widget(form.fitxa, {'value' : fitxa.id|number_format }, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(form.fitxa, {'value' : fitxa.id }, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="col-sm-8 burua">
             {#{{ form_label(form.kostua, {'attr': {'class': 'hidden'}}) }}#}
