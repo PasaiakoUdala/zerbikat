@@ -1,11 +1,11 @@
 {% block body %}
                     <div class="col-sm-2 hidden">
                         {#{{ form_label(form.udala) }}#}
-                        {{ form_widget(form.udala, {'value' : fitxa.udala.id|number_format }, {'attr': {'class': 'form-control'}} ) }}
+                        {{ form_widget(form.udala, {'value' : fitxa.udala.id }, {'attr': {'class': 'form-control'}} ) }}
                     </div>
                     <div class="col-sm-3 hidden">
                         {#{{ form_label(form.fitxa) }}#}
-                        {{ form_widget(form.fitxa, {'value' : fitxa.id|number_format }, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.fitxa, {'value' : fitxa.id }, {'attr': {'class': 'form-control'}}) }}
                     </div>
                     <div class="col-sm-7">
                         {#{{ form_label(form.araudia) }}#}
