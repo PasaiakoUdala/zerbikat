@@ -8,7 +8,7 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 /**
  * Kalea
  *
- * @ORM\Table(name="kalea", uniqueConstraints={@ORM\UniqueConstraint(name="izena", columns={"izena"})}, indexes={@ORM\Index(name="barrutia_id_idx", columns={"barrutia_id"})})
+ * @ORM\Table(name="kalea", indexes={@ORM\Index(name="barrutia_id_idx", columns={"barrutia_id"})})
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
  */
