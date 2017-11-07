@@ -26,7 +26,7 @@ class FitxaKostuaType extends AbstractType
         $udala = $options['udala'];
         $api = $options[ 'api_url' ];
         // DEBUG
-        //$api = "http://zzoo.dev/app_dev.php/api";
+//        $api = "http://zzoo.dev/app_dev.php/api";
 
         $client = new GuzzleHttp\Client();
         $url = $api.'/udalzergak/'.$udala.'.json';
@@ -37,9 +37,15 @@ class FitxaKostuaType extends AbstractType
         $resp=array();
         foreach ($array as $a)
         {
-            if ( (array_key_exists("kodea_prod", $a)) && (array_key_exists("izenburuaeu_prod", $a)) ) {
-                $izena = $a[ 'kodea_prod' ]." - ".$a[ 'izenburuaeu_prod' ];
-                $resp[$izena] = $a['id'];
+            $txt ="";
+            if ( (array_key_exists("kodea_prod", $a))  ) {
+                $txt = $a[ 'kodea_prod' ]." - ";
+            }
+
+
+            if ( array_key_exists("izenburuaeu_prod", $a) ) {
+                $txt = $txt . $a[ 'izenburuaeu_prod' ];
+                $resp[$txt] = $a['id'];
             }
         }
 
