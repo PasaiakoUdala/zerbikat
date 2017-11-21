@@ -15,6 +15,8 @@ use Symfony\Component\Filesystem\Filesystem;
 class IzfeztCommand extends ContainerAwareCommand
 {
 
+    protected $unekoFitxaKodea = "";
+
     /**
      * {@inheritdoc}
      */
@@ -67,19 +69,24 @@ class IzfeztCommand extends ContainerAwareCommand
                 return "UVD";
                 break;
             case "08":
-                return "EXPEDIENTE";
+//                return "EXPEDIENTE";
+                return $this->unekoFitxaKodea;
                 break;
             case "0800":
-                return "EXPEDIENTE";
+//                return "EXPEDIENTE";
+                return $this->unekoFitxaKodea;
                 break;
             case "0801":
-                return "EXPEDIENTE";
+//                return "EXPEDIENTE";
+                return $this->unekoFitxaKodea;
                 break;
             case "0802":
-                return "EXPEDIENTE";
+//                return "EXPEDIENTE";
+                return $this->unekoFitxaKodea;
                 break;
             case "0803":
-                return "EXPEDIENTE";
+//                return "EXPEDIENTE";
+                return $this->unekoFitxaKodea;
                 break;
             case "09":
                 return "URM";
@@ -488,6 +495,7 @@ class IzfeztCommand extends ContainerAwareCommand
                 }
                 /** @var $fitxa \Zerbikat\BackendBundle\Entity\Fitxa */
                 $fitxa = $fitxafamilia->getFitxa();
+                $this->unekoFitxaKodea = $fitxa->getEspedientekodea();
                 //$mapa[$familia->getId()] = $idBlokea;
 
 
@@ -2124,6 +2132,7 @@ class IzfeztCommand extends ContainerAwareCommand
                     }
 
                     // Esteka sortu Home-an
+
                     $sql         = $sql . $this->addElementua(
                             $A204AYUNTA,
                             $idElementua,
@@ -2193,6 +2202,7 @@ class IzfeztCommand extends ContainerAwareCommand
                     }
 
                     $fitxa = $fitx->getFitxa();
+                    $this->unekoFitxaKodea = $fitxa->getEspedientekodea();
 
                     /**************************************************************************************************/
                     /**** Fitxak-a sortu   ****************************************************************************/

@@ -3,17 +3,21 @@
 namespace Zerbikat\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Udala
  *
  * @ORM\Table(name="udala")
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class Udala
 {
     /**
      * @var integer
+     * @Expose
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -24,6 +28,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="izenaeu", type="string", length=255)
      */
@@ -31,6 +36,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="izenaes", type="string", length=255)
      */
@@ -38,6 +44,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="kodea", type="string", length=255)
      */
@@ -45,6 +52,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="logoa", type="string", length=255, nullable=true)
      */
@@ -52,6 +60,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="ifk", type="string", length=255, nullable=true)
      */
@@ -59,6 +68,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="izendapenaeu", type="string", length=255, nullable=true)
      */
@@ -66,6 +76,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="izendapenaes", type="string", length=255, nullable=true)
      */
@@ -74,6 +85,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="lopdeu", type="text", length=65535, nullable=true)
      */
@@ -81,6 +93,7 @@ class Udala
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="lopdes", type="text", length=65535, nullable=true)
      */
@@ -115,6 +128,7 @@ class Udala
     /**
      * @ORM\OneToOne(targetEntity="Eremuak",mappedBy="udala",fetch="EAGER")
      * @ORM\JoinColumn(name="eremuak_id", referencedColumnName="id",onDelete="SET NULL")
+     * @Expose
      */
     protected $eremuak;
 

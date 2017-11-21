@@ -37,13 +37,17 @@
         <br/>
         <div>
         <span style="font-size: large; font-weight: bold">
-            {% if app.request.locale == 'eu' %}{{ labelak.helburualabeleu }}
-            {% else %}{{ labelak.helburualabeles }}
+            {% if app.request.locale == 'eu' %}
+                {{ labelak.helburualabeleu }}
+            {% else %}
+                {{ labelak.helburualabeles }}
             {% endif %}
         </span>
             <span style="font-size: small;">
-            {% if app.request.locale == 'eu' %}{{ fitxa.helburuaes|raw }}
-            {% else %} {{ fitxa.helburuaes|raw }}
+            {% if app.request.locale == 'eu' %}
+                {{ fitxa.helburuaeu|raw }}
+            {% else %}
+                {{ fitxa.helburuaes|raw }}
             {% endif %}
         </span>
         </div>
