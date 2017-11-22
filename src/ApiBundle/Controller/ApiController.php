@@ -105,7 +105,7 @@ class ApiController extends FOSRestController
         $query = $em->createQuery(
         /** @lang text */
             '
-            SELECT s         
+            SELECT distinct(s)         
               FROM BackendBundle:Saila s
               LEFT JOIN BackendBundle:Udala u
             WHERE u.kodea = :udala
