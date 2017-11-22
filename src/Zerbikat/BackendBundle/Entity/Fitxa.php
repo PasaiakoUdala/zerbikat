@@ -6,6 +6,7 @@
     use Doctrine\Common\Collections\ArrayCollection;
     use JMS\Serializer\Annotation\ExclusionPolicy;
     use JMS\Serializer\Annotation\Expose;
+    use JMS\Serializer\Annotation as JMS;
     use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
     use Doctrine\ORM\Mapping\OrderBy;
 
@@ -27,6 +28,7 @@
          * @ORM\Column(name="id", type="bigint")
          * @ORM\Id
          * @ORM\GeneratedValue(strategy="IDENTITY")
+         * @JMS\Groups({"kontakud"})
          */
         private $id;
 
@@ -34,6 +36,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="espedientekodea", type="string", length=9, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $espedientekodea;
 
@@ -41,6 +44,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="deskribapenaeu", type="string", length=255, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $deskribapenaeu;
 
@@ -48,6 +52,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="deskribapenaes", type="string", length=255, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $deskribapenaes;
 
@@ -318,9 +323,11 @@
         private $kanalaes;
 
 
-        /**
-         *      ERLAZIOAK: ManyToOne
-         */
+        /**************************************************************************************************************
+         **************************************************************************************************************
+         ******* ERLAZIOAK: ManyToOne *********************************************************************************
+         **************************************************************************************************************
+         *************************************************************************************************************/
 
         /**
          * @ORM\ManyToOne(targetEntity="Udala")
@@ -334,7 +341,6 @@
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Norkebatzi")
          * @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id", onDelete="SET NULL")
          *
-         * @Expose
          */
         private $norkebatzi;
 
@@ -344,7 +350,6 @@
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Zerbitzua")
          * @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id", onDelete="SET NULL")
          *
-         * @Expose
          */
         private $zerbitzua;
 
@@ -354,7 +359,6 @@
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Datuenbabesa")
          * @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id", onDelete="SET NULL")
          *
-         * @Expose
          */
         private $datuenbabesa;
 

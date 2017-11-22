@@ -75,10 +75,60 @@ class ApiController extends FOSRestController
             return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
         }
 
-        
+
         return $sailak;
 
     }
+
+
+    /**
+     * Udal baten Azpisail baten fitxa zerrenda
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Udal baten Azpisail baten fitxa zerrenda",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @param $udala
+     *
+     * @param $azpisailaid
+     *
+     * @return array|View
+     * @Annotations\View(serializerGroups={"kontakud"})
+     *
+     * @Get("/azpisailenfitxak/{udala}/{azpisailaid}")
+     */
+    public function getAzpisailenfitxakAction( $udala , $azpisailaid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+        /** @lang text */
+            '
+            SELECT f         
+              FROM BackendBundle:Fitxa f
+              INNER JOIN f.azpisaila a
+              INNER JOIN f.udala u              
+              WHERE u.kodea = :udala AND a.id = :azpisailaid            
+            '
+        );
+        $query->setParameter( 'udala', $udala );
+        $query->setParameter( 'azpisailaid', $azpisailaid );
+        $fitxak = $query->getResult();
+
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
+        if ( $fitxak === null ) {
+            return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
+        }
+
+        return $fitxak;
+
+    }
+
 
     /**
      * Udal baten Familia/Azpifamilia zerrenda
