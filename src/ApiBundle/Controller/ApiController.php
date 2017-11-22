@@ -61,7 +61,7 @@ class ApiController extends FOSRestController
             '
             SELECT s         
               FROM BackendBundle:Saila s
-              LEFT JOIN BackendBundle:Udala u
+              INNER JOIN s.udala u
             WHERE u.kodea = :udala
             ORDER BY s.kodea DESC
             '
@@ -75,7 +75,7 @@ class ApiController extends FOSRestController
             return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
         }
 
-
+        print_r( $query->getSQL() );
         return $sailak;
 
     }
@@ -105,7 +105,7 @@ class ApiController extends FOSRestController
         $query = $em->createQuery(
         /** @lang text */
             '
-            SELECT distinct(s)         
+            SELECT s         
               FROM BackendBundle:Saila s
               LEFT JOIN BackendBundle:Udala u
             WHERE u.kodea = :udala
