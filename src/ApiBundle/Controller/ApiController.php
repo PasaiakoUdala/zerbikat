@@ -75,7 +75,7 @@ class ApiController extends FOSRestController
             return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
         }
 
-        print_r( $query->getSQL() );
+        
         return $sailak;
 
     }
