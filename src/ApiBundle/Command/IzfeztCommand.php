@@ -69,23 +69,18 @@ class IzfeztCommand extends ContainerAwareCommand
                 return "UVD";
                 break;
             case "08":
-//                return "EXPEDIENTE";
                 return $this->unekoFitxaKodea;
                 break;
             case "0800":
-//                return "EXPEDIENTE";
                 return $this->unekoFitxaKodea;
                 break;
             case "0801":
-//                return "EXPEDIENTE";
                 return $this->unekoFitxaKodea;
                 break;
             case "0802":
-//                return "EXPEDIENTE";
                 return $this->unekoFitxaKodea;
                 break;
             case "0803":
-//                return "EXPEDIENTE";
                 return $this->unekoFitxaKodea;
                 break;
             case "09":

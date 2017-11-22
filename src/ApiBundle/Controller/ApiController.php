@@ -69,6 +69,54 @@ class ApiController extends FOSRestController
         $query->setParameter( 'udala', $udala );
         $sailak = $query->getResult();
 
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
+        if ( $sailak === null ) {
+            return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
+        }
+
+
+        return $sailak;
+
+    }
+
+    /**
+     * Udal baten Familia/Azpifamilia zerrenda
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Udal baten Familia/Azpifamilia zerrenda",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @param $udala
+     *
+     * @return array|View
+     * @Annotations\View()
+     *
+     * @Get("/familisarea/{udala}")
+     */
+    public function getFamilisareaAction( $udala )
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+        /** @lang text */
+            '
+            SELECT s         
+              FROM BackendBundle:Saila s
+              LEFT JOIN BackendBundle:Udala u
+            WHERE u.kodea = :udala
+            ORDER BY s.kodea DESC
+            '
+        );
+        $query->setParameter( 'udala', $udala );
+        $sailak = $query->getResult();
+
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
         if ( $sailak === null ) {
             return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
         }
@@ -76,7 +124,6 @@ class ApiController extends FOSRestController
         return $sailak;
 
     }
-
 
 
 
