@@ -1185,6 +1185,8 @@
         $(function () {
 
             $( "#btnFitxaGrabatu" ).on( "click", function () {
+
+                var akatsa = 0;
                 var expedientes = $( "#fitxa_expedientes" ).val();
                 var parametroa = $( "#fitxa_parametroa" ).val();
 
@@ -1200,7 +1202,32 @@
                     }
                 }
 
-                $( "#frm_fitxa_edit" ).submit();
+
+                $(".kostutaula").each(function() {
+                    if ( $(this).val() === "-1" ) {
+                        alert( "Kostu taula huts bat gehitu duzu. Aukeratu kostu taula ala ezabatu gehitutako kostu taula." );
+                        akatsa = 1;
+                    }
+                });
+
+                $(".araudiasel").each(function() {
+                    if ( $(this).val().length === 0 ) {
+                        alert( "Araudi huts bat gehitu duzu. Aukeratu araudi bat ala ezabatu." );
+                        akatsa = 1;
+                    }
+                });
+
+                $(".prozedurasel").each(function() {
+                    if ( $(this).val().length === 0 ) {
+                        alert( "Prozedura huts bat gehitu duzu. Aukeratu prozedura bat ala ezabatu." );
+                        akatsa = 1;
+                    }
+                });
+
+                if (akatsa === 0 ) {
+                    $( "#frm_fitxa_edit" ).submit();
+                }
+
             } );
 
             $( "#fitxa_expedientes" ).on( "focus", function () {
@@ -1210,6 +1237,10 @@
                         $( this ).val( $( "#fitxa_espedientekodea" ).val() );
                     }
                 }
+            });
+
+            $(".kostutaula").each(function() {
+                console.log($( this ).val());
             });
 
             /**

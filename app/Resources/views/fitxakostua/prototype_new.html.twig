@@ -7,10 +7,7 @@
             {{ form_widget(form.fitxa, {'value' : fitxa.id }, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="col-sm-8 burua">
-            {#{{ form_label(form.kostua, {'attr': {'class': 'hidden'}}) }}#}
-            {{ form_widget(form.kostua, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(form.kostua, {'attr': {'class': 'form-control kostutaula'}}) }}
         </div>
-
     </div>
-
 {% endblock %}
