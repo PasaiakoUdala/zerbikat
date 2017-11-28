@@ -25,6 +25,7 @@
 
             $builder
                 ->add( 'espedientekodea' )
+                ->add( 'expedientes' )
                 ->add( 'deskribapenaeu' )
                 ->add( 'deskribapenaes' )
                 ->add(

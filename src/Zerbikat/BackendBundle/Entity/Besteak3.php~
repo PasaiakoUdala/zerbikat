@@ -85,7 +85,7 @@ class Besteak3
      */
     public function __toString()
     {
-        return $this->getIzenburuaeu();
+        return (string) $this->getIzenburuaeu();
     }
 
 

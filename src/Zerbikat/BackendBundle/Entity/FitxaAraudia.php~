@@ -77,7 +77,7 @@ class FitxaAraudia
 
     public function __toString()
     {
-        return $this->araudia->getKodea()."-".$this->araudia->getArauaeu();
+        return (string) $this->araudia->getKodea()."-".$this->araudia->getArauaeu();
     }
 
 

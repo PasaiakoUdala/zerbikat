@@ -10,6 +10,7 @@ namespace ApiBundle\Controller;
 
 use AppBundle\Form\AtalaType;
 
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -92,30 +93,26 @@ class ApiController extends FOSRestController
      *   }
      * )
      *
-     *
-     * @param $udala
-     *
      * @param $azpisailaid
      *
      * @return array|View
      * @Annotations\View(serializerGroups={"kontakud"})
      *
-     * @Get("/azpisailenfitxak/{udala}/{azpisailaid}")
+     * @Get("/azpisailenfitxak/{azpisailaid}")
      */
-    public function getAzpisailenfitxakAction( $udala , $azpisailaid)
+    public function getAzpisailenfitxakAction( $azpisailaid)
     {
         $em = $this->getDoctrine()->getManager();
+        /** @var Query $query */
         $query = $em->createQuery(
         /** @lang text */
             '
             SELECT f         
               FROM BackendBundle:Fitxa f
               INNER JOIN f.azpisaila a
-              INNER JOIN f.udala u              
-              WHERE u.kodea = :udala AND a.id = :azpisailaid            
+              WHERE a.id = :azpisailaid            
             '
         );
-        $query->setParameter( 'udala', $udala );
         $query->setParameter( 'azpisailaid', $azpisailaid );
         $fitxak = $query->getResult();
 

@@ -490,7 +490,7 @@ class IzfeztCommand extends ContainerAwareCommand
                 }
                 /** @var $fitxa \Zerbikat\BackendBundle\Entity\Fitxa */
                 $fitxa = $fitxafamilia->getFitxa();
-                $this->unekoFitxaKodea = $fitxa->getEspedientekodea();
+                $this->unekoFitxaKodea = $fitxa->getExpedientes();
                 //$mapa[$familia->getId()] = $idBlokea;
 
 

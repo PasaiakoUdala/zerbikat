@@ -43,6 +43,14 @@
         /**
          * @var string
          * @Expose
+         * @ORM\Column(name="expedientes", type="string", length=9, nullable=true)
+         * @JMS\Groups({"kontakud"})
+         */
+        private $expedientes;
+
+        /**
+         * @var string
+         * @Expose
          * @ORM\Column(name="deskribapenaeu", type="string", length=255, nullable=true)
          * @JMS\Groups({"kontakud"})
          */
@@ -2213,5 +2221,29 @@
     public function getKostuak()
     {
         return $this->kostuak;
+    }
+
+    /**
+     * Set expedientes
+     *
+     * @param string $expedientes
+     *
+     * @return Fitxa
+     */
+    public function setExpedientes($expedientes)
+    {
+        $this->expedientes = $expedientes;
+
+        return $this;
+    }
+
+    /**
+     * Get expedientes
+     *
+     * @return string
+     */
+    public function getExpedientes()
+    {
+        return $this->expedientes;
     }
 }

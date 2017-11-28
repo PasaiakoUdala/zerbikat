@@ -64,7 +64,7 @@ class Prozedura
     
     public function __toString()
     {
-        return $this->getProzeduraeu();
+        return (string) $this->getProzeduraeu();
     }
     
     /**

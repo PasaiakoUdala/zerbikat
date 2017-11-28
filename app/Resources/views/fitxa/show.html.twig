@@ -221,10 +221,12 @@
                                     {% if kanal.telematikoa %}
                                         {% if fitxa.zerbitzua %}
                                             <li>
-                                                <a href="{{ fitxa.zerbitzua.erroaeu }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}"
-                                                   target="_blank">
-                                                    {{ kanal.izenaeu }}
-                                                </a></li>
+                                                {% if ( fitxa.expedientes | length > 0 )  and ( fitxa.parametroa[:2] == "08" ) %}
+                                                    <a href="{{ fitxa.zerbitzua.erroaeu }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}{{ fitxa.expedientes }}" target="_blank">{{ kanal.izenaeu }}</a>
+                                                {% else %}
+                                                    <a href="{{ fitxa.zerbitzua.erroaeu }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}" target="_blank">{{ kanal.izenaeu }}</a>
+                                                {% endif %}
+                                            </li>
                                         {% endif %}
                                     {% else %}
                                         {% if k.esteka %}
@@ -286,10 +288,12 @@
                                     {% if kanal.telematikoa %}
                                         {% if fitxa.zerbitzua %}
                                             <li>
-                                                <a href="{{ fitxa.zerbitzua.erroaes }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}"
-                                                   target="_blank">
-                                                    {{ kanal.izenaes }}
-                                                </a></li>
+                                                {% if ( fitxa.expedientes | length > 0 )  and ( fitxa.parametroa[:2] == "08" ) %}
+                                                    <a href="{{ fitxa.zerbitzua.erroaes }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}{{ fitxa.expedientes }}" target="_blank">{{ kanal.izenaes }}</a>
+                                                {% else %}
+                                                    <a href="{{ fitxa.zerbitzua.erroaes }}{{ fitxa.udala.kodea }}{{ fitxa.parametroa }}" target="_blank">{{ kanal.izenaes }}</a>
+                                                 {% endif %}
+                                            </li>
                                         {% endif %}
                                     {% else %}
                                         {% if k.esteka %}

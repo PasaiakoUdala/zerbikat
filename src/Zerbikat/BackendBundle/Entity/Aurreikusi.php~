@@ -43,6 +43,10 @@ class Aurreikusi
     /**
      *          ERLAZIOAK
      */
+    public function __toString()
+    {
+        return (string) $this->getEpeaeu();
+    }
 
     /**
      * @var udala
@@ -111,11 +115,6 @@ class Aurreikusi
     public function getId()
     {
         return $this->id;
-    }
-
-    public function __toString()
-    {
-        return $this->getEpeaeu();
     }
 
     /**

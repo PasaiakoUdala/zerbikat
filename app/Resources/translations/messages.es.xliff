@@ -938,6 +938,11 @@
                 <source>messages.menu.admin</source>
                 <target>Configuración</target>
             </trans-unit>
+
+            <trans-unit id="messages.expedientes">
+                <source>messages.expedientes</source>
+                <target>Código Expedientes</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

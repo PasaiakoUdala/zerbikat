@@ -5,6 +5,8 @@ namespace Zerbikat\BackendBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 
 /**
@@ -13,11 +15,13 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  * @ORM\Table(name="azpisaila", indexes={@ORM\Index(name="saila_id_idx", columns={"saila_id"}), @ORM\Index(name="barrutia_id_idx", columns={"barrutia_id"}), @ORM\Index(name="eraikina_id_idx", columns={"eraikina_id"}), @ORM\Index(name="kalea_id_idx", columns={"kalea_id"})})
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
+ * @ExclusionPolicy("all")
  */
 class Azpisaila
 {
     /**
      * @var integer
+     * @Expose
      *
      * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
@@ -27,6 +31,7 @@ class Azpisaila
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="kodea", type="string", length=10, nullable=true)
      */
@@ -34,6 +39,7 @@ class Azpisaila
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="azpisailaeu", type="string", length=255, nullable=true)
      */
@@ -41,6 +47,7 @@ class Azpisaila
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="azpisailaes", type="string", length=255, nullable=true)
      */
@@ -157,24 +164,6 @@ class Azpisaila
     private $fitxak;
 
 
-//    /**
-//     * @Gedmo\Locale
-//     * Used locale to override Translation listener`s locale
-//     * this is not a mapped field of entity metadata, just a simple property
-//     */
-//    private $locale;
-//
-//    public function setTranslatableLocale($locale)
-//    {
-//        $this->locale = $locale;
-//    }
-
-
-
-
-
-
-
 
     /**
      *          TOSTRING
@@ -182,7 +171,7 @@ class Azpisaila
     
     public function __toString()
     {
-        return $this->getAzpisailaeu();
+        return (string) $this->getAzpisailaeu();
     }
 
     public function __construct()

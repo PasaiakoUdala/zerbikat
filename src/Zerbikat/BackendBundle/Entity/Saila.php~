@@ -2,8 +2,13 @@
 
 namespace Zerbikat\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
+use Zerbikat\BackendBundle\Entity\Azpisaila;
+use Zerbikat\BackendBundle\Entity\Udala;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Saila
@@ -11,11 +16,13 @@ use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
  * @ORM\Table(name="saila")
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
+ * @ExclusionPolicy("all")
  */
 class Saila
 {
     /**
      * @var integer
+     * @Expose
      *
      * @ORM\Column(name="id", type="bigint")
      * @ORM\Id
@@ -25,6 +32,7 @@ class Saila
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="kodea", type="string", length=10, nullable=true)
      */
@@ -32,6 +40,7 @@ class Saila
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="sailaeu", type="string", length=255, nullable=true)
      */
@@ -39,6 +48,7 @@ class Saila
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="sailaes", type="string", length=255, nullable=true)
      */
@@ -46,6 +56,7 @@ class Saila
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="arduraduna", type="string", length=255, nullable=true)
      */
@@ -67,6 +78,7 @@ class Saila
     
     /**
      * @var azpisailak[]
+     * @Expose
      *
      * @ORM\OneToMany(targetEntity="Azpisaila", mappedBy="saila")
      */
@@ -78,7 +90,7 @@ class Saila
      */
     public function __toString()
     {
-        return $this->getSailaeu();
+        return (string) $this->getSailaeu();
     }
 
 
@@ -88,7 +100,7 @@ class Saila
      */
     public function __construct()
     {
-        $this->azpisailak = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->azpisailak = new ArrayCollection();
     }
 
     /**
@@ -200,11 +212,11 @@ class Saila
     /**
      * Set udala
      *
-     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     * @param Udala $udala
      *
      * @return Saila
      */
-    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    public function setUdala( Udala $udala = null)
     {
         $this->udala = $udala;
 
@@ -214,7 +226,7 @@ class Saila
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala
+     * @return Udala
      */
     public function getUdala()
     {
@@ -224,11 +236,11 @@ class Saila
     /**
      * Add azpisailak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     * @param Azpisaila $azpisailak
      *
      * @return Saila
      */
-    public function addAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    public function addAzpisailak( Azpisaila $azpisailak)
     {
         $this->azpisailak[] = $azpisailak;
 
@@ -238,9 +250,9 @@ class Saila
     /**
      * Remove azpisailak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak
+     * @param Azpisaila $azpisailak
      */
-    public function removeAzpisailak(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisailak)
+    public function removeAzpisailak( Azpisaila $azpisailak)
     {
         $this->azpisailak->removeElement($azpisailak);
     }

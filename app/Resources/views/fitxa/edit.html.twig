@@ -84,10 +84,14 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0);" onclick="document.forms['{{ edit_form.vars.name }}'].submit()"
-                           class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a></li>
-                    <li><a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}"
-                           class="fa fa-search"> {{ 'messages.fitxaikusi'|trans }}</a></li>
+                    <li>
+                        {#<a href="javascript:void(0);" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a>#}
+                        <a href="javascript:void(0);" id="btnFitxaGrabatu" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}"
+                           class="fa fa-search"> {{ 'messages.fitxaikusi'|trans }}</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -121,7 +125,7 @@
 {% endblock %}
 {% block body %}
     <div id="nireloader" class=""></div>
-    {{ form_start(edit_form) }}
+    {{ form_start(edit_form, {'attr': {'id':'frm_fitxa_edit'}}) }}
     <div class="row">
         <div class="col-md-2 text-center">
             <img src='{{ fitxa.udala.logoa }}'/>
@@ -887,11 +891,9 @@
             <h2>GESTIÓN DE EXPEDIENTES</h2>
         </div>
     </div>
-    <div class="col-sm-2"></div>
     <div class="col-sm-7">
         <div class="form-group">
             <b>{{ 'messages.zerbitzua'|trans }}</b>
-            {#{{ form_label(edit_form.zerbitzua, 'Zerbitzua', { 'label_attr': {'class': 'control-label'} }) }}#}
             {{ form_errors(edit_form.zerbitzua) }}
             {{ form_widget(edit_form.zerbitzua, {'attr': {'class': 'form-control'}}) }}
         </div>
@@ -899,13 +901,15 @@
     <div class="col-sm-2">
         <div class="form-group">
             <b>{{ 'messages.parametroa'|trans }}</b>
-            {#{{ form_label(edit_form.parametroa, 'Parametroa', { 'label_attr': {'class': 'control-label'} }) }}#}
             {{ form_errors(edit_form.parametroa) }}
-
             {{ form_widget(edit_form.parametroa, {'attr': {'class': 'form-control'}}) }}
-
-
         </div>
+    </div>
+    <div class="col-sm-2">
+        <b>{{ 'messages.expedientes'|trans }}</b>
+        {{ form_errors(edit_form.expedientes) }}
+        {{ form_widget(edit_form.expedientes, {'attr': {'class': 'form-control'}}) }}
+
     </div>
     <div class="col-sm-1">
         <b>&nbsp;</b>
@@ -1101,6 +1105,7 @@
                 <div id="modalOrdenabody" class="modal-content">
 
                 </div><!-- /.modal-content -->
+            </form>
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
@@ -1178,6 +1183,35 @@
 
 
         $(function () {
+
+            $( "#btnFitxaGrabatu" ).on( "click", function () {
+                var expedientes = $( "#fitxa_expedientes" ).val();
+                var parametroa = $( "#fitxa_parametroa" ).val();
+
+                if ( parametroa.length > 0 ) {
+                    if ( parametroa.substring(0,2) === "08" ) {
+                        if ( expedientes.length > 0 ) {
+                            $( "#frm_fitxa_edit" ).submit();
+                            return;
+                        } else {
+                            alert( "Fitxaren Espediente kodea zehaztea beharrezkoa da." );
+                            return
+                        }
+                    }
+                }
+
+                $( "#frm_fitxa_edit" ).submit();
+            } );
+
+            $( "#fitxa_expedientes" ).on( "focus", function () {
+                var parametroa = $( "#fitxa_parametroa" ).val();
+                if ( parametroa.substring(0,2) === "08" ) {
+                    if ( $(this).val().length === 0 ) {
+                        $( this ).val( $( "#fitxa_espedientekodea" ).val() );
+                    }
+                }
+            });
+
             /**
              * Goazen konboak kargatzera
              */

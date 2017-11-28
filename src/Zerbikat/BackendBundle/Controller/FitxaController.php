@@ -3,6 +3,7 @@
 namespace Zerbikat\BackendBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query;
 use GuzzleHttp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,7 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Fitxa;
 use Zerbikat\BackendBundle\Entity\Fitxafamilia;
-use Zerbikat\BackendBundle\Entity\FitxaKostua;
 
 
 /**
@@ -25,17 +25,16 @@ class FitxaController extends Controller
     /**
      * Lists all Fitxa entities.
      *
-     * @Route("/", defaults={"page" = 1}, name="fitxa_index")
-     * @Route("/page{page}", name="fitxa_index_paginated")
+     * @Route("/", name="fitxa_index")
      * @Method("GET")
      */
-    public function indexAction ( $page )
+    public function indexAction()
     {
-
         $auth_checker = $this->get( 'security.authorization_checker' );
         if ( $auth_checker->isGranted( 'ROLE_USER' ) ) {
-            $em     = $this->getDoctrine()->getManager();
-            $query  = $em->createQuery(
+            $em = $this->getDoctrine()->getManager();
+            /** @var Query $query */
+            $query = $em->createQuery(
                 'SELECT f 
                       FROM BackendBundle:Fitxa f
                       LEFT JOIN f.azpisaila a
@@ -44,6 +43,7 @@ class FitxaController extends Controller
             $fitxas = $query->getResult();
 
             $deleteForms = array();
+            /** @var Fitxa $fitxa */
             foreach ( $fitxas as $fitxa ) {
                 $deleteForms[ $fitxa->getId() ] = $this->createDeleteForm( $fitxa )->createView();
             }
@@ -55,6 +55,8 @@ class FitxaController extends Controller
                     'fitxas'      => $fitxas,
                 )
             );
+        } else {
+            return $this->redirectToRoute( 'fos_user_security_login' );
         }
     }
 
@@ -63,8 +65,11 @@ class FitxaController extends Controller
      *
      * @Route("/new", name="fitxa_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction ( Request $request )
+    public function newAction( Request $request )
     {
         $auth_checker = $this->get( 'security.authorization_checker' );
         if ( $auth_checker->isGranted( 'ROLE_USER' ) ) {
@@ -96,6 +101,8 @@ class FitxaController extends Controller
                     'form'  => $form->createView(),
                 )
             );
+        } else {
+            return $this->redirectToRoute( 'fos_user_security_login' );
         }
     }
 
@@ -108,24 +115,26 @@ class FitxaController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction ( Fitxa $fitxa )
+    public function showAction( Fitxa $fitxa )
     {
         $deleteForm = $this->createDeleteForm( $fitxa );
 
-        $em         = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
         $kostuZerrenda = array();
         foreach ( $fitxa->getKostuak() as $kostu ) {
-            $client          = new GuzzleHttp\Client();
-            $api             = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
-            $proba           = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
-            $fitxaKostua     = (string)$proba->getBody();
-            $array           = json_decode( $fitxaKostua, true );
+            $client = new GuzzleHttp\Client();
+            $api = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
+            $proba = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
+            $fitxaKostua = (string)$proba->getBody();
+            $array = json_decode( $fitxaKostua, true );
             $kostuZerrenda[] = $array;
         }
 
+        /** @var Query $query */
         $query = $em->createQuery(
+        /** @lang text */
             '
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
             FROM BackendBundle:Eremuak f
@@ -136,6 +145,7 @@ class FitxaController extends Controller
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery(
+        /** @lang text */
             '
           SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
             FROM BackendBundle:Eremuak f
@@ -163,15 +173,18 @@ class FitxaController extends Controller
      *
      * @Route("/pdf/{id}", name="fitxa_pdf")
      * @Method("GET")
+     * @param Fitxa $fitxa
      */
-    public function pdfAction ( Fitxa $fitxa )
+    public function pdfAction( Fitxa $fitxa )
     {
         $deleteForm = $this->createDeleteForm( $fitxa );
 
-        $em         = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
+        /** @var Query $query */
         $query = $em->createQuery(
+            /** @lang text */
             '
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
             FROM BackendBundle:Eremuak f
@@ -182,6 +195,7 @@ class FitxaController extends Controller
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery(
+            /** @lang text */
             '
           SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
             FROM BackendBundle:Eremuak f
@@ -199,8 +213,8 @@ class FitxaController extends Controller
 //            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
             $proba = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
 
-            $fitxaKostua     = (string)$proba->getBody();
-            $array           = json_decode( $fitxaKostua, true );
+            $fitxaKostua = (string)$proba->getBody();
+            $array = json_decode( $fitxaKostua, true );
             $kostuZerrenda[] = $array;
         }
 
@@ -263,7 +277,7 @@ class FitxaController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function editAction ( Request $request, Fitxa $fitxa )
+    public function editAction( Request $request, Fitxa $fitxa )
     {
         $auth_checker = $this->get( 'security.authorization_checker' );
         if ( ( ( $auth_checker->isGranted( 'ROLE_USER' ) ) && ( $fitxa->getUdala() == $this->getUser()->getUdala() ) )
@@ -323,26 +337,17 @@ class FitxaController extends Controller
                         }
                     }
 
-                    ////// Hack FitxakostuaType. Momentuz ez da behar...
-                    //$fct = $fitxa->getKostuak();
-                    //
-                    ///** @var FitxaKostua $f */
-                    //foreach ($fct as $f) {
-                    //    $f->setFitxa( $fitxa );
-                    //    $em->persist( $f );
-                    //}
-
                     $fitxa->setUpdatedAt( new \DateTime() );
                     $em->persist( $fitxa );
                     $em->flush();
 
                     return $this->redirectToRoute( 'fitxa_edit', array( 'id' => $fitxa->getId() ) );
-                } else {
-                    $errors = $editForm->getErrors();
                 }
             }
+
+            /** @var Query $query */
             $query = $em->createQuery(
-                /** @lang text */
+            /** @lang text */
                 '
               SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
                 FROM BackendBundle:Eremuak f
@@ -353,7 +358,7 @@ class FitxaController extends Controller
             $eremuak = $query->getSingleResult();
 
             $query = $em->createQuery(
-                /** @lang text */
+            /** @lang text */
                 '
               SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
                 FROM BackendBundle:Eremuak f
@@ -406,8 +411,12 @@ class FitxaController extends Controller
      *
      * @Route("/{id}/del", name="fitxa_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param Fitxa   $fitxa
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteAction ( Request $request, Fitxa $fitxa )
+    public function deleteAction( Request $request, Fitxa $fitxa )
     {
 
         //udala egokia den eta admin baimena duen egiaztatu
@@ -421,11 +430,10 @@ class FitxaController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->remove( $fitxa );
                 $em->flush();
-            } else {
-
             }
 
             return $this->redirectToRoute( 'fitxa_index' );
+
         } else {
             //baimenik ez
             return $this->redirectToRoute( 'backend_errorea' );
@@ -439,20 +447,20 @@ class FitxaController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm ( Fitxa $fitxa )
+    private function createDeleteForm( Fitxa $fitxa )
     {
         return $this->createFormBuilder()
-            ->setAction( $this->generateUrl( 'fitxa_delete', array( 'id' => $fitxa->getId() ) ) )
-            ->setMethod( 'DELETE' )
-            ->getForm();
+                    ->setAction( $this->generateUrl( 'fitxa_delete', array( 'id' => $fitxa->getId() ) ) )
+                    ->setMethod( 'DELETE' )
+                    ->getForm();
     }
 
-    private function createfamiliaDeleteForm ( Familia $familia )
+    private function createfamiliaDeleteForm( Familia $familia )
     {
         return $this->createFormBuilder()
-            ->setAction( $this->generateUrl( 'familia_delete', array( 'id' => $familia->getId() ) ) )
-            ->setMethod( 'DELETE' )
-            ->getForm();
+                    ->setAction( $this->generateUrl( 'familia_delete', array( 'id' => $familia->getId() ) ) )
+                    ->setMethod( 'DELETE' )
+                    ->getForm();
     }
 
 }

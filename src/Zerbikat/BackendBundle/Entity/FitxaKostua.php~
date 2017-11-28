@@ -59,7 +59,7 @@ class FitxaKostua
 
     public function __toString()
     {
-        return $this->kostua." ";
+        return (string) $this->kostua." ";
     }
 
 
