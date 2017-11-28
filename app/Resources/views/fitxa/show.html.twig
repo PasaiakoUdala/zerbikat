@@ -367,7 +367,9 @@
                                         <tr>
                                             <td>{% if kontzeptu['kontzeptuaeu_prod'] is defined %}{{ kontzeptu['kontzeptuaeu_prod'] }}{% endif %}</td>
                                             <td NOWRAP>
-                                                {% if kontzeptu['kopurua_prod'] is defined %}{{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}{% endif %}
+                                                {% if kontzeptu['kopurua_prod'] is defined %}
+                                                    {{ kontzeptu['kopurua_prod'] }} {% if kontzeptu['unitatea_prod'] is defined %}{{ kontzeptu['unitatea_prod'] }}{% endif %}
+                                                {% endif %}
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -438,7 +440,7 @@
                                             <td>{% if kontzeptu['kontzeptuaes_prod'] is defined %}{{ kontzeptu['kontzeptuaes_prod'] }}{% endif %}</td>
                                             <td NOWRAP>
                                                 {% if kontzeptu.kopurua_prod is defined %}
-                                                    {{ kontzeptu['kopurua_prod'] }} {{ kontzeptu['unitatea_prod'] }}
+                                                    {{ kontzeptu['kopurua_prod'] }} {% if kontzeptu.unitatea_prod is defined %}{{ kontzeptu['unitatea_prod'] }}{% endif %}
                                                 {% endif %}
                                             </td>
                                         </tr>
