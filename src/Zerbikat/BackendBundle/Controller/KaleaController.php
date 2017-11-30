@@ -22,43 +22,25 @@ class KaleaController extends Controller
     /**
      * Lists all Kalea entities.
      *
-     * @Route("/", defaults={"page" = 1}, name="kalea_index")
-     * @Route("/page{page}", name="kalea_index_paginated")
+     * @Route("/", name="kalea_index")
      * @Method("GET")
      */
-    public function indexAction($page)
+    public function indexAction()
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
             $kaleas = $em->getRepository('BackendBundle:Kalea')->findAll();
 
-            $adapter = new ArrayAdapter($kaleas);
-            $pagerfanta = new Pagerfanta($adapter);
-
             $deleteForms = array();
             foreach ($kaleas as $kalea) {
                 $deleteForms[$kalea->getId()] = $this->createDeleteForm($kalea)->createView();
             }
 
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
 
             return $this->render('kalea/index.html.twig', array(
-                'kaleas' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
+                'kaleas' => $kaleas,
+                'deleteforms' => $deleteForms
             ));
         }else
         {
