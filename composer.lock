@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f697933bcfd54a72861bfd2779ec93c",
+    "content-hash": "0150e957d5a03d5b159816a2f28445c1",
     "packages": [
         {
             "name": "bmatzner/fontawesome-bundle",
@@ -1261,7 +1261,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2017-01-12 10:28:28"
+            "time": "2017-01-12T10:28:28+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
