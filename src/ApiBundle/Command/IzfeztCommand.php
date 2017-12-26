@@ -201,7 +201,7 @@ class IzfeztCommand extends ContainerAwareCommand
         $A206ORDEN = $idOrden;
         $A206VISUAL = 0;
 
-        $sql = "INSERT INTO UDAA20601 (A206AYUNTA,A206IDPAGINA,A206IDBLOQUE,A206ORDEN,A206VISUAL) 
+        $sql = "INSERT INTO UDAA20601 (A206AYUNTA,A206IDPAGINA,A206IDBLOQUE,A206ORDEN,A206VISUAL)
                 VALUES($A206AYUNTA, $A206IDPAGINA, $A206IDBLOQUE, $A206ORDEN, $A206VISUAL);\n";
 
         return $sql;
@@ -420,10 +420,10 @@ class IzfeztCommand extends ContainerAwareCommand
         $query = $em->createQuery(
             /** @lang text */
             '
-                SELECT f 
-                    FROM BackendBundle:Familia f 
-                        LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id                      
-                    WHERE u.kodea = :udala AND f.parent IS NULL 
+                SELECT f
+                    FROM BackendBundle:Familia f
+                        LEFT JOIN BackendBundle:Udala u WITH f.udala=u.id
+                    WHERE u.kodea = :udala AND f.parent IS NULL
                     ORDER BY f.ordena ASC
                 '
         );
@@ -776,10 +776,10 @@ class IzfeztCommand extends ContainerAwareCommand
                             }
 
                             if ( $eremuak[ "doklaguntable" ] ) {
-                                if ( $fitxa->doklagunak() ) {
+                                if ( $fitxa->getDoklagunak() ) {
                                     $doctextes = "<ul>";
                                     $doctexteu = "<ul>";
-                                    foreach ( $fitxa->doklagunak() as $doc ) {
+                                    foreach ( $fitxa->getDoklagunak() as $doc ) {
                                         $doctextes = $doctextes . "<li>";
                                         $doctexteu = $doctexteu . "<li>";
 
@@ -2427,10 +2427,10 @@ class IzfeztCommand extends ContainerAwareCommand
                                 }
 
                                 if ( $eremuak[ "doklaguntable" ] ) {
-                                    if ( $fitxa->doklagunak() ) {
+                                    if ( $fitxa->getDoklagunak() ) {
                                         $doctextes = "<ul>";
                                         $doctexteu = "<ul>";
-                                        foreach ( $fitxa->doklagunak() as $doc ) {
+                                        foreach ( $fitxa->getDoklagunak() as $doc ) {
                                             $doctextes = $doctextes . "<li>";
                                             $doctexteu = $doctexteu . "<li>";
 
