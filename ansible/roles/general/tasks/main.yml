@@ -1,0 +1,16 @@
+- name: generate the server locale
+  locale_gen: name={{ locale }} state=present
+
+- name: set locale 
+  lineinfile: dest=/etc/default/locale regexp='^LANG=' line='LANG={{ locale }}'
+
+- name: reload local
+  raw: . /etc/default/locale
+
+- name: Install basic packages
+  apt: name={{item}} state=installed
+  with_items:
+       - zsh
+       - git
+       - git-core
+       - vim

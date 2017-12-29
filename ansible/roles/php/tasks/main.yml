@@ -1,0 +1,17 @@
+- name: add php ppa
+  apt_repository: repo='ppa:ondrej/php' state=present
+
+- name: update apt cache
+  apt: update_cache=yes
+
+- name: install php requirements for symfony
+  apt: name=php{{ php.version }}-{{ item }} state=present
+  with_items:
+    - json
+    - xml
+    - mbstring
+    - intl
+    - opcache
+    - mysql
+    - ldap
+

@@ -1,0 +1,14 @@
+- name: Accept outbound connections for selected users
+  mysql_user:
+    name: "{{ item }}"
+    host: "%"
+  with_items: "{{ mariadb_accept_outbound_login_for_these_users }}"
+
+- name: Bind to 0.0.0.0 if we accept outbound connections
+  copy:
+    content: |
+      [mysqld]
+      bind-address = 0.0.0.0
+    dest: /etc/mysql/mariadb.conf.d/51-allow-outbound.cnf
+  when: mariadb_accept_outbound_login_for_these_users|length > 0
+  notify: mariadb restart      

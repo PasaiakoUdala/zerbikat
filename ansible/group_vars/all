@@ -1,0 +1,22 @@
+locale: es_ES.UTF-8
+
+php:
+    version: 7.0
+
+apps:
+    - name: zerbikat
+      user: www-data
+      group: www-data
+      domain: zerbikat.test
+      type: symfony
+
+mariadb_accept_outbound_login_for_these_users:
+    - root
+    - zerbikat      
+
+mariadb_root_password: zerbikat
+
+instalazio_berria: "ez"
+symfony_root_dir: /vagrant
+symfony_console_path: "{{ symfony_root_dir }}/bin/console"
+symfony_var_dir: "{{ symfony_root_dir }}/var"

@@ -1,0 +1,10 @@
+- name: install php{{ php.version }}-fpm
+  apt: name=php{{ php.version }}-fpm state=present
+
+- name: delete default config
+  file: path=/etc/php/{{ php.version }}/fpm/pool.d/www.conf state=absent
+
+- name: render php fpm pools config
+  template: src=pool-template.j2 dest=/etc/php/{{ php.version }}/fpm/pool.d/{{ item.name }}.conf
+  with_items: '{{ apps }}'
+  notify: restart php-fpm

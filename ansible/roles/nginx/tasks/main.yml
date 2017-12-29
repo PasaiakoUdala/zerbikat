@@ -1,0 +1,16 @@
+- name: add nginx ppa
+  apt_repository: repo='ppa:nginx/stable'
+
+- name: install latest nginx version
+  apt: name=nginx-full state=present update_cache=yes
+
+- name: run nginx with vagrant user
+  lineinfile: dest=/etc/nginx/nginx.conf regexp='^user' line='user www-data;'
+
+- name: add nginx site
+  template: src=server.j2 dest=/etc/nginx/sites-enabled/{{ item.domain }}.conf
+  with_items: '{{ apps }}'
+
+- name: disable default site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: restart nginx

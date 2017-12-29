@@ -1,0 +1,23 @@
+--- 
+# valid for all hosts provisioned inside this vagrant instance
+- hosts: all
+  # become replaces sudo since ansible v.1.9
+  become: true
+
+  # Hack python ez dagoela instalatua esaten duenerako.
+  gather_facts: False
+  pre_tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      changed_when: False
+    - setup: # aka gather_facts
+
+  # roles to be executed
+  roles: 
+#    - general
+#    - php
+#    - php-fpm
+#    - composer
+#    - nginx
+#    - mariadb
+    - symfony

@@ -1,0 +1,24 @@
+- name: get the symfony installer
+  raw: curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+
+- name: get the symfony installer
+  raw: curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+
+- name: delete var folders
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ symfony_var_dir }}"
+
+#- name: Fix var directory permissions
+#  shell: >
+#    HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1) &&
+#    sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX {{ symfony_var_dir }} &&
+#    sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:$(whoami):rwX {{ symfony_var_dir }}
+#
+#- name: Fix var directory permissions
+#  shell: "HTTPDUSER=$(ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1)
+#
+- name: Create DB if not exists
+  shell: "{{ symfony_console_path }} doctrine:database:create --if-not-exists"
