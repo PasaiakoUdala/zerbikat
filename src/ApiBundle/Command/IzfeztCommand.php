@@ -145,7 +145,7 @@ class IzfeztCommand extends ContainerAwareCommand
 
                 if ( in_array( $tipo, $servicios ) ) {
                     $A204TIPO = "'SERVICIO'";
-                    $A204IDTIPO = "'" . $IdPagina . "'";
+                    $A204IDTIPO = "'" . $tipo . "'";
                 } else {
                     $A204TIPO = "'PROPIA'";
                     $A204IDTIPO = "'" . $tipo . "'";
