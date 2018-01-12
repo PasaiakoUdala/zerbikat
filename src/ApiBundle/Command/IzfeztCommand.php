@@ -2139,7 +2139,7 @@ class IzfeztCommand extends ContainerAwareCommand
                     }
 
                     $fitxa = $fitx->getFitxa();
-                    $this->unekoFitxaKodea = $fitxa->getEspedientekodea();
+                    $this->unekoFitxaKodea = $fitxa->getExpedientes();
 
                     /**************************************************************************************************/
                     /**** Fitxak-a sortu   ****************************************************************************/
