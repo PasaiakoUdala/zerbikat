@@ -1532,18 +1532,18 @@
 
                 if (aukera == "01") {
                     $('#cmbParametros').empty();
-                    $('#cmbParametros').append($("<option></option>").attr("value", "01").text("01-Creación de un registro de entrada"));
+                    $('#cmbParametros').append($("<option selected></option>").attr("value", "01").text("01-Creación de un registro de entrada"));
                 } else if (aukera == "05") {
                     $('#cmbParametros').empty();
-                    $('#cmbParametros').append($("<option></option>").attr("value", "01").text("01-Listado de personas de la vivienda"));
+                    $('#cmbParametros').append($("<option selected></option>").attr("value", "01").text("01-Listado de personas de la vivienda"));
                     $('#cmbParametros').append($("<option></option>").attr("value", "02").text("02-Historial de empadronamiento"));
                     $('#cmbParametros').append($("<option></option>").attr("value", "03").text("03-Certificado de empadronamiento"));
                 } else if (aukera == "08") {
                     $('#cmbParametros').empty();
-                    $('#cmbParametros').append($("<option></option>").attr("value", "01").text("01-Página de ayuda de este tipo de expediente"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "02").text("02-Manual de procedicimiento"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "03").text("03-Instancia"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "04").text("04-Inicio de expediente"));
+                    $('#cmbParametros').append($("<option selected></option>").attr("value", "00").text("00-Página de ayuda de este tipo de expediente"));
+                    $('#cmbParametros').append($("<option></option>").attr("value", "01").text("01-Manual de procedicimiento"));
+                    $('#cmbParametros').append($("<option></option>").attr("value", "02").text("02-Instancia"));
+                    $('#cmbParametros').append($("<option></option>").attr("value", "03").text("03-Inicio de expediente"));
                 } else {
                     $('#cmbParametros').empty();
                 }

@@ -276,6 +276,8 @@ class FitxaController extends Controller
      * @param Fitxa   $fitxa
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function editAction( Request $request, Fitxa $fitxa )
     {
