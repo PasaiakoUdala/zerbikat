@@ -86,7 +86,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         {#<a href="javascript:void(0);" onclick="document.forms['{{ edit_form.vars.name }}'].submit()" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a>#}
-                        <a href="javascript:void(0);" id="btnFitxaGrabatu" class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a>
+                        <a href="javascript:void(0);" id="btnFitxaGrabatu"
+                           class="fa fa-floppy-o"> {{ 'messages.gorde'|trans }}</a>
                     </li>
                     <li>
                         <a href="{{ path('fitxa_show', { 'id': fitxa.id }) }}"
@@ -128,12 +129,12 @@
     {{ form_start(edit_form, {'attr': {'id':'frm_fitxa_edit'}}) }}
     <div class="row">
         <div class="col-md-2 text-center">
-            <img src='{{ fitxa.udala.logoa }}'/>
+            <img src='{{ fitxa.udala.logoa }}' />
             <h4>{{ fitxa.udala.izendapenaeu }}</h4>
             <h5>{{ fitxa.udala.ifk }}</h5>
         </div>
 
-        <div class="col-md-2"><br/><br/>
+        <div class="col-md-2"><br /><br />
             <h1>
                 {{ form_label(edit_form.espedientekodea, 'KODEA: ', { 'label_attr': {'class': 'control-label'} }) }}
                 {{ form_errors(edit_form.espedientekodea) }}
@@ -209,7 +210,7 @@
             <div class="hidden col-sm-12">
         {% endif %}
         <div>
-            <br/>
+            <br />
             {{ form_errors(edit_form.norkeskatuak) }}
             {{ form_widget(edit_form.norkeskatuak, {'attr': {'class': 'form-group'}}) }}
         </div>
@@ -350,39 +351,43 @@
                 {% endif %}
             </div>
         </div>
-            {% if eremuak.kostuatable %}
-                <div class="row">
-                    {% if fitxa.udala.zergaor %}
-                        <ul class="list-unstyled" id="kostua-fields-list" data-prototype="{% filter escape %}{% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
-                            <li class="burua"></li>
-                            {% for kostua in edit_form.kostuak %}
-                                <li>
-                                    {% if app.environment == "dev" %}
-                                        <div class="col-sm-2">{{ form_widget(kostua.udala) }}</div>
-                                        <div class="col-sm-1">{{ form_widget(kostua.fitxa) }}</div>
-                                    {% else %}
-                                        <div class="col-sm-2" style="visibility: hidden;">{{ form_widget(kostua.udala) }}</div>
-                                        <div class="col-sm-1" style="visibility: hidden;">{{ form_widget(kostua.fitxa) }}</div>
-                                    {% endif %}
-                                        <div class="col-sm-8">{{ form_widget(kostua.kostua) }}</div>
+        {% if eremuak.kostuatable %}
+            <div class="row">
+                {% if fitxa.udala.zergaor %}
+                    <ul class="list-unstyled" id="kostua-fields-list"
+                        data-prototype="{% filter escape %}{% include 'fitxakostua/prototype_new.html.twig' with {'form': edit_form.kostuak.vars.prototype,'udal':fitxa.udala,'fitxa':fitxa} %}{% endfilter %}">
+                        <li class="burua"></li>
+                        {% for kostua in edit_form.kostuak %}
+                            <li>
+                                {% if app.environment == "dev" %}
+                                    <div class="col-sm-2">{{ form_widget(kostua.udala) }}</div>
+                                    <div class="col-sm-1">{{ form_widget(kostua.fitxa) }}</div>
+                                {% else %}
+                                    <div class="col-sm-2"
+                                         style="visibility: hidden;">{{ form_widget(kostua.udala) }}</div>
+                                    <div class="col-sm-1"
+                                         style="visibility: hidden;">{{ form_widget(kostua.fitxa) }}</div>
+                                {% endif %}
+                                <div class="col-sm-8">{{ form_widget(kostua.kostua) }}</div>
 
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <div class="form-group">
-                            {{ form_errors(edit_form.azpiatalak) }}
-                            {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
-                        </div>
-                    {% endif %}
-                </div>
-                {% if  udal.zergaor == true %}
-                    <button type="button" id="add-kostua" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalSelectOrdenantza">
-                        {{ 'messages.gehitukostu'|trans }}
-                    </button>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="form-group">
+                        {{ form_errors(edit_form.azpiatalak) }}
+                        {{ form_widget(edit_form.azpiatalak, {'attr': {'class': 'form-group select2'}}) }}
+                    </div>
                 {% endif %}
-
+            </div>
+            {% if  udal.zergaor == true %}
+                <button type="button" id="add-kostua" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#modalSelectOrdenantza">
+                    {{ 'messages.gehitukostu'|trans }}
+                </button>
             {% endif %}
+
+        {% endif %}
 
     {% endif %}
 
@@ -481,9 +486,9 @@
                                 <li class="burua">
                                     <div class="col-sm-7"><b>{{ 'messages.araudia'|trans }}</b></div>
                                     <div class="col-sm-2"><b>{{ 'messages.atala'|trans }} ({{ 'messages.eu'|trans }}
-                                            )</b></div>
+                                                                                          )</b></div>
                                     <div class="col-sm-2"><b>{{ 'messages.atala'|trans }} ({{ 'messages.es'|trans }}
-                                            )</b></div>
+                                                                                          )</b></div>
                                 </li>
                                 {% for araudia in edit_form.araudiak %}
                                     <li>
@@ -549,7 +554,7 @@
                                 </li>
                             {% endfor %}
                         </ul>
-                        <br/>
+                        <br />
                         <a href="#" id="add-prozedura"
                            class="col-sm-12 text-right">{{ 'messages.gehituprozedura'|trans }}</a>
                     </div>
@@ -877,92 +882,110 @@
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="row" id="espedienteKudeaketa">
-    {#{% else %}#}
-    {#<div class="row hidden">#}
-    {#{% endif %}#}
-    <div class="col-sm-6">
-        <div class="page-header">
-            <h2>ESPEDIENTE KUDEAKETA</h2>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="page-header">
-            <h2>GESTIÓN DE EXPEDIENTES</h2>
-        </div>
-    </div>
-    <div class="col-sm-7">
-        <div class="form-group">
-            <b>{{ 'messages.zerbitzua'|trans }}</b>
-            {{ form_errors(edit_form.zerbitzua) }}
-            {{ form_widget(edit_form.zerbitzua, {'attr': {'class': 'form-control'}}) }}
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <div class="form-group">
-            <b>{{ 'messages.parametroa'|trans }}</b>
-            {{ form_errors(edit_form.parametroa) }}
-            {{ form_widget(edit_form.parametroa, {'attr': {'class': 'form-control'}}) }}
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <b>{{ 'messages.expedientes'|trans }}</b>
-        {{ form_errors(edit_form.expedientes) }}
-        {{ form_widget(edit_form.expedientes, {'attr': {'class': 'form-control'}}) }}
+        <div class="row" id="espedienteKudeaketa">
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>ESPEDIENTE KUDEAKETA</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="page-header">
+                    <h2>GESTIÓN DE EXPEDIENTES</h2>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="form-group">
+                    <b>{{ 'messages.zerbitzua'|trans }}</b>
+                    {{ form_errors(edit_form.zerbitzua) }}
+                    {{ form_widget(edit_form.zerbitzua, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <b>{{ 'messages.parametroa'|trans }}</b>
+                    {{ form_errors(edit_form.parametroa) }}
+                    {{ form_widget(edit_form.parametroa, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div id="inputEspedienteKodea" class="col-sm-2" style="display: none;">
+                <b>Espediente kodea</b>
+                {{ form_errors(edit_form.expedientes) }}
+                {{ form_widget(edit_form.expedientes, {'id':'espedienteKodea','attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-sm-1">
+                <b>&nbsp;</b>
+                <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
+                    Seleccionar
+                </button>
 
-    </div>
-    <div class="col-sm-1">
-        <b>&nbsp;</b>
-        <button type="button" class="btn" data-toggle="modal" data-target="#myModal">
-            Seleccionar
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Espediente Kudeaketa</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="cmbServiciosDisponibles">Servicios Disponibles</label>
-                                    <select id="cmbServiciosDisponibles" multiple class="form-control" size="9">
-                                        <option value="00">00-Configuración</option>
-                                        <option value="01">01-Registro</option>
-                                        <option value="02">02-Multas</option>
-                                        <option value="03">03-Detalle de Recibos SEPA</option>
-                                        <option value="04">04-Tasas / Impuestos</option>
-                                        <option value="05">05-P.M.H.</option>
-                                        <option value="06">06-Consulta de Expedientes</option>
-                                        <option value="07">07-Verificación de Documentos</option>
-                                        <option value="08">08-Gestión de Expedientes</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="cmbParametros">Parametros</label>
-                                    <select id="cmbParametros" multiple class="form-control" size="09">
-                                    </select>
-                                </div>
-
-                            </div>
-
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Espediente Kudeaketa</h4>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
-                            <button type="button" class="btn btn-primary btnSeleccionar">Seleccionar</button>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="cmbServiciosDisponibles">Servicios Disponibles</label>
+                                        <select id="cmbServiciosDisponibles" multiple class="form-control" size="9">
+                                            <option value="00">00-Configuración</option>
+                                            <option value="01">01-Registro</option>
+                                            <option value="02">02-Multas</option>
+                                            <option value="03">03-Detalle de Recibos SEPA</option>
+                                            <option value="04">04-Tasas / Impuestos</option>
+                                            <option value="05">05-P.M.H.</option>
+                                            <option value="06">06-Consulta de Expedientes</option>
+                                            <option value="07">07-Verificación de Documentos</option>
+                                            <option value="08">08-Gestión de Expedientes</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="cmbParametros">Parametros</label>
+                                        <select id="cmbParametros" multiple class="form-control" size="09">
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
+                                <button type="button" class="btn btn-primary btnSeleccionar">Seleccionar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
+
+
         </div>
-    </div>
+
+
+
+        <div id="divEspedienteKodea" class="row">
+            <div class="col-sm-6">
+                <div class="">
+                    <h2>Espediente kodea / Código espediente</h2>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <select name="EspedienteKodea" id="cmbEspedienteKodea">
+                        <option value="-1">Aukeratu bat...</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
     {% endif %}
 
 
@@ -1038,6 +1061,9 @@
         </div>
     {% endif %}
 
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
     <div class="hidden">
         {{ form_end(edit_form) }}
     </div>
@@ -1123,7 +1149,7 @@
                         <p></p>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" >
+                        <div class="col-md-12 form-group">
                             <p>
                                 <label for="cmbOrdenantza">Ordenantza</label>
                                 <select name="cmbOrdenantza" id="cmbOrdenantza" style="width:100%"></select>
@@ -1134,7 +1160,7 @@
                         <p></p>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" >
+                        <div class="col-md-12 form-group">
                             <p>
                                 <label for="cmbAtala">Atala</label>
                                 <select name="cmbAtala" id="cmbAtala" style="width:100%"></select>
@@ -1146,7 +1172,7 @@
                         <p></p>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 form-group" >
+                        <div class="col-md-12 form-group">
                             <p>
                                 <label for="cmbKontzeptua">Kontzeptua</label>
                                 <select name="cmbKontzeptua" id="cmbKontzeptua" style="width:100%"></select>
@@ -1162,7 +1188,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ "Ezeztatu" | trans }}</button>
-                    <button id="saveButton" type="button" class="btn btn-primary disabled ">{{ "Gorde" | trans }}</button>
+                    <button id="saveButton" type="button"
+                            class="btn btn-primary disabled ">{{ "Gorde" | trans }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -1170,9 +1197,10 @@
 
 
     <input id="fitxa_id" type="hidden" value="{{ fitxa.id }}">
-    <input id="udala_id" type="hidden" value="{{ udala}}">
+    <input id="udala_id" type="hidden" value="{{ udala }}">
     <input id="udala_kodea" type="hidden" value="{{ udal.kodea }}">
     <input id="url_api_zzoo" type="hidden" value="{{ zzoo_aplikazioaren_API_url }}">
+    <input id="locale" type="hidden" value="{{ app.request.getLocale() }}">
 
 {% endblock %}
 
@@ -1184,83 +1212,144 @@
 
         $(function () {
 
-            $( "#btnFitxaGrabatu" ).on( "click", function () {
+            function parametroChange() {
+                var zerbitzua = $("#fitxa_zerbitzua").val(); // 1 = IFZE  \ 2 = Munigex
+                var parametro = $("#fitxa_parametroa").val();
+
+                if ( zerbitzua.length === 0) { return; }
+                if ( parametro.length === 0) { return; }
+
+                if (( zerbitzua === "1") && ( parametro.substring(0, 2) === "08")) {
+                    $("#divEspedienteKodea").show();
+                    $('#inputEspedienteKodea').hide()
+                } else {
+                    $("#divEspedienteKodea").hide();
+                    // $("#inputEspedienteKodea").show();
+                    $("#espedienteKodea").val("");
+                }
+            }
+
+            $('#fitxa_parametroa').on('change', function (  ) {
+                parametroChange();
+            });
+
+            $("#fitxa_zerbitzua").on("change", function () {
+                parametroChange();
+            });
+
+            // Espediente kodearen konboa kargatu
+            // var url = "http://w390.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/" + $("#udala_kodea").val();
+            // var url = "http://desa2.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/17" + $("#udala_kodea").val();
+            var url = "http://desa2.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/17";
+
+            $.getJSON(url).success(function(data) {
+                $.each(data, function(index,item) {
+                    if ($('#locale').val()==="eu") {
+                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.nomtexpe + "</option>");
+                    } else {
+                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.nomtexp + "</option>");
+                    }
+                });
+            })
+             .then(function(){
+                 $("#cmbEspedienteKodea").select2();
+                 var valExp = $("#espedienteKodea").val();
+
+                 if ( valExp.length > 0 ) {
+                     $('#cmbEspedienteKodea').val(valExp).trigger('change');
+                 }
+
+                 $(document.body).on("change","#cmbEspedienteKodea",function(){
+                     if (this.value === "-1") {
+                         $("#espedienteKodea").val("");
+                     } else {
+                         $("#espedienteKodea").val(this.value);
+                     }
+                 });
+
+             })
+             .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("error " + textStatus);
+                console.log("incoming Text " + jqXHR.responseText);
+            });
+
+            $("#btnFitxaGrabatu").on("click", function () {
 
                 var akatsa = 0;
-                var expedientes = $( "#fitxa_expedientes" ).val();
-                var parametroa = $( "#fitxa_parametroa" ).val();
+                var expedientes = $("#espedienteKodea").val();
+                var parametroa = $("#fitxa_parametroa").val();
 
                 if ( parametroa.length > 0 ) {
-                    if ( parametroa.substring(0,2) === "08" ) {
+                    if ( parametroa.substring(0, 2) === "08" ) {
                         if ( expedientes.length > 0 ) {
-                            $( "#frm_fitxa_edit" ).submit();
+                            $("#frm_fitxa_edit").submit();
                             return;
                         } else {
-                            alert( "Fitxaren Espediente kodea zehaztea beharrezkoa da." );
-                            return
+                            alert("Fitxaren Espediente kodea zehaztea beharrezkoa da.");
+                            return;
                         }
                     }
                 }
 
 
-                $(".kostutaula").each(function() {
+                $(".kostutaula").each(function () {
                     if ( $(this).val() === "-1" ) {
-                        alert( "Kostu taula huts bat gehitu duzu. Aukeratu kostu taula ala ezabatu gehitutako kostu taula." );
+                        alert("Kostu taula huts bat gehitu duzu. Aukeratu kostu taula ala ezabatu gehitutako kostu taula.");
                         akatsa = 1;
                     }
                 });
 
-                $(".araudiasel").each(function() {
+                $(".araudiasel").each(function () {
                     if ( $(this).val().length === 0 ) {
-                        alert( "Araudi huts bat gehitu duzu. Aukeratu araudi bat ala ezabatu." );
+                        alert("Araudi huts bat gehitu duzu. Aukeratu araudi bat ala ezabatu.");
                         akatsa = 1;
                     }
                 });
 
-                $(".prozedurasel").each(function() {
+                $(".prozedurasel").each(function () {
                     if ( $(this).val().length === 0 ) {
-                        alert( "Prozedura huts bat gehitu duzu. Aukeratu prozedura bat ala ezabatu." );
+                        alert("Prozedura huts bat gehitu duzu. Aukeratu prozedura bat ala ezabatu.");
                         akatsa = 1;
                     }
                 });
 
-                if (akatsa === 0 ) {
-                    $( "#frm_fitxa_edit" ).submit();
+                if ( akatsa === 0 ) {
+                    $("#frm_fitxa_edit").submit();
                 }
 
-            } );
+            });
 
-            $( "#fitxa_expedientes" ).on( "focus", function () {
-                var parametroa = $( "#fitxa_parametroa" ).val();
-                if ( parametroa.substring(0,2) === "08" ) {
+            $("#fitxa_expedientes").on("focus", function () {
+                var parametroa = $("#fitxa_parametroa").val();
+                if ( parametroa.substring(0, 2) === "08" ) {
                     if ( $(this).val().length === 0 ) {
-                        $( this ).val( $( "#fitxa_espedientekodea" ).val() );
+                        $(this).val($("#fitxa_espedientekodea").val());
                     }
                 }
             });
 
-            $(".kostutaula").each(function() {
-                console.log($( this ).val());
+            $(".kostutaula").each(function () {
+                console.log($(this).val());
             });
 
             /**
              * Goazen konboak kargatzera
              */
             var param = "{{ zzoo_aplikazioaren_API_url }}";
-            var udalaid = $('#udala_id').val();
-            var udalakodea = $('#udala_kodea').val();
+            var udalaid = $("#udala_id").val();
+            var udalakodea = $("#udala_kodea").val();
 
-            var url = param + "/ordenantzakbykodea/"+udalakodea+".json";
-            var locale ="{{ app.request.getLocale() }}";
+            var url = param + "/ordenantzakbykodea/" + udalakodea + ".json";
+            var locale = "{{ app.request.getLocale() }}";
 
-            var jqxhr = $.getJSON(url, function (result) {
-                if (locale === "es") {
+            var jqxhr = $.getJSON(url, function ( result ) {
+                if ( locale === "es" ) {
                     $("#cmbOrdenantza").append($("<option></option>").attr("value", -1).text("Selecciona"));
-                } else{
+                } else {
                     $("#cmbOrdenantza").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                 }
-                $.each(result, function (i, field) {
-                    if (locale === "es") {
+                $.each(result, function ( i, field ) {
+                    if ( locale === "es" ) {
                         $("#cmbOrdenantza").append($("<option></option>").attr("value", field.id).text(field.izenburuaes_prod));
                     } else {
                         $("#cmbOrdenantza").append($("<option></option>").attr("value", field.id).text(field.izenburuaeu_prod));
@@ -1270,74 +1359,74 @@
 
             jqxhr.complete(function () {
                 $("#cmbOrdenantza").select2({
-                    theme: 'bootstrap',
-                });
+                                                theme: "bootstrap",
+                                            });
             });
 
 
-            $('#cmbOrdenantza').on('change', function () {
-                console.log("ordenantza change")
-                $('#nireloader3').addClass('loading');
+            $("#cmbOrdenantza").on("change", function () {
+                console.log("ordenantza change");
+                $("#nireloader3").addClass("loading");
                 var ordenantzaid = $(this).val();
                 var url = param + "/tributuak/" + ordenantzaid + ".json";
 
-                var jqxhr = $.getJSON(url, function (result) {
+                var jqxhr = $.getJSON(url, function ( result ) {
                     $("#cmbAtala").empty();
                     $("#cmbKontzeptua").empty();
-                    if (locale === "es") {
+                    if ( locale === "es" ) {
                         $("#cmbAtala").append($("<option></option>").attr("value", -1).text("Selecciona"));
-                    } else{
+                    } else {
                         $("#cmbAtala").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                     }
 
-                    if (result.length === 0) {
+                    if ( result.length === 0 ) {
                         return;
                     }
                     var atalak = result;
 
-                    $.each(atalak, function (i, field) {
-                        if ( ('izenburuaes_prod' in field) || ('izenburuaes_prod' in field) )
-                        if (locale === "es") {
-                            var txt ="";
-                            if ( field.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200 ) {
-                                txt = field.izenburuaes_prod.replace('<br>','').replace('</br>','').substr(0, 200);
+                    $.each(atalak, function ( i, field ) {
+                        if ( ("izenburuaes_prod" in field) || ("izenburuaes_prod" in field) )
+                            if ( locale === "es" ) {
+                                var txt = "";
+                                if ( field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                    txt = field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
+                                } else {
+                                    txt = field.izenburuaes_prod;
+                                }
+                                $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
                             } else {
-                                txt = field.izenburuaes_prod;
+                                var txt = "";
+                                if ( field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                    txt = field.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
+                                } else {
+                                    txt = field.izenburuaeu_prod;
+                                }
+                                $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
                             }
-                            $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
-                        } else {
-                            var txt ="";
-                            if ( field.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200 ) {
-                                txt = field.izenburuaeu_prod.replace('<br>','').replace('</br>','').substr(0, 200);
-                            } else {
-                                txt = field.izenburuaeu_prod;
-                            }
-                            $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
-                        }
 
                         // bete zergen cmb
 
-                        if (locale === "es") {
+                        if ( locale === "es" ) {
                             $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Selecciona"));
-                        } else{
+                        } else {
                             $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                         }
                         var azpiatalak = field.azpiatalak;
-                        $.each(azpiatalak, function (i, azpi) {
+                        $.each(azpiatalak, function ( i, azpi ) {
 
 
-                            if (locale === "es") {
+                            if ( locale === "es" ) {
                                 var txt = "";
-                                if (azpi.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200) {
-                                    txt = azpi.izenburuaes_prod.replace('<br>','').replace('</br>','').substr(0, 200);
+                                if ( azpi.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                    txt = azpi.izenburuaes_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
                                 } else {
                                     txt = azpi.izenburuaes_prod;
                                 }
                                 $("#cmbKontzeptua").append($("<option></option>").attr("value", azpi.id).text(txt));
                             } else {
                                 var txt = "";
-                                if (azpi.izenburuaeu_prod.replace('<br>','').replace('</br>','').length > 200) {
-                                    txt = azpi.izenburuaeu_prod.replace('<br>','').replace('</br>','').substr(0, 200);
+                                if ( azpi.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                    txt = azpi.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
                                 } else {
                                     txt = azpi.izenburuaeu_prod;
                                 }
@@ -1351,50 +1440,50 @@
 
                 jqxhr.complete(function () {
                     $("#cmbAtala").select2({
-                        theme: 'bootstrap',
-                    });
+                                               theme: "bootstrap",
+                                           });
                     $("#cmbKontzeptua").select2({
-                        theme: 'bootstrap',
-                    });
-                    $('#nireloader3').removeClass('loading');
+                                                    theme: "bootstrap",
+                                                });
+                    $("#nireloader3").removeClass("loading");
                 });
 
             });
 
-            $('#cmbAtala').on('change', function () {
-                console.log("atala change")
-                $('#nireloader3').addClass('loading');
+            $("#cmbAtala").on("change", function () {
+                console.log("atala change");
+                $("#nireloader3").addClass("loading");
                 var atalaid = $(this).val();
                 var url = param + "/zergak/" + atalaid + ".json";
 
-                var jqxhr = $.getJSON(url, function (result2) {
+                var jqxhr = $.getJSON(url, function ( result2 ) {
                     $("#cmbKontzeptua").empty();
-                    if (locale === "es") {
+                    if ( locale === "es" ) {
                         $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Selecciona"));
-                    } else{
+                    } else {
                         $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                     }
 
-                    if (result2.length === 0) {
+                    if ( result2.length === 0 ) {
                         return;
                     }
 
                     var azpiatalak = result2;
 
-                    $.each(azpiatalak, function (i, field2) {
+                    $.each(azpiatalak, function ( i, field2 ) {
 
-                        if (locale === "es") {
-                            var txt ="";
-                            if ( field2.izenburuaes_prod.replace('<br>','').replace('</br>','').length > 200 ) {
-                                txt = field2.izenburuaes_prod.replace('<br>','').replace('</br>','').substr(0, 200);
+                        if ( locale === "es" ) {
+                            var txt = "";
+                            if ( field2.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                txt = field2.izenburuaes_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
                             } else {
                                 txt = field2.izenburuaes_prod;
                             }
                             $("#cmbKontzeptua").append($("<option></option>").attr("value", field2.id).text(txt));
                         } else {
-                            var txt ="";
-                            if ( field2.izenburuaeu_prod.replace('<br>','').replace('</br>','').length > 200 ) {
-                                txt = field2.izenburuaeu_prod.replace('<br>','').replace('</br>','').substr(0, 200);
+                            var txt = "";
+                            if ( field2.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                txt = field2.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
                             } else {
                                 txt = field2.izenburuaeu_prod;
                             }
@@ -1405,53 +1494,53 @@
 
                 jqxhr.complete(function () {
                     $("#cmbKontzeptua").select2({
-                        theme: 'bootstrap',
-                    });
-                    $('#nireloader3').removeClass('loading');
+                                                    theme: "bootstrap",
+                                                });
+                    $("#nireloader3").removeClass("loading");
                 });
 
             });
 
-            $('#cmbKontzeptua').on('change', function () {
-                console.log("kontzeptua change")
+            $("#cmbKontzeptua").on("change", function () {
+                console.log("kontzeptua change");
                 var kontzeptuaid = $("#cmbKontzeptua").val();
 
                 if ( kontzeptuaid === -1 ) {
                     return;
                 } else {
-                    var midest = $('#dest').val();
-                    $('#' + midest).val(kontzeptuaid).trigger('change');
+                    var midest = $("#dest").val();
+                    $("#" + midest).val(kontzeptuaid).trigger("change");
                     console.log("vbalioa da : " + kontzeptuaid);
-                    $('#modalSelectOrdenantza').modal('toggle')
+                    $("#modalSelectOrdenantza").modal("toggle");
                 }
             });
 
-            $('#saveButton').on('click', function () {
+            $("#saveButton").on("click", function () {
                 var kontzeptuaid = $(this).val();
 
                 if ( kontzeptuaid === -1 ) {
                     return;
                 } else {
-                    $('#saveButton').removeClass("disabled");
+                    $("#saveButton").removeClass("disabled");
                 }
             });
 
 
             var shiftWindow = function () {
-                scrollBy(0, -75)
+                scrollBy(0, -75);
             };
-            if (location.hash) shiftWindow();
+            if ( location.hash ) shiftWindow();
             window.addEventListener("hashchange", shiftWindow);
 
 
-            var customSorter = function (data) {
+            var customSorter = function ( data ) {
 
-                return data.sort(function (a, b) {
+                return data.sort(function ( a, b ) {
                     a = a.text.toLowerCase();
                     b = b.text.toLowerCase();
-                    if (a > b) {
+                    if ( a > b ) {
                         return 1;
-                    } else if (a < b) {
+                    } else if ( a < b ) {
                         return -1;
                     }
                     return 0;
@@ -1459,241 +1548,246 @@
 
             };
 
-            $('#fitxafamilia_familia').select2();
-            $('#fitxa_etiketak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_familiak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_kanalak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_doklagunak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_besteak1ak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_besteak2ak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_besteak3ak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_azpiatalak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_araudiak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_prozedurak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_norkeskatuak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('#fitxa_dokumentazioak').select2({
-                theme: 'bootstrap',
-                tags: true,
-                sorter: customSorter
-            });
-            $('.nireselect2').select2({
-                theme: 'bootstrap',
-                sorter: customSorter
-            });
+            $("#fitxafamilia_familia").select2();
+            $("#fitxa_etiketak").select2({
+                                             theme: "bootstrap",
+                                             tags: true,
+                                             sorter: customSorter
+                                         });
+            $("#fitxa_familiak").select2({
+                                             theme: "bootstrap",
+                                             tags: true,
+                                             sorter: customSorter
+                                         });
+            $("#fitxa_kanalak").select2({
+                                            theme: "bootstrap",
+                                            tags: true,
+                                            sorter: customSorter
+                                        });
+            $("#fitxa_doklagunak").select2({
+                                               theme: "bootstrap",
+                                               tags: true,
+                                               sorter: customSorter
+                                           });
+            $("#fitxa_besteak1ak").select2({
+                                               theme: "bootstrap",
+                                               tags: true,
+                                               sorter: customSorter
+                                           });
+            $("#fitxa_besteak2ak").select2({
+                                               theme: "bootstrap",
+                                               tags: true,
+                                               sorter: customSorter
+                                           });
+            $("#fitxa_besteak3ak").select2({
+                                               theme: "bootstrap",
+                                               tags: true,
+                                               sorter: customSorter
+                                           });
+            $("#fitxa_azpiatalak").select2({
+                                               theme: "bootstrap",
+                                               tags: true,
+                                               sorter: customSorter
+                                           });
+            $("#fitxa_araudiak").select2({
+                                             theme: "bootstrap",
+                                             tags: true,
+                                             sorter: customSorter
+                                         });
+            $("#fitxa_prozedurak").select2({
+                                               theme: "bootstrap",
+                                               tags: true,
+                                               sorter: customSorter
+                                           });
+            $("#fitxa_norkeskatuak").select2({
+                                                 theme: "bootstrap",
+                                                 tags: true,
+                                                 sorter: customSorter
+                                             });
+            $("#fitxa_dokumentazioak").select2({
+                                                   theme: "bootstrap",
+                                                   tags: true,
+                                                   sorter: customSorter
+                                               });
+            $(".nireselect2").select2({
+                                          theme: "bootstrap",
+                                          sorter: customSorter
+                                      });
 
 
-            $('#cmbServiciosDisponibles').change(function () {
+            $("#cmbServiciosDisponibles").change(function () {
 
                 var aukera = $(this).val();
 
-                if (aukera == "01") {
-                    $('#cmbParametros').empty();
-                    $('#cmbParametros').append($("<option selected></option>").attr("value", "01").text("01-Creación de un registro de entrada"));
-                } else if (aukera == "05") {
-                    $('#cmbParametros').empty();
-                    $('#cmbParametros').append($("<option selected></option>").attr("value", "01").text("01-Listado de personas de la vivienda"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "02").text("02-Historial de empadronamiento"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "03").text("03-Certificado de empadronamiento"));
-                } else if (aukera == "08") {
-                    $('#cmbParametros').empty();
-                    $('#cmbParametros').append($("<option selected></option>").attr("value", "00").text("00-Página de ayuda de este tipo de expediente"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "01").text("01-Manual de procedicimiento"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "02").text("02-Instancia"));
-                    $('#cmbParametros').append($("<option></option>").attr("value", "03").text("03-Inicio de expediente"));
+                if ( aukera == "01" ) {
+                    $("#cmbParametros").empty();
+                    $("#cmbParametros").append($("<option selected></option>").attr("value", "01").text("01-Creación de un registro de entrada"));
+                } else if ( aukera == "05" ) {
+                    $("#cmbParametros").empty();
+                    $("#cmbParametros").append($("<option selected></option>").attr("value", "01").text("01-Listado de personas de la vivienda"));
+                    $("#cmbParametros").append($("<option></option>").attr("value", "02").text("02-Historial de empadronamiento"));
+                    $("#cmbParametros").append($("<option></option>").attr("value", "03").text("03-Certificado de empadronamiento"));
+                } else if ( aukera == "08" ) {
+                    $("#cmbParametros").empty();
+                    $("#cmbParametros").append($("<option selected></option>").attr("value", "00").text("00-Página de ayuda de este tipo de expediente"));
+                    $("#cmbParametros").append($("<option></option>").attr("value", "01").text("01-Manual de procedicimiento"));
+                    $("#cmbParametros").append($("<option></option>").attr("value", "02").text("02-Instancia"));
+                    $("#cmbParametros").append($("<option></option>").attr("value", "03").text("03-Inicio de expediente"));
                 } else {
-                    $('#cmbParametros').empty();
+                    $("#cmbParametros").empty();
                 }
             });
 
-            $('#cmbFamilia').change(function () {
-                $('#nireloader2').addClass('loading');
-                $('#badago').hide();
+            $("#cmbFamilia").change(function () {
+                $("#nireloader2").addClass("loading");
+                $("#badago").hide();
                 var aukera = $(this).val();
-                var fitxaid = $('#fitxa_id').val();
-                var urlOrdena = Routing.generate('api_fitxafamilianextorden', {
-                    _locale: 'eu',
+                var fitxaid = $("#fitxa_id").val();
+                var urlOrdena = Routing.generate("api_fitxafamilianextorden", {
+                    _locale: "eu",
                     fitxa_id: fitxaid,
                     familia_id: aukera
                 });
 
 
-                $('#cmbAzpifamilia').empty();
+                $("#cmbAzpifamilia").empty();
 
-                var jqxhr2 = $.getJSON(urlOrdena, function (result) {
-                    if (result.ordena === null) {
-                        $('#saveButton').show();
+                var jqxhr2 = $.getJSON(urlOrdena, function ( result ) {
+                    if ( result.ordena === null ) {
+                        $("#saveButton").show();
                         var miorden = 1;
-                    } else if (result.ordena === -1) {
-                        $('#saveButton').hide();
-                        $('#badago').toggle();
+                    } else if ( result.ordena === -1 ) {
+                        $("#saveButton").hide();
+                        $("#badago").toggle();
                     } else {
-                        $('#saveButton').show();
+                        $("#saveButton").show();
                         var miorden = parseInt(result.ordena) + 1;
                     }
 
-                    $('#fitxafamilia_ordena').val(miorden);
+                    $("#fitxafamilia_ordena").val(miorden);
                 });
 
 
                 $("#fitxafamilia_familia").val(aukera).trigger("change");
-                var url = Routing.generate('get_azpifamiliak', {id: aukera});
+                var url = Routing.generate("get_azpifamiliak", { id: aukera });
 
-                var jqxhr = $.getJSON(url, function (result) {
-                    $.each(result, function (i, field) {
+                var jqxhr = $.getJSON(url, function ( result ) {
+                    $.each(result, function ( i, field ) {
                         $("#cmbAzpifamilia").append($("<option></option>").attr("value", field.id).text(field.familiaeu));
                     });
                 });
 
                 jqxhr.complete(function () {
                     console.log("finito");
-                    $('#nireloader2').removeClass('loading');
+                    $("#nireloader2").removeClass("loading");
                 });
 
             });
 
-            $('#cmbAzpifamilia').change(function () {
-                $('#nireloader2').addClass('loading');
-                $('#badago').hide();
+            $("#cmbAzpifamilia").change(function () {
+                $("#nireloader2").addClass("loading");
+                $("#badago").hide();
 
                 var aukera = $(this).val();
-                var fitxaid = $('#fitxa_id').val();
-                var urlOrdena = Routing.generate('api_fitxafamilianextorden', {
-                    _locale: 'eu',
+                var fitxaid = $("#fitxa_id").val();
+                var urlOrdena = Routing.generate("api_fitxafamilianextorden", {
+                    _locale: "eu",
                     fitxa_id: fitxaid,
                     familia_id: aukera
                 });
-                var jqxhr2 = $.getJSON(urlOrdena, function (result) {
-                    if (result.ordena === null) {
-                        $('#saveButton').show();
+                var jqxhr2 = $.getJSON(urlOrdena, function ( result ) {
+                    if ( result.ordena === null ) {
+                        $("#saveButton").show();
                         var miorden = 1;
-                    } else if (result.ordena === -1) {
-                        $('#saveButton').hide();
-                        $('#badago').toggle();
+                    } else if ( result.ordena === -1 ) {
+                        $("#saveButton").hide();
+                        $("#badago").toggle();
                     } else {
-                        $('#saveButton').show();
+                        $("#saveButton").show();
                         var miorden = parseInt(result.ordena) + 1;
                     }
 
-                    $('#fitxafamilia_ordena').val(miorden);
+                    $("#fitxafamilia_ordena").val(miorden);
                 });
 
                 $("#fitxafamilia_familia").val(aukera).trigger("change");
 
                 jqxhr2.complete(function () {
-                    $('#nireloader2').removeClass('loading');
-                })
+                    $("#nireloader2").removeClass("loading");
+                });
 
             });
 
-            $('.btnSeleccionar').click(function () {
+            $(".btnSeleccionar").click(function () {
                 var resul = "";
-                var nireParametroak = $('#cmbParametros option').size();
-                resul = $('#cmbServiciosDisponibles').val();
-                if (nireParametroak > 0) {
-                    var param = $('#cmbParametros').val();
+                var nireParametroak = $("#cmbParametros option").size();
+                resul = $("#cmbServiciosDisponibles").val();
+                if ( nireParametroak > 0 ) {
+                    var param = $("#cmbParametros").val();
                     resul = resul + param;
                 }
 
-                $('#fitxa_parametroa').val(resul);
-                $('#myModal').modal('toggle');
+                $("#fitxa_parametroa").val(resul);
+                $("#myModal").modal("toggle");
+                parametroChange();
+
             });
 
-            $('.btn-ordena').click(function () {
+            $(".btn-ordena").click(function () {
 
-                $('#nireloader').addClass('loading');
-                var miid = $(this).data('id');
+                $("#nireloader").addClass("loading");
+                var miid = $(this).data("id");
 
-                var url = Routing.generate('fitxafamilia_edit', {_locale: 'eu', id: miid});
+                var url = Routing.generate("fitxafamilia_edit", { _locale: "eu", id: miid });
 
-                $('#modalOrdenabody').load(url, function () {
+                $("#modalOrdenabody").load(url, function () {
                     $("#frmfitxafamilia").attr("action", url);
-                    $('#modalOrdena').modal();
+                    $("#modalOrdena").modal();
                 });
 
-                $('#modalOrdena').on('shown.bs.modal', function (e) {
-                    $('#nireloader').removeClass('loading');
+                $("#modalOrdena").on("shown.bs.modal", function ( e ) {
+                    $("#nireloader").removeClass("loading");
                 });
             });
 
-            $('.btnOrdenaEzabatu').on('click', function () {
+            $(".btnOrdenaEzabatu").on("click", function () {
                 var that = $(this);
                 bootbox.confirm({
-                    title: "Ziur zaude familia ezabatu nahi duzula fitxatik?",
-                    message: "Fitxatik ezabatuko da familiaren informazioa baina ez Familia bera.",
-                    buttons: {
-                        cancel: {
-                            label: '<i class="fa fa-times"></i> Ezeztatu'
-                        },
-                        confirm: {
-                            label: '<i class="fa fa-check"></i> Onartu'
-                        }
-                    },
-                    callback: function (result) {
-                        if (result === true) {
-                            var miid = $(that).data('id');
-                            console.log("miid =>" + miid);
-                            var url = Routing.generate('fitxafamilia_delete', {_locale: 'eu', id: miid});
-                            console.log("familia delete url => " + url);
+                                    title: "Ziur zaude familia ezabatu nahi duzula fitxatik?",
+                                    message: "Fitxatik ezabatuko da familiaren informazioa baina ez Familia bera.",
+                                    buttons: {
+                                        cancel: {
+                                            label: "<i class=\"fa fa-times\"></i> Ezeztatu"
+                                        },
+                                        confirm: {
+                                            label: "<i class=\"fa fa-check\"></i> Onartu"
+                                        }
+                                    },
+                                    callback: function ( result ) {
+                                        if ( result === true ) {
+                                            var miid = $(that).data("id");
+                                            console.log("miid =>" + miid);
+                                            var url = Routing.generate("fitxafamilia_delete", {
+                                                _locale: "eu",
+                                                id: miid
+                                            });
+                                            console.log("familia delete url => " + url);
 
-                            $.ajax({
-                                url: url,
-                                type: 'delete',
-                                success: function (result) {
-                                    console.log('Delete');
-                                    $(that).closest("tr").remove();
-                                },
-                                error: function (e) {
-                                    console.log(e.responseText);
-                                }
-                            });
+                                            $.ajax({
+                                                       url: url,
+                                                       type: "delete",
+                                                       success: function ( result ) {
+                                                           console.log("Delete");
+                                                           $(that).closest("tr").remove();
+                                                       },
+                                                       error: function ( e ) {
+                                                           console.log(e.responseText);
+                                                       }
+                                                   });
 
-                        }
-                    }
-                });
+                                        }
+                                    }
+                                });
             });
 
         });
@@ -1708,36 +1802,36 @@
         jQuery(document).ready(function () {
 
             // Get the ul that holds the collection of tags
-            $collectionHolder = $('#kostua-fields-list');
+            $collectionHolder = $("#kostua-fields-list");
             // add a delete link to all of the existing tag form li elements
-            $collectionHolder.find('li').each(function () {
-                if (!$(this).hasClass("burua"))
+            $collectionHolder.find("li").each(function () {
+                if ( !$(this).hasClass("burua") )
                     addKostuaFormDeleteLink($(this));
             });
 
             // Araudiak dituen ul-a jaso
-            $collectionHolder = $('#araudia-fields-list');
+            $collectionHolder = $("#araudia-fields-list");
             // li elementu guztiei ezabatzeko ikonoa jarri
-            $collectionHolder.find('li').each(function () {
-                if (!$(this).hasClass("burua"))
+            $collectionHolder.find("li").each(function () {
+                if ( !$(this).hasClass("burua") )
                     addAraudiaFormDeleteLink($(this));
             });
             // Prozedurak dituen ul-a jaso
-            $collectionHolder = $('#prozedura-fields-list');
+            $collectionHolder = $("#prozedura-fields-list");
             // li elementu guztiei ezabatzeko ikonoa jarri
-            $collectionHolder.find('li').each(function () {
-                if (!$(this).hasClass("burua"))
+            $collectionHolder.find("li").each(function () {
+                if ( !$(this).hasClass("burua") )
                     addProzeduraFormDeleteLink($(this));
             });
 
 
-            jQuery('#add-prozedura').click(function (e) {
+            jQuery("#add-prozedura").click(function ( e ) {
                 e.preventDefault();
 //                alert ("sartu da!!");
-                var prozeduraList = jQuery('#prozedura-fields-list');
+                var prozeduraList = jQuery("#prozedura-fields-list");
 
                 // grab the prototype template
-                var newWidget = prozeduraList.attr('data-prototype');
+                var newWidget = prozeduraList.attr("data-prototype");
                 // replace the "__name__" used in the id and name of the prototype
                 // with a number that's unique to your emails
                 // end name attribute looks like name="contact[emails][2]"
@@ -1745,16 +1839,16 @@
                 prozeduraCount++;
 
                 // create a new list element and add it to the list
-                var newLi = jQuery('<li></li>').html(newWidget);
+                var newLi = jQuery("<li></li>").html(newWidget);
                 newLi.appendTo(prozeduraList);
             });
-            jQuery('#add-araudia').click(function (e) {
+            jQuery("#add-araudia").click(function ( e ) {
                 e.preventDefault();
 //                alert ("sartu da!!");
-                var araudiaList = jQuery('#araudia-fields-list');
+                var araudiaList = jQuery("#araudia-fields-list");
 
                 // grab the prototype template
-                var newWidget = araudiaList.attr('data-prototype');
+                var newWidget = araudiaList.attr("data-prototype");
                 // replace the "__name__" used in the id and name of the prototype
                 // with a number that's unique to your emails
                 // end name attribute looks like name="contact[emails][2]"
@@ -1765,18 +1859,18 @@
                 araudiaCount++;
 
                 // create a new list element and add it to the list
-                var newLi = jQuery('<li></li>').html(newWidget);
+                var newLi = jQuery("<li></li>").html(newWidget);
                 newLi.appendTo(araudiaList);
 
                 // Ordenatzen
-                var customSorter = function (data) {
+                var customSorter = function ( data ) {
 
-                    return data.sort(function (a, b) {
+                    return data.sort(function ( a, b ) {
                         a = a.text.toLowerCase();
                         b = b.text.toLowerCase();
-                        if (a > b) {
+                        if ( a > b ) {
                             return 1;
-                        } else if (a < b) {
+                        } else if ( a < b ) {
                             return -1;
                         }
                         return 0;
@@ -1786,36 +1880,36 @@
 
 
                 $(selectIzena).select2({
-                    theme: 'bootstrap',
-                    width: 'resolve',
-                    sorter: customSorter
+                                           theme: "bootstrap",
+                                           width: "resolve",
+                                           sorter: customSorter
 
-                });
+                                       });
 
             });
-            jQuery('#add-kostua').click(function (e) {
+            jQuery("#add-kostua").click(function ( e ) {
                 e.preventDefault();
-                var locale ="{{ app.request.getLocale() }}";
-                $('#cmbOrdenantza').val(-1).trigger("change");
-                $('#cmbAtala').empty();
+                var locale = "{{ app.request.getLocale() }}";
+                $("#cmbOrdenantza").val(-1).trigger("change");
+                $("#cmbAtala").empty();
                 $("#cmbKontzeptua").empty();
-                if (locale === "es") {
+                if ( locale === "es" ) {
                     $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Selecciona"));
-                } else{
+                } else {
                     $("#cmbKontzeptua").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                 }
 
 
-                var kostuaList = jQuery('#kostua-fields-list');
-                var newWidget = kostuaList.attr('data-prototype');
+                var kostuaList = jQuery("#kostua-fields-list");
+                var newWidget = kostuaList.attr("data-prototype");
                 newWidget = newWidget.replace(/__name__/g, kostuaCount);
-                $('#dest').val("fitxa_kostuak_" + kostuaCount + "_kostua");
+                $("#dest").val("fitxa_kostuak_" + kostuaCount + "_kostua");
                 var ni = ".nirerow" + kostuaCount;
-                var niez= parseInt(kostuaCount);
+                var niez = parseInt(kostuaCount);
                 kostuaCount++;
-                var newLi = jQuery('<li></li>').html(newWidget);
+                var newLi = jQuery("<li></li>").html(newWidget);
 
-                var $removeFormA = '<div class="col-sm-1"><a href="javascript:void(0);" onclick="funcEzabatu(\'.nirerow'+ niez +'\')" class="cmdEzabatuRow"><i class="fa fa-times text-danger cmdEzabatuRow"></i></a></div>';
+                var $removeFormA = "<div class=\"col-sm-1\"><a href=\"javascript:void(0);\" onclick=\"funcEzabatu('.nirerow" + niez + "\')\" class=\"cmdEzabatuRow\"><i class=\"fa fa-times text-danger cmdEzabatuRow\"></i></a></div>";
                 $(newLi).appendTo($removeFormA);
 
                 newLi.appendTo(kostuaList);
@@ -1824,20 +1918,19 @@
             });
 
 
-
         });
 
 
-        function funcEzabatu(nirediv) {
+        function funcEzabatu( nirediv ) {
             console.log(nirediv);
             $(nirediv).remove();
         }
 
-        function addKostuaFormDeleteLink($tagFormLi) {
-            var $removeFormA = $('<div class="col-sm-1"><a href="#"><i class="fa fa-times text-danger"></i></a></div>');
+        function addKostuaFormDeleteLink( $tagFormLi ) {
+            var $removeFormA = $("<div class=\"col-sm-1\"><a href=\"#\"><i class=\"fa fa-times text-danger\"></i></a></div>");
             $tagFormLi.append($removeFormA);
 
-            $removeFormA.on('click', function (e) {
+            $removeFormA.on("click", function ( e ) {
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
@@ -1845,11 +1938,12 @@
                 $tagFormLi.remove();
             });
         }
-        function addAraudiaFormDeleteLink($tagFormLi) {
-            var $removeFormA = $('<div class="col-sm-1"><a href="#"><i class="fa fa-times text-danger"></i></a></div>');
+
+        function addAraudiaFormDeleteLink( $tagFormLi ) {
+            var $removeFormA = $("<div class=\"col-sm-1\"><a href=\"#\"><i class=\"fa fa-times text-danger\"></i></a></div>");
             $tagFormLi.append($removeFormA);
 
-            $removeFormA.on('click', function (e) {
+            $removeFormA.on("click", function ( e ) {
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
@@ -1857,11 +1951,12 @@
                 $tagFormLi.remove();
             });
         }
-        function addProzeduraFormDeleteLink($tagFormLi) {
-            var $removeFormA = $('<div class="col-sm-1"><a href="#"><i class="fa fa-times text-danger"></i></a></div>');
+
+        function addProzeduraFormDeleteLink( $tagFormLi ) {
+            var $removeFormA = $("<div class=\"col-sm-1\"><a href=\"#\"><i class=\"fa fa-times text-danger\"></i></a></div>");
             $tagFormLi.append($removeFormA);
 
-            $removeFormA.on('click', function (e) {
+            $removeFormA.on("click", function ( e ) {
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
