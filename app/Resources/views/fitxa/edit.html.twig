@@ -1240,8 +1240,8 @@
             });
 
             // Espediente kodearen konboa kargatu
-            // var url = "http://w390.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/" + $("#udala_kodea").val();
-            var url = "http://desa2.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/17";
+            var url = "http://w390.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/" + $("#udala_kodea").val();
+            // var url = "http://desa2.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/17";
 
             $.getJSON(url).success(function(data) {
                 $.each(data, function(index,item) {
