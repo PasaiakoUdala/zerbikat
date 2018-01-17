@@ -1246,14 +1246,14 @@
             $.getJSON(url).success(function(data) {
                 $.each(data, function(index,item) {
                     if ($('#locale').val()==="eu") {
-                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " " + item.nomtexpe + "</option>");
+                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " - " + item.nomtexpe + "</option>");
                     } else {
-                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " " + item.nomtexp + "</option>");
+                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " - " + item.nomtexp + "</option>");
                     }
                 });
             })
              .then(function(){
-                 $("#cmbEspedienteKodea").select2();
+                 $("#cmbEspedienteKodea").select2({ width: '100%' });
                  var valExp = $("#espedienteKodea").val();
 
                  if ( valExp.length > 0 ) {
