@@ -1216,18 +1216,20 @@
                 var zerbitzua = $("#fitxa_zerbitzua").val(); // 1 = IFZE  \ 2 = Munigex
                 var parametro = $("#fitxa_parametroa").val();
 
-                if ( zerbitzua.length === 0) { return; }
-                if ( parametro.length === 0) { return; }
 
                 if (( zerbitzua === "1") && ( parametro.substring(0, 2) === "08")) {
                     $("#divEspedienteKodea").show();
-                    $('#inputEspedienteKodea').hide()
-                } else {
-                    $("#divEspedienteKodea").hide();
-                    // $("#inputEspedienteKodea").show();
-                    $("#espedienteKodea").val("");
+                    $("#inputEspedienteKodea").hide();
+                    return;
                 }
+
+                $("#divEspedienteKodea").hide();
+                // $("#inputEspedienteKodea").show();
+                $("#espedienteKodea").val("");
+
             }
+
+            parametroChange();
 
             $('#fitxa_parametroa').on('change', function (  ) {
                 parametroChange();
@@ -1239,15 +1241,14 @@
 
             // Espediente kodearen konboa kargatu
             // var url = "http://w390.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/" + $("#udala_kodea").val();
-            // var url = "http://desa2.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/17" + $("#udala_kodea").val();
             var url = "http://desa2.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/17";
 
             $.getJSON(url).success(function(data) {
                 $.each(data, function(index,item) {
                     if ($('#locale').val()==="eu") {
-                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.nomtexpe + "</option>");
+                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " " + item.nomtexpe + "</option>");
                     } else {
-                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.nomtexp + "</option>");
+                        $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " " + item.nomtexp + "</option>");
                     }
                 });
             })
