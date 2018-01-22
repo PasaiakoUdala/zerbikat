@@ -206,6 +206,7 @@ class ApiController extends FOSRestController
             FROM BackendBundle:Familia f
               INNER JOIN f.udala u
             WHERE u.kodea = :udala
+            ORDER BY f.ordena
         '
         );
         $query->setParameter( 'udala', $udala );
@@ -214,6 +215,8 @@ class ApiController extends FOSRestController
         $view = View::create();
         $view->setData( $familiak );
 
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
         return $view;
 
     }// "get_familiak"            [GET] /familiak/{udala}
@@ -237,11 +240,14 @@ class ApiController extends FOSRestController
     public function getAzpifamiliakAction( $id )
     {
         $em = $this->getDoctrine()->getManager();
+        /** @var QueryBuilder $query */
         $query = $em->createQuery(
             '
           SELECT f
             FROM BackendBundle:Familia f              
             WHERE f.parent = :id
+            ORDER BY f.ordena
+            
         '
         );
         $query->setParameter( 'id', $id );
@@ -249,6 +255,8 @@ class ApiController extends FOSRestController
 
         $view = View::create();
         $view->setData( $azpifamiliak );
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
 
         return $view;
 
