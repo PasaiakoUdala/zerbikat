@@ -302,6 +302,8 @@ class ApiController extends FOSRestController
 
         $view = View::create();
         $view->setData( $fitxak );
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
 
         return $view;
 
