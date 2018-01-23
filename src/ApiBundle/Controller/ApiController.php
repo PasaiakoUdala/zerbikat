@@ -289,8 +289,9 @@ class ApiController extends FOSRestController
             '
             SELECT f.id,f.espedientekodea,f.deskribapenaeu,f.deskribapenaes
             FROM BackendBundle:Fitxa f
-              LEFT JOIN f.familiak ff
-            WHERE ff.id = :id AND f.publikoa=1
+              LEFT JOIN f.fitxafamilia ff
+              LEFT JOIN ff.familia fa
+            WHERE f.publikoa=1 AND fa.id=:id
             '
         );
 

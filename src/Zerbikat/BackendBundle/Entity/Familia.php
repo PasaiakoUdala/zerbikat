@@ -97,6 +97,7 @@
 
         /**
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Familia", inversedBy="children")
+         * @Expose
          */
         private $parent;
 
