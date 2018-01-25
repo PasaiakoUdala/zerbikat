@@ -920,50 +920,51 @@
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Espediente Kudeaketa</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="cmbServiciosDisponibles">Servicios Disponibles</label>
-                                        <select id="cmbServiciosDisponibles" multiple class="form-control" size="10">
-                                            <option value="00">00-Configuración</option>
-                                            <option value="01">01-Registro</option>
-                                            <option value="02">02-Multas</option>
-                                            <option value="03">03-Detalle de Recibos SEPA</option>
-                                            <option value="04">04-Tasas / Impuestos</option>
-                                            <option value="05">05-P.M.H.</option>
-                                            <option value="06">06-Consulta de Expedientes</option>
-                                            <option value="07">07-Verificación de Documentos</option>
-                                            <option value="08">08-Gestión de Expedientes</option>
-                                            <option value="09">09-Consulta recibos</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="cmbParametros">Parametros</label>
-                                        <select id="cmbParametros" multiple class="form-control" size="10">
-                                        </select>
-                                    </div>
-
-                                </div>
-
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Espediente Kudeaketa</h4>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
-                                <button type="button" class="btn btn-primary btnSeleccionar">Seleccionar</button>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="cmbServiciosDisponibles">Servicios Disponibles</label>
+                                            <select id="cmbServiciosDisponibles" multiple class="form-control"
+                                                    size="10">
+                                                <option value="00">00-Configuración</option>
+                                                <option value="01">01-Registro</option>
+                                                <option value="02">02-Multas</option>
+                                                <option value="03">03-Detalle de Recibos SEPA</option>
+                                                <option value="04">04-Tasas / Impuestos</option>
+                                                <option value="05">05-P.M.H.</option>
+                                                <option value="06">06-Consulta de Expedientes</option>
+                                                <option value="07">07-Verificación de Documentos</option>
+                                                <option value="08">08-Gestión de Expedientes</option>
+                                                <option value="09">09-Consulta recibos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="cmbParametros">Parametros</label>
+                                            <select id="cmbParametros" multiple class="form-control" size="10">
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
+                                    <button type="button" class="btn btn-primary btnSeleccionar">Seleccionar</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
 
 
@@ -1218,7 +1219,7 @@
                 var parametro = $("#fitxa_parametroa").val();
 
 
-                if (( zerbitzua === "1") && ( parametro.substring(0, 2) === "08")) {
+                if ( (zerbitzua === "1") && (parametro.substring(0, 2) === "08") ) {
                     $("#divEspedienteKodea").show();
                     $("#inputEspedienteKodea").hide();
                     return;
@@ -1232,7 +1233,7 @@
 
             parametroChange();
 
-            $('#fitxa_parametroa').on('change', function (  ) {
+            $("#fitxa_parametroa").on("change", function () {
                 parametroChange();
             });
 
@@ -1244,25 +1245,25 @@
             var url = "http://w390.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/" + $("#udala_kodea").val();
             // var url = "http://desa2.sare.gipuzkoa.net/WAS/AYTO/URJUdalRecursoswsWEB/obtenerTiposExpediente/17";
 
-            $.getJSON(url).success(function(data) {
-                $.each(data, function(index,item) {
-                    if ($('#locale').val()==="eu") {
+            $.getJSON(url).success(function ( data ) {
+                $.each(data, function ( index, item ) {
+                    if ( $("#locale").val() === "eu" ) {
                         $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " - " + item.nomtexpe + "</option>");
                     } else {
                         $("#cmbEspedienteKodea").append("<option value=" + item.tipoexp + ">" + item.tipoexp + " - " + item.nomtexp + "</option>");
                     }
                 });
             })
-             .then(function(){
-                 $("#cmbEspedienteKodea").select2({ width: '100%' });
+             .then(function () {
+                 $("#cmbEspedienteKodea").select2({ width: "100%" });
                  var valExp = $("#espedienteKodea").val();
 
                  if ( valExp.length > 0 ) {
-                     $('#cmbEspedienteKodea').val(valExp).trigger('change');
+                     $("#cmbEspedienteKodea").val(valExp).trigger("change");
                  }
 
-                 $(document.body).on("change","#cmbEspedienteKodea",function(){
-                     if (this.value === "-1") {
+                 $(document.body).on("change", "#cmbEspedienteKodea", function () {
+                     if ( this.value === "-1" ) {
                          $("#espedienteKodea").val("");
                      } else {
                          $("#espedienteKodea").val(this.value);
@@ -1270,10 +1271,10 @@
                  });
 
              })
-             .fail(function(jqXHR, textStatus, errorThrown) {
-                console.log("error " + textStatus);
-                console.log("incoming Text " + jqXHR.responseText);
-            });
+             .fail(function ( jqXHR, textStatus, errorThrown ) {
+                 console.log("error " + textStatus);
+                 console.log("incoming Text " + jqXHR.responseText);
+             });
 
             $("#btnFitxaGrabatu").on("click", function () {
 

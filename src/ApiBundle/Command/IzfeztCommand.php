@@ -668,7 +668,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $doctexteu = $doctexteu . "<a href='" . $doc->getEstekaeu() . "' target='_blank'>" . $doc->getKodea() . " " . $doc->getDeskribapenaeu() . "</a>";
                                         } else {
                                             $doctextes = $doctextes . $doc->getKodea() . " " . $doc->getDeskribapenaes();
-                                            $doctexteu = $doctextes . $doc->getKodea() . " " . $doc->getDeskribapenaeu();
+                                            $doctexteu = $doctexteu . $doc->getKodea() . " " . $doc->getDeskribapenaeu();
                                         }
                                         $doctextes = $doctextes . "</li>";
                                         $doctexteu = $doctexteu . "</li>";
@@ -2319,7 +2319,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $doctexteu = $doctexteu . "<a href='" . $doc->getEstekaeu() . "' target='_blank'>" . $doc->getKodea() . " " . $doc->getDeskribapenaeu() . "</a>";
                                             } else {
                                                 $doctextes = $doctextes . $doc->getKodea() . " " . $doc->getDeskribapenaes();
-                                                $doctexteu = $doctextes . $doc->getKodea() . " " . $doc->getDeskribapenaeu();
+                                                $doctexteu = $doctexteu . $doc->getKodea() . " " . $doc->getDeskribapenaeu();
                                             }
                                             $doctextes = $doctextes . "</li>";
                                             $doctexteu = $doctexteu . "</li>";
