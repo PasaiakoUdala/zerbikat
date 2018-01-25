@@ -1215,9 +1215,10 @@ class IzfeztCommand extends ContainerAwareCommand
                             $badu = 0;
                             if ( $eremuak[ "aurreikusi" ] ) {
                                 if ( $fitxa->getAurreikusi() ) {
+
                                     $textes = $textes . "<li>";
                                     $texteu = $texteu . "<li>";
-                                    $textes = $textes . $labelak[ "aurreikusilabeles" ] . ": " . $fitxa->getAurreikusi() . "\n";
+                                    $textes = $textes . $labelak[ "aurreikusilabeles" ] . ": " . $fitxa->getAurreikusi()->getEpeaes() . "\n";
                                     $texteu = $texteu . $labelak[ "aurreikusilabeleu" ] . ": " . $fitxa->getAurreikusi() . "\n";
                                     $textes = $textes . "</li>";
                                     $texteu = $texteu . "</li>";
@@ -1230,7 +1231,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                 if ( $fitxa->getArrunta() ) {
                                     $textes = $textes . "<li>";
                                     $texteu = $texteu . "<li>";
-                                    $textes = $textes . $labelak[ "arruntalabeles" ] . ": " . $fitxa->getArrunta() . "\n";
+                                    $textes = $textes . $labelak[ "arruntalabeles" ] . ": " . $fitxa->getArrunta()->getEpeaes() . "\n";
                                     $texteu = $texteu . $labelak[ "arruntalabeleu" ] . ": " . $fitxa->getArrunta() . "\n";
                                     $textes = $textes . "</li>";
                                     $texteu = $texteu . "</li>";
@@ -2871,7 +2872,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                     if ( $fitxa->getAurreikusi() ) {
                                         $textes = $textes . "<li>";
                                         $texteu = $texteu . "<li>";
-                                        $textes = $textes . $labelak[ "aurreikusilabeles" ] . ": " . $fitxa->getAurreikusi() . "\n";
+                                        $textes = $textes . $labelak[ "aurreikusilabeles" ] . ": " . $fitxa->getAurreikusi()->getEpeaes() . "\n";
                                         $texteu = $texteu . $labelak[ "aurreikusilabeleu" ] . ": " . $fitxa->getAurreikusi() . "\n";
                                         $textes = $textes . "</li>";
                                         $texteu = $texteu . "</li>";
@@ -2884,7 +2885,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                     if ( $fitxa->getArrunta() ) {
                                         $textes = $textes . "<li>";
                                         $texteu = $texteu . "<li>";
-                                        $textes = $textes . $labelak[ "arruntalabeles" ] . ": " . $fitxa->getArrunta() . "\n";
+                                        $textes = $textes . $labelak[ "arruntalabeles" ] . ": " . $fitxa->getArrunta()->getEpeaes() . "\n";
                                         $texteu = $texteu . $labelak[ "arruntalabeleu" ] . ": " . $fitxa->getArrunta() . "\n";
                                         $textes = $textes . "</li>";
                                         $texteu = $texteu . "</li>";
