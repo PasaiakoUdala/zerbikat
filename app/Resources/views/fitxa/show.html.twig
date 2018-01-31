@@ -349,8 +349,8 @@
                             {% for kostutaula in kostuZerrenda %}
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th colspan="2" class="text-center">
-                                            {{ kostutaula['kodea_prod'] | raw }}
+                                        <th colspan="2" class="text-center">{% if kostutaula['kodea_prod'] is defined  %}
+                                            {{ kostutaula['kodea_prod'] | raw }} {% endif %}
                                             - {{ kostutaula['izenburuaeu_prod'] | raw }}
                                         </th>
                                     </tr>
@@ -423,8 +423,8 @@
                             {% for kostutaula in kostuZerrenda %}
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th colspan="2" class="text-center">
-                                            {{ kostutaula['kodea_prod'] | raw }}
+                                        <th colspan="2" class="text-center">{% if kostutaula['kodea_prod'] is defined  %}
+                                            {{ kostutaula['kodea_prod'] | raw }}{% endif %}
                                             - {{ kostutaula['izenburuaes_prod'] | raw }}
                                         </th>
                                     </tr>

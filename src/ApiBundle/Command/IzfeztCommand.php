@@ -950,10 +950,10 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         $textes = $textes . $kanala->getPostakodea() . " ";
                                                         $texteu = $texteu . $kanala->getPostakodea() . " ";
                                                     }
-                                                    if ( $kanala->getUdala() ) {
-                                                        $textes = $textes . $kanala->getUdala()->getIzenaes() . "<br/>";
-                                                        $texteu = $texteu . $kanala->getUdala()->getIzenaeu() . "<br/>";
-                                                    }
+//                                                    if ( $kanala->getUdala() ) {
+//                                                        $textes = $textes . $kanala->getUdala()->getIzenaes() . "<br/>";
+//                                                        $texteu = $texteu . $kanala->getUdala()->getIzenaeu() . "<br/>";
+//                                                    }
                                                     if ( $kanala->getOrdutegia() ) {
                                                         $textes = $textes . $kanala->getOrdutegia() . "<br/>";
                                                         $texteu = $texteu . $kanala->getOrdutegia() . "<br/>";
@@ -1058,13 +1058,19 @@ class IzfeztCommand extends ContainerAwareCommand
                                 if ( $fitxa->getUdala()->getZergaor() ) {
                                     foreach ( $kostuZerrenda as $kostutaula ) {
                                         if ( $kostutaula !== null ) {
-                                            $textes = $textes . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaes_prod" ] . "</th></tr>";
-                                            $texteu = $texteu . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaeu_prod" ] . "</th></tr>";
+                                            if ( array_key_exists( "kodea_prod", $kostutaula ) ) {
+                                                $textes = $textes . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaes_prod" ] . "</th></tr>";
+                                                $texteu = $texteu . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaeu_prod" ] . "</th></tr>";
+                                            } else {
+                                                $textes = $textes . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "izenburuaes_prod" ] . "</th></tr>";
+                                                $texteu = $texteu . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "izenburuaeu_prod" ] . "</th></tr>";
+
+                                            }
 
                                             foreach ( $kostutaula[ "parrafoak" ] as $parrafo ) {
-                                                if ( array_key_exists( "kontzeptuaes_prod", $kontzeptu ) ) {
-                                                    $textes = $textes . "<tr><td colspan='2'>" . $parrafo[ "kontzeptuaes_prod" ] . "</td></tr>";
-                                                    $texteu = $texteu . "<tr><td colspan='2'>" . $parrafo[ "kontzeptuaeu_prod" ] . "</td></tr>";
+                                                if ( array_key_exists( "testuaes_prod", $parrafo ) ) {
+                                                    $textes = $textes . "<tr><td colspan='2'>" . $parrafo[ "testuaes_prod" ] . "</td></tr>";
+                                                    $texteu = $texteu . "<tr><td colspan='2'>" . $parrafo[ "testuaeu_prod" ] . "</td></tr>";
                                                 }
                                             }
                                             foreach ( $kostutaula[ "kontzeptuak" ] as $kontzeptu ) {
@@ -2714,8 +2720,14 @@ class IzfeztCommand extends ContainerAwareCommand
                                     if ( $fitxa->getUdala()->getZergaor() ) {
                                         foreach ( $kostuZerrenda as $kostutaula ) {
                                             if ( $kostutaula !== null ) {
-                                                $textes = $textes . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaes_prod" ] . "</th></tr>";
-                                                $texteu = $texteu . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaeu_prod" ] . "</th></tr>";
+                                                if ( array_key_exists( "kodea_prod", $kostutaula ) ) {
+                                                    $textes = $textes . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaes_prod" ] . "</th></tr>";
+                                                    $texteu = $texteu . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "kodea_prod" ] . " - " . $kostutaula[ "izenburuaeu_prod" ] . "</th></tr>";
+                                                } else {
+                                                    $textes = $textes . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "izenburuaes_prod" ] . "</th></tr>";
+                                                    $texteu = $texteu . "<table  class='table table-bordered table-condensed table-hover'><tr><th colspan='2' class='text-center'>" . $kostutaula[ "izenburuaeu_prod" ] . "</th></tr>";
+
+                                                }
 
                                                 foreach ( $kostutaula[ "parrafoak" ] as $parrafo ) {
                                                     if ( array_key_exists( "testuaes_prod", $parrafo ) ) {
