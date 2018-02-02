@@ -885,12 +885,12 @@
         <div class="row" id="espedienteKudeaketa">
             <div class="col-sm-6">
                 <div class="page-header">
-                    <h2>ESPEDIENTE KUDEAKETA</h2>
+                    <h2>ZERBITZU TELEMATIKOAK</h2>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="page-header">
-                    <h2>GESTIÓN DE EXPEDIENTES</h2>
+                    <h2>SERVICIOS TELEMÁTICOS</h2>
                 </div>
             </div>
             <div class="col-sm-7">
@@ -1362,8 +1362,8 @@
 
             jqxhr.complete(function () {
                 $("#cmbOrdenantza").select2({
-                                                theme: "bootstrap",
-                                            });
+                    theme: "bootstrap",
+                });
             });
 
 
@@ -1443,11 +1443,11 @@
 
                 jqxhr.complete(function () {
                     $("#cmbAtala").select2({
-                                               theme: "bootstrap",
-                                           });
+                        theme: "bootstrap",
+                    });
                     $("#cmbKontzeptua").select2({
-                                                    theme: "bootstrap",
-                                                });
+                        theme: "bootstrap",
+                    });
                     $("#nireloader3").removeClass("loading");
                 });
 
@@ -1497,8 +1497,8 @@
 
                 jqxhr.complete(function () {
                     $("#cmbKontzeptua").select2({
-                                                    theme: "bootstrap",
-                                                });
+                        theme: "bootstrap",
+                    });
                     $("#nireloader3").removeClass("loading");
                 });
 
@@ -1553,69 +1553,69 @@
 
             $("#fitxafamilia_familia").select2();
             $("#fitxa_etiketak").select2({
-                                             theme: "bootstrap",
-                                             tags: true,
-                                             sorter: customSorter
-                                         });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_familiak").select2({
-                                             theme: "bootstrap",
-                                             tags: true,
-                                             sorter: customSorter
-                                         });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_kanalak").select2({
-                                            theme: "bootstrap",
-                                            tags: true,
-                                            sorter: customSorter
-                                        });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_doklagunak").select2({
-                                               theme: "bootstrap",
-                                               tags: true,
-                                               sorter: customSorter
-                                           });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_besteak1ak").select2({
-                                               theme: "bootstrap",
-                                               tags: true,
-                                               sorter: customSorter
-                                           });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_besteak2ak").select2({
-                                               theme: "bootstrap",
-                                               tags: true,
-                                               sorter: customSorter
-                                           });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_besteak3ak").select2({
-                                               theme: "bootstrap",
-                                               tags: true,
-                                               sorter: customSorter
-                                           });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_azpiatalak").select2({
-                                               theme: "bootstrap",
-                                               tags: true,
-                                               sorter: customSorter
-                                           });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_araudiak").select2({
-                                             theme: "bootstrap",
-                                             tags: true,
-                                             sorter: customSorter
-                                         });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_prozedurak").select2({
-                                               theme: "bootstrap",
-                                               tags: true,
-                                               sorter: customSorter
-                                           });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_norkeskatuak").select2({
-                                                 theme: "bootstrap",
-                                                 tags: true,
-                                                 sorter: customSorter
-                                             });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $("#fitxa_dokumentazioak").select2({
-                                                   theme: "bootstrap",
-                                                   tags: true,
-                                                   sorter: customSorter
-                                               });
+                theme: "bootstrap",
+                tags: true,
+                sorter: customSorter
+            });
             $(".nireselect2").select2({
-                                          theme: "bootstrap",
-                                          sorter: customSorter
-                                      });
+                theme: "bootstrap",
+                sorter: customSorter
+            });
 
 
             $("#cmbServiciosDisponibles").change(function () {
@@ -1627,9 +1627,7 @@
                     $("#cmbParametros").append($("<option selected></option>").attr("value", "01").text("01-Creación de un registro de entrada"));
                 } else if ( aukera == "05" ) {
                     $("#cmbParametros").empty();
-                    $("#cmbParametros").append($("<option selected></option>").attr("value", "01").text("01-Listado de personas de la vivienda"));
-                    $("#cmbParametros").append($("<option></option>").attr("value", "02").text("02-Historial de empadronamiento"));
-                    $("#cmbParametros").append($("<option></option>").attr("value", "03").text("03-Certificado de empadronamiento"));
+                    
                 } else if ( aukera == "08" ) {
                     $("#cmbParametros").empty();
                     $("#cmbParametros").append($("<option selected></option>").attr("value", "00").text("00-Página de ayuda de este tipo de expediente"));
@@ -1756,41 +1754,41 @@
             $(".btnOrdenaEzabatu").on("click", function () {
                 var that = $(this);
                 bootbox.confirm({
-                                    title: "Ziur zaude familia ezabatu nahi duzula fitxatik?",
-                                    message: "Fitxatik ezabatuko da familiaren informazioa baina ez Familia bera.",
-                                    buttons: {
-                                        cancel: {
-                                            label: "<i class=\"fa fa-times\"></i> Ezeztatu"
-                                        },
-                                        confirm: {
-                                            label: "<i class=\"fa fa-check\"></i> Onartu"
-                                        }
-                                    },
-                                    callback: function ( result ) {
-                                        if ( result === true ) {
-                                            var miid = $(that).data("id");
-                                            console.log("miid =>" + miid);
-                                            var url = Routing.generate("fitxafamilia_delete", {
-                                                _locale: "eu",
-                                                id: miid
-                                            });
-                                            console.log("familia delete url => " + url);
+                    title: "Ziur zaude familia ezabatu nahi duzula fitxatik?",
+                    message: "Fitxatik ezabatuko da familiaren informazioa baina ez Familia bera.",
+                    buttons: {
+                        cancel: {
+                            label: "<i class=\"fa fa-times\"></i> Ezeztatu"
+                        },
+                        confirm: {
+                            label: "<i class=\"fa fa-check\"></i> Onartu"
+                        }
+                    },
+                    callback: function ( result ) {
+                        if ( result === true ) {
+                            var miid = $(that).data("id");
+                            console.log("miid =>" + miid);
+                            var url = Routing.generate("fitxafamilia_delete", {
+                                _locale: "eu",
+                                id: miid
+                            });
+                            console.log("familia delete url => " + url);
 
-                                            $.ajax({
-                                                       url: url,
-                                                       type: "delete",
-                                                       success: function ( result ) {
-                                                           console.log("Delete");
-                                                           $(that).closest("tr").remove();
-                                                       },
-                                                       error: function ( e ) {
-                                                           console.log(e.responseText);
-                                                       }
-                                                   });
+                            $.ajax({
+                                url: url,
+                                type: "delete",
+                                success: function ( result ) {
+                                    console.log("Delete");
+                                    $(that).closest("tr").remove();
+                                },
+                                error: function ( e ) {
+                                    console.log(e.responseText);
+                                }
+                            });
 
-                                        }
-                                    }
-                                });
+                        }
+                    }
+                });
             });
 
         });
@@ -1883,11 +1881,11 @@
 
 
                 $(selectIzena).select2({
-                                           theme: "bootstrap",
-                                           width: "resolve",
-                                           sorter: customSorter
+                    theme: "bootstrap",
+                    width: "resolve",
+                    sorter: customSorter
 
-                                       });
+                });
 
             });
             jQuery("#add-kostua").click(function ( e ) {
