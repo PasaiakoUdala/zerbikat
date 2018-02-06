@@ -1238,7 +1238,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $textes = $textes . "<li>";
                                     $texteu = $texteu . "<li>";
                                     $textes = $textes . $labelak[ "arruntalabeles" ] . ": " . $fitxa->getArrunta()->getEpeaes() . "\n";
-                                    $texteu = $texteu . $labelak[ "arruntalabeleu" ] . ": " . $fitxa->getArrunta() . "\n";
+                                    $texteu = $texteu . $labelak[ "arruntalabeleu" ] . ": " . $fitxa->getArrunta()->getEpeaeu() . "\n";
                                     $textes = $textes . "</li>";
                                     $texteu = $texteu . "</li>";
                                     $badu = 1;
@@ -1273,8 +1273,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                 if ( $fitxa->getIsiltasunadmin() ) {
                                     $textes = $textes . "<li>";
                                     $texteu = $texteu . "<li>";
-                                    $textes = $textes . $labelak[ "isiltasunadminlabeles" ] . ": " . $fitxa->getIsiltasunadmin() . "<br/>" . "\n";
-                                    $texteu = $texteu . $labelak[ "isiltasunadminlabeleu" ] . ": " . $fitxa->getIsiltasunadmin() . "<br/>" . "\n";
+                                    $textes = $textes . $labelak[ "isiltasunadminlabeles" ] . ": " . $fitxa->getIsiltasunadmin()->getIsiltasunes() . "<br/>" . "\n";
+                                    $texteu = $texteu . $labelak[ "isiltasunadminlabeleu" ] . ": " . $fitxa->getIsiltasunadmin()->getIsiltasuneu() . "<br/>" . "\n";
                                     $textes = $textes . "</li>";
                                     $texteu = $texteu . "</li>";
                                     $badu = 1;
@@ -2885,7 +2885,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $textes = $textes . "<li>";
                                         $texteu = $texteu . "<li>";
                                         $textes = $textes . $labelak[ "aurreikusilabeles" ] . ": " . $fitxa->getAurreikusi()->getEpeaes() . "\n";
-                                        $texteu = $texteu . $labelak[ "aurreikusilabeleu" ] . ": " . $fitxa->getAurreikusi() . "\n";
+                                        $texteu = $texteu . $labelak[ "aurreikusilabeleu" ] . ": " . $fitxa->getAurreikusi()->getEpeaeu() . "\n";
                                         $textes = $textes . "</li>";
                                         $texteu = $texteu . "</li>";
                                         $badu = 1;
@@ -2898,7 +2898,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $textes = $textes . "<li>";
                                         $texteu = $texteu . "<li>";
                                         $textes = $textes . $labelak[ "arruntalabeles" ] . ": " . $fitxa->getArrunta()->getEpeaes() . "\n";
-                                        $texteu = $texteu . $labelak[ "arruntalabeleu" ] . ": " . $fitxa->getArrunta() . "\n";
+                                        $texteu = $texteu . $labelak[ "arruntalabeleu" ] . ": " . $fitxa->getArrunta()->getEpeaeu() . "\n";
                                         $textes = $textes . "</li>";
                                         $texteu = $texteu . "</li>";
                                         $badu = 1;
@@ -2933,8 +2933,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     if ( $fitxa->getIsiltasunadmin() ) {
                                         $textes = $textes . "<li>";
                                         $texteu = $texteu . "<li>";
-                                        $textes = $textes . $labelak[ "isiltasunadminlabeles" ] . ": " . $fitxa->getIsiltasunadmin() . "<br/>" . "\n";
-                                        $texteu = $texteu . $labelak[ "isiltasunadminlabeleu" ] . ": " . $fitxa->getIsiltasunadmin() . "<br/>" . "\n";
+                                        $textes = $textes . $labelak[ "isiltasunadminlabeles" ] . ": " . $fitxa->getIsiltasunadmin()->getIsiltasunes() . "<br/>" . "\n";
+                                        $texteu = $texteu . $labelak[ "isiltasunadminlabeleu" ] . ": " . $fitxa->getIsiltasunadmin()->getIsiltasuneu() . "<br/>" . "\n";
                                         $textes = $textes . "</li>";
                                         $texteu = $texteu . "</li>";
                                         $badu = 1;
