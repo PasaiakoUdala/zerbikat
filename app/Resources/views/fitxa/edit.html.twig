@@ -1368,7 +1368,6 @@
 
 
             $("#cmbOrdenantza").on("change", function () {
-                console.log("ordenantza change");
                 $("#nireloader3").addClass("loading");
                 var ordenantzaid = $(this).val();
                 var url = param + "/tributuak/" + ordenantzaid + ".json";
@@ -1391,20 +1390,24 @@
                         if ( ("izenburuaes_prod" in field) || ("izenburuaes_prod" in field) )
                             if ( locale === "es" ) {
                                 var txt = "";
-                                if ( field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
-                                    txt = field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
-                                } else {
-                                    txt = field.izenburuaes_prod;
+                                if ( field.izenburuaes_prod !== undefined ) {
+                                    if ( field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                        txt = field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
+                                    } else {
+                                        txt = field.izenburuaes_prod;
+                                    }
+                                    $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
                                 }
-                                $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
                             } else {
                                 var txt = "";
-                                if ( field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
-                                    txt = field.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
-                                } else {
-                                    txt = field.izenburuaeu_prod;
+                                if ( field.izenburuaes_prod !== undefined ) {
+                                    if ( field.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                        txt = field.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
+                                    } else {
+                                        txt = field.izenburuaeu_prod;
+                                    }
+                                    $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
                                 }
-                                $("#cmbAtala").append($("<option></option>").attr("value", field.id).text(txt));
                             }
 
                         // bete zergen cmb
@@ -1417,25 +1420,27 @@
                         var azpiatalak = field.azpiatalak;
                         $.each(azpiatalak, function ( i, azpi ) {
 
-
                             if ( locale === "es" ) {
                                 var txt = "";
-                                if ( azpi.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
-                                    txt = azpi.izenburuaes_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
-                                } else {
-                                    txt = azpi.izenburuaes_prod;
+                                if ( azpi.izenburuaes_prod !== undefined ) {
+                                    if ( azpi.izenburuaes_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                        txt = azpi.izenburuaes_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
+                                    } else {
+                                        txt = azpi.izenburuaes_prod;
+                                    }
+                                    $("#cmbKontzeptua").append($("<option></option>").attr("value", azpi.id).text(txt));
                                 }
-                                $("#cmbKontzeptua").append($("<option></option>").attr("value", azpi.id).text(txt));
                             } else {
                                 var txt = "";
-                                if ( azpi.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
-                                    txt = azpi.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
-                                } else {
-                                    txt = azpi.izenburuaeu_prod;
+                                if ( azpi.izenburuaeu_prod !== undefined ) {
+                                    if ( azpi.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").length > 200 ) {
+                                        txt = azpi.izenburuaeu_prod.replace("<br>", "").replace("</br>", "").substr(0, 200);
+                                    } else {
+                                        txt = azpi.izenburuaeu_prod;
+                                    }
+                                    $("#cmbKontzeptua").append($("<option></option>").attr("value", azpi.id).text(txt));
                                 }
-                                $("#cmbKontzeptua").append($("<option></option>").attr("value", azpi.id).text(txt));
                             }
-
 
                         });
                     });
