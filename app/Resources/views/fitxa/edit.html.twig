@@ -853,7 +853,7 @@
             </div>
             <div class="col-sm-2"></div>
         </div>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalFitxaFamilia">
+        <button id="cmdAddFamilia" type="button" class="btn btn-primary btn-lg">
             + Familia
         </button>
 
@@ -1059,8 +1059,6 @@
                 {{ form_widget(edit_form.updatedAt, {'attr': {'class': 'form-control'}}) }}
             </div>
         </div>
-        </div>
-        </div>
     {% endif %}
 
     <div class="row">&nbsp;</div>
@@ -1213,6 +1211,17 @@
 
 
         $(function () {
+
+            var frmSerialized = $("#frm_fitxa_edit").serialize();
+
+            $("#cmdAddFamilia").on("click", function(e){
+               if ( frmSerialized !== $("#frm_fitxa_edit").serialize() ) {
+                   e.preventDefault();
+                   alert("Aldaketak gordetzeko dituzu. Gorde eta gero aukeratu familia mesedez.")
+               } else {
+                   $("#modalFitxaFamilia").modal();
+               }
+            });
 
             function parametroChange() {
                 var zerbitzua = $("#fitxa_zerbitzua").val(); // 1 = IFZE  \ 2 = Munigex
