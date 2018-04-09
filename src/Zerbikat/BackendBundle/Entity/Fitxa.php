@@ -496,6 +496,7 @@
          * @var prozedurak[]
          *
          * @ORM\OneToMany(targetEntity="FitxaProzedura" , mappedBy="fitxa",cascade={"persist"} )
+         * @ORM\OrderBy({"ordena" = "ASC"})
          */
         private $prozedurak;
 

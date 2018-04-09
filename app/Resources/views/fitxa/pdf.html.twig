@@ -583,8 +583,8 @@
                     {% if eremuak.prozeduratable %}
                         <ul>
                             {% for prozedura in fitxa.prozedurak %}
-                                <li>{{ prozedura.prozedura.prozeduraeu }}</li>
-                                <li>{{ prozedura.prozeduraeu }}</li>
+                                {% if prozedura.prozedura.prozeduraeu  is defined %}<li>{{ prozedura.prozedura.prozeduraeu }}</li>{% endif %}
+                                {% if prozedura.prozeduraeu is defined %}<li>{{ prozedura.prozeduraeu }}</li>{% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}
@@ -594,8 +594,8 @@
                     {% if eremuak.prozeduratable %}
                         <ul>
                             {% for prozedura in fitxa.prozedurak %}
-                                <li>{{ prozedura.prozedura.prozeduraes }}</li>
-                                <li>{{ prozedura.prozeduraes }}</li>
+                                {% if prozedura.prozedura.prozeduraes  is defined %}<li>{{ prozedura.prozedura.prozeduraes }}</li>{% endif %}
+                                {% if prozedura.prozeduraes is defined %}<li>{{ prozedura.prozeduraes }}</li>{% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}
