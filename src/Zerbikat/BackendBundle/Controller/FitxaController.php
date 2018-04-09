@@ -114,6 +114,9 @@ class FitxaController extends Controller
      * @param Fitxa $fitxa
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function showAction( Fitxa $fitxa )
     {
@@ -174,6 +177,10 @@ class FitxaController extends Controller
      * @Route("/pdf/{id}", name="fitxa_pdf")
      * @Method("GET")
      * @param Fitxa $fitxa
+     *
+     * @throws GuzzleHttp\Exception\GuzzleException
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function pdfAction( Fitxa $fitxa )
     {

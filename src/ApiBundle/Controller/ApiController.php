@@ -193,7 +193,7 @@ class ApiController extends FOSRestController
      * )
      *
      *
-     * @return array data
+     * @return array|View
      *
      * @Annotations\View()
      */
