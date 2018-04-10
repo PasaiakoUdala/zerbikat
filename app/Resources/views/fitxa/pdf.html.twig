@@ -712,7 +712,7 @@
                             {% for besteak1 in fitxa.besteak1ak %}
                                 <li>
                                 {% if besteak1.estekaeu %}
-                                    <a href="{{ besteak1.estekaeu }}">{{ besteak1.izenburuaeu }}</a> </li>
+                                    <a href="{{ besteak1.estekaeu }}">{{ besteak1.izenburuaeu }}</a>
                                 {% else %}
                                     {{ besteak1.izenburuaeu }}
                                 {% endif %}
@@ -728,7 +728,7 @@
                             {% for besteak1 in fitxa.besteak1ak %}
                                 <li>
                                 {% if besteak1.estekaes %}
-                                    <a href="{{ besteak1.estekaes }}">{{ besteak1.izenburuaes }}</a> </li>
+                                    <a href="{{ besteak1.estekaes }}">{{ besteak1.izenburuaes }}</a>
                                 {% else %}
                                     {{ besteak1.izenburuaes }}
                                 {% endif %}
@@ -864,7 +864,7 @@
                         |replace({ ('$$$fitxa.datuenbabesa.lagapenakes$$$'): fitxa.datuenbabesa.lagapenakes })
                         |raw }}
                     {% endif %}
-                    {% if eremuak.datuenbabesatext %}{{ fitxa.datuenbabesaeu |raw }}{% endif %}
+                    {% if eremuak.datuenbabesatext %}{{ fitxa.datuenbabesaes |raw }}{% endif %}
                 </td>
             </tr>
         </table>
