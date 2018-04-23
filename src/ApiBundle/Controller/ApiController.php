@@ -172,6 +172,50 @@ class ApiController extends FOSRestController
 
     }
 
+    /**
+     * Udal baten Fitxa eskuratu kodea-ren bidez
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Udal baten Fitxa eskuratu kodea-ren bidez",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @param $udala
+     * @param $kodea
+     *
+     * @return array|View
+     * @Annotations\View()
+     *
+     * @Get("/fitxabykodea/{udala}/{kodea}")
+     */
+    public function getFitxaByKodeaAction ($udala, $kodea) {
+
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+        /** @lang text */
+            '
+            SELECT f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes         
+              FROM BackendBundle:Fitxa f
+              LEFT JOIN BackendBundle:Udala u
+            WHERE u.kodea = :udala AND f.espedientekodea = :kodea            
+            '
+        );
+        $query->setParameter( 'udala', $udala );
+        $query->setParameter( 'kodea', $kodea );
+        $fitxa= $query->getResult();
+
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
+        if ( $fitxa=== null ) {
+            return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
+        }
+
+        return $fitxa;
+    }
 
 
     /****************************************************************************************************************
@@ -330,7 +374,7 @@ class ApiController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $fitxa = $em->getRepository( 'BackendBundle:Fitxa' )->findOneBy( array( 'id' => 12 ) );
+//        $fitxa = $em->getRepository( 'BackendBundle:Fitxa' )->findOneBy( array( 'id' => 12 ) );
 
         $query = $em->createQuery(
             /** @lang text */
