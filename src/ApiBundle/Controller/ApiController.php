@@ -60,7 +60,7 @@ class ApiController extends FOSRestController
         $query = $em->createQuery(
             /** @lang text */
             '
-            SELECT s         
+            SELECT s
               FROM BackendBundle:Saila s
               INNER JOIN s.udala u
             WHERE u.kodea = :udala
@@ -107,10 +107,10 @@ class ApiController extends FOSRestController
         $query = $em->createQuery(
         /** @lang text */
             '
-            SELECT f         
+            SELECT f
               FROM BackendBundle:Fitxa f
               INNER JOIN f.azpisaila a
-              WHERE a.id = :azpisailaid            
+              WHERE a.id = :azpisailaid
             '
         );
         $query->setParameter( 'azpisailaid', $azpisailaid );
@@ -152,7 +152,7 @@ class ApiController extends FOSRestController
         $query = $em->createQuery(
         /** @lang text */
             '
-            SELECT s         
+            SELECT s
               FROM BackendBundle:Saila s
               LEFT JOIN BackendBundle:Udala u
             WHERE u.kodea = :udala
@@ -207,7 +207,13 @@ class ApiController extends FOSRestController
         $query->setParameter( 'kodea', $kodea );
 
 
-        return $query->getQuery()->getResult();
+        $fitxa = $query->getQuery()->getResult();
+        $view = View::create();
+        $view->setData( $fitxa );
+
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
+        return $view;
     }
 
 
@@ -281,10 +287,10 @@ class ApiController extends FOSRestController
         $query = $em->createQuery(
             '
           SELECT f
-            FROM BackendBundle:Familia f              
+            FROM BackendBundle:Familia f
             WHERE f.parent = :id
             ORDER BY f.ordena
-            
+
         '
         );
         $query->setParameter( 'id', $id );
@@ -432,7 +438,7 @@ class ApiController extends FOSRestController
         $query = $em->createQuery(
             '
                 SELECT f
-                FROM BackendBundle:Familia f              
+                FROM BackendBundle:Familia f
                 WHERE f.id = :id
                 '
         );
