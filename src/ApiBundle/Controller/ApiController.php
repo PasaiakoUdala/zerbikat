@@ -194,27 +194,20 @@ class ApiController extends FOSRestController
      */
     public function getFitxaByKodeaAction ($udala, $kodea) {
 
+
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-        /** @lang text */
-            '
-            SELECT f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes         
-              FROM BackendBundle:Fitxa f
-              LEFT JOIN BackendBundle:Udala u
-            WHERE u.kodea = :udala AND f.espedientekodea = :kodea            
-            '
-        );
+        /** @var QueryBuilder $query */
+        $query = $em->createQueryBuilder('f');
+        $query->from( 'BackendBundle:Fitxa', 'f' );
+        $query->Select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes' );
+        $query->leftJoin( 'f.udala', 'u' );
+        $query->andWhere( 'u.kodea = :udala' );
         $query->setParameter( 'udala', $udala );
+        $query->andWhere( 'f.espedientekodea = :kodea' );
         $query->setParameter( 'kodea', $kodea );
-        $fitxa= $query->getResult();
 
-        header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
-        if ( $fitxa=== null ) {
-            return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
-        }
 
-        return $fitxa;
+        return $query->getQuery()->getResult();
     }
 
 
