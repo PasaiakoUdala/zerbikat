@@ -1212,17 +1212,6 @@
 
         $(function () {
 
-            var frmSerialized = $("#frm_fitxa_edit").serialize();
-
-            $("#cmdAddFamilia").on("click", function(e){
-               if ( frmSerialized !== $("#frm_fitxa_edit").serialize() ) {
-                   e.preventDefault();
-                   alert("Aldaketak gordetzeko dituzu. Gorde eta gero aukeratu familia mesedez.")
-               } else {
-                   $("#modalFitxaFamilia").modal();
-               }
-            });
-
             function parametroChange() {
                 var zerbitzua = $("#fitxa_zerbitzua").val(); // 1 = IFZE  \ 2 = Munigex
                 var parametro = $("#fitxa_parametroa").val();
@@ -1979,6 +1968,30 @@
                 $tagFormLi.remove();
             });
         }
+    </script>
+
+    <script type="text/javascript">
+
+
+        jQuery(document).ready(function () {
+            var frmSerialized;
+            setTimeout(function() {
+                frmSerialized = $("#frm_fitxa_edit").serialize();
+            }, 2000);
+
+
+           $("#cmdAddFamilia").on("click", function(e){
+               if ( frmSerialized !== $("#frm_fitxa_edit").serialize() ) {
+                   e.preventDefault();
+                   alert("Aldaketak gordetzeko dituzu. Gorde eta gero aukeratu familia mesedez.")
+               } else {
+                   $("#modalFitxaFamilia").modal();
+               }
+            });
+
+        });
+
+
     </script>
 
 {% endblock %}
