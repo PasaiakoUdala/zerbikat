@@ -134,8 +134,8 @@
                             {% for dokumentua in fitxa.dokumentazioak %}
                                 <li>
                                     {% if dokumentua.estekaes %}
-                                        <a href="{{ dokumentua.estekaes }}">
-                                            {{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
+                                        <a href="{{ dokumentua.estekaes }}"
+                                           target="_blank">{{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
                                         </a>
                                     {% else %}
                                         {{ dokumentua.kodea }} {{ dokumentua.deskribapenaes }}
