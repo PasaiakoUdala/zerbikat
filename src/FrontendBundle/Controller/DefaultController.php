@@ -2,6 +2,7 @@
 
 namespace FrontendBundle\Controller;
 
+use Doctrine\ORM\QueryBuilder;
 use GuzzleHttp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -84,13 +85,18 @@ class DefaultController extends Controller
      *           }
      * )
      * @Method("GET")
+     * @param Fitxa $fitxa
+     * @param       $udala
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public function showAction ( Fitxa $fitxa, $udala )
     {
         $em         = $this->getDoctrine()->getManager();
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
-
+        /** @var QueryBuilder $query */
         $query = $em->createQuery(
             /** @lang text */
             '
@@ -145,12 +151,17 @@ class DefaultController extends Controller
      *
      * @Route("/{udala}/{_locale}/pdf/{id}", name="frontend_fitxa_pdf")
      * @Method("GET")
+     * @param Fitxa $fitxa
+     * @param       $udala
+     *
+     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public function pdfAction ( Fitxa $fitxa, $udala )
     {
         $em         = $this->getDoctrine()->getManager();
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
+        /** @var QueryBuilder $query */
         $query = $em->createQuery(
             /** @lang text */
             '
@@ -185,6 +196,7 @@ class DefaultController extends Controller
         }
 
         $html = $this->render(
+//        return $this->render(
             'frontend/pdf.html.twig',
             array(
                 'fitxa'         => $fitxa,
@@ -235,6 +247,10 @@ class DefaultController extends Controller
      *
      * @Route("/{udala}/{_locale}/pdfelebi/{id}", name="frontend_fitxa_pdfelebi")
      * @Method("GET")
+     * @param Fitxa $fitxa
+     * @param       $udala
+     *
+     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public function pdfelebiAction ( Fitxa $fitxa, $udala )
     {
@@ -242,6 +258,7 @@ class DefaultController extends Controller
         $em         = $this->getDoctrine()->getManager();
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
+        /** @var QueryBuilder $query */
         $query = $em->createQuery(
             '
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
@@ -267,7 +284,6 @@ class DefaultController extends Controller
             $client = new GuzzleHttp\Client();
 
             $api = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
-//            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
             $proba = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
 
             $fitxaKostua     = (string)$proba->getBody();
@@ -276,6 +292,7 @@ class DefaultController extends Controller
         }
 
         $html = $this->render(
+//        return $this->render(
             'frontend/pdfelebi.html.twig',
             array(
                 'fitxa'         => $fitxa,
