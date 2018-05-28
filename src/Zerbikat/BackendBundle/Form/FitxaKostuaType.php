@@ -17,7 +17,9 @@ class FitxaKostuaType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
+     *
+     * @throws GuzzleHttp\Exception\GuzzleException
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -26,7 +28,7 @@ class FitxaKostuaType extends AbstractType
         $udala = $options['udala'];
         $api = $options[ 'api_url' ];
         // DEBUG
-//        $api = "http://zzoo.dev/app_dev.php/api";
+//        $api = "http://zzoo.test/app_dev.php/api";
 
         $client = new GuzzleHttp\Client();
         $url = $api.'/udalzergak/'.$udala.'.json';
@@ -35,6 +37,7 @@ class FitxaKostuaType extends AbstractType
         $array = json_decode($valftp, true);
 
         $resp=array("Aukeratu bat" => "-1");
+        $keysduplicated = 1;
         foreach ($array as $a)
         {
             $txt ="";
@@ -45,7 +48,13 @@ class FitxaKostuaType extends AbstractType
 
             if ( array_key_exists("izenburuaeu_prod", $a) ) {
                 $txt = $txt . $a[ 'izenburuaeu_prod' ];
-                $resp[$txt] = $a['id'];
+                if (array_key_exists($txt,$resp)) {
+                    $keysduplicated += 1;
+                    $txt = $txt . "(" . $keysduplicated . ")";
+                    $resp[$txt] = $a['id'];
+                } else {
+                    $resp[$txt] = $a['id'];
+                }
             }
         }
 

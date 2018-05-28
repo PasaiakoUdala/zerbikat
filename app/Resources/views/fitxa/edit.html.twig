@@ -1329,9 +1329,9 @@
                 }
             });
 
-            $(".kostutaula").each(function () {
-                console.log($(this).val());
-            });
+            // $(".kostutaula").each(function () {
+            //     console.log($(this).val());
+            // });
 
             /**
              * Goazen konboak kargatzera
@@ -1515,7 +1515,9 @@
                     return;
                 } else {
                     var midest = $("#dest").val();
-                    $("#" + midest).val(kontzeptuaid).trigger("change");
+                     $("#" + midest).val(kontzeptuaid);
+                     $("#" + midest).trigger("change");
+
                     console.log("vbalioa da : " + kontzeptuaid);
                     $("#modalSelectOrdenantza").modal("toggle");
                 }
