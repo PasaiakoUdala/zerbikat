@@ -2,6 +2,10 @@
 
 namespace ApiBundle\Command;
 
+use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use GuzzleHttp;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -11,6 +15,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Zerbikat\BackendBundle\Entity\Azpiatalaparrafoa;
+use Zerbikat\BackendBundle\Entity\Fitxafamilia;
+use Zerbikat\BackendBundle\Entity\Kontzeptua;
 
 class IzfeztCommand extends ContainerAwareCommand
 {
@@ -127,6 +134,8 @@ class IzfeztCommand extends ContainerAwareCommand
             case "EXPEDIENTE":
                 $A204TIPO = "'EXPEDIENTE'";
                 $A204IDTIPO = "'" . $tipo . "'";
+                break;
+
             default:
                 $servicios = array(
                     "UML",
@@ -311,6 +320,7 @@ class IzfeztCommand extends ContainerAwareCommand
 
         $filename = "web/doc/$udalKodea/izfesql.sql";
 
+        /** @var EntityManager $em */
         $em = $this->getContainer()->get( 'doctrine' )->getManager();
 
         $udala = $em->getRepository( 'BackendBundle:Udala' )->findOneBy(
@@ -331,6 +341,7 @@ class IzfeztCommand extends ContainerAwareCommand
             ]
         );
 
+        /** @var AbstractQuery $query */
         $query = $em->createQuery(
             '
                     SELECT f
@@ -395,6 +406,7 @@ class IzfeztCommand extends ContainerAwareCommand
 
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
+        /** @var AbstractQuery $query */
         $query = $em->createQuery(
             /** @lang text */
             '
@@ -404,8 +416,15 @@ class IzfeztCommand extends ContainerAwareCommand
             '
         );
         $query->setParameter( 'udala', $udala->getId() );
-        $eremuak = $query->getSingleResult();
+        try {
+            $eremuak = $query->getSingleResult();
+        } catch ( NoResultException $e ) {
+            echo $e->getMessage();
+        } catch ( NonUniqueResultException $e ) {
+            echo $e->getMessage();
+        }
 
+        /** @var AbstractQuery $query */
         $query = $em->createQuery(
             /** @lang text */
             '
@@ -415,7 +434,13 @@ class IzfeztCommand extends ContainerAwareCommand
             '
         );
         $query->setParameter( 'udala', $udala->getId() );
-        $labelak = $query->getSingleResult();
+        try {
+            $labelak = $query->getSingleResult();
+        } catch ( NoResultException $e ) {
+            echo $e->getMessage();
+        } catch ( NonUniqueResultException $e ) {
+            echo $e->getMessage();
+        }
 
         $query = $em->createQuery(
             /** @lang text */
@@ -506,10 +531,14 @@ class IzfeztCommand extends ContainerAwareCommand
                             $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
                             if ( ( strlen( $api ) > 0 ) && ( $kostu->getKostua() ) ) {
                                 $client = new GuzzleHttp\Client();
-                                $proba = $client->request(
-                                    'GET',
-                                    $api . '/zerga/' . $kostu->getKostua() . '.json'
-                                );
+                                try {
+                                    $proba = $client->request(
+                                        'GET',
+                                        $api . '/zerga/' . $kostu->getKostua() . '.json'
+                                    );
+                                } catch ( GuzzleHttp\Exception\GuzzleException $e ) {
+                                    echo $e->getMessage();
+                                }
                                 $fitxaKostua = (string)$proba->getBody();
                                 $array = json_decode( $fitxaKostua, true );
                                 $kostuZerrenda[] = $array;
@@ -1096,11 +1125,13 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $textes = $textes . "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/" . $azpiatal->getId() . "' target='_blank'>" . $azpiatal->getKodea() . " - " . $azpiatal->getIzenburuaes() . "</a></th></tr>";
                                         $texteu = $texteu . "<table class='table table-bordered table-condensed table-hover'><tr><th colspan=2><a href='http://zergaordenantzak/kudeaketa.php/atala/show/id/" . $azpiatal->getId() . "' target='_blank'>" . $azpiatal->getKodea() . " - " . $azpiatal->getIzenburuaeu() . "</a></th></tr>";
 
+                                        /** @var Azpiatalaparrafoa $parrafo */
                                         foreach ( $azpiatal->getParrafoak() as $parrafo ) {
                                             $textes = $textes . "<tr><td colspan='2'>" . $parrafo->getTestuaes() . "</td></tr>";
                                             $texteu = $texteu . "<tr><td colspan='2'>" . $parrafo->getTestuaeu() . "</td></tr>";
                                         }
 
+                                        /** @var Kontzeptua $kontzeptu */
                                         foreach ( $azpiatal->getKontzeptuak() as $kontzeptu ) {
                                             $textes = $textes . "<tr><td>" . $kontzeptu->getKontzeptuaes();
                                             if ( $kontzeptu->getBaldintza() ) {
@@ -2116,6 +2147,7 @@ class IzfeztCommand extends ContainerAwareCommand
                     echo "   |" . $c . "|\n";
                     echo "   ---------------------------------------------\n";
                 }
+                /** @var Fitxafamilia $fitx */
                 foreach ( $c->getFitxafamilia() as $fitx ) {
                     if ( $debug ) {
                         echo "      |__" . $fitx->getFitxa()->getDeskribapenaeu() . "\n";
@@ -2164,10 +2196,14 @@ class IzfeztCommand extends ContainerAwareCommand
                                 $api = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
                                 if ( ( strlen( $api ) > 0 ) && ( $kostu->getKostua() ) ) {
                                     $client = new GuzzleHttp\Client();
-                                    $proba = $client->request(
-                                        'GET',
-                                        $api . '/zerga/' . $kostu->getKostua() . '.json'
-                                    );
+                                    try {
+                                        $proba = $client->request(
+                                            'GET',
+                                            $api . '/zerga/' . $kostu->getKostua() . '.json'
+                                        );
+                                    } catch ( GuzzleHttp\Exception\GuzzleException $e ) {
+                                        echo $e->getMessage();
+                                    }
                                     $fitxaKostua = (string)$proba->getBody();
                                     $array = json_decode( $fitxaKostua, true );
                                     $kostuZerrenda[] = $array;
@@ -2735,6 +2771,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         $texteu = $texteu . "<tr><td colspan='2'>" . $parrafo[ "testuaeu_prod" ] . "</td></tr>";
                                                     }
                                                 }
+
                                                 foreach ( $kostutaula[ "kontzeptuak" ] as $kontzeptu ) {
                                                     if ( array_key_exists( "kopurua_prod", $kontzeptu ) ) {
                                                         if ( array_key_exists( "unitatea_prod", $kontzeptu ) ) {
