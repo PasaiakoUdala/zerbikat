@@ -2003,7 +2003,8 @@ class IzfeztCommand extends ContainerAwareCommand
                         if ( ( $eremuak[ 'datuenbabesatext' ] ) || ( $eremuak[ 'datuenbabesatable' ] ) ) {
                             $sql = $sql . $this->addBloque($A204AYUNTA, $idBlokea, $labelak[ 'datuenbabesalabeles' ], $labelak[ 'datuenbabesalabeleu' ] );
                             $sql = $sql . $this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
+                            $textesdatubabesa = "";
+                            $texteudatubabesa = "";
                             $badu = 0;
                             if ( $eremuak[ "datuenbabesatable" ] && $fitxa->getDatuenbabesa() ) {
 
@@ -3633,7 +3634,8 @@ class IzfeztCommand extends ContainerAwareCommand
                             if ( ( $eremuak[ 'datuenbabesatext' ] ) || ( $eremuak[ 'datuenbabesatable' ] ) ) {
                                 $sql = $sql . $this->addBloque($A204AYUNTA, $idBlokea, $labelak[ 'datuenbabesalabeles' ], $labelak[ 'datuenbabesalabeleu' ] );
                                 $sql = $sql . $this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
-
+                                $textesdatubabesa = "";
+                                $texteudatubabesa = "";
                                 $badu = 0;
                                 if ( $eremuak[ "datuenbabesatable" ] && $fitxa->getDatuenbabesa() ) {
 
