@@ -2001,12 +2001,7 @@ class IzfeztCommand extends ContainerAwareCommand
 
                         /****** HASI DATUENBABESA *********************************************************************/
                         if ( ( $eremuak[ 'datuenbabesatext' ] ) || ( $eremuak[ 'datuenbabesatable' ] ) ) {
-                            $sql = $sql . $this->addBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $labelak[ 'datuenbabesalabeles' ],
-                                    $labelak[ 'datuenbabesalabeleu' ]
-                                );
+                            $sql = $sql . $this->addBloque($A204AYUNTA, $idBlokea, $labelak[ 'datuenbabesalabeles' ], $labelak[ 'datuenbabesalabeleu' ] );
                             $sql = $sql . $this->addOrriaBloque( $A204AYUNTA, $idPagina, $idBlokea, $idOrden );
 
                             $badu = 0;
@@ -2014,48 +2009,16 @@ class IzfeztCommand extends ContainerAwareCommand
 
                                 $textesdatubabesa = $fitxa->getUdala()->getLopdes();
 
-                                $textesdatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.izenaes$$$',
-                                    $fitxa->getDatuenbabesa()->getIzenaes(),
-                                    $textesdatubabesa
-                                );
-                                $textesdatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.kodea$$$',
-                                    $fitxa->getDatuenbabesa()->getKodea(),
-                                    $textesdatubabesa
-                                );
-                                $textesdatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.xedeaes$$$',
-                                    $fitxa->getDatuenbabesa()->getXedeaes(),
-                                    $textesdatubabesa
-                                );
-                                $textesdatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.lagapenakes$$$',
-                                    $fitxa->getDatuenbabesa()->getLagapenakes(),
-                                    $textesdatubabesa
-                                );
+                                $textesdatubabesa = str_replace('$$$fitxa.datuenbabesa.izenaes$$$', $fitxa->getDatuenbabesa()->getIzenaes(), $textesdatubabesa);
+                                $textesdatubabesa = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(), $textesdatubabesa);
+                                $textesdatubabesa = str_replace('$$$fitxa.datuenbabesa.xedeaes$$$', $fitxa->getDatuenbabesa()->getXedeaes(), $textesdatubabesa );
+                                $textesdatubabesa = str_replace('$$$fitxa.datuenbabesa.lagapenakes$$$', $fitxa->getDatuenbabesa()->getLagapenakes(), $textesdatubabesa );
 
                                 $texteudatubabesa = $fitxa->getUdala()->getLopdeu();
-                                $texteudatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.izenaeu$$$',
-                                    $fitxa->getDatuenbabesa()->getIzenaeu(),
-                                    $texteudatubabesa
-                                );
-                                $texteudatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.kodea$$$',
-                                    $fitxa->getDatuenbabesa()->getKodea(),
-                                    $texteudatubabesa
-                                );
-                                $texteudatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.xedeaeu$$$',
-                                    $fitxa->getDatuenbabesa()->getXedeaeu(),
-                                    $texteudatubabesa
-                                );
-                                $texteudatubabesa = str_replace(
-                                    '$$$fitxa.datuenbabesa.lagapenakeu$$$',
-                                    $fitxa->getDatuenbabesa()->getLagapenakeu(),
-                                    $texteudatubabesa
-                                );
+                                $texteudatubabesa = str_replace( '$$$fitxa.datuenbabesa.izenaeu$$$', $fitxa->getDatuenbabesa()->getIzenaeu(), $texteudatubabesa );
+                                $texteudatubabesa = str_replace('$$$fitxa.datuenbabesa.kodea$$$', $fitxa->getDatuenbabesa()->getKodea(), $texteudatubabesa);
+                                $texteudatubabesa = str_replace('$$$fitxa.datuenbabesa.xedeaeu$$$',$fitxa->getDatuenbabesa()->getXedeaeu(),$texteudatubabesa);
+                                $texteudatubabesa = str_replace('$$$fitxa.datuenbabesa.lagapenakeu$$$',$fitxa->getDatuenbabesa()->getLagapenakeu(),$texteudatubabesa);
                                 $badu = 1;
                             }
 
