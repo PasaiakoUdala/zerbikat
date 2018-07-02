@@ -319,7 +319,7 @@ class ApiController extends FOSRestController
      *
      * @param $id
      *
-     * @return array data
+     * @return array|View
      *
      * @Annotations\View()
      */
@@ -327,6 +327,7 @@ class ApiController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
+        /** @var QueryBuilder $query */
         $query = $em->createQuery(
             /** @lang text */
             '
