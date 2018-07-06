@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Fitxa;
 use Zerbikat\BackendBundle\Entity\Fitxafamilia;
 
@@ -55,9 +54,9 @@ class FitxaController extends Controller
                     'fitxas'      => $fitxas,
                 )
             );
-        } else {
-            return $this->redirectToRoute( 'fos_user_security_login' );
         }
+
+        return $this->redirectToRoute( 'fos_user_security_login' );
     }
 
     /**
@@ -88,10 +87,10 @@ class FitxaController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute( 'fitxa_edit', array( 'id' => $fitxa->getId() ) );
-            } else {
-                $form->getData()->setUdala( $this->getUser()->getUdala() );
-                $form->setData( $form->getData() );
             }
+
+            $form->getData()->setUdala( $this->getUser()->getUdala() );
+            $form->setData( $form->getData() );
 
 
             return $this->render(
@@ -101,9 +100,9 @@ class FitxaController extends Controller
                     'form'  => $form->createView(),
                 )
             );
-        } else {
-            return $this->redirectToRoute( 'fos_user_security_login' );
         }
+
+        return $this->redirectToRoute( 'fos_user_security_login' );
     }
 
     /**
@@ -239,7 +238,7 @@ class FitxaController extends Controller
             )
         );
 
-        $pdf = $this->get( "white_october.tcpdf" )->create(
+        $pdf = $this->get('white_october.tcpdf')->create(
             'vertical',
             PDF_UNIT,
             PDF_PAGE_FORMAT,
@@ -248,15 +247,13 @@ class FitxaController extends Controller
             false
         );
         $pdf->SetAuthor( $this->getUser()->getUdala() );
-//        $pdf->SetTitle(('Our Code World Title'));
-        $pdf->SetTitle( ( $fitxa->getDeskribapenaeu() ) );
+        $pdf->SetTitle($fitxa->getDeskribapenaeu());
         $pdf->SetSubject( $fitxa->getDeskribapenaes() );
         $pdf->setFontSubsetting( true );
         $pdf->SetFont( 'helvetica', '', 11, '', true );
-        //$pdf->SetMargins(20,20,40, true);
         $pdf->AddPage();
 
-        $filename = $fitxa->getEspedientekodea() . "." . $fitxa->getDeskribapenaeu();
+        $filename = $fitxa->getEspedientekodea() .'.'. $fitxa->getDeskribapenaeu();
 
         $pdf->writeHTMLCell(
             $w = 0,
@@ -271,7 +268,7 @@ class FitxaController extends Controller
             $align = '',
             $autopadding = true
         );
-        $pdf->Output( $filename . ".pdf", 'I' ); // This will output the PDF as a response directly
+        $pdf->Output( $filename .'.pdf', 'I' ); // This will output the PDF as a response directly
     }
 
     /**
@@ -321,37 +318,35 @@ class FitxaController extends Controller
             $editForm->handleRequest( $request );
             $em = $this->getDoctrine()->getManager();
 
-            if ( $editForm->isSubmitted() ) {
-                if ( $editForm->isValid() ) {
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
 
-                    foreach ( $originalKostuak as $kostu ) {
-                        if ( false === $fitxa->getKostuak()->contains( $kostu ) ) {
-                            $kostu->setFitxa( null );
-                            $em->remove( $kostu );
-                            $em->persist( $fitxa );
-                        }
+                foreach ( $originalKostuak as $kostu ) {
+                    if ( false === $fitxa->getKostuak()->contains( $kostu ) ) {
+                        $kostu->setFitxa( null );
+                        $em->remove( $kostu );
+                        $em->persist( $fitxa );
                     }
-                    foreach ( $originalAraudiak as $araudi ) {
-                        if ( false === $fitxa->getAraudiak()->contains( $araudi ) ) {
-                            $araudi->setFitxa( null );
-                            $em->remove( $araudi );
-                            $em->persist( $fitxa );
-                        }
-                    }
-                    foreach ( $originalProzedurak as $prozedura ) {
-                        if ( false === $fitxa->getProzedurak()->contains( $prozedura ) ) {
-                            $prozedura->setFitxa( null );
-                            $em->remove( $prozedura );
-                            $em->persist( $fitxa );
-                        }
-                    }
-
-                    $fitxa->setUpdatedAt( new \DateTime() );
-                    $em->persist( $fitxa );
-                    $em->flush();
-
-                    return $this->redirectToRoute( 'fitxa_edit', array( 'id' => $fitxa->getId() ) );
                 }
+                foreach ( $originalAraudiak as $araudi ) {
+                    if ( false === $fitxa->getAraudiak()->contains( $araudi ) ) {
+                        $araudi->setFitxa( null );
+                        $em->remove( $araudi );
+                        $em->persist( $fitxa );
+                    }
+                }
+                foreach ( $originalProzedurak as $prozedura ) {
+                    if ( false === $fitxa->getProzedurak()->contains( $prozedura ) ) {
+                        $prozedura->setFitxa( null );
+                        $em->remove( $prozedura );
+                        $em->persist( $fitxa );
+                    }
+                }
+
+                $fitxa->setUpdatedAt( new \DateTime() );
+                $em->persist( $fitxa );
+                $em->flush();
+
+                return $this->redirectToRoute( 'fitxa_edit', array( 'id' => $fitxa->getId() ) );
             }
 
             /** @var Query $query */
@@ -410,9 +405,9 @@ class FitxaController extends Controller
                     'familiak'         => $familiak,
                 )
             );
-        } else {
-            return $this->redirectToRoute( 'backend_errorea' );
         }
+
+        return $this->redirectToRoute( 'backend_errorea' );
     }
 
     /**
@@ -443,10 +438,9 @@ class FitxaController extends Controller
 
             return $this->redirectToRoute( 'fitxa_index' );
 
-        } else {
-            //baimenik ez
-            return $this->redirectToRoute( 'backend_errorea' );
         }
+
+        return $this->redirectToRoute( 'backend_errorea' );
     }
 
     /**
@@ -464,12 +458,5 @@ class FitxaController extends Controller
                     ->getForm();
     }
 
-    private function createfamiliaDeleteForm( Familia $familia )
-    {
-        return $this->createFormBuilder()
-                    ->setAction( $this->generateUrl( 'familia_delete', array( 'id' => $familia->getId() ) ) )
-                    ->setMethod( 'DELETE' )
-                    ->getForm();
-    }
 
 }
