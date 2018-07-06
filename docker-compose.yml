@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+    db:
+        container_name: Zerbikat_DB
+        image: mariadb:5.5.56
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: pasaia
+          MYSQL_DATABASE: zerbikat
+          MYSQL_USER: zerbikat
+          MYSQL_PASSWORD: zerbikat
+        volumes:
+          - ./vol/mysql:/var/lib/mysql
+
+    php:
+        container_name: Zerbikat_PHP
+        image: php:7.0-fpm
+        links:
+            - db:mysqldb
+        volumes:
+            - ./:/var/www/html
+            - ./logs/:/var/www/html/var/logs
+    apache:
+        container_name: Zerbikat_Apache2
+        build: ./docker/apache
+        restart: always
+        links:
+          - php:php
+        volumes:
+          - ./:/var/www/html

@@ -8,22 +8,17 @@
 namespace ApiBundle\Controller;
 
 
-use AppBundle\Form\AtalaType;
-
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
-
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Fitxa;
 
 class ApiController extends FOSRestController
@@ -57,6 +52,7 @@ class ApiController extends FOSRestController
     public function getSailakAction( $udala )
     {
         $em = $this->getDoctrine()->getManager();
+        /** @var Query $query */
         $query = $em->createQuery(
             /** @lang text */
             '
@@ -71,7 +67,7 @@ class ApiController extends FOSRestController
         $sailak = $query->getResult();
 
         header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
+        header('access-control-allow-origin: *');
         if ( $sailak === null ) {
             return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
         }
@@ -80,7 +76,6 @@ class ApiController extends FOSRestController
         return $sailak;
 
     }
-
 
     /**
      * Udal baten Azpisail baten fitxa zerrenda
@@ -117,7 +112,7 @@ class ApiController extends FOSRestController
         $fitxak = $query->getResult();
 
         header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
+        header('access-control-allow-origin: *');
         if ( $fitxak === null ) {
             return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
         }
@@ -125,7 +120,6 @@ class ApiController extends FOSRestController
         return $fitxak;
 
     }
-
 
     /**
      * Udal baten Familia/Azpifamilia zerrenda
@@ -149,6 +143,7 @@ class ApiController extends FOSRestController
     public function getFamilisareaAction( $udala )
     {
         $em = $this->getDoctrine()->getManager();
+        /** @var Query $query */
         $query = $em->createQuery(
         /** @lang text */
             '
@@ -163,7 +158,7 @@ class ApiController extends FOSRestController
         $sailak = $query->getResult();
 
         header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
+        header('access-control-allow-origin: *');
         if ( $sailak === null ) {
             return new View( 'there are no users exist', Response::HTTP_NOT_FOUND );
         }
@@ -199,7 +194,7 @@ class ApiController extends FOSRestController
         /** @var QueryBuilder $query */
         $query = $em->createQueryBuilder('f');
         $query->from( 'BackendBundle:Fitxa', 'f' );
-        $query->Select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes' );
+        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes' );
         $query->leftJoin( 'f.udala', 'u' );
         $query->andWhere( 'u.kodea = :udala' );
         $query->setParameter( 'udala', $udala );
@@ -212,17 +207,15 @@ class ApiController extends FOSRestController
         $view->setData( $fitxa );
 
         header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
+        header('access-control-allow-origin: *');
         return $view;
     }
-
 
     /****************************************************************************************************************
      ****************************************************************************************************************
      **** FIN API SAC ***********************************************************************************************
      ****************************************************************************************************************
      ****************************************************************************************************************/
-
 
     /**
      * Familia guztien zerrenda.
@@ -236,6 +229,8 @@ class ApiController extends FOSRestController
      * )
      *
      *
+     * @param $udala
+     *
      * @return array|View
      *
      * @Annotations\View()
@@ -243,6 +238,7 @@ class ApiController extends FOSRestController
     public function getFamiliakAction( $udala )
     {
         $em = $this->getDoctrine()->getManager();
+        /** @var Query $query */
         $query = $em->createQuery(
             '
           SELECT f
@@ -259,7 +255,7 @@ class ApiController extends FOSRestController
         $view->setData( $familiak );
 
         header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
+        header('access-control-allow-origin: *');
         return $view;
 
     }// "get_familiak"            [GET] /familiak/{udala}
@@ -276,14 +272,16 @@ class ApiController extends FOSRestController
      * )
      *
      *
-     * @return array data
+     * @param $id
+     *
+     * @return array|View
      *
      * @Annotations\View()
      */
     public function getAzpifamiliakAction( $id )
     {
         $em = $this->getDoctrine()->getManager();
-        /** @var QueryBuilder $query */
+        /** @var Query $query */
         $query = $em->createQuery(
             '
           SELECT f
@@ -299,7 +297,7 @@ class ApiController extends FOSRestController
         $view = View::create();
         $view->setData( $azpifamiliak );
         header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
+        header('access-control-allow-origin: *');
 
         return $view;
 
@@ -327,7 +325,7 @@ class ApiController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        /** @var QueryBuilder $query */
+        /** @var Query $query */
         $query = $em->createQuery(
             /** @lang text */
             '
@@ -342,13 +340,13 @@ class ApiController extends FOSRestController
         $query->setParameter( 'id', $id );
 
 
-        $fitxak = $query->getResult( \Doctrine\ORM\Query::HYDRATE_ARRAY );
+        $fitxak = $query->getResult( Query::HYDRATE_ARRAY );
 
 
         $view = View::create();
         $view->setData( $fitxak );
         header('content-type: application/json; charset=utf-8');
-        header("access-control-allow-origin: *");
+        header('access-control-allow-origin: *');
 
         return $view;
 
@@ -366,6 +364,8 @@ class ApiController extends FOSRestController
      * )
      *
      *
+     * @param Fitxa $fitxa
+     *
      * @return array|Response
      *
      * @Annotations\View()
@@ -373,9 +373,10 @@ class ApiController extends FOSRestController
     public function getFitxaAction( Fitxa $fitxa )
     {
         $em = $this->getDoctrine()->getManager();
+        $eremuak = null;
+        $labelak = null;
 
-//        $fitxa = $em->getRepository( 'BackendBundle:Fitxa' )->findOneBy( array( 'id' => 12 ) );
-
+        /** @var Query $query */
         $query = $em->createQuery(
             /** @lang text */
             '
@@ -385,7 +386,11 @@ class ApiController extends FOSRestController
         '
         );
         $query->setParameter( 'udala', $fitxa->getUdala() );
-        $eremuak = $query->getSingleResult();
+        try {
+            $eremuak = $query->getSingleResult();
+        } catch (NoResultException $e) {
+        } catch (NonUniqueResultException $e) {
+        }
 
         $query = $em->createQuery(
             /** @lang text */
@@ -396,14 +401,18 @@ class ApiController extends FOSRestController
         '
         );
         $query->setParameter( 'udala', $fitxa->getUdala() );
-        $labelak = $query->getSingleResult();
+        try {
+            $labelak = $query->getSingleResult();
+        } catch (NoResultException $e) {
+        } catch (NonUniqueResultException $e) {
+        }
 
 
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
         $response = new Response();
-//        $response->headers->set('Content-Type', 'xml');
         $response->headers->set( 'Content-Type', 'application/xml; charset=utf-8' );
+
 
         return $this->render(
             'fitxapi.xml.twig',
@@ -429,13 +438,16 @@ class ApiController extends FOSRestController
      * )
      *
      *
-     * @return array data
+     * @param $id
+     *
+     * @return View data
      *
      * @Annotations\View()
      */
     public function getFamiliaordenaAction( $id )
     {
         $em = $this->getDoctrine()->getManager();
+        /** @var Query $query */
         $query = $em->createQuery(
             '
                 SELECT f
@@ -444,10 +456,11 @@ class ApiController extends FOSRestController
                 '
         );
         $query->setParameter( 'id', $id );
+        /** @var Familia $familia */
         $familia = $query->getResult();
 
         $ordena = (int)$familia->getOrdena();
-        $ordena += 1;
+        ++$ordena;
 
         $view = View::create();
         $view->setData( $ordena );
