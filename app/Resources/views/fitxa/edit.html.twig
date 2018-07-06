@@ -156,6 +156,30 @@
         </div>
     </div>
 
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Publikoa da?</h2>
+      </div>
+      <div class="col-sm-6">
+        <h2>¿Es publico?</h2>
+      </div>
+      <div class="col-sm-6">
+        <p>Fitxa hau zerbitzu telematiko eta Api-an publikatu edo ez.</p>
+      </div>
+      <div class="col-sm-6">
+        <p>Define si esta ficha podrá ser visible en los servicios telemáticos y la Api</p>
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          {{ form_label(edit_form.publikoa) }}
+          {{ form_errors(edit_form.publikoa) }}
+          {{ form_widget(edit_form.publikoa, {'attr': {'class': 'form-control'}}) }}
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+
     {% if eremuak.helburuatext %}
         <div class="row" id="helburua">
             <div class="col-sm-6">
@@ -1328,10 +1352,6 @@
                     }
                 }
             });
-
-            // $(".kostutaula").each(function () {
-            //     console.log($(this).val());
-            // });
 
             /**
              * Goazen konboak kargatzera

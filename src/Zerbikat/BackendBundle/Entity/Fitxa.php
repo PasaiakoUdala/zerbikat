@@ -9,6 +9,27 @@
     use JMS\Serializer\Annotation as JMS;
     use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
     use Doctrine\ORM\Mapping\OrderBy;
+    use Zerbikat\BackendBundle\Entity\Arrunta;
+    use Zerbikat\BackendBundle\Entity\Aurreikusi;
+    use Zerbikat\BackendBundle\Entity\Azpiatala;
+    use Zerbikat\BackendBundle\Entity\Azpisaila;
+    use Zerbikat\BackendBundle\Entity\Besteak1;
+    use Zerbikat\BackendBundle\Entity\Besteak2;
+    use Zerbikat\BackendBundle\Entity\Besteak3;
+    use Zerbikat\BackendBundle\Entity\Datuenbabesa;
+    use Zerbikat\BackendBundle\Entity\Doklagun;
+    use Zerbikat\BackendBundle\Entity\Dokumentazioa;
+    use Zerbikat\BackendBundle\Entity\Etiketa;
+    use Zerbikat\BackendBundle\Entity\FitxaAraudia;
+    use Zerbikat\BackendBundle\Entity\Fitxafamilia;
+    use Zerbikat\BackendBundle\Entity\FitxaKostua;
+    use Zerbikat\BackendBundle\Entity\FitxaProzedura;
+    use Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa;
+    use Zerbikat\BackendBundle\Entity\Kanala;
+    use Zerbikat\BackendBundle\Entity\Norkebatzi;
+    use Zerbikat\BackendBundle\Entity\Norkeskatu;
+    use Zerbikat\BackendBundle\Entity\Udala;
+    use Zerbikat\BackendBundle\Entity\Zerbitzua;
 
     /**
      * Fitxa
@@ -344,7 +365,7 @@
         private $udala;
 
         /**
-         * @var \Zerbikat\BackendBundle\Entity\Norkebatzi
+         * @var Norkebatzi
          *
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Norkebatzi")
          * @ORM\JoinColumn(name="norkebatzi_id", referencedColumnName="id", onDelete="SET NULL")
@@ -353,7 +374,7 @@
         private $norkebatzi;
 
         /**
-         * @var \Zerbikat\BackendBundle\Entity\Zerbitzua
+         * @var Zerbitzua
          *
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Zerbitzua")
          * @ORM\JoinColumn(name="zerbitzua_id", referencedColumnName="id", onDelete="SET NULL")
@@ -362,7 +383,7 @@
         private $zerbitzua;
 
         /**
-         * @var \Zerbikat\BackendBundle\Entity\Datuenbabesa
+         * @var Datuenbabesa
          *
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Datuenbabesa")
          * @ORM\JoinColumn(name="datuenbabesa_id", referencedColumnName="id", onDelete="SET NULL")
@@ -371,7 +392,7 @@
         private $datuenbabesa;
 
         /**
-         * @var \Zerbikat\BackendBundle\Entity\Azpisaila
+         * @var Azpisaila
          *
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
          * @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id", onDelete="SET NULL")
@@ -381,7 +402,7 @@
         private $azpisaila;
 
         /**
-         * @var \Zerbikat\BackendBundle\Entity\Aurreikusi
+         * @var Aurreikusi
          *
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Aurreikusi")
          * @ORM\JoinColumn(name="aurreikusi_id", referencedColumnName="id", onDelete="SET NULL")
@@ -391,7 +412,7 @@
         private $aurreikusi;
 
         /**
-         * @var \Zerbikat\BackendBundle\Entity\Arrunta
+         * @var Arrunta
          *
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Arrunta")
          * @ORM\JoinColumn(name="arrunta_id", referencedColumnName="id", onDelete="SET NULL")
@@ -401,7 +422,7 @@
         private $arrunta;
 
         /**
-         * @var \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+         * @var IsiltasunAdministratiboa
          * @Expose
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa",inversedBy="fitxak")
          * @ORM\JoinColumn(name="isiltasunadmin_id", referencedColumnName="id", onDelete="SET NULL")
@@ -554,6 +575,7 @@
 
             $this->createdAt = new \DateTime();
             $this->updatedAt = new \DateTime();
+            $this->publikoa = 1;
         }
 
 
@@ -1593,11 +1615,11 @@
     /**
      * Set udala
      *
-     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     * @param Udala $udala
      *
      * @return Fitxa
      */
-    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    public function setUdala(Udala $udala = null)
     {
         $this->udala = $udala;
 
@@ -1607,7 +1629,7 @@
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala
+     * @return Udala
      */
     public function getUdala()
     {
@@ -1617,11 +1639,11 @@
     /**
      * Set norkebatzi
      *
-     * @param \Zerbikat\BackendBundle\Entity\Norkebatzi $norkebatzi
+     * @param Norkebatzi $norkebatzi
      *
      * @return Fitxa
      */
-    public function setNorkebatzi(\Zerbikat\BackendBundle\Entity\Norkebatzi $norkebatzi = null)
+    public function setNorkebatzi(Norkebatzi $norkebatzi = null)
     {
         $this->norkebatzi = $norkebatzi;
 
@@ -1631,7 +1653,7 @@
     /**
      * Get norkebatzi
      *
-     * @return \Zerbikat\BackendBundle\Entity\Norkebatzi
+     * @return Norkebatzi
      */
     public function getNorkebatzi()
     {
@@ -1641,11 +1663,11 @@
     /**
      * Set zerbitzua
      *
-     * @param \Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzua
+     * @param Zerbitzua $zerbitzua
      *
      * @return Fitxa
      */
-    public function setZerbitzua(\Zerbikat\BackendBundle\Entity\Zerbitzua $zerbitzua = null)
+    public function setZerbitzua(Zerbitzua $zerbitzua = null)
     {
         $this->zerbitzua = $zerbitzua;
 
@@ -1655,7 +1677,7 @@
     /**
      * Get zerbitzua
      *
-     * @return \Zerbikat\BackendBundle\Entity\Zerbitzua
+     * @return Zerbitzua
      */
     public function getZerbitzua()
     {
@@ -1665,11 +1687,11 @@
     /**
      * Set datuenbabesa
      *
-     * @param \Zerbikat\BackendBundle\Entity\Datuenbabesa $datuenbabesa
+     * @param Datuenbabesa $datuenbabesa
      *
      * @return Fitxa
      */
-    public function setDatuenbabesa(\Zerbikat\BackendBundle\Entity\Datuenbabesa $datuenbabesa = null)
+    public function setDatuenbabesa(Datuenbabesa $datuenbabesa = null)
     {
         $this->datuenbabesa = $datuenbabesa;
 
@@ -1679,7 +1701,7 @@
     /**
      * Get datuenbabesa
      *
-     * @return \Zerbikat\BackendBundle\Entity\Datuenbabesa
+     * @return Datuenbabesa
      */
     public function getDatuenbabesa()
     {
@@ -1689,11 +1711,11 @@
     /**
      * Set azpisaila
      *
-     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila
+     * @param Azpisaila $azpisaila
      *
      * @return Fitxa
      */
-    public function setAzpisaila(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila = null)
+    public function setAzpisaila(Azpisaila $azpisaila = null)
     {
         $this->azpisaila = $azpisaila;
 
@@ -1703,7 +1725,7 @@
     /**
      * Get azpisaila
      *
-     * @return \Zerbikat\BackendBundle\Entity\Azpisaila
+     * @return Azpisaila
      */
     public function getAzpisaila()
     {
@@ -1713,11 +1735,11 @@
     /**
      * Set aurreikusi
      *
-     * @param \Zerbikat\BackendBundle\Entity\Aurreikusi $aurreikusi
+     * @param Aurreikusi $aurreikusi
      *
      * @return Fitxa
      */
-    public function setAurreikusi(\Zerbikat\BackendBundle\Entity\Aurreikusi $aurreikusi = null)
+    public function setAurreikusi(Aurreikusi $aurreikusi = null)
     {
         $this->aurreikusi = $aurreikusi;
 
@@ -1727,7 +1749,7 @@
     /**
      * Get aurreikusi
      *
-     * @return \Zerbikat\BackendBundle\Entity\Aurreikusi
+     * @return Aurreikusi
      */
     public function getAurreikusi()
     {
@@ -1737,11 +1759,11 @@
     /**
      * Set arrunta
      *
-     * @param \Zerbikat\BackendBundle\Entity\Arrunta $arrunta
+     * @param Arrunta $arrunta
      *
      * @return Fitxa
      */
-    public function setArrunta(\Zerbikat\BackendBundle\Entity\Arrunta $arrunta = null)
+    public function setArrunta(Arrunta $arrunta = null)
     {
         $this->arrunta = $arrunta;
 
@@ -1751,7 +1773,7 @@
     /**
      * Get arrunta
      *
-     * @return \Zerbikat\BackendBundle\Entity\Arrunta
+     * @return Arrunta
      */
     public function getArrunta()
     {
@@ -1761,11 +1783,11 @@
     /**
      * Set isiltasunadmin
      *
-     * @param \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin
+     * @param IsiltasunAdministratiboa $isiltasunadmin
      *
      * @return Fitxa
      */
-    public function setIsiltasunadmin(\Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa $isiltasunadmin = null)
+    public function setIsiltasunadmin(IsiltasunAdministratiboa $isiltasunadmin = null)
     {
         $this->isiltasunadmin = $isiltasunadmin;
 
@@ -1775,7 +1797,7 @@
     /**
      * Get isiltasunadmin
      *
-     * @return \Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa
+     * @return IsiltasunAdministratiboa
      */
     public function getIsiltasunadmin()
     {
@@ -1785,11 +1807,11 @@
     /**
      * Add dokumentazioak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak
+     * @param Dokumentazioa $dokumentazioak
      *
      * @return Fitxa
      */
-    public function addDokumentazioak(\Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak)
+    public function addDokumentazioak(Dokumentazioa $dokumentazioak)
     {
         $this->dokumentazioak[] = $dokumentazioak;
 
@@ -1799,9 +1821,9 @@
     /**
      * Remove dokumentazioak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak
+     * @param Dokumentazioa $dokumentazioak
      */
-    public function removeDokumentazioak(\Zerbikat\BackendBundle\Entity\Dokumentazioa $dokumentazioak)
+    public function removeDokumentazioak(Dokumentazioa $dokumentazioak)
     {
         $this->dokumentazioak->removeElement($dokumentazioak);
     }
@@ -1819,11 +1841,11 @@
     /**
      * Add kanalak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Kanala $kanalak
+     * @param Kanala $kanalak
      *
      * @return Fitxa
      */
-    public function addKanalak(\Zerbikat\BackendBundle\Entity\Kanala $kanalak)
+    public function addKanalak(Kanala $kanalak)
     {
         $this->kanalak[] = $kanalak;
 
@@ -1833,9 +1855,9 @@
     /**
      * Remove kanalak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Kanala $kanalak
+     * @param Kanala $kanalak
      */
-    public function removeKanalak(\Zerbikat\BackendBundle\Entity\Kanala $kanalak)
+    public function removeKanalak(Kanala $kanalak)
     {
         $this->kanalak->removeElement($kanalak);
     }
@@ -1853,11 +1875,11 @@
     /**
      * Add besteak1ak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak
+     * @param Besteak1 $besteak1ak
      *
      * @return Fitxa
      */
-    public function addBesteak1ak(\Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak)
+    public function addBesteak1ak(Besteak1 $besteak1ak)
     {
         $this->besteak1ak[] = $besteak1ak;
 
@@ -1867,9 +1889,9 @@
     /**
      * Remove besteak1ak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak
+     * @param Besteak1 $besteak1ak
      */
-    public function removeBesteak1ak(\Zerbikat\BackendBundle\Entity\Besteak1 $besteak1ak)
+    public function removeBesteak1ak(Besteak1 $besteak1ak)
     {
         $this->besteak1ak->removeElement($besteak1ak);
     }
@@ -1887,11 +1909,11 @@
     /**
      * Add besteak2ak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak
+     * @param Besteak2 $besteak2ak
      *
      * @return Fitxa
      */
-    public function addBesteak2ak(\Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak)
+    public function addBesteak2ak(Besteak2 $besteak2ak)
     {
         $this->besteak2ak[] = $besteak2ak;
 
@@ -1901,9 +1923,9 @@
     /**
      * Remove besteak2ak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak
+     * @param Besteak2 $besteak2ak
      */
-    public function removeBesteak2ak(\Zerbikat\BackendBundle\Entity\Besteak2 $besteak2ak)
+    public function removeBesteak2ak(Besteak2 $besteak2ak)
     {
         $this->besteak2ak->removeElement($besteak2ak);
     }
@@ -1921,11 +1943,11 @@
     /**
      * Add besteak3ak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak
+     * @param Besteak3 $besteak3ak
      *
      * @return Fitxa
      */
-    public function addBesteak3ak(\Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak)
+    public function addBesteak3ak(Besteak3 $besteak3ak)
     {
         $this->besteak3ak[] = $besteak3ak;
 
@@ -1935,9 +1957,9 @@
     /**
      * Remove besteak3ak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak
+     * @param Besteak3 $besteak3ak
      */
-    public function removeBesteak3ak(\Zerbikat\BackendBundle\Entity\Besteak3 $besteak3ak)
+    public function removeBesteak3ak(Besteak3 $besteak3ak)
     {
         $this->besteak3ak->removeElement($besteak3ak);
     }
@@ -1955,11 +1977,11 @@
     /**
      * Add etiketak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Etiketa $etiketak
+     * @param Etiketa $etiketak
      *
      * @return Fitxa
      */
-    public function addEtiketak(\Zerbikat\BackendBundle\Entity\Etiketa $etiketak)
+    public function addEtiketak(Etiketa $etiketak)
     {
         $this->etiketak[] = $etiketak;
 
@@ -1969,9 +1991,9 @@
     /**
      * Remove etiketak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Etiketa $etiketak
+     * @param Etiketa $etiketak
      */
-    public function removeEtiketak(\Zerbikat\BackendBundle\Entity\Etiketa $etiketak)
+    public function removeEtiketak(Etiketa $etiketak)
     {
         $this->etiketak->removeElement($etiketak);
     }
@@ -1989,11 +2011,11 @@
     /**
      * Add norkeskatuak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak
+     * @param Norkeskatu $norkeskatuak
      *
      * @return Fitxa
      */
-    public function addNorkeskatuak(\Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak)
+    public function addNorkeskatuak(Norkeskatu $norkeskatuak)
     {
         $this->norkeskatuak[] = $norkeskatuak;
 
@@ -2003,9 +2025,9 @@
     /**
      * Remove norkeskatuak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak
+     * @param Norkeskatu $norkeskatuak
      */
-    public function removeNorkeskatuak(\Zerbikat\BackendBundle\Entity\Norkeskatu $norkeskatuak)
+    public function removeNorkeskatuak(Norkeskatu $norkeskatuak)
     {
         $this->norkeskatuak->removeElement($norkeskatuak);
     }
@@ -2023,11 +2045,11 @@
     /**
      * Add doklagunak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Doklagun $doklagunak
+     * @param Doklagun $doklagunak
      *
      * @return Fitxa
      */
-    public function addDoklagunak(\Zerbikat\BackendBundle\Entity\Doklagun $doklagunak)
+    public function addDoklagunak(Doklagun $doklagunak)
     {
         $this->doklagunak[] = $doklagunak;
 
@@ -2037,9 +2059,9 @@
     /**
      * Remove doklagunak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Doklagun $doklagunak
+     * @param Doklagun $doklagunak
      */
-    public function removeDoklagunak(\Zerbikat\BackendBundle\Entity\Doklagun $doklagunak)
+    public function removeDoklagunak(Doklagun $doklagunak)
     {
         $this->doklagunak->removeElement($doklagunak);
     }
@@ -2057,11 +2079,11 @@
     /**
      * Add azpiatalak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak
+     * @param Azpiatala $azpiatalak
      *
      * @return Fitxa
      */
-    public function addAzpiatalak(\Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak)
+    public function addAzpiatalak(Azpiatala $azpiatalak)
     {
         $this->azpiatalak[] = $azpiatalak;
 
@@ -2071,9 +2093,9 @@
     /**
      * Remove azpiatalak
      *
-     * @param \Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak
+     * @param Azpiatala $azpiatalak
      */
-    public function removeAzpiatalak(\Zerbikat\BackendBundle\Entity\Azpiatala $azpiatalak)
+    public function removeAzpiatalak(Azpiatala $azpiatalak)
     {
         $this->azpiatalak->removeElement($azpiatalak);
     }
@@ -2091,11 +2113,11 @@
     /**
      * Add fitxafamilium
      *
-     * @param \Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium
+     * @param Fitxafamilia $fitxafamilium
      *
      * @return Fitxa
      */
-    public function addFitxafamilium(\Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium)
+    public function addFitxafamilium(Fitxafamilia $fitxafamilium)
     {
         $this->fitxafamilia[] = $fitxafamilium;
 
@@ -2105,9 +2127,9 @@
     /**
      * Remove fitxafamilium
      *
-     * @param \Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium
+     * @param Fitxafamilia $fitxafamilium
      */
-    public function removeFitxafamilium(\Zerbikat\BackendBundle\Entity\Fitxafamilia $fitxafamilium)
+    public function removeFitxafamilium(Fitxafamilia $fitxafamilium)
     {
         $this->fitxafamilia->removeElement($fitxafamilium);
     }
@@ -2125,11 +2147,11 @@
     /**
      * Add prozedurak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     * @param FitxaProzedura $prozedurak
      *
      * @return Fitxa
      */
-    public function addProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    public function addProzedurak(FitxaProzedura $prozedurak)
     {
         $this->prozedurak[] = $prozedurak;
 
@@ -2139,9 +2161,9 @@
     /**
      * Remove prozedurak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak
+     * @param FitxaProzedura $prozedurak
      */
-    public function removeProzedurak(\Zerbikat\BackendBundle\Entity\FitxaProzedura $prozedurak)
+    public function removeProzedurak(FitxaProzedura $prozedurak)
     {
         $this->prozedurak->removeElement($prozedurak);
     }
@@ -2159,11 +2181,11 @@
     /**
      * Add araudiak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     * @param FitxaAraudia $araudiak
      *
      * @return Fitxa
      */
-    public function addAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    public function addAraudiak(FitxaAraudia $araudiak)
     {
         $this->araudiak[] = $araudiak;
 
@@ -2173,9 +2195,9 @@
     /**
      * Remove araudiak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak
+     * @param FitxaAraudia $araudiak
      */
-    public function removeAraudiak(\Zerbikat\BackendBundle\Entity\FitxaAraudia $araudiak)
+    public function removeAraudiak(FitxaAraudia $araudiak)
     {
         $this->araudiak->removeElement($araudiak);
     }
@@ -2193,11 +2215,11 @@
     /**
      * Add kostuak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak
+     * @param FitxaKostua $kostuak
      *
      * @return Fitxa
      */
-    public function addKostuak(\Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak)
+    public function addKostuak(FitxaKostua $kostuak)
     {
         $this->kostuak[] = $kostuak;
 
@@ -2207,9 +2229,9 @@
     /**
      * Remove kostuak
      *
-     * @param \Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak
+     * @param FitxaKostua $kostuak
      */
-    public function removeKostuak(\Zerbikat\BackendBundle\Entity\FitxaKostua $kostuak)
+    public function removeKostuak(FitxaKostua $kostuak)
     {
         $this->kostuak->removeElement($kostuak);
     }
