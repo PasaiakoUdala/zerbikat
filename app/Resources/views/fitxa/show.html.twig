@@ -345,13 +345,13 @@
                     {% set kont=0 %}
                     {% if eremuak.kostuatable %}
                         {% if fitxa.udala.zergaor %}
-                            {#{% for kostutaula in fitxa.kostuak %}#}
                             {% for kostutaula in kostuZerrenda %}
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th colspan="2" class="text-center">{% if kostutaula['kodea_prod'] is defined  %}
-                                            {{ kostutaula['kodea_prod'] | raw }} {% endif %}
-                                            - {{ kostutaula['izenburuaeu_prod'] | raw }}
+                                        <th colspan="2" class="text-center">
+                                          {% if kostutaula['kodea_prod'] is defined  %}
+                                            {{ kostutaula['kodea_prod'] | raw }}
+                                          {% endif %} - {{ kostutaula['izenburuaeu_prod'] | raw }}
                                         </th>
                                     </tr>
                                     {% for parrafo in kostutaula['parrafoak'] %}
@@ -365,7 +365,13 @@
                                     {% endfor %}
                                     {% for kontzeptu in kostutaula['kontzeptuak'] %}
                                         <tr>
-                                            <td>{% if kontzeptu['kontzeptuaeu_prod'] is defined %}{{ kontzeptu['kontzeptuaeu_prod'] }}{% endif %}</td>
+                                            <td>
+                                              {% if kontzeptu['kontzeptuaeu_prod'] is defined %}
+                                                {{ kontzeptu['kontzeptuaeu_prod'] }}
+                                                {% if kontzeptu['baldintza'] is defined %}
+                                                  (  {{ kontzeptu['baldintza']['baldintzaeu'] }} )
+                                                {% endif %}
+                                              {% endif %}</td>
                                             <td NOWRAP>
                                                 {% if kontzeptu['kopurua_prod'] is defined %}
                                                     {{ kontzeptu['kopurua_prod'] }} {% if kontzeptu['unitatea_prod'] is defined %}{{ kontzeptu['unitatea_prod'] }}{% endif %}
@@ -437,7 +443,13 @@
                                     {% endfor %}
                                     {% for kontzeptu in kostutaula['kontzeptuak'] %}
                                         <tr>
-                                            <td>{% if kontzeptu['kontzeptuaes_prod'] is defined %}{{ kontzeptu['kontzeptuaes_prod'] }}{% endif %}</td>
+                                            <td>{% if kontzeptu['kontzeptuaes_prod'] is defined %}
+                                                  {{ kontzeptu['kontzeptuaes_prod'] }}
+                                                  {% if kontzeptu['baldintza'] is defined %}
+                                                    ( {{ kontzeptu['baldintza']['baldintzaes']}}  )
+                                                  {% endif %}
+                                                {% endif %}
+                                            </td>
                                             <td NOWRAP>
                                                 {% if kontzeptu.kopurua_prod is defined %}
                                                     {{ kontzeptu['kopurua_prod'] }} {% if kontzeptu.unitatea_prod is defined %}{{ kontzeptu['unitatea_prod'] }}{% endif %}
