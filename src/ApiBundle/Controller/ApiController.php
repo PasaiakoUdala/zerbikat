@@ -24,6 +24,53 @@ use Zerbikat\BackendBundle\Entity\Fitxa;
 class ApiController extends FOSRestController
 {
 
+    /**
+     * Fitxa baten deskribapena, saila eta azpisaila eskuratu fitxaren eta udalaren kodea erabiliz
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Fitxa baten deskribapena, saila eta azpisaila eskuratu fitxaren kodea erabiliz",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @param $udala
+     * @param $kodea
+     *
+     * @return array|View
+     * @Annotations\View()
+     *
+     * @Get("/fitxadatuakbykodea/{udala}/{kodea}")
+     */
+    public function getFitxaDatuakByKodeaAction ($udala, $kodea) {
+
+
+        $em = $this->getDoctrine()->getManager();
+        /** @var QueryBuilder $query */
+        $query = $em->createQueryBuilder('f');
+        $query->from( 'BackendBundle:Fitxa', 'f' );
+        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes', 'az.id', 'az.azpisailaes', 'az.azpisailaeu', 's.id', 's.sailaeu', 's.sailaes' );
+        $query->leftJoin( 'f.udala', 'u' );
+        $query->innerJoin('f.azpisaila', 'az');
+        $query->innerJoin('az.saila', 's');
+        $query->andWhere( 'u.kodea = :udala' );
+        $query->setParameter( 'udala', $udala );
+        $query->andWhere( 'f.espedientekodea = :kodea' );
+        $query->setParameter( 'kodea', $kodea );
+
+
+        $fitxa = $query->getQuery()->getResult();
+        $view = View::create();
+        $view->setData( $fitxa );
+
+        header('content-type: application/json; charset=utf-8');
+        header('access-control-allow-origin: *');
+        return $view;
+    }
+
+
     /****************************************************************************************************************
      ****************************************************************************************************************
      **** API SAC ***************************************************************************************************
@@ -278,7 +325,7 @@ class ApiController extends FOSRestController
      *
      * @Annotations\View()
      */
-    public function getAzpifamiliakAction( $id )
+    public function getAzpifamiliakAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         /** @var Query $query */
@@ -291,11 +338,11 @@ class ApiController extends FOSRestController
 
         '
         );
-        $query->setParameter( 'id', $id );
+        $query->setParameter('id', $id);
         $azpifamiliak = $query->getResult();
 
         $view = View::create();
-        $view->setData( $azpifamiliak );
+        $view->setData($azpifamiliak);
         header('content-type: application/json; charset=utf-8');
         header('access-control-allow-origin: *');
 
@@ -412,8 +459,6 @@ class ApiController extends FOSRestController
 
         $response = new Response();
         $response->headers->set( 'Content-Type', 'application/xml; charset=utf-8' );
-
-
         return $this->render(
             'fitxapi.xml.twig',
             array(
