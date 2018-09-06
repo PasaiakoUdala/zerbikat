@@ -36,22 +36,22 @@ class ApiController extends FOSRestController
      * )
      *
      *
-     * @param $udala
      * @param $kodea
+     * @param $udala
      *
      * @return array|View
      * @Annotations\View()
      *
-     * @Get("/fitxadatuakbykodea/{udala}/{kodea}")
+     * @Get("/fitxadatuakbykodea/{kodea}/{udala}")
      */
-    public function getFitxaDatuakByKodeaAction ($udala, $kodea) {
+    public function getFitxaDatuakByKodeaAction ($kodea,$udala) {
 
 
         $em = $this->getDoctrine()->getManager();
         /** @var QueryBuilder $query */
         $query = $em->createQueryBuilder('f');
         $query->from( 'BackendBundle:Fitxa', 'f' );
-        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes', 'az.id', 'az.azpisailaes', 'az.azpisailaeu', 's.id', 's.sailaeu', 's.sailaes' );
+        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes', 'az.id', 'az.azpisailaeu', 'az.azpisailaes', 's.id', 's.sailaeu', 's.sailaes' );
         $query->leftJoin( 'f.udala', 'u' );
         $query->innerJoin('f.azpisaila', 'az');
         $query->innerJoin('az.saila', 's');
