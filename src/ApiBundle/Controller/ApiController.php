@@ -51,7 +51,7 @@ class ApiController extends FOSRestController
         /** @var QueryBuilder $query */
         $query = $em->createQueryBuilder('f');
         $query->from( 'BackendBundle:Fitxa', 'f' );
-        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes', 'az.id', 'az.azpisailaeu', 'az.azpisailaes', 's.id', 's.sailaeu', 's.sailaes' );
+        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes', 'az.id as azpiSailaId', 'az.azpisailaeu', 'az.azpisailaes', 's.id as sailaId', 's.sailaeu', 's.sailaes' );
         $query->leftJoin( 'f.udala', 'u' );
         $query->innerJoin('f.azpisaila', 'az');
         $query->innerJoin('az.saila', 's');
