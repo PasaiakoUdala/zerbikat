@@ -957,7 +957,7 @@
                                         <div class="form-group">
                                             <label for="cmbServiciosDisponibles">Servicios Disponibles</label>
                                             <select id="cmbServiciosDisponibles" multiple class="form-control"
-                                                    size="10">
+                                                    size="12">
                                                 <option value="00">00-Configuración</option>
                                                 <option value="01">01-Registro</option>
                                                 <option value="02">02-Multas</option>
@@ -968,6 +968,7 @@
                                                 <option value="07">07-Verificación de Documentos</option>
                                                 <option value="08">08-Gestión de Expedientes</option>
                                                 <option value="09">09-Consulta recibos</option>
+                                                <option value="10">10-Dokumentu elektronikoen egiaztapena / Verificación de documentos electrónicos</option>
                                             </select>
                                         </div>
                                     </div>
@@ -1652,7 +1653,8 @@
                     $("#cmbParametros").append($("<option selected></option>").attr("value", "01").text("01-Creación de un registro de entrada"));
                 } else if ( aukera == "05" ) {
                     $("#cmbParametros").empty();
-
+                    $("#cmbParametros").append($("<option selected></option>").attr("value", "02").text("02-Historiala / Historial"));
+                    $("#cmbParametros").append($("<option></option>").attr("value", "03").text("03-Ziurtagiria / Certificado"));
                 } else if ( aukera == "08" ) {
                     $("#cmbParametros").empty();
                     $("#cmbParametros").append($("<option selected></option>").attr("value", "00").text("00-Página de ayuda de este tipo de expediente"));
