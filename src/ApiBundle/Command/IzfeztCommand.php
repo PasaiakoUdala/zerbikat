@@ -468,7 +468,7 @@ class IzfeztCommand extends ContainerAwareCommand
             'USC'
         );
         $idPaginaHome = $idPagina;
-        $idPagina     += 1;
+        ++$idPagina;
 
         /*******************************************************************/
         /**** Fin home-a sortu  ********************************************/
@@ -494,8 +494,8 @@ class IzfeztCommand extends ContainerAwareCommand
 
             $mapa[ $familia->getId() ] = $idBlokea;
 
-            $idBlokea += 1;
-            $idOrden += 1;
+            ++$idBlokea;
+            ++$idOrden;
         }
         /*******************************************************************/
         /**** Fin home-an familiak sortu  **********************************/
@@ -587,10 +587,10 @@ class IzfeztCommand extends ContainerAwareCommand
                                 $idElementua,
                                 $idOrdenElementua
                             );
-                            $idBlokea         += 1;
-                            $idOrden          += 1;
-                            $idOrdenElementua += 1;
-                            $idElementua      += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
+                            ++$idOrdenElementua;
+                            ++$idElementua;
                         }
                         /****** FIN HELBURUA *********************************************************************/
 
@@ -622,8 +622,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idOrdenElementua
                                 );
                                 $badu             = 1;
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                             }
                             if ( $eremuak[ 'norkeskatutable' ] ) {
                                 if ( $fitxa->getNorkeskatuak() ) {
@@ -642,8 +642,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                         $badu             = 1;
                                     }
                                 }
@@ -664,12 +664,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN NORK ESKATU *********************************************************************/
 
@@ -721,8 +721,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
                             }
@@ -743,8 +743,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                             }
@@ -764,12 +764,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN DOKUMENTAZIOA *********************************************************************/
 
@@ -799,8 +799,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
 
@@ -839,8 +839,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
                             }
@@ -860,12 +860,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN DOKUMENTAZIO LAGUNGARRIA *********************************************************************/
 
@@ -1019,8 +1019,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
                             }
@@ -1039,8 +1039,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
                             if ( $badu == 0 ) {
@@ -1059,12 +1059,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN DOKUMENTAZIOA *********************************************************************/
 
@@ -1116,7 +1116,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $textes .= '</table><br/>';
                                             $texteu .= '</table><br/>';
 
-                                            $kont += 1;
+                                            ++$kont;
                                             $badu = 1;
                                         }
                                     }
@@ -1147,7 +1147,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                         }
                                         $textes .= '</table><br/>';
                                         $texteu .= '</table><br/>';
-                                        $kont   += 1;
+                                        ++$kont;
                                         $badu   = 1;
                                     }
                                 }
@@ -1167,8 +1167,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                 }
                             }
                             if ( $eremuak[ 'kostuatext' ] ) {
@@ -1186,8 +1186,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
 
@@ -1207,8 +1207,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
                             if ( $badu == 0 ) {
@@ -1227,12 +1227,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN KOSTUA *********************************************************************/
 
@@ -1330,11 +1330,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idOrdenElementua += 1;
-                                $idElementua      += 1;
+                                ++$idOrdenElementua;
+                                ++$idElementua;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN EBAZPENA*********************************************************************/
 
@@ -1365,8 +1365,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                             }
@@ -1408,8 +1408,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
 
@@ -1430,12 +1430,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN ARAUDIA *********************************************************************/
 
@@ -1466,8 +1466,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                             }
@@ -1499,8 +1499,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
                             }
@@ -1520,12 +1520,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN PROZEDURA *********************************************************************/
 
@@ -1556,8 +1556,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
 
                             }
@@ -1576,8 +1576,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
                             if ( $badu == 0 ) {
@@ -1596,13 +1596,13 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
 
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN NORK EBATZI *******************************************************************/
 
@@ -1633,8 +1633,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
                             if ( $badu == 0 ) {
@@ -1653,12 +1653,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN AZPISAILA *******************************************************************/
 
@@ -1690,11 +1690,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN OHARRAK *******************************************************************/
 
@@ -1724,8 +1724,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
                             if ( $eremuak[ 'besteak1table' ] ) {
@@ -1768,8 +1768,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
                             }
@@ -1789,12 +1789,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN BESTEAK1 *********************************************************************/
 
@@ -1824,8 +1824,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
                             if ( $eremuak[ 'besteak2table' ] ) {
@@ -1868,8 +1868,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
 
@@ -1890,12 +1890,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN BESTEAK2 *********************************************************************/
 
@@ -1925,8 +1925,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 1;
                             }
                             if ( $eremuak[ 'besteak3table' ] ) {
@@ -1969,8 +1969,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
                             }
@@ -1990,12 +1990,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                                 $badu             = 0;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN BESTEAK3 *********************************************************************/
 
@@ -2045,8 +2045,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                             } else {
                                 $sql              .= $this->addElementua(
                                     $A204AYUNTA,
@@ -2062,11 +2062,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idElementua      += 1;
-                                $idOrdenElementua += 1;
+                                ++$idElementua;
+                                ++$idOrdenElementua;
                             }
-                            $idBlokea += 1;
-                            $idOrden += 1;
+                            ++$idBlokea;
+                            ++$idOrden;
                         }
                         /****** FIN DATUENBABESA *********************************************************************/
 
@@ -2089,10 +2089,10 @@ class IzfeztCommand extends ContainerAwareCommand
                         $idElementua,
                         $idOrdenElementua
                     );
-                    $idElementua += 1;
+                    ++$idElementua;
 
 
-                    $idPagina += 1;
+                    ++$idPagina;
                     if ( !$debug ) {
                         $progress->advance();
                     }
@@ -2136,9 +2136,9 @@ class IzfeztCommand extends ContainerAwareCommand
 
                         array_push( $sortutakoAzpifamiliak, $c->getId() );
 
-                        $idOrden += 1;
-                        $idOrdenElementua += 1;
-                        $idElementua += 1;
+                        ++$idOrden;
+                        ++$idOrdenElementua;
+                        ++$idElementua;
                     }
 
                     $fitxa = $fitx->getFitxa();
@@ -2216,10 +2216,10 @@ class IzfeztCommand extends ContainerAwareCommand
                                     $idElementua,
                                     $idOrdenElementua
                                 );
-                                $idBlokea         += 1;
-                                $idOrden          += 1;
-                                $idOrdenElementua += 1;
-                                $idElementua      += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
+                                ++$idOrdenElementua;
+                                ++$idElementua;
                             }
                             /****** FIN HELBURUA *********************************************************************/
 
@@ -2251,8 +2251,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idOrdenElementua
                                     );
                                     $badu             = 1;
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                 }
                                 if ( $eremuak[ 'norkeskatutable' ] ) {
                                     if ( $fitxa->getNorkeskatuak() ) {
@@ -2271,8 +2271,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                             $badu             = 1;
                                         }
                                     }
@@ -2293,12 +2293,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN NORK ESKATU *********************************************************************/
 
@@ -2350,8 +2350,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
                                 }
@@ -2372,8 +2372,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                         $badu             = 1;
                                     }
                                 }
@@ -2393,12 +2393,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN DOKUMENTAZIOA *********************************************************************/
 
@@ -2428,8 +2428,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
 
@@ -2468,8 +2468,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
                                 }
@@ -2489,12 +2489,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN DOKUMENTAZIO LAGUNGARRIA *********************************************************************/
 
@@ -2652,8 +2652,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
                                 }
@@ -2672,8 +2672,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                                 if ( $badu == 0 ) {
@@ -2692,12 +2692,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN DOKUMENTAZIOA *********************************************************************/
 
@@ -2749,7 +2749,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 }
                                                 $textes .= '</table>';
                                                 $texteu .= '</table>';
-                                                $kont   += 1;
+                                                ++$kont;
                                                 $badu   = 1;
                                             }
                                         }
@@ -2778,7 +2778,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                             }
                                             $textes .= '</table>';
                                             $texteu .= '</table>';
-                                            $kont   += 1;
+                                            ++$kont;
                                             $badu   = 1;
                                         }
                                     }
@@ -2798,8 +2798,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                     }
                                 }
                                 if ( $eremuak[ 'kostuatext' ] ) {
@@ -2817,8 +2817,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
 
@@ -2838,8 +2838,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                                 if ( $badu == 0 ) {
@@ -2858,12 +2858,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN KOSTUA *********************************************************************/
 
@@ -2960,11 +2960,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idOrdenElementua += 1;
-                                    $idElementua      += 1;
+                                    ++$idOrdenElementua;
+                                    ++$idElementua;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN EBAZPENA*********************************************************************/
 
@@ -2995,8 +2995,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                         $badu             = 1;
                                     }
                                 }
@@ -3038,8 +3038,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
 
@@ -3060,12 +3060,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN ARAUDIA *********************************************************************/
 
@@ -3097,8 +3097,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                             $idElementua,
                                             $idOrdenElementua
                                         );
-                                        $idElementua      += 1;
-                                        $idOrdenElementua += 1;
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
                                         $badu             = 1;
                                     }
                                 }
@@ -3130,8 +3130,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
                                 }
@@ -3151,12 +3151,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN PROZEDURA *********************************************************************/
 
@@ -3187,8 +3187,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
 
                                 }
@@ -3207,8 +3207,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                                 if ( $badu == 0 ) {
@@ -3227,13 +3227,13 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
 
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN NORK EBATZI *******************************************************************/
 
@@ -3264,8 +3264,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                                 if ( $badu == 0 ) {
@@ -3284,12 +3284,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN AZPISAILA *******************************************************************/
 
@@ -3321,11 +3321,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN OHARRAK *******************************************************************/
 
@@ -3355,8 +3355,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                                 if ( $eremuak[ 'besteak1table' ] ) {
@@ -3399,8 +3399,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
                                 }
@@ -3420,12 +3420,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN BESTEAK1 *********************************************************************/
 
@@ -3455,8 +3455,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                                 if ( $eremuak[ 'besteak2table' ] ) {
@@ -3499,8 +3499,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
 
@@ -3521,12 +3521,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN BESTEAK2 *********************************************************************/
 
@@ -3556,8 +3556,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 1;
                                 }
                                 if ( $eremuak[ 'besteak3table' ] ) {
@@ -3600,8 +3600,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 $idElementua,
                                                 $idOrdenElementua
                                             );
-                                            $idElementua      += 1;
-                                            $idOrdenElementua += 1;
+                                            ++$idElementua;
+                                            ++$idOrdenElementua;
                                         }
                                     }
                                 }
@@ -3621,12 +3621,12 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                     $badu             = 0;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN BESTEAK3 *********************************************************************/
 
@@ -3676,8 +3676,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                 } else {
                                     $sql              .= $this->addElementua(
                                         $A204AYUNTA,
@@ -3693,11 +3693,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                         $idElementua,
                                         $idOrdenElementua
                                     );
-                                    $idElementua      += 1;
-                                    $idOrdenElementua += 1;
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
                                 }
-                                $idBlokea += 1;
-                                $idOrden += 1;
+                                ++$idBlokea;
+                                ++$idOrden;
                             }
                             /****** FIN DATUENBABESA *********************************************************************/
 
@@ -3719,10 +3719,10 @@ class IzfeztCommand extends ContainerAwareCommand
                             $idElementua,
                             $idOrdenElementua
                         );
-                        $idElementua += 1;
+                        ++$idElementua;
 
 
-                        $idPagina += 1;
+                        ++$idPagina;
                         if ( !$debug ) {
                             $progress->advance();
                         }
