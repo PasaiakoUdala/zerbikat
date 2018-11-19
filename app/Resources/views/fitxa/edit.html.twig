@@ -1012,7 +1012,14 @@
                 </div>
             </div>
         </div>
-
+    {% else %}
+        {#HAUEK DIRA JS-ak akatsik ez emateko#}
+        <div style="display: none;">
+          <select name="EspedienteKodea" id="cmbEspedienteKodea">
+            <option value="-1">Eas</option>
+          </select>
+          <input type="text" id="espedienteKodea" value="">
+        </div>
     {% endif %}
 
 
