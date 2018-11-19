@@ -323,11 +323,7 @@ class IzfeztCommand extends ContainerAwareCommand
         /** @var EntityManager $em */
         $em = $this->getContainer()->get('doctrine')->getManager();
 
-        $udala = $em->getRepository('BackendBundle:Udala')->findOneBy(
-            array(
-                'kodea' => $udalKodea,
-            )
-        );
+        $udala = $em->getRepository('BackendBundle:Udala')->findOneBy(array('kodea' => $udalKodea,));
 
         $output->writeln(
             [
@@ -518,6 +514,9 @@ class IzfeztCommand extends ContainerAwareCommand
                 $this->unekoFitxaKodea = $fitxa->getExpedientes();
                 //$mapa[$familia->getId()] = $idBlokea;
 
+                if (($fitxa->getPublikoa() === false) || ($fitxa->getPublikoa() === null )) {
+                    continue;
+                }
 
                 /**************************************************************************************************/
                 /**** Fitxak-a sortu   ****************************************************************************/
@@ -970,7 +969,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                     $texteu .= '<li>';
                                                     if ($kanala->getIzenaes()) {
                                                         $textes = $textes.$kanala->getIzenaes().'<br/>';
-                                                        $texteu = $texteu.$kanala->getIzenaes().'<br/>';
+                                                        $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
                                                     }
                                                     if ($kanala->getKalea()) {
                                                         $textes = $textes.$kanala->getKalea().' ';
@@ -2152,6 +2151,10 @@ class IzfeztCommand extends ContainerAwareCommand
 
                     $fitxa                 = $fitx->getFitxa();
                     $this->unekoFitxaKodea = $fitxa->getExpedientes();
+
+                    if (($fitxa->getPublikoa()==false) || ($fitxa->getPublikoa()===null)) {
+                        continue;
+                    }
 
                     /**************************************************************************************************/
                     /**** Fitxak-a sortu   ****************************************************************************/
