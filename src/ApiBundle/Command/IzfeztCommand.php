@@ -400,7 +400,7 @@ class IzfeztCommand extends ContainerAwareCommand
         }
 
 
-        $kanalmotak = $em->getRepository('BackendBundle:Kanalmota')->findAll();
+        $kanalmotak = $em->getRepository('BackendBundle:Kanalmota')->findBy(array('udala'=>$udala->getId()));
 
         /** @var AbstractQuery $query */
         $query = $em->createQuery(
@@ -2614,7 +2614,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         $texteu .= '<li>';
                                                         if ($kanala->getIzenaes()) {
                                                             $textes = $textes.$kanala->getIzenaes().'<br/>';
-                                                            $texteu = $texteu.$kanala->getIzenaes().'<br/>';
+                                                            $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
                                                         }
                                                         if ($kanala->getKalea()) {
                                                             $textes = $textes.$kanala->getKalea().' ';
