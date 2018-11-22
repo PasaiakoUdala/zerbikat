@@ -59,6 +59,8 @@ php bin/console cache:clear --env=prod --no-debug
 
 mkdir -p web/doc
 
+chmod -R 777 web/doc
+
 #####Baimenak zehaztu
 
 sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx var/cache var/logs var/sessions web/doc
