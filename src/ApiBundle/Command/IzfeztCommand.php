@@ -2419,8 +2419,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                 $sql .= $this->addBloque(
                                     $A204AYUNTA,
                                     $idBlokea,
-                                    $labelak[ 'dokumentazioalabeles' ],
-                                    $labelak[ 'dokumentazioalabeleu' ]
+                                    $labelak[ 'doklagunlabeles' ],
+                                    $labelak[ 'doklagunlabeleu' ]
                                 );
                                 $sql .= $this->addOrriaBloque($A204AYUNTA, $idPagina, $idBlokea, $idOrden);
 
