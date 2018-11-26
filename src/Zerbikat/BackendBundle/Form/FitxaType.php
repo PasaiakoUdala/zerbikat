@@ -24,7 +24,9 @@
             $api_url = $options[ 'api_url' ];
 
             $builder
-                ->add( 'espedientekodea' )
+                ->add( 'espedientekodea', null, array(
+                    'required' => false
+                ) )
                 ->add( 'expedientes' )
                 ->add( 'deskribapenaeu' )
                 ->add( 'deskribapenaes' )

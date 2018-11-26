@@ -1233,6 +1233,7 @@
     <input id="udala_kodea" type="hidden" value="{{ udal.kodea }}">
     <input id="url_api_zzoo" type="hidden" value="{{ zzoo_aplikazioaren_API_url }}">
     <input id="locale" type="hidden" value="{{ app.request.getLocale() }}">
+    <input id="currentROLE" type="hidden" value="{% if is_granted('ROLE_ADMIN') %}ROLE_ADMIN{% elseif is_granted('ROLE_KUDEAKETA')%}ROLE_KUDEAKETA{% else %}ROLE_USER{% endif %}">
 
 {% endblock %}
 
@@ -1307,21 +1308,24 @@
              });
 
             $("#btnFitxaGrabatu").on("click", function () {
-
                 var akatsa = 0;
-                var expedientes = $("#espedienteKodea").val();
-                var parametroa = $("#fitxa_parametroa").val();
+                var rol = $("#currentROLE").val();
 
-                if ( parametroa.length > 0 ) {
+                if (rol==="ROLE_ADMIN") {
+                  var expedientes = $("#espedienteKodea").val();
+                  var parametroa = $("#fitxa_parametroa").val();
+
+                  if ( parametroa.length > 0 ) {
                     if ( parametroa.substring(0, 2) === "08" ) {
-                        if ( expedientes.length > 0 ) {
-                            $("#frm_fitxa_edit").submit();
-                            return;
-                        } else {
-                            alert("Fitxaren Espediente kodea zehaztea beharrezkoa da.");
-                            return;
-                        }
+                      if ( expedientes.length > 0 ) {
+                        $("#frm_fitxa_edit").submit();
+                        return;
+                      } else {
+                        alert("Fitxaren Espediente kodea zehaztea beharrezkoa da.");
+                        return;
+                      }
                     }
+                  }
                 }
 
 
