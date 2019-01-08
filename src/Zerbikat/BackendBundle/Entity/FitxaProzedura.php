@@ -36,21 +36,21 @@ class FitxaProzedura
     /**
      * @var udala
      * @ORM\ManyToOne(targetEntity="Udala")
-     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="udala_id", referencedColumnName="id",onDelete="CASCADE")
      *
      */
     private $udala;
 
     /**
      * @ORM\ManyToOne(targetEntity="Prozedura", inversedBy="fitxak")
-     * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="prozedura_id", referencedColumnName="id",onDelete="CASCADE"))
      *
      * */
     protected $prozedura;
 
     /**
      * @ORM\ManyToOne(targetEntity="Fitxa", inversedBy="prozedurak")
-     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="fitxa_id", referencedColumnName="id",onDelete="CASCADE")
      *
      * */
     protected $fitxa;
