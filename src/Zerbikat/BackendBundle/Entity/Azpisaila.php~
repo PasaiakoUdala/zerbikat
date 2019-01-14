@@ -30,6 +30,13 @@ class Azpisaila
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint")
+     */
+    private $origenid;
+
+    /**
      * @var string
      * @Expose
      *

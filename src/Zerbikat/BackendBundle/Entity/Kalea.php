@@ -24,6 +24,13 @@ class Kalea
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint")
+     */
+    private $origenid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="izena", type="string", length=255, nullable=true)
@@ -270,5 +277,29 @@ class Kalea
     public function getKanalak()
     {
         return $this->kanalak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Kalea
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

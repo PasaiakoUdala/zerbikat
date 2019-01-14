@@ -24,6 +24,13 @@ class Eraikina
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint")
+     */
+    private $origenid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="izena", type="string", length=255, nullable=true)
@@ -253,5 +260,29 @@ class Eraikina
     public function getAzpisailak()
     {
         return $this->azpisailak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Eraikina
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

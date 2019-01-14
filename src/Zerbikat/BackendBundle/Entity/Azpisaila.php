@@ -30,6 +30,13 @@ class Azpisaila
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint")
+     */
+    private $origenid;
+
+    /**
      * @var string
      * @Expose
      *
@@ -608,5 +615,29 @@ class Azpisaila
     public function getFitxak()
     {
         return $this->fitxak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Azpisaila
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

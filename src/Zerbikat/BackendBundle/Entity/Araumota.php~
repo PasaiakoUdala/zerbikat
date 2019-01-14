@@ -45,6 +45,13 @@ class Araumota
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint")
+     */
+    private $origenid;
+
+    /**
      *          ERLAZIOAK
      */
 
@@ -221,5 +228,29 @@ class Araumota
     public function getAraudiak()
     {
         return $this->araudiak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Araumota
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

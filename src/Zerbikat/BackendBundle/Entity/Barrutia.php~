@@ -22,7 +22,14 @@ class Barrutia
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-    
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint")
+     */
+    private $origenid;
+
     /**
      * @var string
      *
@@ -159,5 +166,29 @@ class Barrutia
     public function getAzpisailak()
     {
         return $this->azpisailak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Barrutia
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

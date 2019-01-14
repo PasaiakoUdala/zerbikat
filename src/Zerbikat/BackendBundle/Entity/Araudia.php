@@ -24,6 +24,13 @@ class Araudia
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint")
+     */
+    private $origenid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="kodea", type="string", length=255, nullable=true)
@@ -316,5 +323,29 @@ class Araudia
     public function getFitxak()
     {
         return $this->fitxak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Araudia
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }
