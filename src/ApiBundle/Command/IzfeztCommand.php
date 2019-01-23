@@ -100,7 +100,7 @@ class IzfeztCommand extends ContainerAwareCommand
     }
 
     // UDAA20401
-    function addOrria($A204AYUNTA, $IdPagina, $denomi, $titcast, $titeus, $publicada, $tipo)
+    function addOrria($A204AYUNTA, $IdPagina, $denomi, $titcast, $titeus, $publicada, $tipo, $fitxaid)
     {
         $denomi  = str_replace('\'', '"', $denomi);
         $titcast = str_replace('\'', '"', $titcast);
@@ -113,6 +113,7 @@ class IzfeztCommand extends ContainerAwareCommand
         $A204PUBLICADA = $publicada;
         $A204FECALTA   = null;
         $A204IDTIPO    = "''";
+
 
         // Itzuplena egin, zerbikat-etik 0101 etortzen da, hori itzuli behar da IZFE-ko parametroetara
         $tipo = $this->zerbikatParametroa($tipo);
@@ -161,8 +162,8 @@ class IzfeztCommand extends ContainerAwareCommand
                 }
         }
 
-        $sql = "INSERT INTO UDAA20401 (A204AYUNTA,A204IDPAGINA,A204DENOMI,A204TITCAST,A204TITEUSK,A204PUBLICADA,A204FECALTA,A204FECBAJA,A204TIPO,A204IDTIPO,A204CAPLI)
-                              VALUES  ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA, null, null, $A204TIPO, $A204IDTIPO, 'Z');\n";
+        $sql = "INSERT INTO UDAA20401 (A204AYUNTA,  A204IDPAGINA,  A204DENOMI,  A204TITCAST,  A204TITEUSK,  A204PUBLICADA, A204FECALTA, A204FECBAJA,  A204TIPO, A204IDTIPO, A204CAPLI, A204CODPAG)
+                              VALUES  ($A204AYUNTA, $A204IDPAGINA, $A204DENOMI, $A204TITCAST, $A204TITEUSK, $A204PUBLICADA,       null,        null, $A204TIPO, $A204IDTIPO,      'Z', $fitxaid);\n";
 
         return $sql;
     }
@@ -461,7 +462,8 @@ class IzfeztCommand extends ContainerAwareCommand
             $udala->getIzenaes(),
             $udala->getIzenaeu(),
             1,
-            'USC'
+            'USC',
+            0
         );
         $idPaginaHome = $idPagina;
         ++$idPagina;
@@ -552,7 +554,8 @@ class IzfeztCommand extends ContainerAwareCommand
                             $fitxa->getDeskribapenaes(),
                             $fitxa->getDeskribapenaeu(),
                             1,
-                            $fitxa->getParametroa()
+                            $fitxa->getParametroa(),
+                            $fitxa->getId()
                         );
 
                         $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $idPagina;
@@ -1625,25 +1628,29 @@ class IzfeztCommand extends ContainerAwareCommand
                             $sql .= $this->addOrriaBloque($A204AYUNTA, $idPagina, $idBlokea, $idOrden);
 
                             $badu = 0;
-                            if ($fitxa->getAzpisaila()) {
+                            if ($fitxa->getAzpisaila() !==null) {
 
-                                $sql .= $this->addElementua(
-                                    $A204AYUNTA,
-                                    $idElementua,
-                                    'Texto',
-                                    $fitxa->getAzpisaila()->getSaila()->getSailaes().' - '.$fitxa->getAzpisaila()->getAzpisailaes(),
-                                    $fitxa->getAzpisaila()->getSaila()->getSailaeu().' - '.$fitxa->getAzpisaila()->getAzpisailaeu(),
-                                    'PARRAFO'
-                                );
-                                $sql .= $this->addElementuaBloque(
-                                    $A204AYUNTA,
-                                    $idBlokea,
-                                    $idElementua,
-                                    $idOrdenElementua
-                                );
-                                ++$idElementua;
-                                ++$idOrdenElementua;
-                                $badu = 1;
+                                if ( $fitxa->getAzpisaila()->getSaila() !== null) {
+                                    $sql .= $this->addElementua(
+                                        $A204AYUNTA,
+                                        $idElementua,
+                                        'Texto',
+                                        $fitxa->getAzpisaila()->getSaila()->getSailaes().' - '.$fitxa->getAzpisaila()->getAzpisailaes(),
+                                        $fitxa->getAzpisaila()->getSaila()->getSailaeu().' - '.$fitxa->getAzpisaila()->getAzpisailaeu(),
+                                        'PARRAFO'
+                                    );
+                                    $sql .= $this->addElementuaBloque(
+                                        $A204AYUNTA,
+                                        $idBlokea,
+                                        $idElementua,
+                                        $idOrdenElementua
+                                    );
+                                    ++$idElementua;
+                                    ++$idOrdenElementua;
+                                    $badu = 1;
+                                }
+
+
                             }
                             if ($badu == 0) {
                                 // Ez dagokio
@@ -2194,7 +2201,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                 $fitxa->getDeskribapenaes(),
                                 $fitxa->getDeskribapenaeu(),
                                 1,
-                                $fitxa->getParametroa()
+                                $fitxa->getParametroa(),
+                                $fitxa->getId()
                             );
 
                             $sortutakoFitxak[ $fitxa->getEspedientekodea() ] = $idPagina;
@@ -3268,26 +3276,31 @@ class IzfeztCommand extends ContainerAwareCommand
                                 $sql .= $this->addOrriaBloque($A204AYUNTA, $idPagina, $idBlokea, $idOrden);
 
                                 $badu = 0;
-                                if ($fitxa->getAzpisaila()) {
+                                if ($fitxa->getAzpisaila() !==null) {
 
-                                    $sql .= $this->addElementua(
-                                        $A204AYUNTA,
-                                        $idElementua,
-                                        'Texto',
-                                        $fitxa->getAzpisaila()->getSaila()->getSailaes().' - '.$fitxa->getAzpisaila()->getAzpisailaes(),
-                                        $fitxa->getAzpisaila()->getSaila()->getSailaeu().' - '.$fitxa->getAzpisaila()->getAzpisailaeu(),
-                                        'PARRAFO'
-                                    );
-                                    $sql .= $this->addElementuaBloque(
-                                        $A204AYUNTA,
-                                        $idBlokea,
-                                        $idElementua,
-                                        $idOrdenElementua
-                                    );
-                                    ++$idElementua;
-                                    ++$idOrdenElementua;
-                                    $badu = 1;
+                                    if ( $fitxa->getAzpisaila()->getSaila() !== null) {
+                                        $sql .= $this->addElementua(
+                                            $A204AYUNTA,
+                                            $idElementua,
+                                            'Texto',
+                                            $fitxa->getAzpisaila()->getSaila()->getSailaes().' - '.$fitxa->getAzpisaila()->getAzpisailaes(),
+                                            $fitxa->getAzpisaila()->getSaila()->getSailaeu().' - '.$fitxa->getAzpisaila()->getAzpisailaeu(),
+                                            'PARRAFO'
+                                        );
+                                        $sql .= $this->addElementuaBloque(
+                                            $A204AYUNTA,
+                                            $idBlokea,
+                                            $idElementua,
+                                            $idOrdenElementua
+                                        );
+                                        ++$idElementua;
+                                        ++$idOrdenElementua;
+                                        $badu = 1;
+                                    }
+
+
                                 }
+
                                 if ($badu == 0) {
                                     // Ez dagokio
                                     $sql .= $this->addElementua(

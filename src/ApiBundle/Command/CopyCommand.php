@@ -14,6 +14,9 @@ use Zerbikat\BackendBundle\Entity\Arrunta;
 use Zerbikat\BackendBundle\Entity\Aurreikusi;
 use Zerbikat\BackendBundle\Entity\Azpisaila;
 use Zerbikat\BackendBundle\Entity\Barrutia;
+use Zerbikat\BackendBundle\Entity\Besteak1;
+use Zerbikat\BackendBundle\Entity\Besteak2;
+use Zerbikat\BackendBundle\Entity\Besteak3;
 use Zerbikat\BackendBundle\Entity\Eraikina;
 use Zerbikat\BackendBundle\Entity\Kalea;
 use Zerbikat\BackendBundle\Entity\Saila;
@@ -157,7 +160,7 @@ class CopyCommand extends ContainerAwareCommand
 
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
-        /*** ARRUNTA *******************************************************************************************************************************************/
+        /*** AURREIKUSI*****************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('Aurreikusi kopiatzen ');
@@ -332,6 +335,120 @@ class CopyCommand extends ContainerAwareCommand
         $output->write('OK.');
         $output->writeln('');
         $em->flush();
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** BESTEAK1*******************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Besteak1 kopiatzen ');
+        $oriBesteak1= $em->getRepository('BackendBundle:Besteak1')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Besteak1','a')->where('a.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        /** @var Besteak1 $a */
+        foreach ($oriBesteak1 as $a) {
+            /** @var Besteak1 $besteak1 */
+            $besteak1 = new Besteak1();
+            $besteak1->setOrigenid($a->getId());
+            $besteak1->setIzenburuaes($a->getIzenburuaes());
+            $besteak1->setIzenburuaeu($a->getIzenburuaeu());
+            $besteak1->setEstekaes($a->getEstekaes());
+            $besteak1->setEstekaeu($a->getEstekaeu());
+            $besteak1->setKodea($a->getKodea());
+            $besteak1->setUdala($desUdala);
+            $em->persist($besteak1);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** BESTEAK2 ******************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Besteak2 kopiatzen ');
+        $oriBesteak2= $em->getRepository('BackendBundle:Besteak2')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Besteak2','a')->where('a.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        /** @var Besteak2 $a */
+        foreach ($oriBesteak2 as $a) {
+            /** @var Besteak2 $besteak1 */
+            $besteak2 = new Besteak2();
+            $besteak2->setOrigenid($a->getId());
+            $besteak2->setIzenburuaes($a->getIzenburuaes());
+            $besteak2->setIzenburuaeu($a->getIzenburuaeu());
+            $besteak2->setEstekaes($a->getEstekaes());
+            $besteak2->setEstekaeu($a->getEstekaeu());
+            $besteak2->setKodea($a->getKodea());
+            $besteak2->setUdala($desUdala);
+            $em->persist($besteak2);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** BESTEAK3*******************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Besteak3 kopiatzen ');
+        $oriBesteak3= $em->getRepository('BackendBundle:Besteak3')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Besteak3','a')->where('a.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        /** @var Besteak3 $a */
+        foreach ($oriBesteak3 as $a) {
+            /** @var Besteak3 $besteak1 */
+            $besteak3 = new Besteak3();
+            $besteak3->setOrigenid($a->getId());
+            $besteak3->setIzenburuaes($a->getIzenburuaes());
+            $besteak3->setIzenburuaeu($a->getIzenburuaeu());
+            $besteak3->setEstekaes($a->getEstekaes());
+            $besteak3->setEstekaeu($a->getEstekaeu());
+            $besteak3->setKodea($a->getKodea());
+            $besteak3->setUdala($desUdala);
+            $em->persist($besteak3);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         $output->writeln('');
         $output->writeln('Prozesua ongi amaitu da.');
