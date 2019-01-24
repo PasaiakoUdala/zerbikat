@@ -26,7 +26,7 @@ class Araudia
     /**
      * @var integer
      *
-     * @ORM\Column(name="origenid", type="bigint")
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
      */
     private $origenid;
 
