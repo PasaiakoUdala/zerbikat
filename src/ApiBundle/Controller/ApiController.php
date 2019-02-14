@@ -16,6 +16,7 @@ use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+use JMS\Serializer\SerializationContext;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Zerbikat\BackendBundle\Entity\Familia;
@@ -23,6 +24,48 @@ use Zerbikat\BackendBundle\Entity\Fitxa;
 
 class ApiController extends FOSRestController
 {
+
+    /**
+     * Udal baten Fitxa guztien zerrenda
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Udal baten Fitxa guztien zerrenda",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @param $udala
+     * @return Response
+     * @Get("/fitxaguztiak/{udala}")
+     */
+    public function getFitxaguztiakAction ($udala) {
+
+
+        $em = $this->getDoctrine()->getManager();
+        /** @var QueryBuilder $query */
+        $query = $em->createQueryBuilder('f');
+        $query->from( 'BackendBundle:Fitxa', 'f' );
+//        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes');
+        $query->select('f');
+        $query->leftJoin( 'f.udala', 'u' );
+        $query->andWhere( 'u.kodea = :udala' );
+        $query->setParameter( 'udala', $udala );
+
+        $fitxa = $query->getQuery()->getResult();
+
+        $serializer = $this->container->get('jms_serializer');
+
+        header('content-type: application/json; charset=utf-8');
+        header('access-control-allow-origin: *');
+
+        $response = $serializer->serialize($fitxa, 'json', SerializationContext::create()->setGroups(array('kontakud')));
+
+        return new Response($response, 200, ['Content-Type' => 'application/json']);
+
+    }
 
     /**
      * Fitxa baten deskribapena, saila eta azpisaila eskuratu fitxaren eta udalaren kodea erabiliz

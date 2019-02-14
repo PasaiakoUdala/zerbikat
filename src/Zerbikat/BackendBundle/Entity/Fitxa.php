@@ -89,6 +89,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="helburuaeu", type="text", length=65535, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $helburuaeu;
 
@@ -96,6 +97,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="helburuaes", type="text", length=65535, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $helburuaes;
 
@@ -103,6 +105,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="norkeu", type="text", length=65535, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $norkeu;
 
@@ -110,6 +113,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="norkes", type="text", length=65535, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $norkes;
 
@@ -117,6 +121,7 @@
          * @var string
          *
          * @ORM\Column(name="dokumentazioaeu", type="text", length=65535, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $dokumentazioaeu;
 
@@ -124,6 +129,7 @@
          * @var string
          * @Expose
          * @ORM\Column(name="dokumentazioaes", type="text", length=65535, nullable=true)
+         * @JMS\Groups({"kontakud"})
          */
         private $dokumentazioaes;
 
