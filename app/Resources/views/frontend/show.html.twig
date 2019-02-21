@@ -360,11 +360,11 @@
                                         <tr>
                                             <th colspan="2" class="text-center">
                                                 {% if app.request.locale == 'eu' %}
-                                                    {% if ((kontzeptu['kodea_prod'] is defined) and (kontzeptu['izenburuaeu_prod'] is defined)) %}
+                                                    {% if ((kostutaula['kodea_prod'] is defined) and (kostutaula['izenburuaeu_prod'] is defined)) %}
                                                         {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaeu_prod'] }}
                                                     {% endif %}
                                                 {% else %}
-                                                    {% if ((kontzeptu['kodea_prod'] is defined) and (kontzeptu['izenburuaes_prod'] is defined)) %}
+                                                    {% if ((kostutaula['kodea_prod'] is defined) and (kostutaula['izenburuaes_prod'] is defined)) %}
                                                         {{ kostutaula['kodea_prod'] }} - {{ kostutaula['izenburuaes_prod'] }}
                                                     {% endif %}
                                                 {% endif %}
