@@ -24,6 +24,13 @@ class Ordenantza
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="kodea", type="string", length=9, nullable=true)
@@ -228,5 +235,29 @@ class Ordenantza
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Ordenantza
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

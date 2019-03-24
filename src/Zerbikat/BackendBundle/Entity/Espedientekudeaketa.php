@@ -19,8 +19,14 @@ class Espedientekudeaketa
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-
     private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
 
     /**
      * @var string
@@ -221,5 +227,29 @@ class Espedientekudeaketa
     public function getZerbitzuak()
     {
         return $this->zerbitzuak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Espedientekudeaketa
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

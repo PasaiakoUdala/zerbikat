@@ -13,14 +13,23 @@ use Zerbikat\BackendBundle\Entity\Araumota;
 use Zerbikat\BackendBundle\Entity\Arrunta;
 use Zerbikat\BackendBundle\Entity\Aurreikusi;
 use Zerbikat\BackendBundle\Entity\Azpisaila;
+use Zerbikat\BackendBundle\Entity\Baldintza;
 use Zerbikat\BackendBundle\Entity\Barrutia;
 use Zerbikat\BackendBundle\Entity\Besteak1;
 use Zerbikat\BackendBundle\Entity\Besteak2;
 use Zerbikat\BackendBundle\Entity\Besteak3;
+use Zerbikat\BackendBundle\Entity\Datuenbabesa;
+use Zerbikat\BackendBundle\Entity\Doklagun;
+use Zerbikat\BackendBundle\Entity\Dokumentazioa;
+use Zerbikat\BackendBundle\Entity\Dokumentumota;
 use Zerbikat\BackendBundle\Entity\Eraikina;
+use Zerbikat\BackendBundle\Entity\Eremuak;
+use Zerbikat\BackendBundle\Entity\Espedientekudeaketa;
+use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Entity\Kalea;
 use Zerbikat\BackendBundle\Entity\Saila;
 use Zerbikat\BackendBundle\Entity\Udala;
+use Zerbikat\BackendBundle\Entity\Zerbitzua;
 
 class CopyCommand extends ContainerAwareCommand
 {
@@ -152,6 +161,7 @@ class CopyCommand extends ContainerAwareCommand
             $arrunta->setUdala($desUdala);
             $arrunta->setEpeaes($a->getEpeaes());
             $arrunta->setEpeaeu($a->getEpeaeu());
+            $arrunta->setOrigenid($a->getId());
             $em->persist($arrunta);
         }
         $output->write('OK.');
@@ -176,6 +186,7 @@ class CopyCommand extends ContainerAwareCommand
             $aurreikusi->setEpeaeu($a->getEpeaeu());
             $aurreikusi->setEpeaes($a->getEpeaes());
             $aurreikusi->setUdala($desUdala);
+            $aurreikusi->setOrigenid($a->getId());
             $em->persist($aurreikusi);
         }
         $output->write('OK.');
@@ -421,9 +432,354 @@ class CopyCommand extends ContainerAwareCommand
         $em->flush();
 
 
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** DATUEN BABESA *************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Datuen babesa kopiatzen ');
+        $oriDatuenBabesa = $em->getRepository('BackendBundle:Datuenbabesa')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Datuenbabesa','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Datuenbabesa $d */
+        foreach ($oriDatuenBabesa as $d) {
+            $datu = new Datuenbabesa();
+            $datu->setOrigenid($d->getId());
+            $datu->setUdala($desUdala);
+            $datu->setKodea($d->getKodea());
+            $datu->setIzenaes($d->getIzenaes());
+            $datu->setIzenaeu($d->getIzenaeu());
+            $datu->setLagapenakes($d->getLagapenakes());
+            $datu->setLagapenakeu($d->getLagapenakeu());
+            $datu->setMaila($d->getMaila());
+            $datu->setXedeaes($d->getXedeaes());
+            $datu->setXedeaeu($d->getXedeaeu());
+            $em->persist($datu);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
 
 
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** ESPEDIENTE KUDEATZAILEA *****************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Espediente kudeatzailea kopiatzen ');
+        $oriEspediente = $em->getRepository('BackendBundle:Espedientekudeaketa')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Zerbitzua','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
 
+        /** @var Espedientekudeaketa $e */
+        foreach ($oriEspediente as $e) {
+            $espe = new Espedientekudeaketa();
+            $espe->setOrigenid($e->getId());
+            $espe->setIzenaeu($e->getIzenaeu());
+            $espe->setIzenaes($e->getIzenaes());
+            $espe->setUrles($e->getUrles());
+            $espe->setUrleu($e->getUrleu());
+            $em->persist($espe);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** ZERBITZUA *****************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Zerbitzuak kopiatzen ');
+        $oriZerbitzua = $em->getRepository('BackendBundle:Zerbitzua')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Zerbitzua','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Zerbitzua $z */
+        foreach ($oriZerbitzua as $z) {
+            $zer = new Zerbitzua();
+            $zer->setOrigenid($z->getId());
+            $zer->setKodea($z->getKodea());
+            $zer->setUdala($desUdala);
+            $zer->setErroaes($z->getErroaes());
+            $zer->setErroaeu($z->getErroaeu());
+            /** @var Espedientekudeaketa $_espediente */
+            $_espediente = $em->getRepository('BackendBundle:Espedientekudeaketa')->findOneBy(
+                array(
+                    'origenid' => $z->getEspedientekudeaketa()->getId(),
+
+                    $em->persist($zer),
+                )
+            );
+            $zer->setEspedientekudeaketa($_espediente);
+            $em->persist($zer);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** BALDINTZA *****************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Baldintza kopiatzen ');
+        $oriBaldintza = $em->getRepository('BackendBundle:Baldintza')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Zerbitzua','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Baldintza $b */
+        foreach ($oriBaldintza as $b) {
+            $bal = new Baldintza();
+            $bal->setOrigenid($b->getId());
+            $bal->setUdala($desUdala);
+            $bal->setBaldintzaes($b->getBaldintzaes());
+            $bal->setBaldintzaeu($b->detBaldintzaeu());
+            $em->persist($bal);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** DOKLAGUN *****************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Doklagun kopiatzen ');
+        $oriDokLagun = $em->getRepository('BackendBundle:Doklagun')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Zerbitzua','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Doklagun $d */
+        foreach ($oriDokLagun as $d) {
+            $dok = new Doklagun();
+            $dok->setUdala($desUdala);
+            $dok->setOrigenid($d->getId());
+            $dok->setKodea($d->getKodea());
+            $dok->setDeskribapenaes($d->getDeskribapenaes());
+            $dok->setDeskribapenaeu($d->getDeskribapenaeu());
+            $dok->setEstekaes($d->getEstekaes());
+            $dok->setEstekaeu($d->getEstekaeu());
+            $em->persist($dok);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** DOKUMENTO MOTA ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Dokumentu motak kopiatzen ');
+        $oriDokMota = $em->getRepository('BackendBundle:Dokumentumota')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Zerbitzua','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Dokumentumota $d */
+        foreach ($oriDokLagun as $d) {
+            $dokm = new Dokumentumota();
+            $dokm->setKodea($d->getKodea());
+            $dokm->setOrigenid($d->getId());
+            $dokm->setUdala($desUdala);
+            $dokm->setMotaes($d->getMotaes());
+            $dokm->setMotaeu($d->getMotaeu());
+            $em->persist($dokm);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** DOKUMENTAZIOA ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Dokumentazioa kopiatzen ');
+        $oriDokumentazioa = $em->getRepository('BackendBundle:Dokumentazioa')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Dokumentazioa','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Dokumentazioa $d */
+        foreach ($oriDokumentazioa as $d) {
+            $do = new Dokumentazioa();
+            $do->setUdala($desUdala);
+            $do->setOrigenid($d->getId());
+            $do->setKodea($d->getKodea());
+            $do->setEstekaeu($d->getEstekaeu());
+            $do->setEstekaes($d->getEstekaes());
+            $do->setDeskribapenaeu($d->getDeskribapenaeu());
+            $do->setDeskribapenaes($d->getDeskribapenaes());
+            /** @var Dokumentumota $_dokmota */
+            $_dokmota= $em->getRepository('BackendBundle:Dokumentazioa')->findOneBy(
+                array(
+                    'origenid' => $d->getDokumentumota()->getId(),
+
+                    $em->persist($do),
+                )
+            );
+            $do->setDokumentumota($_dokmota);
+            $em->persist($do);
+
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** EREMUA  ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Eremuak kopiatzen ');
+        $oriEremua = $em->getRepository('BackendBundle:Eremuak')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Eremuak','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Eremuak $e */
+        foreach ($oriEremua as $e) {
+            $ere = new Eremuak();
+            $ere->setOrigenid($e->getId());
+            $ere->setUdala($desUdala);
+            $ere->setAraudialabeles($e->getAraudialabeles());
+            $ere->setAraudialabeleu($e->getAraudialabeleu());
+            $ere->setAraudiatable($e->getAraudiatable());
+            $ere->setAraudiatext($e->getAraudiatext());
+            $ere->setArduraaitorpena($e->getArduraaitorpena());
+            $ere->setArduraaitorpenalabeles($e->getArduraaitorpenalabeles());
+            $ere->setArduraaitorpenalabeleu($e->getArduraaitorpenalabeleu());
+            $ere->setArrunta($e->getArrunta());
+            $ere->setArruntalabeles($e->getArruntalabeles());
+            $ere->setArruntalabeleu($e->getArruntalabeleu());
+            $ere->setAurreikusi($e->getAurreikusi());
+            $ere->setAurreikusilabeles($e->getAurreikusilabeles());
+            $ere->setAurreikusilabeleu($e->getAurreikusilabeleu());
+            $ere->setAzpisailalabeles($e->getAzpisailalabeles());
+            $ere->setAzpisailalabeleu($e->getAzpisailalabeleu());
+            $ere->setAzpisailatable($e->getAzpisailatable());
+            $ere->setBesteak1labeles($e->getBesteak1labeles());
+            $ere->setBesteak1labeleu($e->getBesteak1labeleu());
+            $ere->setBesteak1table($e->getBesteak1table());
+            $ere->setBesteak1text($e->getBesteak1text());
+            $ere->setBesteak2labeles($e->getBesteak2labeles());
+            $ere->setBesteak2labeleu($e->getBesteak2labeleu());
+            $ere->setBesteak2table($e->getBesteak2table());
+            $ere->setBesteak2text($e->getBesteak2text());
+            $ere->setBesteak3labeles($e->getBesteak3labeles());
+            $ere->setBesteak3labeleu($e->getBesteak3labeleu());
+            $ere->setBesteak3table($e->getBesteak3table());
+            $ere->setBesteak3text($e->getBesteak3text());
+            $ere->setDatuenbabesalabeles($e->getDatuenbabesalabeles());
+            $ere->setDatuenbabesalabeleu($e->getDatuenbabesalabeleu());
+            $ere->setDatuenbabesatable($e->getDatuenbabesatable());
+            $ere->setDatuenbabesatext($e->getDatuenbabesatext());
+            $ere->setDoanlabeles($e->getDoanlabeles());
+            $ere->setDoanlabeleu($e->getDoanlabeleu());
+            $ere->setDoklagunlabeles($e->getDoklagunlabeles());
+            $ere->setDoklagunlabeleu($e->getDoklagunlabeleu());
+            $ere->setDoklaguntable($e->getDoklaguntable());
+            $ere->setDoklaguntext($e->getDoklaguntext());
+            $ere->setDoklagunlabeleu($e->getDoklagunlabeleu());
+            $ere->setDokumentazioalabeles($e->getDokumentazioalabeles());
+            $ere->setDokumentazioalabeleu($e->getDokumentazioalabeleu());
+            $ere->setDokumentazioatable($e->getDokumentazioatable());
+            $ere->setDokumentazioatext($e->getDokumentazioatext());
+            $ere->setEbazpensinpli($e->getEbazpensinpli());
+            $ere->setEbazpensinplilabeles($e->getEbazpensinplilabeles());
+            $ere->setEbazpensinplilabeleu($e->getEbazpensinplilabeleu());
+            $ere->setEpealabeles($e->getEpealabeles());
+            $ere->setEpealabeleu($e->getEpealabeleu());
+            $ere->setHelburualabeles($e->getHelburualabeles());
+            $ere->setHelburualabeleu($e->getHelburualabeleu());
+            $ere->setHelburuatext($e->getHelburuatext());
+            $ere->setIsiltasunadmin($e->getIsiltasunadmin());
+            $ere->setIsiltasunadminlabeles($e->getIsiltasunadminlabeles());
+            $ere->setIsiltasunadminlabeleu($e->getIsiltasunadminlabeleu());
+            $ere->setKanalalabeles($e->getKanalalabeles());
+            $ere->setKanalalabeleu($e->getKanalalabeleu());
+            $ere->setKanalatable($e->getKanalatable());
+            $ere->setKanalatext($e->getKanalatext());
+            $ere->setKostualabeles($e->getKostualabeles());
+            $ere->setKostualabeleu($e->getKostualabeleu());
+            $ere->setKostuatable($e->getKostuatable());
+            $ere->setKostuatext($e->getKostuatext());
+            $ere->setNorkebatzilabeles($e->getNorkebatzilabeles());
+            $ere->setNorkebatzilabeleu($e->getNorkebatzilabeleu());
+            $ere->setNorkebatzitable($e->getNorkebatzitable());
+            $ere->setNorkebatzitext($e->getNorkebatzitext());
+            $ere->setNorkeskatulabeles($e->getNorkeskatulabeles());
+            $ere->setNorkeskatulabeleu($e->getNorkeskatulabeleu());
+            $ere->setNorkeskatutable($e->getNorkeskatutable());
+            $ere->setNorkeskatutext($e->getNorkeskatutext());
+            $ere->setOharraklabeles($e->getOharraklabeles());
+            $ere->setOharraklabeleu($e->getOharraklabeleu());
+            $ere->setOharraktext($e->getOharraktext());
+            $ere->setProzeduralabeles($e->getProzeduralabeles());
+            $ere->setProzeduralabeleu($e->getProzeduralabeleu());
+            $ere->setProzeduratable($e->getProzeduratable());
+            $ere->setProzeduratext($e->getProzeduratext());
+            $ere->setTramitealabeles($e->getTramitealabeles());
+            $ere->setTramitealabeleu($e->getTramitealabeleu());
+            $ere->setTramiteatable($e->getTramiteatable());
+            $ere->setTramiteatext($e->getTramiteatext());
+            $ere->setUdalsailalabeles($e->getUdalsailalabeles());
+            $ere->setUdalsailalabeleu($e->getUdalsailalabeleu());
+            $em->persist($ere);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** ETIKETA ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('Etiketak kopiatzen ');
+        $oriEtiketa = $em->getRepository('BackendBundle:Etiketa')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Etiketa','d')->where('d.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+
+        /** @var Etiketa $e */
+        foreach ($oriEtiketa as $e) {
+            $eti = new Etiketa();
+            $eti->setUdala($desUdala);
+            $eti->setOrigenid($e->getId());
+            $eti->setEtiketaes($e->getEtiketaes());
+            $eti->setEtiketaeu($e->getEtiketaeu());
+            $em->persist($eti);
+
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $em->flush();
 
 
 

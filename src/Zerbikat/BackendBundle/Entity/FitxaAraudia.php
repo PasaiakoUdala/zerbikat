@@ -36,6 +36,12 @@ class FitxaAraudia
      */
     private $id;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
 
 
 
@@ -212,4 +218,28 @@ class FitxaAraudia
         return $this->araudia;
     }
 
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return FitxaAraudia
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
+    }
 }

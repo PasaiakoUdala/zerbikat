@@ -25,6 +25,13 @@ class Doklagun
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="kodea", type="string", length=255, nullable=true)
@@ -284,5 +291,29 @@ class Doklagun
     public function getFitxak()
     {
         return $this->fitxak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Doklagun
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

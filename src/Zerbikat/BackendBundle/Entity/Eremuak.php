@@ -24,6 +24,13 @@ class Eremuak
      */
     private $id;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
 
     /**
      * @var oharraktext
@@ -2726,5 +2733,29 @@ class Eremuak
     public function getAzpisailalabeles()
     {
         return $this->azpisailalabeles;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Eremuak
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

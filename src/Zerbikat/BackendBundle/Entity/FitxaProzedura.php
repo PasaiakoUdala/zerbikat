@@ -28,6 +28,13 @@ class FitxaProzedura
      */
     private $id;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
 
     /**
      *          ERLAZIOAK
@@ -170,5 +177,29 @@ class FitxaProzedura
     public function getFitxa()
     {
         return $this->fitxa;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return FitxaProzedura
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

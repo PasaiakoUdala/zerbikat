@@ -24,6 +24,13 @@ class Ordenantzaparrafoa
     /**
      * @var integer
      *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="ordena", type="bigint", nullable=true)
      */
     private $ordena;
@@ -253,5 +260,29 @@ class Ordenantzaparrafoa
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Ordenantzaparrafoa
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }
