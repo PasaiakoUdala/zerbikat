@@ -30,6 +30,8 @@ use Zerbikat\BackendBundle\Entity\Espedientekudeaketa;
 use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Kalea;
+use Zerbikat\BackendBundle\Entity\Kontzeptua;
+use Zerbikat\BackendBundle\Entity\Kontzeptumota;
 use Zerbikat\BackendBundle\Entity\Norkebatzi;
 use Zerbikat\BackendBundle\Entity\Norkeskatu;
 use Zerbikat\BackendBundle\Entity\Saila;
@@ -877,7 +879,13 @@ class CopyCommand extends ContainerAwareCommand
             $fam->setFamiliaes($f->getFamiliaes());
             $fam->setFamiliaeu($f->getFamiliaeu());
             if ($f->getParent()) {
-                $fam->setParent($f->getParent());
+                /** @var Familia $_parent */
+                $_parent = $em->getRepository('BackendBundle:Familia')->findOneBy(
+                    array(
+                        'origenid' => $f->getParent()->getId()
+                    )
+                );
+                $fam->setParent($_parent);
             }
             $em->persist($fam);
         }
@@ -943,6 +951,88 @@ class CopyCommand extends ContainerAwareCommand
         $em->flush();
 
 
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** KONTZEPTU MOTA ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Kontzeptu motak ezabatzen...');
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kontzeptumota','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Nork ebatzi kopiatzen...');
+        $oriKontzeptumota = $em->getRepository('BackendBundle:Kontzeptumota')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Kontzeptumota $k */
+        foreach ($oriKontzeptumota as $k) {
+            $km = new Kontzeptumota();
+            $km->setUdala($desUdala);
+            $km->setOrigenid($k->getId());
+            $km->setMotaeu($k->getMotaeu());
+            $km->setMotaes($k->getMotaes());
+            $em->persist($km);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** KONTZEPTUa ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Kontzeptuak ezabatzen...');
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kontzeptua','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Kontzeptuak kopiatzen...');
+        $oriKontzeptuak = $em->getRepository('BackendBundle:Kontzeptua')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Kontzeptua $k */
+        foreach ($oriKontzeptuak as $k) {
+            $ko = new Kontzeptua();
+            $ko->setOrigenid($k->getId());
+            $ko->setUdala($desUdala);
+            if ($k->getAzpiatala()) {
+                /** @var Azpiatala $_azpi_atala */
+                $_azpi_atala= $em->getRepository('BackendBundle:Azpiatala')->findOneBy(
+                    array(
+                        'origenid' => $k->getAzpiatala()->getId(),
+                    )
+                );
+                $ko->setAzpiatala($_azpi_atala);
+            }
+            $ko->setKodea($k->getKodea());
+            if ($k->getBaldintza()) {
+                /** @var Baldintza $_baldintza */
+                $_baldintza = $em->getRepository('BackendBundle:Baldintza')->findOneBy(
+                    array(
+                        'origenid' => $k->getBaldintza()->getId(),
+                    )
+                );
+                $ko->setBaldintza($_baldintza);
+            }
+            $ko->setKontzeptuaes($k->getKontzeptuaes());
+            $ko->setKontzeptuaeu($k->getKontzeptuaeu());
+            /** @var Kontzeptumota $_kontzeptu_mota */
+            $_kontzeptu_mota = $em->getRepository('BackendBundle:Kontzeptumota')->findOneBy(
+                array(
+                    'origenid' => $k->getKontzeptumota()->getId(),
+                )
+            );
+            $ko->setKontzeptumota($_kontzeptu_mota);
+            $ko->setKopurua($k->getKopurua());
+            $ko->setUnitatea($k->getUnitatea());
+            $em->persist($ko);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
 
 
