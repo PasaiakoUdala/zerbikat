@@ -30,6 +30,8 @@ use Zerbikat\BackendBundle\Entity\Espedientekudeaketa;
 use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Kalea;
+use Zerbikat\BackendBundle\Entity\Norkebatzi;
+use Zerbikat\BackendBundle\Entity\Norkeskatu;
 use Zerbikat\BackendBundle\Entity\Saila;
 use Zerbikat\BackendBundle\Entity\Udala;
 use Zerbikat\BackendBundle\Entity\Zerbitzua;
@@ -851,7 +853,6 @@ class CopyCommand extends ContainerAwareCommand
         $em->flush();
 
 
-
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         /*** FAMILIA *******************************************************************************************************************************************/
@@ -877,7 +878,6 @@ class CopyCommand extends ContainerAwareCommand
             $fam->setFamiliaeu($f->getFamiliaeu());
             if ($f->getParent()) {
                 $fam->setParent($f->getParent());
-//                $_parent = $em->getRepository('BackendBundle:Familia')->findOneBy(array('origenid' => $a->getAzpiatala()->getId(),));
             }
             $em->persist($fam);
         }
@@ -887,8 +887,60 @@ class CopyCommand extends ContainerAwareCommand
         $em->flush();
 
 
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** NORK ESKATU****************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Nork eskatu ezabatzen...');
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Norkeskatu','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Nork eskatu kopiatzen...');
+        $oriNorkEskatu= $em->getRepository('BackendBundle:Norkeskatu')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Norkeskatu $n */
+        foreach ($oriNorkEskatu as $n) {
+            $nork = new Norkeskatu();
+            $nork->setUdala($desUdala);
+            $nork->setOrigenid($n->getId());
+            $nork->setNorkes($n->getNorkes());
+            $nork->setNorkeu($n->getNorkeu());
+            $em->persist($nork);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
 
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** NORK EBATZI****************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Nork ebatzi ezabatzen...');
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Norkebatzi','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Nork ebatzi kopiatzen...');
+        $oriNorkEbatzi = $em->getRepository('BackendBundle:Norkebatzi')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Norkebatzi $n */
+        foreach ($oriNorkEbatzi as $n) {
+            $eba = new Norkebatzi();
+            $eba->setNorkeu($n->getNorkeu());
+            $eba->setNorkes($n->getNorkes());
+            $eba->setOrigenid($n->getId());
+            $eba->setUdala($desUdala);
+            $em->persist($eba);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
 
 
