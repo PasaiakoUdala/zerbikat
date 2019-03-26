@@ -692,11 +692,6 @@ class Eremuak
         $this->prozeduratable = false;
         $this->prozeduratext = true;
 
-        $this->tramitealabeles = "RESUMEN DE TRÁMITES POSTERIORES";
-        $this->tramitealabeleu = "GEROAGOKO IZAPIDEEN LABURPENA";
-        $this->tramiteatable = false;
-        $this->tramiteatext = true;
-
 
         $this->besteak1labeles = "";
         $this->besteak1labeleu = "";
@@ -1728,102 +1723,6 @@ class Eremuak
     }
 
     /**
-     * Set tramiteatext
-     *
-     * @param boolean $tramiteatext
-     *
-     * @return Eremuak
-     */
-    public function setTramiteatext($tramiteatext)
-    {
-        $this->tramiteatext = $tramiteatext;
-
-        return $this;
-    }
-
-    /**
-     * Get tramiteatext
-     *
-     * @return boolean
-     */
-    public function getTramiteatext()
-    {
-        return $this->tramiteatext;
-    }
-
-    /**
-     * Set tramiteatable
-     *
-     * @param boolean $tramiteatable
-     *
-     * @return Eremuak
-     */
-    public function setTramiteatable($tramiteatable)
-    {
-        $this->tramiteatable = $tramiteatable;
-
-        return $this;
-    }
-
-    /**
-     * Get tramiteatable
-     *
-     * @return boolean
-     */
-    public function getTramiteatable()
-    {
-        return $this->tramiteatable;
-    }
-
-    /**
-     * Set tramitealabeleu
-     *
-     * @param string $tramitealabeleu
-     *
-     * @return Eremuak
-     */
-    public function setTramitealabeleu($tramitealabeleu)
-    {
-        $this->tramitealabeleu = $tramitealabeleu;
-
-        return $this;
-    }
-
-    /**
-     * Get tramitealabeleu
-     *
-     * @return string
-     */
-    public function getTramitealabeleu()
-    {
-        return $this->tramitealabeleu;
-    }
-
-    /**
-     * Set tramitealabeles
-     *
-     * @param string $tramitealabeles
-     *
-     * @return Eremuak
-     */
-    public function setTramitealabeles($tramitealabeles)
-    {
-        $this->tramitealabeles = $tramitealabeles;
-
-        return $this;
-    }
-
-    /**
-     * Get tramitealabeles
-     *
-     * @return string
-     */
-    public function getTramitealabeles()
-    {
-        return $this->tramitealabeles;
-    }
-
-    /**
      * Set udala
      *
      * @param \Zerbikat\BackendBundle\Entity\Udala $udala
@@ -2517,54 +2416,6 @@ class Eremuak
     public function getKanalalabeles()
     {
         return $this->kanalalabeles;
-    }
-
-    /**
-     * Set udalsailalabeleu
-     *
-     * @param string $udalsailalabeleu
-     *
-     * @return Eremuak
-     */
-    public function setUdalsailalabeleu($udalsailalabeleu)
-    {
-        $this->udalsailalabeleu = $udalsailalabeleu;
-
-        return $this;
-    }
-
-    /**
-     * Get udalsailalabeleu
-     *
-     * @return string
-     */
-    public function getUdalsailalabeleu()
-    {
-        return $this->udalsailalabeleu;
-    }
-
-    /**
-     * Set udalsailalabeles
-     *
-     * @param string $udalsailalabeles
-     *
-     * @return Eremuak
-     */
-    public function setUdalsailalabeles($udalsailalabeles)
-    {
-        $this->udalsailalabeles = $udalsailalabeles;
-
-        return $this;
-    }
-
-    /**
-     * Get udalsailalabeles
-     *
-     * @return string
-     */
-    public function getUdalsailalabeles()
-    {
-        return $this->udalsailalabeles;
     }
 
     /**
