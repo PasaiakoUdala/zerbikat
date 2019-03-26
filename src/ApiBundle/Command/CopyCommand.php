@@ -30,6 +30,8 @@ use Zerbikat\BackendBundle\Entity\Espedientekudeaketa;
 use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Kalea;
+use Zerbikat\BackendBundle\Entity\Kanala;
+use Zerbikat\BackendBundle\Entity\Kanalmota;
 use Zerbikat\BackendBundle\Entity\Kontzeptua;
 use Zerbikat\BackendBundle\Entity\Kontzeptumota;
 use Zerbikat\BackendBundle\Entity\Norkebatzi;
@@ -882,7 +884,7 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Familia $_parent */
                 $_parent = $em->getRepository('BackendBundle:Familia')->findOneBy(
                     array(
-                        'origenid' => $f->getParent()->getId()
+                        'origenid' => $f->getParent()->getId(),
                     )
                 );
                 $fam->setParent($_parent);
@@ -1035,10 +1037,110 @@ class CopyCommand extends ContainerAwareCommand
         $em->flush();
 
 
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** KANAL MOTA ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Kanal motak ezabatzen...');
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kanalmota','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Nork ebatzi kopiatzen...');
+        $oriKanalMota = $em->getRepository('BackendBundle:Kanalmota')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Kanalmota $k */
+        foreach ($oriKanalMota as $k) {
+            $km = new Kanalmota();
+            $km->setUdala($desUdala);
+            $km->setOrigenid($k->getId());
+            $km->setMotaes($k->getMotaes());
+            $km->setMotaeu($k->getMotaeu());
+            $km->setEsteka($k->getEsteka());
+            $km->setIkonoa($k->getIkonoa());
+            $em->persist($km);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
 
-
-
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** KANALA ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Kanalak ezabatzen...');
+        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kanala','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Kanalak kopiatzen...');
+        $oriKanalak = $em->getRepository('BackendBundle:Kanala')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Kanala $k */
+        foreach ($oriKanalak as $k) {
+            $ka = new Kanala();
+            $ka->setOrigenid($k->getId());
+            $ka->setUdala($desUdala);
+            $ka->setDeskribapenaeu($k->getDeskribapenaeu());
+            $ka->setDeskribapenaes($k->getDeskribapenaes());
+            $ka->setEstekaes($k->getEstekaes());
+            $ka->setEstekaeu($k->getEstekaeu());
+            $ka->setIzenaes($k->getIzenaes());
+            $ka->setIzenaeu($k->getIzenaeu());
+            if ($k->getBarrutia()) {
+                /** @var Barrutia $_barrutia */
+                $_barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(
+                    array(
+                        'origenid' => $k->getBarrutia()->getId(),
+                    )
+                );
+                $ka->setBarrutia($_barrutia);
+            }
+            if ($k->getEraikina()) {
+                /** @var Eraikina $_eraikina */
+                $_eraikina = $em->getRepository('BackendBundle:Eraikina')->findOneBy(
+                    array(
+                        'origenid' => $k->getEraikina()->getId(),
+                    )
+                );
+                $ka->setEraikina($_eraikina);
+            }
+            $ka->setErakutsi($k->getErakutsi());
+            $ka->setFax($k->getFax());
+            if ($k->getKalea()) {
+                /** @var Kalea $_kalea */
+                $_kalea = $em->getRepository('BackendBundle:Kalea')->findOneBy(
+                    array(
+                        'origenid' => $k->getKalea()->getId(),
+                    )
+                );
+                $ka->setKalea($_kalea);
+            }
+            $ka->setKalezbkia($k->getKalezbkia());
+            $ka->setOrdutegia($k->getOrdutegia());
+            $ka->setPostakodea($k->getPostakodea());
+            $ka->setTelefonoa($k->getTelefonoa());
+            $ka->setTelematikoa($k->getTelematikoa());
+            $ka->setUrl($k->getUrl());
+            if ($k->getKanalmota()) {
+                /** @var Kanalmota $_kanal_mota */
+                $_kanal_mota = $em->getRepository('BackendBundle:Kanalmota')->findOneBy(
+                    array(
+                        'origenid' => $k->getKanalmota()->getId()
+                    )
+                );
+                $ka->setKanalmota($_kanal_mota);
+            }
+            $em->persist($ka);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
 
 
