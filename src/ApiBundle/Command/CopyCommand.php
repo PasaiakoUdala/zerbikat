@@ -1492,13 +1492,16 @@ class CopyCommand extends ContainerAwareCommand
             $fipo->setUdala($desUdala);
             $fipo->setOrigenid($fp->getId());
             $fipo->setOrdena($fp->getOrdena());
-            /** @var Prozedura $_prozedura */
-            $_prozedura = $em->getRepository('BackendBundle:Prozedura')->findOneBy(
-                array(
-                    'origenid' => $fp->getProzedura()->getId(),
-                )
-            );
-            $fipo->setProzedura($_prozedura);
+            if ($fp->getProzedura()) {
+                /** @var Prozedura $_prozedura */
+                $_prozedura = $em->getRepository('BackendBundle:Prozedura')->findOneBy(
+                    array(
+                        'origenid' => $fp->getProzedura()->getId(),
+                    )
+                );
+                $fipo->setProzedura($_prozedura);
+            }
+
             $em->persist($fipo);
         }
         $output->write('OK.');

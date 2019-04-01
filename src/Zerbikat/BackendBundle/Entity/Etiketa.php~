@@ -200,4 +200,28 @@ class Etiketa
     {
         return $this->fitxak;
     }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Etiketa
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
+    }
 }

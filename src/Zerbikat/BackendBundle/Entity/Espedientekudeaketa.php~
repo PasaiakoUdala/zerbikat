@@ -228,4 +228,28 @@ class Espedientekudeaketa
     {
         return $this->zerbitzuak;
     }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Espedientekudeaketa
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
+    }
 }

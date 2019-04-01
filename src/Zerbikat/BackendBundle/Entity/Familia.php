@@ -97,13 +97,14 @@
         /**
          * @var fitxafamilia[]
          *
-         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="familia")
+         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="familia", cascade={"persist"})
          * @ORM\OrderBy({"ordena" = "ASC"})
          */
         private $fitxafamilia;
 
         /**
          * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Familia", inversedBy="children")
+         * @ORM\JoinColumn(onDelete="CASCADE")
          * @Expose
          */
         private $parent;

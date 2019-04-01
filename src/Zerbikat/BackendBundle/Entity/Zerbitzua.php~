@@ -262,4 +262,28 @@ class Zerbitzua
     {
         return $this->erroaes;
     }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Zerbitzua
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
+    }
 }

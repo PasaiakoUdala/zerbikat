@@ -97,7 +97,7 @@
         /**
          * @var fitxafamilia[]
          *
-         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="familia")
+         * @ORM\OneToMany(targetEntity="Zerbikat\BackendBundle\Entity\Fitxafamilia", mappedBy="familia", cascade={"persist"})
          * @ORM\OrderBy({"ordena" = "ASC"})
          */
         private $fitxafamilia;
@@ -388,5 +388,29 @@
     public function getOrdena()
     {
         return $this->ordena;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Familia
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

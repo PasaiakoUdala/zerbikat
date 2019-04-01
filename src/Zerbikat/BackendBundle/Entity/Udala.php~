@@ -528,4 +528,28 @@ class Udala
     {
         return $this->zergaor;
     }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Udala
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
+    }
 }

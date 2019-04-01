@@ -309,30 +309,6 @@ class Kanala
     }
 
     /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Kanala
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
      * Set telefonoa
      *
      * @param string $telefonoa
@@ -700,5 +676,29 @@ class Kanala
     public function getErakutsi()
     {
         return $this->erakutsi;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Kanala
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

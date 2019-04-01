@@ -265,4 +265,28 @@ class Kanalmota
     {
         return $this->kanalak;
     }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Kanalmota
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
+    }
 }
