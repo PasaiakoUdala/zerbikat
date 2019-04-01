@@ -33,6 +33,7 @@ use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Fitxa;
 use Zerbikat\BackendBundle\Entity\FitxaAraudia;
+use Zerbikat\BackendBundle\Entity\Fitxafamilia;
 use Zerbikat\BackendBundle\Entity\FitxaKostua;
 use Zerbikat\BackendBundle\Entity\FitxaProzedura;
 use Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa;
@@ -1301,6 +1302,120 @@ class CopyCommand extends ContainerAwareCommand
                 );
                 $fitxa->setZerbitzua($_zerbitzua);
             }
+            if ($f->getAzpiatalak()) {
+                /** @var Azpiatala $fiaz */
+                foreach ($f->getAzpiatalak() as $fiaz) {
+                    /** @var Azpiatala $_azpi_atala */
+                    $_azpi_atala= $em->getRepository('BackendBundle:Azpiatala')->findOneBy(
+                        array(
+                            'origenid' => $fiaz->getId(),
+                        )
+                    );
+                    $fitxa->addAzpiatalak($_azpi_atala);
+                }
+            }
+            if ($f->getBesteak1ak()) {
+                /** @var Besteak1 $b */
+                foreach ($f->getBesteak1ak() as $b) {
+                    /** @var Besteak1 $_besteak1 */
+                    $_besteak1 = $em->getRepository('BackendBundle:Besteak1')->findOneBy(
+                        array(
+                            'origenid' => $b->getId(),
+                        )
+                    );
+                    $fitxa->addBesteak1ak($_besteak1);
+                }
+            }
+            if ($f->getBesteak2ak()) {
+                /** @var Besteak2 $b */
+                foreach ($f->getBesteak2ak() as $b) {
+                    /** @var Besteak2 $_besteak2 */
+                    $_besteak2 = $em->getRepository('BackendBundle:Besteak2')->findOneBy(
+                        array(
+                            'origenid' => $b->getId(),
+                        )
+                    );
+                    $fitxa->addBesteak2ak($_besteak2);
+                }
+            }
+            if ($f->getBesteak3ak()) {
+                /** @var Besteak3 $b */
+                foreach ($f->getBesteak3ak() as $b) {
+                    /** @var Besteak3 $_besteak3 */
+                    $_besteak3 = $em->getRepository('BackendBundle:Besteak3')->findOneBy(
+                        array(
+                            'origenid' => $b->getId(),
+                        )
+                    );
+                    $fitxa->addBesteak3ak($_besteak3);
+                }
+            }
+
+            if ($f->getDoklagunak()) {
+                /** @var Doklagun $dk */
+                foreach ($f->getDoklagunak() as $dk) {
+                    /** @var Doklagun $_doklagun */
+                    $_doklagun = $em->getRepository('BackendBundle:Doklagun')->findOneBy(
+                        array(
+                            'origenid' => $dk->getId(),
+                        )
+                    );
+                    $fitxa->addDoklagunak($_doklagun);
+                }
+            }
+
+            if ($f->getDokumentazioak()) {
+                /** @var Dokumentazioa $dok */
+                foreach ($f->getDokumentazioak() as $dok) {
+                    /** @var Dokumentazioa $_dokumentazioa */
+                    $_dokumentazioa = $em->getRepository('BackendBundle:Dokumentazioa')->findOneBy(
+                        array(
+                            'origenid' => $dok->getId(),
+                        )
+                    );
+                    $fitxa->addDokumentazioak($_dokumentazioa);
+                }
+            }
+
+            if ($f->getEtiketak()) {
+                /** @var Etiketa $eti */
+                foreach ($f->getEtiketak() as $eti) {
+                    /** @var Etiketa $_etiketa */
+                    $_etiketa = $em->getRepository('BackendBundle:Etiketa')->findOneBy(
+                        array(
+                            'origenid' => $eti->getId(),
+                        )
+                    );
+                    $fitxa->addEtiketak($_etiketa);
+                }
+            }
+
+            if ($f->getKanalak()) {
+                /** @var Kanala $ka */
+                foreach ($f->getKanalak() as $ka) {
+                    /** @var Kanala $_kanala */
+                    $_kanala = $em->getRepository('BackendBundle:Kanala')->findOneBy(
+                        array(
+                            'origenid' => $ka->getId(),
+                        )
+                    );
+                    $fitxa->addKanalak($_kanala);
+                }
+            }
+
+            if ($f->getNorkeskatuak()) {
+                /** @var Norkeskatu $nork */
+                foreach ($f->getNorkeskatuak() as $nork) {
+                    /** @var Norkeskatu $_nork_eskatu */
+                    $_nork_eskatu = $em->getRepository('BackendBundle:Norkeskatu')->findOneBy(
+                        array(
+                            'origenid' => $nork->getId(),
+                        )
+                    );
+                    $fitxa->addNorkeskatuak($_nork_eskatu);
+                }
+            }
+
             $em->persist($fitxa);
         }
         $output->write('OK.');
@@ -1426,6 +1541,47 @@ class CopyCommand extends ContainerAwareCommand
         $output->writeln('');
         $em->flush();
 
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** FITXA - FAMILIA ***********************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Fitxa-Familia ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Fitxafamilia','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Fitxa-Kostua kopiatzen...');
+        $oriFitxafamilia = $em->getRepository('BackendBundle:Fitxafamilia')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Fitxafamilia $ff */
+        foreach ($oriFitxafamilia as $ff) {
+            $fifa = new Fitxafamilia();
+            $fifa->setUdala($desUdala);
+            $fifa->setOrigenid($ff->getId());
+            $fifa->setOrdena($ff->getOrdena());
+            /** @var Fitxa $_fitxa */
+            $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
+                array(
+                    'origenid' => $ff->getFitxa()->getId(),
+                )
+            );
+            $fifa->setFitxa($_fitxa);
+            /** @var Familia $_familia */
+            $_familia = $em->getRepository('BackendBundle:Familia')->findOneBy(
+                array(
+                    'origenid' => $ff->getFamilia()->getId(),
+                )
+            );
+            $fifa->setFamilia($_familia);
+            $em->persist($fifa);
+
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
         $output->writeln('');
         $output->writeln('Prozesua ongi amaitu da.');
