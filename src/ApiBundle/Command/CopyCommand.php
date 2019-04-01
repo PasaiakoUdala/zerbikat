@@ -2,7 +2,9 @@
 
 namespace ApiBundle\Command;
 
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -29,6 +31,11 @@ use Zerbikat\BackendBundle\Entity\Eremuak;
 use Zerbikat\BackendBundle\Entity\Espedientekudeaketa;
 use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Entity\Familia;
+use Zerbikat\BackendBundle\Entity\Fitxa;
+use Zerbikat\BackendBundle\Entity\FitxaAraudia;
+use Zerbikat\BackendBundle\Entity\FitxaKostua;
+use Zerbikat\BackendBundle\Entity\FitxaProzedura;
+use Zerbikat\BackendBundle\Entity\IsiltasunAdministratiboa;
 use Zerbikat\BackendBundle\Entity\Kalea;
 use Zerbikat\BackendBundle\Entity\Kanala;
 use Zerbikat\BackendBundle\Entity\Kanalmota;
@@ -36,6 +43,7 @@ use Zerbikat\BackendBundle\Entity\Kontzeptua;
 use Zerbikat\BackendBundle\Entity\Kontzeptumota;
 use Zerbikat\BackendBundle\Entity\Norkebatzi;
 use Zerbikat\BackendBundle\Entity\Norkeskatu;
+use Zerbikat\BackendBundle\Entity\Prozedura;
 use Zerbikat\BackendBundle\Entity\Saila;
 use Zerbikat\BackendBundle\Entity\Udala;
 use Zerbikat\BackendBundle\Entity\Zerbitzua;
@@ -61,7 +69,7 @@ class CopyCommand extends ContainerAwareCommand
     {
         $ori = $input->getArgument('ori');
         $des = $input->getArgument('des');
-        /** @var \Symfony\Component\Console\Helper\QuestionHelper $helper */
+        /** @var QuestionHelper $helper */
         $helper = $this->getHelper('question');
 
         if ((!$ori) || (!$des)) {
@@ -101,7 +109,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Arau Motak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Araumota','am')->where('am.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -130,7 +138,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Araudia ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Araudia','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -164,7 +172,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Arrunta ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Arrunta','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -191,7 +199,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Aurreikusi ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Aurreikusi','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -219,7 +227,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Aurreikusi ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Barrutia','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -246,7 +254,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Eraikina ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Eraikina','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -275,7 +283,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Kalea ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kalea','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -304,7 +312,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Sailak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Saila','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -333,7 +341,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Azpi Sailak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Azpisaila','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -388,7 +396,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Besteak 1 ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Besteak1','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -419,7 +427,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Besteak 2 ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Besteak2','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -450,7 +458,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Besteak 3 ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Besteak3','a')->where('a.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -482,7 +490,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Datuen babesa ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Datuenbabesa','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -534,7 +542,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Baldintzak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Baldintza','b')->where('b.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -562,7 +570,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Doklagun ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Doklagun','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -593,7 +601,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Dokumentu Motak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Dokumentumota','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -622,7 +630,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Dokumentazioa ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Dokumentazioa','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -663,7 +671,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Eremuak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Eremuak','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -766,7 +774,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Eremuak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Etiketa','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -795,7 +803,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Azpi atalak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Azpiatala','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -825,7 +833,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Azpi atalen parrafoak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Azpiatalaparrafoa','d')->where('d.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -863,7 +871,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Familiak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Familia','f')->where('f.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -903,7 +911,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Nork eskatu ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Norkeskatu','f')->where('f.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -931,7 +939,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Nork ebatzi ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Norkebatzi','f')->where('f.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -959,7 +967,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Kontzeptu motak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kontzeptumota','f')->where('f.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -987,7 +995,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Kontzeptuak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kontzeptua','f')->where('f.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -1020,13 +1028,15 @@ class CopyCommand extends ContainerAwareCommand
             }
             $ko->setKontzeptuaes($k->getKontzeptuaes());
             $ko->setKontzeptuaeu($k->getKontzeptuaeu());
-            /** @var Kontzeptumota $_kontzeptu_mota */
-            $_kontzeptu_mota = $em->getRepository('BackendBundle:Kontzeptumota')->findOneBy(
-                array(
-                    'origenid' => $k->getKontzeptumota()->getId(),
-                )
-            );
-            $ko->setKontzeptumota($_kontzeptu_mota);
+            if ($k->getKontzeptumota()) {
+                /** @var Kontzeptumota $_kontzeptu_mota */
+                $_kontzeptu_mota = $em->getRepository('BackendBundle:Kontzeptumota')->findOneBy(
+                    array(
+                        'origenid' => $k->getKontzeptumota()->getId(),
+                    )
+                );
+                $ko->setKontzeptumota($_kontzeptu_mota);
+            }
             $ko->setKopurua($k->getKopurua());
             $ko->setUnitatea($k->getUnitatea());
             $em->persist($ko);
@@ -1043,7 +1053,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Kanal motak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kanalmota','f')->where('f.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -1073,7 +1083,7 @@ class CopyCommand extends ContainerAwareCommand
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         $output->write('-- Helmugako Kanalak ezabatzen...');
-        /** @var \Doctrine\ORM\QueryBuilder $qb */
+        /** @var QueryBuilder $qb */
         $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Kanala','f')->where('f.udala = :udalaID');
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
@@ -1125,12 +1135,11 @@ class CopyCommand extends ContainerAwareCommand
             $ka->setPostakodea($k->getPostakodea());
             $ka->setTelefonoa($k->getTelefonoa());
             $ka->setTelematikoa($k->getTelematikoa());
-            $ka->setUrl($k->getUrl());
             if ($k->getKanalmota()) {
                 /** @var Kanalmota $_kanal_mota */
                 $_kanal_mota = $em->getRepository('BackendBundle:Kanalmota')->findOneBy(
                     array(
-                        'origenid' => $k->getKanalmota()->getId()
+                        'origenid' => $k->getKanalmota()->getId(),
                     )
                 );
                 $ka->setKanalmota($_kanal_mota);
@@ -1143,7 +1152,279 @@ class CopyCommand extends ContainerAwareCommand
         $em->flush();
 
 
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** ISILTASUN ADMINISTRATIBOA ************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Isiltasun administratiboa ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:IsiltasunAdministratiboa','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Isiltasun administratiboa kopiatzen...');
+        $oriIsiltasunAdministratiboa = $em->getRepository('BackendBundle:IsiltasunAdministratiboa')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var IsiltasunAdministratiboa $i */
+        foreach ($oriIsiltasunAdministratiboa as $i) {
+            $isi = new IsiltasunAdministratiboa();
+            $isi->setUdala($desUdala);
+            $isi->setOrigenid($i->getId());
+            $isi->setIsiltasunes($i->getIsiltasunes());
+            $isi->setIsiltasuneu($i->getIsiltasuneu());
+            $em->persist($isi);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** FITXAK ***********************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Fitxa ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Fitxa','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Fitxak kopiatzen...');
+        $oriFitxa = $em->getRepository('BackendBundle:Fitxa')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Fitxa $f */
+        foreach ($oriFitxa as $f) {
+            $fitxa = new Fitxa();
+            $fitxa->setUdala($desUdala);
+            $fitxa->setOrigenid($f->getId());
+            $fitxa->setAraudiaes($f->getAraudiaes());
+            $fitxa->setAraudiaeu($f->getAraudiaeu());
+            $fitxa->setArduraaitorpena($f->getArduraaitorpena());
+            if ($f->getArrunta()) {
+                /** @var Arrunta $_arrunta */
+                $_arrunta = $em->getRepository('BackendBundle:Arrunta')->findOneBy(
+                    array(
+                        'origenid' => $f->getArrunta()->getId(),
+                    )
+                );
+                $fitxa->setArrunta($_arrunta);
+            }
+            if ($f->getAurreikusi()) {
+                /** @var Aurreikusi $_aurreikusi */
+                $_aurreikusi = $em->getRepository('BackendBundle:Aurreikusi')->findOneBy(
+                    array(
+                        'origenid' => $f->getAurreikusi()->getId(),
+                    )
+                );
+                $fitxa->setAurreikusi($_aurreikusi);
+            }
+            if ($f->getAzpisaila()) {
+                /** @var Azpisaila $_azpi_saila */
+                $_azpi_saila =$em->getRepository('BackendBundle:Azpisaila')->findOneBy(
+                    array(
+                        'origenid' => $f->getAzpisaila()->getId(),
+                    )
+                );
+                $fitxa->setAzpisaila($_azpi_saila);
+            }
+            $fitxa->setBesteak1es($f->getBesteak1es());
+            $fitxa->setBesteak1eu($f->getBesteak1eu());
+            $fitxa->setBesteak2eu($f->getBesteak2eu());
+            $fitxa->setBesteak2es($f->getBesteak2es());
+            $fitxa->setBesteak3es($f->getBesteak3es());
+            $fitxa->setBesteak3eu($f->getBesteak3eu());
+            if ($f->getDatuenbabesa()) {
+                /** @var Datuenbabesa $_datuen_babesa */
+                $_datuen_babesa = $em->getRepository('BackendBundle:Datuenbabesa')->findOneBy(
+                    array(
+                        'origenid' => $f->getDatuenbabesa()->getId(),
+                    )
+                );
+                $fitxa->setDatuenbabesa($_datuen_babesa);
+            }
+            $fitxa->setDatuenbabesaes($f->getDatuenbabesaes());
+            $fitxa->setDatuenbabesaeu($f->getDatuenbabesaeu());
+            $fitxa->setDeskribapenaes($f->getDeskribapenaes());
+            $fitxa->setDeskribapenaeu($f->getDeskribapenaeu());
+            $fitxa->setDoklagunes($f->getDoklagunes());
+            $fitxa->setDoklaguneu($f->getDoklaguneu());
+            $fitxa->setDokumentazioaes($f->getDokumentazioaes());
+            $fitxa->setDokumentazioaeu($f->getDokumentazioaeu());
+            $fitxa->setEbazpensinpli($f->getEbazpensinpli());
+            $fitxa->setEspedientekodea($f->getEspedientekodea());
+            $fitxa->setExpedientes($f->getExpedientes());
+            $fitxa->setHelburuaes($f->getHelburuaes());
+            $fitxa->setHelburuaeu($f->getHelburuaeu());
+            $fitxa->setHitzarmena($f->getHitzarmena());
+            if ($f->getIsiltasunadmin()) {
+                /** @var IsiltasunAdministratiboa $_isiltasun_admin */
+                $_isiltasun_admin =$em->getRepository('BackendBundle:IsiltasunAdministratiboa')->findOneBy(
+                    array(
+                        'origenid' => $f->getIsiltasunadmin()->getId(),
+                    )
+                );
+                $fitxa->setIsiltasunadmin($_isiltasun_admin);
+            }
+            $fitxa->setJarraibideakes($f->getJarraibideakes());
+            $fitxa->setJarraibideakeu($f->getJarraibideakeu());
+            $fitxa->setKanalaes($f->getKanalaes());
+            $fitxa->setKanalaeu($f->getKanalaeu());
+            $fitxa->setKontsultak($f->getKontsultak());
+            $fitxa->setKostuaes($f->getKostuaes());
+            $fitxa->setKostuaeu($f->getKostuaeu());
+            if ($f->getNorkebatzi()) {
+                /** @var Norkebatzi $_nork_ebatzi */
+                $_nork_ebatzi = $em->getRepository('BackendBundle:Norkebatzi')->findOneBy(
+                    array(
+                        'origenid' => $f->getNorkebatzi()->getId(),
+                    )
+                );
+                $fitxa->setNorkebatzi($_nork_ebatzi);
+            }
+            $fitxa->setNorkes($f->getNorkes());
+            $fitxa->setNorkeu($f->getNorkeu());
+            $fitxa->setNorkonartues($f->getNorkonartues());
+            $fitxa->setNorkonartueu($f->getNorkonartueu());
+            $fitxa->setOharrakes($f->getOharrakes());
+            $fitxa->setOharrakeu($f->getOharrakeu());
+            $fitxa->setParametroa($f->getParametroa());
+            $fitxa->setProzeduraes($f->getProzeduraes());
+            $fitxa->setProzeduraeu($f->getProzeduraeu());
+            $fitxa->setPublikoa($f->getPublikoa());
+            if ($f->getZerbitzua()) {
+                /** @var Zerbitzua $_zerbitzua */
+                $_zerbitzua = $em->getRepository('BackendBundle:Zerbitzua')->findOneBy(
+                    array(
+                        'origenid' => $f->getZerbitzua()->getId(),
+                    )
+                );
+                $fitxa->setZerbitzua($_zerbitzua);
+            }
+            $em->persist($fitxa);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** FITXA - ARAUDIA ***********************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Fitxa-Araudia ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:FitxaAraudia','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Fitxa-Araudia kopiatzen...');
+        $oriFitxaAraudia= $em->getRepository('BackendBundle:FitxaAraudia')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var FitxaAraudia $fa */
+        foreach ($oriFitxaAraudia as $fa) {
+            $fiar = new FitxaAraudia();
+            $fiar->setOrigenid($fa->getId());
+            $fiar->setUdala($desUdala);
+            $fiar->setAtalaes($fa->getAtalaes());
+            $fiar->setAtalaeu($fa->getAtalaeu());
+            /** @var Araudia $_araudia */
+            $_araudia = $em->getRepository('BackendBundle:Araudia')->findOneBy(
+                array(
+                    'origenid' => $fa->getAraudia()->getId(),
+                )
+            );
+            $fiar->setAraudia($_araudia);
+            /** @var Fitxa $_fitxa */
+            $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
+                array(
+                    'origenid' => $fa->getFitxa()->getId(),
+                )
+            );
+            $fiar->setFitxa($_fitxa);
+            $em->persist($fam);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** FITXA - PROZEDURA ***********************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Fitxa-Prozedura ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:FitxaProzedura','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Fitxa-Prozedura kopiatzen...');
+        $oriFitxaProzedura = $em->getRepository('BackendBundle:FitxaProzedura')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var FitxaProzedura $fp */
+        foreach ($oriFitxaProzedura as $fp) {
+            $fipo = new FitxaProzedura();
+            /** @var Fitxa $_fitxa */
+            $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
+                array(
+                    'origenid' => $fp->getFitxa()->getId(),
+                )
+            );
+            $fipo->setFitxa($_fitxa);
+            $fipo->setUdala($desUdala);
+            $fipo->setOrigenid($fp->getId());
+            $fipo->setOrdena($fp->getOrdena());
+            /** @var Prozedura $_prozedura */
+            $_prozedura = $em->getRepository('BackendBundle:Prozedura')->findOneBy(
+                array(
+                    'origenid' => $fp->getProzedura()->getId(),
+                )
+            );
+            $fipo->setProzedura($_prozedura);
+            $em->persist($fipo);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
+
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*** FITXA - KOSTUA ***********************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Fitxa-Kostua ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:FitxaKostua','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Fitxa-Kostua kopiatzen...');
+        $oriFitxaKostua = $em->getRepository('BackendBundle:FitxaKostua')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var FitxaKostua $fk */
+        foreach ($oriFitxaKostua as $fk) {
+            $fiko = new FitxaKostua();
+            $fiko->setOrigenid($fk->getId());
+            $fiko->setUdala($desUdala);
+            /** @var Fitxa $_fitxa */
+            $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
+                array(
+                    'origenid' => $fk->getFitxa()->getId(),
+                )
+            );
+            $fiko->setFitxa($_fitxa);
+            $fiko->setKostua($fk->getKostua());
+            $em->persist($fiko);
+
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
 
         $output->writeln('');

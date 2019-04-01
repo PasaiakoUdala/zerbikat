@@ -309,30 +309,6 @@ class Kanala
     }
 
     /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Kanala
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
      * Set telefonoa
      *
      * @param string $telefonoa
