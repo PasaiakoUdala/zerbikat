@@ -54,15 +54,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <div class="text-center">
-        {% if araumotas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'araumota_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

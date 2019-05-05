@@ -33,32 +33,15 @@ class KanalmotaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $kanalmotas = $em->getRepository('BackendBundle:Kanalmota')->findAll();
 
-            $adapter = new ArrayAdapter($kanalmotas);
-            $pagerfanta = new Pagerfanta($adapter);
 
             $deleteForms = array();
             foreach ($kanalmotas as $kanalmota) {
                 $deleteForms[$kanalmota->getId()] = $this->createDeleteForm($kanalmota)->createView();
             }
 
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
-
             return $this->render('kanalmota/index.html.twig', array(
-                'kanalmotas' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
+                'kanalmotas' => $kanalmotas ,
+                'deleteforms' => $deleteForms
             ));
         }else
         {
