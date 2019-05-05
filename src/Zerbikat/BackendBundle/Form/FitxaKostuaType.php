@@ -11,6 +11,7 @@ use GuzzleHttp;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Zerbikat\BackendBundle\Entity\FitxaKostua;
 
 class FitxaKostuaType extends AbstractType
 {
@@ -28,7 +29,7 @@ class FitxaKostuaType extends AbstractType
         $udala = $options['udala'];
         $api = $options[ 'api_url' ];
         // DEBUG
-//        $api = "http://zzoo.test/app_dev.php/api";
+        //$api = 'http://zzoo.test/app_dev.php/api';
 
         $client = new GuzzleHttp\Client();
         $url = $api.'/udalzergak/'.$udala.'.json';
@@ -40,17 +41,17 @@ class FitxaKostuaType extends AbstractType
         $keysduplicated = 1;
         foreach ($array as $a)
         {
-            $txt ="";
-            if ( (array_key_exists("kodea_prod", $a))  ) {
-                $txt = $a[ 'kodea_prod' ]." - ";
+            $txt = '';
+            if (array_key_exists('kodea_prod', $a)) {
+                $txt = $a[ 'kodea_prod' ].' - ';
             }
 
 
-            if ( array_key_exists("izenburuaeu_prod", $a) ) {
-                $txt = $txt . $a[ 'izenburuaeu_prod' ];
+            if ( array_key_exists('izenburuaeu_prod', $a) ) {
+                $txt .= $a[ 'izenburuaeu_prod' ];
                 if (array_key_exists($txt,$resp)) {
-                    $keysduplicated += 1;
-                    $txt = $txt . "(" . $keysduplicated . ")";
+                    ++ $keysduplicated;
+                    $txt = $txt .'('. $keysduplicated . ')';
                     $resp[$txt] = $a['id'];
                 } else {
                     $resp[$txt] = $a['id'];
@@ -75,7 +76,7 @@ class FitxaKostuaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Zerbikat\BackendBundle\Entity\FitxaKostua',
+            'data_class' => FitxaKostua::class,
             'udala' => null,
             'api_url' => null
         ));

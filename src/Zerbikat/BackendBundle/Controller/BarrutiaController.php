@@ -26,39 +26,22 @@ class BarrutiaController extends Controller
      * @Route("/page{page}", name="barrutia_index_paginated")
      * @Method("GET")
      */
-    public function indexAction($page)
+    public function indexAction()
     {
         $auth_checker = $this->get('security.authorization_checker');
         if ($auth_checker->isGranted('ROLE_KUDEAKETA')) {
             $em = $this->getDoctrine()->getManager();
             $barrutias = $em->getRepository('BackendBundle:Barrutia')->findAll();
 
-            $adapter = new ArrayAdapter($barrutias);
-            $pagerfanta = new Pagerfanta($adapter);
-
             $deleteForms = array();
             foreach ($barrutias as $barrutia) {
                 $deleteForms[$barrutia->getId()] = $this->createDeleteForm($barrutia)->createView();
             }
 
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
 
             return $this->render('barrutia/index.html.twig', array(
-                'barrutias' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
+                'barrutias' => $barrutias,
+                'deleteforms' => $deleteForms
             ));
         }else
         {

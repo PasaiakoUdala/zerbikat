@@ -2,6 +2,8 @@
 
 namespace ApiBundle\Command;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -28,7 +30,6 @@ use Zerbikat\BackendBundle\Entity\Dokumentazioa;
 use Zerbikat\BackendBundle\Entity\Dokumentumota;
 use Zerbikat\BackendBundle\Entity\Eraikina;
 use Zerbikat\BackendBundle\Entity\Eremuak;
-use Zerbikat\BackendBundle\Entity\Espedientekudeaketa;
 use Zerbikat\BackendBundle\Entity\Etiketa;
 use Zerbikat\BackendBundle\Entity\Familia;
 use Zerbikat\BackendBundle\Entity\Fitxa;
@@ -48,6 +49,7 @@ use Zerbikat\BackendBundle\Entity\Prozedura;
 use Zerbikat\BackendBundle\Entity\Saila;
 use Zerbikat\BackendBundle\Entity\Udala;
 use Zerbikat\BackendBundle\Entity\Zerbitzua;
+use GuzzleHttp;
 
 class CopyCommand extends ContainerAwareCommand
 {
@@ -65,6 +67,7 @@ class CopyCommand extends ContainerAwareCommand
 
     /**
      * {@inheritdoc}
+     * @throws OptimisticLockException
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -88,7 +91,7 @@ class CopyCommand extends ContainerAwareCommand
             }
         }
 
-
+        /** @var EntityManager $em */
         $em = $this->getContainer()->get('doctrine')->getManager();
         /** @var Udala $oriUdala */
         $oriUdala = $em->getRepository('BackendBundle:Udala')->findOneBy(array('kodea' => $ori,));
@@ -610,7 +613,7 @@ class CopyCommand extends ContainerAwareCommand
         $output->write('++ Dokumentu motak kopiatzen...');
         $oriDokMota = $em->getRepository('BackendBundle:Dokumentumota')->findBy(array('udala' => $oriUdala->getId()));
         /** @var Dokumentumota $d */
-        foreach ($oriDokLagun as $d) {
+        foreach ($oriDokMota as $d) {
             $dokm = new Dokumentumota();
             $dokm->setKodea($d->getKodea());
             $dokm->setOrigenid($d->getId());
@@ -1535,6 +1538,40 @@ class CopyCommand extends ContainerAwareCommand
                 )
             );
             $fiko->setFitxa($_fitxa);
+
+            /***
+             * Fitxa eskuratu zzoo api-aren bidez
+             ***/
+            /** @var GuzzleHttp\Client $client */
+            $client = new GuzzleHttp\Client();
+            $api_url = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
+            $url = $api_url.'/kostua/'.$fk->getKostua().'.json';
+
+            try
+            {
+                $resp = $client->request('GET', $url, array(
+                    'headers' => array(
+                        'Accept' => 'application/json',
+                        'Content-type' => 'application/json'
+                    )));
+                $output->writeln($resp->getStatusCode()); # 200
+                $output->writeln($resp->getHeaderLine('content-type')); # 'application/json; charset=utf8'
+                $output->writeln($resp->getBody()); # '{"id": 1420053, "name": "guzzle", ...}'
+//                dump($resp->getBody());
+//                $valftp = (string)$resp->getBody();
+//                $array = json_decode($valftp, true);
+
+            } catch (GuzzleHttp\Exception\GuzzleException $ex)
+            {
+                $output->writeln($ex->getMessage());
+                break;
+            }
+
+
+
+
+
+
             $fiko->setKostua($fk->getKostua());
             $em->persist($fiko);
 

@@ -1376,13 +1376,20 @@
             var url = param + "/ordenantzakbykodea/" + udalakodea + ".json";
             var locale = "{{ app.request.getLocale() }}";
 
+            console.log("Hau da URL-a:");
+            console.log(url);
+
             var jqxhr = $.getJSON(url, function ( result ) {
+                console.log("Result da:");
+                console.log(result);
                 if ( locale === "es" ) {
                     $("#cmbOrdenantza").append($("<option></option>").attr("value", -1).text("Selecciona"));
                 } else {
                     $("#cmbOrdenantza").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                 }
                 $.each(result, function ( i, field ) {
+                    console.log("Field-ak");
+                    console.log(field);
                     if ( locale === "es" ) {
                         $("#cmbOrdenantza").append($("<option></option>").attr("value", field.id).text(field.izenburuaes_prod));
                     } else {
