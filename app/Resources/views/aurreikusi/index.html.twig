@@ -49,15 +49,6 @@
         </tbody>
     </table>
 
-    <div class="text-center">
-        {% if aurreikusis is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'aurreikusi_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

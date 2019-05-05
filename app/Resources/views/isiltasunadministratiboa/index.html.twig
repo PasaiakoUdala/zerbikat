@@ -46,15 +46,7 @@
         {% endfor %}
         </tbody>
     </table>
-    <div class="text-center">
-        {% if isiltasunAdministratiboas is not empty %}
-            {% if pager.haveToPaginate %}
-                {{ pagerfanta(pager, 'twitter_bootstrap3_translated', {'routeName': 'isiltasunadministratiboa_index_paginated'}) }}
-            {% endif %}
-        {% else %}
-            <p>{{ 'messages.emaitzarikez'|trans }}</p>
-        {% endif %}
-    </div>
+
 
 {% endblock %}
 {% block javascripts %}
