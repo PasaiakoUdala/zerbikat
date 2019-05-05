@@ -35,34 +35,15 @@ class KontzeptumotaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $kontzeptumotas = $em->getRepository('BackendBundle:Kontzeptumota')->findAll();
 
-            $adapter = new ArrayAdapter($kontzeptumotas);
-            $pagerfanta = new Pagerfanta($adapter);
-
             $deleteForms = array();
             foreach ($kontzeptumotas as $kontzeptua) {
                 $deleteForms[$kontzeptua->getId()] = $this->createDeleteForm($kontzeptua)->createView();
             }
 
-            try {
-                $entities = $pagerfanta
-                    // Le nombre maximum d'éléments par page
-//                    ->setMaxPerPage(20)
-//                    ->setMaxPerPage($this->getUser()->getUdala()->getOrrikatzea())
-                    // Notre position actuelle (numéro de page)
-                    ->setCurrentPage($page)
-                    // On récupère nos entités via Pagerfanta,
-                    // celui-ci s'occupe de limiter la requête en fonction de nos réglages.
-                    ->getCurrentPageResults()
-                ;
-            } catch (\Pagerfanta\Exception\NotValidCurrentPageException $e) {
-                throw $this->createNotFoundException("Orria ez da existitzen");
-            }
 
             return $this->render('kontzeptumota/index.html.twig', array(
-//                'kontzeptumotas' => $kontzeptumotas,
-                'kontzeptumotas' => $entities,
-                'deleteforms' => $deleteForms,
-                'pager' => $pagerfanta,
+                'kontzeptumotas' => $kontzeptumotas ,
+                'deleteforms' => $deleteForms
             ));
 
         }else

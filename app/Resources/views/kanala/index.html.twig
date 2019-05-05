@@ -32,9 +32,12 @@
             <tr>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<td>{{ kanala.udala }}</td>{% endif %}
                 <td>
-                    {% if app.request.locale == 'es'%}{{ kanala.kanalmota.motaes }}
-                    {% else %}{{ kanala.kanalmota.motaeu }}
+                    {% if kanala.kanalmota %}
+                        {% if app.request.locale == 'es'%}{{ kanala.kanalmota.motaes }}
+                        {% else %}{{ kanala.kanalmota.motaeu }}
+                        {% endif %}
                     {% endif %}
+
                 </td>
                 <td>
                     {% if app.request.locale == 'es'%}{{ kanala.izenaes }}
