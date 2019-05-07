@@ -138,6 +138,33 @@ class CopyCommand extends ContainerAwareCommand
 
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
+        /*** PROZEDURA ******************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
+        $output->write('-- Helmugako Prozedurak ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Prozedura','am')->where('am.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Prozedurak kopiatzen...');
+        $oriProzedurak = $em->getRepository('BackendBundle:Prozedura')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Prozedura $pr */
+        foreach ($oriProzedurak as $pr) {
+            $pro = new Prozedura();
+            $pro->setOrigenid($pr->getId());
+            $pro->setProzeduraes($pr->getProzeduraes());
+            $pro->setProzeduraeu($pr->getProzeduraeu());
+            $pro->setUdala($desUdala);
+            $em->persist($pro);
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
+
+        /*******************************************************************************************************************************************************/
+        /*******************************************************************************************************************************************************/
         /*** ARAUDIA *******************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
@@ -155,6 +182,7 @@ class CopyCommand extends ContainerAwareCommand
             $araudia = new Araudia();
             $araudia->setArauaes($a->getArauaes());
             $araudia->setArauaeu($a->getArauaeu());
+            $araudia->setKodea($a->getKodea());
             $araudia->setAraumota($a->getAraumota());
             $araudia->setEstekaes($a->getEstekaes());
             $araudia->setEstekaeu($a->getEstekaes());
@@ -1461,7 +1489,7 @@ class CopyCommand extends ContainerAwareCommand
                 )
             );
             $fiar->setFitxa($_fitxa);
-            $em->persist($fam);
+            $em->persist($fiar);
         }
         $output->write('OK.');
         $output->writeln('');
@@ -1552,7 +1580,7 @@ class CopyCommand extends ContainerAwareCommand
                 $resp = $client->request('GET', $url, array(
                     'headers' => array(
                         'Accept' => 'application/json',
-                        'Content-type' => 'application/json'
+                        'Content-type' => 'application/json',
                     )));
                 $output->writeln($resp->getStatusCode()); # 200
                 $output->writeln($resp->getHeaderLine('content-type')); # 'application/json; charset=utf8'

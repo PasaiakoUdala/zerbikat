@@ -1374,6 +1374,8 @@
             var udalakodea = $("#udala_kodea").val();
 
             var url = param + "/ordenantzakbykodea/" + udalakodea + ".json";
+            // DEBUG
+            // var url = 'http://zzoo.test/app_dev.php/api/ordenantzakbykodea/' + udalakodea + ".json";
             var locale = "{{ app.request.getLocale() }}";
 
             console.log("Hau da URL-a:");
