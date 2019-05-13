@@ -2,13 +2,20 @@
 
 namespace Zerbikat\BackendBundle\Controller;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query;
+use Exception;
 use GuzzleHttp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Zerbikat\BackendBundle\Entity\Fitxa;
 use Zerbikat\BackendBundle\Entity\Fitxafamilia;
 
@@ -66,14 +73,14 @@ class FitxaController extends Controller
      * @Method({"GET", "POST"})
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     * @return RedirectResponse|Response
+     * @throws Exception
      */
     public function newAction( Request $request )
     {
         $auth_checker = $this->get( 'security.authorization_checker' );
         if ( $auth_checker->isGranted( 'ROLE_USER' ) ) {
-            /** @var \Zerbikat\BackendBundle\Entity\Fitxa $fitxa */
+            /** @var Fitxa $fitxa */
             $fitxa = new Fitxa();
             $fitxa->setUdala( $this->getUser()->getUdala() );
             $form = $this->createForm( 'Zerbikat\BackendBundle\Form\FitxanewType', $fitxa );
@@ -82,7 +89,7 @@ class FitxaController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             if ( $form->isSubmitted() && $form->isValid() ) {
-                $fitxa->setCreatedAt( new \DateTime() );
+                $fitxa->setCreatedAt( new DateTime() );
 
                 $em->persist( $fitxa );
                 $em->flush();
@@ -113,10 +120,10 @@ class FitxaController extends Controller
      * @Method("GET")
      * @param Fitxa $fitxa
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function showAction( Fitxa $fitxa )
     {
@@ -179,8 +186,8 @@ class FitxaController extends Controller
      * @param Fitxa $fitxa
      *
      * @throws GuzzleHttp\Exception\GuzzleException
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function pdfAction( Fitxa $fitxa )
     {
@@ -280,9 +287,9 @@ class FitxaController extends Controller
      * @param Request $request
      * @param Fitxa   $fitxa
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return RedirectResponse|Response
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function editAction( Request $request, Fitxa $fitxa )
     {
@@ -343,7 +350,7 @@ class FitxaController extends Controller
                     }
                 }
 
-                $fitxa->setUpdatedAt( new \DateTime() );
+                $fitxa->setUpdatedAt( new DateTime() );
                 $em->persist( $fitxa );
                 $em->flush();
 
@@ -419,7 +426,7 @@ class FitxaController extends Controller
      * @param Request $request
      * @param Fitxa   $fitxa
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function deleteAction( Request $request, Fitxa $fitxa )
     {
@@ -449,7 +456,7 @@ class FitxaController extends Controller
      *
      * @param Fitxa $fitxa The Fitxa entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm( Fitxa $fitxa )
     {

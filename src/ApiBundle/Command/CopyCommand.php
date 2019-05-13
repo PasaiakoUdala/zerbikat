@@ -380,47 +380,52 @@ class CopyCommand extends ContainerAwareCommand
         $output->writeln('Ok');
         $output->write('++ Azpisaila kopiatzen...');
         $oriAzpisaila= $em->getRepository('BackendBundle:Azpisaila')->findBy(array('udala' => $oriUdala->getId()));
-        /** @var Azpisaila $a */
-        foreach ($oriAzpisaila as $a) {
+        /** @var Azpisaila $as */
+        foreach ($oriAzpisaila as $as) {
             $azpisaila = new Azpisaila();
-            $azpisaila->setArduraduna($a->getArduraduna());
-            $azpisaila->setKodea($a->getKodea());
+            $azpisaila->setArduraduna($as->getArduraduna());
+            $azpisaila->setKodea($as->getKodea());
             $azpisaila->setUdala($desUdala);
-            $azpisaila->setArduradunahaz($a->getArduradunahaz());
-            $azpisaila->setAzpisailaes($a->getAzpisailaes());
-            $azpisaila->setAzpisailaeu($a->getAzpisailaeu());
-            $azpisaila->setEmail($a->getEmail());
-            $azpisaila->setFax($a->getFax());
-            $azpisaila->setHizkia($a->getHizkia());
-            $azpisaila->setKaleZbkia($a->getKaleZbkia());
-            $azpisaila->setOrdutegia($a->getOrdutegia());
-            $azpisaila->setTelefonoa($a->getTelefonoa());
+            $azpisaila->setArduradunahaz($as->getArduradunahaz());
+            $azpisaila->setAzpisailaes($as->getAzpisailaes());
+            $azpisaila->setAzpisailaeu($as->getAzpisailaeu());
+            $azpisaila->setEmail($as->getEmail());
+            $azpisaila->setFax($as->getFax());
+            $azpisaila->setHizkia($as->getHizkia());
+            $azpisaila->setKaleZbkia($as->getKaleZbkia());
+            $azpisaila->setOrdutegia($as->getOrdutegia());
+            $azpisaila->setTelefonoa($as->getTelefonoa());
             /** @var Saila $_saila */
-            $_saila = $em->getRepository('BackendBundle:Saila')->findOneBy(array('origenid' => $a->getSaila()->getId()));
+            $_saila = $em->getRepository('BackendBundle:Saila')->findOneBy(
+                array(
+                    'origenid' => $as->getSaila()->getId(),
+                    'udala' => $desUdala
+                )
+            );
             $azpisaila->setSaila($_saila);
-            if ($a->getBarrutia()) {
+            if ($as->getBarrutia()) {
                 /** @var Barrutia $_barrutia */
-                $_barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(array('origenid' => $a->getBarrutia()->getId()));
+                $_barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(array('origenid' => $as->getBarrutia()->getId()));
                 $azpisaila->setBarrutia($_barrutia);
             }
-            if ($a->getEraikina()){
+            if ($as->getEraikina()){
                 /** @var Eraikina $_eraikina */
-                $_eraikina = $em->getRepository('BackendBundle:Eraikina')->findOneBy(array('origenid' => $a->getEraikina()->getId()));
+                $_eraikina = $em->getRepository('BackendBundle:Eraikina')->findOneBy(array('origenid' => $as->getEraikina()->getId()));
                 $azpisaila->setEraikina($_eraikina);
             }
-            if ($a->getKalea()) {
+            if ($as->getKalea()) {
                 /** @var Kalea $_kalea */
-                $_kalea = $em->getRepository('BackendBundle:Kalea')->findOneBy(array('origenid' => $a->getKalea()->getId()));
+                $_kalea = $em->getRepository('BackendBundle:Kalea')->findOneBy(array('origenid' => $as->getKalea()->getId()));
                 $azpisaila->setKalea($_kalea);
             }
-            $azpisaila->setOrigenid($a->getId());
+            $azpisaila->setOrigenid($as->getId());
             $em->persist($azpisaila);
-
+            $em->flush();
         }
         $output->write('OK.');
         $output->writeln('');
         $output->writeln('');
-        $em->flush();
+
 
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
@@ -921,20 +926,22 @@ class CopyCommand extends ContainerAwareCommand
             $fam->setFamiliaes($f->getFamiliaes());
             $fam->setFamiliaeu($f->getFamiliaeu());
             if ($f->getParent()) {
-                /** @var Familia $_parent */
-                $_parent = $em->getRepository('BackendBundle:Familia')->findOneBy(
+                /** @var Familia $_par */
+                $_par = $em->getRepository('BackendBundle:Familia')->findOneBy(
                     array(
-                        'origenid' => $f->getParent()->getId(),
+                        'origenid'  => $f->getParent()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
-                $fam->setParent($_parent);
+                $fam->setParent($_par);
             }
             $em->persist($fam);
+            $em->flush();
         }
         $output->write('OK.');
         $output->writeln('');
         $output->writeln('');
-        $em->flush();
+
 
 
         /*******************************************************************************************************************************************************/
@@ -1238,6 +1245,7 @@ class CopyCommand extends ContainerAwareCommand
                 $_arrunta = $em->getRepository('BackendBundle:Arrunta')->findOneBy(
                     array(
                         'origenid' => $f->getArrunta()->getId(),
+                        'udala' => $desUdala
                     )
                 );
                 $fitxa->setArrunta($_arrunta);
@@ -1247,6 +1255,7 @@ class CopyCommand extends ContainerAwareCommand
                 $_aurreikusi = $em->getRepository('BackendBundle:Aurreikusi')->findOneBy(
                     array(
                         'origenid' => $f->getAurreikusi()->getId(),
+                        'udala' => $desUdala
                     )
                 );
                 $fitxa->setAurreikusi($_aurreikusi);
@@ -1256,6 +1265,7 @@ class CopyCommand extends ContainerAwareCommand
                 $_azpi_saila =$em->getRepository('BackendBundle:Azpisaila')->findOneBy(
                     array(
                         'origenid' => $f->getAzpisaila()->getId(),
+                        'udala' => $desUdala
                     )
                 );
                 $fitxa->setAzpisaila($_azpi_saila);
@@ -1271,6 +1281,7 @@ class CopyCommand extends ContainerAwareCommand
                 $_datuen_babesa = $em->getRepository('BackendBundle:Datuenbabesa')->findOneBy(
                     array(
                         'origenid' => $f->getDatuenbabesa()->getId(),
+                        'udala' => $desUdala
                     )
                 );
                 $fitxa->setDatuenbabesa($_datuen_babesa);
@@ -1294,6 +1305,7 @@ class CopyCommand extends ContainerAwareCommand
                 $_isiltasun_admin =$em->getRepository('BackendBundle:IsiltasunAdministratiboa')->findOneBy(
                     array(
                         'origenid' => $f->getIsiltasunadmin()->getId(),
+                        'udala' => $desUdala
                     )
                 );
                 $fitxa->setIsiltasunadmin($_isiltasun_admin);
@@ -1310,6 +1322,7 @@ class CopyCommand extends ContainerAwareCommand
                 $_nork_ebatzi = $em->getRepository('BackendBundle:Norkebatzi')->findOneBy(
                     array(
                         'origenid' => $f->getNorkebatzi()->getId(),
+                        'udala' => $desUdala
                     )
                 );
                 $fitxa->setNorkebatzi($_nork_ebatzi);
@@ -1328,7 +1341,7 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Zerbitzua $_zerbitzua */
                 $_zerbitzua = $em->getRepository('BackendBundle:Zerbitzua')->findOneBy(
                     array(
-                        'origenid' => $f->getZerbitzua()->getId(),
+                        'origenid' => $f->getZerbitzua()->getId()
                     )
                 );
                 $fitxa->setZerbitzua($_zerbitzua);
@@ -1340,6 +1353,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_azpi_atala= $em->getRepository('BackendBundle:Azpiatala')->findOneBy(
                         array(
                             'origenid' => $fiaz->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addAzpiatalak($_azpi_atala);
@@ -1352,6 +1366,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_besteak1 = $em->getRepository('BackendBundle:Besteak1')->findOneBy(
                         array(
                             'origenid' => $b->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addBesteak1ak($_besteak1);
@@ -1364,6 +1379,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_besteak2 = $em->getRepository('BackendBundle:Besteak2')->findOneBy(
                         array(
                             'origenid' => $b->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addBesteak2ak($_besteak2);
@@ -1376,6 +1392,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_besteak3 = $em->getRepository('BackendBundle:Besteak3')->findOneBy(
                         array(
                             'origenid' => $b->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addBesteak3ak($_besteak3);
@@ -1389,6 +1406,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_doklagun = $em->getRepository('BackendBundle:Doklagun')->findOneBy(
                         array(
                             'origenid' => $dk->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addDoklagunak($_doklagun);
@@ -1402,6 +1420,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_dokumentazioa = $em->getRepository('BackendBundle:Dokumentazioa')->findOneBy(
                         array(
                             'origenid' => $dok->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addDokumentazioak($_dokumentazioa);
@@ -1415,6 +1434,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_etiketa = $em->getRepository('BackendBundle:Etiketa')->findOneBy(
                         array(
                             'origenid' => $eti->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addEtiketak($_etiketa);
@@ -1428,6 +1448,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_kanala = $em->getRepository('BackendBundle:Kanala')->findOneBy(
                         array(
                             'origenid' => $ka->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addKanalak($_kanala);
@@ -1441,6 +1462,7 @@ class CopyCommand extends ContainerAwareCommand
                     $_nork_eskatu = $em->getRepository('BackendBundle:Norkeskatu')->findOneBy(
                         array(
                             'origenid' => $nork->getId(),
+                            'udala' => $desUdala
                         )
                     );
                     $fitxa->addNorkeskatuak($_nork_eskatu);
@@ -1567,33 +1589,33 @@ class CopyCommand extends ContainerAwareCommand
             );
             $fiko->setFitxa($_fitxa);
 
-            /***
-             * Fitxa eskuratu zzoo api-aren bidez
-             ***/
-            /** @var GuzzleHttp\Client $client */
-            $client = new GuzzleHttp\Client();
-            $api_url = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
-            $url = $api_url.'/kostua/'.$fk->getKostua().'.json';
-
-            try
-            {
-                $resp = $client->request('GET', $url, array(
-                    'headers' => array(
-                        'Accept' => 'application/json',
-                        'Content-type' => 'application/json',
-                    )));
-                $output->writeln($resp->getStatusCode()); # 200
-                $output->writeln($resp->getHeaderLine('content-type')); # 'application/json; charset=utf8'
-                $output->writeln($resp->getBody()); # '{"id": 1420053, "name": "guzzle", ...}'
-//                dump($resp->getBody());
-//                $valftp = (string)$resp->getBody();
-//                $array = json_decode($valftp, true);
-
-            } catch (GuzzleHttp\Exception\GuzzleException $ex)
-            {
-                $output->writeln($ex->getMessage());
-                break;
-            }
+//            /***
+//             * Fitxa eskuratu zzoo api-aren bidez
+//             ***/
+//            /** @var GuzzleHttp\Client $client */
+//            $client = new GuzzleHttp\Client();
+//            $api_url = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
+//            $url = $api_url.'/kostua/'.$fk->getKostua().'.json';
+//
+//            try
+//            {
+//                $resp = $client->request('GET', $url, array(
+//                    'headers' => array(
+//                        'Accept' => 'application/json',
+//                        'Content-type' => 'application/json',
+//                    )));
+////                $output->writeln($resp->getStatusCode()); # 200
+////                $output->writeln($resp->getHeaderLine('content-type')); # 'application/json; charset=utf8'
+////                $output->writeln($resp->getBody()); # '{"id": 1420053, "name": "guzzle", ...}'
+////                dump($resp->getBody());
+////                $valftp = (string)$resp->getBody();
+////                $array = json_decode($valftp, true);
+//
+//            } catch (GuzzleHttp\Exception\GuzzleException $ex)
+//            {
+//                $output->writeln($ex->getMessage());
+//                break;
+//            }
 
 
 
@@ -1621,7 +1643,7 @@ class CopyCommand extends ContainerAwareCommand
         $qb->setParameter('udalaID', $desUdala);
         $qb->getQuery()->execute();
         $output->writeln('Ok');
-        $output->write('++ Fitxa-Kostua kopiatzen...');
+        $output->write('++ Fitxa-Familia kopiatzen...');
         $oriFitxafamilia = $em->getRepository('BackendBundle:Fitxafamilia')->findBy(array('udala' => $oriUdala->getId()));
         /** @var Fitxafamilia $ff */
         foreach ($oriFitxafamilia as $ff) {

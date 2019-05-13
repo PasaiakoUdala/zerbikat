@@ -44,13 +44,17 @@
                 <td>
                     {% if fitxa.azpisaila %}
                         {% if fitxa.azpisaila.saila %}
-                            {% if app.request.locale == 'es'%}{{ fitxa.azpisaila.saila.sailaes }}
-                            {% else %}{{ fitxa.azpisaila.saila.sailaeu }}
+                            {% if app.request.locale == 'es'%}
+{#                                {{ fitxa.azpisaila.saila.sailaes }}#}
+                            {% else %}
+{#                                {{ fitxa.azpisaila.saila.sailaeu }}#}
                             {% endif %}
-
                         {% endif %}
-                        {% if app.request.locale == 'es'%}<br>{{ fitxa.azpisaila.azpisailaes }}
-                        {% else %}<br>{{ fitxa.azpisaila.azpisailaeu }}
+
+                        {% if app.request.locale == 'es'%}
+                            <br>{{ fitxa.azpisaila.azpisailaes }}
+                        {% else %}
+                            <br>{{ fitxa.azpisaila.azpisailaeu }}
                         {% endif %}
                     {% endif %}
                 </td>
