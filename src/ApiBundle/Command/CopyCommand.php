@@ -189,7 +189,12 @@ class CopyCommand extends ContainerAwareCommand
             $araudia->setOrigenid($a->getId());
             $araudia->setUdala($desUdala);
             /** @var Araumota $araumota */
-            $araumota = $em->getRepository('BackendBundle:Araumota')->findOneBy(array('origenid' => $a->getAraumota()->getId()));
+            $araumota = $em->getRepository('BackendBundle:Araumota')->findOneBy(
+                array(
+                    'origenid'  => $a->getAraumota()->getId(),
+                    'udala'     => $desUdala
+                )
+            );
             $araudia->setAraumota($araumota);
             $em->persist($araudia);
         }
@@ -327,7 +332,12 @@ class CopyCommand extends ContainerAwareCommand
             $kalea = new Kalea();
             $kalea->setUdala($desUdala);
             $kalea->setIzena($a->getIzena());
-            $barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(array('origenid' => $a->getBarrutia()->getId()));
+            $barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(
+                array(
+                    'origenid'  => $a->getBarrutia()->getId(),
+                    'udala'     => $desUdala
+                )
+            );
             $kalea->setBarrutia($barrutia);
             $kalea->setGoogle($a->getGoogle());
             $kalea->setOrigenid($a->getId());
@@ -405,17 +415,32 @@ class CopyCommand extends ContainerAwareCommand
             $azpisaila->setSaila($_saila);
             if ($as->getBarrutia()) {
                 /** @var Barrutia $_barrutia */
-                $_barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(array('origenid' => $as->getBarrutia()->getId()));
+                $_barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(
+                    array(
+                        'origenid'  => $as->getBarrutia()->getId(),
+                        'udala'     => $desUdala
+                    )
+                );
                 $azpisaila->setBarrutia($_barrutia);
             }
             if ($as->getEraikina()){
                 /** @var Eraikina $_eraikina */
-                $_eraikina = $em->getRepository('BackendBundle:Eraikina')->findOneBy(array('origenid' => $as->getEraikina()->getId()));
+                $_eraikina = $em->getRepository('BackendBundle:Eraikina')->findOneBy(
+                    array(
+                        'origenid'  => $as->getEraikina()->getId(),
+                        'udala'     => $desUdala
+                    )
+                );
                 $azpisaila->setEraikina($_eraikina);
             }
             if ($as->getKalea()) {
                 /** @var Kalea $_kalea */
-                $_kalea = $em->getRepository('BackendBundle:Kalea')->findOneBy(array('origenid' => $as->getKalea()->getId()));
+                $_kalea = $em->getRepository('BackendBundle:Kalea')->findOneBy(
+                    array(
+                        'origenid'  => $as->getKalea()->getId(),
+                        'udala'     => $desUdala
+                    )
+                );
                 $azpisaila->setKalea($_kalea);
             }
             $azpisaila->setOrigenid($as->getId());
@@ -688,7 +713,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Dokumentumota $_dokmota */
                 $_dokmota= $em->getRepository('BackendBundle:Dokumentumota')->findOneBy(
                     array(
-                        'origenid' => $d->getDokumentumota()->getId(),
+                        'origenid'  => $d->getDokumentumota()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $do->setDokumentumota($_dokmota);
@@ -886,7 +912,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Azpiatala $_azpi_atala */
                 $_azpi_atala= $em->getRepository('BackendBundle:Azpiatala')->findOneBy(
                     array(
-                        'origenid' => $a->getAzpiatala()->getId(),
+                        'origenid'  => $a->getAzpiatala()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $az->setAzpiatala($_azpi_atala);
@@ -1050,7 +1077,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Azpiatala $_azpi_atala */
                 $_azpi_atala= $em->getRepository('BackendBundle:Azpiatala')->findOneBy(
                     array(
-                        'origenid' => $k->getAzpiatala()->getId(),
+                        'origenid'  => $k->getAzpiatala()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $ko->setAzpiatala($_azpi_atala);
@@ -1060,7 +1088,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Baldintza $_baldintza */
                 $_baldintza = $em->getRepository('BackendBundle:Baldintza')->findOneBy(
                     array(
-                        'origenid' => $k->getBaldintza()->getId(),
+                        'origenid'  => $k->getBaldintza()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $ko->setBaldintza($_baldintza);
@@ -1071,7 +1100,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Kontzeptumota $_kontzeptu_mota */
                 $_kontzeptu_mota = $em->getRepository('BackendBundle:Kontzeptumota')->findOneBy(
                     array(
-                        'origenid' => $k->getKontzeptumota()->getId(),
+                        'origenid'  => $k->getKontzeptumota()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $ko->setKontzeptumota($_kontzeptu_mota);
@@ -1144,7 +1174,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Barrutia $_barrutia */
                 $_barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(
                     array(
-                        'origenid' => $k->getBarrutia()->getId(),
+                        'origenid'  => $k->getBarrutia()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $ka->setBarrutia($_barrutia);
@@ -1153,7 +1184,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Eraikina $_eraikina */
                 $_eraikina = $em->getRepository('BackendBundle:Eraikina')->findOneBy(
                     array(
-                        'origenid' => $k->getEraikina()->getId(),
+                        'origenid'  => $k->getEraikina()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $ka->setEraikina($_eraikina);
@@ -1164,7 +1196,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Kalea $_kalea */
                 $_kalea = $em->getRepository('BackendBundle:Kalea')->findOneBy(
                     array(
-                        'origenid' => $k->getKalea()->getId(),
+                        'origenid'  => $k->getKalea()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $ka->setKalea($_kalea);
@@ -1178,7 +1211,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Kanalmota $_kanal_mota */
                 $_kanal_mota = $em->getRepository('BackendBundle:Kanalmota')->findOneBy(
                     array(
-                        'origenid' => $k->getKanalmota()->getId(),
+                        'origenid'  => $k->getKanalmota()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $ka->setKanalmota($_kanal_mota);
@@ -1500,14 +1534,16 @@ class CopyCommand extends ContainerAwareCommand
             /** @var Araudia $_araudia */
             $_araudia = $em->getRepository('BackendBundle:Araudia')->findOneBy(
                 array(
-                    'origenid' => $fa->getAraudia()->getId(),
+                    'origenid'  => $fa->getAraudia()->getId(),
+                    'udala'     => $desUdala
                 )
             );
             $fiar->setAraudia($_araudia);
             /** @var Fitxa $_fitxa */
             $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
                 array(
-                    'origenid' => $fa->getFitxa()->getId(),
+                    'origenid'  => $fa->getFitxa()->getId(),
+                    'udala'     => $desUdala
                 )
             );
             $fiar->setFitxa($_fitxa);
@@ -1538,7 +1574,8 @@ class CopyCommand extends ContainerAwareCommand
             /** @var Fitxa $_fitxa */
             $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
                 array(
-                    'origenid' => $fp->getFitxa()->getId(),
+                    'origenid'  => $fp->getFitxa()->getId(),
+                    'udala'     => $desUdala
                 )
             );
             $fipo->setFitxa($_fitxa);
@@ -1549,7 +1586,8 @@ class CopyCommand extends ContainerAwareCommand
                 /** @var Prozedura $_prozedura */
                 $_prozedura = $em->getRepository('BackendBundle:Prozedura')->findOneBy(
                     array(
-                        'origenid' => $fp->getProzedura()->getId(),
+                        'origenid'  => $fp->getProzedura()->getId(),
+                        'udala'     => $desUdala
                     )
                 );
                 $fipo->setProzedura($_prozedura);
@@ -1584,7 +1622,8 @@ class CopyCommand extends ContainerAwareCommand
             /** @var Fitxa $_fitxa */
             $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
                 array(
-                    'origenid' => $fk->getFitxa()->getId(),
+                    'origenid'  => $fk->getFitxa()->getId(),
+                    'udala'     => $desUdala
                 )
             );
             $fiko->setFitxa($_fitxa);
@@ -1654,14 +1693,16 @@ class CopyCommand extends ContainerAwareCommand
             /** @var Fitxa $_fitxa */
             $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
                 array(
-                    'origenid' => $ff->getFitxa()->getId(),
+                    'origenid'  => $ff->getFitxa()->getId(),
+                    'udala'     => $desUdala
                 )
             );
             $fifa->setFitxa($_fitxa);
             /** @var Familia $_familia */
             $_familia = $em->getRepository('BackendBundle:Familia')->findOneBy(
                 array(
-                    'origenid' => $ff->getFamilia()->getId(),
+                    'origenid'  => $ff->getFamilia()->getId(),
+                    'udala'     => $desUdala
                 )
             );
             $fifa->setFamilia($_familia);
