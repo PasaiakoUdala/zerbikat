@@ -308,6 +308,18 @@ class CopyCommand extends ContainerAwareCommand
             $eraikina->setLatitudea($a->getLatitudea());
             $eraikina->setLongitudea($a->getLongitudea());
             $eraikina->setOrigenid($a->getId());
+            if ($a->getBarrutia()) {
+                /** @var Barrutia $_barrutia */
+                $_barrutia = $em->getRepository('BackendBundle:Barrutia')->findOneBy(
+                    array(
+                        'origenid'  => $a->getBarrutia()->getId(),
+                        'udala'     => $desUdala
+                    )
+                );
+                if ($_barrutia !== null) {
+                    $eraikina->setBarrutia($_barrutia);
+                }
+            }
             $em->persist($eraikina);
 
         }
