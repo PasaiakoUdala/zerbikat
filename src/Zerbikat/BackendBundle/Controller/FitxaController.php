@@ -18,6 +18,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Zerbikat\BackendBundle\Entity\Fitxa;
 use Zerbikat\BackendBundle\Entity\Fitxafamilia;
+use Zerbikat\BackendBundle\Form\FitxaType;
+use Zerbikat\BackendBundle\Form\FitxafamiliaType;
 
 
 /**
@@ -302,7 +304,7 @@ class FitxaController extends Controller
             $api_url = $this->getParameter( 'zzoo_aplikazioaren_API_url' );
 
             $editForm = $this->createForm(
-                'Zerbikat\BackendBundle\Form\FitxaType',
+                FitxaType::class,
                 $fitxa,
                 array( 'user' => $this->getUser(), 'api_url' => $api_url )
             );
@@ -384,7 +386,7 @@ class FitxaController extends Controller
             $fitxafamilium->setFitxa( $fitxa );
             $fitxafamilium->setUdala( $this->getUser()->getUdala() );
             $form = $this->createForm(
-                'Zerbikat\BackendBundle\Form\FitxafamiliaType',
+                FitxafamiliaType::class,
                 $fitxafamilium,
                 [
                     'action' => $this->generateUrl( 'fitxafamilia_newfromfitxa' ),

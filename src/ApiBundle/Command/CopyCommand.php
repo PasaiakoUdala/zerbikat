@@ -1648,41 +1648,38 @@ class CopyCommand extends ContainerAwareCommand
             );
             $fiko->setFitxa($_fitxa);
 
-//            /***
-//             * Fitxa eskuratu zzoo api-aren bidez
-//             ***/
-//            /** @var GuzzleHttp\Client $client */
-//            $client = new GuzzleHttp\Client();
-//            $api_url = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
-//            $url = $api_url.'/kostua/'.$fk->getKostua().'.json';
-//
-//            try
-//            {
-//                $resp = $client->request('GET', $url, array(
-//                    'headers' => array(
-//                        'Accept' => 'application/json',
-//                        'Content-type' => 'application/json',
-//                    )));
-////                $output->writeln($resp->getStatusCode()); # 200
-////                $output->writeln($resp->getHeaderLine('content-type')); # 'application/json; charset=utf8'
-////                $output->writeln($resp->getBody()); # '{"id": 1420053, "name": "guzzle", ...}'
-////                dump($resp->getBody());
-////                $valftp = (string)$resp->getBody();
-////                $array = json_decode($valftp, true);
-//
-//            } catch (GuzzleHttp\Exception\GuzzleException $ex)
-//            {
-//                $output->writeln($ex->getMessage());
-//                break;
-//            }
+            /***
+             * Fitxa eskuratu zzoo api-aren bidez
+             ***/
+            /** @var GuzzleHttp\Client $client */
+            $client = new GuzzleHttp\Client();
+            $api_url = $this->getContainer()->getParameter( 'zzoo_aplikazioaren_API_url' );
+            $url = $api_url.'/kostua/'.$fk->getKostua().'/'.$desUdala->getId();
+            //debug
+//            $url = 'http://zzoo.test/app_dev.php/api/kostua/'.$fk->getKostua().'/'.$desUdala->getId();
+            try
+            {
+                $resp = $client->request('GET', $url, array(
+                    'headers' => array(
+                        'Accept' => 'application/json',
+                        'Content-type' => 'application/json',
+                    )));
+                $valftp = (string)$resp->getBody();
+                $array = json_decode($valftp, true);
+                if ($array) {
+                    $newKostuaID = $array[ 0 ][ 'id' ];
+                    if ($newKostuaID !== null) {
+                        $fiko->setKostua($newKostuaID);
+                        $fiko->setUdala($desUdala);
+                        $em->persist($fiko);
+                    }
+                }
+            } catch (GuzzleHttp\Exception\GuzzleException $ex)
+            {
+                $output->writeln($ex->getMessage());
+                break;
+            }
 
-
-
-
-
-
-            $fiko->setKostua($fk->getKostua());
-            $em->persist($fiko);
 
         }
         $output->write('OK.');
@@ -1696,43 +1693,43 @@ class CopyCommand extends ContainerAwareCommand
         /*** FITXA - FAMILIA ***********************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
         /*******************************************************************************************************************************************************/
-//        $output->write('-- Helmugako Fitxa-Familia ezabatzen...');
-//        /** @var QueryBuilder $qb */
-//        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Fitxafamilia','f')->where('f.udala = :udalaID');
-//        $qb->setParameter('udalaID', $desUdala);
-//        $qb->getQuery()->execute();
-//        $output->writeln('Ok');
-//        $output->write('++ Fitxa-Familia kopiatzen...');
-//        $oriFitxafamilia = $em->getRepository('BackendBundle:Fitxafamilia')->findBy(array('udala' => $oriUdala->getId()));
-//        /** @var Fitxafamilia $ff */
-//        foreach ($oriFitxafamilia as $ff) {
-//            $fifa = new Fitxafamilia();
-//            $fifa->setUdala($desUdala);
-//            $fifa->setOrigenid($ff->getId());
-//            $fifa->setOrdena($ff->getOrdena());
-//            /** @var Fitxa $_fitxa */
-//            $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
-//                array(
-//                    'origenid'  => $ff->getFitxa()->getId(),
-//                    'udala'     => $desUdala
-//                )
-//            );
-//            $fifa->setFitxa($_fitxa);
-//            /** @var Familia $_familia */
-//            $_familia = $em->getRepository('BackendBundle:Familia')->findOneBy(
-//                array(
-//                    'origenid'  => $ff->getFamilia()->getId(),
-//                    'udala'     => $desUdala
-//                )
-//            );
-//            $fifa->setFamilia($_familia);
-//            $em->persist($fifa);
-//
-//        }
-//        $output->write('OK.');
-//        $output->writeln('');
-//        $output->writeln('');
-//        $em->flush();
+        $output->write('-- Helmugako Fitxa-Familia ezabatzen...');
+        /** @var QueryBuilder $qb */
+        $qb = $em->createQueryBuilder()->delete()->from('BackendBundle:Fitxafamilia','f')->where('f.udala = :udalaID');
+        $qb->setParameter('udalaID', $desUdala);
+        $qb->getQuery()->execute();
+        $output->writeln('Ok');
+        $output->write('++ Fitxa-Familia kopiatzen...');
+        $oriFitxafamilia = $em->getRepository('BackendBundle:Fitxafamilia')->findBy(array('udala' => $oriUdala->getId()));
+        /** @var Fitxafamilia $ff */
+        foreach ($oriFitxafamilia as $ff) {
+            $fifa = new Fitxafamilia();
+            $fifa->setUdala($desUdala);
+            $fifa->setOrigenid($ff->getId());
+            $fifa->setOrdena($ff->getOrdena());
+            /** @var Fitxa $_fitxa */
+            $_fitxa = $em->getRepository('BackendBundle:Fitxa')->findOneBy(
+                array(
+                    'origenid'  => $ff->getFitxa()->getId(),
+                    'udala'     => $desUdala
+                )
+            );
+            $fifa->setFitxa($_fitxa);
+            /** @var Familia $_familia */
+            $_familia = $em->getRepository('BackendBundle:Familia')->findOneBy(
+                array(
+                    'origenid'  => $ff->getFamilia()->getId(),
+                    'udala'     => $desUdala
+                )
+            );
+            $fifa->setFamilia($_familia);
+            $em->persist($fifa);
+
+        }
+        $output->write('OK.');
+        $output->writeln('');
+        $output->writeln('');
+        $em->flush();
 
         $output->writeln('');
         $output->writeln('Prozesua ongi amaitu da.');
