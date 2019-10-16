@@ -301,6 +301,46 @@ class ApiController extends FOSRestController
         return $view;
     }
 
+    /**
+     * Udal baten Fitxa eskuratu ID-aren bidez
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Udal baten Fitxa eskuratu ID-aren bidez",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @param $id
+     *
+     * @return array|View
+     * @Annotations\View()
+     *
+     * @Get("/fitxabyid/{id}")
+     */
+    public function getFitxaByIdAction ($id) {
+
+
+        $em = $this->getDoctrine()->getManager();
+        /** @var QueryBuilder $query */
+        $query = $em->createQueryBuilder('f');
+        $query->from( 'BackendBundle:Fitxa', 'f' );
+        $query->select( 'f.id, f.espedientekodea, f.deskribapenaeu, f.deskribapenaes' );
+        $query->andWhere( 'f.id = :id' );
+        $query->setParameter( 'id', $id );
+
+
+        $fitxa = $query->getQuery()->getResult();
+        $view = View::create();
+        $view->setData( $fitxa );
+
+        header('content-type: application/json; charset=utf-8');
+        header('access-control-allow-origin: *');
+        return $view;
+    }
+
     /****************************************************************************************************************
      ****************************************************************************************************************
      **** FIN API SAC ***********************************************************************************************
