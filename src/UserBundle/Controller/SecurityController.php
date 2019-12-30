@@ -118,15 +118,20 @@ class SecurityController extends Controller
         /* fitxategiko kodea */
         if (file_exists ($this->container->getParameter('izfe_login_path').'/'.$fitxategia))
         {
-            $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia,"r");
+            $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia, 'rb');
             $lerro = fgets($fitx);
+            $lerro = str_replace(array("\r", "\n"), '', $lerro);
             fclose( $fitx );
 
             /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
             if ($lerro == $urlOsoa)
             {
                 $userManager = $this->container->get('fos_user.user_manager');
-                $user = $userManager->findUserByUsername($NA);
+//                $user = $userManager->findUserByUsername($NA);
+                $user = $userManager->findUserBy([
+                                                     'username' => $NA,
+                                                     'udala'    => $udala
+                                                 ]);
 
                 $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
                 $this->get('security.token_storage')->setToken($token);
@@ -166,6 +171,9 @@ class SecurityController extends Controller
      *
      * @Route("/user/new", name="user_new")
      * @Method({"GET", "POST"})
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -332,7 +340,7 @@ class SecurityController extends Controller
             ->getForm()
             ;
     }
-    
+
 
 
 }

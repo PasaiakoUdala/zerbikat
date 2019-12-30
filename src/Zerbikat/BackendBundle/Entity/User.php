@@ -5,12 +5,21 @@ namespace Zerbikat\BackendBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Zerbikat\BackendBundle\Annotation\UdalaEgiaztatu;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(
+ *     name="fos_user",
+ *     uniqueConstraints={@ORM\UniqueConstraint(columns={"username_canonical", "udala_id"})}
+ * )
  * @UdalaEgiaztatu(userFieldName="udala_id")
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="email", column=@ORM\Column(type="string", name="email", length=255, unique=false, nullable=true)),
+ *      @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(type="string", name="email_canonical", length=255, unique=false, nullable=true)),
+ *      @ORM\AttributeOverride(name="usernameCanonical", column=@ORM\Column(type="string", name="username_canonical", length=255, unique=false, nullable=true))
+ * })
  */
 class User extends BaseUser
 {
