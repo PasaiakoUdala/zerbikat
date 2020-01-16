@@ -43,7 +43,7 @@ class User extends BaseUser
     private $udala;
 
     /**
-     * @var \Zerbikat\BackendBundle\Entity\Azpisaila
+     * @var Azpisaila
      *
      * @ORM\ManyToOne(targetEntity="Zerbikat\BackendBundle\Entity\Azpisaila")
      * @ORM\JoinColumn(name="azpisaila_id", referencedColumnName="id",onDelete="SET NULL")
@@ -82,11 +82,11 @@ class User extends BaseUser
     /**
      * Set udala
      *
-     * @param \Zerbikat\BackendBundle\Entity\Udala $udala
+     * @param Udala $udala
      *
      * @return User
      */
-    public function setUdala(\Zerbikat\BackendBundle\Entity\Udala $udala = null)
+    public function setUdala( Udala $udala = null)
     {
         $this->udala = $udala;
 
@@ -96,7 +96,7 @@ class User extends BaseUser
     /**
      * Get udala
      *
-     * @return \Zerbikat\BackendBundle\Entity\Udala
+     * @return Udala
      */
     public function getUdala()
     {
@@ -106,11 +106,11 @@ class User extends BaseUser
     /**
      * Set azpisaila
      *
-     * @param \Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila
+     * @param Azpisaila $azpisaila
      *
      * @return User
      */
-    public function setAzpisaila(\Zerbikat\BackendBundle\Entity\Azpisaila $azpisaila = null)
+    public function setAzpisaila( Azpisaila $azpisaila = null)
     {
         $this->azpisaila = $azpisaila;
 
@@ -120,7 +120,7 @@ class User extends BaseUser
     /**
      * Get azpisaila
      *
-     * @return \Zerbikat\BackendBundle\Entity\Azpisaila
+     * @return Azpisaila
      */
     public function getAzpisaila()
     {

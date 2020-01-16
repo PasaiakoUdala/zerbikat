@@ -24,6 +24,7 @@ use Zerbikat\BackendBundle\Form\UserType;
 class SecurityController extends Controller
 {
 
+
     public function loginAction ( Request $request )
     {
         /***
@@ -32,7 +33,8 @@ class SecurityController extends Controller
          ***/
         $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
 
-        $urlOsoa=$request->getUri();
+//        $urlOsoa=$request->getUri();
+        $urlOsoa=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
 
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
             parse_str( $query_str, $query_params );
