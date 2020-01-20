@@ -935,6 +935,10 @@
                 <source>messages.expedientes</source>
                 <target>Expediente Kodea</target>
             </trans-unit>
+            <trans-unit id="Deskonektatu">
+                <source>Deskonektatu</source>
+                <target>Deskonektatu</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

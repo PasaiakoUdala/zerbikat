@@ -2,6 +2,9 @@
 namespace UserBundle\Controller;
 //use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
 use Pagerfanta\Exception\NotValidCurrentPageException;
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Zerbikat\BackendBundle\Entity\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,8 +36,8 @@ class SecurityController extends Controller
          ***/
         $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
 
-//        $urlOsoa=$request->getUri();
-        $urlOsoa=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
+        $urlOsoa=$request->getUri();
+        $urlOsoa2=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
 
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
             parse_str( $query_str, $query_params );
@@ -46,7 +49,7 @@ class SecurityController extends Controller
                 $hizkuntza=strtolower($query_params["IDIOMA"]);
                 $fitxategia=$query_params["ficheroAuten"];
 
-                if ($this->izfelogin ($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)==1)
+                if ($this->izfelogin ($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa, $urlOsoa2)==1)
                 {
                     return $this->redirectToRoute( 'fitxa_index', array('_locale'=> $hizkuntza ));
                 }
@@ -68,7 +71,7 @@ class SecurityController extends Controller
         else
         {
             /** FOSUSERBUNDLE LoginAction */
-            /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
+            /** @var $session Session */
             $session = $request->getSession();
             if ( class_exists( '\Symfony\Component\Security\Core\Security' ) ) {
                 $authErrorKey = Security::AUTHENTICATION_ERROR;
@@ -115,7 +118,7 @@ class SecurityController extends Controller
         return $this->render( 'FOSUserBundle:Security:login.html.twig', $data );
     }
 
-    private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa)
+    private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa, $urlOsoa2)
     {
         /* fitxategiko kodea */
         if (file_exists ($this->container->getParameter('izfe_login_path').'/'.$fitxategia))
@@ -126,7 +129,7 @@ class SecurityController extends Controller
             fclose( $fitx );
 
             /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
-            if ($lerro == $urlOsoa)
+            if (($lerro == $urlOsoa)||($lerro==$urlOsoa2))
             {
                 $userManager = $this->container->get('fos_user.user_manager');
 //                $user = $userManager->findUserByUsername($NA);
@@ -173,9 +176,9 @@ class SecurityController extends Controller
      *
      * @Route("/user/new", name="user_new")
      * @Method({"GET", "POST"})
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function newAction(Request $request)
     {
@@ -332,7 +335,7 @@ class SecurityController extends Controller
      *
      * @param User $user The User entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm(User $user)
     {

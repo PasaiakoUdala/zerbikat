@@ -943,6 +943,10 @@
                 <source>messages.expedientes</source>
                 <target>Código Expedientes</target>
             </trans-unit>
+            <trans-unit id="Deskonektatu">
+                <source>Deskonektatu</source>
+                <target>Desconectar</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

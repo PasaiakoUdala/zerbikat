@@ -172,6 +172,7 @@
                     {% block ekintzak %}
                         <li class="list-inline"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">ES</a></li>
                         <li class="list-inline"><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'eu'})) }}">EU</a></li>
+                        <li class="list-inline"><a href="{{ path('fos_user_security_logout') }}">{{ 'Deskonektatu' | trans }}</a></li>
                     {% endblock %}
                     {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
                         <li class="list-inline"><a href="{{ path('users_index', {'_switch_user': '_exit'}) }}">Modu arruntera itzuli</a></li>
