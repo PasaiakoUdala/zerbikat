@@ -126,6 +126,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Zerbikat\BackendBundle\Entity\User
+    from_email:
+        address: "iibarguren@pasaia.net"
+        sender_name: "Iker Ibarguren"
     profile:
         form:
             validation_groups:  [Default] # Here you can also add your own groups if you have extra validation

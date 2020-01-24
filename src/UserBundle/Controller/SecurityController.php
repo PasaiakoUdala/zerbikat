@@ -5,6 +5,7 @@ use Pagerfanta\Exception\NotValidCurrentPageException;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Zerbikat\BackendBundle\Entity\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -137,7 +138,15 @@ class SecurityController extends Controller
                                                      'username' => $NA,
                                                      'udala'    => $udala
                                                  ]);
-
+                if (!$user) { // BEGIRATU IFZE-ko erabiltzailea den
+                    $user = $userManager->findUserBy([
+                                             'username' => $NA,
+                                             'udala'    => 138
+                                             ]);
+                }
+                if (!$user) {
+                    throw new UsernameNotFoundException(sprintf('Erabiltzailea ez da topatu'));
+                }
                 $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
                 $this->get('security.token_storage')->setToken($token);
                 $this->get('session')->set('_security_main', serialize($token));

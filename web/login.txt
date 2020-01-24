@@ -1,1 +1,1 @@
-http://zerbikat.test/app_dev.php/login?DNI=44331071&AYUN=053&IDIOMA=eu&ficheroAuten=login.txt
+http://zerbikat.test/app_dev.php/login?DNI=443131071&AYUN=0188&IDIOMA=eu&ficheroAuten=login.txt
