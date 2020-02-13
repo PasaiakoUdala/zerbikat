@@ -947,6 +947,11 @@
                 <source>Deskonektatu</source>
                 <target>Desconectar</target>
             </trans-unit>
+            <trans-unit id="messages.hizkuntza">
+                <source>messages.hizkuntza</source>
+                <target>Idioma</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>
