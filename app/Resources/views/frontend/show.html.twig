@@ -389,8 +389,14 @@
                                                     <td>
                                                         {% if app.request.locale == 'eu' %}
                                                             {{ kontzeptu['kontzeptuaeu_prod'] }}
+                                                            {% if kontzeptu['baldintza'] is defined %}
+                                                                (  {{ kontzeptu['baldintza']['baldintzaeu'] }} )
+                                                            {% endif %}
                                                         {% else %}
                                                             {{ kontzeptu['kontzeptuaes_prod'] }}
+                                                            {% if kontzeptu['baldintza'] is defined %}
+                                                                (  {{ kontzeptu['baldintza']['baldintzaes'] }} )
+                                                            {% endif %}
                                                         {% endif %}
                                                     </td>
                                                     <td NOWRAP>
