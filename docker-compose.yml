@@ -3,9 +3,8 @@ services:
     mariadb:
         image: mariadb:10.5.3
         container_name: zerbikat-mariadb
-        working_dir: /application
         volumes:
-            - .:/usr/src/app
+            - mariadb_zerbikat:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=pasaia
             - MYSQL_DATABASE=zerbikat
@@ -13,8 +12,10 @@ services:
             - MYSQL_PASSWORD=pasaia
         ports:
             - "3306:3306"
-
+        networks:
+            - zzoo
     php:
+        container_name: zerbikat-php
         env_file: ./.env
         build:
             context: .
@@ -33,8 +34,10 @@ services:
             - APP_ENV=dev
             - PHP_IDE_CONFIG=serverName=zerbikat.test
             - XDEBUG_CONFIG=remote_host=192.168.2.8
-
+        networks:
+            - zzoo
     nginx:
+        container_name: zerbikat-nginx
         image: nginx:1.15.3-alpine
         restart: always
         volumes:
@@ -44,3 +47,12 @@ services:
             - php
         ports:
             - 80:80
+        networks:
+            - zzoo
+
+volumes:
+    mariadb_zerbikat:
+
+networks:
+    zzoo:
+        driver: bridge

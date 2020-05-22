@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev libonig-dev libpng-dev \
     libxml2-dev \
     grc \
+    iputils-ping \
     && locale-gen es_ES.UTF-8 \
     && echo "LC_ALL=es_ES.UTF-8" >> /etc/environment \
     && echo "LANG=es_ES.UTF-8" >> /etc/environment \
