@@ -10,6 +10,7 @@
     use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 //use Zerbikat\BackendBundle\Entity\FitxaProzedura;
     use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+    use Zerbikat\BackendBundle\Entity\Fitxa;
 
     class FitxaType extends AbstractType
     {
@@ -22,6 +23,7 @@
         {
             $user = $options['user'];
             $api_url = $options[ 'api_url' ];
+            $zergaor = $options[ 'zergaor' ];
 
             $builder
                 ->add( 'espedientekodea', null, array(
@@ -370,22 +372,34 @@
                         'by_reference' => false,
                     )
                 )
-                ->add(
+            ;
+
+            if ($zergaor === true) {
+                $builder->add(
                     'kostuak',
                     CollectionType::class,
-                    array (
-                        'entry_type'   => FitxaKostuaType::class,
-                        'entry_options'  => array(
-                            'udala' => $user->getUdala()->getId(),
-                            'api_url' => $api_url
+                    array(
+                        'entry_type'    => FitxaKostuaType::class,
+                        'entry_options' => array(
+                            'udala'   => $user->getUdala()->getId(),
+                            'api_url' => $api_url,
+                            'zergaor' => $zergaor
                         ),
-                        'allow_add'    => true,
-                        'allow_delete' => true,
-                        'by_reference' => false
+                        'allow_add'     => true,
+                        'allow_delete'  => true,
+                        'by_reference'  => false
                     )
-                )
+                );
+            } else {
 
-            ;
+                $builder            ->add('kostuak', CollectionType::class, array(
+                    'entry_type' => FitxaKostuaType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                ));
+
+            }
         }
 
         /**
@@ -395,9 +409,10 @@
         {
             $resolver->setDefaults(
                 array (
-                    'data_class' => 'Zerbikat\BackendBundle\Entity\Fitxa',
+                    'data_class' => Fitxa::class,
                     'user' => null,
-                    'api_url' => null
+                    'api_url' => null,
+                    'zergaor' => null
                 )
             );
         }

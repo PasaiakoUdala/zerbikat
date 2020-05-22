@@ -296,8 +296,10 @@ class FitxaController extends Controller
     public function editAction( Request $request, Fitxa $fitxa )
     {
         $auth_checker = $this->get( 'security.authorization_checker' );
-        if ( ( ( $auth_checker->isGranted( 'ROLE_USER' ) ) && ( $fitxa->getUdala() == $this->getUser()->getUdala() ) )
-            || ( $auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ) )
+        if ( ( ( $auth_checker->isGranted( 'ROLE_USER' ) )
+                && ( $fitxa->getUdala() === $this->getUser()->getUdala() )
+            )
+                || ( $auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ) )
         ) {
             $deleteForm = $this->createDeleteForm( $fitxa );
 
@@ -306,7 +308,7 @@ class FitxaController extends Controller
             $editForm = $this->createForm(
                 FitxaType::class,
                 $fitxa,
-                array( 'user' => $this->getUser(), 'api_url' => $api_url )
+                array( 'user' => $this->getUser(), 'api_url' => $api_url, 'zergaor' => $fitxa->getUdala()->getZergaor() )
             );
 
             // Create an ArrayCollection of the current Kostuak objects in the database
