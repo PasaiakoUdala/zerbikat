@@ -5,7 +5,8 @@
     <tr>
         <td colspan="1" class="col-sm-1 hidden">
             {#{{ form_label(form.udala, 'Udala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
-            {{ form_widget(form.udala,{'value' : azpiatala.udala.id }) }}
+            {{ form_widget(form.udala,{ 'attr': {'class':'udalakonbo'} }) }}
+
             {#{{ form_label(form.azpiatala, 'Azpiatala: ', { 'label_attr': {'class': 'control-label'} }) }}#}
             {{ form_widget(form.azpiatala,{'value' : azpiatala.id }) }}
         </td>
@@ -30,4 +31,8 @@
         </td>
     </tr>
     {{ form_end(form) }}
+
+
+
+
 {% endblock %}

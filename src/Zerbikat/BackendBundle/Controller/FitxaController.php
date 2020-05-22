@@ -42,7 +42,7 @@ class FitxaController extends Controller
         if ( $auth_checker->isGranted( 'ROLE_USER' ) ) {
             $em = $this->getDoctrine()->getManager();
             /** @var Query $query */
-            $query = $em->createQuery(
+            $query  = $em->createQuery(
                 'SELECT f, a
                       FROM BackendBundle:Fitxa f
                       LEFT JOIN f.azpisaila a
@@ -131,16 +131,16 @@ class FitxaController extends Controller
     {
         $deleteForm = $this->createDeleteForm( $fitxa );
 
-        $em = $this->getDoctrine()->getManager();
+        $em         = $this->getDoctrine()->getManager();
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
         $kostuZerrenda = array();
         foreach ( $fitxa->getKostuak() as $kostu ) {
-            $client = new GuzzleHttp\Client();
-            $api = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
-            $proba = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
-            $fitxaKostua = (string)$proba->getBody();
-            $array = json_decode( $fitxaKostua, true );
+            $client          = new GuzzleHttp\Client();
+            $api             = $this->container->getParameter( 'zzoo_aplikazioaren_API_url' );
+            $proba           = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
+            $fitxaKostua     = (string)$proba->getBody();
+            $array           = json_decode( $fitxaKostua, true );
             $kostuZerrenda[] = $array;
         }
 
@@ -195,12 +195,12 @@ class FitxaController extends Controller
     {
         $deleteForm = $this->createDeleteForm( $fitxa );
 
-        $em = $this->getDoctrine()->getManager();
+        $em         = $this->getDoctrine()->getManager();
         $kanalmotak = $em->getRepository( 'BackendBundle:Kanalmota' )->findAll();
 
         /** @var Query $query */
         $query = $em->createQuery(
-            /** @lang text */
+        /** @lang text */
             '
           SELECT f.oharraktext,f.helburuatext,f.ebazpensinpli,f.arduraaitorpena,f.aurreikusi,f.arrunta,f.isiltasunadmin,f.norkeskatutext,f.norkeskatutable,f.dokumentazioatext,f.dokumentazioatable,f.kostuatext,f.kostuatable,f.araudiatext,f.araudiatable,f.prozeduratext,f.prozeduratable,f.doklaguntext,f.doklaguntable,f.datuenbabesatext,f.datuenbabesatable,f.norkebatzitext,f.norkebatzitable,f.besteak1text,f.besteak1table,f.besteak2text,f.besteak2table,f.besteak3text,f.besteak3table,f.kanalatext,f.kanalatable,f.azpisailatable
             FROM BackendBundle:Eremuak f
@@ -211,7 +211,7 @@ class FitxaController extends Controller
         $eremuak = $query->getSingleResult();
 
         $query = $em->createQuery(
-            /** @lang text */
+        /** @lang text */
             '
           SELECT f.oharraklabeleu,f.oharraklabeles,f.helburualabeleu,f.helburualabeles,f.ebazpensinplilabeleu,f.ebazpensinplilabeles,f.arduraaitorpenalabeleu,f.arduraaitorpenalabeles,f.aurreikusilabeleu,f.aurreikusilabeles,f.arruntalabeleu,f.arruntalabeles,f.isiltasunadminlabeleu,f.isiltasunadminlabeles,f.norkeskatulabeleu,f.norkeskatulabeles,f.dokumentazioalabeleu,f.dokumentazioalabeles,f.kostualabeleu,f.kostualabeles,f.araudialabeleu,f.araudialabeles,f.prozeduralabeleu,f.prozeduralabeles,f.doklagunlabeleu,f.doklagunlabeles,f.datuenbabesalabeleu,f.datuenbabesalabeles,f.norkebatzilabeleu,f.norkebatzilabeles,f.besteak1labeleu,f.besteak1labeles,f.besteak2labeleu,f.besteak2labeles,f.besteak3labeleu,f.besteak3labeles,f.kanalalabeleu,f.kanalalabeles,f.epealabeleu,f.epealabeles,f.doanlabeleu,f.doanlabeles,f.azpisailalabeleu,f.azpisailalabeles
             FROM BackendBundle:Eremuak f
@@ -229,8 +229,8 @@ class FitxaController extends Controller
 //            $proba = $client->request( 'GET', 'http://zergaordenantzak.dev/app_dev.php/api/azpiatalas/'.$kostu->getKostua().'.json' );
             $proba = $client->request( 'GET', $api . '/zerga/' . $kostu->getKostua() . '.json' );
 
-            $fitxaKostua = (string)$proba->getBody();
-            $array = json_decode( $fitxaKostua, true );
+            $fitxaKostua     = (string)$proba->getBody();
+            $array           = json_decode( $fitxaKostua, true );
             $kostuZerrenda[] = $array;
         }
 
@@ -248,7 +248,7 @@ class FitxaController extends Controller
             )
         );
 
-        $pdf = $this->get('white_october.tcpdf')->create(
+        $pdf = $this->get( 'white_october.tcpdf' )->create(
             'vertical',
             PDF_UNIT,
             PDF_PAGE_FORMAT,
@@ -257,13 +257,13 @@ class FitxaController extends Controller
             false
         );
         $pdf->SetAuthor( $this->getUser()->getUdala() );
-        $pdf->SetTitle($fitxa->getDeskribapenaeu());
+        $pdf->SetTitle( $fitxa->getDeskribapenaeu() );
         $pdf->SetSubject( $fitxa->getDeskribapenaes() );
         $pdf->setFontSubsetting( true );
         $pdf->SetFont( 'helvetica', '', 11, '', true );
         $pdf->AddPage();
 
-        $filename = $fitxa->getEspedientekodea() .'.'. $fitxa->getDeskribapenaeu();
+        $filename = $fitxa->getEspedientekodea() . '.' . $fitxa->getDeskribapenaeu();
 
         $pdf->writeHTMLCell(
             $w = 0,
@@ -278,7 +278,7 @@ class FitxaController extends Controller
             $align = '',
             $autopadding = true
         );
-        $pdf->Output( $filename .'.pdf', 'I' ); // This will output the PDF as a response directly
+        $pdf->Output( $filename . '.pdf', 'I' ); // This will output the PDF as a response directly
     }
 
     /**
@@ -299,7 +299,7 @@ class FitxaController extends Controller
         if ( ( ( $auth_checker->isGranted( 'ROLE_USER' ) )
                 && ( $fitxa->getUdala() === $this->getUser()->getUdala() )
             )
-                || ( $auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ) )
+            || ( $auth_checker->isGranted( 'ROLE_SUPER_ADMIN' ) )
         ) {
             $deleteForm = $this->createDeleteForm( $fitxa );
 
@@ -330,7 +330,7 @@ class FitxaController extends Controller
             $editForm->handleRequest( $request );
             $em = $this->getDoctrine()->getManager();
 
-            if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if ( $editForm->isSubmitted() && $editForm->isValid() ) {
 
                 foreach ( $originalKostuak as $kostu ) {
                     if ( false === $fitxa->getKostuak()->contains( $kostu ) ) {

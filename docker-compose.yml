@@ -21,6 +21,7 @@ services:
             context: .
             dockerfile: docker/php/Dockerfile
             args:
+                - WITH_XDEBUG=false
                 - DOCKER_TIMEZONE=${DOCKER_TIMEZONE}
                 - USER_ID=${USER_ID}
                 - GROUP_ID=${GROUP_ID}

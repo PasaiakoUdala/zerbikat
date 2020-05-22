@@ -130,9 +130,8 @@
     </div>
 
 
-
-
     <div class="hidden">
+        <input type="text" name="udalaid" id="udalaid" value="{{ azpiatala.udala.id }}">
     {{ form_end(edit_form) }}
     </div>
 {% endblock %}
@@ -200,6 +199,12 @@
             // create a new list element and add it to the list
             var newLi = jQuery('<tr></tr>').html(newWidget);
             newLi.appendTo(kontzeptuaList);
+
+            $udalaid = $("#udalaid").val();
+            // $( "input[id$='_udala']" ).val($udalaid);
+            $('.udalakonbo').each(function (i, el) {
+                $(el).val($udalaid);
+            });
         });
 
         function addParrafoaFormDeleteLink($tagFormLi) {
