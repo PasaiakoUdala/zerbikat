@@ -154,6 +154,7 @@ class IzfeztCommand extends ContainerAwareCommand
                     'URA',
                     'URB',
                     'UVD',
+                    'UNE'
                 );
 
                 if (in_array($tipo, $servicios)) {
