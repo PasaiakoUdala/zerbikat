@@ -281,6 +281,7 @@ class IzfeztCommand extends ContainerAwareCommand
                         //"URA",
                         'URB',
                         'UVD',
+                        'UNE'
                     );
 
                     if ($tipo == 'URA') {
