@@ -41,7 +41,7 @@ class AzpiatalaType extends AbstractType
             ))
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

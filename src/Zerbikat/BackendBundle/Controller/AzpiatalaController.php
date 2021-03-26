@@ -2,10 +2,13 @@
 
 namespace Zerbikat\BackendBundle\Controller;
 
+use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Zerbikat\BackendBundle\Entity\Azpiatala;
 use Zerbikat\BackendBundle\Form\AzpiatalaType;
 
@@ -61,6 +64,9 @@ class AzpiatalaController extends Controller
      *
      * @Route("/new", name="azpiatala_new")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     *
+     * @return RedirectResponse|Response
      */
     public function newAction(Request $request)
     {
@@ -68,11 +74,9 @@ class AzpiatalaController extends Controller
         if ($auth_checker->isGranted('ROLE_ADMIN'))
         {
             $azpiatala = new Azpiatala();
-            $form = $this->createForm('Zerbikat\BackendBundle\Form\AzpiatalaType', $azpiatala);
+            $form = $this->createForm( AzpiatalaType::class, $azpiatala);
             $form->handleRequest($request);
 
-//            $form->getData()->setUdala($this->getUser()->getUdala());
-//            $form->setData($form->getData());
 
             if ($form->isSubmitted() && $form->isValid()) {
 //                $azpiatala->setCreatedAt(new \DateTime());
@@ -207,7 +211,7 @@ class AzpiatalaController extends Controller
         {
             //baimenik ez
             return $this->redirectToRoute('backend_errorea');
-        }            
+        }
     }
 
     /**
@@ -215,7 +219,7 @@ class AzpiatalaController extends Controller
      *
      * @param Azpiatala $azpiatala The Azpiatala entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return Form The form
      */
     private function createDeleteForm(Azpiatala $azpiatala)
     {

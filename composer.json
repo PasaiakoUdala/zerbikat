@@ -33,7 +33,6 @@
         "bmatzner/fontawesome-bundle": "^4.6",
         "guzzlehttp/guzzle": "^6.2",
         "white-october/pagerfanta-bundle": "^1.0",
-        "easycorp/easy-log-handler": "^1.0",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "phpunit/phpunit": "^4.8",
         "egeloen/ckeditor-bundle": "^4.0"

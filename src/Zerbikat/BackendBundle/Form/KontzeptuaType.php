@@ -29,7 +29,7 @@ class KontzeptuaType extends AbstractType
             ->add('azpiatala')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
