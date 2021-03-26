@@ -93,6 +93,9 @@ class IzfeztCommand extends ContainerAwareCommand
             case '09':
                 return 'URM';
                 break;
+            case '10':
+                return 'UNE';
+                break;
             default:
                 return $param;
                 break;
