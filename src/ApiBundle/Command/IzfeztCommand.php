@@ -36,11 +36,15 @@ class IzfeztCommand extends ContainerAwareCommand
             ->addArgument('debug', InputArgument::OPTIONAL, 'Informazio areagotua bistaratu.');
     }
 
+    /*
+     * OJO ALDATU ERE $servicios array.a!!!!
+     */
     function zerbikatParametroa($param)
     {
         if (!$param) {
             return null;
         }
+        // BEGIRATU OJO!!!! hor goian
         switch ($param) {
             case '01':
                 return 'URG';
