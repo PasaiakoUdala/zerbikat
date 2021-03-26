@@ -2,6 +2,7 @@
 
     namespace Zerbikat\BackendBundle\Form;
 
+    use Doctrine\ORM\EntityRepository;
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -263,6 +264,11 @@
                     EntityType::class,
                     array (
                         'class'       => 'BackendBundle:Dokumentazioa',
+                        'query_builder' => function (EntityRepository $repository) {
+                            return $repository->createQueryBuilder('doc')
+                                ->orderBy('doc.kodea', 'ASC')
+                                ->orderBy('doc.deskribapenaeu', 'ASC');
+                        },
                         'required'    => false,
                         'multiple'    => 'multiple',
                         'placeholder' => 'Aukeratu dokumentuak',
