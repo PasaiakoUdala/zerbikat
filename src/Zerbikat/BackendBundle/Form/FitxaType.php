@@ -264,9 +264,9 @@
                     EntityType::class,
                     array (
                         'class'       => 'BackendBundle:Dokumentazioa',
-                        'query_builder' => function (EntityRepository $er) {
-                            return $er->createQueryBuilder('d')
-                                ->orderBy('d.kodea', 'ASC');
+                        'query_builder' => function (EntityRepository $repository) {
+                            return $repository->createQueryBuilder('doc')
+                                ->orderBy('doc.kodea', 'ASC');
                         },
                         'required'    => false,
                         'multiple'    => 'multiple',
