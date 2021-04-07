@@ -266,7 +266,9 @@
                         'class'       => 'BackendBundle:Dokumentazioa',
                         'query_builder' => function (EntityRepository $repository) {
                             return $repository->createQueryBuilder('doc')
-                                ->orderBy('doc.kodea', 'ASC');
+                                ->orderBy('doc.kodea', 'ASC')
+                                ->orderBy('doc.deskribapenaeu', 'ASC')
+                                ;
                         },
                         'required'    => false,
                         'multiple'    => 'multiple',
