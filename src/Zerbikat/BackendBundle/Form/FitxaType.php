@@ -25,6 +25,8 @@
             $user = $options['user'];
             $api_url = $options[ 'api_url' ];
             $zergaor = $options[ 'zergaor' ];
+            $lang = \Locale::getDefault();
+
 
             $builder
                 ->add( 'espedientekodea', null, array(
@@ -266,8 +268,8 @@
                         'class'       => 'BackendBundle:Dokumentazioa',
                         'query_builder' => function (EntityRepository $repository) {
                             return $repository->createQueryBuilder('doc')
-                                ->orderBy('doc.kodea', 'ASC')
-                                ->orderBy('doc.deskribapenaeu', 'ASC')
+                                ->addOrderBy('doc.kodea', 'ASC')
+                                ->addOrderBy('doc.deskribapenaeu', 'ASC')
                                 ;
                         },
                         'required'    => false,

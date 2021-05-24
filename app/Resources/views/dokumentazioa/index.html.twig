@@ -21,6 +21,7 @@
                 {% if is_granted('ROLE_SUPER_ADMIN') %}<th>{{ 'messages.udala'|trans }}</th>{% endif %}
                 <th>{{ 'messages.kodea'|trans }}</th>
                 <th>{{ 'messages.deskribapena'|trans }}</th>
+                <th>{{ 'messages.mota'|trans }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,6 +33,15 @@
                 <td>
                     {% if app.request.locale == 'es'%}{{ dokumentazioa.deskribapenaes }}
                     {% else %}{{ dokumentazioa.deskribapenaeu }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if dokumentazioa.dokumentumota %}
+                        {% if app.request.locale == "eu" %}
+                            {{ dokumentazioa.dokumentumota.motaeu }}
+                        {% else %}
+                            {{ dokumentazioa.dokumentumota.motaes }}
+                        {% endif %}
                     {% endif %}
                 </td>
                 <td NOWRAP class="text-right">

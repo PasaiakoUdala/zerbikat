@@ -50,8 +50,16 @@ class SecurityController extends Controller
                 $hizkuntza=strtolower($query_params["IDIOMA"]);
                 $fitxategia=$query_params["ficheroAuten"];
 
-                if ($this->izfelogin ($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa, $urlOsoa2)==1)
+                /** @var User $user */
+                $user = $this->izfelogin($NA, $udala, $hizkuntza, $fitxategia, $urlOsoa, $urlOsoa2);
+
+                if ( $user !== null)
                 {
+                    // Login egin duena IZFE-koa bada erabiltzaileen zerrenda, bestela fitxen zerrendara
+                    if ($user->getUdala()->getId()===138) {
+                        return $this->redirectToRoute( 'users_index', array('_locale'=> $hizkuntza ));
+                    }
+
                     return $this->redirectToRoute( 'fitxa_index', array('_locale'=> $hizkuntza ));
                 }
                 else
@@ -133,7 +141,6 @@ class SecurityController extends Controller
             if (($lerro == $urlOsoa)||($lerro==$urlOsoa2))
             {
                 $userManager = $this->container->get('fos_user.user_manager');
-//                $user = $userManager->findUserByUsername($NA);
                 $user = $userManager->findUserBy([
                                                      'username' => $NA,
                                                      'udala'    => $udala
@@ -152,10 +159,10 @@ class SecurityController extends Controller
                 $this->get('session')->set('_security_main', serialize($token));
 
                 /* login-a egin ondoren fitxategia ezabatu */
-                return 1;
+                return $user;
             }
-            return 0;
-        } return 0;
+            return null;
+        } return null;
     }
 
     /**

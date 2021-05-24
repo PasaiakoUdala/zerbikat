@@ -452,6 +452,7 @@
          * @var dokumentazioak[]
          * @Expose
          * @ORM\ManyToMany(targetEntity="Dokumentazioa", inversedBy="fitxa")
+         * @OrderBy({"kodea" = "ASC"})
          */
         private $dokumentazioak;
 
