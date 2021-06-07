@@ -1705,10 +1705,7 @@ class IzfeztCommand extends ContainerAwareCommand
                             );
                             $sql .= $this->addOrriaBloque($A204AYUNTA, $idPagina, $idBlokea, $idOrden);
 
-                            if ((strlen($fitxa->getOharrakes()) > 0) && (strlen(
-                                        $fitxa->getOharrakeu()
-                                    ) > 0)
-                            ) {
+//                            if ((strlen($fitxa->getOharrakes()) > 0) && (strlen($fitxa->getOharrakeu()) > 0)) {
                                 $sql .= $this->addElementua(
                                     $A204AYUNTA,
                                     $idElementua,
@@ -1725,7 +1722,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                 );
                                 ++$idElementua;
                                 ++$idOrdenElementua;
-                            }
+//                            }
                             ++$idBlokea;
                             ++$idOrden;
                         }
@@ -3364,10 +3361,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                 );
                                 $sql .= $this->addOrriaBloque($A204AYUNTA, $idPagina, $idBlokea, $idOrden);
 
-                                if ((strlen($fitxa->getOharrakes()) > 0) && (strlen(
-                                            $fitxa->getOharrakeu()
-                                        ) > 0)
-                                ) {
+//                                if ((strlen($fitxa->getOharrakes()) > 0) && (strlen($fitxa->getOharrakeu()) > 0)) {
                                     $sql .= $this->addElementua(
                                         $A204AYUNTA,
                                         $idElementua,
@@ -3384,7 +3378,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                     );
                                     ++$idElementua;
                                     ++$idOrdenElementua;
-                                }
+//                                }
                                 ++$idBlokea;
                                 ++$idOrden;
                             }
