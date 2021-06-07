@@ -28,6 +28,7 @@
                 <th>{{ 'messages.kodea'|trans }}</th>
                 <th>{{ 'messages.deskribapena'|trans }}</th>
                 <th>{{ 'messages.saila'|trans }}</th>
+                <th>{{ 'messages.publikoa'|trans }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -56,6 +57,13 @@
                         {% else %}
                             <br>{{ fitxa.azpisaila.azpisailaeu }}
                         {% endif %}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if fitxa.publikoa %}
+                        <label class="label label-success">Bai</label>
+                    {% else %}
+                        <label class="label label-danger">Ez</label>
                     {% endif %}
                 </td>
                 <td NOWRAP class="text-right"><ul class="list-inline">
