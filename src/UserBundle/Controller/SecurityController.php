@@ -36,11 +36,14 @@ class SecurityController extends Controller
          * Baldin eta parametroa badu bai
          ***/
         $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
+        dump($query_str);
 
         $urlOsoa=$request->getUri();
+        dump($urlOsoa);
         $urlOsoa2=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
-
+        dump($urlOsoa2);
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
+            dump("Lehen if BARRUAN");
             parse_str( $query_str, $query_params );
             /* GET kodea*/
             if ( $query_str != null )
@@ -50,11 +53,17 @@ class SecurityController extends Controller
                 $hizkuntza=strtolower($query_params["IDIOMA"]);
                 $fitxategia=$query_params["ficheroAuten"];
 
+                dump("IZFELOGIN-era goaz");
+
                 /** @var User $user */
                 $user = $this->izfelogin($NA, $udala, $hizkuntza, $fitxategia, $urlOsoa, $urlOsoa2);
 
+                dump("IFZELOGIN-etik bueltan erabiltzailea da:");
+                dump($user);
+
                 if ( $user !== null)
                 {
+                    dump("Dena ongi");
                     // Login egin duena IZFE-koa bada erabiltzaileen zerrenda, bestela fitxen zerrendara
                     if ($user->getUdala()->getId()===138) {
                         return $this->redirectToRoute( 'users_index', array('_locale'=> $hizkuntza ));
@@ -64,6 +73,7 @@ class SecurityController extends Controller
                 }
                 else
                 {
+                    dump("Ez dago erabiltzailerik, beraz login-era goaz");
                     $lastUsername = null;
                     $csrfToken = $this->get( 'security.csrf.token_manager' )->getToken( 'authenticate' )->getValue();
                     $error = null;
@@ -129,31 +139,49 @@ class SecurityController extends Controller
 
     private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa, $urlOsoa2)
     {
+        dump("IZFE LOGIN-ek jasotako parametroak:");
+        dump($udala);
+        dump($hizkuntza);
+        dump($fitxategia);
+        dump($urlOsoa);
+        dump($urlOsoa2);
+
+        dump("fitxategia existitzen den begiratzen");
         /* fitxategiko kodea */
         if (file_exists ($this->container->getParameter('izfe_login_path').'/'.$fitxategia))
         {
+            dump("Fitxategia existitzen da. Testua irakurtzen...");
             $fitx = fopen($this->container->getParameter('izfe_login_path').'/'.$fitxategia, 'rb');
             $lerro = fgets($fitx);
             $lerro = str_replace(array("\r", "\n"), '', $lerro);
             fclose( $fitx );
+            dump("fitxategiak ondoko testua dauka:");
+            dump($lerro);
+
+            dump("URL-a eta fitxategi testua konparatzen");
 
             /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
             if (($lerro == $urlOsoa)||($lerro==$urlOsoa2))
             {
+                dump("berdinak dira, erabiltzailea bilatzen orain...");
                 $userManager = $this->container->get('fos_user.user_manager');
                 $user = $userManager->findUserBy([
                                                      'username' => $NA,
                                                      'udala'    => $udala
                                                  ]);
+                dump($user);
                 if (!$user) { // BEGIRATU IFZE-ko erabiltzailea den
+                    dump("Ez da erabiltzailea aurkitu, IZFE-koa den begiratzen");
                     $user = $userManager->findUserBy([
                                              'username' => $NA,
                                              'udala'    => 138
                                              ]);
+                    dump($user);
                 }
                 if (!$user) {
                     throw new UsernameNotFoundException(sprintf('Erabiltzailea ez da topatu'));
                 }
+                dump("Sesioa sortzen");
                 $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
                 $this->get('security.token_storage')->setToken($token);
                 $this->get('session')->set('_security_main', serialize($token));
