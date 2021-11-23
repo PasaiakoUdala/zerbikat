@@ -236,14 +236,17 @@ fos_user_security_login:
     path: /login
     methods: [GET, POST]
     defaults: { _controller: 'UserBundle\Controller\SecurityController::loginAction' }
+    schemes: [https]
 
 fos_user_security_check:
     path: /login_check
     methods: [POST]
     defaults: { _controller: fos_user.security.controller:checkAction }
+    schemes: [https]
 
 fos_user_security_logout:
     path: /logout
     methods: [GET, POST]
     defaults: { _controller: fos_user.security.controller:logoutAction }
+    schemes: [https]
 
