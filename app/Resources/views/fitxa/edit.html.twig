@@ -1377,21 +1377,13 @@
             // DEBUG
             // var url = 'http://zzoo.test/app_dev.php/api/ordenantzakbykodea/' + udalakodea + ".json";
             var locale = "{{ app.request.getLocale() }}";
-
-            console.log("Hau da URL-a:");
-            console.log(url);
-
             var jqxhr = $.getJSON(url, function ( result ) {
-                console.log("Result da:");
-                console.log(result);
                 if ( locale === "es" ) {
                     $("#cmbOrdenantza").append($("<option></option>").attr("value", -1).text("Selecciona"));
                 } else {
                     $("#cmbOrdenantza").append($("<option></option>").attr("value", -1).text("Aukeratu"));
                 }
                 $.each(result, function ( i, field ) {
-                    console.log("Field-ak");
-                    console.log(field);
                     if ( locale === "es" ) {
                         $("#cmbOrdenantza").append($("<option></option>").attr("value", field.id).text(field.izenburuaes_prod));
                     } else {
@@ -1499,7 +1491,6 @@
             });
 
             $("#cmbAtala").on("change", function () {
-                console.log("atala change");
                 $("#nireloader3").addClass("loading");
                 var atalaid = $(this).val();
                 var url = param + "/zergak/" + atalaid + ".json";
@@ -1550,7 +1541,6 @@
             });
 
             $("#cmbKontzeptua").on("change", function () {
-                console.log("kontzeptua change");
                 var kontzeptuaid = $("#cmbKontzeptua").val();
 
                 if ( kontzeptuaid === -1 ) {
@@ -1560,7 +1550,6 @@
                      $("#" + midest).val(kontzeptuaid);
                      $("#" + midest).trigger("change");
 
-                    console.log("vbalioa da : " + kontzeptuaid);
                     $("#modalSelectOrdenantza").modal("toggle");
                 }
             });
@@ -1727,7 +1716,6 @@
                 });
 
                 jqxhr.complete(function () {
-                    console.log("finito");
                     $("#nireloader2").removeClass("loading");
                 });
 
@@ -1815,18 +1803,15 @@
                     callback: function ( result ) {
                         if ( result === true ) {
                             var miid = $(that).data("id");
-                            console.log("miid =>" + miid);
                             var url = Routing.generate("fitxafamilia_delete", {
                                 _locale: "eu",
                                 id: miid
                             });
-                            console.log("familia delete url => " + url);
 
                             $.ajax({
                                 url: url,
                                 type: "delete",
                                 success: function ( result ) {
-                                    console.log("Delete");
                                     $(that).closest("tr").remove();
                                 },
                                 error: function ( e ) {
@@ -1890,6 +1875,7 @@
                 // create a new list element and add it to the list
                 var newLi = jQuery("<li></li>").html(newWidget);
                 newLi.appendTo(prozeduraList);
+                addProzeduraFormDeleteLink(newLi);
             });
             jQuery("#add-araudia").click(function ( e ) {
                 e.preventDefault();
@@ -1910,7 +1896,7 @@
                 // create a new list element and add it to the list
                 var newLi = jQuery("<li></li>").html(newWidget);
                 newLi.appendTo(araudiaList);
-
+                addAraudiaFormDeleteLink(newLi);
                 // Ordenatzen
                 var customSorter = function ( data ) {
 
@@ -1971,7 +1957,6 @@
 
 
         function funcEzabatu( nirediv ) {
-            console.log(nirediv);
             $(nirediv).remove();
         }
 
