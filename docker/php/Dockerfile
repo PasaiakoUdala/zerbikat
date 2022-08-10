@@ -39,7 +39,8 @@ RUN apt-get update && apt-get install -y \
     && echo "LC_ALL=es_ES.UTF-8" >> /etc/default/locale \
     && echo "LANG=es_ES.UTF-8" >> /etc/default/locale
 
-RUN if [ "${WITH_XDEBUG}" = "true" ]; then pecl install xdebug && docker-php-ext-enable xdebug && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" >> /usr/local/etc/php/php.ini  && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini ; fi
+RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" >> /usr/local/etc/php/php.ini  && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 
 RUN docker-php-ext-install pdo pdo_mysql
 

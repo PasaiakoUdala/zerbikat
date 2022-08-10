@@ -13,7 +13,7 @@ services:
         ports:
             - "3306:3306"
         networks:
-            - zzoo
+            - zerbikatnet
     php:
         container_name: zerbikat-php
         env_file: ./.env
@@ -21,7 +21,7 @@ services:
             context: .
             dockerfile: docker/php/Dockerfile
             args:
-                - WITH_XDEBUG=false
+                - WITH_XDEBUG=true
                 - DOCKER_TIMEZONE=${DOCKER_TIMEZONE}
                 - USER_ID=${USER_ID}
                 - GROUP_ID=${GROUP_ID}
@@ -29,13 +29,13 @@ services:
             - mariadb
         volumes:
             - '.:/usr/src/app'
-        user: 1000:1000
+        user: ${USER_ID}:${GROUP_ID}
         environment:
             - APP_ENV=dev
             - PHP_IDE_CONFIG=serverName=zerbikat.test
             - XDEBUG_CONFIG=remote_host=192.168.2.8
         networks:
-            - zzoo
+            - zerbikatnet
     nginx:
         container_name: zerbikat-nginx
         image: nginx:1.15.3-alpine
@@ -47,11 +47,11 @@ services:
         ports:
             - 80:80
         networks:
-            - zzoo
+            - zerbikatnet
 
 volumes:
     mariadb_zerbikat:
 
 networks:
-    zzoo:
+    zerbikatnet:
         driver: bridge

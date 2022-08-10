@@ -235,8 +235,11 @@
                                                         <a href='mailto:{{ kanal.estekaeu }}'>{{ kanal.izenaeu }}</a>
                                                         <br/>
                                                     {% else %}
-                                                        <a href='{{ kanal.estekaeu }}'
-                                                           target="_blank">{{ kanal.izenaeu }}</a><br/>
+                                                        {% if kanal.estekaeu is null %}
+                                                            {{ kanal.izenaeu }}
+                                                        {% else %}
+                                                            <a href='{{ kanal.estekaeu }}' target="_blank">{{ kanal.izenaeu }}</a><br/>
+                                                        {% endif %}
                                                     {% endif %}
                                                 {% endif %}
                                                 {% if kanal.eraikina %}{{ kanal.eraikina.izena }}<br/>{% endif %}
@@ -302,8 +305,11 @@
                                                         <a href='mailto:{{ kanal.estekaes }}'>{{ kanal.izenaes }}</a>
                                                         <br/>
                                                     {% else %}
-                                                        <a href='{{ kanal.estekaes }}'
-                                                           target="_blank">{{ kanal.izenaes }}</a><br/>
+                                                        {% if kanal.estekaes is null %}
+                                                            {{ kanal.izenaes }}
+                                                        {% else %}
+                                                            <a href='{{ kanal.izenaes }}' target="_blank">{{ kanal.izenaes }}</a><br/>
+                                                        {% endif %}
                                                     {% endif %}
                                                 {% endif %}
                                                 {% if kanal.eraikina %}{{ kanal.eraikina.izena }}<br/>{% endif %}

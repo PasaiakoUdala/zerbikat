@@ -19,3 +19,4 @@
 /web/doc/
 /.idea/Zerbikat.iml
 !/.env.local
+.env.local
