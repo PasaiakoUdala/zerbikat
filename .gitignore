@@ -18,3 +18,4 @@
 .idea/workspace.xml
 /web/doc/
 /.idea/Zerbikat.iml
+!/.env.local
