@@ -941,23 +941,28 @@ class IzfeztCommand extends ContainerAwareCommand
                                                             $texteu = $texteu."<a href='".$kanala->getEstekaeu()."' target='_blank'>".$kanala->getIzenaeu().'</a><br />';
                                                         }
                                                     }
+                                                    $udalaPrint = false;
                                                     if ($kanala->getEraikina()) {
                                                         $textes = $textes.$kanala->getEraikina()->getIzena().'<br />';
                                                         $texteu = $texteu.$kanala->getEraikina()->getIzena().'<br />';
+                                                        $udalKodea = true;
                                                     }
                                                     if ($kanala->getKalea()) {
                                                         $textes = $textes.$kanala->getKalea().' ';
                                                         $texteu = $texteu.$kanala->getKalea().' ';
+                                                        $udalKodea = true;
                                                     }
                                                     if ($kanala->getKalezbkia()) {
                                                         $textes = $textes.$kanala->getKalezbkia().' ';
                                                         $texteu = $texteu.$kanala->getKalezbkia().' ';
+                                                        $udalKodea = true;
                                                     }
                                                     if ($kanala->getPostakodea()) {
                                                         $textes = $textes.$kanala->getPostakodea().' ';
                                                         $texteu = $texteu.$kanala->getPostakodea().' ';
+                                                        $udalKodea = true;
                                                     }
-                                                    if ($kanala->getUdala()) {
+                                                    if (($kanala->getUdala()) && ($udalKodea === true) ){
                                                         $textes = $textes.$kanala->getUdala()->getIzenaes().'<br/>';
                                                         $texteu = $texteu.$kanala->getUdala()->getIzenaeu().'<br/>';
                                                     }
@@ -2598,23 +2603,28 @@ class IzfeztCommand extends ContainerAwareCommand
                                                                 $texteu = $texteu."<a href='".$kanala->getEstekaeu()."' target='_blank'>".$kanala->getIzenaeu().'</a><br />';
                                                             }
                                                         }
+                                                        $udalKodea = false;
                                                         if ($kanala->getEraikina()) {
                                                             $textes = $textes.$kanala->getEraikina()->getIzena().'<br />';
                                                             $texteu = $texteu.$kanala->getEraikina()->getIzena().'<br />';
+                                                            $udalKodea = true;
                                                         }
                                                         if ($kanala->getKalea()) {
                                                             $textes = $textes.$kanala->getKalea().' ';
                                                             $texteu = $texteu.$kanala->getKalea().' ';
+                                                            $udalKodea = true;
                                                         }
                                                         if ($kanala->getKalezbkia()) {
                                                             $textes = $textes.$kanala->getKalezbkia().' ';
                                                             $texteu = $texteu.$kanala->getKalezbkia().' ';
+                                                            $udalKodea = true;
                                                         }
                                                         if ($kanala->getPostakodea()) {
                                                             $textes = $textes.$kanala->getPostakodea().' ';
                                                             $texteu = $texteu.$kanala->getPostakodea().' ';
+                                                            $udalKodea = true;
                                                         }
-                                                        if ($kanala->getUdala()) {
+                                                        if (($kanala->getUdala()) && ($udalKodea === true)){
                                                             $textes = $textes.$kanala->getUdala()->getIzenaes().'<br/>';
                                                             $texteu = $texteu.$kanala->getUdala()->getIzenaeu().'<br/>';
                                                         }
