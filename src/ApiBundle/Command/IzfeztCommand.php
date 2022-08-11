@@ -937,8 +937,13 @@ class IzfeztCommand extends ContainerAwareCommand
                                                             $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes().'</a><br />';
                                                             $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu().'</a><br />';
                                                         } else {
-                                                            $textes = $textes."<a href='".$kanala->getEstekaes()."' target='_blank'>".$kanala->getIzenaes().'</a><br />';
-                                                            $texteu = $texteu."<a href='".$kanala->getEstekaeu()."' target='_blank'>".$kanala->getIzenaeu().'</a><br />';
+                                                            if ($kanala->getEstekaes()) {
+                                                                $textes = $textes."<a href='".$kanala->getEstekaes()."' target='_blank'>".$kanala->getIzenaes().'</a><br />';
+                                                                $texteu = $texteu."<a href='".$kanala->getEstekaeu()."' target='_blank'>".$kanala->getIzenaeu().'</a><br />';
+                                                            } else {
+                                                                $textes = $textes.$kanala->getIzenaes().'<br />';
+                                                                $texteu = $texteu.$kanala->getIzenaeu().'<br />';
+                                                            }
                                                         }
                                                     }
                                                     $udalaPrint = false;
@@ -2599,8 +2604,14 @@ class IzfeztCommand extends ContainerAwareCommand
                                                                 $textes = $textes."<a href='mailto:".$kanala->getEstekaes()."'>".$kanala->getIzenaes().'</a><br />';
                                                                 $texteu = $texteu."<a href='mailto:".$kanala->getEstekaeu()."'>".$kanala->getIzenaeu().'</a><br />';
                                                             } else {
-                                                                $textes = $textes."<a href='".$kanala->getEstekaes()."' target='_blank'>".$kanala->getIzenaes().'</a><br />';
-                                                                $texteu = $texteu."<a href='".$kanala->getEstekaeu()."' target='_blank'>".$kanala->getIzenaeu().'</a><br />';
+                                                                if ($kanala->getEstekaes()) {
+                                                                    $textes = $textes."<a href='".$kanala->getEstekaes()."' target='_blank'>".$kanala->getIzenaes().'</a><br />';
+                                                                    $texteu = $texteu."<a href='".$kanala->getEstekaeu()."' target='_blank'>".$kanala->getIzenaeu().'</a><br />';
+                                                                } else {
+                                                                    $textes = $textes.$kanala->getIzenaes().'<br />';
+                                                                    $texteu = $texteu.$kanala->getIzenaeu().'<br />';
+                                                                }
+
                                                             }
                                                         }
                                                         $udalKodea = false;
