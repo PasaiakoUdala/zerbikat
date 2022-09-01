@@ -986,21 +986,27 @@ class IzfeztCommand extends ContainerAwareCommand
                                                     $textes .= '</li>';
                                                     $texteu .= '</li>';
                                                 } else { // if ($k->getEsteka())
-                                                    $textes .= '<li>';
-                                                    $texteu .= '<li>';
+//                                                    bariablearen inizializazioa kentzen dugu bestela li hutsak sortuko ditu daturik ez badago
+//                                                    $textes .= '<li>';
+//                                                    $texteu .= '<li>';
+                                                    $dago = false;
                                                     if ($kanala->getIzenaes()) {
+                                                        $dago = true;
                                                         $textes = $textes.$kanala->getIzenaes().'<br/>';
                                                         $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
                                                     }
                                                     if ($kanala->getKalea()) {
+                                                        $dago = true;
                                                         $textes = $textes.$kanala->getKalea().' ';
                                                         $texteu = $texteu.$kanala->getKalea().' ';
                                                     }
                                                     if ($kanala->getKalezbkia()) {
+                                                        $dago = true;
                                                         $textes = $textes.$kanala->getKalezbkia().' ';
                                                         $texteu = $texteu.$kanala->getKalezbkia().' ';
                                                     }
                                                     if ($kanala->getPostakodea()) {
+                                                        $dago = true;
                                                         $textes = $textes.$kanala->getPostakodea().' ';
                                                         $texteu = $texteu.$kanala->getPostakodea().' ';
                                                     }
@@ -1009,19 +1015,27 @@ class IzfeztCommand extends ContainerAwareCommand
 //                                                        $texteu = $texteu . $kanala->getUdala()->getIzenaeu() . "<br/>";
 //                                                    }
                                                     if ($kanala->getOrdutegia()) {
+                                                        $dago = true;
                                                         $textes = $textes.$kanala->getOrdutegia().'<br/>';
                                                         $texteu = $texteu.$kanala->getOrdutegia().'<br/>';
                                                     }
                                                     if ($kanala->getTelefonoa()) {
+                                                        $dago = true;
                                                         $textes = $textes.$kanala->getTelefonoa().'<br/>';
                                                         $texteu = $texteu.$kanala->getTelefonoa().'<br/>';
                                                     }
                                                     if ($kanala->getFax()) {
+                                                        $dago = true;
                                                         $textes = $textes.$kanala->getFax().'<br/>';
                                                         $texteu = $texteu.$kanala->getFax().'<br/>';
                                                     }
-                                                    $textes .= '</li>';
-                                                    $texteu .= '</li>';
+//                                                    hau kendu daturik ez badago li hutsak sor ditzakelako
+//                                                    $textes .= '</li>';
+//                                                    $texteu .= '</li>';
+                                                    if ($dago) {
+                                                        $textes = '<li>'.$textes.'</li>';
+                                                        $texteu = '<li>'.$texteu.'</li>';
+                                                    }
                                                 }
                                             }
                                             $badu = 1;
@@ -2654,21 +2668,27 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         $textes .= '</li>';
                                                         $texteu .= '</li>';
                                                     } else { // if ($k->getEsteka())
-                                                        $textes .= '<li>';
-                                                        $texteu .= '<li>';
+//                                                        hau kendu bestela li hutsak sor ditzake
+//                                                        $textes .= '<li>';
+//                                                        $texteu .= '<li>';
+                                                        $dago = false;
                                                         if ($kanala->getIzenaes()) {
+                                                            $dago = true;
                                                             $textes = $textes.$kanala->getIzenaes().'<br/>';
                                                             $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
                                                         }
                                                         if ($kanala->getKalea()) {
+                                                            $dago = true;
                                                             $textes = $textes.$kanala->getKalea().' ';
                                                             $texteu = $texteu.$kanala->getKalea().' ';
                                                         }
                                                         if ($kanala->getKalezbkia()) {
+                                                            $dago = true;
                                                             $textes = $textes.$kanala->getKalezbkia().' ';
                                                             $texteu = $texteu.$kanala->getKalezbkia().' ';
                                                         }
                                                         if ($kanala->getPostakodea()) {
+                                                            $dago = true;
                                                             $textes = $textes.$kanala->getPostakodea().' ';
                                                             $texteu = $texteu.$kanala->getPostakodea().' ';
                                                         }
@@ -2677,19 +2697,27 @@ class IzfeztCommand extends ContainerAwareCommand
 //                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu().'<br/>';
 //                                                        }
                                                         if ($kanala->getOrdutegia()) {
+                                                            $dago = true;
                                                             $textes = $textes.$kanala->getOrdutegia().'<br/>';
                                                             $texteu = $texteu.$kanala->getOrdutegia().'<br/>';
                                                         }
                                                         if ($kanala->getTelefonoa()) {
+                                                            $dago = true;
                                                             $textes = $textes.$kanala->getTelefonoa().'<br/>';
                                                             $texteu = $texteu.$kanala->getTelefonoa().'<br/>';
                                                         }
                                                         if ($kanala->getFax()) {
+                                                            $dago = true;
                                                             $textes = $textes.$kanala->getFax().'<br/>';
                                                             $texteu = $texteu.$kanala->getFax().'<br/>';
                                                         }
-                                                        $textes .= '</li>';
-                                                        $texteu .= '</li>';
+//                                                        hau kendu bestela li hutsak sor ditzake
+//                                                        $textes .= '</li>';
+//                                                        $texteu .= '</li>';
+                                                        if ($dago) {
+                                                            $textes = '<li>'.$textes.'</li>';
+                                                            $texteu = '<li>'.$texteu.'</li>';
+                                                        }
                                                     }
                                                 }
                                                 $badu = 1;
