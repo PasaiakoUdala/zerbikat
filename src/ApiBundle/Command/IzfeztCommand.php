@@ -2672,10 +2672,10 @@ class IzfeztCommand extends ContainerAwareCommand
                                                             $textes = $textes.$kanala->getPostakodea().' ';
                                                             $texteu = $texteu.$kanala->getPostakodea().' ';
                                                         }
-                                                        if ($kanala->getUdala()) {
-                                                            $textes = $textes.$kanala->getUdala()->getIzenaes().'<br/>';
-                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu().'<br/>';
-                                                        }
+//                                                        if ($kanala->getUdala()) {
+//                                                            $textes = $textes.$kanala->getUdala()->getIzenaes().'<br/>';
+//                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu().'<br/>';
+//                                                        }
                                                         if ($kanala->getOrdutegia()) {
                                                             $textes = $textes.$kanala->getOrdutegia().'<br/>';
                                                             $texteu = $texteu.$kanala->getOrdutegia().'<br/>';
