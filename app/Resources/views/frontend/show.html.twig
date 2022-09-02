@@ -297,18 +297,15 @@
                                                 {% endif %}
                                             {% else %}
                                                 {% if k.esteka %}
-                                                    {#<li><a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a></li>#}
                                                     <li>{% if kanal.izenaes %}
-                                                            {#<a href='{{ kanal.estekaes }}' target="_blank">{{ kanal.izenaes }}</a><br />#}
                                                             {% if '@' in kanal.estekaes and 'maps' not in kanal.estekaes %}
                                                                 <a href='mailto:{{ kanal.estekaes }}'>{{ kanal.izenaes }}</a>
                                                                 <br/>
                                                             {% else %}
                                                                 {% if kanal.estekaes is null %}
-                                                                    {{ kanal.estekaes }}
+                                                                    {{ kanal.izenaes }}
                                                                 {% else %}
-                                                                    <a href="{{ kanal.estekaes }}"
-                                                                       target="_blank">{{ kanal.izenaes }}</a><br/>
+                                                                    <a href="{{ kanal.estekaes }}" target="_blank">{{ kanal.izenaes }}</a><br/>
                                                                 {% endif %}
                                                             {% endif %}
                                                         {% endif %}
@@ -322,7 +319,6 @@
                                                         {% if kanal.fax %}Fax: {{ kanal.fax }}<br/>{% endif %}
                                                     </li>
                                                 {% else %}
-                                                    {#<li>{{ kanal.izenaes }}</li>#}
                                                     <li>{% if kanal.izenaes %}{{ kanal.izenaes }}<br/>{% endif %}
                                                         {% if kanal.kalea %}{{ kanal.kalea }}{% endif %}{% if kanal.kalezbkia %}&nbsp;{{ kanal.kalezbkia }}, {% endif %}
                                                         {% if kanal.postakodea %}{{ kanal.postakodea }} {{ fitxa.udala.izenaes }}
