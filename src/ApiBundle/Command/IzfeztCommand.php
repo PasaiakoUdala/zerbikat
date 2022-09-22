@@ -983,8 +983,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         $textes = $textes.$kanala->getFax().'<br/>';
                                                         $texteu = $texteu.$kanala->getFax().'<br/>';
                                                     }
-                                                    $textes .= '</li>';
-                                                    $texteu .= '</li>';
+                                                    $textes .= '<span>&nbsp;</span></li>';
+                                                    $texteu .= '<span>&nbsp;</span></li>';
                                                 } else { // if ($k->getEsteka())
 //                                                    bariablearen inizializazioa kentzen dugu bestela li hutsak sortuko ditu daturik ez badago
 //                                                    $textes .= '<li>';
@@ -2665,8 +2665,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                             $textes = $textes.$kanala->getFax().'<br/>';
                                                             $texteu = $texteu.$kanala->getFax().'<br/>';
                                                         }
-                                                        $textes .= '</li>';
-                                                        $texteu .= '</li>';
+                                                        $textes .= '<span>&nbsp;</span></li>';
+                                                        $texteu .= '<span>&nbsp;</span></li>';
                                                     } else { // if ($k->getEsteka())
 //                                                        hau kendu bestela li hutsak sor ditzake
 //                                                        $textes .= '<li>';
