@@ -21,7 +21,6 @@ use Zerbikat\BackendBundle\Entity\Kontzeptua;
 
 class IzfeztCommand extends ContainerAwareCommand
 {
-
     protected $unekoFitxaKodea = '';
 
     /**
