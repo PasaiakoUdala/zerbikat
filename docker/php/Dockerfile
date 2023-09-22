@@ -21,7 +21,9 @@ RUN userdel -f www-data &&\
 
 #USER www-data
 RUN echo 'www-data ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
+RUN sed -i -e 's/deb.debian.org/archive.debian.org/g' \
+           -e 's|security.debian.org|archive.debian.org/|g' \
+           -e '/stretch-updates/d' /etc/apt/sources.list
 RUN apt-get update && apt-get install -y \
     openssl \
     git \
@@ -39,8 +41,22 @@ RUN apt-get update && apt-get install -y \
     && echo "LC_ALL=es_ES.UTF-8" >> /etc/default/locale \
     && echo "LANG=es_ES.UTF-8" >> /etc/default/locale
 
-RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" >> /usr/local/etc/php/php.ini  && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
+#RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" >> /usr/local/etc/php/php.ini  && echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN cd /tmp && \
+    git clone https://github.com/xdebug/xdebug.git && \
+    cd xdebug && \
+    git checkout XDEBUG_2_5_5 && \
+    phpize && \
+    ./configure --enable-xdebug && \
+    make && \
+    make install && \
+    rm -rf /tmp/xdebug && \
+    echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" >> /usr/local/etc/php/php.ini  && \
+    echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini &&  \
+    echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini  \
+    && echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini &&  \
+    echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini &&  \
+    echo "xdebug.remote_connect_back=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN docker-php-ext-install pdo pdo_mysql
 
@@ -73,14 +89,11 @@ RUN echo memory_limit = 512M >> /usr/local/etc/php/conf.d/zerbikat.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 && composer --version
 
-# zsh eta oh my zsh
-RUN apt install -y zsh wget
+RUN apt-get install curl -y
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get update && apt-get install nodejs
 
-USER www-data
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
-COPY ./docker/php/conf/.zshrc /home/www-data/.zshrc
-
-
+RUN npm install gulp bower
 
 WORKDIR /usr/src/app
 

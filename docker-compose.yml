@@ -6,14 +6,16 @@ services:
         volumes:
             - mariadb_zerbikat:/var/lib/mysql
         environment:
-            - MYSQL_ROOT_PASSWORD=pasaia
+            - MYSQL_ROOT_PASSWORD=dbpass
             - MYSQL_DATABASE=zerbikat
-            - MYSQL_USER=pasaia
-            - MYSQL_PASSWORD=pasaia
+            - MYSQL_USER=dbuser
+            - MYSQL_PASSWORD=dbpass
+
         ports:
             - "3306:3306"
         networks:
             - zerbikatnet
+
     app:
         container_name: zerbikat-php
         env_file: ./.env
@@ -33,9 +35,10 @@ services:
         environment:
             - APP_ENV=dev
             - PHP_IDE_CONFIG=serverName=zerbikat.test
-            - XDEBUG_CONFIG=remote_host=192.168.2.8
+            - XDEBUG_CONFIG=remote_host=172.28.64.123
         networks:
             - zerbikatnet
+
     nginx:
         container_name: zerbikat-nginx
         image: nginx:1.15.3-alpine

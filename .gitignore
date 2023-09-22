@@ -20,3 +20,4 @@
 /.idea/Zerbikat.iml
 !/.env.local
 .env.local
+/node_modules/
