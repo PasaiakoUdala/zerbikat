@@ -994,7 +994,7 @@ class IzfeztCommand extends ContainerAwareCommand
 //                                                    if ( $kanala->getUdala() ) {
 //                                                        $textes = $textes . $kanala->getUdala()->getIzenaes() . ", ";
 //                                                        $texteu = $texteu . $kanala->getUdala()->getIzenaeu() . ", ";
-                                                    }
+//                                                    }
                                                     if ($kanala->getKalea()!=="") {
                                                         $textes = $textes.$kanala->getKalea().' ';
                                                         $texteu = $texteu.$kanala->getKalea().' ';
