@@ -946,7 +946,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         }
                                                     }
                                                     $udalaPrint = false;
-                                                    if ($kanala->getEraikina()!=="") {
+                                                    if ($kanala->getEraikina()) {
                                                         $textes = $textes.$kanala->getEraikina()->getIzena().'<br />';
                                                         $texteu = $texteu.$kanala->getEraikina()->getIzena().'<br />';
                                                         $udalaPrint = true;
@@ -991,10 +991,6 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         $textes = $textes.$kanala->getIzenaes().'<br/>';
                                                         $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
                                                     }
-//                                                    if ( $kanala->getUdala() ) {
-//                                                        $textes = $textes . $kanala->getUdala()->getIzenaes() . ", ";
-//                                                        $texteu = $texteu . $kanala->getUdala()->getIzenaeu() . ", ";
-//                                                    }
                                                     if ($kanala->getKalea()!=="") {
                                                         $textes = $textes.$kanala->getKalea().' ';
                                                         $texteu = $texteu.$kanala->getKalea().' ';
@@ -1007,13 +1003,9 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         $textes = $textes.$kanala->getPostakodea().' ';
                                                         $texteu = $texteu.$kanala->getPostakodea().' ';
                                                     }
-                                                    if ($kanala->getPostakodea()!=="") {
-                                                        $textes = $textes.$kanala->getPostakodea().' ';
-                                                        $texteu = $texteu.$kanala->getPostakodea().' ';
-                                                    }
                                                     if ($kanala->getUdala()->getIzenaeu()!=="") {
-                                                        $textes = ", " . $textes.$kanala->getUdala()->getIzenaes();
-                                                        $texteu = ", " . $texteu.$kanala->getUdala()->getIzenaeu();
+                                                        $textes = $textes.$kanala->getUdala()->getIzenaes();
+                                                        $texteu = $texteu.$kanala->getUdala()->getIzenaeu();
                                                     }
                                                     if ($kanala->getOrdutegia()!=="") {
                                                         $textes = $textes.$kanala->getOrdutegia().'<br/>';
@@ -2622,7 +2614,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                             }
                                                         }
                                                         $udalaPrint = false;
-                                                        if ($kanala->getEraikina()!=="") {
+                                                        if ($kanala->getEraikina()) {
                                                             $textes = $textes.$kanala->getEraikina()->getIzena().'<br />';
                                                             $texteu = $texteu.$kanala->getEraikina()->getIzena().'<br />';
                                                             $udalaPrint = true;
@@ -2667,10 +2659,6 @@ class IzfeztCommand extends ContainerAwareCommand
                                                             $textes = $textes.$kanala->getIzenaes().'<br/>';
                                                             $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
                                                         }
-//                                                        if ( $kanala->getUdala()!=="" ) {
-//                                                            $textes = $textes . $kanala->getUdala()->getIzenaes() . ", ";
-//                                                            $texteu = $texteu . $kanala->getUdala()->getIzenaeu() . ", ";
-//                                                        }
                                                         if ($kanala->getKalea()!=="") {
                                                             $textes = $textes.$kanala->getKalea().' ';
                                                             $texteu = $texteu.$kanala->getKalea().' ';
@@ -2684,8 +2672,8 @@ class IzfeztCommand extends ContainerAwareCommand
                                                             $texteu = $texteu.$kanala->getPostakodea().' ';
                                                         }
                                                         if ($kanala->getUdala()->getIzenaeu()!=="") {
-                                                            $textes = ", " . $textes.$kanala->getUdala()->getIzenaes();
-                                                            $texteu = ", " . $texteu.$kanala->getUdala()->getIzenaeu();
+                                                            $textes = $textes.$kanala->getUdala()->getIzenaes();
+                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu();
                                                         }
                                                         if ($kanala->getOrdutegia()!=="") {
                                                             $textes = $textes.$kanala->getOrdutegia().'<br/>';
