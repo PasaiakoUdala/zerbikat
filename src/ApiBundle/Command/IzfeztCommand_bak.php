@@ -326,7 +326,7 @@ class IzfeztCommand extends ContainerAwareCommand
         $udalKodea = $input->getArgument('udalKodea');
         $debug     = $input->getArgument('debug');
 
-        $filename = "web/doc/$udalKodea/izfesql.sql";
+        $filename = "web/doc/$udalKodea/izfesql1.sql";
 
         /** @var EntityManager $em */
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -994,21 +994,18 @@ class IzfeztCommand extends ContainerAwareCommand
                                                     if ($kanala->getKalea()) {
                                                         $textes = $textes.$kanala->getKalea().' ';
                                                         $texteu = $texteu.$kanala->getKalea().' ';
-                                                        $udalaPrint = true;
                                                     }
                                                     if ($kanala->getKalezbkia()) {
                                                         $textes = $textes.$kanala->getKalezbkia().' ';
                                                         $texteu = $texteu.$kanala->getKalezbkia().' ';
-                                                        $udalaPrint = true;
                                                     }
                                                     if ($kanala->getPostakodea()) {
                                                         $textes = $textes.$kanala->getPostakodea().' ';
                                                         $texteu = $texteu.$kanala->getPostakodea().' ';
-                                                        $udalaPrint = true;
                                                     }
-                                                    if (($kanala->getUdala()) && ($udalaPrint === true) ){
-                                                        $textes = $textes.$kanala->getUdala()->getIzenaes().'<br/>';
-                                                        $texteu = $texteu.$kanala->getUdala()->getIzenaeu().'<br/>';
+                                                    if ($kanala->getUdala()->getIzenaeu()) {
+                                                        $textes = $textes.$kanala->getUdala()->getIzenaes();
+                                                        $texteu = $texteu.$kanala->getUdala()->getIzenaeu();
                                                     }
                                                     if ($kanala->getOrdutegia()) {
                                                         $textes = $textes.$kanala->getOrdutegia().'<br/>';
@@ -2658,7 +2655,6 @@ class IzfeztCommand extends ContainerAwareCommand
                                                     } else { // if ($k->getEsteka())
                                                         $textes .= '<li>';
                                                         $texteu .= '<li>';
-                                                        $udalaPrint = false;
                                                         if ($kanala->getIzenaes()) {
                                                             $textes = $textes.$kanala->getIzenaes().'<br/>';
                                                             $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
@@ -2666,21 +2662,18 @@ class IzfeztCommand extends ContainerAwareCommand
                                                         if ($kanala->getKalea()) {
                                                             $textes = $textes.$kanala->getKalea().' ';
                                                             $texteu = $texteu.$kanala->getKalea().' ';
-                                                            $udalaPrint = true;
                                                         }
                                                         if ($kanala->getKalezbkia()) {
                                                             $textes = $textes.$kanala->getKalezbkia().' ';
                                                             $texteu = $texteu.$kanala->getKalezbkia().' ';
-                                                            $udalaPrint = true;
                                                         }
                                                         if ($kanala->getPostakodea()) {
                                                             $textes = $textes.$kanala->getPostakodea().' ';
                                                             $texteu = $texteu.$kanala->getPostakodea().' ';
-                                                            $udalaPrint = true;
                                                         }
-                                                        if (($kanala->getUdala()) && ($udalaPrint === true) ){
-                                                            $textes = $textes.$kanala->getUdala()->getIzenaes().'<br/>';
-                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu().'<br/>';
+                                                        if ($kanala->getUdala()->getIzenaeu()) {
+                                                            $textes = $textes.$kanala->getUdala()->getIzenaes();
+                                                            $texteu = $texteu.$kanala->getUdala()->getIzenaeu();
                                                         }
                                                         if ($kanala->getOrdutegia()) {
                                                             $textes = $textes.$kanala->getOrdutegia().'<br/>';
