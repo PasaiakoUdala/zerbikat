@@ -1130,57 +1130,25 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 }
                                             }
                                             foreach ($kostutaula[ 'kontzeptuak' ] as $kontzeptu) {
-
-                                                $kopurua = "";
-                                                if ( array_key_exists('kopurua_prod', $kontzeptu) ) {
-                                                    $kopurua = $kontzeptu['kopurua_prod'];
+                                                if (array_key_exists('kopurua_prod', $kontzeptu)) {
+                                                    if (array_key_exists('unitatea_prod', $kontzeptu)) {
+                                                        if (array_key_exists('baldintza', $kontzeptu)) {
+                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
+                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
+                                                        } else {
+                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
+                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
+                                                        }
+                                                    } else {
+                                                        if (array_key_exists('baldintza', $kontzeptu)) {
+                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                        } else {
+                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                        }
+                                                    }
                                                 }
-                                                $unitatea ="";
-                                                if ( array_key_exists('unitatea_prod', $kontzeptu) ) {
-                                                    $unitatea = $kontzeptu['unitatea_prod'];
-                                                }
-
-                                                if (array_key_exists('baldintza', $kontzeptu)) {
-                                                    $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                    $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                } else {
-                                                    $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                    $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                }
-//                                                if (array_key_exists('kopurua_prod', $kontzeptu)) {
-//                                                    if (array_key_exists('unitatea_prod', $kontzeptu)) {
-//                                                        if (array_key_exists('baldintza', $kontzeptu)) {
-//                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.isset($kontzeptu[ 'kopurua_prod' ])?$kontzeptu[ 'kopurua_prod' ]:''.' '.isset($kontzeptu[ 'unitatea_prod' ])?$kontzeptu[ 'unitatea_prod' ]:''.'</td></tr>';
-//                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.isset($kontzeptu[ 'kopurua_prod' ])?$kontzeptu[ 'kopurua_prod' ]:''.' '.isset($kontzeptu[ 'unitatea_prod' ])?$kontzeptu[ 'unitatea_prod' ]:''.'</td></tr>';
-//                                                        } else {
-//                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.isset($kontzeptu[ 'kopurua_prod' ])?$kontzeptu[ 'kopurua_prod' ]:''.' '.isset($kontzeptu[ 'unitatea_prod' ])?$kontzeptu[ 'unitatea_prod' ]:''.'</td></tr>';
-//                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.isset($kontzeptu[ 'kopurua_prod' ])?$kontzeptu[ 'kopurua_prod' ]:''.' '.isset($kontzeptu[ 'unitatea_prod' ])?$kontzeptu[ 'unitatea_prod' ]:''.'</td></tr>';
-//                                                        }
-//                                                    } else {
-//                                                        if (array_key_exists('baldintza', $kontzeptu)) {
-//                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                        } else {
-//                                                            $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                            $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                        }
-//                                                    }
-//                                                }
-//                                                $textes = '<tr><td>';
-//                                                $textes .= isset($kontzeptu['kontzeptuaes_prod']) ? $kontzeptu['kontzeptuaes_prod'] : '';
-//                                                $textes .= isset($kontzeptu['baldintza']['baldintzaes']) ? ' (' . $kontzeptu['baldintza']['baldintzaes'] . ')' : '';
-//                                                $textes .= '</td><td NOWRAP>';
-//                                                $textes .= isset($kontzeptu['kopurua_prod']) ? $kontzeptu['kopurua_prod'] : '';
-//                                                $textes .= isset($kontzeptu['unitatea_prod']) ? ' ' . $kontzeptu['unitatea_prod'] : '';
-//                                                $textes .= '</td></tr>';
-//
-//                                                $texteu = '<tr><td>';
-//                                                $texteu .= isset($kontzeptu['kontzeptuaeu_prod']) ? $kontzeptu['kontzeptuaeu_prod'] : '';
-//                                                $texteu .= isset($kontzeptu['baldintza']['baldintzaeu']) ? ' (' . $kontzeptu['baldintza']['baldintzaeu'] . ')' : '';
-//                                                $texteu .= '</td><td NOWRAP>';
-//                                                $texteu .= isset($kontzeptu['kopurua_prod']) ? $kontzeptu['kopurua_prod'] : '';
-//                                                $texteu .= isset($kontzeptu['unitatea_prod']) ? ' ' . $kontzeptu['unitatea_prod'] : '';
-//                                                $texteu .= '</td></tr>';
                                             }
                                             $textes .= '</table><br/>';
                                             $texteu .= '</table><br/>';
@@ -2835,50 +2803,25 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 }
 
                                                 foreach ($kostutaula[ 'kontzeptuak' ] as $kontzeptu) {
-//                                                    if (array_key_exists('kopurua_prod', $kontzeptu)) {
-//                                                        if (array_key_exists('unitatea_prod', $kontzeptu)) {
-
-                                                            $kopurua = "";
-                                                            if ( array_key_exists('kopurua_prod', $kontzeptu) ) {
-                                                                $kopurua = $kontzeptu['kopurua_prod'];
-                                                            }
-                                                            $unitatea ="";
-                                                            if ( array_key_exists('unitatea_prod', $kontzeptu) ) {
-                                                                $unitatea = $kontzeptu['unitatea_prod'];
-                                                            }
-
+                                                    if (array_key_exists('kopurua_prod', $kontzeptu)) {
+                                                        if (array_key_exists('unitatea_prod', $kontzeptu)) {
                                                             if (array_key_exists('baldintza', $kontzeptu)) {
-                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
+                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
                                                             } else {
-                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
+                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].' '.$kontzeptu[ 'unitatea_prod' ].'</td></tr>';
                                                             }
-//                                                        } else {
-//                                                            if (array_key_exists('baldintza', $kontzeptu)) {
-//                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                            } else {
-//                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
-//                                                            }
-//                                                        }
-//                                                    }
-//                                                    $textes = '<tr><td>';
-//                                                    $textes .= isset($kontzeptu['kontzeptuaes_prod']) ? $kontzeptu['kontzeptuaes_prod'] : '';
-//                                                    $textes .= isset($kontzeptu['baldintza']['baldintzaes']) ? ' (' . $kontzeptu['baldintza']['baldintzaes'] . ')' : '';
-//                                                    $textes .= '</td><td NOWRAP>';
-//                                                    $textes .= isset($kontzeptu['kopurua_prod']) ? $kontzeptu['kopurua_prod'] : '';
-//                                                    $textes .= isset($kontzeptu['unitatea_prod']) ? ' ' . $kontzeptu['unitatea_prod'] : '';
-//                                                    $textes .= '</td></tr>';
-//
-//                                                    $texteu = '<tr><td>';
-//                                                    $texteu .= isset($kontzeptu['kontzeptuaeu_prod']) ? $kontzeptu['kontzeptuaeu_prod'] : '';
-//                                                    $texteu .= isset($kontzeptu['baldintza']['baldintzaeu']) ? ' (' . $kontzeptu['baldintza']['baldintzaeu'] . ')' : '';
-//                                                    $texteu .= '</td><td NOWRAP>';
-//                                                    $texteu .= isset($kontzeptu['kopurua_prod']) ? $kontzeptu['kopurua_prod'] : '';
-//                                                    $texteu .= isset($kontzeptu['unitatea_prod']) ? ' ' . $kontzeptu['unitatea_prod'] : '';
-//                                                    $texteu .= '</td></tr>';
+                                                        } else {
+                                                            if (array_key_exists('baldintza', $kontzeptu)) {
+                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                            } else {
+                                                                $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                                $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kontzeptu[ 'kopurua_prod' ].'</td></tr>';
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                                 $textes .= '</table>';
                                                 $texteu .= '</table>';
