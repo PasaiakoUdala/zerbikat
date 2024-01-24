@@ -357,7 +357,7 @@
                                         <th colspan="2" class="text-center">
                                           {% if kostutaula['kodea_prod'] is defined  %}
                                             {{ kostutaula['kodea_prod'] | raw }}
-                                          {% endif %} - {{ kostutaula['izenburuaeu_prod'] | raw }}
+                                          {% endif %} - {% if kostutaula['izenburuaeu_prod'] is defined %}{{ kostutaula['izenburuaeu_prod'] | raw }} {% endif %}
                                         </th>
                                     </tr>
                                     {% for parrafo in kostutaula['parrafoak'] %}
@@ -437,7 +437,9 @@
                                     <tr>
                                         <th colspan="2" class="text-center">{% if kostutaula['kodea_prod'] is defined  %}
                                             {{ kostutaula['kodea_prod'] | raw }}{% endif %}
-                                            - {{ kostutaula['izenburuaes_prod'] | raw }}
+                                            - {% if kostutaula['izenburuaes_prod'] is defined %}
+                                                {{ kostutaula['izenburuaes_prod'] | raw }}
+                                            {% endif %}
                                         </th>
                                     </tr>
                                     {% for parrafo in kostutaula['parrafoak'] %}
