@@ -987,6 +987,7 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 } else { // if ($k->getEsteka())
                                                     $textes .= '<li>';
                                                     $texteu .= '<li>';
+                                                    $udalaPrint = false;
                                                     if ($kanala->getIzenaes()) {
                                                         $textes = $textes.$kanala->getIzenaes().'<br/>';
                                                         $texteu = $texteu.$kanala->getIzenaeu().'<br/>';
