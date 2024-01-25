@@ -1130,6 +1130,14 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 }
                                             }
                                             foreach ($kostutaula[ 'kontzeptuak' ] as $kontzeptu) {
+                                                $kontzeptuaes = "";
+                                                if (array_key_exists('kontzeptuaes_prod', $kontzeptu)) {
+                                                    $kontzeptuaes = $kontzeptu['kontzeptuaes_prod'];
+                                                }
+                                                $kontzeptuaeu = "";
+                                                if (array_key_exists('kontzeptuaeu_prod', $kontzeptu)) {
+                                                    $kontzeptuaeu = $kontzeptu['kontzeptuaeu_prod'];
+                                                }
                                                 $kopurua = "";
                                                 if (array_key_exists('kopurua_prod', $kontzeptu)) {
                                                     $kopurua = $kontzeptu['kopurua_prod'];
@@ -1140,11 +1148,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 }
 
                                                 if (array_key_exists('baldintza', $kontzeptu)) {
-                                                    $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                    $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                    $textes = $textes.'<tr><td>'.$kontzeptuaes.' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                    $texteu = $texteu.'<tr><td>'.$kontzeptuaeu.' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
                                                 } else {
-                                                    $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                    $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                    $textes = $textes.'<tr><td>'.$kontzeptuaes.'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                    $texteu = $texteu.'<tr><td>'.$kontzeptuaeu.'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
                                                 }
                                             }
                                             $textes .= '</table><br/>';
@@ -2800,6 +2808,14 @@ class IzfeztCommand extends ContainerAwareCommand
                                                 }
 
                                                 foreach ($kostutaula[ 'kontzeptuak' ] as $kontzeptu) {
+                                                    $kontzeptuaes = "";
+                                                    if (array_key_exists('kontzeptuaes_prod', $kontzeptu)) {
+                                                        $kontzeptuaes = $kontzeptu['kontzeptuaes_prod'];
+                                                    }
+                                                    $kontzeptuaeu = "";
+                                                    if (array_key_exists('kontzeptuaeu_prod', $kontzeptu)) {
+                                                        $kontzeptuaeu = $kontzeptu['kontzeptuaeu_prod'];
+                                                    }
                                                     $kopurua = "";
                                                     if (array_key_exists('kopurua_prod', $kontzeptu)) {
                                                         $kopurua = $kontzeptu['kopurua_prod'];
@@ -2810,11 +2826,11 @@ class IzfeztCommand extends ContainerAwareCommand
                                                     }
 
                                                     if (array_key_exists('baldintza', $kontzeptu)) {
-                                                        $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                        $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                        $textes = $textes.'<tr><td>'.$kontzeptuaes.' ('.$kontzeptu['baldintza']['baldintzaes'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                        $texteu = $texteu.'<tr><td>'.$kontzeptuaeu.' ('.$kontzeptu['baldintza']['baldintzaeu'].')</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
                                                     } else {
-                                                        $textes = $textes.'<tr><td>'.$kontzeptu[ 'kontzeptuaes_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
-                                                        $texteu = $texteu.'<tr><td>'.$kontzeptu[ 'kontzeptuaeu_prod' ].'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                        $textes = $textes.'<tr><td>'.$kontzeptuaes.'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
+                                                        $texteu = $texteu.'<tr><td>'.$kontzeptuaeu.'</td><td NOWRAP>'.$kopurua.' '.$unitatea.'</td></tr>';
                                                     }
                                                 }
                                                 $textes .= '</table>';
