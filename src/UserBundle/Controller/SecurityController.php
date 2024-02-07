@@ -37,28 +37,17 @@ class SecurityController extends Controller
          * adibidea: https://zerbikat.test/app_dev.php/login?DNI=72470919&AYUN=064&IDIOMA=eu&ficheroAuten=froga.txt
          ***/
         $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
-//        // $urlOsoa=$request->getUri();
-//        $uri = $request->getUri();
-//        $uri2 = $request->getHost();
-//        $uri3 = $request->getBaseUrl();
-//        $uri4 = $request->getMethod();
-//        $url5 = $request->getRequestUri();
-//        $uri6 = $request->getSchemeAndHttpHost();
-//        $uri7 = $request->getHttpHost();
-
         $urlOsoa= 'https://' . $request->getHost() . $request->getRequestUri();
-
+        $urlOsoa2=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
         $isProd = $this->container->getParameter('kernel.environment') === 'prod';
+        $urlOsoa3 = "";
         if ($isProd) {
             $urlOsoa3="https://".$request->getHost()."/login?".$query_str;
         } else {
             $urlOsoa3="https://".$request->getHost()."/app_dev.php/login?".$query_str;
         }
-        $urlOsoa2=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
 
-        dump($urlOsoa);
-        dump($urlOsoa2);
-        dump($urlOsoa3);
+        // BEREZ $urlOsoa-rekin nahikoa litzateke baina ifzen arazoa dago, php-k dio naiz eta https izan http dela
 
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
             parse_str( $query_str, $query_params );
@@ -71,7 +60,7 @@ class SecurityController extends Controller
                 $fitxategia=$query_params["ficheroAuten"];
 
                 /** @var User $user */
-                $user = $this->izfelogin($NA, $udala, $hizkuntza, $fitxategia, $urlOsoa, $urlOsoa2);
+                $user = $this->izfelogin($NA, $udala, $hizkuntza, $fitxategia, $urlOsoa, $urlOsoa2,$urlOsoa3);
 
                 if ( $user !== null)
                 {
@@ -147,7 +136,7 @@ class SecurityController extends Controller
         return $this->render( 'FOSUserBundle:Security:login.html.twig', $data );
     }
 
-    private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa, $urlOsoa2)
+    private function izfelogin($NA,$udala,$hizkuntza,$fitxategia,$urlOsoa, $urlOsoa2, $urlOsoa3)
     {
 
         /* fitxategiko kodea */
@@ -159,7 +148,7 @@ class SecurityController extends Controller
             fclose( $fitx );
 
             /* fitxategiaren edukia eta url-a berdinak diren konparatu*/
-            if (($lerro == $urlOsoa)||($lerro==$urlOsoa2))
+            if (($lerro == $urlOsoa)||($lerro==$urlOsoa2)||($lerro==$urlOsoa3))
             {
                 $userManager = $this->container->get('fos_user.user_manager');
                 $user = $userManager->findUserBy([
