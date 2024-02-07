@@ -34,15 +34,32 @@ class SecurityController extends Controller
         /***
          * IZFE-rako login da ?
          * Baldin eta parametroa badu bai
+         * adibidea: https://zerbikat.test/app_dev.php/login?DNI=72470919&AYUN=064&IDIOMA=eu&ficheroAuten=froga.txt
          ***/
         $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
-        dump($query_str);
-        dump($request->getHost());
-        // $urlOsoa=$request->getUri();
-        $urlOsoa="https://".$request->getHost()."/app_dev.php/login?".$query_str;
-        dump($urlOsoa);
+//        // $urlOsoa=$request->getUri();
+//        $uri = $request->getUri();
+//        $uri2 = $request->getHost();
+//        $uri3 = $request->getBaseUrl();
+//        $uri4 = $request->getMethod();
+//        $url5 = $request->getRequestUri();
+//        $uri6 = $request->getSchemeAndHttpHost();
+//        $uri7 = $request->getHttpHost();
+
+        $urlOsoa= 'https://' . $request->getHost() . $request->getRequestUri();
+
+        $isProd = $this->container->getParameter('kernel.environment') === 'prod';
+        if ($isProd) {
+            $urlOsoa3="https://".$request->getHost()."/login?".$query_str;
+        } else {
+            $urlOsoa3="https://".$request->getHost()."/app_dev.php/login?".$query_str;
+        }
         $urlOsoa2=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
+
+        dump($urlOsoa);
         dump($urlOsoa2);
+        dump($urlOsoa3);
+
         if (( $query_str != null )&&($this->container->getParameter('izfe_login_path')!='')) {
             parse_str( $query_str, $query_params );
             /* GET kodea*/

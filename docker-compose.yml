@@ -60,3 +60,6 @@ volumes:
 networks:
     zerbikatnet:
         driver: bridge
+        ipam:
+          config:
+            - subnet: 172.188.0.0/16
