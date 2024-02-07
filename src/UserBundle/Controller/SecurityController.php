@@ -36,8 +36,10 @@ class SecurityController extends Controller
          * Baldin eta parametroa badu bai
          ***/
         $query_str = parse_url($request->getUri(),PHP_URL_QUERY );
-
-        $urlOsoa=$request->getUri();
+        dump($query_str);
+        dump($request->getHost());
+        // $urlOsoa=$request->getUri();
+        $urlOsoa="https://".$request->getHost()."/app_dev.php/login?".$query_str;
         dump($urlOsoa);
         $urlOsoa2=$request->getSchemeAndHttpHost().$_SERVER['REQUEST_URI'];
         dump($urlOsoa2);
@@ -144,14 +146,14 @@ class SecurityController extends Controller
             {
                 $userManager = $this->container->get('fos_user.user_manager');
                 $user = $userManager->findUserBy([
-                                                     'username' => $NA,
-                                                     'udala'    => $udala
-                                                 ]);
+                    'username' => $NA,
+                    'udala'    => $udala
+                ]);
                 if (!$user) { // BEGIRATU IFZE-ko erabiltzailea den
                     $user = $userManager->findUserBy([
-                                             'username' => $NA,
-                                             'udala'    => 138
-                                             ]);
+                        'username' => $NA,
+                        'udala'    => 138
+                    ]);
                 }
                 if (!$user) {
                     throw new UsernameNotFoundException(sprintf('Erabiltzailea ez da topatu'));
@@ -184,9 +186,9 @@ class SecurityController extends Controller
         }
 
         return $this->render('UserBundle:Default:users.html.twig', array(
-                'users' =>   $users,
-                'deleteforms'=> $deleteForms,
-            ));
+            'users' =>   $users,
+            'deleteforms'=> $deleteForms,
+        ));
     }
 
     /**

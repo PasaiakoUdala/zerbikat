@@ -114,3 +114,4 @@ php bin/console fos:user:promote
         ErrorLog /var/log/apache2/zerbikat.dev_error.log
         CustomLog /var/log/apache2/zerbikat.dev_access.log combined
     </VirtualHost>
+
